@@ -1,0 +1,36 @@
+/* 
+    Document   : main_new
+    Created on : Mar 15, 2013, 10:16:05 AM
+    Author     : liang
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*root { 
+    display: block;
+}*/
+html {width:1000px;margin:0 auto;padding:0;border:0;}
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {display:block;}
+body {line-height:1.5;background:white;}
+
+.logo{float: left;}
+
+.list,.search{float: left}
+.list li{float: left;display: block;list-style-type: none;line-height: 65px;font-size: 15px;padding: 0 15px 0 15px;}
+.search li{float:left;display: block;padding: 0 3px 0 3px;font-size: 10px;line-height: 23px;
+}
+
+#keywords{}
+
+
+/*.search input{height: 37px; float: left;
+display: block; border: 0; width: 246px;
+padding: 5px 30px 3px 3px; 
+background: url("search-bg-right.png") no-repeat top right;
+font: 23px bold "Myriad Pro", Myriad, Arial, Verdana, sans serif;
+color:#666666; font-style: italic}
+
+.search span.left-cap{display: block; float: left;
+width: 18px; height: 37px;
+background: url("search-bg-left.png") no-repeat top right}*/
