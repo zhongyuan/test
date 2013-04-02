@@ -22,40 +22,79 @@ class NewsController extends Controller
 	}
 
 	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
+	 * 最新消息首页
 	 */
 	public function actionIndex()
 	{
-//            $start = $_GET['page']?$_GET['page']:0;
-//            
-//            $news = MCNews::getOutline($start);
-//            $cmd = MCNews::insertNewsList();
-//            if($cmd){
-//                echo 'insert succ';
-//            }else{
-//                echo 'fail';
-//            }
-//            
-//                $criteria = new CDbCriteria();
-//                $count=Article::model()->count($criteria);
-//                $pages=new CPagination($count);
-//
-//                // 返回前一页
-//                $pages->pageSize=10;
-//                $pages->applyLimit($criteria);
-//                $models = Post::model()->findAll($criteria);
-//
-//                $this->render('index', array(
-//                'models' => $models,
-//                     'pages' => $pages
-//                ));
-            
-            
-            
-		$this->render('index');
+
+            $criteria = new CDbCriteria(array(
+                'select' => 'title,outline,img_little',
+                'order' => 'update_time desc',
+                'params' => array(
+//                    ':status' => 0, //新闻正常，没有被屏蔽
+                ),
+            ));
+             $count=  NewsList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=3;
+             $pages->applyLimit($criteria);
+             $models = NewsList::model()->findAll($criteria);
+
+             $this->render('index', array(
+                'models' => $models,
+                'pages' => $pages,
+             ));
+
 	}
 
+        /*
+         * 开发者大会首页
+         */
+        public function actionDevIndex()
+        {
+            $this->render('devIndex');
+        }
 
+        /*
+         * 大会详情
+         */
+        public function actionDevDetail()
+        {
+            $this->render('devDetail');
+        }
+
+        /*
+         * 新闻报道
+         */
+        public function actionDevReport()
+        {
+            $this->render('devReport');
+        }
+
+        /*
+         *开具发票
+         */
+        public function actionDevReceipt()
+        {
+            $this->render('devReceipt');
+        }
+
+        /*
+         * 大会指南
+         */
+        public function actionDevManual()
+        {
+            $this->render('devManual');
+        }
+
+        /*
+         * 大会现场
+         */
+        public function actionDevScene()
+        {
+            $this->render('devScene');
+        }
 
 }
