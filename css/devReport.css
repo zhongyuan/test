@@ -1,0 +1,103 @@
+/*
+    Document   : devReport
+    Created on : 2013-3-27, 14:55:01
+    Author     : liangzhongyuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+    /* 最新消息-开发者大会首页*/
+    .devForward p{
+        padding: 20px 70px;
+        font-size: 14px;
+    }
+    .di_sched{
+        margin: 0 35px;
+        /*padding: 20px 70px;*/
+        height: 35px;
+        background-color: rgba(247, 245, 245, 0.42);
+    }
+    .rule{
+        width: 120px;
+        height: 0px;
+        border-top: 35px solid rgb(255, 173, 47);
+        border-right: 24px solid transparent;
+    }
+    .rule span{
+        position: relative;
+        top: -30px;
+        left: 25px;
+        color: white;
+        font-size: 18px;
+    }
+    .schedule {
+        padding: 20px 70px;
+        line-height: 40px;
+        font-size: 14px;
+    }
+    .di_detail{
+        margin-left: 50px;
+    }
+    .devNews{
+        padding: 20px 70px;
+        width: 86%;
+    }
+    .devNewsWords{
+        display: block;
+        text-align: center;
+    }
+    .devNewsList{
+        display: inline-block;
+        width: 86%;
+    }
+    .devNewsList li{
+        float: left;
+        font-size: 12px;
+        width: 17.6%;
+        /*margin:0px auto;*/
+        padding: 0px 10px;
+    }
+    .devLogos{
+        padding: 20px 70px;
+        width: 86%;
+    }
+
+    /* 最新消息开发者大会-新闻报道*/
+    .devReport_news{
+        padding: 20px 70px;
+    }
+    .devReport_news div{
+        display: inline-block;
+    }
+    .devReport_word{
+        width:700px;margin-left: 50px;
+    }
+    .devReport_title{
+        font-size:18px;font-weight: bold;text-align:left;color: rgb(255, 173, 47);
+    }
+    .devReport_content{
+        font-size:14px;margin-top: 14px;
+    }
+    .horizon_line{
+        overflow:hidden;height: 1px;width: 100%;background-color: #c2c4c8;
+    }
+
+    /* 最新消息开发者大会-发票*/
+    .regeipt{
+        margin: 0 auto;
+        width: 744px;
+        height:260px;
+        background-image: url('/cos/images/devReceipt/receipt.jpg');
+    }
+    .regeipt li{
+        padding: 7px 0;
+    }
+    .regeipt ul{
+        padding-top: 20px;
+        margin-left: 60px;
+        font-size: 14px;
+        font-weight: thin;
+    }
+    .regeipt_1 li{
+        padding: 10px 0;
+        font-size:16px;
+    }
