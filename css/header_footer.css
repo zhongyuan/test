@@ -23,7 +23,7 @@ ul li{list-style-type: none;}
 a{text-decoration:none;color: black;}
 
 /*============ header ============*/
-#headernew{padding: 10px 70px;height: 57px;}
+#headernew{padding: 10px 70px;height: 57px;background-color: #fbfbfb}
 .logo{float: left;}
 
 .list,.search{float: left}
