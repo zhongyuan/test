@@ -98,4 +98,22 @@ class NewsController extends Controller
             $this->render('devScene');
         }
 
+        /*
+         * 应用开发大赛，首页
+         */
+        public function actionAppIndex()
+        {
+            $this->render('appIndex');
+        }
+
+        /*
+         * 应用开发大赛，参赛详情
+         */
+        public function actionAppDetail()
+        {
+            $this->render('appDetail');
+        }
+
+
+
 }
