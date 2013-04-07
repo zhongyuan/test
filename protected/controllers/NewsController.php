@@ -111,6 +111,7 @@ class NewsController extends Controller
          */
         public function actionAppDetail()
         {
+			//应用开发参赛详细控制器
             $this->render('appDetail');
         }
 		
