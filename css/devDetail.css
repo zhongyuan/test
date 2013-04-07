@@ -1,0 +1,106 @@
+.app_dbody{
+	padding: 0px 70px;
+	margin: 0 auto;
+}
+/*******流程图圆的样式**************/
+.circles_detail{
+	width: 937px;
+	height: 210px;
+	overflow: hidden;
+	background: url(/images/devDetail/flow_1.jpg) no-repeat;
+	margin-bottom: 35px;
+}
+.circles_detail .content_box{
+	font-size: 14px;
+	font-weight: bold;
+	width: 520px;
+	height: 195px;
+	margin-left: 280px;
+	
+	display:table; 
+	_position:relative;
+	overflow:hidden; 
+}
+.circles_detail .content_box .content{
+	vertical-align:middle;
+	display:table-cell;
+	_position:absolute;
+	_top:50%; 
+	line-height: 24px;
+}
+ul.work_items li{
+	float: left;
+	width: 180px;
+	line-height:26px;
+	font-size:13px;	
+}
+
+ul.circles{
+	height: 70px;
+	background: url(/images/devDetail/flow_anrow.jpg) no-repeat;
+	background-position: 0px 25px;
+	
+}
+ul.circles li,ul.circles_text li{
+	float: left;
+	overflow: hidden;
+	
+}
+ul.circles .circle {
+
+    background: none repeat scroll 0 0 #75a35c;
+    border-radius: 39.25px 39.25px 39.25px 39.25px;
+    color: #FFFFFF;
+    padding:5px 25px;
+	font-size: 40px;
+
+} 
+ul.circles .circle_mark {
+
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 39.25px 39.25px 39.25px 39.25px;
+    color: #75a35c;
+    padding:5px 25px;
+	font-size: 40px;
+	border: 2px solid #75a35c;
+
+} 
+
+.circles .left_margin{
+	margin-left: 90px;
+}
+ul.circles_text{
+	margin-top: 5px;
+	overflow: hidden;
+}
+ul.circles_text li{
+	margin-top: 10px;
+	line-height: 50px;
+	font-weight: bold;
+}
+.circles_text .one{
+	margin-left: 110px;
+}
+.circles_text .two{
+	margin-left: 115px;
+}
+.circles_text .three{
+	margin-left: 90px;
+}
+.circles_text .four{
+	margin-left: 95px;
+}
+.circles_text .five{
+	margin-left: 90px;
+}
+
+/**********参赛说明列表项样式**************/
+ul.d_items{
+	margin-top: 80px;
+	overflow: hidden;
+}
+ul.d_items li{
+	line-height: 30px;
+	font-size: 12px;
+	color:gray;
+}

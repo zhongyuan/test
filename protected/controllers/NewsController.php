@@ -27,6 +27,7 @@ class NewsController extends Controller
 	public function actionIndex()
 	{
 
+			
             $criteria = new CDbCriteria(array(
                 'select' => 'title,outline,img_little',
                 'order' => 'update_time desc',
