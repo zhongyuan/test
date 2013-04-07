@@ -7,7 +7,7 @@
 ?>
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devDetail.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appDetail.css"  />
 <div class="app_dbody">
 	<div class="circles_detail">
 		<div class="content_box">
@@ -51,7 +51,7 @@
 		$(".circles li").bind("mouseover",function(){
 			var obj_id=this.id;
 			var circle_id=parseInt($("#"+obj_id).html());
-			var bg_img="url(/images/devDetail/flow_"+circle_id+".jpg)";
+			var bg_img="url(/images/appDetail/flow_"+circle_id+".jpg)";
 			var ids=["one","two","three","four","five"];
 			var contents=["2013年10月1日至11月1日期间，广大开发者，业余达人或公司都可以登录大赛官方网站进行报名哦！！"
 			,"2013年11月2日至11月20日期间，由专家组成的大赛官方评委团将会对参赛选手进行身份资料等的审核，以确保比赛的优质性。",
