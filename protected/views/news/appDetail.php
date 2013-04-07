@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devDetail.css"  />
+
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appDetail.css"  />
 <div class="app_dbody">
 	<div class="circles_detail">
 		<div class="content_box">
@@ -21,9 +22,9 @@
 		<li class="four">公众投票</li>
 		<li class="five">比赛结果公布</li>
 	</ul>
-	
+
 	<ul class="d_items">
-		
+
 		<li>◆ 任何团体或者个人均可参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
 		<li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参赛者提供的信息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
 		<li>◆ 报名时间：xx年xx月xx日-xx年xx月xx日，逾期提交无效。</li>
@@ -37,12 +38,12 @@
 </div>
 
 <script language="javascript">
-	
+
 	$(document).ready(function(){
 		$(".circles li").bind("mouseover",function(){
 			var obj_id=this.id;
 			var circle_id=parseInt($("#"+obj_id).html());
-			var bg_img="url(/images/devDetail/flow_"+circle_id+".jpg)";
+			var bg_img="url(/images/appDetail/flow_"+circle_id+".jpg)";
 			var ids=["one","two","three","four","five"];
 			var contents=["2013年10月1日至11月1日期间，广大开发者，业余达人或公司都可以登录大赛官方网站进行报名哦！！"
 			,"2013年11月2日至11月20日期间，由专家组成的大赛官方评委团将会对参赛选手进行身份资料等的审核，以确保比赛的优质性。",
@@ -52,7 +53,7 @@
 			for(var i=0;i<ids.length;i++){
 				if(obj_id == ids[i]){
 					$("#"+obj_id).removeClass("circle circle_mark").addClass("circle_mark");
-					
+
 					$(".circles_detail").css("background",bg_img);
 					//alert(contents[i]);
 					$(".circles_detail .content_box .content").html(contents[i]);
@@ -60,8 +61,9 @@
 					$("#"+ids[i]).removeClass("circle circle_mark").addClass("circle");
 				}
 			}
-			
-			
+
+
 		});
 	});
+
 </script>
