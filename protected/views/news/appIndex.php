@@ -30,12 +30,48 @@
         /*颜色未定*/
     }
     .app_ileft{
-
+        width: 625px;
+        display: inline-block;
     }
-    .app_iprocess{
+    .app_iprotitle{
         font-size: 24px;
         color: black;
         margin: 0px 20px;
+    }
+    .top_bottem_space{
+        margin: 15px 0px;
+    }
+    .app_iprocontent{
+        font-size: 18px;
+        color: black;
+        padding: 15px 0px;
+    }
+    .app_iprocontent span{
+        padding: 0px 17px;
+    }
+
+    .app_inotice li{
+        font-size: 14px;
+        color: gray;
+        line-height: 28px;
+    }
+    .app_iright{
+        width: 290px;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 40px;
+    }
+    .app_ireward li{
+        margin-bottom: 38px;
+    }
+    .app_ireward img{
+        display: inline-block;
+
+    }
+    .app_ireward p{
+        display: inline-block;
+        vertical-align: top;
+        margin-left:
     }
 </style>
 
@@ -48,26 +84,58 @@
     <div class="horizon_line"></div>
 
     <div class="app_ileft">
-        <div class="app_iprocess">
-            <span class="vertical_line">&nbsp;</span><span class="app_iprocess">大赛流程</span>
-            <p>
+        <div class="top_bottem_space">
+            <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">大赛流程</span>
+            <div>
                 <img src="<?php echo $this->staticUrl('appIndex/app_iprocess.jpg');?>" />
-            </p>
+                <p class="app_iprocontent">
+                    <span style="margin-left:23px;">报名</span>
+                    <span style="margin-left:25px;">资格审核</span>
+                    <span style="margin-left:15px;">作品提交</span>
+                    <span style="margin-left:10px;">公众投票</span>
+                    <span >比赛结果公布</span>
+                </p>
+            </div>
         </div>
 
-        <div>
-            <ul>
-                <li>
+        <div class="horizon_line"></div>
 
-                </li>
+        <div class="app_inotice top_bottem_space">
+            <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">参赛须知</span>
+            <ul >
+                <li>◆ 任何团体或个人都可以参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
+                <li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参数者提供的信<br/>息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
+                <li>◆ 报名时间：**年**月**日-**年**月**日，逾期提交无效。</li>
+                <li>◆ 参赛作品审核成功后，将提交到大赛官网。最终比赛结果，将综合专家陪审团和公众投票意见决定。</li>
+                <li>◆ 比赛结果将在第二届COS开发者大会上公布并颁奖。所有奖金为税前所得。</li>
+                <li>◆ 主办方有权对参赛者活动资格进行审核，为核实参赛者的信息，主办方有权要求参赛者提供相关资料以供确认。</li>
+                <li>◆ 参赛者必须保证作品的原创性、合法性，若出现剽窃其他个人或者团体所开发应用的情况，将取消参赛资格，所引起的一切法律责任，均由作品开发者自然人或机构团体承担。</li>
+                <li>◆ 在本活动期间，因故不能正常进行时，主办方有权决定取消、终止、修改或者暂停活动。</li>
+                <li>◆ 活动最终解释权归主办方所有。</li>
             </ul>
         </div>
 
     </div>
 
     <div class="app_iright">
-        <!--<span class="vertical_line">&nbsp;</span><span>大赛流程</span>-->
-        <ul>
+        <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">奖项设置</span>
+        <ul class="app_ireward">
+            <li style="margin-top: 20px;">
+                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
+            </li>
+            <li>
+                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
+            </li>
+            <li>
+                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
+            </li>
+            <li>
+                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
+            </li>
 
         </ul>
     </div>
