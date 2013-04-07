@@ -56,7 +56,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=cos',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'admin123',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 
