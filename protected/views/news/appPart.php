@@ -1,4 +1,6 @@
 
+<?php $this->widget('AppWidget');?>
+
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appPart.css"  />
 <div class="app_dbody">
 	<h2 class="big_title">开始报名<img src="/images/appPart/add.jpg" align="absmiddle"/></h2>
@@ -53,7 +55,7 @@
 		<li>◆ 在本活动期间，因故不能正常进行时，主办方有权决定取消、终止、修改或暂停活动。</li>
 		<li>◆ 活动最终解释权归主办方所有。</li>
 	</ul>
-	
+
 	 <div class="login_button">
                 <div ><span class="button1">重新填写</span></div>
                 <div ><span class="button1 select">我已阅读注意事项，同意参加</span></div>
