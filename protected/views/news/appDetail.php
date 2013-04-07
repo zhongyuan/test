@@ -1,4 +1,8 @@
 
+
+<?php $this->widget('AppWidget');?>
+
+
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appDetail.css"  />
 <div class="app_dbody">
 	<div class="circles_detail">
