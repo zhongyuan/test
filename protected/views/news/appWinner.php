@@ -1,28 +1,90 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appWinner.css"  />
 <div class="app_dbody">
-	<h2 class="big_title">获奖前言<img src="/images/appPart/add.jpg" align="absmiddle"/></h2>
+	<h2 class="big_title">获奖前言<img src="/images/appWinner/reward_profile.jpg" align="absmiddle"/></h2>
 	<div class="sec_label">历时一个多月的全国性2013开发者大赛已经圆满结束了，感谢近千名开发者的踊跃参与。经过仔细测试开发者提交的参赛作品，我们在感受到国人强大的实力与各种天马行空的创意之后，总结并评选出以下获奖作品，祝贺他们！！我们会尽快安排奖金及奖品的发放，请获奖者留意邮件或电话通知。</div>
 	
-	<h2 class="big_title">获奖名单<img  src="/images/appPart/peoples.jpg"/></h2>
+	<h2 class="big_title">获奖名单<img  src="/images/appWinner/reward_list.jpg"/></h2>
 	<h3>终极大奖(1名)</h3>
+	<div class="r_list">
+		<img src="/images/appWinner/work_little_7.jpg"/>
+		获奖作品: <<旅游日记>>
+		<br />作者:无限乐盒
+	</div>
 	<h3>最佳创意奖(2名)</h3>
+	<ul class="w_list">
+		<li>
+			
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_6.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+		<li>
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_5.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+	</ul>
 	<h3>最佳体验奖(2名)</h3>
+	<ul class="w_list">
+		<li>
+			
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_2.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+		<li>
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_4.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+	</ul>
 	<h3>最佳设计奖(2名)</h3>
+	<ul class="w_list">
+		<li>
+			
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_2.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+		<li>
+			<div class="r_list">
+				<img src="/images/appWinner/work_little_3.jpg"/>
+				获奖作品: <<旅游日记>>
+				<br />作者:无限乐盒
+			</div>
+		</li>
+	</ul>
 	<h3>积极参与奖(23名) <span>排名不分先后</span></h3>
-	
+	<ul class="win_list">
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+	</ul>
 	<p>特别声明</p>
 	<ul class="d_items">
 
-		<li>◆ 任何团体或者个人均可参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
-		<li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参赛者提供的信息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
-		<li>◆ 报名时间：xx年xx月xx日-xx年xx月xx日，逾期提交无效。</li>
-		<li>◆ 参赛作品审核成功后，将发布在大赛官网。最终比赛结果，将综合专家评审团和公众投票意见决定。</li>
-		<li>◆ 比赛结果将在第二届COS开发者大会上公布并颁奖。所有资金为税前所得。</li>
-		<li>◆ 主办方有权对参赛者活动资格进行审核，为核实参赛者的信息，主办方有权要求参赛者提供相关资料以供确认。</li>
-		<li>◆ 参赛者必须保证作品的原创性、合法性，若出现剽窃其他个人或团体所开发应用的情况，将取消参赛资格，所引起的一切法律责任，均由作品开发者自然人或机构团体承担。</li>
-		<li>◆ 在本活动期间，因故不能正常进行时，主办方有权决定取消、终止、修改或暂停活动。</li>
-		<li>◆ 活动最终解释权归主办方所有。</li>
+		<li>◆ 主办方通过参赛者提供作品时提交的联系方式通知获奖者。</li>
+		<li>◆ 现金获奖者自公布之日起90天内应按照所通知的颁奖方式领取奖品，奖品领取方式将另行通知。如困获奖者自身原因导致不能按时领取奖品时，获奖者应及时通知主办方。逾期未能领取奖品且未通知主办方的，即视为自动放弃获奖资格。主办方不承担任何责任并有权自行处理奖品。</li>
+		<li>◆ 现金奖金的相关个人所得税由获奖者自行承担。根据有关规定，主办方有义务从奖品中代扣获奖者相关个人所得税。</li>
+		<li>◆ 在法律许可的范围内，对于获奖者或任何其他人或财产因接受任何奖品或与奖品有关面遭受的任何损失或损害(包括但不限于间接或后果性的损失) 或所遭受或发生的人身伤害，主办方概不承担任何责任。</li>
+		<li>◆ 如获奖者系一个组织(包括但不限于公司 工作室 组合等形式)，则该组织必须确定一名代表成员接受奖励，否则该参赛者将丧失获得奖励的权利。且主办方可自行决定将该奖励授予其他参赛者。主办方一旦向该名代表组织接受奖励的成员颁发奖励，则视为已向该组织颁发了奖励。</li>
+		<li>◆ 参赛者应自行负责在其成员之间分配和分发奖品，主办方对此不承担责任。</li>
+		<li>◆ 本次大赛将奖品'诺基亚N9手机'全部更换为'诺基亚PureView 808手机'。</li>
+		<li>◆ 本次活动的最终解释权归主办方所有。</li>
 	</ul>
 	
 </div>
