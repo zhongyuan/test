@@ -27,7 +27,7 @@ class NewsController extends Controller
 	public function actionIndex()
 	{
 
-			
+
             $criteria = new CDbCriteria(array(
                 'select' => 'title,outline,img_little',
                 'order' => 'update_time desc',
@@ -111,13 +111,31 @@ class NewsController extends Controller
          */
         public function actionAppDetail()
         {
-			//应用开发参赛详细控制器
             $this->render('appDetail');
         }
-		
-		
-		
 
+        /*
+         * 应用开发大赛，报名参加
+         */
+        public function actionAppPart()
+        {
+            $this->render('appPart');
+        }
 
+        /*
+         * 应用开发大赛，作品展示
+         */
+        public function actionAppShow()
+        {
+            $this->render('appShow');
+        }
+
+        /*
+         * 应用开发大赛，获奖名单
+         */
+        public function actionAppWinner()
+        {
+            $this->render('appWinner');
+        }
 
 }
