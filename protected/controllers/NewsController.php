@@ -113,6 +113,9 @@ class NewsController extends Controller
         {
             $this->render('appDetail');
         }
+		
+		
+		
 
 
 
