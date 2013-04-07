@@ -52,10 +52,6 @@
         <li class="<?php echo $action == 'devIndex'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><span>大会首页</span></a>
         </li>
-<!--        <li><span class="hide_left"></span></li>
-        <li class="<?php echo $action == 'devDetail'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devDetail'); ?>">大会详情</a>
-        </li>-->
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devReport'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devReport'); ?>">新闻报道</a>
@@ -69,10 +65,6 @@
             <a href="<?php echo Yii::app()->createUrl('news/devManual'); ?>">大会指南</a>
         </li>
         <li><span class="hide_left"></span></li>
-<!--        <li class="<?php echo $action == 'devIndex'?'currentItem2':null ?>">
-            <a>精彩回顾</a>
-        </li>
-        <li><span class="hide_left"></span></li>-->
         <li class="<?php echo $action == 'devScene'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devScene'); ?>">大会现场</a>
         </li>
