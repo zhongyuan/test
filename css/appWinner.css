@@ -72,6 +72,7 @@ ul.win_list li{
 /**********参赛说明列表项样式**************/
 ul.d_items{
 	margin-top: 5px;
+	margin-bottom: 30px;
 	overflow: hidden;
 }
 ul.d_items li{
