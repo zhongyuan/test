@@ -206,7 +206,7 @@ a.button {
 .button {
       width:149px;
       height: 48px;
-      background: url('/cos/images/register_rigister/selected_button.jpg') no-repeat;
+      background: url('/images/register_rigister/selected_button.jpg') no-repeat;
 
     }*/
 

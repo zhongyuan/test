@@ -5,7 +5,7 @@
         width: 1100px;
         height: 321px;
         color: white;
-        background-image: url('/cos/images/appIndex/app.jpg');
+        background-image: url('/images/appIndex/app.jpg');
     }
     .app_title{
         position: relative;

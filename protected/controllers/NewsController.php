@@ -138,4 +138,14 @@ class NewsController extends Controller
             $this->render('appWinner');
         }
 
+        /*
+         * 版本信息
+         */
+        public function actionVersion()
+        {
+            $this->render('version');
+        }
+
+
+
 }
