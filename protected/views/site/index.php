@@ -12,7 +12,32 @@ $this->pageTitle=Yii::app()->name;
     <p style="text-align: center;font-size: 30px">多平台 More Platform</p>
 
     <img style="width: 100%;" src="<?php echo $this->staticUrl('index/plat.jpg'); ?>"/>
-    <img style="" src="<?php echo $this->staticUrl('index/phone.jpg'); ?>"/>
+	
+	<!--Circle Flash Area Begin #Modified By owen.yang#-->
+	<style type="text/css">
+		.clc_box{
+			height: 540px;
+			overflow: hidden;
+			background: url(/images/index/phone.jpg) no-repeat;
+			background-position: center;
+		}
+		.clc_box .clc_box_summary{
+			height: 225px;
+		}
+		.clc_box .clc_box_switcher{
+			height: 90px;
+			background: #EEE;
+		}
+	</style>
+	<div class="clc_box">
+		<div class="clc_box_summary"></div>
+		<div class="clc_box_switcher"></div>
+	</div>
+	<!--Circle Flash Area End-->
+	
+	
+    
+	<!--<img style="" src="<?php echo $this->staticUrl('index/phone.jpg'); ?>"/>-->
 
     <div style="width: 100%;height:259px; background: url('<?php echo $this->staticUrl('index/intelli.jpg'); ?>') no-repeat center center ;  ">
         <div>
