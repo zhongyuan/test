@@ -1,9 +1,12 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appWinner.css"  />
+
+<?php $this->widget('AppWidget');?>
+
 <div class="app_dbody">
 	<h2 class="big_title">获奖前言<img src="/images/appWinner/reward_profile.jpg" align="absmiddle"/></h2>
 	<div class="sec_label">历时一个多月的全国性2013开发者大赛已经圆满结束了，感谢近千名开发者的踊跃参与。经过仔细测试开发者提交的参赛作品，我们在感受到国人强大的实力与各种天马行空的创意之后，总结并评选出以下获奖作品，祝贺他们！！我们会尽快安排奖金及奖品的发放，请获奖者留意邮件或电话通知。</div>
-	
+
 	<h2 class="big_title">获奖名单<img  src="/images/appWinner/reward_list.jpg"/></h2>
 	<h3>终极大奖(1名)</h3>
 	<div class="r_list">
@@ -14,7 +17,7 @@
 	<h3>最佳创意奖(2名)</h3>
 	<ul class="w_list">
 		<li>
-			
+
 			<div class="r_list">
 				<img src="/images/appWinner/work_little_6.jpg"/>
 				获奖作品: <<旅游日记>>
@@ -32,7 +35,7 @@
 	<h3>最佳体验奖(2名)</h3>
 	<ul class="w_list">
 		<li>
-			
+
 			<div class="r_list">
 				<img src="/images/appWinner/work_little_2.jpg"/>
 				获奖作品: <<旅游日记>>
@@ -50,7 +53,7 @@
 	<h3>最佳设计奖(2名)</h3>
 	<ul class="w_list">
 		<li>
-			
+
 			<div class="r_list">
 				<img src="/images/appWinner/work_little_2.jpg"/>
 				获奖作品: <<旅游日记>>
@@ -86,5 +89,5 @@
 		<li>◆ 本次大赛将奖品'诺基亚N9手机'全部更换为'诺基亚PureView 808手机'。</li>
 		<li>◆ 本次活动的最终解释权归主办方所有。</li>
 	</ul>
-	
+
 </div>
