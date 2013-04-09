@@ -9,6 +9,9 @@
 		width: 185px;
 		margin-top: 10px;
 	}
+	img.news_pub_more{
+		margin-top: 20px;
+	}
 	.news_sub_title{
 		font-size: 18px;
 		font-weight: bold;
@@ -25,23 +28,24 @@
 		width: 196px;
 	}
 	img.news_up_more{
-		margin-top:47px;
+		margin-top:37px;
 	}
 	img.news_up_robert{
 		margin-left: 20px;
-		margin-top: 13px;
+		margin-top: 3px;
 		float: right;
 	}
 	.news_exp{
 		text-align: left;
 		margin-top: 10px;
 		margin-left: 15px;
+
 	}
 	.news_exp .news_exp_desc{
 		float: left;
 	}
 	img.news_exp_more{
-		margin-top: 29px;
+		margin-top: 19px;
 	}
 	img.news_exp_pic{
 		margin-top:13px;

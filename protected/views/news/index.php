@@ -15,7 +15,7 @@
 
     <div class="short_news" style="width:100%;margin-top: 15px;float: left;overflow: hidden;">
         <div class="news_second_1" style="width:33%" >
-            <div><img src="<?php echo $this->staticUrl('news/news_second_1.jpg');?>" /></div>
+            <div><img src="<?php echo $this->staticUrl('news/news_second_1.jpg');?>"  width="150"/></div>
 
             <div class="news_pub">
                 <p class="news_sub_title">创新发布会</p>
@@ -23,7 +23,7 @@
 					2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
 				</p>
 
-                <a href="#"><img style="margin-left: 100px;margin-top: 30px;" src="<?php echo $this->staticUrl('news/more.jpg');?>" /></a>
+                <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" /></a>
             </div>
 
         </div>
@@ -31,7 +31,7 @@
         <div style="overflow:hidden;height: 150px;width: 1px;background-color: #c2c4c8;"></div>
 
         <div class="news_second_2" style="width:32%;" >
-            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/news_second_2.jpg');?>" /></div>
+            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/news_second_2.jpg');?>" width="110"/></div>
 
             <div class="news_up">
                 <p class="news_sub_title">平板系统升级</p>
@@ -65,7 +65,7 @@
 		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
 						</a>
 					</div>
-					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" />	
+					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" width="175"/>	
 					
 					
 						

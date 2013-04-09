@@ -140,3 +140,23 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/index.php?r=news/appWinnder/
 ---
+2013/04/09 16:42:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL,'2'' at line 1. The SQL statement executed was: select title,outline,img_little from newsList order by update_time desc  limit :start,:end.
+in E:\wwwroot\cosweb\protected\models\MCNews.php (26)
+in E:\wwwroot\cosweb\protected\controllers\NewsController.php (32)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/09 16:42:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL,'2'' at line 1. The SQL statement executed was: select title,outline,img_little from newsList order by update_time desc  limit :start,:end' in E:\wwwroot\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 E:\wwwroot\yii\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\wwwroot\cosweb\protected\models\MCNews.php(26): CDbCommand->queryAll(true, Array)
+#2 E:\wwwroot\cosweb\protected\controllers\NewsController.php(32): MCNews::getOutline()
+#3 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionIndex()
+#4 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#8 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/index')
+#9 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=news/index
+---
