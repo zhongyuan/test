@@ -5,15 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<style>
-    .short_news,.short_news div{
-        float: left;
-    }
-    .page li{
-        float:left;
-    }
-
-</style>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
 
 <div>
 
@@ -21,15 +13,17 @@
         <img src="<?php echo $this->staticUrl('news/news_first_1.jpg');?>" />
     </div>
 
-    <div class="short_news" style="width:100%;margin-top: 15px;float: left">
+    <div class="short_news" style="width:100%;margin-top: 15px;float: left;overflow: hidden;">
         <div class="news_second_1" style="width:33%" >
             <div><img src="<?php echo $this->staticUrl('news/news_second_1.jpg');?>" /></div>
 
-            <div style='width: 150px;'>
-                <p style='font-size: 18px; text-align: center;'>创新发布会</p>
-                <p style="font-size: 12px;line-height: 18px;margin-top: 12px;width: 110px;margin-left: 35px;">电视不是一个好东西，哈哈哈哈哈哈哈，好开心呜呜呜哈哈</p>
+            <div class="news_pub">
+                <p class="news_sub_title">创新发布会</p>
+                <p class="news_sub_detail">
+					2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
+				</p>
 
-                <img style="margin-left: 100px;margin-top: 30px;" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+                <a href="#"><img style="margin-left: 100px;margin-top: 30px;" src="<?php echo $this->staticUrl('news/more.jpg');?>" /></a>
             </div>
 
         </div>
@@ -39,12 +33,16 @@
         <div class="news_second_2" style="width:32%;" >
             <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/news_second_2.jpg');?>" /></div>
 
-            <div style='width: 150px;margin-left: 35px;'>
-                <p style='font-size: 18px;'>平板系统升级</p>
-                <p style="font-size: 12px;line-height: 18px;margin-top: 12px;">电视不是一个好东西，哈哈哈哈哈哈哈，好开心哈</p>
+            <div class="news_up">
+                <p class="news_sub_title">平板系统升级</p>
+                <p class="news_sub_detail">
+					最新系统支持平板电脑2.0<br />以上系统升级，并且免费。
+				</p>
 
-                <img style="margin-left: 20px;margin-top: 30px;" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
-                <img style="margin-left: 13px;margin-top: 10px;" src="<?php echo $this->staticUrl('news/news_robert.jpg');?>" />
+                <a href="#">
+					<img class="news_up_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+				</a>
+                <img class="news_up_robert" src="<?php echo $this->staticUrl('news/news_robert.jpg');?>" />
             </div>
         </div>
 
@@ -53,17 +51,30 @@
         <div class="news_second_3">
 
 
-            <div style='width: 150px;'>
-                <p style='font-size: 18px; text-align: center;'>创新使用者经验</p>
-                <p style="font-size: 12px;line-height: 18px;margin-top: 12px;width: 110px;">电视不是一个好东西，哈哈哈呜呜哈哈</p>
+            <div class="news_exp">
+                <p class="news_sub_title">创新使用者经验</p>
+				
+				<div>
+					
+					<div class="news_exp_desc">
+						<p class="news_sub_detail">
+						五月天的美国<br />可以重游旧地。<br />旅游心情真好。
+						</p>
 
-                <img style="margin-left: 20px;margin-top: 30px;" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+						<a href="#">
+		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+						</a>
+					</div>
+					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" />	
+					
+					
+						
+				</div>
             </div>
-            <div><img src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" /></div>
 
         </div>
 
-        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;"></div>
+        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
 
     </div>
 
@@ -101,7 +112,7 @@
         </div>
 
     <?php } ?>
-                <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;"></div>
+                <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
     <?php $i++;}; ?>
 
 
