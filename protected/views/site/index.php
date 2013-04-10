@@ -6,13 +6,43 @@ $this->pageTitle=Yii::app()->name;
 ?>
 <!--<span style="clear:both"></span>-->
 
+<style>
+    .back{
+        position: relative;
+        height: 250px;
+        width: 100%;
+    }
+    .back img{
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+    .back span{
+        display: inline-block;
+        width: 220px;
+        height: 50px;
+        position: relative;
+        top: 140px;
+        font-size: 14px;
+    }
+</style>
+
 <div>
     <img style="width: 100%;" src="<?php echo $this->staticUrl('index/cos.jpg'); ?>"/>
-    <br/>
-    <p style="text-align: center;font-size: 30px">多平台 More Platform</p>
 
-    <img style="width: 100%;" src="<?php echo $this->staticUrl('index/plat.jpg'); ?>"/>
-    <img style="" src="<?php echo $this->staticUrl('index/phone.jpg'); ?>"/>
+    <p style="text-align: center;font-size: 30px">多平台 More Platform</p>
+    <div class="back">
+        <img  src="<?php echo $this->staticUrl('index/plat.jpg'); ?>"/>
+        <span style="left: 185px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 225px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 260px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+
+    </div>
+
+    <div>
+        <img style="" src="<?php echo $this->staticUrl('index/phone.jpg'); ?>"/>
+    </div>
+
 
     <div style="width: 100%;height:259px; background: url('<?php echo $this->staticUrl('index/intelli.jpg'); ?>') no-repeat center center ;  ">
         <div>
