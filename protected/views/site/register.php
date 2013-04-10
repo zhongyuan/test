@@ -32,20 +32,32 @@
 				<ul class="site_reg_items">
 					<li class="lbl">COS ID</li>
 					<li class="inputbox"><input type="text"/></li>
+						
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">密码</li>
 					<li class="inputbox"><input type="password"/></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
 					<li class="inputbox">密码强度：</li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">确认密码</li>
-					<li class="inputbox"><input type="password"/></li>	
+					<li class="inputbox"><input type="password"/></li>
 				</ul>
 				
+					
+					
 				
 				<h2>设定安全提示问题</h2>
 				<p class="site_reg_comment">请选择或自定一个安全问题。当您忘记密码时，此安全问题可以帮助您快速地找到密码，并确认您的身份。</p>
 				<ul class="site_reg_items">
 					<li class="lbl">安全提示问题</li>
 					<li class="inputbox"><select><option>请选择</option><option>选项1</option><option>选项2</option></select></li>
+					
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">答案</li>
 					<li class="inputbox"><input  type="text" name="" value=""/></li>
 				</ul>
@@ -75,29 +87,41 @@
 				</ul>
 				
 				
+				
 				<h2>输入您的姓名</h2>
 				<p class="site_reg_comment">请输入您的完整姓名。</p>
 				<ul class="site_reg_items">
 					<li class="lbl">姓氏</li>
 					<li class="inputbox"><input type="text" /></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">名字</li>
 					<li class="inputbox"><input type="text"/></li>
 				</ul>
-				
 				
 				<h2>输入您的主要联系地址</h2>
 				<p class="site_reg_comment">请输入您的邮寄地址。</p>
 				<ul class="site_reg_items">
 					<li class="lbl">国家或地区</li>
-					<li class="inputbox"><input  type="text"/></li>
+					<li class="inputbox"><input  type="text"/></li>	
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">公司/机构</li>
 					<li class="inputbox"><input  type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">地址</li>
 					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">县/市</li>
 					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">州/省</li>
 					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
 					<li class="lbl">邮递区号</li>
 					<li class="inputbox"><input type="text"/></li>
 				</ul>
