@@ -123,6 +123,9 @@
 .site_reg h2{
 	font-weight: bold;
 	margin-top: 20px;
+}
+.site_reg input{
+	outline: medium;
 }	
 .site_reg .site_reg_comment{
 	font-size: 12px;
