@@ -28,7 +28,6 @@ class NewsController extends Controller
 	{
 
 
-			
             $criteria = new CDbCriteria(array(
                 'select' => 'title,outline,img_little',
                 'order' => 'update_time desc',
@@ -36,12 +35,9 @@ class NewsController extends Controller
 //                    ':status' => 0, //新闻正常，没有被屏蔽
                 ),
             ));
-			
              $count=  NewsList::model()->count($criteria);
-			// var_dump($criteria);
              $pages=new CPagination($count);
-	
-	
+
              // 返回前一页
              $pages->pageSize=3;
              $pages->applyLimit($criteria);
