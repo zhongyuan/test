@@ -16,14 +16,15 @@ class MCNews {
     //======获取新闻对象==========
     public static function getOutline($start)
     {
+		
         $end = $start + self::num;
         $sql = "select title,outline,img_little from newsList order by update_time desc  limit :start,:end";
-
+		echo("Goo");
         $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
            ':start' => $start,
            ':end' => $end,
         ));
-
+		
         return $cmd?$cmd:0;
     }
 
