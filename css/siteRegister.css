@@ -149,6 +149,12 @@ ul.site_reg_items li.lbl{
 ul.site_reg_items li.inputbox{
 	width: 430px;
 }
+ul.site_reg_items li.inputbox select{
+	width: 275px;
+}
+ul.site_reg_items li.inputbox select.year{
+	width: 88px;
+}
 ul.site_reg_items li.inputbox input{
 	width: 270px;
     height: 23px;

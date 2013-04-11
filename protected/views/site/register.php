@@ -21,30 +21,36 @@
 			
         </div>
         <div class="register_rig">
-
-
+			
+			
+			
 			<!--表单区域开始处-->
+			<?php
+				echo CHtml::beginForm();
+				$form=$this->beginWidget('CActiveForm');
+			?>
+			
 			<div class="site_reg">
 				<h2>COS ID</h2>
 				<p class="site_reg_comment">你的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除非经过你的授权，
 				<br />我们不会将你的资料分享给他人。
 				</p>
 				<ul class="site_reg_items">
-					<li class="lbl">COS ID</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?></li>
 						
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">密码</li>
-					<li class="inputbox"><input type="password"/></li>
+					<li class="lbl"><?php echo $form->label($model,'passwd',array('label'=>"密码")); ?></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
 					<li class="inputbox">密码强度：</li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">确认密码</li>
-					<li class="inputbox"><input type="password"/></li>
+					<li class="lbl"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?></li>
 				</ul>
 				
 					
@@ -53,13 +59,13 @@
 				<h2>设定安全提示问题</h2>
 				<p class="site_reg_comment">请选择或自定一个安全问题。当您忘记密码时，此安全问题可以帮助您快速地找到密码，并确认您的身份。</p>
 				<ul class="site_reg_items">
-					<li class="lbl">安全提示问题</li>
-					<li class="inputbox"><select><option>请选择</option><option>选项1</option><option>选项2</option></select></li>
+					<li class="lbl"><?php echo $form->label($model,'question_id',array('label'=>"安全提示问题")); ?></li>
+					<li class="inputbox"><?php echo $form->dropDownList($model,'question_id',array('0'=>"请选择",'1'=>"我的第一个学校",'2'=>"我的爸妈的名字"));?></li>
 					
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">答案</li>
-					<li class="inputbox"><input  type="text" name="" value=""/></li>
+					<li class="lbl"><?php echo $form->label($model,'answer',array('label'=>"答案")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'answer'); ?></li>
 				</ul>
 				
 				
@@ -68,17 +74,18 @@
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
 					<li class="inputbox">
-						<select>
+						<?php echo $form->dropDownList($model,'year',array('0'=>"请选择",'1'=>"我的第一个学校",'2'=>"我的爸妈的名字"));?>
+						<select class="year">
 							<option>2009年</option>
 							<option>12月</option>
 							<option>12日</option>
 						</select>
-						<select>
+						<select class="year">
 							<option>12月</option>
 							<option>12月</option>
 							<option>12日</option>
 						</select>
-						<select>
+						<select class="year">
 							<option>12日</option>
 							<option>12月</option>
 							<option>12日</option>
@@ -91,47 +98,47 @@
 				<h2>输入您的姓名</h2>
 				<p class="site_reg_comment">请输入您的完整姓名。</p>
 				<ul class="site_reg_items">
-					<li class="lbl">姓氏</li>
-					<li class="inputbox"><input type="text" /></li>
+					<li class="lbl"><?php echo $form->label($model,'first_name',array('label'=>"姓氏")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">名字</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'last_name',array('label'=>"名字")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?></li>
 				</ul>
 				
 				<h2>输入您的主要联系地址</h2>
 				<p class="site_reg_comment">请输入您的邮寄地址。</p>
 				<ul class="site_reg_items">
-					<li class="lbl">国家或地区</li>
-					<li class="inputbox"><input  type="text"/></li>	
+					<li class="lbl"><?php echo $form->label($model,'country',array('label'=>"国家或地区")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'country'); ?></li>	
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">公司/机构</li>
-					<li class="inputbox"><input  type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'company',array('label'=>"公司/机构")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'company'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">地址</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'address',array('label'=>"地址")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'address'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">县/市</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'county',array('label'=>"县/市")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'county'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">州/省</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'state',array('label'=>"州/省")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'state'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">邮递区号</li>
-					<li class="inputbox"><input type="text"/></li>
+					<li class="lbl"><?php echo $form->label($model,'zip_code',array('label'=>"邮递区号")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'zip_code'); ?></li>
 				</ul>
 				
 				
 				<h2>选择您最常用的语言</h2>
 				<p class="site_reg_comment">请选择您最擅长使用语种。</p>
 				<ul class="site_reg_items">
-					<li class="lbl">偏好的语言</li>
-					<li class="inputbox"><input type="text" value="请输入语种"/></li>
+					<li class="lbl"><?php echo $form->label($model,'language',array('label'=>"偏好的语言")); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'language'); ?></li>
 				</ul>
 				
 				
@@ -151,6 +158,7 @@
 				
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
+					
 					<p><input type="text"/> (字母不区分大小写)</p>
 					<p><input type="checkbox"> 我已阅读并同意COS服务条款与COS客户隐私政策</p>	
 				</div>
@@ -162,6 +170,11 @@
                 <div ><span class="button1">取消</span></div>
                 <div ><span class="button1 select">注册</span></div>
             </div>
+			
+			<?php
+				$this->endWidget();
+				echo CHtml::endForm();
+			?>
 			<!--表单区域结束处-->
         </div>
     </div>

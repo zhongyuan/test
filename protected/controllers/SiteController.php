@@ -112,6 +112,23 @@ class SiteController extends Controller
 
         public function actionRegister()
         {
-            $this->render('register');
+			$model = new RegisterForm();
+			if(isset($_POST['RegisterForm'])){
+				$model->attributes = $_POST['RegisterForm'];
+				if($model->validate()){
+					//检查此Email是否已被注册
+					$userModel = new MCUsers();
+					$rst = $userModel->addUser($model->attributes['email']);
+					var_dump($rst);
+					
+					//添加一个新的用户
+					echo("SUCCESS");
+				}else{
+					
+					//$this->redirect(Yii:app()->user->returnUrl);
+				}
+				//exit(0);
+			}
+            $this->render('register',array('model'=>$model));
         }
 }
