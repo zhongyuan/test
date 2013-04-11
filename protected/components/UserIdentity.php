@@ -37,7 +37,7 @@ class UserIdentity extends CUserIdentity
                         $session['first_name'] = $record['first_name'];
                         $session['last_name'] = $record['last_name'];
                         $session['language'] = $record['language'];
-                        $session->setTimeout(1800);
+                        $session->setTimeout(3600*24);
                 }
 		return !$this->errorCode;
 
