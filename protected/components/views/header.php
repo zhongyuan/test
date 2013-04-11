@@ -15,8 +15,8 @@
     </div>
     <div class ="search">
         <ul >
-            <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" />注册</li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><label><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/rigister.jpg" />登录</label></a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/register.jpg" />注册</a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" />登陆</a></li>
             <li>English/中文</li>
         </ul>
         <div class="search_inform">
