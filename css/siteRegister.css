@@ -1,0 +1,197 @@
+	.register{
+        padding: 0px 70px;
+    }
+    .register_ti p{
+        font-size: 27px;
+        padding: 23px 20px;
+    }
+    .register_con{
+        width: 100%;
+        padding-bottom: 40px;
+		overflow: hidden;
+    }
+    .register_left{
+        width: 250px;
+        height: 1380px;
+        border-radius: 7px;
+        display: inline-block;
+        background-color: #e7e7e7;
+		float: left;
+    }
+	.rleft_box{
+		margin:20px;
+	}
+	.rleft_box h2{
+		font-weight: bold;
+	}
+	.rleft_box p{
+		font-size: 12px;
+		line-height: 22px;
+		color: gray;
+	}
+	.rleft_box p.rleft_privacy{
+		margin-top: 35px;
+	}
+	.rleft_box p.rleft_privacy a{
+		color: #5e75a2;
+	}
+    .register_rig{
+        width:700px;
+        margin-left: -3px;
+        border-radius: 7px;
+        background-color: #fafafa;
+		overflow: hidden;
+		float: right;
+    }
+    /*=============以下样式被注释掉=================
+    .register_cos{
+        padding: 20px 20px;
+        font-size: 14px;
+        color: #666666;
+    }
+    .register_cos span{
+        font-size: 22px;
+        display: block;
+        color: #323232;
+    }
+    .register_info{
+        margin: 0 auto;
+        width: 400px;
+        font-size: 14px;
+    }
+    .register_info input{
+        width: 270px;
+        height: 23px;
+        border-radius: 7px;
+        margin-left: 40px;
+        overflow: hidden;
+    }
+    .remark{
+        display:block;
+        margin-left: 105px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        color: #768db9;
+    }
+    .register_item p{
+        height: 29px;
+        display: inline-block;
+    }
+    .register_key{
+        width: 80px;
+        text-align: right;
+    }
+    .register_item{
+        margin:10px 0;
+    }
+    .pw_str{
+        display:block;
+        margin-left: 125px;
+        color: #768db9;
+    }
+
+    #prograss{
+
+    }
+
+#loadbar{
+    display: inline-block;
+    height: 13px;
+    width: 100px;
+    background-color:white;
+    border:1px solid #000;
+}
+#bar{
+    display: block;
+    height: 15px;
+    background-color:red;
+
+}
+.pw_strong{
+
+}
+
+============以上样式被注释掉============*/
+
+
+
+	
+/*========新增注册表单布局样式==========*/	
+.site_reg{
+	margin-left: 20px;
+}
+.site_reg h2{
+	font-weight: bold;
+	margin-top: 20px;
+}
+.site_reg input{
+	outline: medium;
+}	
+.site_reg .site_reg_comment{
+	font-size: 12px;
+	color:gray;
+}
+ul.site_reg_items{
+	overflow: hidden;
+}
+ul.site_reg_items li{
+	line-height: 34px;
+	font-size: 12px;
+	color: gray;
+	float: left;
+	overflow: hidden;
+}
+ul.site_reg_items li.lbl{
+	width: 190px;
+	padding-right: 30px;
+	text-align: right;
+}
+ul.site_reg_items li.inputbox{
+	width: 430px;
+}
+ul.site_reg_items li.inputbox input{
+	width: 270px;
+    height: 23px;
+    border-radius: 5px;	
+}
+.form_ext_box{
+	margin-left:85px;
+	font-size:12px;
+	line-height:24px;
+	color:gray;	
+}
+.form_ext_box h3{
+	margin-top: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+/*=======注册按钮相关样式========*/
+ .register_button{
+        text-align: center;
+        color:#323232;
+    }
+    .register_button div{
+        margin: 20px 30px;
+        width: 130px;
+        height: 35px;
+        display: inline-block;
+        border-radius: 10px;
+        border:5px solid #f2f2f2;
+
+
+    }
+    .button1{
+        position: relative;
+        top: 2px;
+        padding: 5px 44px;
+        font-size: 20px;
+        background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
+        border: 1px solid rgba(170, 169, 169, 0.9);
+        border-radius: 7px;
+
+    }
+
+    .select{
+        color:white;
+        background-color: #eb8313;
+    }

@@ -1,113 +1,8 @@
-<?php
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/siteRegister.css"  />
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 
 <style>
-    .register{
-        padding: 0px 70px;
-    }
-    .register_ti p{
-        font-size: 27px;
-        padding: 23px 20px;
-    }
-    .register_con{
-        height: 700px;
-        width: 100%;
-        padding-bottom: 40px;
-    }
-    .register_left{
-        width: 250px;
-        height:100%;
-        border-radius: 7px;
-        display: inline-block;
-        background-color: #e7e7e7;
-    }
-    .register_rig{
-        width:700px;
-        height:100%;
-        margin-left: -3px;
-        border-radius: 7px;
-        display: inline-block;
-        background-color: #fafafa;
-    }
-
-    .register_cos{
-        padding: 20px 20px;
-        font-size: 14px;
-        color: #666666;
-    }
-    .register_cos span{
-        font-size: 22px;
-        display: block;
-        color: #323232;
-    }
-    .register_info{
-        margin: 0 auto;
-        width: 400px;
-        font-size: 14px;
-    }
-    .register_info input{
-        width: 270px;
-        height: 23px;
-        border-radius: 7px;
-        margin-left: 40px;
-        overflow: hidden;
-    }
-    .remark{
-        display:block;
-        margin-left: 105px;
-        padding-top: 10px;
-        padding-bottom: 20px;
-        color: #768db9;
-    }
-    .register_item p{
-        height: 29px;
-        display: inline-block;
-    }
-    .register_key{
-        width: 80px;
-        text-align: right;
-    }
-    .register_item{
-        margin:10px 0;
-    }
-    .pw_str{
-        display:block;
-        margin-left: 125px;
-        color: #768db9;
-    }
-
-    #prograss{
-
-    }
-
-#loadbar{
-    display: inline-block;
-    height: 13px;
-    width: 100px;
-    background-color:white;
-    border:1px solid #000;
-}
-#bar{
-    display: block;
-    height: 15px;
-    background-color:red;
-
-}
-.pw_strong{
-
-}
+    
 </style>
 
 <div class="register">
@@ -116,87 +11,164 @@
     </div>
     <div class="register_con">
         <div class="register_left">
-            <p class="register_cos"><span>建立一个COSID</span>你的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除
-                非经过你的授权，我们不会将你的资料分享给他人。</p>
-            <p><a style="color:#6666ff"> 阅读COS 客户隐私权政策</a></p>
+			<div class="rleft_box">
+				<h2>建立一个COS ID</h2>
+				<p>
+					您的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除非经过你的授权，我们不会将你的资料分享给他人。
+				</p>
+	            <p class="rleft_privacy"><a href="#"> 阅读COS 客户隐私权政策 ◆</a></p>	
+			</div>
+			
         </div>
         <div class="register_rig">
 
-            <p class="register_cos"><span>COS ID</span>你的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除
-                非经过你的授权，我们不会将你的资料分享给他人。</p>
 
-            <div class="register_info">
-
-                <div class="register_item">
-                    <p class="register_key"><span style="">COS ID</span></p>
-                    <p><input type="text" name="cos_id" /></p>
-                </div>
-                <div class="register_item">
-                    <p class="register_key"><span style="">密码</span></p>
-                    <p><input type="text" name="cos_id" /></p>
-
-<!--                    <div class="pw_str"><span>密码强度：</span> <strong id="prograss"></strong> <div>-->
-
-
-                </div>
-
-                <div  class="register_item" >
-                    <p class="pw_strong">密码强度：</p>
-                    <p  id="loadbar"><span id="bar" style="width:30%"></span></p>
-
-                </div>
-
-                <div class="register_item">
-                    <p class="register_key"><span style="">确认密码</span></p>
-                    <p><input type="text" name="cos_id" /></p>
-                    <p></p>
-                </div>
-
-
-            </div>
-
-
-
+			<!--表单区域开始处-->
+			<div class="site_reg">
+				<h2>COS ID</h2>
+				<p class="site_reg_comment">你的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除非经过你的授权，
+				<br />我们不会将你的资料分享给他人。
+				</p>
+				<ul class="site_reg_items">
+					<li class="lbl">COS ID</li>
+					<li class="inputbox"><input type="text"/></li>
+						
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">密码</li>
+					<li class="inputbox"><input type="password"/></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">&nbsp;</li>
+					<li class="inputbox">密码强度：</li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">确认密码</li>
+					<li class="inputbox"><input type="password"/></li>
+				</ul>
+				
+					
+					
+				
+				<h2>设定安全提示问题</h2>
+				<p class="site_reg_comment">请选择或自定一个安全问题。当您忘记密码时，此安全问题可以帮助您快速地找到密码，并确认您的身份。</p>
+				<ul class="site_reg_items">
+					<li class="lbl">安全提示问题</li>
+					<li class="inputbox"><select><option>请选择</option><option>选项1</option><option>选项2</option></select></li>
+					
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">答案</li>
+					<li class="inputbox"><input  type="text" name="" value=""/></li>
+				</ul>
+				
+				
+				<h2>选择您的出生日期</h2>
+				<p class="site_reg_comment">连同您设定的安全提示问题，此资讯可在您忘记密码或需要重设密码时帮助我们识别您的身份。</p>
+				<ul class="site_reg_items">
+					<li class="lbl">&nbsp;</li>
+					<li class="inputbox">
+						<select>
+							<option>2009年</option>
+							<option>12月</option>
+							<option>12日</option>
+						</select>
+						<select>
+							<option>12月</option>
+							<option>12月</option>
+							<option>12日</option>
+						</select>
+						<select>
+							<option>12日</option>
+							<option>12月</option>
+							<option>12日</option>
+						</select>
+					</li>	
+				</ul>
+				
+				
+				
+				<h2>输入您的姓名</h2>
+				<p class="site_reg_comment">请输入您的完整姓名。</p>
+				<ul class="site_reg_items">
+					<li class="lbl">姓氏</li>
+					<li class="inputbox"><input type="text" /></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">名字</li>
+					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				
+				<h2>输入您的主要联系地址</h2>
+				<p class="site_reg_comment">请输入您的邮寄地址。</p>
+				<ul class="site_reg_items">
+					<li class="lbl">国家或地区</li>
+					<li class="inputbox"><input  type="text"/></li>	
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">公司/机构</li>
+					<li class="inputbox"><input  type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">地址</li>
+					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">县/市</li>
+					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">州/省</li>
+					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				<ul class="site_reg_items">
+					<li class="lbl">邮递区号</li>
+					<li class="inputbox"><input type="text"/></li>
+				</ul>
+				
+				
+				<h2>选择您最常用的语言</h2>
+				<p class="site_reg_comment">请选择您最擅长使用语种。</p>
+				<ul class="site_reg_items">
+					<li class="lbl">偏好的语言</li>
+					<li class="inputbox"><input type="text" value="请输入语种"/></li>
+				</ul>
+				
+				
+				<h2>联系方式偏好</h2>
+				<p class="site_reg_comment">获知App新闻 软件更新以及有关产品与服务的最新资讯。请注意：电子邮件讯息是采用您居住国家的官方语言。</p>
+				<p class="site_reg_comment"><a href="#">阅读COS客户隐私权政策</a></p>
+				<div class="form_ext_box">
+					<h3>来自COS的讯息</h3>
+					<p class="more"><input type="checkbox" />电子邮件</p>
+					<p class="more">COS新闻 软体与更多内容。</p>
+					<h3>电子报</h3>
+					<p><input type="checkbox"/>COS商城与C - life的实时更新</p>
+					<p>COS每周都会推出很多新内容，想要第一时间得到这些讯息请打勾。</p>	
+				</div>
+				
+				
+				
+				<h2>输入看到的符号</h2>
+				<div class="form_ext_box">
+					<p><input type="text"/> (字母不区分大小写)</p>
+					<p><input type="checkbox"> 我已阅读并同意COS服务条款与COS客户隐私政策</p>	
+				</div>
+				
+			</div>
+			
 
             <div class="register_button">
                 <div ><span class="button1">取消</span></div>
-                <div ><span class="button1 select">登陆</span></div>
-                <!--<a class="button"><span>登陆</span></a>-->
+                <div ><span class="button1 select">注册</span></div>
             </div>
+			<!--表单区域结束处-->
         </div>
     </div>
 </div>
 
 <style>
-    .register_button{
-        text-align: center;
-        color:#323232;
-    }
-    .register_button div{
-        margin: 20px 30px;
-        width: 130px;
-        height: 35px;
-        display: inline-block;
-        border-radius: 10px;
-        border:5px solid #f2f2f2;
-
-
-    }
-    .button1{
-        position: relative;
-        top: 2px;
-        padding: 5px 44px;
-        font-size: 20px;
-        background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
-        border: 1px solid rgba(170, 169, 169, 0.9);
-        border-radius: 7px;
-
-    }
-
-    .select{
-        color:white;
-        background-color: #eb8313;
-    }
+   
 
 /*
 a.button {
@@ -212,9 +184,9 @@ a.button {
 
 </style>
 
-<object type="application/x-shockwave-flash" data="/qzone/space_item/orig/14/88814_s.swf" width="870px" height="230"
+<!--<object type="application/x-shockwave-flash" data="/qzone/space_item/orig/14/88814_s.swf" width="870px" height="230"
         style="display: block; width: 870px; height: 230px; margin-left: -16px;" align="middle">
     <param name="movie" value="/qzone/space_item/orig/14/88814_s.swf">
     <param name="quality" value="high">
     <param name="bgcolor" value="#ffffff"><param name="play" value="true">
-    <param name="loop" value="true"><param name="wmode" value="transparent"></object>
+    <param name="loop" value="true"><param name="wmode" value="transparent"></object>-->
