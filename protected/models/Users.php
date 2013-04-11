@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'users':
  * @property integer $user_id
- * @property string $email
+ * @property string $user_name
  * @property string $passwd
  * @property integer $question_id
  * @property string $answer
@@ -46,16 +46,16 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, passwd, first_name, update_time, record_time', 'required'),
+			array('user_name, passwd, first_name, update_time, record_time', 'required'),
 			array('question_id, birthday, contact_type, status, update_time, record_time', 'numerical', 'integerOnly'=>true),
-			array('email', 'length', 'max'=>50),
+			array('user_name', 'length', 'max'=>50),
 			array('passwd', 'length', 'max'=>16),
 			array('answer', 'length', 'max'=>30),
 			array('first_name, last_name', 'length', 'max'=>20),
 			array('language', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, email, passwd, question_id, answer, birthday, first_name, last_name, language, contact_type, status, update_time, record_time', 'safe', 'on'=>'search'),
+			array('user_id, user_name, passwd, question_id, answer, birthday, first_name, last_name, language, contact_type, status, update_time, record_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,7 +77,7 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'user_id' => 'User',
-			'email' => 'Email',
+			'user_name' => 'User Name',
 			'passwd' => 'Passwd',
 			'question_id' => 'Question',
 			'answer' => 'Answer',
@@ -104,7 +104,7 @@ class Users extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('email',$this->email,true);
+		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('passwd',$this->passwd,true);
 		$criteria->compare('question_id',$this->question_id);
 		$criteria->compare('answer',$this->answer,true);

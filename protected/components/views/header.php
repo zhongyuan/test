@@ -15,8 +15,12 @@
     </div>
     <div class ="search">
         <ul >
+            <?php if(Yii::app()->user->isGuest){ ?>
             <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" />注册</li>
             <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><label><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/rigister.jpg" />登录</label></a></li>
+            <?php }else{?>
+            <li>你好，<?php echo substr(Yii::app()->user->getName(), 0, 5).'...'; ?></li>
+            <?php }?>
             <li>English/中文</li>
         </ul>
         <div class="search_inform">
