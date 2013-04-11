@@ -23,10 +23,10 @@ class UserIdentity extends CUserIdentity
 //                $record = Users::model()->findByAttributes(array('user_id'=>$this->username));
                 $mcUser = new MCUsers($this->username);
                 $record = $mcUser->checkUser();
-
-		if(!isset($record['user_id']) || $record['status']==0){
+                print_r($record);
+		if(!isset($record['user_id']) || $record['status']==1){  //status=1表示用户被禁
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-                }elseif($record['passwd']!==$this->password){
+                }elseif($record['passwd']!=$this->password){
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
                 }else{
 			$this->errorCode=self::ERROR_NONE;
@@ -40,7 +40,6 @@ class UserIdentity extends CUserIdentity
                         $session->setTimeout(3600*24);
                 }
 		return !$this->errorCode;
-
 
 
 	}

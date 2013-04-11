@@ -17,66 +17,63 @@
 
             <p class="login_cos"><span>登陆COS</span>请输入您的账号和密码，如果忘记了请点击下方提示性文字。</p>
 
-            <form>
-                <div class="login_input">
-                    <p>
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'login-form',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+)); ?>
+                <div class="row">
                         <span style="">COS ID</span>
-                        <input type="text" id="cos_id" />
+<!--                        <input type="text" id="cos_id" />-->
+                        <?php echo $form->textField($model,'username'); ?>
                         <span class="remark" >忘记你的COS ID了?</span>
-                    </p>
-                    <p>
-                        <span style="margin-left: 20px;">密码</span>
-                        <input type="password" id="psw" />
-                        <span class="remark">忘记你的COS密码了?</span>
-                    </p>
                 </div>
-            
 
-            <div class="login_button">
-                <div ><span id="reset" class="button1">取消</span></div>
-                <div ><span id="submit" class="button1 select">登陆</span></div>
-                <!--<a class="button"><span>登陆</span></a>-->
-            </div>
-          </form>
+                <div class="row">
+                        <span style="margin-left: 20px;">密码</span>
+                        <?php echo $form->passwordField($model,'password'); ?>
+                        <span class="remark">忘记你的COS密码了?</span>
+                </div>
+
+
+                <div class="login_button">
+
+
+                    <div><input type="reset" class="button1" value="取消" id="reset"/></div>
+                    <div><?php echo CHtml::submitButton('登陆',array('class'=>'button1 select','id'=>'submit')); ?></div>
+                    <!--<a class="button"><span>登陆</span></a>    <span id="submit" class="button1 select">登陆</span>-->
+                </div>
+
+
+<?php $this->endWidget(); ?>
         </div>
     </div>
 </div>
 
 <script>
-//    $(function(){
-//        //点击取消
-//        $("#reset").click(function(){
-//            $("#cos_id").val(null);
-//            $("#psw").val(null);
-//            this.addClass('select');
-//            $("#submit").removeClass('select');
-//        });
-//        
-//        //点击登录
+    $(function(){
+        //点击取消
+        $("#reset").click(function(){
+            $(this).addClass('select');
+            $("#submit").removeClass('select');
+        });
+
+        //点击登录
 //        $("#submit").click(function(){
 //            var cos_id = $("#cos_id").val();
 //            var psw = $("#psw").val();
-//            
+//
 //            var url = "<?php $this->createUrl('site/login'); ?>";
 //            var data = "cos_id="+encodeURIComponent(cos_id)+'&psw='+psw
 //        });
-//        
-//        
-//        
-//    });
-//    
-//    function ajaxJson(url,data,callfun)
-//    {
-//        $.ajax({
-//           url:url,
-//           data:data,
-//           dataType:'json',
-//           success:callfun,
-//           error:function(){
-//               alert('ajax fail~'); //这边以后定位到一个专门的报错页
-//           }
-//        });
-//    }
-    
-    
+
+
+
+    });
+
+
+
+
 </script>
