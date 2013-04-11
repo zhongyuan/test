@@ -20,10 +20,9 @@ class UserIdentity extends CUserIdentity
         public function authenticate()
 	{
 
-//                $record = Users::model()->findByAttributes(array('user_id'=>$this->username));
                 $mcUser = new MCUsers($this->username);
                 $record = $mcUser->checkUser();
-                print_r($record);
+
 		if(!isset($record['user_id']) || $record['status']==1){  //status=1表示用户被禁
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
                 }elseif($record['passwd']!=$this->password){
