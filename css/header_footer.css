@@ -29,14 +29,18 @@ a{text-decoration:none;color: black;}
 .list,.search{float: left}
 .list{width:560px;}
 .list li{float: left;display: block;line-height: 57px;font-size: 15px;padding: 3px 15px 0 15px;}
-.search li{float:left;display: block;padding: 0 7px 0 7px;font-size: 10px;line-height: 23px;}
+
 .list ul{
     float: left;padding: 0px 28px;
 }
-.search ul{
+.header_login{
     float: left;margin-left: 24px;
 }
-
+.header_logout{
+    float: left;margin-left: 4px;
+}
+.header_login li{float:left;display: block;padding:0 7px;font-size: 10px;line-height: 23px;}
+.header_logout li{float:left;display: block;padding: 0 2px;font-size: 10px;line-height: 23px;}
 .search{width: 224px;}
 .search_inform{
      height: 34px;
