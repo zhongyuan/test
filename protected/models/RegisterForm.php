@@ -21,15 +21,27 @@
 	public $county;
 	public $state;
 	public $zip_code;
+	public $status;
+	public $viaEmail;
+	public $viaEPaper;
+	public $isRead;
+	public $verifyCode;
 	
 	
 	public function rules()
 	{
 		return array(
-			array('user_name,passwd,passwd2,question_id,answer','required'),
+			
+			array('user_name,passwd,passwd2,first_name,last_name,isRead,verifyCode','required'),
 			array('user_name','email'),
 			array('passwd','compare','compareAttribute'=>"passwd2"),
+			array('verifyCode','captcha','allowEmpty'=>!Yii::app()->user->isGuest),
 		);
+	}
+	
+	public function attributeLabels()
+	{
+		return array('verifyCode' => 'Verification Code');
 	}
  }
 ?>

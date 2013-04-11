@@ -26,8 +26,9 @@
 			
 			<!--表单区域开始处-->
 			<?php
-				echo CHtml::beginForm();
+				echo CHtml::beginForm('','post',array('id'=>"registerForm"));
 				$form=$this->beginWidget('CActiveForm');
+				echo $form->errorSummary($model);
 			?>
 			
 			<div class="site_reg">
@@ -37,12 +38,12 @@
 				</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span>*</span></li>
 						
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'passwd',array('label'=>"密码")); ?></li>
-					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?><span>*</span></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
@@ -50,7 +51,7 @@
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
-					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?><span>*</span></li>
 				</ul>
 				
 					
@@ -60,7 +61,7 @@
 				<p class="site_reg_comment">请选择或自定一个安全问题。当您忘记密码时，此安全问题可以帮助您快速地找到密码，并确认您的身份。</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'question_id',array('label'=>"安全提示问题")); ?></li>
-					<li class="inputbox"><?php echo $form->dropDownList($model,'question_id',array('0'=>"请选择",'1'=>"我的第一个学校",'2'=>"我的爸妈的名字"));?></li>
+					<li class="inputbox"><?php echo $form->dropDownList($model,'question_id',$extConfig['safeQuestions']);?></li>
 					
 				</ul>
 				<ul class="site_reg_items">
@@ -74,22 +75,9 @@
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
 					<li class="inputbox">
-						<?php echo $form->dropDownList($model,'year',array('0'=>"请选择",'1'=>"我的第一个学校",'2'=>"我的爸妈的名字"));?>
-						<select class="year">
-							<option>2009年</option>
-							<option>12月</option>
-							<option>12日</option>
-						</select>
-						<select class="year">
-							<option>12月</option>
-							<option>12月</option>
-							<option>12日</option>
-						</select>
-						<select class="year">
-							<option>12日</option>
-							<option>12月</option>
-							<option>12日</option>
-						</select>
+						<?php echo $form->dropDownList($model,'year',$extConfig['years'],array('class'=>'year'));?>
+						<?php echo $form->dropDownList($model,'month',$extConfig['months'],array('class'=>'year'));?>
+						<?php echo $form->dropDownList($model,'day',$extConfig['days'],array('class'=>'year'));?>
 					</li>	
 				</ul>
 				
@@ -99,11 +87,11 @@
 				<p class="site_reg_comment">请输入您的完整姓名。</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'first_name',array('label'=>"姓氏")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?><span>*</span></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'last_name',array('label'=>"名字")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?></li>
+					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?><span>*</span></li>
 				</ul>
 				
 				<h2>输入您的主要联系地址</h2>
@@ -147,10 +135,10 @@
 				<p class="site_reg_comment"><a href="#">阅读COS客户隐私权政策</a></p>
 				<div class="form_ext_box">
 					<h3>来自COS的讯息</h3>
-					<p class="more"><input type="checkbox" />电子邮件</p>
+					<p class="more"><?php echo $form->checkBox($model,'viaEmail'); ?>电子邮件</p>
 					<p class="more">COS新闻 软体与更多内容。</p>
 					<h3>电子报</h3>
-					<p><input type="checkbox"/>COS商城与C - life的实时更新</p>
+					<p><?php echo $form->checkBox($model,'viaEPaper'); ?>COS商城与C - life的实时更新</p>
 					<p>COS每周都会推出很多新内容，想要第一时间得到这些讯息请打勾。</p>	
 				</div>
 				
@@ -158,17 +146,17 @@
 				
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
-					
-					<p><input type="text"/> (字母不区分大小写)</p>
-					<p><input type="checkbox"> 我已阅读并同意COS服务条款与COS客户隐私政策</p>	
+					<div class="captcha"><?php $this->widget('CCaptcha',array('buttonLabel'=>"",'imageOptions'=>array('width'=>160,'maxLength'=>4))); ?></div>
+					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span>*</span></div>
+					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>	
 				</div>
 				
 			</div>
 			
 
             <div class="register_button">
-                <div ><span class="button1">取消</span></div>
-                <div ><span class="button1 select">注册</span></div>
+                <div ><span class="button1" id="cancel_btn">取消</span></div>
+                <div ><span class="button1 select" id="submit_btn">注册</span></div>
             </div>
 			
 			<?php
@@ -180,8 +168,21 @@
     </div>
 </div>
 
+
+<script language="javascript">
+	$(document).ready(function(){
+		$("#cancel_btn").click(function(){
+			return false;
+		});
+		
+		$("#submit_btn").click(function(){
+			$("#registerForm").submit();
+		});
+	});
+	
+</script>
 <style>
-   
+    
 
 /*
 a.button {
