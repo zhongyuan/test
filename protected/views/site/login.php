@@ -27,20 +27,21 @@
                 <div class="row">
                         <span style="">COS ID</span>
 <!--                        <input type="text" id="cos_id" />-->
-                        <?php echo $form->textField($model,'username'); ?>
+                        <?php echo $form->textField($model,'username',array('id'=>'user_name')); ?>
                         <span class="remark" >忘记你的COS ID了?</span>
                 </div>
 
                 <div class="row">
                         <span style="margin-left: 20px;">密码</span>
-                        <?php echo $form->passwordField($model,'password'); ?>
+                        <?php echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
                         <span class="remark">忘记你的COS密码了?</span>
                 </div>
-                <?php echo $form->error($model,'username'); ?>
+                <div class="login_error"><?php echo $form->error($model,'password');?></div>
+
+
+<!--                <div><?php echo $form->errorSummary($model);//注1：这里显示出错时，报错的地方 ?>  </div>-->
 
                 <div class="login_button">
-
-
                     <div><input type="reset" class="button1" value="取消" id="reset"/></div>
                     <div><?php echo CHtml::submitButton('登陆',array('class'=>'button1 select','id'=>'submit')); ?></div>
                     <!--<a class="button"><span>登陆</span></a>    <span id="submit" class="button1 select">登陆</span>-->
@@ -56,24 +57,41 @@
     $(function(){
         //点击取消
         $("#reset").click(function(){
+            $('#user_name').attr('value',null);
+            $('#pass_word').attr('value',null);
             $(this).addClass('select');
             $("#submit").removeClass('select');
         });
 
         //点击登录
-//        $("#submit").click(function(){
-//            var cos_id = $("#cos_id").val();
-//            var psw = $("#psw").val();
-//
-//            var url = "<?php $this->createUrl('site/login'); ?>";
-//            var data = "cos_id="+encodeURIComponent(cos_id)+'&psw='+psw
-//        });
+        $("#submit").click(function(){
+            var user_name = $("#user_name").val();
+            var pass_word = $("#pass_word").val();
+            if(!user_name || !pass_word)
+            {
+                $('.login_error').html('用户名或密码不能为空！');
+                return false;
+            }
+            //检查是否是邮件类型
+            if(!checkEmail(user_name))
+            {
+                $('.login_error').html('请输入有效的E_mail！');
+                return false;
+            }
 
-
-
+        });
     });
 
-
-
+    function checkEmail(user_name)
+    {
+           //对电子邮件的验证
+           var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+           if(!myreg.test(user_name))
+           {
+                return false;
+           }else{
+               return true;
+           }
+    }
 
 </script>

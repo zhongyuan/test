@@ -64,6 +64,11 @@
         padding-bottom: 20px;
         color: #768db9;
     }
+    .login_error{
+        text-align: center;
+        font-size: 14px;
+        color:red;
+    }
 
     .login_button{
         text-align: center;
