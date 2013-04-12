@@ -142,8 +142,12 @@
 
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
+
 					<div class="captcha"><?php $this->widget('CCaptcha',array('showRefreshButton'=>TRUE,'buttonLabel'=>'点击换图','clickableImage'=>false,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','width'=>'160','height'=>'60'))); ?></div>
-                                        <div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span></div>
+                    <div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span>
+                        <span id="ajaxCode2" style="display:none;"></span>
+                    </div>
+
 					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>
 				</div>
 
@@ -154,6 +158,12 @@
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
                 <div ><span class="button1 select" id="submit_btn">注册</span></div>
             </div>
+
+
+			<!--表单验证通过隐藏域开始处-->
+			<input type="hidden" id="user_name_flag" value="error"/>
+			<input type="hidden" id="verifyCode_flag" value="error"/>
+			<!--表单验证通过隐藏域结束处-->
 
 			<?php
 				$this->endWidget();
@@ -213,13 +223,20 @@ function checkAjaxRegister(type,strVerifyCode)
 			switch (type){
 				case 1:
 					$("#user_name_tips").html(res.msg);
+					if(res.flag==1){
+						$("#user_name_flag").val("ok");
+					}
 				break;
+
 				case 2:
-                    if(res.flag==1){
-                        $("#verifyCode_tips").html(res.msg);
-                    }else{
-                        $("#verifyCode_tips").html(res.msg);
-                    }
+				if(res.flag==1){
+
+					$("#verifyCode_flag").val("ok");
+	                $("#verifyCode_tips").html(res.msg);
+
+	            }else{
+	                $("#verifyCode_tips").html(res.msg);
+	            }
 				break;
 			}
 
@@ -263,7 +280,10 @@ $(document).ready(function(){
 	});
 
 	$("#cancel_btn").click(function(){
-		return false;
+		$("#cancel_btn").removeClass("button1").addClass("button1 select");
+		$("#submit_btn").removeClass("button1 select").addClass("button1");
+		$("#registerForm")[0].reset();
+		//return false;
 	});
 
 });
@@ -277,27 +297,10 @@ function showFocusMessage(id,msg)
 
 function checkUsername()
 {
-	var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-	var strUsername=$("#RegisterForm_user_name").val();
-
-	if(!regUsername.test(strUsername)){
-		$("#user_name_tips").html("请输入一个有效的Email！");
+	if($("#user_name_flag").val()== "error"){
 		return false;
-	}else{
-		var url = "<?php echo $this->createUrl('site/ajaxCheckUser');?>";
-		$.post(
-			url,
-			{user_name:strUsername},
-			function(data){
-				$("#user_name_tips").html(data.msg);
-				$("#ajaxCode").html(data.flag);
-			},"json");
-
-			if($("#ajaxCode").html() == 1){
-				return true;
-			}
-			return false;
 	}
+	return true;
 }
 
 function checkPassword()
@@ -353,5 +356,12 @@ function checkLastname()
 	}
 }
 
+function checkCaptcha()
+{
+	if($("#verifyCode_flag").val()=="error"){
+		return false;
+	}
+	return true;
+}
 
 </script>
