@@ -22,7 +22,6 @@ class Register
 		static $years = array();
 		$maxYear = date("Y") - 15;
 		$minYear = $maxYear - 30;
-		echo($maxYear);
 		for($i=$maxYear;$i>=$minYear;$i--){
 			array_push($years,$i);
 		}
