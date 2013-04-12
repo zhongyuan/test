@@ -6159,3 +6159,14 @@ in E:\wwwroot\cosweb\index.php (15)
 2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "viaEPaper" of "RegisterForm".
 in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
 in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 14:01:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "checkUser".' in E:\wwwroot\yii\framework\web\CController.php:483
+Stack trace:
+#0 E:\wwwroot\yii\framework\web\CController.php(270): CController->missingAction('checkUser')
+#1 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('checkUser')
+#2 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/checkUser')
+#3 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/checkUser
+HTTP_REFERER=http://dev.example.com/index.php?r=site/register
+---

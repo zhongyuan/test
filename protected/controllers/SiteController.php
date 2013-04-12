@@ -136,4 +136,29 @@ class SiteController extends Controller
 			}
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
+		
+	   /**
+		* AJAX方式检测邮箱是否已被注册了 
+		* 
+		*/
+		public function actionCheckUser()
+		{
+			$user_name = Yii::app()->getRequest()->getPost("user_name");
+			$userModel = new MCUsers($user_name);
+			$dbRst = $userModel->checkUser();
+			
+			$rst = array(
+				'req'=>"ok",
+				'msg'=>"恭喜您,该邮箱可以注册!"
+			);
+			if(!empty($dbRst)){
+				$rst = array(
+					'req'=>"error",
+					'msg'=>"很抱歉,此邮箱已被注册!"
+				);
+			}
+			
+			echo json_encode($rst);
+			exit(0);
+		}
 }

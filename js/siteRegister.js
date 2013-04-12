@@ -54,6 +54,9 @@ $(document).ready(function(){
 	
 });
 
+
+var ajaxCode = false;
+var ajaxMsg = " ";
 function checkUsername()
 {
 	var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
@@ -63,8 +66,18 @@ function checkUsername()
 		$("#user_name_tips").html("请输入一个合法的Email！");
 		return false;
 	}else{
-		$("#user_name_tips").html("√");
-		return true;
+		$.post(
+			"/index.php?r=site/checkUser",
+			{user_name:strUsername},
+			function(data){
+				ajaxMsg = data.msg;
+				if(data.req == "ok"){
+					ajaxCode = true;
+				}
+				
+			},"json");
+		$("#user_name_tips").html(ajaxMsg);
+		return ajaxCode;	
 	}
 }
 
@@ -115,6 +128,7 @@ function checkLastname()
 		$("#last_name_tips").html("请输入合法的名字！");
 		return false;
 	}else{
+		
 		$("#last_name_tips").html("√");
 		return true;
 	}
