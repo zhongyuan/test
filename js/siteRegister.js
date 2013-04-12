@@ -41,12 +41,14 @@ $(document).ready(function(){
 	
 	
 	$("#submit_btn").bind("click",function(){
-		alert("Go");
 		if(checkUsername() && checkPassword() && checkMatchPasswd() && checkFirstname() && checkLastname() && checkCaptcha()){
-			alert("YES");
 			$("#registerForm").submit();
 			return true;
 		}
+		return false;
+	});
+	
+	$("#cancel_btn").click(function(){
 		return false;
 	});
 	

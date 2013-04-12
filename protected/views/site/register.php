@@ -164,32 +164,6 @@
     </div>
 </div>
 
-
-<script language="javascript">
-	$(document).ready(function(){
-		$("#cancel_btn").click(function(){
-			return false;
-		});
-	});
-	
-</script>
-<style>
-    
-
-/*
-a.button {
-      font: normal 12px sans-serif;
-      text-decoration: none;
-    }
-.button {
-      width:149px;
-      height: 48px;
-      background: url('/images/register_rigister/selected_button.jpg') no-repeat;
-
-    }*/
-
-</style>
-
 <!--<object type="application/x-shockwave-flash" data="/qzone/space_item/orig/14/88814_s.swf" width="870px" height="230"
         style="display: block; width: 870px; height: 230px; margin-left: -16px;" align="middle">
     <param name="movie" value="/qzone/space_item/orig/14/88814_s.swf">
