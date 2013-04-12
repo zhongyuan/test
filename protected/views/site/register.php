@@ -34,7 +34,9 @@
 				</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span id="user_name_tips">*</span></li>
+					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span id="user_name_tips">*</span>
+						<span id="ajaxCode" style="display:none;"></span>
+					</li>
 						
 				</ul>
 				<ul class="site_reg_items">
