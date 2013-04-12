@@ -36,12 +36,12 @@
                         <?php echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
                         <span class="remark">忘记你的COS密码了?</span>
                 </div>
-                <?php  ?>
-                <div class="login_error"><?php echo $form->error($model,'password'); ?></div>
+                <div class="login_error"><?php echo $form->error($model,'password');?></div>
+
+
+<!--                <div><?php echo $form->errorSummary($model);//注1：这里显示出错时，报错的地方 ?>  </div>-->
 
                 <div class="login_button">
-
-
                     <div><input type="reset" class="button1" value="取消" id="reset"/></div>
                     <div><?php echo CHtml::submitButton('登陆',array('class'=>'button1 select','id'=>'submit')); ?></div>
                     <!--<a class="button"><span>登陆</span></a>    <span id="submit" class="button1 select">登陆</span>-->
