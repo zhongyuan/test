@@ -6075,3 +6075,87 @@ in E:\wwwroot\cosweb\index.php (15)
 2013/04/12 11:33:15 [warning] [application] Failed to set unsafe attribute "viaEPaper" of "RegisterForm".
 in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
 in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "question_id" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "answer" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "year" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "month" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "day" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "country" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "company" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "address" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "county" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "state" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "zip_code" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "language" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "viaEmail" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:18:10 [warning] [application] Failed to set unsafe attribute "viaEPaper" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "question_id" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "answer" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "year" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "month" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "day" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "country" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "company" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "address" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "county" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "state" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "zip_code" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "language" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "viaEmail" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
+2013/04/12 13:19:00 [warning] [application] Failed to set unsafe attribute "viaEPaper" of "RegisterForm".
+in E:\wwwroot\cosweb\protected\controllers\SiteController.php (116)
+in E:\wwwroot\cosweb\index.php (15)
