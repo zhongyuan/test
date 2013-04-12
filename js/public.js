@@ -8,6 +8,7 @@
 function ajaxJson(url,data,callfun)
 {
     $.ajax({
+        type:"POST",
         url:url,
         data:data,
         dataType:'json',
