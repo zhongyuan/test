@@ -149,7 +149,7 @@ class SiteController extends Controller
 			
 			$rst = array(
 				'req'=>"ok",
-				'msg'=>"恭喜您,该邮箱可以注册!"
+				'msg'=>"√"
 			);
 			if(!empty($dbRst)){
 				$rst = array(
