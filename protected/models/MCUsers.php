@@ -29,23 +29,23 @@ class MCUsers {
 
     public function addUser($input=array())
     {
-            //保存用户基本信息
-      		$data = $input['data'];
-            $affect = $this->_insert("users",$data);
-            if(!$affect){
-                    return array(FALSE,"数据写入失败,请重试!");
-            }
-            $user_id = Yii::app()->db->getLastInsertID("users");
-            if(!$user_id){
-                    return array(FALSE,"数据写入失败,请重试!");
-            }
+        //保存用户基本信息
+        $data = $input['data'];
+        $affect = $this->_insert("users",$data);
+        if(!$affect){
+                return array(FALSE,"数据写入失败,请重试!");
+        }
+        $user_id = Yii::app()->db->getLastInsertID("users");
+        if(!$user_id){
+                return array(FALSE,"数据写入失败,请重试!");
+        }
 
-            //保存用户联系地址相关信息
-			$address = $input['address'];
-            $address['user_id'] = $user_id;
-            $this->_insert("address",$address);
+        //保存用户联系地址相关信息
+        $address = $input['address'];
+        $address['user_id'] = $user_id;
+        $cmd = $this->_insert("address",$address);
 
-            return array(TRUE,$data);//返回用户注册的详细信息
+        return $cmd?$cmd:0;//返回用户注册的详细信息
     }
 
     public function deleteUser()
@@ -60,28 +60,28 @@ class MCUsers {
 
     private function _insert($tbl,$data = array())
     {
-            if(empty($data)){
-                    return FALSE;
-            }
+        if(empty($data)){
+                return FALSE;
+        }
 
-            $sql = "INSERT INTO $tbl (";
-            $sql.=implode(",",array_keys($data));
-            $sql.=") VALUES(";
+        $sql = "INSERT INTO $tbl (";
+        $sql.=implode(",",array_keys($data));
+        $sql.=") VALUES(";
 //		var_dump(array_values($data));
-            foreach(array_values($data) as $ev){
-                    $ev=addslashes($ev);
-                    $sql.="'$ev',";
-            }
-            $sql=substr($sql,0,-1);
-            $sql.=")";
+        foreach(array_values($data) as $ev){
+                $ev=addslashes($ev);
+                $sql.="'$ev',";
+        }
+        $sql=substr($sql,0,-1);
+        $sql.=")";
 
 
-            $command = Yii::app()->db->createCommand($sql);
-            $affetct = $command->execute();
-            if(!$affetct){
-                    return FALSE;
-            }
-            return TRUE;
+        $command = Yii::app()->db->createCommand($sql);
+        $affetct = $command->execute();
+        if(!$affetct){
+                return FALSE;
+        }
+        return TRUE;
     }
 
 

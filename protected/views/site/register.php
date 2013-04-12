@@ -191,7 +191,7 @@
         $('#RegisterForm_verifyCode').focus(function(){
 			showFocusMessage("verifyCode","请输入验证码!");
 		}).blur(function(){
-            var type = 3; //验证码ajax
+            var type = 2; //验证码ajax
             var regVerifyCode=/^[\S]+/;
             var strVerifyCode=$("#RegisterForm_verifyCode").val();
             if(!regVerifyCode.test(strVerifyCode)){
@@ -213,18 +213,16 @@ function checkAjaxRegister(type,strVerifyCode)
 			switch (type){
 				case 1:
 					$("#user_name_tips").html(res.msg);
-					//$("#ajaxCode").html(res.flag);
 				break;
-				case 3:
-				if(res.flag==1){
-	//                $("#verifyCode_tips").html("√");
-	                $("#verifyCode_tips").html(res.msg);
-	            }else{
-	                $("#verifyCode_tips").html(res.msg);
-	            }
+				case 2:
+                    if(res.flag==1){
+                        $("#verifyCode_tips").html(res.msg);
+                    }else{
+                        $("#verifyCode_tips").html(res.msg);
+                    }
 				break;
 			}
-            
+
         });
 }
 
@@ -273,7 +271,7 @@ $(document).ready(function(){
 function showFocusMessage(id,msg)
 {
 	if($("#RegisterForm_"+id).val() == ""){
-		$("#"+id+"_tips").html(msg);	
+		$("#"+id+"_tips").html(msg);
 	}
 }
 
