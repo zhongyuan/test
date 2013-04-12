@@ -108,56 +108,87 @@ class SiteController extends Controller
 
         public function actionRegister()
         {
-			$extConfig = Util::loadConfig('register');
+            $extConfig = Util::loadConfig('register');
 
-			$model = new RegisterForm();
-			if(isset($_POST['RegisterForm'])){
-				$model->attributes = $_POST['RegisterForm'];
+            $model = new RegisterForm();
+            if(isset($_POST['RegisterForm'])){
+                    $model->attributes = $_POST['RegisterForm'];
 
+                    if($model->validate()){
+                            //检查此Email是否已被注册
+                            $userModel = new MCUsers($model->attributes['user_name']);
+                            //if($userModel->chek){retu **}
+                            //$date = $userModel->valiDate();
+                            //$userModel->addUser($data);
+                            $rst = $userModel->addUser($model->attributes);
+                            if($rst[0]){
+                                    var_dump($rst[1]);//打印用户注册的详细信息
+                                    echo("SUCCESS");
+                            }else{
+                                    echo("FAILED!");
+                            }
 
+                    }else{
 
-				if($model->validate()){
-					//检查此Email是否已被注册
-					$userModel = new MCUsers($model->attributes['user_name']);
-					$rst = $userModel->addUser($model->attributes);
-					if($rst[0]){
-						var_dump($rst[1]);//打印用户注册的详细信息
-						echo("SUCCESS");
-					}else{
-						echo("FAILED!");
-					}
-
-				}else{
-
-					//$this->redirect(Yii:app()->user->returnUrl);
-				}
-				//exit(0);
-			}
+                            //$this->redirect(Yii:app()->user->returnUrl);
+                    }
+                    //exit(0);
+            }
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
-		
-	   /**
-		* AJAX方式检测邮箱是否已被注册了 
-		* 
-		*/
-		public function actionCheckUser()
-		{
-			$user_name = Yii::app()->getRequest()->getPost("user_name");
-			$userModel = new MCUsers($user_name);
-			$dbRst = $userModel->checkUser();
-			
-			$rst = array(
-				'req'=>"ok",
-				'msg'=>"恭喜您,该邮箱可以注册!"
-			);
-			if(!empty($dbRst)){
-				$rst = array(
-					'req'=>"error",
-					'msg'=>"很抱歉,此邮箱已被注册!"
-				);
-			}
-			
-			echo json_encode($rst);
-			exit(0);
-		}
+
+        /**
+         * AJAX方式检测邮箱是否已被注册了
+         *
+         */
+         public function actionCheckUser()
+         {
+                 $user_name = Yii::app()->getRequest()->getPost("user_name");
+                 $userModel = new MCUsers($user_name);
+                 $dbRst = $userModel->checkUser();
+
+                 $rst = array(
+                         'req'=>"ok",
+                         'msg'=>"恭喜您,该邮箱可以注册!"
+                 );
+                 if(!empty($dbRst)){
+                         $rst = array(
+                                 'req'=>"error",
+                                 'msg'=>"很抱歉,此邮箱已被注册!"
+                         );
+                 }
+
+                 echo json_encode($rst);
+                 exit(0);
+         }
+
+         /*
+          * 检测验证码
+          */
+         public function actionAjaxCheckRegister()
+         {
+            $type = $_POST['type']?$_POST['type']:NULL;
+            $str = $_POST['str']?$_POST['str']:NULL;
+            if(!$type||!$str)
+            {
+                echo json_encode(array('flag' => 0,'msg'=>'验证失败'));
+                exit;
+            }
+
+            if($type==1){//验证cos_id
+
+            }elseif($type==2){ //验证再次输入密码
+
+            }elseif($type==3){ //验证验证码
+                $verCode = $this->createAction('captcha')->getVerifyCode();
+                if($str == $verCode){
+                    echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
+                }else{
+                    echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
+                }
+            }
+            exit;
+         }
+
+
 }
