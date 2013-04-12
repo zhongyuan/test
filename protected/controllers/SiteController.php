@@ -183,6 +183,19 @@ class SiteController extends Controller
          /*
           * 检测验证码
           */
+		 public function actionAjaxCheckCaptcha()
+		 {
+		 	$verifyCode = Yii::app()->getRequest()->getPost("verifyCode");
+			$verCode = $this->createAction('captcha')->getVerifyCode();
+			if($verCode == $verifyCode){
+				echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
+			}else{
+				echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
+			}
+			exit(0);
+		 
+		 }
+		 
          public function actionAjaxCheckRegister()
          {
             $type = $_POST['type']?$_POST['type']:NULL;

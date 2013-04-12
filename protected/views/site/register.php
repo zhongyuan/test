@@ -145,7 +145,10 @@
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
 					<div class="captcha"><?php $this->widget('CCaptcha',array('buttonLabel'=>"",'imageOptions'=>array('width'=>160,'maxLength'=>4))); ?></div>
-					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span></div>
+					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span>
+						<span id="ajaxCode2" style="display:none;"></span>
+						
+					</div>
 					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>
 				</div>
 
@@ -297,10 +300,10 @@ function checkUsername()
 				$("#ajaxCode").html(data.flag);
 			},"json");
 
-			if($("#ajaxCode").html() == 1){
-				return true;
-			}
-			return false;
+		if($("#ajaxCode").html() == 1){
+			return true;
+		}
+		return false;
 	}
 }
 
@@ -357,5 +360,29 @@ function checkLastname()
 	}
 }
 
+function checkCaptcha()
+{
+	var regVerifyCode=/^[\S]+/;
+    var strVerifyCode=$("#RegisterForm_verifyCode").val();
+    if(!regVerifyCode.test(strVerifyCode)){
+           $("#verifyCode_tips").html("请输入验证码！");
+           return false;
+    }
+	
+	var url = "<?php echo $this->createUrl('site/ajaxCheckCaptcha');?>";
+	$.post(
+		url,
+		{verifyCode:strVerifyCode},
+		function(data){
+			$("#verifyCode_tips").html(data.msg);
+			$("#ajaxCode2").html(data.flag);
+		},"json");
+
+	if($("#ajaxCode2").html() == 1){
+		return true;
+	}
+	return false;
+	
+}
 
 </script>
