@@ -282,6 +282,7 @@ $(document).ready(function(){
 	$("#cancel_btn").click(function(){
 		$("#cancel_btn").removeClass("button1").addClass("button1 select");
 		$("#submit_btn").removeClass("button1 select").addClass("button1");
+		$("#registerForm")[0].reset();
 		//return false;
 	});
 
