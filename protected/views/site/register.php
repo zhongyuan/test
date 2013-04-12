@@ -1,9 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/siteRegister.css"  />
-
-
-<style>
-    
-</style>
+<script language="javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/siteRegister.js"></script>
 
 <div class="register">
     <div class="register_ti">
@@ -38,12 +34,12 @@
 				</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span>*</span></li>
+					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span id="user_name_tips">*</span></li>
 						
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'passwd',array('label'=>"密码")); ?></li>
-					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?><span>*</span></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?><span id="passwd_tips">*</span></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
@@ -51,7 +47,7 @@
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
-					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?><span>*</span></li>
+					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?><span id="passwd2_tips">*</span></li>
 				</ul>
 				
 					
@@ -87,11 +83,11 @@
 				<p class="site_reg_comment">请输入您的完整姓名。</p>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'first_name',array('label'=>"姓氏")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?><span>*</span></li>
+					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?><span id="first_name_tips">*</span></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'last_name',array('label'=>"名字")); ?></li>
-					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?><span>*</span></li>
+					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?><span id="last_name_tips">*</span></li>
 				</ul>
 				
 				<h2>输入您的主要联系地址</h2>
@@ -147,7 +143,7 @@
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
 					<div class="captcha"><?php $this->widget('CCaptcha',array('buttonLabel'=>"",'imageOptions'=>array('width'=>160,'maxLength'=>4))); ?></div>
-					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span>*</span></div>
+					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span></div>
 					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>	
 				</div>
 				
@@ -173,10 +169,6 @@
 	$(document).ready(function(){
 		$("#cancel_btn").click(function(){
 			return false;
-		});
-		
-		$("#submit_btn").click(function(){
-			$("#registerForm").submit();
 		});
 	});
 	
