@@ -115,51 +115,69 @@ class SiteController extends Controller
                     $model->attributes = $_POST['RegisterForm'];
 
                     if($model->validate()){
-                            //检查此Email是否已被注册
-                            $userModel = new MCUsers($model->attributes['user_name']);
-                            //if($userModel->chek){retu **}
-                            //$date = $userModel->valiDate();
-                            //$userModel->addUser($data);
-                            $rst = $userModel->addUser($model->attributes);
-                            if($rst[0]){
-                                    var_dump($rst[1]);//打印用户注册的详细信息
-                                    echo("SUCCESS");
-                            }else{
-                                    echo("FAILED!");
-                            }
+                        $userModel = new MCUsers($model->attributes['user_name']);
+
+						//检查此Email是否已被注册
+			            if($userModel->checkUser()){
+							echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
+							return FALSE;
+			            }
+
+						//检测用户输入的表单内容
+						$filterRst = $this->_filterUserInput($model->attributes);
+						if(!$filterRst[0]){
+							echo $filterRst[1];
+							return FALSE;
+						}
+
+						//添加一个新的用户信息
+						$rst = $userModel->addUser($filterRst[1]);
+						if($rst[0]){
+							var_dump($rst[1]);//打印用户注册的详细信息
+							echo("SUCCESS");
+						}else{
+							echo("FAILED!");
+						}
 
                     }else{
 
                             //$this->redirect(Yii:app()->user->returnUrl);
                     }
-                    //exit(0);
+
             }
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
 
-        /**
+		/**
          * AJAX方式检测邮箱是否已被注册了
          *
          */
-         public function actionCheckUser()
+
+		 public function actionAjaxCheckUser()
+		 {
+		 	$user_name = Yii::app()->getRequest()->getPost("user_name");
+			echo json_encode($this->_checkUser($user_name));
+			exit(0);
+		 }
+
+
+         private function _checkUser($user_name)
          {
-                 $user_name = Yii::app()->getRequest()->getPost("user_name");
                  $userModel = new MCUsers($user_name);
                  $dbRst = $userModel->checkUser();
 
                  $rst = array(
-                         'req'=>"ok",
+                         'flag'=>1,
                          'msg'=>"恭喜您,该邮箱可以注册!"
                  );
                  if(!empty($dbRst)){
                          $rst = array(
-                                 'req'=>"error",
+                                 'flag'=>0,
                                  'msg'=>"很抱歉,此邮箱已被注册!"
                          );
                  }
 
-                 echo json_encode($rst);
-                 exit(0);
+                return $rst;
          }
 
          /*
@@ -176,7 +194,7 @@ class SiteController extends Controller
             }
 
             if($type==1){//验证cos_id
-
+				echo json_encode($this->_checkUser($str));
             }elseif($type==2){ //验证再次输入密码
 
             }elseif($type==3){ //验证验证码
@@ -190,7 +208,63 @@ class SiteController extends Controller
             exit;
          }
 
+		 /*
+		 * 检测用户表单输入的数据
+		 *
+		 */
+		private function _filterUserInput($input = array())
+		{
+			if(empty($input)){
+                            return array(false,"请填写注册信息");
+            }
+
+            $data = array();
+            $fields = array('user_name','passwd','first_name','last_name');
+            foreach($fields as $ef){
+                    if(!isset($input[$ef]) || empty($input[$ef])){
+                            return array(FALSE,"注册信息不完整!");
+                            break;
+                    }else{
+                            $data[$ef] = $input[$ef];
+                    }
+            }
+
+                        //详细信息
+            $data['passwd'] = substr(md5($data['passwd']),0,16);//采用16个字符的二进制格式
+            $data['record_time'] = $data['update_time'] = time();
+            $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+            $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
+            $data['answer'] = empty($input['answer'])?"":$input['answer'];
+            $data['language'] = empty($input['language'])?"zh-cn":$input['language'];
 
 
+            if(!empty($input['year']) && !empty($input['month']) && !empty($input['day'])){
+                    $data['birthday'] = mktime(0,0,0,intval($input['month']),intval($input['day']),intval($input['year']));
+            }else{
+                    $data['birthday'] = 0;
+            }
+
+            if(!empty($input['viaEmail']) && !empty($input['viaEPaper'])){
+                    $data['contact_type'] = 2;//两种联系方式都使用
+            }elseif(!empty($input['viaEmail'])){
+                    $data['contact_type'] = 0;//仅使用电子邮件联系
+            }elseif(!empty($input['viaEPaper'])){
+                    $data['contact_type'] = 1;//仅使用电子报联系
+            }else{
+                    $data['contact_type'] = 100;//不使用任何方式联系此用户
+            }
+
+                    //地址信息
+            $address = array();
+            $addFields = array('country','company','address','county','state','zip_code');
+            foreach($addFields as $af){
+                    if(isset($input[$af]) && !empty($input[$af])){
+                            $address[$af] = $input[$af];
+                    }
+            }
+            $address['update_time'] = $address['record_time'] = time();
+
+            return array(TRUE,array('data'=>$data,'address'=>$address));
+		}
 
 }
