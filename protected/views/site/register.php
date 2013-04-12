@@ -141,12 +141,10 @@
 					<p>COS每周都会推出很多新内容，想要第一时间得到这些讯息请打勾。</p>
 				</div>
 
-
-
 				<h2>输入看到的符号</h2>
 				<div class="form_ext_box">
-					<div class="captcha"><?php $this->widget('CCaptcha',array('buttonLabel'=>"",'imageOptions'=>array('width'=>160,'maxLength'=>4))); ?></div>
-					<div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span></div>
+					<div class="captcha"><?php $this->widget('CCaptcha',array('showRefreshButton'=>TRUE,'buttonLabel'=>'点击换图','clickableImage'=>false,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','width'=>'160','height'=>'60'))); ?></div>
+                                        <div class="cap_inputbox"><?php echo $form->textField($model,'verifyCode'); ?> (字母不区分大小写)<span id="verifyCode_tips">*</span></div>
 					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>
 				</div>
 
