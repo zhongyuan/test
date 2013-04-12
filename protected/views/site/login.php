@@ -36,7 +36,7 @@
                         <?php echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
                         <span class="remark">忘记你的COS密码了?</span>
                 </div>
-                <div class="login_error"><?php echo $form->error($model,'password');?></div>
+                <div class="login_error"><?php echo $form->error($model,'username')?$form->error($model,'username'):$form->error($model,'password');?></div>
 
 
 <!--                <div><?php echo $form->errorSummary($model);//注1：这里显示出错时，报错的地方 ?>  </div>-->
@@ -67,17 +67,17 @@
         $("#submit").click(function(){
             var user_name = $("#user_name").val();
             var pass_word = $("#pass_word").val();
-            if(!user_name || !pass_word)
-            {
-                $('.login_error').html('用户名或密码不能为空！');
-                return false;
-            }
-            //检查是否是邮件类型
-            if(!checkEmail(user_name))
-            {
-                $('.login_error').html('请输入有效的E_mail！');
-                return false;
-            }
+//            if(!user_name || !pass_word)
+//            {
+//                $('.login_error').html('用户名或密码不能为空！');
+//                return false;
+//            }
+//            //检查是否是邮件类型
+//            if(!checkEmail(user_name))
+//            {
+//                $('.login_error').html('请输入有效的E_mail！');
+//                return false;
+//            }
 
         });
     });

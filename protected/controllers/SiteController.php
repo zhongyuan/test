@@ -108,49 +108,100 @@ class SiteController extends Controller
 
         public function actionRegister()
         {
-			$extConfig = Util::loadConfig('register');
+            $extConfig = Util::loadConfig('register');
 
-			$model = new RegisterForm();
-			if(isset($_POST['RegisterForm'])){
-				$model->attributes = $_POST['RegisterForm'];
+            $model = new RegisterForm();
+            if(isset($_POST['RegisterForm'])){
+                    $model->attributes = $_POST['RegisterForm'];
 
-
-
-				if($model->validate()){
-					$userModel = new MCUsers($model->attributes['user_name']);
+                    if($model->validate()){
+                        $userModel = new MCUsers($model->attributes['user_name']);
 					
-					//检查此Email是否已被注册
-		            if($userModel->checkUser()){
-						echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
-						return FALSE;
-		            }
-					
-					//检测用户输入的表单内容
-					$filterRst = $this->_filterUserInput($model->attributes);
-					if(!$filterRst[0]){
-						echo $filterRst[1];
-						return FALSE;
-					}
-					
-					//添加一个新的用户信息
-					$rst = $userModel->addUser($filterRst[1]);
-					if($rst[0]){
-						var_dump($rst[1]);//打印用户注册的详细信息
-						echo("SUCCESS");
-					}else{
-						echo("FAILED!");
-					}
+						//检查此Email是否已被注册
+			            if($userModel->checkUser()){
+							echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
+							return FALSE;
+			            }
+						
+						//检测用户输入的表单内容
+						$filterRst = $this->_filterUserInput($model->attributes);
+						if(!$filterRst[0]){
+							echo $filterRst[1];
+							return FALSE;
+						}
+						
+						//添加一个新的用户信息
+						$rst = $userModel->addUser($filterRst[1]);
+						if($rst[0]){
+							var_dump($rst[1]);//打印用户注册的详细信息
+							echo("SUCCESS");
+						}else{
+							echo("FAILED!");
+						}   
 
-				}else{
+                    }else{
 
-					//$this->redirect(Yii:app()->user->returnUrl);
-				}
-				//exit(0);
-			}
+                            //$this->redirect(Yii:app()->user->returnUrl);
+                    }
+                   
+            }
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
 		
-		/*
+		/**
+         * AJAX方式检测邮箱是否已被注册了
+         *
+         */
+         public function actionCheckUser()
+         {
+                 $user_name = Yii::app()->getRequest()->getPost("user_name");
+                 $userModel = new MCUsers($user_name);
+                 $dbRst = $userModel->checkUser();
+
+                 $rst = array(
+                         'req'=>"ok",
+                         'msg'=>"恭喜您,该邮箱可以注册!"
+                 );
+                 if(!empty($dbRst)){
+                         $rst = array(
+                                 'req'=>"error",
+                                 'msg'=>"很抱歉,此邮箱已被注册!"
+                         );
+                 }
+
+                 echo json_encode($rst);
+                 exit(0);
+         }
+
+         /*
+          * 检测验证码
+          */
+         public function actionAjaxCheckRegister()
+         {
+            $type = $_POST['type']?$_POST['type']:NULL;
+            $str = $_POST['str']?$_POST['str']:NULL;
+            if(!$type||!$str)
+            {
+                echo json_encode(array('flag' => 0,'msg'=>'验证失败'));
+                exit;
+            }
+
+            if($type==1){//验证cos_id
+
+            }elseif($type==2){ //验证再次输入密码
+
+            }elseif($type==3){ //验证验证码
+                $verCode = $this->createAction('captcha')->getVerifyCode();
+                if($str == $verCode){
+                    echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
+                }else{
+                    echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
+                }
+            }
+            exit;
+         }
+		 
+		 /*
 		 * 检测用户表单输入的数据
 		 *
 		 */
@@ -208,28 +259,4 @@ class SiteController extends Controller
 			return array(TRUE,array('data'=>$data,'address'=>$address));
 		}
 		
-	   /**
-		* AJAX方式检测邮箱是否已被注册了 
-		* 
-		*/
-		public function actionCheckUser()
-		{
-			$user_name = Yii::app()->getRequest()->getPost("user_name");
-			$userModel = new MCUsers($user_name);
-			$dbRst = $userModel->checkUser();
-			
-			$rst = array(
-				'req'=>"ok",
-				'msg'=>"√"
-			);
-			if(!empty($dbRst)){
-				$rst = array(
-					'req'=>"error",
-					'msg'=>"很抱歉,此邮箱已被注册!"
-				);
-			}
-			
-			echo json_encode($rst);
-			exit(0);
-		}
 }

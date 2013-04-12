@@ -1,45 +1,47 @@
 $(document).ready(function(){
-	
+
 	$("#RegisterForm_user_name").bind("focus",function(){
 		checkUsername();
 	}).bind("blur",function(){
 		checkUsername();
 	});
-	
+
 	$("#RegisterForm_passwd").bind("focus",function(){
 		checkPassword();
 	}).bind("blur",function(){
 		checkPassword();
 	});
-	
+
 	$("#RegisterForm_passwd2").bind("focus",function(){
 		checkMatchPasswd();
 	}).bind("blur",function(){
 		checkMatchPasswd();
 	});
-	
+
 	$("#RegisterForm_first_name").bind("focus",function(){
 		checkFirstname();
 	}).bind("blur",function(){
 		checkFirstname();
 	});
-	
+
 	$("#RegisterForm_last_name").bind("focus",function(){
 		checkLastname();
 	}).bind("blur",function(){
 		checkLastname();
 	});
-	
-	
-	
-	
-	$("#RegisterForm_verifyCode").bind("focus",function(){
-		checkCaptcha();
-	}).bind("blur",function(){
-		checkCaptcha();
-	});
-	
-	
+
+
+
+
+//	$("#RegisterForm_verifyCode").bind("focus",function(){
+//		checkCaptcha();
+//	}).bind("blur",function(){
+//		checkCaptcha();
+//	});
+
+
+
+
 	$("#submit_btn").bind("click",function(){
 		if(checkUsername() && checkPassword() && checkMatchPasswd() && checkFirstname() && checkLastname() && checkCaptcha()){
 			$("#registerForm").submit();
@@ -47,11 +49,11 @@ $(document).ready(function(){
 		}
 		return false;
 	});
-	
+
 	$("#cancel_btn").click(function(){
 		return false;
 	});
-	
+
 });
 
 
@@ -59,12 +61,12 @@ function checkUsername()
 {
 	var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
 	var strUsername=$("#RegisterForm_user_name").val();
-	
+
 	if(!regUsername.test(strUsername)){
 		$("#user_name_tips").html("请输入一个合法的Email！");
 		return false;
 	}else{
-	
+
 		$.post(
 			"/index.php?r=site/checkUser",
 			{user_name:strUsername},
@@ -72,17 +74,17 @@ function checkUsername()
 				$("#user_name_tips").html(data.msg);
 				$("#ajaxCode").html(data.req);
 			},"json");
-			
+
 			//alert();
 			if($("#ajaxCode").html() == "ok"){
 				return true;
-			}	
+			}
 			return false;
 	}
 }
 
 function checkPassword()
-{	
+{
 	var regPassword=/^[\S]{6,15}/;
 	var strPassword=$("#RegisterForm_passwd").val();
 	if(!regPassword.test(strPassword)){
@@ -128,23 +130,12 @@ function checkLastname()
 		$("#last_name_tips").html("请输入合法的名字！");
 		return false;
 	}else{
-		
+
 		$("#last_name_tips").html("√");
 		return true;
 	}
-}	
-
-function checkCaptcha()
-{
-	var regVerifyCode=/^[\S]+/;
-	var strVerifyCode=$("#RegisterForm_verifyCode").val();
-	if(!regVerifyCode.test(strVerifyCode)){
-		$("#verifyCode_tips").html("请输入验证码！");
-		return false;
-	}else{
-		$("#verifyCode_tips").html("√");
-		return true;
-	}
 }
+
+
 
 
