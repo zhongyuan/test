@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/siteRegister.css"  />
-<script language="javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/siteRegister.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/public.js"></script>
 
 <div class="register">
@@ -177,19 +176,23 @@
 <script>
     $(function(){
         //cos_id验证，这边要改一下
-        $('#RegisterForm_verifyCode').blur(function(){
-            var type = 3; //验证码ajax
-            var regVerifyCode=/^[\S]+/;
-            var strVerifyCode=$("#RegisterForm_verifyCode").val();
-            if(!regVerifyCode.test(strVerifyCode)){
-                    $("#verifyCode_tips").html("请输入验证码！");
+        $('#RegisterForm_user_name').focus(function(){
+			showFocusMessage("user_name","请输入您的Email!");
+		}).blur(function(){
+            var type = 1; //Email ajax
+            var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            var strUsername=$("#RegisterForm_user_name").val();
+            if(!regUsername.test(strUsername)){
+                    $("#user_name_tips").html("Email格式不正确!");
                     return false;
             }
-            checkAjaxRegister(type,strVerifyCode);
+            checkAjaxRegister(type,strUsername);
         });
 
         //检验验证码
-        $('#RegisterForm_verifyCode').blur(function(){
+        $('#RegisterForm_verifyCode').focus(function(){
+			showFocusMessage("verifyCode","请输入验证码!");
+		}).blur(function(){
             var type = 3; //验证码ajax
             var regVerifyCode=/^[\S]+/;
             var strVerifyCode=$("#RegisterForm_verifyCode").val();
@@ -209,13 +212,149 @@ function checkAjaxRegister(type,strVerifyCode)
         var url = "<?php echo $this->createUrl('site/ajaxCheckRegister');?>";
         var data = "type="+type+'&str='+strVerifyCode;
         ajaxJson(url,data,function(res){
-            if(res.flag==1){
-//                $("#verifyCode_tips").html("√");
-                $("#verifyCode_tips").html(res.msg);
-            }else{
-                $("#verifyCode_tips").html(res.msg);
-            }
+			switch (type){
+				case 1:
+					$("#user_name_tips").html(res.msg);
+					//$("#ajaxCode").html(res.flag);
+				break;
+				case 3:
+				if(res.flag==1){
+	//                $("#verifyCode_tips").html("√");
+	                $("#verifyCode_tips").html(res.msg);
+	            }else{
+	                $("#verifyCode_tips").html(res.msg);
+	            }
+				break;
+			}
+            
         });
+}
+
+//=======表单验证放在此处=======
+$(document).ready(function(){
+
+	$("#RegisterForm_passwd").bind("focus",function(){
+		showFocusMessage("passwd","请输入用户密码！");
+	}).bind("blur",function(){
+		checkPassword();
+	});
+
+	$("#RegisterForm_passwd2").bind("focus",function(){
+		showFocusMessage("passwd2","请再次输入密码!");
+	}).bind("blur",function(){
+		checkMatchPasswd();
+	});
+
+	$("#RegisterForm_first_name").bind("focus",function(){
+		showFocusMessage("first_name","请输入您的姓氏!");
+	}).bind("blur",function(){
+		checkFirstname();
+	});
+
+	$("#RegisterForm_last_name").bind("focus",function(){
+		showFocusMessage("last_name","请输入您的名字!");
+	}).bind("blur",function(){
+		checkLastname();
+	});
+
+
+	$("#submit_btn").bind("click",function(){
+		if(checkUsername() && checkPassword() && checkMatchPasswd() && checkFirstname() && checkLastname() && checkCaptcha()){
+			$("#registerForm").submit();
+			return true;
+		}
+		return false;
+	});
+
+	$("#cancel_btn").click(function(){
+		return false;
+	});
+
+});
+
+function showFocusMessage(id,msg)
+{
+	if($("#RegisterForm_"+id).val() == ""){
+		$("#"+id+"_tips").html(msg);	
+	}
+}
+
+function checkUsername()
+{
+	var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	var strUsername=$("#RegisterForm_user_name").val();
+
+	if(!regUsername.test(strUsername)){
+		$("#user_name_tips").html("请输入一个有效的Email！");
+		return false;
+	}else{
+		var url = "<?php echo $this->createUrl('site/ajaxCheckUser');?>";
+		$.post(
+			url,
+			{user_name:strUsername},
+			function(data){
+				$("#user_name_tips").html(data.msg);
+				$("#ajaxCode").html(data.flag);
+			},"json");
+
+			if($("#ajaxCode").html() == 1){
+				return true;
+			}
+			return false;
+	}
+}
+
+function checkPassword()
+{
+	var regPassword=/^[\S]{6,15}/;
+	var strPassword=$("#RegisterForm_passwd").val();
+	if(!regPassword.test(strPassword)){
+		$("#passwd_tips").html("密码长度为6-18个字符！");
+		return false;
+	}else{
+		$("#passwd_tips").html("√");
+		return true;
+	}
+}
+
+function checkMatchPasswd()
+{
+	var strPassword=$("#RegisterForm_passwd").val();
+	var strPassword2=$("#RegisterForm_passwd2").val();
+	if(strPassword2!="" && strPassword2==strPassword){
+		$("#passwd2_tips").html("√");
+		return true;
+	}else{
+		$("#passwd2_tips").html("两次密码不一致!");
+		return false;
+	}
+}
+
+function checkFirstname()
+{
+	var regFirstname=/^[\S]{1,10}/;
+	var strFirstname=$("#RegisterForm_first_name").val();
+	if(!regFirstname.test(strFirstname)){
+		$("#first_name_tips").html("请输入合法的姓氏！");
+		return false;
+	}else{
+		$("#first_name_tips").html("√");
+		return true;
+	}
+}
+
+function checkLastname()
+{
+	var regLastname=/^[\S]{1,10}/;
+	var strLastname=$("#RegisterForm_last_name").val();
+	if(!regLastname.test(strLastname)){
+		$("#last_name_tips").html("请输入合法的名字！");
+		return false;
+	}else{
+
+		$("#last_name_tips").html("√");
+		return true;
+	}
 }
 
 

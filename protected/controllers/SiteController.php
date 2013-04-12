@@ -152,25 +152,32 @@ class SiteController extends Controller
          * AJAX方式检测邮箱是否已被注册了
          *
          */
-         public function actionCheckUser()
+		 
+		 public function actionAjaxCheckUser()
+		 {
+		 	$user_name = Yii::app()->getRequest()->getPost("user_name");
+			echo json_encode($this->_checkUser($user_name));
+			exit(0);
+		 }
+		 
+		 
+         private function _checkUser($user_name)
          {
-                 $user_name = Yii::app()->getRequest()->getPost("user_name");
                  $userModel = new MCUsers($user_name);
                  $dbRst = $userModel->checkUser();
 
                  $rst = array(
-                         'req'=>"ok",
+                         'flag'=>1,
                          'msg'=>"恭喜您,该邮箱可以注册!"
                  );
                  if(!empty($dbRst)){
                          $rst = array(
-                                 'req'=>"error",
+                                 'flag'=>0,
                                  'msg'=>"很抱歉,此邮箱已被注册!"
                          );
                  }
 
-                 echo json_encode($rst);
-                 exit(0);
+                return $rst;
          }
 
          /*
@@ -187,7 +194,7 @@ class SiteController extends Controller
             }
 
             if($type==1){//验证cos_id
-
+				echo json_encode($this->_checkUser($str));
             }elseif($type==2){ //验证再次输入密码
 
             }elseif($type==3){ //验证验证码
