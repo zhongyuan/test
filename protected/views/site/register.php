@@ -159,7 +159,13 @@
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
                 <div ><span class="button1 select" id="submit_btn">注册</span></div>
             </div>
-
+			
+			
+			<!--表单验证通过隐藏域开始处-->
+			<input type="hidden" id="user_name_flag" value="error"/>
+			<input type="hidden" id="verifyCode_flag" value="error"/>	
+			<!--表单验证通过隐藏域结束处-->
+			
 			<?php
 				$this->endWidget();
 				echo CHtml::endForm();
@@ -218,12 +224,16 @@ function checkAjaxRegister(type,strVerifyCode)
 			switch (type){
 				case 1:
 					$("#user_name_tips").html(res.msg);
-					//$("#ajaxCode").html(res.flag);
+					if(res.flag==1){
+						$("#user_name_flag").val("ok");
+					}
 				break;
 				case 3:
 				if(res.flag==1){
-	//                $("#verifyCode_tips").html("√");
+				
+					$("#verifyCode_flag").val("ok");
 	                $("#verifyCode_tips").html(res.msg);
+					
 	            }else{
 	                $("#verifyCode_tips").html(res.msg);
 	            }
@@ -270,7 +280,9 @@ $(document).ready(function(){
 	});
 
 	$("#cancel_btn").click(function(){
-		return false;
+		$("#cancel_btn").removeClass("button1").addClass("button1 select");
+		$("#submit_btn").removeClass("button1 select").addClass("button1");
+		//return false;
 	});
 
 });
@@ -284,27 +296,10 @@ function showFocusMessage(id,msg)
 
 function checkUsername()
 {
-	var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-	var strUsername=$("#RegisterForm_user_name").val();
-
-	if(!regUsername.test(strUsername)){
-		$("#user_name_tips").html("请输入一个有效的Email！");
-		return false;
-	}else{
-		var url = "<?php echo $this->createUrl('site/ajaxCheckUser');?>";
-		$.post(
-			url,
-			{user_name:strUsername},
-			function(data){
-				$("#user_name_tips").html(data.msg);
-				$("#ajaxCode").html(data.flag);
-			},"json");
-
-		if($("#ajaxCode").html() == 1){
-			return true;
-		}
+	if($("#user_name_flag").val()== "error"){
 		return false;
 	}
+	return true;
 }
 
 function checkPassword()
@@ -362,27 +357,10 @@ function checkLastname()
 
 function checkCaptcha()
 {
-	var regVerifyCode=/^[\S]+/;
-    var strVerifyCode=$("#RegisterForm_verifyCode").val();
-    if(!regVerifyCode.test(strVerifyCode)){
-           $("#verifyCode_tips").html("请输入验证码！");
-           return false;
-    }
-	
-	var url = "<?php echo $this->createUrl('site/ajaxCheckCaptcha');?>";
-	$.post(
-		url,
-		{verifyCode:strVerifyCode},
-		function(data){
-			$("#verifyCode_tips").html(data.msg);
-			$("#ajaxCode2").html(data.flag);
-		},"json");
-
-	if($("#ajaxCode2").html() == 1){
-		return true;
+	if($("#verifyCode_flag").val()=="error"){
+		return false;
 	}
-	return false;
-	
+	return true;	
 }
 
 </script>
