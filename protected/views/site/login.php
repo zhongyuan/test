@@ -36,7 +36,7 @@
                         <?php echo $form->passwordField($model,'password'); ?>
                         <span class="remark">忘记你的COS密码了?</span>
                 </div>
-
+                <?php echo $form->error($model,'username'); ?>
 
                 <div class="login_button">
 
