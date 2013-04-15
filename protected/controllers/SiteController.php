@@ -89,8 +89,8 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
-                           $this->redirect(Yii::app()->user->returnUrl);
-                        }
+                $this->redirect(Yii::app()->user->returnUrl);
+             }
 		}
 		$this->render('login',array('model'=>$model));
 
@@ -107,141 +107,141 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-        public function actionRegister()
-        {
-            $extConfig = Util::loadConfig('register');
+    public function actionRegister()
+    {
+        $extConfig = Util::loadConfig('register');
 
-            $model = new RegisterForm();
-            if(isset($_POST['RegisterForm'])){
-                $model->attributes = $_POST['RegisterForm'];
+        $model = new RegisterForm();
+        if(isset($_POST['RegisterForm'])){
+            $model->attributes = $_POST['RegisterForm'];
 
-                if($model->validate()){
-                    $userModel = new MCUsers($model->attributes['user_name']);
+            if($model->validate()){
+                $userModel = new MCUsers($model->attributes['user_name']);
 
-                    //检查此Email是否已被注册
-                    if($userModel->checkUser()){
-                        echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
-                        return FALSE;
-                    }
-
-                    //检测用户输入的表单内容
-                    $filterRst = $this->_filterUserInput($model->attributes);
-                    if(!$filterRst[0]){
-                        echo $filterRst[1];
-                        return FALSE;
-                    }
-
-                    //添加一个新的用户信息
-                    $rst = $userModel->addUser($filterRst[1]);
-
-                    if($rst[0]){
-
-                        $session = Yii::app()->session;
-
-                        $session['user_id'] = $rst[1]['user_id'];
-                        $session['user_name'] = $rst[1]['user_name'];
-                        $session['first_name'] = $rst[1]['first_name'];
-                        $session['last_name'] = $rst[1]['last_name'];
-
-                        $session['language'] = $rst[1]['language'];
-                        $session->setTimeout(3600*24);
-						$this->forward("site/index");
-
-                    }else{
-						$this->forward('site/register');
-
-                    }
+                //检查此Email是否已被注册
+                if($userModel->checkUser()){
+                    echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
+                    return FALSE;
                 }
 
-            }
-            $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
-        }
+                //检测用户输入的表单内容
+                $filterRst = $this->_filterUserInput($model->attributes);
+                if(!$filterRst[0]){
+                    echo $filterRst[1];
+                    return FALSE;
+                }
 
-         public function actionAjaxCheckRegister()
-         {
-            $type = $_POST['type']?$_POST['type']:NULL;
-            $str = $_POST['str']?$_POST['str']:NULL;
-            if(!$type||!$str){
-                echo json_encode(array('flag' => 0,'msg'=>'验证失败'));
-                exit;
-            }
+                //添加一个新的用户信息
+                $rst = $userModel->addUser($filterRst[1]);
 
-            if($type==1){//验证cos_id
-                 $userModel = new MCUsers($str);
-                 $result = $userModel->checkUser();
-                 if($result){
-                     echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
-                 }else{
-                     echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
-                 }
-            }elseif($type==2){ //验证验证码
-                $verCode = $this->createAction('captcha')->getVerifyCode();
-                if($str == $verCode){
-                    echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
+                if($rst[0]){
+
+                    $session = Yii::app()->session;
+
+                    $session['user_id'] = $rst[1]['user_id'];
+                    $session['user_name'] = $rst[1]['user_name'];
+                    $session['first_name'] = $rst[1]['first_name'];
+                    $session['last_name'] = $rst[1]['last_name'];
+
+                    $session['language'] = $rst[1]['language'];
+                    $session->setTimeout(3600*24);
+                    $this->forward("site/index");
+
                 }else{
-                    echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
+                    $this->forward('site/register');
+
                 }
             }
-            exit;
-         }
 
-		 /*
-		 * 检测用户表单输入的数据
-		 *
-		 */
-		private function _filterUserInput($input = array())
-		{
-			if(empty($input)){
-                            return array(false,"请填写注册信息");
-            }
+        }
+        $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
+    }
 
-            $data = array();
-            $fields = array('user_name','passwd','first_name','last_name');
-            foreach($fields as $ef){
-                    if(!isset($input[$ef]) || empty($input[$ef])){
-                            return array(FALSE,"注册信息不完整!");
-                            break;
-                    }else{
-                            $data[$ef] = $input[$ef];
-                    }
-            }
+    public function actionAjaxCheckRegister()
+    {
+       $type = $_POST['type']?$_POST['type']:NULL;
+       $str = $_POST['str']?$_POST['str']:NULL;
+       if(!$type||!$str){
+           echo json_encode(array('flag' => 0,'msg'=>'验证失败'));
+           exit;
+       }
 
-                        //详细信息
-            $data['passwd'] = md5($data['passwd']);
-            $data['record_time'] = $data['update_time'] = time();
-            $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
-            $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
-            $data['answer'] = empty($input['answer'])?"":$input['answer'];
-            $data['language'] = empty($input['language'])?"zh-cn":$input['language'];
-
-
-            if(!empty($input['year']) && !empty($input['month']) && !empty($input['day'])){
-                    $data['birthday'] = mktime(0,0,0,intval($input['month']),intval($input['day']),intval($input['year']));
+       if($type==1){//验证cos_id
+            $userModel = new MCUsers($str);
+            $result = $userModel->checkUser();
+            if($result){
+                echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
             }else{
-                    $data['birthday'] = 0;
+                echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
             }
+       }elseif($type==2){ //验证验证码
+           $verCode = $this->createAction('captcha')->getVerifyCode();
+           if($str == $verCode){
+               echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
+           }else{
+               echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
+           }
+       }
+       exit;
+    }
 
-            if(!empty($input['viaEmail']) && !empty($input['viaEPaper'])){
-                    $data['contact_type'] = 2;//两种联系方式都使用
-            }elseif(!empty($input['viaEmail'])){
-                    $data['contact_type'] = 0;//仅使用电子邮件联系
-            }elseif(!empty($input['viaEPaper'])){
-                    $data['contact_type'] = 1;//仅使用电子报联系
-            }else{
-                    $data['contact_type'] = 100;//不使用任何方式联系此用户
-            }
+    /*
+    * 检测用户表单输入的数据
+    *
+    */
+   private function _filterUserInput($input = array())
+   {
+       if(empty($input)){
+                       return array(false,"请填写注册信息");
+       }
 
-                    //地址信息
-            $address = array();
-            $addFields = array('country','company','address','county','state','zip_code');
-            foreach($addFields as $af){
-                    if(isset($input[$af]) && !empty($input[$af])){
-                            $address[$af] = $input[$af];
-                    }
-            }
-            $address['update_time'] = $address['record_time'] = time();
+       $data = array();
+       $fields = array('user_name','passwd','first_name','last_name');
+       foreach($fields as $ef){
+               if(!isset($input[$ef]) || empty($input[$ef])){
+                       return array(FALSE,"注册信息不完整!");
+                       break;
+               }else{
+                       $data[$ef] = $input[$ef];
+               }
+       }
 
-            return array(TRUE,array('data'=>$data,'address'=>$address));
-		}
+                   //详细信息
+       $data['passwd'] = md5($data['passwd']);
+       $data['record_time'] = $data['update_time'] = time();
+       $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+       $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
+       $data['answer'] = empty($input['answer'])?"":$input['answer'];
+       $data['language'] = empty($input['language'])?"zh-cn":$input['language'];
+
+
+       if(!empty($input['year']) && !empty($input['month']) && !empty($input['day'])){
+               $data['birthday'] = mktime(0,0,0,intval($input['month']),intval($input['day']),intval($input['year']));
+       }else{
+               $data['birthday'] = 0;
+       }
+
+       if(!empty($input['viaEmail']) && !empty($input['viaEPaper'])){
+               $data['contact_type'] = 2;//两种联系方式都使用
+       }elseif(!empty($input['viaEmail'])){
+               $data['contact_type'] = 0;//仅使用电子邮件联系
+       }elseif(!empty($input['viaEPaper'])){
+               $data['contact_type'] = 1;//仅使用电子报联系
+       }else{
+               $data['contact_type'] = 100;//不使用任何方式联系此用户
+       }
+
+               //地址信息
+       $address = array();
+       $addFields = array('country','company','address','county','state','zip_code');
+       foreach($addFields as $af){
+               if(isset($input[$af]) && !empty($input[$af])){
+                       $address[$af] = $input[$af];
+               }
+       }
+       $address['update_time'] = $address['record_time'] = time();
+
+       return array(TRUE,array('data'=>$data,'address'=>$address));
+   }
 
 }

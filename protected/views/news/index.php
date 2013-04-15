@@ -53,9 +53,9 @@
 
             <div class="news_exp">
                 <p class="news_sub_title">创新使用者经验</p>
-				
+
 				<div>
-					
+
 					<div class="news_exp_desc">
 						<p class="news_sub_detail">
 						五月天的美国<br />可以重游旧地。<br />旅游心情真好。
@@ -65,10 +65,10 @@
 		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
 						</a>
 					</div>
-					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" width="175"/>	
-					
-					
-						
+					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" width="175"/>
+
+
+
 				</div>
             </div>
 
@@ -91,7 +91,7 @@
 
                 </div>
                 <div class="photo" style="float: left;margin-left: 150px;">
-                    <img src="<?php echo $this->staticUrl('news/news_third_3.jpg');?>" />
+                    <img src="<?php echo $this->staticUrl('news/'.$model->image_name);?>" />
                 </div>
         </div>
 
@@ -100,7 +100,7 @@
 
         <div style="padding:20px 0px;float: left">
                 <div class="photo" style="float: left;">
-                    <img src="<?php echo $this->staticUrl('news/news_third_2.jpg');?>" />
+                    <img src="<?php echo $this->staticUrl('news/'.$model->image_name);?>" />
                 </div>
                 <div class="words" style="width:530px;float: left;margin-left: 150px;line-height: 25px;">
                         <p style="font-size:18px;font-weight: bold;text-align:center">COS发布会在京召开，各路豪杰相聚发布会，赞叹系统完美至极！</p>

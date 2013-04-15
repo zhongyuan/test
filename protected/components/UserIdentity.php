@@ -25,7 +25,7 @@ class UserIdentity extends CUserIdentity
 
 		if(!isset($record['user_id']) || $record['status']==1){  //status=1表示用户被禁
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-            }elseif($record['passwd']!=md5($this->password)){
+            }elseif($record['passwd']!= md5($this->password)){
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
             }else{
 			$this->errorCode=self::ERROR_NONE;
