@@ -26,29 +26,29 @@
     <div class="devScene">
         <ul>
             <li>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
             </li>
             <li>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
             </li>
             <li>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
             </li>
             <li>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
             </li>
             <li>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('devScene/scene_3.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
             </li>
         </ul>
     </div>

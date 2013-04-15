@@ -7,7 +7,7 @@
 	width: 937px;
 	height: 210px;
 	overflow: hidden;
-	background: url(/images/appDetail/flow_1.jpg) no-repeat;
+	background: url(/images/news/app/flow_1.jpg) no-repeat;
 	margin-bottom: 35px;
 }
 .circles_detail .content_box{
@@ -37,7 +37,7 @@ ul.work_items li{
 
 ul.circles{
 	height: 70px;
-	background: url(/images/appDetail/flow_anrow.jpg) no-repeat;
+	background: url(/images/news/app/flow_anrow.jpg) no-repeat;
 	background-position: 0px 25px;
 
 }

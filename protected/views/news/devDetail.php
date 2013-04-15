@@ -34,7 +34,7 @@
         而这样的消费者心声便是HTC One系列的设计原点与创意初衷。我们相信HTC One精湛的拍摄功能
         与忠于原音的高音质效果将让使用者爱不释手，不仅是划时代的移动通信产品，更以前所未有的方式提供最佳的个人化使用体验。”</p>
 
-        <div class="dev_dphoto"><img src="<?php echo $this->staticUrl('devDetail/news_big_1.jpg'); ?>" /><br/><span>xx在发布会现场侃侃而谈</span></div>
+        <div class="dev_dphoto"><img src="<?php echo $this->staticUrl('news/newsDetail/news_big_1.jpg'); ?>" /><br/><span>xx在发布会现场侃侃而谈</span></div>
 
         <p>
                 HTC One系列提供最高质感的感官体验，整合最新的Android 4.0操作系统（ICS），以及全新HTC Sense 4.0

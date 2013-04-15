@@ -10,12 +10,12 @@
 <div>
 
     <div class="nav_images" style="padding: 0 70px;height:400px">
-        <img src="<?php echo $this->staticUrl('news/news_first_1.jpg');?>" />
+        <img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg');?>" />
     </div>
 
     <div class="short_news" style="width:100%;margin-top: 15px;float: left;overflow: hidden;">
         <div class="news_second_1" style="width:33%" >
-            <div><img src="<?php echo $this->staticUrl('news/news_second_1.jpg');?>"  width="150"/></div>
+            <div><img src="<?php echo $this->staticUrl('news/index/news_second_1.jpg');?>"  width="150"/></div>
 
             <div class="news_pub">
                 <p class="news_sub_title">创新发布会</p>
@@ -23,7 +23,7 @@
 					2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
 				</p>
 
-                <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" /></a>
+                <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" /></a>
             </div>
 
         </div>
@@ -31,7 +31,7 @@
         <div style="overflow:hidden;height: 150px;width: 1px;background-color: #c2c4c8;"></div>
 
         <div class="news_second_2" style="width:32%;" >
-            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/news_second_2.jpg');?>" width="110"/></div>
+            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/index/news_second_2.jpg');?>" width="110"/></div>
 
             <div class="news_up">
                 <p class="news_sub_title">平板系统升级</p>
@@ -40,9 +40,9 @@
 				</p>
 
                 <a href="#">
-					<img class="news_up_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+					<img class="news_up_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
 				</a>
-                <img class="news_up_robert" src="<?php echo $this->staticUrl('news/news_robert.jpg');?>" />
+                <img class="news_up_robert" src="<?php echo $this->staticUrl('news/index/news_robert.jpg');?>" />
             </div>
         </div>
 
@@ -62,10 +62,10 @@
 						</p>
 
 						<a href="#">
-		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/more.jpg');?>" />
+		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
 						</a>
 					</div>
-					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/news_second_3.jpg');?>" width="175"/>
+					<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/index/news_second_3.jpg');?>" width="175"/>
 
 
 
@@ -91,7 +91,7 @@
 
                 </div>
                 <div class="photo" style="float: left;margin-left: 150px;">
-                    <img src="<?php echo $this->staticUrl('news/'.$model->image_name);?>" />
+                    <img src="<?php echo $this->staticUrl('news/newsList/latestNews/'.$model->image_name);?>" />
                 </div>
         </div>
 
@@ -100,7 +100,7 @@
 
         <div style="padding:20px 0px;float: left">
                 <div class="photo" style="float: left;">
-                    <img src="<?php echo $this->staticUrl('news/'.$model->image_name);?>" />
+                    <img src="<?php echo $this->staticUrl('news/newsList/latestNews/'.$model->image_name);?>" />
                 </div>
                 <div class="words" style="width:530px;float: left;margin-left: 150px;line-height: 25px;">
                         <p style="font-size:18px;font-weight: bold;text-align:center">COS发布会在京召开，各路豪杰相聚发布会，赞叹系统完美至极！</p>
