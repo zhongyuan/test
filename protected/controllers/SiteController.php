@@ -132,10 +132,28 @@ class SiteController extends Controller
 
                     //添加一个新的用户信息
                     $rst = $userModel->addUser($filterRst[1]);
+					//var_dump($rst);
+					//exit(0);
+					
+					
+					
+					var_dump($rst[0]);
                     if($rst[0]){
-                        
+						//echo("GOOD");
+                        //$session = Yii::app()->session;
+						//var_dump($rst[1]);
+                        /*$session['user_id'] = $rst[1]['user_id'];
+                        $session['user_name'] = $rst[1]['user_name'];
+                        $session['first_name'] = $rst[1]['first_name'];
+                        $session['last_name'] = $rst[1]['last_name'];
+                        $session['language'] = $rst[1]['language'];*/
+                        //$session->setTimeout(3600*24);
+						$this->render('index');
+						//$this->redirect(Yii::app()->createUrl('site/index'));
+						//$this->redirect(array('site/index'));
                     }else{
-                        echo("FAILED!");
+						//$this->render('register');
+						//$this->redirect(Yii::app()->createUrl('site/register'));
                     }
                 }
 
@@ -143,7 +161,23 @@ class SiteController extends Controller
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
 
-
+		public function actionTest(){
+			//$session = Yii::app()->session;
+			//var_dump($session);
+			$url = Yii::app()->createUrl('site/index');
+			//echo("SLEEP  AND REDIRECT ".$url);
+			//sleep(5);
+			//$this->redirect($url);
+			$this->_doRedirect($url);
+		}
+		
+		private function _doRedirect($url)
+		{
+			$this->render('index');
+			//$this->redirect($url);	
+		}
+		
+		
          /*
           * 检测验证码
           */

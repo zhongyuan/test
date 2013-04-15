@@ -41,11 +41,12 @@ class MCUsers {
         }
 
         //保存用户联系地址相关信息
+		$data['user_id'] = $user_id;
         $address = $input['address'];
         $address['user_id'] = $user_id;
-        $cmd = $this->_insert("address",$address);
+        $this->_insert("address",$address);
 
-        return $cmd?$cmd:0;//返回用户注册的详细信息
+        return array(TRUE,$data);//返回用户注册的详细信息
     }
 
     public function deleteUser()
