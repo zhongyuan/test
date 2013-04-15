@@ -3,10 +3,10 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/appPart.css"  />
 <div class="app_dbody">
-	<h2 class="big_title">开始报名<img src="/images/appPart/add.jpg" align="absmiddle"/></h2>
+	<h2 class="big_title">开始报名<img src="/images/news/app/add.jpg" align="absmiddle"/></h2>
 	<div class="sec_label">请认真填写报名表，仅供主办方与您联系本次比赛事宜，不对第三方公开。</div>
 	<br /><span class="sec_label2">队伍名称</span><input type="text" name="team_name" class="app_pinputbox"><span class="app_star">*</span>
-	<h2 class="big_title">主联络人<img src="/images/appPart/people.jpg"/></h2>
+	<h2 class="big_title">主联络人<img src="/images/news/app/people.jpg"/></h2>
 	<div class="sec_label">此报名资讯仅提供与主办单位及承办单位联络使用，不作另它用途。</div>
 	<form>
 		<table>
@@ -16,7 +16,7 @@
 			<tr><td class="sec_label app_pleft">公司/学校职称</td><td><input  type="text" name="" value="" class="app_pinputbox"/></td><td class="app_star">*</td></tr>
 		</table>
 	</form>
-	<h2 class="big_title">成员资料<img  src="/images/appPart/peoples.jpg"/></h2>
+	<h2 class="big_title">成员资料<img  src="/images/news/app/peoples.jpg"/></h2>
 	<div class="sec_label">如为团队或公司形式参加，请至少填写一个队友资料</div>
 	<form name="form2">
 		<table>
@@ -42,7 +42,7 @@
 			</tr>
 		</table>
 	</form>
-	<h2 class="big_title">参赛需知<img src="/images/appPart/notice.jpg"/></h2>
+	<h2 class="big_title">参赛需知<img src="/images/news/app/notice.jpg"/></h2>
 	<ul class="d_items">
 
 		<li>◆ 任何团体或者个人均可参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>

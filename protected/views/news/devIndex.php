@@ -52,7 +52,7 @@
 
 </style>
 <div class="devLittle">
-    <img class="devNews" src="<?php echo $this->staticUrl('devIndex/dev_news.jpg'); ?>"></img>
+    <img class="devNews" src="<?php echo $this->staticUrl('news/newsList/meeting/dev_news.jpg'); ?>"></img>
     <div class="devNewsWords">
         <ul class="devNewsList">
             <li>
@@ -79,5 +79,5 @@
 
 
 <div class="corporation">
-    <img class="devLogos" src="<?php echo $this->staticUrl('devIndex/dev_corLogo.jpg'); ?>"></img>
+    <img class="devLogos" src="<?php echo $this->staticUrl('news/dev/dev_corLogo.jpg'); ?>"></img>
 </div>

@@ -42,7 +42,7 @@
 <div class="app_sbody">
     <ul class="app_sli">
         <li>
-            <img src="<?php echo $this->staticUrl('appShow/work_1.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>"/>
             <p>
                 <span class="app_stitle">Static</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -51,12 +51,12 @@
                     存，所以节省存储空间。第二，一旦利息需要改变时，只要改变一次， 则所有存款类
                     对象的利息全改变过来了；
                 </span>
-                <img class="app_sanrow" src="<?php echo $this->staticUrl('appShow/anrow_down.jpg'); ?>" />
+                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
             </p>
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('appShow/work_2.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_2.jpg'); ?>"/>
             <p>
                 <span class="app_stitle">起床啦</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -65,12 +65,12 @@
                     存，所以节省存储空间。第二，一旦利息需要改变时，只要改变一次， 则所有存款类
                     对象的利息全改变过来了；
                 </span>
-                <img class="app_sanrow" src="<?php echo $this->staticUrl('appShow/anrow_down.jpg'); ?>" />
+                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
             </p>
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('appShow/work_3.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_3.jpg'); ?>"/>
             <p>
                 <span class="app_stitle">POP</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -79,12 +79,12 @@
                     存，所以节省存储空间。第二，一旦利息需要改变时，只要改变一次， 则所有存款类
                     对象的利息全改变过来了；
                 </span>
-                <img class="app_sanrow" src="<?php echo $this->staticUrl('appShow/anrow_down.jpg'); ?>" />
+                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
             </p>
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('appShow/work_4.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_4.jpg'); ?>"/>
             <p>
                 <span class="app_stitle">Turnplay</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -93,7 +93,7 @@
                     存，所以节省存储空间。第二，一旦利息需要改变时，只要改变一次， 则所有存款类
                     对象的利息全改变过来了；
                 </span>
-                <img class="app_sanrow" src="<?php echo $this->staticUrl('appShow/anrow_down.jpg'); ?>" />
+                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
             </p>
         </li>
 

@@ -11,7 +11,7 @@
 
     <div class="devReport_news">
             <div>
-                <img src="<?php echo $this->staticUrl('devReport/devReport_1.jpg');?>" />
+                <img src="<?php echo $this->staticUrl('news/newsList/devReport/devReport_1.jpg');?>" />
             </div>
             <div class="devReport_word">
                 <p class="devReport_title">1.5GHz四核超强99张连拍HTC One X</p>
@@ -29,7 +29,7 @@
 
     <div class="devReport_news">
             <div>
-                <img src="<?php echo $this->staticUrl('devReport/devReport_2.jpg');?>" />
+                <img src="<?php echo $this->staticUrl('news/newsList/devReport/devReport_2.jpg');?>" />
             </div>
             <div class="devReport_word">
                 <p class="devReport_title">1.5GHz四核超强99张连拍HTC One X</p>
@@ -47,7 +47,7 @@
 
     <div class="devReport_news">
             <div>
-                <img src="<?php echo $this->staticUrl('devReport/devReport_1.jpg');?>" />
+                <img src="<?php echo $this->staticUrl('news/newsList/devReport/devReport_1.jpg');?>" />
             </div>
             <div class="devReport_word">
                 <p class="devReport_title">1.5GHz四核超强99张连拍HTC One X</p>
@@ -65,7 +65,7 @@
 
     <div class="devReport_news">
             <div>
-                <img src="<?php echo $this->staticUrl('devReport/devReport_2.jpg');?>" />
+                <img src="<?php echo $this->staticUrl('news/newsList/devReport/devReport_2.jpg');?>" />
             </div>
             <div class="devReport_word">
                 <p class="devReport_title">1.5GHz四核超强99张连拍HTC One X</p>

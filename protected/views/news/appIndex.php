@@ -81,7 +81,7 @@
         <div class="top_bottem_space">
             <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">大赛流程</span>
             <div>
-                <img src="<?php echo $this->staticUrl('appIndex/app_iprocess.jpg');?>" />
+                <img src="<?php echo $this->staticUrl('news/app/app_iprocess.jpg');?>" />
                 <p class="app_iprocontent">
                     <span style="margin-left:23px;">报名</span>
                     <span style="margin-left:25px;">资格审核</span>
@@ -115,19 +115,19 @@
         <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">奖项设置</span>
         <ul class="app_ireward">
             <li style="margin-top: 20px;">
-                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
                 <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
             </li>
             <li>
-                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
                 <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
             </li>
             <li>
-                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
                 <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
             </li>
             <li>
-                <img src="<?php echo $this->staticUrl('appIndex/reward.jpg');?>">
+                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
                 <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
             </li>
 

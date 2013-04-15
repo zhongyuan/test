@@ -44,7 +44,7 @@
 </style>
 
 <div>
-<img class="devPhoto" src="<?php echo Yii::app()->baseUrl.'/images/devIndex/dev_big.jpg'; ?>"></img>
+<img class="devPhoto" src="<?php echo Yii::app()->baseUrl.'/images/news/dev/dev_big.jpg'; ?>"></img>
 </div>
 
 <div class="devList" >

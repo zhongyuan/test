@@ -42,7 +42,7 @@
                 有限公司所属上海市国际展览有限公司及英国P&O公司共同投资建立的上海首家引进国外一流管理模式和经验的展览场
                 馆公司，也是世博（集团）所属的展览场馆公司，及全国首家获得 ISO9001 认证的国际性展览馆。</p>
             </div>
-            <div class="manualImg"><img  src="<?php echo $this->staticUrl('devManual/devManual_1.jpg'); ?>" /></div>
+            <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/devManual_1.jpg'); ?>" /></div>
         </div>
 
     <style>
@@ -73,7 +73,7 @@
                                                     %E5%8D%9A%E9%9C%9E%E8%B7%AF11%E5%8F%B7&amp;ll=31.200634,121.604683&amp;spn=0.006745,0.01
                                                     1362&amp;t=m&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left"></a></small>
 
-                <!--<img  src="<?php echo $this->staticUrl('devManual/devManual_2.jpg'); ?>" />-->
+                <!--<img  src="<?php echo $this->staticUrl('news/dev/devManual_2.jpg'); ?>" />-->
             </div>
         </div>
 
@@ -100,7 +100,7 @@
                     <li>F:八先生刷羊肉</li>
                 </ul>
             </div>
-            <div class="manualImg"><img  src="<?php echo $this->staticUrl('devManual/devManual_3.jpg'); ?>" /></div>
+            <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/devManual_3.jpg'); ?>" /></div>
         </div>
 </div>
 
