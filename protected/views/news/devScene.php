@@ -14,42 +14,37 @@
         text-align: center;
         margin-bottom: 50px;
     }
+	.devScene ul{
+		overflow: hidden;
+	}
     .devScene ul li{
         margin:30px 0;
+		float: left;
     }
     .devScene li span{
-        padding: 0 16px;
+        padding: 0 15px;
     }
 </style>
 
 <div >
     <div class="devScene">
         <ul>
-            <li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-            </li>
-            <li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-            </li>
-            <li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-            </li>
-            <li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-            </li>
-            <li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_1.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_2.jpg'); ?>" /></span>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/scene_3.jpg'); ?>" /></span>
-            </li>
+			<?php foreach($models as $model):?>
+				<li>
+                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/'.$model['img_name']); ?>" /></span>
+            	</li>
+			<?php endforeach;?>
+            
+            
         </ul>
+    </div>
+	
+	<!-- ===========================翻页====================== -->
+
+    <div class="green-black">
+
+        <?php $this->widget('MyLinkPager', array(
+            'pages' => $pages,
+        )) ?>
     </div>
 </div>
