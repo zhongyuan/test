@@ -31,7 +31,8 @@
         <ul>
 			<?php foreach($models as $model):?>
 				<li>
-                <span><img src="<?php echo $this->staticUrl('news/newsList/devScene/'.$model['img_name']); ?>" /></span>
+				<span><img src="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" /></span>
+                <!--<span><img src="<?php echo $this->staticUrl('news/newsList/devScene/'.$model['img_name']); ?>" /></span>-->
             	</li>
 			<?php endforeach;?>
             

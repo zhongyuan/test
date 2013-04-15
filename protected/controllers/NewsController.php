@@ -143,7 +143,7 @@ class NewsController extends Controller
 		* @return string 图片的完整路径
 		* 
 		*/
-		private function _mapImagePath($img_name,$type = 0)
+		public function _mapImagePath($img_name,$type = 0)
 		{
 			$mappings = array(
 				0 => 'news/newsList/devScene/',
