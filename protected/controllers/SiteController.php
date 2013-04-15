@@ -30,6 +30,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+
 		$this->render('index');
 	}
 
@@ -134,9 +135,7 @@ class SiteController extends Controller
                     $rst = $userModel->addUser($filterRst[1]);
 					//var_dump($rst);
 					//exit(0);
-					
-					
-					
+
 					var_dump($rst[0]);
                     if($rst[0]){
 						//echo("GOOD");
@@ -148,7 +147,10 @@ class SiteController extends Controller
                         $session['last_name'] = $rst[1]['last_name'];
                         $session['language'] = $rst[1]['language'];*/
                         //$session->setTimeout(3600*24);
-						$this->render('index');
+//						$this->render('index');
+                        echo'进来了';
+                        sleep(3);
+                        $this->redirect(array('site/index'));exit;
 						//$this->redirect(Yii::app()->createUrl('site/index'));
 						//$this->redirect(array('site/index'));
                     }else{
@@ -170,30 +172,17 @@ class SiteController extends Controller
 			//$this->redirect($url);
 			$this->_doRedirect($url);
 		}
-		
+
 		private function _doRedirect($url)
 		{
 			$this->render('index');
-			//$this->redirect($url);	
+			//$this->redirect($url);
 		}
-		
-		
+
+
          /*
           * 检测验证码
           */
-		 public function actionAjaxCheckCaptcha()
-		 {
-		 	$verifyCode = Yii::app()->getRequest()->getPost("verifyCode");
-			$verCode = $this->createAction('captcha')->getVerifyCode();
-			if($verCode == $verifyCode){
-				echo json_encode(array('flag' => 1,'msg'=>'验证码正确'));
-			}else{
-				echo json_encode(array('flag' => 0,'msg'=>'验证码错误'));
-			}
-			exit(0);
-		 
-		 }
-		 
          public function actionAjaxCheckRegister()
          {
             $type = $_POST['type']?$_POST['type']:NULL;
