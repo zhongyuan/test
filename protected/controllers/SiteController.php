@@ -133,29 +133,23 @@ class SiteController extends Controller
 
                     //添加一个新的用户信息
                     $rst = $userModel->addUser($filterRst[1]);
-					//var_dump($rst);
-					//exit(0);
 
-					var_dump($rst[0]);
                     if($rst[0]){
-						//echo("GOOD");
-                        //$session = Yii::app()->session;
-						//var_dump($rst[1]);
-                        /*$session['user_id'] = $rst[1]['user_id'];
+
+                        $session = Yii::app()->session;
+
+                        $session['user_id'] = $rst[1]['user_id'];
                         $session['user_name'] = $rst[1]['user_name'];
                         $session['first_name'] = $rst[1]['first_name'];
                         $session['last_name'] = $rst[1]['last_name'];
-                        $session['language'] = $rst[1]['language'];*/
-                        //$session->setTimeout(3600*24);
-//						$this->render('index');
-                        echo'进来了';
-                        sleep(3);
-                        $this->redirect(array('site/index'));exit;
-						//$this->redirect(Yii::app()->createUrl('site/index'));
-						//$this->redirect(array('site/index'));
+
+                        $session['language'] = $rst[1]['language'];
+                        $session->setTimeout(3600*24);
+						$this->forward("site/index");
+
                     }else{
-						//$this->render('register');
-						//$this->redirect(Yii::app()->createUrl('site/register'));
+						$this->forward('site/register');
+
                     }
                 }
 
@@ -163,26 +157,6 @@ class SiteController extends Controller
             $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
         }
 
-		public function actionTest(){
-			//$session = Yii::app()->session;
-			//var_dump($session);
-			$url = Yii::app()->createUrl('site/index');
-			//echo("SLEEP  AND REDIRECT ".$url);
-			//sleep(5);
-			//$this->redirect($url);
-			$this->_doRedirect($url);
-		}
-
-		private function _doRedirect($url)
-		{
-			$this->render('index');
-			//$this->redirect($url);
-		}
-
-
-         /*
-          * 检测验证码
-          */
          public function actionAjaxCheckRegister()
          {
             $type = $_POST['type']?$_POST['type']:NULL;
@@ -233,7 +207,7 @@ class SiteController extends Controller
             }
 
                         //详细信息
-            $data['passwd'] = substr(md5($data['passwd']),0,16);//采用16个字符的二进制格式
+            $data['passwd'] = md5($data['passwd']);
             $data['record_time'] = $data['update_time'] = time();
             $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
             $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
