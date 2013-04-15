@@ -133,8 +133,6 @@ class SiteController extends Controller
 
                     //添加一个新的用户信息
                     $rst = $userModel->addUser($filterRst[1]);
-					
-					print_r($rst);
                     if($rst[0]){
 
 						//执行登录操作并返回首页
