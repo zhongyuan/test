@@ -134,20 +134,15 @@ class SiteController extends Controller
                     //添加一个新的用户信息
                     $rst = $userModel->addUser($filterRst[1]);
 					
-
+					print_r($rst);
                     if($rst[0]){
 
-                        $session = Yii::app()->session;
-						
-
-                        $session['user_id'] = $rst[1]['user_id'];
-                        $session['user_name'] = $rst[1]['user_name'];
-                        $session['first_name'] = $rst[1]['first_name'];
-                        $session['last_name'] = $rst[1]['last_name'];
-
-                        $session['language'] = $rst[1]['language'];
-                        $session->setTimeout(3600*24);
-						
+						//执行登录操作并返回首页
+						$loginModel=new LoginForm;
+						$loginModel->username = $rst[1]['user_name'];
+						$loginModel->password = $rst[1]['passwd'];
+						$loginModel->rememberMe = 3600*24*30;
+						$loginModel->login();
 						$this->forward("site/index");
 
                     }else{
@@ -210,7 +205,7 @@ class SiteController extends Controller
             }
 
                         //详细信息
-            $data['passwd'] = md5($data['passwd']);
+			
             $data['record_time'] = $data['update_time'] = time();
             $data['status'] = 0;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
             $data['question_id']=empty($input['question_id'])?0:$input['question_id'];

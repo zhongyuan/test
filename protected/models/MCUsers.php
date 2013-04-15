@@ -29,8 +29,12 @@ class MCUsers {
 
     public function addUser($input=array())
     {
-        //保存用户基本信息
+        //保存用户基本信息src_passwd
+		
         $data = $input['data'];
+		$src_data = $data;
+		$data['passwd'] = md5($data['passwd']);
+		
         $affect = $this->_insert("users",$data);
         if(!$affect){
                 return array(FALSE,"数据写入失败,请重试!");
@@ -41,12 +45,12 @@ class MCUsers {
         }
 
         //保存用户联系地址相关信息
-		$data['user_id'] = $user_id;
+		$src_data['user_id'] = $user_id;
         $address = $input['address'];
         $address['user_id'] = $user_id;
         $this->_insert("address",$address);
 
-        return array(TRUE,$data);//返回用户注册的详细信息
+        return array(TRUE,$src_data);//返回用户注册的详细信息
     }
 
     public function deleteUser()
