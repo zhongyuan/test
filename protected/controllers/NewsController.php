@@ -148,7 +148,8 @@ class NewsController extends Controller
 			$mappings = array(
 				0 => 'news/newsList/devScene/',
 				1 => 'news/newsList/devManual/',
-				3 => 'news/newsList/DevReceipt/'
+				3 => 'news/newsList/DevReceipt/',
+				6 => 'news/worksUpload/big/'
 			);
 			if(isset($mappings[$type])){
 				return $mappings[$type].$img_name;
@@ -190,7 +191,22 @@ class NewsController extends Controller
          */
         public function actionAppShow()
         {
-            $this->render('appShow');
+			
+			$criteria = new CDbCriteria(array(
+                'select' => 'work_name,work_icon,work_brief',
+            ));
+             $count=  WorkList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=5;
+             $pages->applyLimit($criteria);
+             $models = WorkList::model()->findAll($criteria);
+				
+             $this->render('appShow', array(
+                'models' => $models,
+                'pages' => $pages,
+             ));
         }
 
         /*
