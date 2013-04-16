@@ -27,8 +27,9 @@
         <!-- =====body===== -->
        <div style="clear:both"></div> <!--  有必要的-->
 
+	<div id="search_list">
 	<?php echo $content; ?>
-
+	</div>
        <!-- =====footer===== -->
         <div id="footer">
                 <?php $this->widget('FooterWidget');?>

@@ -8008,3 +8008,126 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/index.php?r=news/devScene
 ---
+2013/04/16 17:37:27 [error] [exception.CException] exception 'CException' with message 'DevReportWidget and its behaviors do not have a method or closure named "staticUrl".' in E:\wwwroot\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 [internal function]: CComponent->__call('staticUrl', Array)
+#1 E:\wwwroot\cosweb\protected\components\views\devReport.php(21): DevReportWidget->staticUrl('news/newsList/d...')
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(130): require('E:\wwwroot\cosw...')
+#3 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, false)
+#4 E:\wwwroot\yii\framework\web\widgets\CWidget.php(243): CBaseController->renderFile('E:\wwwroot\cosw...', Array, false)
+#5 E:\wwwroot\cosweb\protected\components\DevReportWidget.php(33): CWidget->render('devReport', Array)
+#6 E:\wwwroot\yii\framework\web\CBaseController.php(173): DevReportWidget->run()
+#7 E:\wwwroot\cosweb\protected\views\news\devReport.php(2): CBaseController->widget('DevReportWidget')
+#8 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#9 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#10 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#11 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#12 E:\wwwroot\cosweb\protected\controllers\NewsController.php(52): CController->render('devReport', Array)
+#13 E:\wwwroot\cosweb\protected\controllers\NewsController.php(88): NewsController->_getNewsList(2, 'devReport')
+#14 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#15 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#19 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#20 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/16 17:39:03 [error] [exception.CException] exception 'CException' with message 'DevReportWidget and its behaviors do not have a method or closure named "createUrl".' in E:\wwwroot\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 [internal function]: CComponent->__call('createUrl', Array)
+#1 E:\wwwroot\cosweb\protected\components\views\devReport.php(26): DevReportWidget->createUrl('')
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(130): require('E:\wwwroot\cosw...')
+#3 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, false)
+#4 E:\wwwroot\yii\framework\web\widgets\CWidget.php(243): CBaseController->renderFile('E:\wwwroot\cosw...', Array, false)
+#5 E:\wwwroot\cosweb\protected\components\DevReportWidget.php(33): CWidget->render('devReport', Array)
+#6 E:\wwwroot\yii\framework\web\CBaseController.php(173): DevReportWidget->run()
+#7 E:\wwwroot\cosweb\protected\views\news\devReport.php(2): CBaseController->widget('DevReportWidget')
+#8 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#9 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#10 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#11 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#12 E:\wwwroot\cosweb\protected\controllers\NewsController.php(52): CController->render('devReport', Array)
+#13 E:\wwwroot\cosweb\protected\controllers\NewsController.php(88): NewsController->_getNewsList(2, 'devReport')
+#14 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#15 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#19 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#20 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/16 17:41:22 [error] [exception.CException] exception 'CException' with message 'DevReportWidget and its behaviors do not have a method or closure named "renderPartical".' in E:\wwwroot\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 [internal function]: CComponent->__call('renderPartical', Array)
+#1 E:\wwwroot\cosweb\protected\components\DevReportWidget.php(33): DevReportWidget->renderPartical('devReport', Array)
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(173): DevReportWidget->run()
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(2): CBaseController->widget('DevReportWidget')
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(52): CController->render('devReport', Array)
+#9 E:\wwwroot\cosweb\protected\controllers\NewsController.php(88): NewsController->_getNewsList(2, 'devReport')
+#10 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#11 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#15 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#16 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#17 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/16 17:41:39 [error] [exception.CException] exception 'CException' with message 'DevReportWidget and its behaviors do not have a method or closure named "renderPartial".' in E:\wwwroot\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 [internal function]: CComponent->__call('renderPartial', Array)
+#1 E:\wwwroot\cosweb\protected\components\DevReportWidget.php(33): DevReportWidget->renderPartial('devReport', Array)
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(173): DevReportWidget->run()
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(2): CBaseController->widget('DevReportWidget')
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(52): CController->render('devReport', Array)
+#9 E:\wwwroot\cosweb\protected\controllers\NewsController.php(88): NewsController->_getNewsList(2, 'devReport')
+#10 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#11 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#15 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#16 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#17 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/16 17:42:15 [error] [exception.CException] exception 'CException' with message 'DevReportWidget and its behaviors do not have a method or closure named "renderPartial".' in E:\wwwroot\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 [internal function]: CComponent->__call('renderPartial', Array)
+#1 E:\wwwroot\cosweb\protected\components\DevReportWidget.php(33): DevReportWidget->renderPartial('devReport', Array)
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(173): DevReportWidget->run()
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(2): CBaseController->widget('DevReportWidget')
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(52): CController->render('devReport', Array)
+#9 E:\wwwroot\cosweb\protected\controllers\NewsController.php(88): NewsController->_getNewsList(2, 'devReport')
+#10 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#11 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#15 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#16 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#17 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---

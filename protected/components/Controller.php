@@ -34,4 +34,19 @@ class Controller extends CController
             }
             return $baseUrl;
         }
+		
+		/**
+		* 依据不同的请求类型决定是调用完整的View还是部分View
+		* @param undefined $view
+		* @param undefined $data
+		* 
+		*/
+		public function renderView($view,$data=null)
+		{
+			if(Yii::app()->request->isAjaxRequest){
+				$this->renderPartial($view,$data);
+			}else{
+				$this->render($view,$data);
+			}
+		}
 }
