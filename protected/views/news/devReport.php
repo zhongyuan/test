@@ -52,20 +52,4 @@
         )) ?>
     </div>
 	
-	<script>
-    $(function(){
-        $('.yiiPager a').click(function(){
-			var url = $(this).attr('href');
-            $.ajax({
-                url:url,
-                success:function(html){
-                    $('#search_list').html(html);
-                    //alert('dfad');
-					return false;
-                }
-            });
-            return false;
-        });
-    });
-	</script>
 

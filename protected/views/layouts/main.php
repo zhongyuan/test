@@ -30,6 +30,21 @@
 	<div id="search_list">
 	<?php echo $content; ?>
 	</div>
+	<script>
+    $(function(){
+        $('.yiiPager a').click(function(){
+			var url = $(this).attr('href');
+            $.ajax({
+                url:url,
+                success:function(html){
+                    $('#search_list').html(html);
+					return false;
+                }
+            });
+            return false;
+        });
+    });
+	</script>
        <!-- =====footer===== -->
         <div id="footer">
                 <?php $this->widget('FooterWidget');?>
