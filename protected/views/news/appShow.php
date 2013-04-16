@@ -65,6 +65,7 @@
 
         <?php $this->widget('MyLinkPager', array(
             'pages' => $pages,
+			'maxButtonCount' =>5
         )) ?>
     </div>
 
