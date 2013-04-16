@@ -161,7 +161,12 @@ class NewsController extends Controller
          */
         public function actionAppIndex()
         {
-            $this->render('appIndex');
+			$extConfig= Util::loadConfig('news');
+			$reward_settings = $extConfig['reward_settings'];
+			$this->render('appIndex', array(
+                'reward_settings' => $reward_settings
+            ));
+						
         }
 
         /*

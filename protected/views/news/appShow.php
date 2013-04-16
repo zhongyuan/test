@@ -4,11 +4,16 @@
         padding: 0px 70px;
 
     }
+	
     .app_sli li{
         width: 100%;
         height: 188px;
         margin: 20px 0;
     }
+	.app_sli li img.left_img{
+		float: left;
+		clear: left;
+	}
     .app_sli li img:first-child{
         display: inline-block;
         vertical-align: top;
@@ -42,7 +47,7 @@
 <div class="app_sbody">
     <ul class="app_sli">
         <li>
-            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>" class="left_img"/>
             <p>
                 <span class="app_stitle">Static</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -56,9 +61,12 @@
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_2.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_2.jpg'); ?>" class="left_img"/>
             <p>
-                <span class="app_stitle">起床啦</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
+                <span class="app_stitle">起床啦</span> <span class="app_stitle2">
+					
+					
+				</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
                     每个实例的利息都是相同的。所以，应该把利息设为存款类的静态数据成员。这 有两个好
                     处，第一，不管定义多少个存款类对象，利息数据成员都共享分配在全局数据区的内
@@ -70,7 +78,7 @@
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_3.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_3.jpg'); ?>" class="left_img"/>
             <p>
                 <span class="app_stitle">POP</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，
@@ -84,7 +92,7 @@
         </li>
 
         <li>
-            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_4.jpg'); ?>"/>
+            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_4.jpg'); ?>" class="left_img"/>
             <p>
                 <span class="app_stitle">Turnplay</span> <span class="app_stitle2">轻松查看朋友们的线上的状态</span> <br/>
                 <span>静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，

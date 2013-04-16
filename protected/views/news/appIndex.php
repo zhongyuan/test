@@ -26,6 +26,8 @@
     .app_ileft{
         width: 625px;
         display: inline-block;
+		float: left;
+		clear: left;
     }
     .app_iprotitle{
         font-size: 24px;
@@ -54,7 +56,13 @@
         display: inline-block;
         vertical-align: top;
         margin-left: 40px;
+		margin-top: 20px;
     }
+	
+	
+	ul.app_ireward{
+		margin-top:20px;	
+	}
     .app_ireward li{
         margin-bottom: 38px;
     }
@@ -114,22 +122,17 @@
     <div class="app_iright">
         <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">奖项设置</span>
         <ul class="app_ireward">
-            <li style="margin-top: 20px;">
+			<?php foreach($reward_settings as $sk=>$sv):?>
+				<li>
+	                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
+	                <p><span><?php echo $sv[0]?> </span><br/> <?php echo $sv[1]?><br/><?php echo $sv[2]?></p>
+	            </li>
+			<?php endforeach;?>
+            <!--<li style="margin-top: 20px;">
                 <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
                 <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
-            </li>
-            <li>
-                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
-                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
-            </li>
-            <li>
-                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
-                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
-            </li>
-            <li>
-                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
-                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
-            </li>
+            </li>-->
+           
 
         </ul>
     </div>
