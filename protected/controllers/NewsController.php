@@ -123,11 +123,11 @@ class NewsController extends Controller
              $pages=new CPagination($count);
 
              // 返回前一页
-             $pages->pageSize=12;
+             $pages->pageSize=6;
              $pages->applyLimit($criteria);
              $models = ImageList::model()->findAll($criteria);
 				
-             $this->render('devScene', array(
+             $this->renderView('devScene', array(
                 'models' => $models,
                 'pages' => $pages,
              ));

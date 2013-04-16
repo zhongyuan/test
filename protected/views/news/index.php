@@ -5,6 +5,9 @@
  * and open the template in the editor.
  */
 ?>
+
+<?php $this->widget('DevWidget');?>
+
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
 
 <div>
