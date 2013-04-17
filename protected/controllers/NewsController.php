@@ -83,7 +83,7 @@ class NewsController extends Controller
          * 新闻报道
          */
         public function actionDevReport()
-        {
+        { 
 			
 			$this->_getNewsList(2,"devReport");
 					 
@@ -203,7 +203,7 @@ class NewsController extends Controller
              $pages->applyLimit($criteria);
              $models = WorkList::model()->findAll($criteria);
 				
-             $this->render('appShow', array(
+             $this->renderView('appShow', array(
                 'models' => $models,
                 'pages' => $pages,
              ));

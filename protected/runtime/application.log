@@ -8131,3 +8131,179 @@ Stack trace:
 #18 {main}
 REQUEST_URI=/index.php?r=news/devReport
 ---
+2013/04/17 11:14:51 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(115): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:15:48 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(115): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:15:51 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(115): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:16:23 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(116): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:17:15 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(116): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:17:17 [error] [exception.CException] exception 'CException' with message 'The "dataProvider" property cannot be empty.' in E:\wwwroot\yii\framework\zii\widgets\CBaseListView.php:105
+Stack trace:
+#0 E:\wwwroot\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(147): CListView->init()
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(64): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(116): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:39:25 [error] [exception.CException] exception 'CException' with message 'Property "CListView.dateProvider" is not defined.' in E:\wwwroot\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 E:\wwwroot\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('dateProvider', Array)
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(NewsController), 'zii.widgets.CLi...', Array)
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(68): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(118): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
+2013/04/17 11:39:38 [error] [exception.CException] exception 'CException' with message 'Property "CListView.dateProvider" is not defined.' in E:\wwwroot\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 E:\wwwroot\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('dateProvider', Object(CActiveDataProvider))
+#1 E:\wwwroot\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(NewsController), 'zii.widgets.CLi...', Array)
+#2 E:\wwwroot\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 E:\wwwroot\cosweb\protected\views\news\devReport.php(68): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 E:\wwwroot\yii\framework\web\CBaseController.php(126): require('E:\wwwroot\cosw...')
+#5 E:\wwwroot\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wwwroot\cosw...', Array, true)
+#6 E:\wwwroot\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wwwroot\cosw...', Array, true)
+#7 E:\wwwroot\yii\framework\web\CController.php(782): CController->renderPartial('devReport', Array, true)
+#8 E:\wwwroot\cosweb\protected\controllers\NewsController.php(118): CController->render('devReport', Array)
+#9 E:\wwwroot\yii\framework\web\actions\CInlineAction.php(49): NewsController->actionDevReport()
+#10 E:\wwwroot\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wwwroot\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wwwroot\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wwwroot\yii\framework\web\CWebApplication.php(282): CController->run('devReport')
+#14 E:\wwwroot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('news/devReport')
+#15 E:\wwwroot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wwwroot\cosweb\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=news/devReport
+---
