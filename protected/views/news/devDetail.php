@@ -30,7 +30,7 @@
 
     <div>
         <span class="dev_dtitle">1.5GHz四核超强99张连拍HTC One X</span>
-        <p>HTC执行长周永明表示：“人们总是希望能够以相片或歌曲来记录或纪念生活中最精彩与美好的当下，
+<!--        <p>HTC执行长周永明表示：“人们总是希望能够以相片或歌曲来记录或纪念生活中最精彩与美好的当下，
         而这样的消费者心声便是HTC One系列的设计原点与创意初衷。我们相信HTC One精湛的拍摄功能
         与忠于原音的高音质效果将让使用者爱不释手，不仅是划时代的移动通信产品，更以前所未有的方式提供最佳的个人化使用体验。”</p>
 
@@ -48,16 +48,30 @@
             HTC One赶在三星Galaxy S4和苹果iPhone 5S之前发布，400万像素UltraPixel相机堪称智能手机史上的一大创新。这枚1/3英寸BSI Ult
             raPixel全新摄像头拥有F/2.0光圈，进光量是传统传感器的3倍以上，低光性能显著提高。它支持进阶360度全景、多轴光学防震、多影像组合等
             功能。该机采用一体成型的铝合金机身，内置HTC Sense 5.0 UI，搭载Snapdragon 600四核处理器，整体性能相比骁龙S4 Pro提升了40%，而且具有更低的功耗。[4]
-        </p>
+        </p>-->
+        <div class="dev_content">
+            <?php echo $news_detail[0]; ?>
+        </div>
     </div>
 
      <!-- ===========================翻页====================== -->
-<!--    <div class="green-black">
+    <div class="green-black">
 
-        <?php $this->widget('MyLinkPager', array(
-            'pages' => $pages,
-        )) ?>
-    </div>-->
+        <?php $this->widget('MyLinkPager');?>
+  <?php
+
+//    $this->widget('CLinkPager',array(
+//        'header'=>'',
+//        'firstPageLabel' => '首页',
+//        'lastPageLabel' => '末页',
+//        'prevPageLabel' => '上一页',
+//        'nextPageLabel' => '下一页',
+////        'pages' => $pages,
+//        'maxButtonCount'=>13
+//        )
+//    );
+    ?>
+    </div>
 
 
 

@@ -1,10 +1,13 @@
-<?php
-$this->breadcrumbs=array(
-	'Admin',
-);?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
 
-<p>
-	You may change the content of this page by modifying
-	the file <tt><?php echo __FILE__; ?></tt>.
-</p>
+<?php $this->widget('AdminWidget');?>
+<style>
+    .welcome{
+        font-size: 30px;
+        text-align: center;
+        padding: 40px 0;
+    }
+</style>
+
+<div>
+    <p class="welcome">Welcom,<?php echo Yii::app()->session['staff_name']; ?></p>
+</div>

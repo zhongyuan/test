@@ -27,29 +27,50 @@ class NewsController extends Controller
         public function actionIndex()
         {
 
+            $criteria = new CDbCriteria(array(
+                'select' => 'title,outline,image_name',
+                'order' => 'update_time desc',
+                'params' => array(
+                    ':type' => 0, //第一种类型
+                    ':status' => 0, //新闻正常，没有被屏蔽
+                ),
+            ));
+             $count=  NewsList::model()->count($criteria);
+             $pages=new CPagination($count);
 
-                $criteria = new CDbCriteria(array(
-                    'select' => 'title,outline,image_name',
-                    'order' => 'update_time desc',
-                    'params' => array(
-                        ':type' => 0, //第一种类型
-                        ':status' => 0, //新闻正常，没有被屏蔽
-                    ),
-                ));
-                 $count=  NewsList::model()->count($criteria);
-                 $pages=new CPagination($count);
+             $pages->pageSize=3;
+             $pages->applyLimit($criteria);
+             $models = NewsList::model()->findAll($criteria);
 
-                 // 返回前一页
-                 $pages->pageSize=3;
-                 $pages->applyLimit($criteria);
-                 $models = NewsList::model()->findAll($criteria);
 
-                 $this->render('index', array(
+//            $dataProvider = new CActiveDataProvider('NewsList', array(
+//                'criteria'=>$criteria,
+//                'pagination'=>array(
+//                    'pageSize'=>3,
+//                    'itemCount'=>$count,
+//                ),
+//            ));
+//            $this->render('index',array(
+//                'dataProvider' => $dataProvider,
+//            ));
+
+             //第一种方法:判断请求
+            if (Yii::app()->request->isAjaxRequest) {
+                $this->renderPartial('ajaxIndex',array(
                     'models' => $models,
-                    'pages' => $pages,
-                 ));
+                ));
+                exit;
+            }
+
+            $this->render('index', array(
+               'models' => $models,
+               'pages' => $pages,
+
+            ));
 
         }
+
+
 
         /*
          * 开发者大会首页
@@ -60,20 +81,51 @@ class NewsController extends Controller
         }
 
         /*
-         * 大会详情
-         */
-        public function actionDevDetail()
-        {
-            $this->render('devDetail');
-        }
-
-        /*
          * 新闻报道
          */
         public function actionDevReport()
         {
             $this->render('devReport');
         }
+
+        /*
+         * 新闻报道详细页
+         */
+        public function actionDevDetail()
+        {
+            $news_id = $_GET['news_id']?$_GET['news_id']:null;
+            $news_id = 9;
+            if($news_id)
+            {
+                $mcND = new MCNewsDetail($news_id);
+                $cmd  = $mcND->getNDById();
+                $str = '<hr style="page-break-after:always;" class="ke-pagebreak" />';
+
+                $news_detail = explode($str,$cmd);
+
+//                $pages=new CPagination(3);
+//                var_dump($pages);exit;
+                $this->render('devDetail',array(
+                    'news_detail' => $news_detail,
+//                    'pages' => $pages,
+                ));
+            }
+
+//            $this->redirect(Yii::app()->request->returnUrl);
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
+
+        /*
+         * 新闻报道详细页 ajax处理
+         */
+        public function actionAjaxDevDetail()
+        {
+
+        }
+
+
+
+
 
         /*
          *开具发票

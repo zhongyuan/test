@@ -80,7 +80,9 @@
 
     <div style="clear:both"></div>
 
-    <div class="long_news" style="margin-top:20px">
+<div id="search_list" class="long_news" style="margin-top:20px">
+
+
 
     <?php $i = 1;foreach($models as $model){ if($i%2==1){?>
 <!--    // 显示一个模型-->
@@ -116,16 +118,55 @@
     <?php $i++;}; ?>
 
 
-    </div>
+
+</div>
 
 <!-- ===========================翻页====================== -->
 
-    <div class="green-black">
+<div class="green-black">
 
-        <?php $this->widget('MyLinkPager', array(
-            'pages' => $pages,
-        )) ?>
-    </div>
+    <?php
+
+        $this->widget('MyLinkPager',array(
+            'pages'=>$pages,
+        ));
+//$this->widget('zii.widgets.CListView', array(
+//    'dataProvider'=>$dataProvider,
+//    'itemView'=>'ajaxIndex',   // refers to the partial view named '_post'
+////    'sortableAttributes'=>array(
+////        'title',
+////        'create_time'=>'Post Time',
+////    ),
+//));
+
+//$this->widget('zii.widgets.CListView', array(
+//    'dataProvider'=>$dataProvider,
+//    'itemView'=>'ajaxIndex',
+//    'pager'=>array(
+//        'class'=>'CLinkPager',
+//        'header'=>'Visit to page',
+//        'firstPageLabel'=>'<<',
+//        'prevPageLabel'=>'<',
+//        'nextPageLabel'=>'>',
+//        'lastPageLabel'=>'>>', ) ));
+    ?>
+</div>
 
 
 </div>
+
+<script>
+    $(function(){
+        $('.yiiPager a').click(function(){
+            $.ajax({
+                url:$(this).attr('href'),
+                success:function(res){
+                    $('#search_list').html(res);
+//                    alert('dfad');
+//                    $(this).parent().addClass('selected');
+                }
+            });
+            return false;
+        });
+    });
+</script>
