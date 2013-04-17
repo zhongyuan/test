@@ -26,7 +26,7 @@
     }
 </style>
 
-<div >
+<div id="replace">
     <div class="devScene">
         <ul>
 			<?php foreach($models as $model):?>
@@ -49,18 +49,18 @@
         )) ?>
     </div>
 </div>
+</div>
 <script>
-$(function(){
-    $('.yiiPager a').click(function(){
-		var url = $(this).attr('href');
-        $.ajax({
-            url:url,
-            success:function(html){
-                $('#search_list').html(html);
-				return false;
-            }
+    $(function(){
+        $('.yiiPager a').click(function(){
+            $.ajax({
+                url:$(this).attr('href'),
+                success:function(res){
+                    $('#replace').html(res);
+                }
+            });
+            return false;
         });
         return false;
     });
-});
 </script>

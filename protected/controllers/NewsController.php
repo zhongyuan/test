@@ -118,8 +118,40 @@ class NewsController extends Controller
          */
         public function actionDevReport()
         {
-            $this->render('devReport');
+
+			$criteria = new CDbCriteria(array(
+                'select' => 'title,outline,image_name',
+				'condition' => 'type =:type and status=:status',
+                'order' => 'update_time desc',
+                'params' => array(
+                    ':type' => 2, //第一种类型
+                    ':status' => 0, //新闻正常，没有被屏蔽
+                ),
+            ));
+             $count=  NewsList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=3;
+             $pages->applyLimit($criteria);
+             $models = NewsList::model()->findAll($criteria);
+			 
+			 //第一种方法:判断请求
+            if (Yii::app()->request->isAjaxRequest) {
+                $this->renderPartial('_devReport',array(
+                    'models' => $models,
+                    'pages' => $pages,
+                ));
+                exit;
+            }
+
+            $this->render('devReport', array(
+               'models' => $models,
+               'pages' => $pages,
+
+            ));
         }
+
 
         /*
          * 新闻报道详细页
@@ -189,11 +221,21 @@ class NewsController extends Controller
              $pages->pageSize=6;
              $pages->applyLimit($criteria);
              $models = ImageList::model()->findAll($criteria);
+			 
+			  //第一种方法:判断请求
+            if (Yii::app()->request->isAjaxRequest) {
+                $this->renderPartial('_devScene',array(
+                    'models' => $models,
+                    'pages' => $pages,
+                ));
+                exit;
+            }
 
-             $this->renderView('devScene', array(
-                'models' => $models,
-                'pages' => $pages,
-             ));
+            $this->render('devScene', array(
+               'models' => $models,
+               'pages' => $pages,
+
+            ));
 
         }
 
