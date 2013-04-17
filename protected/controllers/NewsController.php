@@ -89,6 +89,7 @@ class NewsController extends Controller
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('ajaxIndex',array(
                     'models' => $models,
+                    'pages' => $pages,
                 ));
                 exit;
             }
@@ -117,11 +118,8 @@ class NewsController extends Controller
          */
         public function actionDevReport()
         {
-
-			$this->_getNewsList(2,"devReport");
-
+            $this->render('devReport');
         }
-
 
         /*
          * 新闻报道详细页
@@ -138,26 +136,21 @@ class NewsController extends Controller
 
                 $news_detail = explode($str,$cmd);
 
-//                $pages=new CPagination(3);
+                $pages=new CPagination(count($news_detail));
+                $pages->pageSize=1;
 //                var_dump($pages);exit;
+//                if(Yii::app()->request->isAjaxRequest){
+//                    $this->renderPartial('_devReport',array(
+//                        'pages' => $pages,
+//                    ));
+//                }
                 $this->render('devDetail',array(
                     'news_detail' => $news_detail,
-//                    'pages' => $pages,
+                    'pages' => $pages,
                 ));
             }
             $this->redirect(Yii::app()->user->returnUrl);
         }
-
-        /*
-         * 新闻报道详细页 ajax处理
-         */
-        public function actionAjaxDevDetail()
-        {
-
-        }
-
-
-
 
 
         /*

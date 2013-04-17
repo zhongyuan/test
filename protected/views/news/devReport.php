@@ -13,24 +13,20 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
 
-	
+
 	<?php
-	
 		$i = 0;
-		//$maxCnt = count($models);
-	//	$maxCnt = 16; 
-		//print_r($dateProvider->getData());echo'dfal;sdjfka';exit;
-		foreach($dataProvider->getData() as $model):
-		$i++; 
-	//	
+		$maxCnt = count($models);
+		foreach($models as $model):
+		$i++;
 	?>
 	    <div class="devReport_news">
 	            <div>
 	                <img src="<?php echo Yii::app()->baseUrl.'/images/news/newsList/devReport/devReport_1.jpg'; ?>" />
 	            </div>
 	            <div class="devReport_word">
-	                <p class="devReport_title"><?php echo $model->title; //echo $model['title']?></p>
-	                <p class="devReport_content"><?php echo $model->outline;// echo $model['outline']?>
+	                <p class="devReport_title"><?php echo $model['title']?></p>
+	                <p class="devReport_content"><?php echo $model['outline']?>
 					&nbsp&nbsp&nbsp<a style="color:#cccccc" href="<?php echo Yii::app()->createUrl(''); ?>">[查看详情]</a>
 	                </p>
 	            </div>
@@ -38,51 +34,23 @@
 	    </div>
 
 		<?php
-			//if ($i<$maxCnt):
+			if ($i<$maxCnt):
 		?>
 			<div class="horizon_line"></div>
 		<?php
-			//endif;
+			endif;
 		?>
-     
+
 	<?php endforeach;?>
-	
-	
+
+
 	<!-- ===========================翻页====================== -->
 
     <div class="green-black">
 
-        <?php //$this->widget('MyLinkPager', array(
-        //    'pages' => $pages,
-      //  )) ?>
-	  <?php
-			$this->widget('zii.widgets.CListView', array(
-			    'dataProvider'=>$dataProvider,
-			    'itemView'=>'_devReport',
-			    'pager'=>array(
-			        'class'=>'CLinkPager',
-			        'header'=>'Visit to page',
-			        'firstPageLabel'=>'<<',
-			        'prevPageLabel'=>'<',
-			        'nextPageLabel'=>'>',
-			        'lastPageLabel'=>'>>', ) ));
-    	?>
+        <?php $this->widget('MyLinkPager', array(
+            'pages' => $pages,
+        )) ?>
     </div>
-	
-	<script>
-    $(function(){
-        $('.yiiPager a').click(function(){
-			var url = $(this).attr('href');
-            $.ajax({
-                url:url,
-                success:function(html){
-                    $('#search_list').html(html);
-					return false;
-                }
-            });
-            return false;
-        });
-    });
-	</script>
-	
+
 

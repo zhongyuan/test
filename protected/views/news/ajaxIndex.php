@@ -1,5 +1,5 @@
 
-
+<div id="search_list" class="long_news" style="margin-top:20px">
     <?php $i = 1;foreach($models as $model){ if($i%2==1){?>
 <!--    // 显示一个模型-->
         <div style="padding:20px 0px;float: left">
@@ -32,4 +32,24 @@
     <?php } ?>
                 <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
     <?php $i++;}; ?>
+</div>
+<div class="green-black">
+     <?php   $this->widget('MyLinkPager',array(
+            'pages'=>$pages,
+        ));
+     ?>
+</div>
 
+<script>
+    $(function(){
+        $('.yiiPager a').click(function(){
+            $.ajax({
+                url:$(this).attr('href'),
+                success:function(res){
+                    $('#replace').html(res);
+                }
+            });
+            return false;
+        });
+    });
+</script>
