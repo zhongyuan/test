@@ -307,11 +307,21 @@ class NewsController extends Controller
              $pages->pageSize=5;
              $pages->applyLimit($criteria);
              $models = WorkList::model()->findAll($criteria);
+			 
+			 //第一种方法:判断请求
+            if (Yii::app()->request->isAjaxRequest) {
+                $this->renderPartial('_appShow',array(
+                    'models' => $models,
+                    'pages' => $pages,
+                ));
+                exit;
+            }
 
-             $this->renderView('appShow', array(
-                'models' => $models,
-                'pages' => $pages,
-             ));
+            $this->render('appShow', array(
+               'models' => $models,
+               'pages' => $pages,
+
+            ));
         }
 
         /*
