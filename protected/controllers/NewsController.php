@@ -21,12 +21,43 @@ class NewsController extends Controller
             );
         }
 
+		/**
+		* 读取消息的公共私有方法
+		* @param undefined $type
+		* @param undefined $view
+		*
+		*/
+		private function _getNewsList($type,$view)
+		{
+			$criteria = new CDbCriteria(array(
+                'select' => 'title,outline,image_name',
+				'condition' => 'type =:type and status=:status',
+                'order' => 'update_time desc',
+                'params' => array(
+                    ':type' => $type, //第一种类型
+                    ':status' => 0, //新闻正常，没有被屏蔽
+                ),
+            ));
+             $count=  NewsList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=3;
+             $pages->applyLimit($criteria);
+             $models = NewsList::model()->findAll($criteria);
+
+             $this->renderView($view, array(
+                'models' => $models,
+                'pages' => $pages,
+             ));
+		}
+
+
         /**
          * 最新消息首页
          */
         public function actionIndex()
         {
-
             $criteria = new CDbCriteria(array(
                 'select' => 'title,outline,image_name',
                 'order' => 'update_time desc',
@@ -68,6 +99,7 @@ class NewsController extends Controller
 
             ));
 
+
         }
 
 
@@ -85,8 +117,11 @@ class NewsController extends Controller
          */
         public function actionDevReport()
         {
-            $this->render('devReport');
+
+			$this->_getNewsList(2,"devReport");
+
         }
+
 
         /*
          * 新闻报道详细页
@@ -110,8 +145,6 @@ class NewsController extends Controller
 //                    'pages' => $pages,
                 ));
             }
-
-//            $this->redirect(Yii::app()->request->returnUrl);
             $this->redirect(Yii::app()->user->returnUrl);
         }
 
@@ -148,15 +181,63 @@ class NewsController extends Controller
          */
         public function actionDevScene()
         {
-            $this->render('devScene');
+
+			$criteria = new CDbCriteria(array(
+                'select' => 'img_name',
+				'condition' => 'img_type =:img_type',
+                'params' => array(
+                    ':img_type' => 0, //第一种类型,大会现场图片
+                ),
+            ));
+             $count=  ImageList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=6;
+             $pages->applyLimit($criteria);
+             $models = ImageList::model()->findAll($criteria);
+
+             $this->renderView('devScene', array(
+                'models' => $models,
+                'pages' => $pages,
+             ));
+
         }
+
+		/**
+		* 映射不同类型的图片路径
+		* 目前映射的图片路径只是一个示例，后期根据需要可修改
+		*
+		* @param integer $type
+		* @param string $img_name
+		* @return string 图片的完整路径
+		*
+		*/
+		public function _mapImagePath($img_name,$type = 0)
+		{
+			$mappings = array(
+				0 => 'news/newsList/devScene/',
+				1 => 'news/newsList/devManual/',
+				3 => 'news/newsList/DevReceipt/',
+				6 => 'news/worksUpload/big/'
+			);
+			if(isset($mappings[$type])){
+				return $mappings[$type].$img_name;
+			}
+			return $mappings[0].$img_name;
+		}
 
         /*
          * 应用开发大赛，首页
          */
         public function actionAppIndex()
         {
-            $this->render('appIndex');
+			$extConfig= Util::loadConfig('news');
+			$reward_settings = $extConfig['reward_settings'];
+			$this->render('appIndex', array(
+                'reward_settings' => $reward_settings
+            ));
+
         }
 
         /*
@@ -180,7 +261,22 @@ class NewsController extends Controller
          */
         public function actionAppShow()
         {
-            $this->render('appShow');
+
+			$criteria = new CDbCriteria(array(
+                'select' => 'work_name,work_icon,work_brief',
+            ));
+             $count=  WorkList::model()->count($criteria);
+             $pages=new CPagination($count);
+
+             // 返回前一页
+             $pages->pageSize=5;
+             $pages->applyLimit($criteria);
+             $models = WorkList::model()->findAll($criteria);
+
+             $this->renderView('appShow', array(
+                'models' => $models,
+                'pages' => $pages,
+             ));
         }
 
         /*

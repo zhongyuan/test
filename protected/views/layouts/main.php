@@ -27,8 +27,9 @@
         <!-- =====body===== -->
        <div style="clear:both"></div> <!--  有必要的-->
 
+	
 	<?php echo $content; ?>
-
+	
        <!-- =====footer===== -->
         <div id="footer">
                 <?php $this->widget('FooterWidget');?>

@@ -14,15 +14,18 @@
         width: 574px;
         display: inline-block;
         margin-left: 60px;
+		float: right;
+		
     }
     .manualImg img{width: 574px;height: 258px}
     .manual_left{
         width: 320px;
         display: inline-block;
         font-size: 14px;
+		float: left;
     }
     .manual{
-
+		overflow: hidden;
     }
     .textIndent{
         text-indent: 2em;
