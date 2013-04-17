@@ -87,7 +87,7 @@ class NewsController extends Controller
 
              //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
-                $this->renderPartial('ajaxIndex',array(
+                $this->renderPartial('_index',array(
                     'models' => $models,
                 ));
                 exit;
