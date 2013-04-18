@@ -84,7 +84,7 @@
     <div style="clear:both"></div>
 
     <div id ="replace">
-        <div id="search_list" class="long_news" style="margin-top:20px">
+        <div class="long_news" style="margin-top:20px">
 
 
 

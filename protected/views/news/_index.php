@@ -1,5 +1,5 @@
 
-<div id="search_list" class="long_news" style="margin-top:20px">
+<div class="long_news" style="margin-top:20px">
     <?php $i = 1;foreach($models as $model){ if($i%2==1){?>
 <!--    // 显示一个模型-->
         <div style="padding:20px 0px;float: left">

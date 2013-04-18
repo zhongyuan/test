@@ -138,12 +138,16 @@ class NewsController extends Controller
 
                 $pages=new CPagination(count($news_detail));
                 $pages->pageSize=1;
-//                var_dump($pages);exit;
-//                if(Yii::app()->request->isAjaxRequest){
-//                    $this->renderPartial('_devReport',array(
-//                        'pages' => $pages,
-//                    ));
-//                }
+                $currentPage = $pages->getCurrentPage();
+                $news_detail = $news_detail[$currentPage];
+
+                if(Yii::app()->request->isAjaxRequest){
+                    $this->renderPartial('_devDetail',array(
+                        'news_detail' => $news_detail,
+                        'pages' => $pages,
+                    ));
+                    exit;
+                }
                 $this->render('devDetail',array(
                     'news_detail' => $news_detail,
                     'pages' => $pages,
