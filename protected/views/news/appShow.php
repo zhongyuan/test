@@ -48,10 +48,10 @@
     <ul class="app_sli">
         <?php foreach($models as $m):?>
 			<li>
-	            <img src="<?php echo $this->staticUrl($this->_mapImagePath($m['work_icon'],6)); ?>" class="left_img"/>
+	            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>" class="left_img"/>
 	            <p>
-	                <span class="app_stitle"><?php echo $m['work_name'];?></span> <span class="app_stitle2">&nbsp;</span> <br/>
-	                <span><?php echo $m['work_brief'];?></span>
+	                <span class="app_stitle"><?php echo $m['work_name'];?></span> <span class="app_stitle2"><?php echo $m['work_brief']?></span> <br/>
+	                <span><?php echo $m['work_detail'];?></span>
 	                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
 	            </p>
 	        </li>

@@ -302,15 +302,15 @@ class NewsController extends Controller
         {
 
 			$criteria = new CDbCriteria(array(
-                'select' => 'work_name,work_icon,work_brief',
+                'select' => 'work_name,work_brief,work_detail',
             ));
-             $count=  WorkList::model()->count($criteria);
+             $count=  TeamWork::model()->count($criteria);
              $pages=new CPagination($count);
 
              // 返回前一页
              $pages->pageSize=5;
              $pages->applyLimit($criteria);
-             $models = WorkList::model()->findAll($criteria);
+             $models = TeamWork::model()->findAll($criteria);
 			 
 			 //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
@@ -333,7 +333,32 @@ class NewsController extends Controller
          */
         public function actionAppWinner()
         {
-            $this->render('appWinner');
+		
+			$objWork = new MCTeamWork();
+			$extConfig = Util::loadConfig("news");
+			$rewardKeys = array_keys($extConfig['reward_settings']);
+			$rewardCategory = implode(",",$rewardKeys);
+			$rewardWorks = $objWork->getRewardWorks($rewardCategory);
+			
+			//生成页面所需要的数据内容
+			$workList = array();
+			
+			foreach($extConfig['reward_settings'] as $ek=>$ev){
+				$workList[$ek] = array();
+				$workList[$ek]['label'] = $ev[0];	
+			}
+			
+			
+			foreach($rewardWorks as $r){
+				$workList[$r['reward_category']]['data'][] = $r;
+			}
+			
+			
+			//加载视图
+			$this->render('appWinner', array(
+               'workList' => $workList
+
+            ));
         }
 
         /*
