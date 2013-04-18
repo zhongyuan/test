@@ -44,7 +44,7 @@
 <?php $this->widget('AppWidget');?>
 
 
-<div class="app_sbody">
+<div class="app_sbody" id="replace">
     <ul class="app_sli">
         <?php foreach($models as $m):?>
 			<li>
@@ -71,6 +71,10 @@
 
 </div>
 
+
+
+
+
 <script>
 $(function(){
     $('.yiiPager a').click(function(){
@@ -78,7 +82,7 @@ $(function(){
         $.ajax({
             url:url,
             success:function(html){
-                $('#search_list').html(html);
+                $('#replace').html(html);
 				return false;
             }
         });

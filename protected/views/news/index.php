@@ -121,38 +121,15 @@
                         <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
             <?php $i++;}; ?>
 
-
-
         </div>
 
 <!-- ===========================翻页====================== -->
 
         <div class="green-black">
-
             <?php
-
                 $this->widget('MyLinkPager',array(
                     'pages'=>$pages,
                 ));
-        //$this->widget('zii.widgets.CListView', array(
-        //    'dataProvider'=>$dataProvider,
-        //    'itemView'=>'ajaxIndex',   // refers to the partial view named '_post'
-        ////    'sortableAttributes'=>array(
-        ////        'title',
-        ////        'create_time'=>'Post Time',
-        ////    ),
-        //));
-
-        //$this->widget('zii.widgets.CListView', array(
-        //    'dataProvider'=>$dataProvider,
-        //    'itemView'=>'ajaxIndex',
-        //    'pager'=>array(
-        //        'class'=>'CLinkPager',
-        //        'header'=>'Visit to page',
-        //        'firstPageLabel'=>'<<',
-        //        'prevPageLabel'=>'<',
-        //        'nextPageLabel'=>'>',
-        //        'lastPageLabel'=>'>>', ) ));
             ?>
         </div>
 
@@ -172,3 +149,4 @@
         });
     });
 </script>
+

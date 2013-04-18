@@ -30,7 +30,7 @@
         top: 148px;
     }
     .app_nav span{
-        padding: 7px 16px;
+        padding: 7px 14px;
         margin: 0 5px;
     }
 
