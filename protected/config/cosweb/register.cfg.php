@@ -50,9 +50,9 @@ class Register
 }
 
 return array(
-    'years' => Register::getYears(),
-    'months' => Register::getMonths(),
-    'days' => Register::getDays(),
-	'safeQuestions'=>Register::getSafeQuestions(),
+    'years' => MCRegister::getYears(),
+    'months' => MCRegister::getMonths(),
+    'days' => MCRegister::getDays(),
+	'safeQuestions'=>MCRegister::getSafeQuestions(),
 );
 ?>
