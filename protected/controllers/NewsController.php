@@ -135,7 +135,7 @@ class NewsController extends Controller
              $pages->pageSize=3;
              $pages->applyLimit($criteria);
              $models = NewsList::model()->findAll($criteria);
-			 
+
 			 //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('_devReport',array(
@@ -225,7 +225,7 @@ class NewsController extends Controller
              $pages->pageSize=6;
              $pages->applyLimit($criteria);
              $models = ImageList::model()->findAll($criteria);
-			 
+
 			  //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('_devScene',array(
@@ -292,8 +292,114 @@ class NewsController extends Controller
          */
         public function actionAppPart()
         {
+            //判断post
+            if($_POST){
+                $flag = null;
+                $team_name = $_POST['team_name'];
+                $leader_name = $_POST['leader_name'];
+                $leader_email = $_POST['leader_email'];
+                $leader_phone = $_POST['leader_phone'];
+                $lea_company = $_POST['lea_company'];
+                if(!$team_name||!$leader_name||!$leader_email||!$leader_phone){
+                    $flag = "参数丢失，或必填项未写";
+                }
+
+                //session
+                $user_id = Yii::app()->session['user_id'];
+                if(Yii::app()->user->isGuest||!$user_id){
+                    $this->redirect(array('site/login'));
+                }
+
+                $mem_2_name = $_POST['mem_2_name'];
+                if($mem_2_name){
+                    $mem_2_phone = $_POST['mem_2_phone'];
+                    $mem_2_email = $_POST['mem_2_email'];
+                    $mem_2_company = $_POST['memb_2_company'];
+                    if(!$mem_2_phone||!$mem_2_email){
+                        $flag = "参数丢失，或必填项未写";
+                    }
+                }
+                //判断是否已经注册过，是否已经被占用
+                $is_rebuild = MCTeam::checkIsRebuild($user_id);
+                $check_name = MCTeam::checkTeamName($team_name);
+
+                //验证邮箱和手机号，视具体情况定
+                $check_email = MCTeam::checkEmails(array($leader_email,$mem_2_email));
+                $check_phone = MCTeam::checkPhoneTeles(array($leader_phone,$mem_2_phone));
+
+                if($is_rebuild||$check_name||!$check_email||!$check_phone){
+                    $flag = "你已经注册过，或者团队名字已被占用，或者邮箱电话格式有问题~";
+                }
+
+                //数据库相关操作
+                if(!$flag){
+                    //其他的member,整理成数组
+                    $other_mems = MCTeam::sortPostData($_POST);
+
+                    //插入数据库，要事务
+                    $mcTeam = new MCTeam(null, $team_name);
+                    $transaction = Yii::app()->db->beginTransaction();
+                    try {
+                        $mcTeam->addTeam($user_id,$leader_name,$leader_email,$leader_phone,$lea_company);
+                        $team_id = MCTeam::getLastInsertId();
+
+                        if($mem_2_name){
+                            $mcTeam->addTeamMember($mem_2_name,$team_id,$mem_2_email,$mem_2_phone,$mem_2_company);
+                        }
+                        //其他member用数组一次性插入
+                        if($other_mems&&count($other_mems)>0){
+                            $mcTeam->addTeamMemberBatch($other_mems, $team_id);
+                        }
+                        $transaction->commit();
+                        $flag = '恭喜你，团队创建成功~';
+                    } catch (Exception $exc) {
+                        $transaction->rollback();
+                        $flag = "抱歉，团队建设失败~";
+                    }
+                }
+                //插入成功了，该跳到新页面,团队创建成功，显示队友
+                $this->render('appPart',array(
+                    'flag' => $flag,
+                ));
+            }
             $this->render('appPart');
         }
+
+        /*
+         * 报名参加的队伍名称的验证函数
+         */
+        public function actionAjaxAppPart()
+        {
+            $team_name = $_POST['team_name']?$_POST['team_name']:null;
+            if(!$team_name){
+                echo json_encode(array('flag' => 0,'msg'=>'网络信号不好，参数丢失~'));
+                exit;
+            }
+            $user_id = Yii::app()->session['user_id'];
+            if(!$user_id){
+                echo json_encode(array('flag' => 0,'msg'=>'请先登陆~'));
+                exit;
+            }
+
+            //检测数据库是否有该名字
+            $check_name = MCTeam::checkTeamName($team_name);
+
+            if($check_name){
+                echo json_encode(array('flag' => 0,'msg'=>'该名字已被占用哦~'));
+                exit;
+            }
+            //检测该用户是否是已经注册过一个团队
+            $is_rebuild = MCTeam::checkIsRebuild($user_id);
+            if($is_rebuild){
+                echo json_encode(array('flag' => 0,'msg'=>'你已经注册过一个团队了哦~'));
+                exit;
+            }
+            echo json_encode(array('flag' => 1,'msg'=>'可以使用~'));
+            exit;
+        }
+
+
+
 
         /*
          * 应用开发大赛，作品展示
@@ -311,7 +417,7 @@ class NewsController extends Controller
              $pages->pageSize=5;
              $pages->applyLimit($criteria);
              $models = WorkList::model()->findAll($criteria);
-			 
+
 			 //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('_appShow',array(

@@ -23,7 +23,40 @@ class Util {
         return $conf[$conf_file_name];
     }
 
+    //判断手机号
+    public static function checkMobile($phone_num)
+    {
+        $pattern = "/^(13|15|18)\d{9}$/";
+        if(preg_match($pattern, $phone_num)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 
+    //判断手机或电话
+    public static function checkPhoneTele($phone_num)
+    {
+        //电话或手机有一个正确就可以
+        $phone_reg = "/^(13|15|18)\d{9}$/";
+        $tele_reg = "/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/";
+        if(preg_match($phone_reg, $phone_num)||preg_match($tele_reg, $phone_num)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //判断邮箱格式
+    public static function checkEmail($email)
+    {
+        $email_reg = "/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/";
+        if(preg_match($email_reg, $email)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 ?>
