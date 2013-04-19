@@ -8,75 +8,38 @@
 	<div class="sec_label">历时一个多月的全国性2013开发者大赛已经圆满结束了，感谢近千名开发者的踊跃参与。经过仔细测试开发者提交的参赛作品，我们在感受到国人强大的实力与各种天马行空的创意之后，总结并评选出以下获奖作品，祝贺他们！！我们会尽快安排奖金及奖品的发放，请获奖者留意邮件或电话通知。</div>
 
 	<h2 class="big_title">获奖名单<img  src="/images/news/app/reward_list.jpg"/></h2>
-	<h3>终极大奖(1名)</h3>
-	<div class="r_list">
-		<img src="/images/news/worksUpload/small/work_little_7.jpg"/>
-		获奖作品: <<旅游日记>>
-		<br />作者:无限乐盒
-	</div>
-	<h3>最佳创意奖(2名)</h3>
-	<ul class="w_list">
-		<li>
-
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_6.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-		<li>
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_5.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-	</ul>
-	<h3>最佳体验奖(2名)</h3>
-	<ul class="w_list">
-		<li>
-
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_2.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-		<li>
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_4.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-	</ul>
-	<h3>最佳设计奖(2名)</h3>
-	<ul class="w_list">
-		<li>
-
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_2.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-		<li>
-			<div class="r_list">
-				<img src="/images/news/worksUpload/small/work_little_3.jpg"/>
-				获奖作品: <<旅游日记>>
-				<br />作者:无限乐盒
-			</div>
-		</li>
-	</ul>
-	<h3>积极参与奖(23名) <span>排名不分先后</span></h3>
+	
+	
+	<?php foreach($workList as $rk=>$rv):?>
+		<?php
+			if($rk == 100){
+				continue;//此处不显示积极参与奖
+			}
+		?>
+		<h3><?php echo $rv['label'];?></h3>
+		<ul class="w_list">
+			<?php foreach($rv['data'] as $sub_rv):?>
+				<li>
+					<div class="r_list">
+						<img src="/images/news/worksUpload/small/work_little_6.jpg"/>
+						获奖作品: <?php echo $sub_rv['work_name'];?>
+						<br />作者:<?php echo $sub_rv['team_name'];?>
+					</div>
+				</li>
+			<?php endforeach;?>
+		</ul>
+	<?php endforeach;?>
+	
+	
+	
+	<h3><?php echo $workList[100]['label']?> <span>排名不分先后</span></h3>
 	<ul class="win_list">
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
-		<li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li><li>获奖者: 缪小春</li>
+		<?php foreach($workList[100]['data'] as $wk=>$wv):?>
+			<li>获奖者: <?php echo $wv['team_name'];?></li>
+		<?php endforeach;?>
 	</ul>
+	
+	
 	<p>特别声明</p>
 	<ul class="d_items">
 

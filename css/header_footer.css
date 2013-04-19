@@ -28,7 +28,7 @@ a{text-decoration:none;color: black;}
 
 .list,.search{float: left}
 .list{width:560px;}
-.list li{float: left;display: block;line-height: 57px;font-size: 15px;padding: 3px 15px 0 15px;}
+.list li{float: left;display: block;line-height: 57px;font-size: 15px;padding: 3px 13px 0 15px;}
 
 .list ul{
     float: left;padding: 0px 28px;

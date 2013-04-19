@@ -123,15 +123,16 @@
         <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">奖项设置</span>
         <ul class="app_ireward">
 			<?php foreach($reward_settings as $sk=>$sv):?>
+				<?php
+					if($sk == 100){//积极参与奖不显示
+						continue;
+					}
+				?>
 				<li>
 	                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
 	                <p><span><?php echo $sv[0]?> </span><br/> <?php echo $sv[1]?><br/><?php echo $sv[2]?></p>
 	            </li>
 			<?php endforeach;?>
-            <!--<li style="margin-top: 20px;">
-                <img src="<?php echo $this->staticUrl('news/app/reward.jpg');?>">
-                <p><span>一等奖 10名 </span><br/> HTC X920e手机一台<br/>奖杯+荣誉证书</p>
-            </li>-->
            
 
         </ul>
