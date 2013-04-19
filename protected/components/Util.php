@@ -24,15 +24,15 @@ class Util {
     }
 
     //判断手机号
-    public static function checkMobile($phone_num)
-    {
-        $pattern = "/^(13|15|18)\d{9}$/";
-        if(preg_match($pattern, $phone_num)){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
+//    public static function checkMobile($phone_num)
+//    {
+//        $pattern = "/^(13|15|18)\d{9}$/";
+//        if(preg_match($pattern, $phone_num)){
+//            return 1;
+//        }else{
+//            return 0;
+//        }
+//    }
 
     //判断手机或电话
     public static function checkPhoneTele($phone_num)
