@@ -59,7 +59,7 @@ class NewsController extends Controller
         public function actionIndex()
         {
             $criteria = new CDbCriteria(array(
-                'select' => 'title,outline,image_name',
+                'select' => 'id,title,outline,image_name',
                 'order' => 'update_time desc',
                 'params' => array(
                     ':type' => 0, //第一种类型
@@ -120,7 +120,7 @@ class NewsController extends Controller
         {
 
 			$criteria = new CDbCriteria(array(
-                'select' => 'title,outline,image_name',
+                'select' => 'id,title,outline,image_name',
 				'condition' => 'type =:type and status=:status',
                 'order' => 'update_time desc',
                 'params' => array(

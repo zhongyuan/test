@@ -36,7 +36,7 @@ class AdminController extends Controller
 	public function actionIndex()
 	{
         $session = Yii::app()->session;
-        print_r($session);
+        //print_r($session);
         if(!$session['staff_id']){
             $this->redirect(array('admin/login'));
         }
