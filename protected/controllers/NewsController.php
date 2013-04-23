@@ -110,6 +110,7 @@ class NewsController extends Controller
          */
         public function actionDevIndex()
         {
+		
             $this->render('devIndex');
         }
 

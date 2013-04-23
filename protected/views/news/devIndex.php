@@ -38,7 +38,7 @@
 
 <div class="devSchedule">
 
-    <div class ="di_sched"><p class="rule"><span>会议日程</span></p></div>
+    <div class ="di_sched"><p class="rule"><span><?php echo Yii::t('news','meetings_schedule');?></span></p></div>
 
     <ul class="schedule">
         <li>

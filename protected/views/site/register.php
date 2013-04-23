@@ -156,7 +156,7 @@
 
             <div class="register_button">
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
-                <div ><span class="button1 select" id="submit_btn">注册</span></div>
+                <div ><span class="button1 select" id="submit_btn"><?php echo Yii::t('main','register');?></span></div>
             </div>
 
 

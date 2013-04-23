@@ -87,15 +87,15 @@
 
     <div class="app_ileft">
         <div class="top_bottem_space">
-            <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">大赛流程</span>
+            <span class="vertical_line">&nbsp;</span><span class="app_iprotitle"><?php echo Yii::t('news','race_flow');?></span>
             <div>
                 <img src="<?php echo $this->staticUrl('news/app/app_iprocess.jpg');?>" />
                 <p class="app_iprocontent">
-                    <span style="margin-left:23px;">报名</span>
-                    <span style="margin-left:25px;">资格审核</span>
-                    <span style="margin-left:15px;">作品提交</span>
-                    <span style="margin-left:10px;">公众投票</span>
-                    <span >比赛结果公布</span>
+                    <span style="margin-left:23px;"><?php echo Yii::t('news','race_signup');?></span>
+                    <span style="margin-left:25px;"><?php echo Yii::t('news','race_qualify');?></span>
+                    <span style="margin-left:15px;"><?php echo Yii::t('news','race_work_upload');?></span>
+                    <span style="margin-left:10px;"><?php echo Yii::t('news','race_vote');?></span>
+                    <span ><?php echo Yii::t('news','race_pub_result');?></span>
                 </p>
             </div>
         </div>
