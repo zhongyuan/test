@@ -19,7 +19,7 @@ return array(
 	'relative_info'		=> "相关信息",
 	'support'			=> "支持",
 	'search'			=> "常见搜索",
-	'developer'		=> "开发人员",
+	'developer'			=> "开发人员",
 	'designer'			=> "设计人员",
 	'mini_firm'			=> "小型企业",
 	'enterprise'		=> "企业",
