@@ -79,6 +79,7 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
+    /*
 	public function actionLogin()
 	{
 		$model=new LoginForm;
@@ -95,6 +96,13 @@ class SiteController extends Controller
 		$this->render('login',array('model'=>$model));
 
 	}
+    */
+
+   public function actionLogin()
+   {
+       $this->render('login');
+   }
+
 
 	/**
 	 * Logs out the current user and redirect to homepage.

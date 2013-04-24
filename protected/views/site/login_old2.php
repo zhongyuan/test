@@ -14,34 +14,41 @@
                 那么现在你可以<a style="color:#6666ff">建立一个新的COS ID</a></p>
         </div>
         <div class="login_rig">
-            <form action="" method="post">
-                <p class="login_cos"><span>登陆COS</span>请输入您的账号和密码，如果忘记了请点击下方提示性文字。</p>
 
+            <p class="login_cos"><span>登陆COS</span>请输入您的账号和密码，如果忘记了请点击下方提示性文字。</p>
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'login-form',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+)); ?>
                 <div class="row">
                         <span style="">COS ID</span>
-                        <input type="text" id="cos_id" name="username" />
-                        <?php //echo $form->textField($model,'username',array('id'=>'user_name')); ?>
+<!--                        <input type="text" id="cos_id" />-->
+                        <?php echo $form->textField($model,'username',array('id'=>'user_name')); ?>
                         <span class="remark" >忘记你的COS ID了?</span>
                 </div>
 
                 <div class="row">
                         <span style="margin-left: 20px;">密码</span>
-                        <input type="password" name="password" id='pass_word' />
-                        <?php // echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
+                        <?php echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
                         <span class="remark">忘记你的COS密码了?</span>
                 </div>
-                <div class="login_error"><?php //echo $form->error($model,'username')?$form->error($model,'username'):$form->error($model,'password');?></div>
+                <div class="login_error"><?php echo $form->error($model,'username')?$form->error($model,'username'):$form->error($model,'password');?></div>
 
 
+<!--                <div><?php echo $form->errorSummary($model);//注1：这里显示出错时，报错的地方 ?>  </div>-->
 
                 <div class="login_button">
                     <div><input type="reset" class="button1" value="取消" id="reset"/></div>
-                    <div><input type ="submit" class="button1 select" id="submit" value="登陆" /></div>
-                    <!--<div><?php echo CHtml::submitButton('登陆',array('class'=>'button1 select','id'=>'submit')); ?></div>-->
+                    <div><?php echo CHtml::submitButton('登陆',array('class'=>'button1 select','id'=>'submit')); ?></div>
                     <!--<a class="button"><span>登陆</span></a>    <span id="submit" class="button1 select">登陆</span>-->
                 </div>
-            </form>
 
+
+<?php $this->endWidget(); ?>
         </div>
     </div>
 </div>

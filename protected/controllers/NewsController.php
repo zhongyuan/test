@@ -163,7 +163,10 @@ class NewsController extends Controller
             if($news_id)
             {
                 $mcND = new MCNewsDetail($news_id);
+
                 $cmd  = $mcND->getNDById();
+//                echo $cmd;exit;
+//                echo Yii::app()->cache->get('news_detail_9');exit; //有用了
                 $str = '<hr style="page-break-after:always;" class="ke-pagebreak" />';
 
                 $news_detail = explode($str,$cmd);
@@ -418,7 +421,7 @@ class NewsController extends Controller
              $pages->applyLimit($criteria);
 
              $models = TeamWork::model()->findAll($criteria);
-			 
+
 			 //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('_appShow',array(
