@@ -33,6 +33,35 @@ class DeviceController extends Controller
             $this->render('index');
 
         }
+		
+		/**
+		* COS设备 - 智能手机 
+		* 
+		* 
+		*/
+		public function actionSmphone()
+		{
+			$this->render('smphone');
+		}
+		
+		
+		/**
+		* COS设备 - 平板电脑 
+		* 
+		*/
+		public function actionPad()
+		{
+			$this->render('pad');
+		}
+		
+		/**
+		*	COS设备 - 机顶盒 
+		* 
+		*/
+		public function actionStb()
+		{
+			$this->render('stb');
+		}
 
 
 }
