@@ -251,5 +251,6 @@ class SiteController extends Controller
 
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
+   
 
 }
