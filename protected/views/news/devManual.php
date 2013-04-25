@@ -34,7 +34,7 @@
 
 <div style="padding:0 70px;">
         <div class="devSchedule up_down" >
-            <div class ="di_sched" style="margin:0px;"><p class="rule"><span>场馆介绍</span></p></div>
+            <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','place_introduce');?></span></p></div>
         </div>
 
         <div class="manual">
@@ -53,7 +53,7 @@
         .manual_left p span:first-child{font-size:16px;font-weight: bold;}
     </style>
         <div class="devSchedule up_down">
-            <div class ="di_sched" style="margin:0px;"><p class="rule"><span>交通指南</span></p></div>
+            <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','traffice_guide');?></span></p></div>
         </div>
         <div class="manual">
             <div class="manual_left">
@@ -89,7 +89,7 @@
     </style>
 
         <div class="devSchedule up_down">
-            <div class ="di_sched" style="margin:0px;"><p class="rule"><span>周边餐饮</span></p></div>
+            <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','restaurant');?></span></p></div>
         </div>
         <div class="manual">
             <div class="manual_left">

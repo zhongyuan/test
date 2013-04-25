@@ -86,6 +86,10 @@ return array(
 				*/
 			),
 		),
+		
+		'coreMessages'=>array(
+			'basePath'=>'protected/messages'
+		)
 	),
 
 	// application-level parameters that can be accessed

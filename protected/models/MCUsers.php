@@ -33,7 +33,7 @@ class MCUsers {
 		
         $data = $input['data'];
 		$src_data = $data;
-		$data['passwd'] = md5($data['passwd']);
+		//$data['passwd'] = md5($data['passwd']);
 		
         $affect = $this->_insert("users",$data);
         if(!$affect){

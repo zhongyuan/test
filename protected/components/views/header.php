@@ -6,26 +6,26 @@
     </div>
     <div  class="list">
         <ul >
-            <li ><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">COS介绍</a></li>
-            <li ><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">浏览COS设备</a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">COS开发者</a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">COS商店</a></li>
+            <li ><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
+            <li ><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
+            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
+            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
+            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>
     </div>
     <div class ="search">
 
             <?php if(Yii::app()->user->isGuest){ ?>
             <ul class="header_login">
-            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/register.jpg" />注册</a></li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" />登陆</a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/register.jpg" /><?php echo Yii::t('main','register');?></a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" /><?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
             <li>你好，<?php echo substr(Yii::app()->user->getName(), 0, 5).'...'; ?></li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" />退出</a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" /><?php echo Yii::t('main','logout');?></a></li>
             <?php }?>
 
-            <li>English/中文</li>
+            <li><?php echo Yii::t('main','en_cn');?></li>
         </ul>
         <div class="search_inform">
             <input class="input_form" type="text"  name="keywords" id="keywords" maxlength=30 />
@@ -48,10 +48,10 @@
 
                 <?php if($control=='news'){ ?>
                 <ul style="margin-left: 235px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
-                    <li><a class="<?php echo $action=='dev'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">开发者大会</a></li>
-                    <li><a class="<?php echo $action=='app'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>">应用开发大赛</a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>">版本信息</a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
+                    <li><a class="<?php echo $action=='dev'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><?php echo Yii::t('news','dev_meetings');?></a></li>
+                    <li><a class="<?php echo $action=='app'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><?php echo Yii::t('news','app_dev_race');?></a></li>
+                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
                 <?php }elseif($control=='device'){?>
                 <ul style="margin-left: 358px;">
                     <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">设备首页</a></li>

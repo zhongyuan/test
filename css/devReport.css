@@ -76,6 +76,8 @@
     }
     .devReport_content{
         font-size:14px;margin-top: 14px;
+		height: 100px;
+		
     }
     .horizon_line{
         overflow:hidden;height: 1px;width: 100%;background-color: #c2c4c8;

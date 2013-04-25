@@ -56,11 +56,11 @@
     <div class="app_bg">
         <p class="app_title"><span>2013</span>COS<br/>应用开发大赛</p>
         <p class="app_nav">
-            <a href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><span class="<?php echo $action == 'appIndex'?'app_selected':null ?>">大赛介绍</span></a>
-            <a href="<?php echo Yii::app()->createUrl('news/appDetail'); ?>"><span class="<?php echo $action == 'appDetail'?'app_selected':null ?>">参赛详情</span></a>
-            <a href="<?php echo Yii::app()->createUrl('news/appPart'); ?>"><span class="<?php echo $action == 'appPart'?'app_selected':null ?>">报名参加</span></a>
-            <a href="<?php echo Yii::app()->createUrl('news/appShow'); ?>"><span class="<?php echo $action == 'appShow'?'app_selected':null ?>">作品展示</span></a>
-            <a href="<?php echo Yii::app()->createUrl('news/appWinner'); ?>"><span class="<?php echo $action == 'appWinner'?'app_selected':null ?>">获奖名单</span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><span class="<?php echo $action == 'appIndex'?'app_selected':null ?>"><?php echo Yii::t('news','race_introduction');?></span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/appDetail'); ?>"><span class="<?php echo $action == 'appDetail'?'app_selected':null ?>"><?php echo Yii::t('news','race_detail');?></span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/appPart'); ?>"><span class="<?php echo $action == 'appPart'?'app_selected':null ?>"><?php echo Yii::t('news','race_join');?></span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/appShow'); ?>"><span class="<?php echo $action == 'appShow'?'app_selected':null ?>"><?php echo Yii::t('news','work_show');?></span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/appWinner'); ?>"><span class="<?php echo $action == 'appWinner'?'app_selected':null ?>"><?php echo Yii::t('news','winners');?></span></a>
 
         </p>
         <p class="app_parti">我要参赛</p>

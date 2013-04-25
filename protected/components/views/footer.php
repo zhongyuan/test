@@ -4,35 +4,35 @@
 <div class="footer" >
     <div class="left" style="width: 350px;">
         <ul class="cross" style="float:left;">
-            <li>网站地图</li>
-            <li>热点新闻</li>
-            <li>媒体中心环境</li>
-            <li>工作机会</li>
-            <li>联系我们</li>
+            <li><?php echo Yii::t('main','map');?></li>
+            <li><?php echo Yii::t('main','hot_news');?></li>
+            <li><?php echo Yii::t('main','media_center');?></li>
+            <li><?php echo Yii::t('main','work_chance');?></li>
+            <li><?php echo Yii::t('main','contact_us');?></li>
         </ul>
 
-        <p >访问cos store 在线商店(400-888-8800),<br/>cos store零售店，或查找在你附近的HTC经销商。</p>
+        <p ><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></p>
     </div>
 
     <div class="left" style="width: 100px;padding: 0px 20px 0px 200px;">
 
         <ul class="vertical">
-            <li>相关信息</li>
-            <li>开发人员</li>
-            <li>设计人员</li>
-            <li>小型企业</li>
-            <li>企业</li>
-            <li>学生</li>
-            <li>热门下载</li>
+            <li><?php echo Yii::t('main','relative_info');?></li>
+            <li><?php echo Yii::t('main','developer');?></li>
+            <li><?php echo Yii::t('main','designer');?></li>
+            <li><?php echo Yii::t('main','mini_firm');?></li>
+            <li><?php echo Yii::t('main','enterprise');?></li>
+            <li><?php echo Yii::t('main','student');?></li>
+            <li><?php echo Yii::t('main','hot_download');?></li>
         </ul>
     </div>
 
     <div class="left">
         <ul class="vertical" >
-            <li>支持</li>
-            <li>按类别浏览支持</li>
-            <li>按产品浏览支持</li>
-            <li>联系支持人员</li>
+            <li><?php echo Yii::t('main','support');?></li>
+            <li><?php echo Yii::t('main','cate_support');?></li>
+            <li><?php echo Yii::t('main','product_support');?></li>
+            <li><?php echo Yii::t('main','contact_supporter');?></li>
             <li>COS Community</li>
 
         </ul>
@@ -40,19 +40,19 @@
 
     <div class="left" style="padding-left: 70px;">
         <ul class="vertical" >
-            <li>常见搜索</li>
-            <li>升级COS</li>
-            <li>COS帐户</li>
-            <li>“开启”屏幕</li>
-            <li>COS应用商店</li>
-            <li>COS Browser 02</li>
-            <li>COS系统要求</li>
-            <li>COS Defender</li>
+            <li><?php echo Yii::t('main','search');?></li>
+            <li><?php echo Yii::t('main','upgrade_cos');?></li>
+            <li><?php echo Yii::t('main','cos_account');?></li>
+            <li><?php echo Yii::t('main','open_screen');?></li>
+            <li><?php echo Yii::t('main','cos_appstore');?></li>
+            <li><?php echo Yii::t('main','cos_browser');?></li>
+            <li><?php echo Yii::t('main','cos_requirement');?></li>
+            <li><?php echo Yii::t('main','cos_defender');?></li>
         </ul>
     </div>
 
     <div style="clear: both;text-align: center;padding: 20px 0;">
-        上海公安网安备11010500896 上海ICP备10214630
+        <?php echo Yii::t('main','cos_beian');?>
     </div>
 
 </div>

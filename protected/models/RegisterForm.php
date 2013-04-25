@@ -36,6 +36,7 @@
 			array('user_name','email'),
 			array('passwd','compare','compareAttribute'=>"passwd2"),
 			array('verifyCode','captcha','allowEmpty'=>!Yii::app()->user->isGuest),
+			array('question_id,answer,language,contact_type,year,month,day,country,company,address,county,state,zip_code,status,viaEmail,viaEPaper','safe')
 		);
 	}
 	

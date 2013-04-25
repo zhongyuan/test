@@ -50,23 +50,23 @@
 <div class="devList" >
     <ul class="c_menu">
         <li class="<?php echo $action == 'devIndex'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><span>大会首页</span></a>
+            <a href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><span><?php echo Yii::t('news','meetings_home');?></span></a>
         </li>
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devReport'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devReport'); ?>">新闻报道</a>
+            <a href="<?php echo Yii::app()->createUrl('news/devReport'); ?>"><?php echo Yii::t('news','news_report');?></a>
         </li>
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devReceipt'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devReceipt'); ?>">开具发票</a>
+            <a href="<?php echo Yii::app()->createUrl('news/devReceipt'); ?>"><?php echo Yii::t('news','make_receipt');?></a>
         </li>
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devManual'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devManual'); ?>">大会指南</a>
+            <a href="<?php echo Yii::app()->createUrl('news/devManual'); ?>"><?php echo Yii::t('news','meetings_guide');?></a>
         </li>
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devScene'?'currentItem2':null ?>">
-            <a href="<?php echo Yii::app()->createUrl('news/devScene'); ?>">大会现场</a>
+            <a href="<?php echo Yii::app()->createUrl('news/devScene'); ?>"><?php echo Yii::t('news','meetings_scene');?></a>
         </li>
     </ul>
 </div>

@@ -133,6 +133,7 @@ class SiteController extends Controller
                 }
 
                 //检测用户输入的表单内容
+				
                 $filterRst = $this->_filterUserInput($model->attributes);
                 if(!$filterRst[0]){
                     echo $filterRst[1];
@@ -217,7 +218,7 @@ class SiteController extends Controller
                    //详细信息
        $data['passwd'] = md5($data['passwd']);
        $data['record_time'] = $data['update_time'] = time();
-       $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+       $data['status'] = 0;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
        $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
        $data['answer'] = empty($input['answer'])?"":$input['answer'];
        $data['language'] = empty($input['language'])?"zh-cn":$input['language'];

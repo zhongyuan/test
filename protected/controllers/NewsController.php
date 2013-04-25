@@ -110,6 +110,7 @@ class NewsController extends Controller
          */
         public function actionDevIndex()
         {
+		
             $this->render('devIndex');
         }
 
@@ -224,7 +225,7 @@ class NewsController extends Controller
              $pages=new CPagination($count);
 
              // 返回前一页
-             $pages->pageSize=6;
+             $pages->pageSize=15;
              $pages->applyLimit($criteria);
              $models = ImageList::model()->findAll($criteria);
 

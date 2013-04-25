@@ -156,7 +156,7 @@
 
             <div class="register_button">
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
-                <div ><span class="button1 select" id="submit_btn">注册</span></div>
+                <div ><span class="button1 select" id="submit_btn"><?php echo Yii::t('main','register');?></span></div>
             </div>
 
 
@@ -188,8 +188,9 @@
 			showFocusMessage("user_name","请输入您的Email!");
 		}).blur(function(){
             var type = 1; //Email ajax
-            var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-            var strUsername=$("#RegisterForm_user_name").val();
+            //var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            var regUsername=/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
+			var strUsername=$("#RegisterForm_user_name").val();
             if(!regUsername.test(strUsername)){
                     $("#user_name_tips").html("Email格式不正确!");
                     return false;
