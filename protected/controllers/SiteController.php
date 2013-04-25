@@ -133,7 +133,6 @@ class SiteController extends Controller
                 }
 
                 //检测用户输入的表单内容
-				
                 $filterRst = $this->_filterUserInput($model->attributes);
                 if(!$filterRst[0]){
                     echo $filterRst[1];
