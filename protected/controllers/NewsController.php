@@ -159,14 +159,13 @@ class NewsController extends Controller
         public function actionDevDetail()
         {
             $news_id = $_GET['news_id']?$_GET['news_id']:null;
-            $news_id = 9;
+//            $news_id = 9;
             if($news_id)
             {
                 $mcND = new MCNewsDetail($news_id);
 
                 $cmd  = $mcND->getNDById();
-//                echo $cmd;exit;
-//                echo Yii::app()->cache->get('news_detail_9');exit; //有用了
+               // echo Yii::app()->cache->get('news_detail_9');exit; //有用了
                 $str = '<hr style="page-break-after:always;" class="ke-pagebreak" />';
 
                 $news_detail = explode($str,$cmd);
