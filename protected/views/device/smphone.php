@@ -1,0 +1,6 @@
+<?php
+
+?>
+
+
+SMartPhone goes here.

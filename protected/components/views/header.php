@@ -8,7 +8,7 @@
         <ul >
             <li ><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
             <li ><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
+            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
             <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
             <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>
@@ -54,10 +54,10 @@
                     <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
                 <?php }elseif($control=='device'){?>
                 <ul style="margin-left: 358px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">设备首页</a></li>
-                    <li><a class="<?php echo $action=='dev'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">智能手机</a></li>
-                    <li><a class="<?php echo $action=='app'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">平板电脑</a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">电视机顶盒</a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">设备首页</a></li>
+                    <li><a class="<?php echo $action=='smp'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/smphone'); ?>">智能手机</a></li>
+                    <li><a class="<?php echo $action=='pad'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/pad'); ?>">平板电脑</a></li>
+                    <li><a class="<?php echo $action=='stb'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                 <?php }elseif($control=='developer'){?>
                 <ul style="margin-left: 440px;">
                     <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">开发指引</a></li>
