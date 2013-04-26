@@ -7,7 +7,7 @@
 	
 	<ul class="d_phonelist">
 		<li>
-			<div class="img_left"><img  src="<?php echo $this->staticUrl('device/phone/phone_1.jpg');?>"/></div>
+			<div class="img_left"><img  src="<?php echo $this->staticUrl('device/phone/phone_1.jpg');?>" width="200"/></div>
 			<div class="one_buy">
 				<h1>HTC One</h1>
 				<hr />
@@ -20,7 +20,7 @@
 				<h1 class="orange">HTC BlinkFeed <sup>TM</sup>。您的超炫<br />主屏幕</h1>
 				<p>借助BlinkFeed<sup>TM</sup>，只需挑选出您希望始终保持最新的社交网络、<br />新闻和资讯，它们便可实时更新到您的主屏幕。您的世界，您<br />作主。</p>
 			</div>
-			<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>"/>
+			<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>" width="300"/>
 		</li>
 		<li>
 			<div class="img_left"><img src="<?php echo $this->staticUrl('device/phone/phone_3.jpg');?>" align="left" width="350"/></div>
