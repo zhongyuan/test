@@ -20,9 +20,9 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-        
+
         public function staticUrl($path)
-        { 
+        {
             if(!isset($path)){return ;}
             $arr = explode('/', $path);
             $baseUrl = Yii::app()->request->baseUrl;
@@ -34,12 +34,12 @@ class Controller extends CController
             }
             return $baseUrl;
         }
-		
+
 		/**
 		* 依据不同的请求类型决定是调用完整的View还是部分View
 		* @param undefined $view
 		* @param undefined $data
-		* 
+		*
 		*/
 		public function renderView($view,$data=null)
 		{
@@ -49,8 +49,8 @@ class Controller extends CController
 				$this->render($view,$data);
 			}
 		}
-		
-		
+
+
 		public function init()
         {
             if(isset($_REQUEST['lang'])&&$_REQUEST['lang']!="")
@@ -64,9 +64,9 @@ class Controller extends CController
 				setcookie('lang','zh_cn');
                 Yii::app()->language='zh_cn';
             }
-
         }
-		
+
+
 		public function langurl($lang = 'zh_cn'){ //用于生成多语言链接
             if($lang == Yii::app()->language) return '';
             $current_uri = Yii::app()->request->requestUri;
