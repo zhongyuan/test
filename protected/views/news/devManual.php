@@ -21,7 +21,7 @@
     .manual_left{
         width: 320px;
         display: inline-block;
-        font-size: 14px;
+        font-size: 12px;
 		float: left;
     }
     .manual{
@@ -29,6 +29,8 @@
     }
     .textIndent{
         text-indent: 2em;
+		line-height: 24px;
+		color: #666666;
     }
 </style>
 
@@ -49,8 +51,8 @@
         </div>
 
     <style>
-        .manual_left p span{font-size:14px;display: block;}
-        .manual_left p span:first-child{font-size:16px;font-weight: bold;}
+        .manual_left p span{font-size:12px;display: block;}
+        .manual_left p span:first-child{font-size:12px;font-weight: bold; margin-top: 20px;}
     </style>
         <div class="devSchedule up_down">
             <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','traffice_guide');?></span></p></div>
@@ -84,7 +86,7 @@
     <style>
         .manual_left li{
             margin-top: 10px;
-            font-size: 14px;
+            font-size: 12px;
         }
     </style>
 

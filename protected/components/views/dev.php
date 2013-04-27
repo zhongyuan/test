@@ -14,6 +14,7 @@
     .c_menu li{
         float: left;
         padding: 7px 10px;
+		font-size: 14px;
 /*        display: inline-block; li 可以不需要定义行内块*/
     }
     .c_menu{

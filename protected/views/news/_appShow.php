@@ -1,10 +1,15 @@
+<style type="text/css">
+	.work_detail{
+		font-size: 12px;
+	}
+</style>
 <ul class="app_sli">
     <?php foreach($models as $m):?>
 		<li>
             <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>" class="left_img"/>
             <p>
                 <span class="app_stitle"><?php echo $m['work_name'];?></span> <span class="app_stitle2"><?php echo $m['work_brief']?></span> <br/>
-                <span><?php echo $m['work_detail'];?></span>
+                <span class="work_detail"><?php echo $m['work_detail'];?></span>
                 <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
             </p>
         </li>
