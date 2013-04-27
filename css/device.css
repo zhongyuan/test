@@ -1,0 +1,74 @@
+#device_box{
+	font-size: 12px;
+	padding: 0px 0px 50px 120px;
+	overflow: hidden;
+}
+.device_nav{
+	padding-left: 110px;
+}
+ul.d_slider li{
+	float: left;
+	padding: 20px 0px;
+}
+ul.d_imglist{
+	text-align: center;
+	overflow: hidden;
+	padding-left: 25px;
+}
+ul.d_imglist li{
+	float: left;
+	margin-left: 10px;
+}
+ul.d_imglist li img{
+	margin-bottom: 15px;
+}
+/*===================智能手机模板样式==============*/
+ul.d_phonelist,ul.d_phonelist li{
+	overflow: hidden;
+}
+ul.d_phonelist .img_right,ul.d_phonelist .img_left{
+	float: left;
+	clear: right;
+	width: 420px;
+	overflow: hidden;
+}
+ul.d_phonelist h1{
+	font-size: 26px;
+	font-weight: bold;
+}
+h1.green{
+	color: green;
+	padding-top: 60px;
+	padding-bottom: 15px;
+}
+h1.blue{
+	color:#40b6bf;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+h1.orange{
+	color: orange;
+	padding-top: 20px;
+	padding-bottom: 15px;
+}
+sup{
+	font-size: 12px;
+}
+.one_buy{
+	width: 320px;
+	overflow: hidden;
+}
+
+.one_buy .buy_btn{
+	color: white;
+	background-color: #eb8313;
+	/*position: relative;*/
+	top: 2px;
+	padding: 5px 44px;
+	font-size: 20px;
+	background-color: #ed9d22;
+	border: 1px solid rgba(170, 169, 169, 0.9);
+	border-radius: 7px;
+	margin-top: 50px;
+	margin-left: 170px;
+}
