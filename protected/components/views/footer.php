@@ -11,7 +11,7 @@
             <li><?php echo Yii::t('main','contact_us');?></li>
         </ul>
 
-        <p ><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></p>
+        <p class="global_f"><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></p>
     </div>
 
     <div class="left" style="width: 100px;padding: 0px 20px 0px 200px;">

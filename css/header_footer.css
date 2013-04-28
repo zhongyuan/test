@@ -81,6 +81,7 @@ a{text-decoration:none;color: black;}
 .cross li{
     float: left;
     padding-right: 14px;
+	color: #747474;
 }
 .left{
     float: left;
