@@ -1,8 +1,7 @@
 #device_box{
-	font-size: 14px;
-	line-height: 22px;
-	padding: 0px 0px 50px 85px;
-	overflow: hidden;
+font-size: 14px;
+margin-top: 25px;
+margin-bottom: 45px;
 }
 
 .device_nav{
@@ -15,19 +14,24 @@ ul.d_slider li{
 ul.d_imglist{
 	text-align: center;
 	overflow: hidden;
-	padding-left: 25px;
+/*	padding-left: 25px;*/
 }
 ul.d_imglist li{
-	float: left;
-	margin-left: 10px;
+display: inline-block;
+margin: 0 15px;
+}
 }
 ul.d_imglist li img{
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
+}
+#device_box li span{
+display: block;
+margin-top: 15px;
 }
 /*===================智能手机模板样式==============*/
 ul.d_phonelist,ul.d_phonelist li{
 	overflow: hidden;
-	color: #6C6C6C;
+	color: #403F3F;
 	font-size: 14px;
 }
 ul.d_phonelist .img_right,ul.d_phonelist .img_left{
