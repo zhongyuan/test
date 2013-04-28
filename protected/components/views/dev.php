@@ -15,6 +15,7 @@
         float: left;
         padding: 7px 10px;
 		font-size: 14px;
+		
 /*        display: inline-block; li 可以不需要定义行内块*/
     }
     .c_menu{
@@ -22,8 +23,12 @@
     }
     .c_menu a{
         font-weight: bold;
+		color: #3A3A3A;
         /*padding: 0 20px;*/
     }
+	.c_menu a:hover{
+		text-decoration: underline;
+	}
     .devList{
         padding: 9px;
         text-align:center;
@@ -32,14 +37,17 @@
         background-color: rgb(250, 250, 250);
     }
     .hide_left{
-        background-color: #0F0D0D;
+        background-color: #C7C7C7;
         display: inline-block;
-        height: 12px;
+        height: 14px;
+		margin-top: 4px;
         width: 1px;
+		
         overflow: hidden;
     }
     .currentItem2{
-        background-color: #DDD6D6;
+        background-color: #E4E4E4;
+		border-radius: 5px;
     }
 
 </style>
