@@ -27,6 +27,8 @@ ul.d_imglist li img{
 /*===================智能手机模板样式==============*/
 ul.d_phonelist,ul.d_phonelist li{
 	overflow: hidden;
+	color: #6C6C6C;
+	font-size: 14px;
 }
 ul.d_phonelist .img_right,ul.d_phonelist .img_left{
 	float: left;

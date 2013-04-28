@@ -138,3 +138,9 @@ border-bottom: 10px solid white;
 .selectItem{
     color:rgb(255, 173, 47);
 }
+
+.global_f{
+	font-size: 12px;
+	line-height: 24px;
+	color: #6c6c6c;
+}

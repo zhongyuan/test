@@ -47,7 +47,7 @@
 <?php $this->widget('AppWidget');?>
 
 
-<div class="app_sbody" id="replace">
+<div class="app_sbody global_f" id="replace">
     <ul class="app_sli">
         <?php foreach($models as $m):?>
 			<li>

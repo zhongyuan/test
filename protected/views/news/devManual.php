@@ -58,7 +58,7 @@
             <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','traffice_guide');?></span></p></div>
         </div>
         <div class="manual">
-            <div class="manual_left">
+            <div class="manual_left global_f">
                 <p><span >公交路线：</span><span>81、82、83、88、32、34、观1、观2、999、333、332</span></p>
                 <p><span >地铁路线：</span><span>地铁8号线：乘坐地铁8号线到奥林匹克公园下</span></p>
                 <p><span >驾车路线：</span><span>驾车路线：地铁10号线：在北土城站下车，再换乘地铁8号线到奥林匹克公园下</span></p>
@@ -94,7 +94,7 @@
             <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','restaurant');?></span></p></div>
         </div>
         <div class="manual">
-            <div class="manual_left">
+            <div class="manual_left global_f">
                 <p><span>国际会议中心附近美食<span></p>
                 <ul>
                     <li>A:下沉式美食广场</li>
