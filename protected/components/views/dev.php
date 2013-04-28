@@ -65,10 +65,10 @@
         <li class="<?php echo $action == 'devReport'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devReport'); ?>"><?php echo Yii::t('news','news_report');?></a>
         </li>
-        <li><span class="hide_left"></span></li>
-        <li class="<?php echo $action == 'devReceipt'?'currentItem2':null ?>">
+        <!-- <li><span class="hide_left"></span></li>
+       <li class="<?php echo $action == 'devReceipt'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devReceipt'); ?>"><?php echo Yii::t('news','make_receipt');?></a>
-        </li>
+        </li>-->
         <li><span class="hide_left"></span></li>
         <li class="<?php echo $action == 'devManual'?'currentItem2':null ?>">
             <a href="<?php echo Yii::app()->createUrl('news/devManual'); ?>"><?php echo Yii::t('news','meetings_guide');?></a>
