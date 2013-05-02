@@ -8,13 +8,27 @@
 
 <?php $this->widget('DevWidget');?>
 
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/easySlider/easySlider1.5.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/easySlider/easySlider.css"  />
+
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
 
 <div>
 
-    <div class="nav_images" style="padding: 0 70px;height:400px">
-        <img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg');?>" />
-    </div>
+	<!--EasySlider Begin-->
+	<div id="es_container">
+		<div id="slider">
+			<ul>				
+				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
+				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
+				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
+				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
+				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--EasySlider End-->
 
     <div class="short_news" style="width:100%;margin-top: 15px;float: left;overflow: hidden;">
         <div class="news_second_1" style="width:33%" >
@@ -139,6 +153,9 @@
 
 <script>
     $(function(){
+		
+		$("#slider").easySlider();
+		
         $('.yiiPager a').click(function(){
             $.ajax({
                 url:$(this).attr('href'),
