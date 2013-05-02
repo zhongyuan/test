@@ -2,7 +2,8 @@
 
 <div style="" id="headernew">
     <div class="logo" >
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/logo.jpg"/>
+        <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/logo.jpg"/>-->
+        <span class="logo_jpg"></span>
     </div>
     <div  class="list">
         <ul >
@@ -14,23 +15,28 @@
         </ul>
     </div>
     <div class ="search">
-
+        <div class="alin_right">
             <?php if(Yii::app()->user->isGuest){ ?>
             <ul class="header_login">
-            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/register.jpg" /><?php echo Yii::t('main','register');?></a></li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" /><?php echo Yii::t('main','login');?></a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
+                <span class="register_logo" ></span>
+                <?php echo Yii::t('main','register');?></a></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
+                <span class="login_logo" ></span>
+                <?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
-            <li>你好，<?php echo substr(Yii::app()->user->getName(), 0, 5).'...'; ?></li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/login.jpg" /><?php echo Yii::t('main','logout');?></a></li>
+            <li>你好，<?php echo substr(Yii::app()->user->getName(), 0, 4).'...'; ?></li>
+            <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
+                <span class="login_logo" ></span>
+                    <?php echo Yii::t('main','logout');?></a></li>
             <?php }?>
-
             <li><?php echo Yii::t('main','en_cn');?></li>
         </ul>
+        </div>
         <div class="search_inform">
             <input class="input_form" type="text"  name="keywords" id="keywords" maxlength=30 />
-            <img id="submit_search"  style="float: left;position: relative;left: 17px;top: 13px;"
-                 src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/search_icon.jpg" />
+            <span id="submit_search" ></span>
         </div>
     </div>
 
