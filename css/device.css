@@ -39,6 +39,7 @@ ul.d_phonelist,ul.d_phonelist li{
 	overflow: hidden;
 	color: #403F3F;
 	font-size: 14px;
+
 }
 ul.d_phonelist .img_right,ul.d_phonelist .img_left{
 	float: left;
@@ -58,7 +59,8 @@ h1 span.black{
 }
 h1 span.dark_red{
 	color: #be4157;
-	font-size:40px;	
+	font-size:50px;
+	display: inline;	
 }
 h1.green{
 	color: green;
@@ -103,10 +105,24 @@ sup{
 	height: 200px;
 }
 
+.dev_center{
+	width: 860px;
+	margin: 0 auto;
+}
 
+
+.stick_bottom{
+	border-bottom: 1px solid #E5E5E5;
+	margin-top: 45px;
+}
+
+.above_bottom{
+	border-bottom: 1px solid #E5E5E5;
+	padding:45px 0px;
+}
 /*==================智能手机样式==================*/
 .phone_box{
-	margin-left: 30px;
+	
 }
 .phone_one{
 	margin-top: 60px;
@@ -155,6 +171,7 @@ img.phone_four_img{
 }
 h1 span.green,h1 span.black{
 	font-size: 50px;
+	display: inline;
 }
 h1 span.green{
 	color: green;
