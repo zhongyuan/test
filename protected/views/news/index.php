@@ -154,7 +154,9 @@
 <script>
     $(function(){
 		
-		$("#slider").easySlider();
+		$("#slider").easySlider({
+			auto: true
+		});
 		
         $('.yiiPager a').click(function(){
             $.ajax({
