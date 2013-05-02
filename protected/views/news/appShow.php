@@ -39,19 +39,22 @@
         bottom: 10px;
         right: 10px;
     }
+	.work_detail{
+		font-size: 12px;
+	}
 </style>
 
 <?php $this->widget('AppWidget');?>
 
 
-<div class="app_sbody" id="replace">
+<div class="app_sbody global_f" id="replace">
     <ul class="app_sli">
         <?php foreach($models as $m):?>
 			<li>
 	            <img src="<?php echo $this->staticUrl('news/worksUpload/big/work_1.jpg'); ?>" class="left_img"/>
 	            <p>
 	                <span class="app_stitle"><?php echo $m['work_name'];?></span> <span class="app_stitle2"><?php echo $m['work_brief']?></span> <br/>
-	                <span><?php echo $m['work_detail'];?></span>
+	                <span class="work_detail"><?php echo $m['work_detail'];?></span>
 	                <img class="app_sanrow" src="<?php echo $this->staticUrl('news/app/anrow_down.jpg'); ?>" />
 	            </p>
 	        </li>

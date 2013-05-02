@@ -120,6 +120,7 @@ background-position: -286px -11px;
 .cross li{
     float: left;
     padding-right: 14px;
+	color: #747474;
 }
 .left{
     float: left;
@@ -172,8 +173,14 @@ border-bottom: 10px solid white;
 #second_content li{
     float: left;
     padding: 5px 15px;
-    font-size: 10px;
+    font-size: 12px;
 }
 .selectItem{
     color:rgb(255, 173, 47);
+}
+
+.global_f{
+	font-size: 12px;
+	line-height: 24px;
+	color: #6c6c6c;
 }

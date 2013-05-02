@@ -5,11 +5,13 @@
     .app_ibody{
         padding: 0px 70px;
         color: gray;
+		
         /*先设置为灰色*/
     }
     .app_para{
         padding: 20px 0px;
-        font-size: 14px;
+        font-size: 12px;
+		line-height: 22px;
     }
     .horizon_line{
         overflow:hidden;
@@ -65,6 +67,7 @@
 	}
     .app_ireward li{
         margin-bottom: 38px;
+		
     }
     .app_ireward img{
         display: inline-block;
@@ -75,6 +78,9 @@
         vertical-align: top;
         margin-left:
     }
+	ul.dev_notice li{
+		font-size:12px;	
+	}
 </style>
 
 <div class="app_ibody">
@@ -104,7 +110,7 @@
 
         <div class="app_inotice top_bottem_space">
             <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">参赛须知</span>
-            <ul >
+            <ul class="dev_notice">
                 <li>◆ 任何团体或个人都可以参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
                 <li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参数者提供的信<br/>息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
                 <li>◆ 报名时间：**年**月**日-**年**月**日，逾期提交无效。</li>

@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
 
 <div style="padding:20px 70px;">
-    <div class="regeipt_1">
+    <div class="regeipt_1 global_f">
         <ul >
             <li>如需发票，请以如下格式发邮件至大会邮箱：devcon@liantong-china.com</li>
             <li>邮件标题：2012年(秋季)，cocoachina开发者大会索取发票</li>
@@ -19,7 +19,7 @@
 
 
     <div>
-        <div class="regeipt">
+        <div class="regeipt global_f">
             <ul>
                 <li>参会人员(或公司)：例如Diordna</li>
                 <li>参会收据编号：例如IOS20110827</li>

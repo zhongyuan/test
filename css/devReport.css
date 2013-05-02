@@ -5,10 +5,18 @@
     Description:
         Purpose of the stylesheet follows.
 */
+
+	
     /* 最新消息-开发者大会首页*/
-    .devForward p{
+    
+	.dev_font{
+		font-size: 12px;
+	}
+	
+	.devForward p{
         padding: 20px 70px;
-        font-size: 14px;
+        font-size: 12px;
+		line-height: 26px;
     }
     .di_sched{
         margin: 0 35px;
@@ -32,7 +40,7 @@
     .schedule {
         padding: 20px 70px;
         line-height: 40px;
-        font-size: 14px;
+        font-size: 12px;
     }
     .di_detail{
         margin-left: 50px;
@@ -72,11 +80,13 @@
         width:700px;margin-left: 50px;
     }
     .devReport_title{
-        font-size:18px;font-weight: bold;text-align:left;color: rgb(255, 173, 47);
+        font-size:14px;font-weight: bold;text-align:left;/*color: rgb(255, 173, 47);*/
+		color: #E28900;
     }
     .devReport_content{
-        font-size:14px;margin-top: 14px;
+        font-size:12px;margin-top: 14px;
 		height: 100px;
+		line-height: 24px;
 		
     }
     .horizon_line{
@@ -92,6 +102,7 @@
     }
     .regeipt li{
         padding: 7px 0;
+		font-size: 12px;
     }
     .regeipt ul{
         padding-top: 20px;
@@ -101,5 +112,5 @@
     }
     .regeipt_1 li{
         padding: 10px 0;
-        font-size:16px;
+        font-size:12px;
     }

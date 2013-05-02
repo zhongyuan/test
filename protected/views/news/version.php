@@ -60,7 +60,7 @@
     }
 </style>
 
-<div class="ver_body">
+<div class="ver_body global_f">
 
 
     <div class="ver_left">

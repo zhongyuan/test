@@ -9,7 +9,7 @@
         <ul >
             <li ><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
             <li ><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
+            <li ><a class="<?php echo $control == 'device'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
             <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
             <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>

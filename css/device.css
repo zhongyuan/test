@@ -1,10 +1,17 @@
 #device_box{
-	font-size: 12px;
-	padding: 0px 0px 50px 120px;
+font-size: 14px;
+margin-top: 25px;
+margin-bottom: 45px;
+}
+
+.device_nav{
+	/*padding-left: 75px;*/
 	overflow: hidden;
 }
-.device_nav{
-	padding-left: 110px;
+.device_nav .dev_scroller{
+	margin: 0 auto;
+	width: 960px;
+	overflow: hidden;
 }
 ul.d_slider li{
 	float: left;
@@ -13,18 +20,26 @@ ul.d_slider li{
 ul.d_imglist{
 	text-align: center;
 	overflow: hidden;
-	padding-left: 25px;
+/*	padding-left: 25px;*/
 }
 ul.d_imglist li{
-	float: left;
-	margin-left: 10px;
+display: inline-block;
+margin: 0 15px;
+}
 }
 ul.d_imglist li img{
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
+}
+#device_box li span{
+display: block;
+margin-top: 15px;
 }
 /*===================智能手机模板样式==============*/
 ul.d_phonelist,ul.d_phonelist li{
 	overflow: hidden;
+	color: #403F3F;
+	font-size: 14px;
+
 }
 ul.d_phonelist .img_right,ul.d_phonelist .img_left{
 	float: left;
@@ -33,23 +48,34 @@ ul.d_phonelist .img_right,ul.d_phonelist .img_left{
 	overflow: hidden;
 }
 ul.d_phonelist h1{
-	font-size: 26px;
+	font-size: 30px;
 	font-weight: bold;
+	padding-bottom: 20px;
+	line-height: 30px;
+}
+h1 span.black{
+	color:black;
+	font-size:40px;	
+}
+h1 span.dark_red{
+	color: #be4157;
+	font-size:50px;
+	display: inline;	
 }
 h1.green{
 	color: green;
-	padding-top: 60px;
-	padding-bottom: 15px;
+	/*padding-top: 60px;
+	padding-bottom: 15px;*/
 }
 h1.blue{
 	color:#40b6bf;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	/*padding-top: 20px;
+	padding-bottom: 20px;*/
 }
 h1.orange{
 	color: orange;
-	padding-top: 20px;
-	padding-bottom: 15px;
+	/*padding-top: 20px;
+	padding-bottom: 15px;*/
 }
 sup{
 	font-size: 12px;
@@ -59,7 +85,55 @@ sup{
 	overflow: hidden;
 }
 
-.one_buy .buy_btn{
+.stb_one .buy_btn{
+	color: white;
+	background-color: #eb8313;
+	/*position: relative;*/
+	top: 2px;
+	padding: 5px 44px;
+	font-size: 20px;
+	background-color: #ed9d22;
+	border: 1px solid rgba(170, 169, 169, 0.9);
+	border-radius: 7px;
+	margin-top: 30px;
+	margin-left: 210px;
+}
+
+.mid_box{
+	display: table-cell;
+	vertical-align: middle;
+	height: 200px;
+}
+
+.dev_center{
+	width: 860px;
+	margin: 0 auto;
+}
+
+
+.stick_bottom{
+	border-bottom: 1px solid #E5E5E5;
+	margin-top: 45px;
+}
+
+.above_bottom{
+	border-bottom: 1px solid #E5E5E5;
+	padding:45px 0px;
+}
+/*==================智能手机样式==================*/
+.phone_box{
+	
+}
+.phone_one{
+	margin-top: 60px;
+}
+.phone_one .buy_text{
+	border-top: 1px solid gray;
+	display: inline-block;
+	padding-top: 10px;
+}
+
+.phone_one .buy_btn{
 	color: white;
 	background-color: #eb8313;
 	/*position: relative;*/
@@ -70,5 +144,98 @@ sup{
 	border: 1px solid rgba(170, 169, 169, 0.9);
 	border-radius: 7px;
 	margin-top: 50px;
-	margin-left: 170px;
+	margin-left: 230px;	
+}
+
+
+.img_right .phone_two{
+	margin-top:35px;	
+}
+
+.phone_three{
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 25px;
+}
+.img_right .phone_four{
+	padding-top: 80px;
+}
+img.phone_four_img{
+	margin-left: 30px;
+}
+
+
+/*==================平板样式======================*/
+.pad_box{
+	margin-left: 35px;
+}
+h1 span.green,h1 span.black{
+	font-size: 50px;
+	display: inline;
+}
+h1 span.green{
+	color: green;
+}
+h1 span.black{
+	color: black;
+}
+.pad_one{
+	margin-top:70px;	
+}
+
+.pad_one .buy_text{
+	border-top: 1px solid gray;
+	width: 345px;
+	padding-top: 10px;
+}
+.pad_one .buy_btn{
+	color: white;
+	background-color: #eb8313;
+	/*position: relative;*/
+	top: 2px;
+	padding: 5px 44px;
+	font-size: 20px;
+	background-color: #ed9d22;
+	border: 1px solid rgba(170, 169, 169, 0.9);
+	border-radius: 7px;
+	margin-top: 50px;
+	margin-left: 200px;
+}
+.pad_two{
+	display: inline-block;
+	padding-top: 35px;
+	padding-left: 30px;
+}
+.img_right .pad_three{
+	
+	padding-top: 55px;
+}
+.pad_four{
+	padding-top: 60px;
+}
+
+/*===================机顶盒样式===================*/
+.stb_box{
+	margin-top: 60px;
+	margin-left: 35px;
+}
+.img_right .stb_one{
+	border-top: 1px solid gray;
+	padding-top: 10px;
+	width: 350px;
+	overflow: hidden;
+}
+.stb_right .stb_two{
+	padding-top: 82px;
+}
+.img_right .stb_three{
+	padding-top:65px;	
+}
+
+.stb_right{
+	display: inline-block;
+	margin-left: 40px;
+}
+.stb_right .stb_four{
+	margin-top: 110px;
 }

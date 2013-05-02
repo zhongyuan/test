@@ -28,7 +28,7 @@
 	}
 </style>
 	
-<div class="devForward">
+<div class="devForward global_f">
     <p>2012年被业界评为平台征战元年项目团队成员毫不妥协的强调接口——既在产品里面，也在人与人之间。洞
         悉该模式的团队会早早的对付接口，在提交所有的组件代码之前，他们构建了一系列的程序来检验接口。
         他们早早地集成个人代码，频繁地测试。请记住康威定律(Conway's Law):产品反映了制造该产品的
@@ -36,11 +36,11 @@
 </div>
 
 
-<div class="devSchedule">
+<div class="devSchedule global_f">
 
     <div class ="di_sched"><p class="rule"><span><?php echo Yii::t('news','meetings_schedule');?></span></p></div>
 
-    <ul class="schedule">
+    <ul class="schedule global_f">
         <li>
             <span>08:00-09:00</span> <span class="di_detail">签到</span>
         </li>
@@ -70,7 +70,7 @@
 <style>
 
 </style>
-<div class="devLittle">
+<div class="devLittle global_f">
 	<div id="logoParade">
 		<img class="devNews" src="<?php echo $this->staticUrl('news/newsList/meeting/dev_news.jpg'); ?>" />
 	</div>

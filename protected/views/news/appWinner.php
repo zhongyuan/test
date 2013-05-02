@@ -3,7 +3,7 @@
 
 <?php $this->widget('AppWidget');?>
 
-<div class="app_dbody">
+<div class="app_dbody global_f">
 	<h2 class="big_title">获奖前言<img src="/images/news/app/reward_profile.jpg" align="absmiddle"/></h2>
 	<div class="sec_label">历时一个多月的全国性2013开发者大赛已经圆满结束了，感谢近千名开发者的踊跃参与。经过仔细测试开发者提交的参赛作品，我们在感受到国人强大的实力与各种天马行空的创意之后，总结并评选出以下获奖作品，祝贺他们！！我们会尽快安排奖金及奖品的发放，请获奖者留意邮件或电话通知。</div>
 
