@@ -5,7 +5,13 @@ margin-bottom: 45px;
 }
 
 .device_nav{
-	padding-left: 75px;
+	/*padding-left: 75px;*/
+	overflow: hidden;
+}
+.device_nav .dev_scroller{
+	margin: 0 auto;
+	width: 960px;
+	overflow: hidden;
 }
 ul.d_slider li{
 	float: left;
