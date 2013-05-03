@@ -76,14 +76,31 @@
         </div>
     </div>
 <?php }?>
+
 <!-- 回车绑定的代码 -->
-<!--<script language="javascript" type="text/javascript">
+<script language="javascript" type="text/javascript">
     $(function(){
-        $('#dataInput').bind('keypress',function(event){
+        $('#submit_search').click(function(){
+            search($('#keywords').val());
+        });
+
+        $('#keywords').bind('keypress',function(event){
             if(event.keyCode == "13")
             {
-                alert('你输入的内容为：' + $('#dataInput').val());
+                search($('#keywords').val());
             }
         });
     });
-</script>-->
+    function search(key)
+    {
+        if(key.length<=0 || key.length>=30)
+        {
+            return false;
+        }else{
+            var url = "<?php echo Yii::app()->createUrl('site/search');?>";
+            var data = "&key="+key;
+            url += data;
+            window.location.href = url;
+        }
+    }
+</script>
