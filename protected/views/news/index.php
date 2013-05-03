@@ -6,9 +6,6 @@
  */
 ?>
 
-<?php $this->widget('DevWidget');?>
-
-
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/news_slider.css"  />
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
@@ -96,7 +93,7 @@
 
 	    </div>
 	</div>
-    
+
 
     <div style="clear:both"></div>
 
