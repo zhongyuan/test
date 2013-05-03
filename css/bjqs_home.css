@@ -1,0 +1,43 @@
+/* Basic jQuery Slider essential styles */
+
+ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
+li.bjqs-slide{position:absolute; display:none;}
+ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
+ul.bjqs-controls.v-centered li a{position:absolute;}
+ul.bjqs-controls.v-centered li.bjqs-next a{right:0;}
+ul.bjqs-controls.v-centered li.bjqs-prev a{left:0;}
+ol.bjqs-markers{list-style: none; padding: 0; margin: 0; width:100%;}
+ol.bjqs-markers.h-centered{text-align: center;}
+ol.bjqs-markers li{display:inline;}
+ol.bjqs-markers li a{display:inline-block;}
+p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
+
+
+/*======================ext css=================*/
+li.bjqs-slide{
+	margin-top: 88px;
+	margin-left: 7px;
+}
+li.bjqs-slide img{
+	border-radius: 50%;
+}
+
+.bjqs_prev_btn{
+	position: absolute;
+	margin-top: 95px;
+	margin-left: -90px;
+	background: url(/images/index/anrow.jpg) no-repeat;
+	background-position: -2px -35px;
+	height: 100px;
+	width: 85px;
+}
+.bjqs_next_btn{
+	position: absolute;
+	margin-top: 93px;
+	margin-left: 0px;
+	background: url(/images/index/anrow.jpg) no-repeat;
+	background-position: -83px -35px;
+	height: 65px;
+	width: 75px;
+	
+}
