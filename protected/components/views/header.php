@@ -31,7 +31,7 @@
                 <span class="login_logo" ></span>
                     <?php echo Yii::t('main','logout');?></a></li>
             <?php }?>
-            <li class="global_f"><?php echo Yii::t('main','en_cn');?></li>
+            <!--<li class="global_f"><?php echo Yii::t('main','en_cn');?></li>-->
         </ul>
         </div>
         <div class="search_inform">
