@@ -12,9 +12,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/news_slider.css"  />
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
-<style>
 
-</style>
 <div>
 
       <!--  Outer wrapper for presentation only, this can be anything you like -->
@@ -154,14 +152,7 @@
     </div>
 </div>
 
-<style>
-    .point{
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: red;
-    }
-</style>
+
 
 <script>
     $(function(){
@@ -170,11 +161,9 @@
             height        : 350,
             width         : 800,
             responsive    : true,
-//            randomstart   : true,
             showmarkers   : true,
             prevtext      : '<span class="newsAnrow_left anrow_hover"></span>',
             nexttext      : '<span class="newsAnrow_right anrow_hover"></span>',
-//            centermarkers : false,
             usecaptions   :false,
           });
 
