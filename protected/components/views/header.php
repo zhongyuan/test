@@ -18,10 +18,10 @@
         <div class="alin_right">
             <?php if(Yii::app()->user->isGuest){ ?>
             <ul class="header_login">
-            <li><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
+            <li class="global_f"><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
                 <span class="register_logo" ></span>
                 <?php echo Yii::t('main','register');?></a></li>
-            <li><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
+            <li class="global_f"><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
                 <span class="login_logo" ></span>
                 <?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
@@ -31,7 +31,7 @@
                 <span class="login_logo" ></span>
                     <?php echo Yii::t('main','logout');?></a></li>
             <?php }?>
-            <li><?php echo Yii::t('main','en_cn');?></li>
+            <li class="global_f"><?php echo Yii::t('main','en_cn');?></li>
         </ul>
         </div>
         <div class="search_inform">

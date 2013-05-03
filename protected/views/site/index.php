@@ -5,7 +5,6 @@ $this->pageTitle=Yii::app()->name;
 
 ?>
 <!--<span style="clear:both"></span>-->
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/easySlider1.5.js"></script>
 
 <style>
     .morePlat{
@@ -95,74 +94,7 @@ $this->pageTitle=Yii::app()->name;
         margin-top: 150px;
     }
 
-    /*图片滑动效果的地方 start*/
-
-    /* image replacement */
-        .graphic, #prevBtn, #nextBtn{
-            margin:0;
-            padding:0;
-            display:block;
-            overflow:hidden;
-            text-indent:-8000px;
-            }
-    /* // image replacement */
-
-/* Easy Slider */
-
-    #slider{
-        -moz-border-radius: 198px;
-        -webkit-border-radius: 198px;
-        border-radius: 198px;
-        position:relative;
-        overflow: hidden;
-        top: 89px;
-        left: 8px;
-        /*z-index:-1;*/
-        width: 369px;
-        height: 369px;
-    }
-	#slider ul, #slider li{
-		margin:0;
-		padding:0;
-		list-style:none;
-		}
-	#slider li{
-		/*
-			define width and height of list item (slide)
-			entire slider area will adjust according to the parameters provided here
-		*/
-		width:369px;
-		height:369px;
-		overflow:hidden;
-		}
-	#prevBtn{
-        display: block;
-        width: 62px;
-        height: 62px;
-        position: absolute;
-        left: 260px;
-        top: 240px;
-		}
-	#nextBtn{
-        display: block;
-        width: 62px;
-        height: 62px;
-        position: absolute;
-        top: 240px;
-        right: 260px;
-		}
-	#prevBtn a, #nextBtn a{
-        display: block;
-        width: 62px;
-        height: 62px;
-        background: url("/images/index/anrow.jpg") no-repeat;
-        background-position: -21px -38px;
-		}
-	#nextBtn a{
-		background-position: -88px -38px;
-		}
-
-/* // Easy Slider */
+   
 
 
     .imgslide{
@@ -194,24 +126,45 @@ $this->pageTitle=Yii::app()->name;
 
     <p class="morePlat">多平台 More Platform</p>
     <div class="back">
-        <span style="left: 185px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 225px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 260px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 285px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 355px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 420px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
 
     </div>
     <div class="imgslide">
         <span class="horizebg"></span>
         <div class="phone">
-
-            <!--<img style="" src="<?php echo $this->staticUrl('index/phone.jpg'); ?>"/>-->
-            <div id="slider">
-                <ul>
-                    <li><a href="http://"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>" /></a></li>
-                    <li><a href="http://"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>"  /></a></li>
-                    <li><a href="http://"><img src="<?php echo $this->staticUrl('index/circle.jpg'); ?>" /></a></li>
-                    <li><a href="http://"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>" /></a></li>
-                </ul>
-            </div>
+			
+			
+			<!--iSlider Begin-->
+			<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/bjqs-1.3.js"></script>
+			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bjqs_home.css"  />
+			<div id="banner-fade">
+		        <ul class="bjqs">
+					<li><a href="#"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>" /></a></li>
+                    <li><a href="#"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>"  /></a></li>
+                    <li><a href="#"><img src="<?php echo $this->staticUrl('index/circle.jpg'); ?>" /></a></li>
+                    <li><a href="#"><img src="<?php echo $this->staticUrl('index/circle2.jpg'); ?>" /></a></li>
+		        </ul>
+		      </div>
+			<script class="secret-source">
+		        jQuery(document).ready(function($) {
+		          
+		          $('#banner-fade').bjqs({
+		            animtype      : 'fade',
+					prevtext 	  : "<div class='bjqs_prev_btn'></div>",
+					nexttext	  : "<div class='bjqs_next_btn'></div>",
+		            height        : 800,
+		            width         : 645,
+		            responsive    : true,
+		            randomstart   : true,
+					showmarkers   :false
+		          });
+		          
+		        });
+		      </script>
+			
+			<!--iSlider End-->
 
         </div>
     </div>
@@ -300,7 +253,7 @@ $this->pageTitle=Yii::app()->name;
 	    var goTop = getId("goTop");
 	    window.onscroll = function () {
             if(document.documentElement.scrollTop > 10){
-                alert(document.documentElement.scrollTop);
+                //alert(document.documentElement.scrollTop);
             }
 
 	        if (document.documentElement.scrollTop + document.body.scrollTop > 350) {
@@ -320,13 +273,4 @@ $this->pageTitle=Yii::app()->name;
 	            }
 	        }
 	    }
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#slider").easySlider({
-            auto: true,
-            continuous: true
-        });
-    });
 </script>

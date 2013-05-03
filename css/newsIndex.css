@@ -1,3 +1,9 @@
+ .news_container{
+	overflow: hidden;
+	/*width: 90%;*/
+	width: 998px;
+	margin: 0 auto;
+ }
  .short_news,.short_news div{
         float: left;
     }
