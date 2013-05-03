@@ -8,27 +8,30 @@
 
 <?php $this->widget('DevWidget');?>
 
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/easySlider/easySlider1.5.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/easySlider/easySlider.css"  />
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/news_slider.css"  />
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
+<style>
 
+</style>
 <div>
 
-	<!--EasySlider Begin-->
-	<div id="es_container">
-		<div id="slider">
-			<ul>				
-				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
-				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
-				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
-				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
-				<li><a href="#"><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" alt="Index Image Preview" /></a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<!--EasySlider End-->
+      <!--  Outer wrapper for presentation only, this can be anything you like -->
+      <div id="banner-slide">
+
+        <!-- start Basic Jquery Slider -->
+        <ul class="bjqs">
+          <li><a href=""><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" title="Automatically generated caption"></a></li>
+          <li><a href=""><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" title="Automatically generated caption"></a></li>
+          <li><a href=""><img src="<?php echo $this->staticUrl('news/index/news_first_1.jpg')?>" title="Automatically generated caption"></a></li>
+        </ul>
+        <!-- end Basic jQuery Slider -->
+
+      </div>
+      <!-- End outer wrapper -->
+
+
 
     <div class="short_news" style="width:100%;margin-top: 15px;float: left;overflow: hidden;">
         <div class="news_second_1" style="width:33%" >
@@ -104,7 +107,7 @@
 
             <?php $i = 1;foreach($models as $model):
 				$i++;
-				if($i%2==1):	
+				if($i%2==1):
 			?>
         <!--    // 显示一个模型-->
                 <div class="news_box">
@@ -151,13 +154,32 @@
     </div>
 </div>
 
+<style>
+    .point{
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: red;
+    }
+</style>
+
 <script>
     $(function(){
-		
-		$("#slider").easySlider({
-			auto: true
-		});
-		
+          $('#banner-slide').bjqs({
+            animtype      : 'slide',
+            height        : 350,
+            width         : 800,
+            responsive    : true,
+//            randomstart   : true,
+            showmarkers   : true,
+            prevtext      : '<span class="newsAnrow_left anrow_hover"></span>',
+            nexttext      : '<span class="newsAnrow_right anrow_hover"></span>',
+//            centermarkers : false,
+            usecaptions   :false,
+          });
+
+
+
         $('.yiiPager a').click(function(){
             $.ajax({
                 url:$(this).attr('href'),
