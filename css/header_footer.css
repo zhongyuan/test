@@ -115,12 +115,12 @@ background-position: -286px -11px;
     float: left;
     margin-top: 40px;
     padding: 0 70px;
+    color: #747474;
 }
 .cross{float: left;}
 .cross li{
     float: left;
     padding-right: 14px;
-	color: #747474;
 }
 .left{
     float: left;
@@ -131,6 +131,7 @@ background-position: -286px -11px;
 }
 .vertical li:first-child{
     font-weight: bold;
+    color: black;
 }
 
 /* ============二级目录=============*/
