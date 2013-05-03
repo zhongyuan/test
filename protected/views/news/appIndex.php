@@ -76,8 +76,16 @@
     .app_ireward p{
         display: inline-block;
         vertical-align: top;
-        margin-left:
+        font-size: 14px;
+		/*font-weight: bold;*/
+		
     }
+	.app_ireward p span{
+		padding-bottom: 15px;
+		display: inline-block;
+		font-weight: bold;
+		font-size: 20px;
+	}
 	ul.dev_notice li{
 		font-size:12px;	
 	}
