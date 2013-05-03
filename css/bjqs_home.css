@@ -33,11 +33,12 @@ li.bjqs-slide img{
 }
 .bjqs_next_btn{
 	position: absolute;
-	margin-top: 93px;
-	margin-left: 0px;
+	margin-top: 96px;
+	margin-left: 6px;
 	background: url(/images/index/anrow.jpg) no-repeat;
 	background-position: -83px -35px;
-	height: 65px;
+	height: 64px;
 	width: 75px;
+	
 	
 }
