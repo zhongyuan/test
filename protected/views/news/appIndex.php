@@ -5,7 +5,7 @@
     .app_ibody{
         padding: 0px 70px;
         color: gray;
-		
+
         /*先设置为灰色*/
     }
     .app_para{
@@ -60,14 +60,14 @@
         margin-left: 40px;
 		margin-top: 20px;
     }
-	
-	
+
+
 	ul.app_ireward{
-		margin-top:20px;	
+		margin-top:20px;
 	}
     .app_ireward li{
         margin-bottom: 38px;
-		
+
     }
     .app_ireward img{
         display: inline-block;
@@ -79,7 +79,7 @@
         margin-left:
     }
 	ul.dev_notice li{
-		font-size:12px;	
+		font-size:12px;
 	}
 </style>
 
@@ -94,7 +94,7 @@
     <div class="app_ileft">
         <div class="top_bottem_space">
             <span class="vertical_line">&nbsp;</span><span class="app_iprotitle"><?php echo Yii::t('news','race_flow');?></span>
-            <div>
+            <div style="margin-top: 25px;">
                 <img src="<?php echo $this->staticUrl('news/app/app_iprocess.jpg');?>" />
                 <p class="app_iprocontent">
                     <span style="margin-left:23px;"><?php echo Yii::t('news','race_signup');?></span>
@@ -139,7 +139,7 @@
 	                <p><span><?php echo $sv[0]?> </span><br/> <?php echo $sv[1]?><br/><?php echo $sv[2]?></p>
 	            </li>
 			<?php endforeach;?>
-           
+
 
         </ul>
     </div>
