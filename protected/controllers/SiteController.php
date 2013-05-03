@@ -34,7 +34,23 @@ class SiteController extends Controller
 		$this->render('index');
 	}
 
-	/**
+    /*
+     * about search
+     */
+    public function actionSearch()
+    {
+        $key = $_POST['key']?$_POST['key']:null;
+        //空格 或 加号 分割
+        if($key){
+            
+        }
+
+        $this->render('search',array(
+            'results' => $results,
+        ));
+    }
+
+        	/**
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionError()
@@ -251,6 +267,6 @@ class SiteController extends Controller
 
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
-   
+
 
 }
