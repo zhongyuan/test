@@ -39,14 +39,29 @@ class SiteController extends Controller
      */
     public function actionSearch()
     {
-        $key = $_POST['key']?$_POST['key']:null;
+        $key = $_GET['key']?$_GET['key']:null;
         //空格 或 加号 分割
         if($key){
-            
+
+            $criteria = new CDbCriteria();
+            $criteria->select = 'id,title,outline,record_time';
+            $criteria->addCondition('status=0');
+            $criteria->addSearchCondition('title', $key);
+            $criteria->order = 'update_time desc';
+
+             $count=  NewsList::model()->count($criteria);
+
+             $pages=new CPagination($count);
+
+             $pages->pageSize=7;
+             $pages->applyLimit($criteria);
+             $models = NewsList::model()->findAll($criteria);
         }
 
         $this->render('search',array(
-            'results' => $results,
+            'results' => $models,
+            'pages'   => $pages,
+            'key'     => $key,
         ));
     }
 

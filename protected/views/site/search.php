@@ -6,83 +6,72 @@
  */
 
 ?>
-<style>
-    .search_dform{
-        padding: 10px 120px;
-    }
-    #key_words{
-        width: 450px;
-        height: 26px;
-        border-radius: 6px;
-    }
-    .button1{
-    position: relative;
-    top: -2px;
-    left: -2px;
-    padding: 3px 42px;
-    font-size: 20px;
-    background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
-    border: 1px solid rgba(230, 221, 221, 0.9);
-    border-radius: 7px;
-    }
-    .input_border{
-        display: inline-block;
-        margin: 5px 35px;
-        width: 126px;
-        height: 30px;
-        border-radius: 10px;
-        border:5px solid #f2f2f2;
-    }
-    .result_null{
-        display: block;
-        font-size: 25px;
-        margin: 20px 0px;
-    }
-    .search_remark{
-        font-size: 14px;
-    }
-    .detail{
-        margin-left: 18px;
-    }
-    .point{
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-radius: 4px;
-        background: #999;
-        margin: 5px;
-        text-decoration: none;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/search.css"  />
 <div class="search_body">
 
-    <?php if(!$result) {?>
-
-    <div class="search_dform">
-        <span class="result_null">抱歉，没有你想要的结果！</span>
-        <input id="key_words" type="text"  name="keywords"  maxlength=30 />
-        <span class="input_border"><input type="submit" class="button1" id="submit" value="搜索"></span>
-        <div class="search_remark">
-            <span>建议：</span>
-            <ul class="detail">
-                <li><span class="point"></span>检查输入是否正确</li>
-                <li><span class="point"></span>简化输入词</li>
-                <li><span class="point"></span>尝试其他相关词，如同义、近义词等</li>
-                <li><span class="point"></span>阅读帮助</li>
-            </ul>
+    <?php if(!$results) {?>
+        <div class="search_dform">
+            <span class="result_null">抱歉，没有你想要的结果！</span>
+            <input id="key_words" type="text"  name="keywords"  maxlength=30 />
+            <span class="input_border"><input type="submit" class="button1" id="sub_ser" value="搜索"></span>
+            <div class="search_remark">
+                <span>建议：</span>
+                <ul class="detail">
+                    <li><span class="point"></span>检查输入是否正确</li>
+                    <li><span class="point"></span>简化输入词</li>
+                    <li><span class="point"></span>尝试其他相关词，如同义、近义词等</li>
+                    <li><span class="point"></span>阅读帮助</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <?php } ?>
+    <?php }else{ ?>
+        <div class="search_dform">
+            <input id="key_words" type="text"  name="keywords"  maxlength=60 />
+            <span class="input_border"><input type="submit" class="button1" id="sub_ser" value="搜索"></span>
+        </div>
+        <div class="search_result">
+            <?php foreach($results as $news_list){ ?>
 
+                <p class="news_title"><?php echo str_ireplace($key,"<span class='key_color'>$key</span>",$news_list->title); ?></p>
+                <span class="news_content"><?php echo $news_list->outline;?></span>
+                <span class="news_date news_content"><?php echo date('Y-m-d',$news_list->record_time);?></span>
 
-
-    <?php if($result){ ?>
-    <div class="search_dform">
-        <input id="key_words" type="text"  name="keywords"  maxlength=30 />
-        <span class="input_border"><input type="submit" class="button1" id="submit" value="搜索"></span>
-    </div>
-    <div class="search_result">
-
-    </div>
+            <?php }?>
+        </div>
     <?php }?>
+
+
+    <div class="green-black">
+        <?php
+            $this->widget('MyLinkPager',array(
+                'pages'=>$pages,
+            ));
+        ?>
+    </div>
+
 </div>
+
+<script language="javascript" type="text/javascript">
+    $(function(){
+        $('#sub_ser').click(function(){
+            search($('#key_words').val());
+        });
+
+        $('#key_words').bind('keypress',function(event){
+            if(event.keyCode == "13")
+            {
+                search($('#key_words').val());
+            }
+        });
+    });
+    function search(key)
+    {
+        if(key.length<=0 || key.length>=30)
+        {
+            return false;
+        }else{
+            var url = "<?php echo Yii::app()->createUrl('site/search');?>"+"&key="+encodeURIComponent(key);
+            window.location.href = url;
+        }
+    }
+</script>

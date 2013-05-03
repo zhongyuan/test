@@ -97,9 +97,7 @@
         {
             return false;
         }else{
-            var url = "<?php echo Yii::app()->createUrl('site/search');?>";
-            var data = "&key="+key;
-            url += data;
+            var url = "<?php echo Yii::app()->createUrl('site/search');?>"+"&key="+encodeURIComponent(key);
             window.location.href = url;
         }
     }

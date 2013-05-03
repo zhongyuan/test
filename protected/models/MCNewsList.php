@@ -43,6 +43,7 @@ class MCNewsList {
         return $cmd?$cmd:0;
     }
 
+
 }
 
 
