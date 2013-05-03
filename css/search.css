@@ -1,0 +1,76 @@
+/*
+    Document   : search
+    Created on : 2013-5-3, 16:16:10
+    Author     : liangzhongyuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+    .search_dform{
+        margin: 20px 90px;
+    }
+    #key_words{
+        width: 450px;
+        height: 26px;
+        border-radius: 6px;
+    }
+    .button1{
+    position: relative;
+    top: -2px;
+    left: -2px;
+    padding: 3px 42px;
+    font-size: 20px;
+    background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
+    border: 1px solid rgba(230, 221, 221, 0.9);
+    border-radius: 7px;
+    }
+    .input_border{
+        display: inline-block;
+        margin: 5px 35px;
+        width: 126px;
+        height: 30px;
+        border-radius: 10px;
+        border:5px solid #f2f2f2;
+    }
+    .result_null{
+        display: block;
+        font-size: 25px;
+        margin: 20px 0px;
+        color: #232222;
+    }
+    .search_remark{
+        font-size: 14px;
+        color:#999999;
+    }
+    .detail{
+        margin-left: 18px;
+    }
+    .point{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background: #999;
+        margin: 5px;
+        text-decoration: none;
+    }
+    .news_title{
+        font-size: 18px;
+        margin: 10px 0;
+        color: #232222;
+    }
+    .key_color{
+        color:#FFAD2F;
+    }
+    .news_content{
+        color:#999999;
+        font-size: 14px;
+    }
+    .search_result{
+        margin: 40px 90px 20px 90px;
+    }
+    .news_date{
+        display: block;
+        text-align: right;
+    }
+
