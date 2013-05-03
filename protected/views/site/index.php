@@ -126,9 +126,9 @@ $this->pageTitle=Yii::app()->name;
 
     <p class="morePlat">多平台 More Platform</p>
     <div class="back">
-        <span style="left: 185px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 225px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 260px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 285px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 355px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 420px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
 
     </div>
     <div class="imgslide">
