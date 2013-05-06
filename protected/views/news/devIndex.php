@@ -74,10 +74,10 @@
 	<div id="logoParade">
 		<img class="devNews" src="<?php echo $this->staticUrl('news/newsList/meeting/dev_news.jpg'); ?>" />
 	</div>
-    <div class="devNewsWords">
+    <!--<div class="devNewsWords">
         <ul class="devNewsList">
             <li>
-                <!--<a><img src="<?php echo $this->staticUrl('devIndex/dev_lit1.jpg'); ?>" /></a>-->
+                <a><img src="<?php echo $this->staticUrl('devIndex/dev_lit1.jpg'); ?>" /></a>
                 <span>刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span>
             </li>
             <li>
@@ -94,7 +94,7 @@
             </li>
 
         </ul>
-    </div>
+    </div>-->
 
 </div>
 
@@ -109,7 +109,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#logoParade").smoothDivScroll({ 
+		/*$("#logoParade").smoothDivScroll({ 
 			autoScrollingMode: "always", 
 			autoScrollingDirection: "endlessLoopRight", 
 			autoScrollingStep: 1, 
@@ -121,7 +121,7 @@
 			$(this).smoothDivScroll("stopAutoScrolling");
 		}).bind("mouseout", function() {
 			$(this).smoothDivScroll("startAutoScrolling");
-		});
+		});*/
 
 	});
 </script>

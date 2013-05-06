@@ -45,7 +45,7 @@
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl">&nbsp;</li>
-					<li class="inputbox">密码强度：</li>
+					<li class="inputbox">密码强度：<span id='weak'></span><span id='middle'></span><span id='strength'></span></li>
 				</ul>
 				<ul class="site_reg_items">
 					<li class="lbl"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
@@ -308,6 +308,7 @@ function checkPassword()
 {
 	var regPassword=/^[\S]{6,15}/;
 	var strPassword=$("#RegisterForm_passwd").val();
+	AuthPasswd(strPassword);//验证密码强度
 	if(!regPassword.test(strPassword)){
 		$("#passwd_tips").html("密码长度为6-18个字符！");
 		return false;
@@ -365,4 +366,57 @@ function checkCaptcha()
 	return true;
 }
 
+
+/*=================验证密码强度==================*/
+function AuthPasswd(string) {
+	if(string.length >=6) {
+		if(/[a-zA-Z]+/.test(string) && /[0-9]+/.test(string) && /\W+\D+/.test(string)) {
+			noticeAssign(1);
+		}else if(/[a-zA-Z]+/.test(string) || /[0-9]+/.test(string) || /\W+\D+/.test(string)) {
+			if(/[a-zA-Z]+/.test(string) && /[0-9]+/.test(string)) {
+				noticeAssign(-1);
+			}else if(/\[a-zA-Z]+/.test(string) && /\W+\D+/.test(string)) {
+				noticeAssign(-1);
+			}else if(/[0-9]+/.test(string) && /\W+\D+/.test(string)) {
+				noticeAssign(-1);
+			}else{
+				noticeAssign(0);
+			}
+		}
+	}else{
+		noticeAssign(null);	
+	}
+}
+
+function noticeAssign(num) {
+	if(num == 1) {
+		$('#weak').css({backgroundColor:'#009900'});
+		$('#middle').css({backgroundColor:'#009900'});
+		$('#strength').css({backgroundColor:'#009900'});
+		$('#strength').html('很强');
+		$('#middle').html('');
+		$('#weak').html('');
+	}else if(num == -1){
+		$('#weak').css({backgroundColor:'#ffcc33'});
+		$('#middle').css({backgroundColor:'#ffcc33'});
+		$('#strength').css({backgroundColor:''});
+		$('#weak').html('');
+		$('#middle').html('中');
+		$('#strength').html('');
+	}else if(num ==0) {
+		$('#weak').css({backgroundColor:'#dd0000'});
+		$('#middle').css({backgroundColor:''});
+		$('#strength').css({backgroundColor:''});
+		$('#weak').html('弱');
+		$('#middle').html('');
+		$('#strength').html('');
+	}else{
+		$('#weak').html('&nbsp;');
+		$('#middle').html('&nbsp;');
+		$('#strength').html('&nbsp;');
+		$('#weak').css({backgroundColor:''});
+		$('#middle').css({backgroundColor:''});
+		$('#strength').css({backgroundColor:''});
+	}
+}
 </script>
