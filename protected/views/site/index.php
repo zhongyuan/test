@@ -167,6 +167,11 @@ $this->pageTitle=Yii::app()->name;
         </div>
     </div>
 
+<!--    <div>
+<embed src="http://player.youku.com/player.php/sid/XNTUxMzI4OTky/v.swf"
+       allowFullScreen="true" quality="high" width="480" height="400"
+       align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+    </div>-->
 
     <div class="intelliModel">
             <div style='padding: 20px 390px;'><p style='font-size: 22px;text-align: center;'>智能模式</p>
