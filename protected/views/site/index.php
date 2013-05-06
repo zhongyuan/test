@@ -95,8 +95,6 @@ $this->pageTitle=Yii::app()->name;
     }
 
 
-
-
     .imgslide{
         position: relative;
         width: 100%;
