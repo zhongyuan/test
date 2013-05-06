@@ -151,6 +151,13 @@ ul.site_reg_items li.inputbox{
 }
 ul.site_reg_items li.inputbox select{
 	width: 275px;
+	border:1px solid #ECDEC6;
+	border-radius:5px;
+	height:26px;
+	line-height: 26px;
+	font-size: 12px;
+	background:#FCF3E4;
+	color:gray;
 }
 ul.site_reg_items li.inputbox select.year{
 	width: 88px;
