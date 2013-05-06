@@ -33,7 +33,7 @@
 	            <div><img src="<?php echo $this->staticUrl('news/index/news_second_1.jpg');?>"  width="150"/></div>
 
 	            <div class="news_pub">
-	                <p class="news_sub_title">创新发布会</p>
+	                <p class="font_4 news_sub_title">创新发布会</p>
 	                <p class="news_sub_detail">
 						2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
 					</p>
@@ -49,7 +49,7 @@
 	            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/index/news_second_2.jpg');?>" width="110"/></div>
 
 	            <div class="news_up">
-	                <p class="news_sub_title">平板系统升级</p>
+	                <p class="font_4 news_sub_title">平板系统升级</p>
 	                <p class="news_sub_detail">
 						最新系统支持平板电脑2.0<br />以上系统升级，并且免费。
 					</p>
@@ -67,7 +67,7 @@
 
 
 	            <div class="news_exp">
-	                <p class="news_sub_title">创新使用者经验</p>
+	                <p class="font_4 news_sub_title">创新使用者经验</p>
 
 					<div>
 

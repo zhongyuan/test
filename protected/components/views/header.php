@@ -7,21 +7,21 @@
     </div>
     <div  class="list">
         <ul >
-            <li ><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
-            <li ><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
-            <li ><a class="<?php echo $control == 'device'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
-            <li ><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'device'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>
     </div>
     <div class ="search">
         <div class="alin_right">
             <?php if(Yii::app()->user->isGuest){ ?>
             <ul class="header_login">
-            <li class="global_f"><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
+            <li class="global_f font_2"><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
                 <span class="register_logo" ></span>
                 <?php echo Yii::t('main','register');?></a></li>
-            <li class="global_f"><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
+            <li class="global_f font_2"><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
                 <span class="login_logo" ></span>
                 <?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
