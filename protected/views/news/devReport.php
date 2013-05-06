@@ -27,7 +27,7 @@
 		            </div>
 		            <div class="devReport_word">
 		                <p class="devReport_title"><?php echo $model['title']?></p>
-		                <p class="devReport_content"><?php echo $model['outline']?>
+		                <p class="devReport_content font_7"><?php echo $model['outline']?>
 						&nbsp&nbsp&nbsp<a style="color:#cccccc" href="<?php echo Yii::app()->createUrl('news/devDetail',array('news_id' => $model['id'])); ?>" >[查看详情]</a>
 		                </p>
 		            </div>

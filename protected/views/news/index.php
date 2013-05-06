@@ -110,7 +110,7 @@
                 <div class="news_box">
                         <div class="words" style="width:530px;float: left;line-height: 25px;">
                                 <p class="news_title"><?php echo $model->title; ?></p>
-                                <p class="news_outline"><?php echo $model->outline; ?> </p>
+                                <p class="news_outline font_6"><?php echo $model->outline; ?> </p>
 
                         </div>
                         <div class="photo" style="float: left;margin-left: 150px;">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="words" style="width:530px;float: left;margin-left: 150px;line-height: 25px;">
                                 <p class="news_title"><?php echo $model->title?></p>
-                                <p class="news_outline"><?php echo $model->outline;?></p>
+                                <p class="news_outline font_6"><?php echo $model->outline;?></p>
 
                         </div>
 
