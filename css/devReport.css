@@ -6,13 +6,13 @@
         Purpose of the stylesheet follows.
 */
 
-	
+
     /* 最新消息-开发者大会首页*/
-    
+
 	.dev_font{
 		font-size: 12px;
 	}
-	
+
 	.devForward p{
         padding: 20px 70px;
         font-size: 12px;
@@ -45,28 +45,46 @@
     .di_detail{
         margin-left: 50px;
     }
-    .devNews{
-        padding: 20px 55px;
-        width: 86%;
+    .corporation{
+        padding: 20px 70px;
+        text-align: center;
+        margin-top: 45px;
     }
-    .devNewsWords{
-        display: block;
+    .devNews{
+        padding: 0 70px;
         text-align: center;
     }
-    .devNewsList{
-        display: inline-block;
-        width: 86%;
-    }
     .devNewsList li{
-        float: left;
-        font-size: 12px;
-        width: 17.6%;
-        /*margin:0px auto;*/
-        padding: 0px 10px;
+        display: inline-block;
+        margin: 0 1px;
     }
-    .devLogos{
-        padding: 20px 70px;
-        width: 86%;
+    .imgNews{
+        background: url(/images/news/newsList/meeting/dev_news.jpg) no-repeat;
+        text-decoration: none;
+        display: block;
+        width: 185px;
+        height: 155px;
+
+    }
+    .imgNews_word{
+        position: relative;
+        top: 160px;
+        left: 0px;
+    }
+    .back_pos1{
+        background-position: 0px 0px;
+    }
+    .back_pos2{
+        background-position: -188px 0px;
+    }
+    .back_pos3{
+        background-position: -375px 0px;
+    }
+    .back_pos4{
+        background-position: -560px 0px;
+    }
+    .back_pos5{
+        background-position: -745px 0px;
     }
 
     /* 最新消息开发者大会-新闻报道*/
@@ -87,7 +105,7 @@
         font-size:12px;margin-top: 14px;
 		height: 100px;
 		line-height: 24px;
-		
+
     }
     .horizon_line{
         overflow:hidden;height: 1px;width: 100%;background-color: #c2c4c8;
