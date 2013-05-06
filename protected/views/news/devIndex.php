@@ -8,8 +8,8 @@
 <?php $this->widget('DevWidget');?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
-
-<div class="devForward global_f">
+	
+<div class="devForward global_f font_7">
     <p>2012年被业界评为平台征战元年项目团队成员毫不妥协的强调接口——既在产品里面，也在人与人之间。洞
         悉该模式的团队会早早的对付接口，在提交所有的组件代码之前，他们构建了一系列的程序来检验接口。
         他们早早地集成个人代码，频繁地测试。请记住康威定律(Conway's Law):产品反映了制造该产品的

@@ -92,7 +92,7 @@
 </style>
 
 <div class="app_ibody">
-    <p class="app_para">经过多年的努力！终于，中国拥有了自己的OS！新的设计，也在人与人之间。洞
+    <p class="app_para font_7">经过多年的努力！终于，中国拥有了自己的OS！新的设计，也在人与人之间。洞
     悉该模式的团队会早早的对付接口，在提交所有的组件代码之前，他们构建了一系列的程序来检验接口。
     他们早早地集成个人代码，频繁地测试。请记住康威定律(Conway's Law):产品反映了制造该产品的
     组织结构。对于接口，这一点尤为正确：项目中易导致复杂的产品接口</p>
@@ -118,7 +118,7 @@
 
         <div class="app_inotice top_bottem_space">
             <span class="vertical_line">&nbsp;</span><span class="app_iprotitle">参赛须知</span>
-            <ul class="dev_notice">
+            <ul class="dev_notice font_6">
                 <li>◆ 任何团体或个人都可以参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
                 <li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参数者提供的信<br/>息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
                 <li>◆ 报名时间：**年**月**日-**年**月**日，逾期提交无效。</li>

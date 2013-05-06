@@ -79,10 +79,10 @@
 	<div class="sec_label">此报名资讯仅提供与主办单位及承办单位联络使用，不作另它用途。</div>
 
 		<table>
-			<tr><td class="sec_label app_pleft ">姓名</td><td><input type="text" name="leader_name" class="app_pinputbox member_name"/></td><td class="app_star">*</td></tr>
-			<tr><td class="sec_label app_pleft">Email</td><td><input type="text" name="leader_email"  class="app_pinputbox"></td><td class="app_star">*</td></tr>
-			<tr><td class="sec_label app_pleft">联系手机/固话</td><td><input type="text" name="leader_phone"  class="app_pinputbox"/></td><td class="app_star">*</td></tr>
-			<tr><td class="sec_label app_pleft">公司/学校职称</td><td><input  type="text" name="lea_company"  class="app_pinputbox"/></td><td class="app_star"></td></tr>
+			<tr><td class="sec_label app_pleft font_6">姓名</td><td><input type="text" name="leader_name" class="app_pinputbox member_name"/></td><td class="app_star">*</td></tr>
+			<tr><td class="sec_label app_pleft font_6">Email</td><td><input type="text" name="leader_email"  class="app_pinputbox"></td><td class="app_star">*</td></tr>
+			<tr><td class="sec_label app_pleft font_6">联系手机/固话</td><td><input type="text" name="leader_phone"  class="app_pinputbox"/></td><td class="app_star">*</td></tr>
+			<tr><td class="sec_label app_pleft font_6">公司/学校职称</td><td><input  type="text" name="lea_company"  class="app_pinputbox"/></td><td class="app_star"></td></tr>
 		</table>
 <!--	</form>-->
 	<h2 class="big_title">成员资料<img  src="/images/news/app/peoples.jpg"/></h2>
@@ -92,40 +92,40 @@
             <div>
                 <table>
                     <tr>
-                        <td class="sec_label app_pleft ">队员2名称</td><td><input type="text" name="mem_2_name"  class="app_pinputbox member_name"/></td><td class="app_star">*</td>
-                        <td class="sec_label app_pright ">队员3名称</td><td><input type="text" name="mem_3_name" class="app_pinputbox member_name"/></td><td></td>
+                        <td class="sec_label app_pleft font_6">队员2名称</td><td><input type="text" name="mem_2_name"  class="app_pinputbox member_name"/></td><td class="app_star">*</td>
+                        <td class="sec_label app_pright font_6">队员3名称</td><td><input type="text" name="mem_3_name" class="app_pinputbox member_name"/></td><td></td>
                     </tr>
                     <tr>
-                        <td class="sec_label app_pleft">Email</td><td><input type="text" name="mem_2_email"  class="app_pinputbox"></td><td class="app_star">*</td>
-                        <td class="sec_label app_pright">Email</td><td><input type="text" name="mem_3_email"  class="app_pinputbox"></td><td></td>
+                        <td class="sec_label app_pleft font_6">Email</td><td><input type="text" name="mem_2_email"  class="app_pinputbox"></td><td class="app_star">*</td>
+                        <td class="sec_label app_pright font_6">Email</td><td><input type="text" name="mem_3_email"  class="app_pinputbox"></td><td></td>
                     </tr>
                     <tr>
-                        <td class="sec_label app_pleft">联系手机/固话</td><td><input type="text" name="mem_2_phone" value="" class="app_pinputbox"></td><td class="app_star">*</td>
-                        <td class="sec_label app_pright">联系手机/固话</td><td><input type="text" name="mem_3_phone" value="" class="app_pinputbox"></td><td></td>
+                        <td class="sec_label app_pleft font_6">联系手机/固话</td><td><input type="text" name="mem_2_phone" value="" class="app_pinputbox"></td><td class="app_star">*</td>
+                        <td class="sec_label app_pright font_6">联系手机/固话</td><td><input type="text" name="mem_3_phone" value="" class="app_pinputbox"></td><td></td>
                     </tr>
                     <tr>
-                        <td class="sec_label app_pleft">公司/学校职称</td><td><input type="text" name="memb_2_company" value="" class="app_pinputbox"></td><td class="app_star"></td>
-                        <td class="sec_label app_pright">公司/学校职称</td><td><input type="text" name="memb_3_company" value="" class="app_pinputbox"></td><td></td>
+                        <td class="sec_label app_pleft font_6">公司/学校职称</td><td><input type="text" name="memb_2_company" value="" class="app_pinputbox"></td><td class="app_star"></td>
+                        <td class="sec_label app_pright font_6">公司/学校职称</td><td><input type="text" name="memb_3_company" value="" class="app_pinputbox"></td><td></td>
                     </tr>
                 </table>
             </div>
             <div class="more_member">
                 <table>
                     <tr>
-                        <td class="sec_label app_pleft ">队员4名称</td><td><input type="text" name="mem_4_name"  class="app_pinputbox member_name"/></td><td class="app_star">&nbsp;&nbsp;</td>
-                        <td class="sec_label app_pright ">队员5名称</td><td><input type="text" name="mem_5_name"  class="app_pinputbox member_name"/></td><td class="app_star"></td>
+                        <td class="sec_label app_pleft font_6">队员4名称</td><td><input type="text" name="mem_4_name"  class="app_pinputbox member_name"/></td><td class="app_star">&nbsp;&nbsp;</td>
+                        <td class="sec_label app_pright font_6">队员5名称</td><td><input type="text" name="mem_5_name"  class="app_pinputbox member_name"/></td><td class="app_star"></td>
                     </tr>
                     <tr>
-                        <td class="sec_label app_pleft">Email</td><td><input type="text" name="mem_4_email" value="" class="app_pinputbox"></td><td class="app_star"></td>
-                        <td class="sec_label app_pright">Email</td><td><input type="text" name="mem_5_email" value="" class="app_pinputbox"></td><td></td>
+                        <td class="sec_label app_pleft font_6">Email</td><td><input type="text" name="mem_4_email" value="" class="app_pinputbox"></td><td class="app_star"></td>
+                        <td class="sec_label app_pright font_6">Email</td><td><input type="text" name="mem_5_email" value="" class="app_pinputbox"></td><td></td>
                     </tr>
                     <tr>
                         <td class="sec_label app_pleft">联系手机/固话</td><td><input type="text" name="mem_4_phone" value="" class="app_pinputbox"></td><td class="app_star"></td>
                         <td class="sec_label app_pright">联系手机/固话</td><td><input type="text" name="mem_5_phone" value="" class="app_pinputbox"></td><td></td>
                     </tr>
                     <tr>
-                        <td class="sec_label app_pleft">公司/学校职称</td><td><input type="text" name="memb_4_company" value="" class="app_pinputbox"></td><td class="app_star"></td>
-                        <td class="sec_label app_pright">公司/学校职称</td><td><input type="text" name="memb_5_company" value="" class="app_pinputbox"></td><td></td>
+                        <td class="sec_label app_pleft font_6">公司/学校职称</td><td><input type="text" name="memb_4_company" value="" class="app_pinputbox"></td><td class="app_star"></td>
+                        <td class="sec_label app_pright font_6">公司/学校职称</td><td><input type="text" name="memb_5_company" value="" class="app_pinputbox"></td><td></td>
                     </tr>
                 </table>
             </div>
@@ -134,7 +134,7 @@
 
 	<!--</form>-->
 	<h2 class="big_title">参赛需知<img src="/images/news/app/notice.jpg"/></h2>
-	<ul class="d_items">
+	<ul class="d_items font_6">
 
 		<li>◆ 任何团体或者个人均可参赛(内部员工除外)，团体和个人皆以提交的作品为单位。</li>
 		<li>◆ 参赛者需在大赛官网注册、报名、提交作品，参赛者报名必须提供真实的姓名、联系方式。如因参赛者提供的信息错误，导致主办方无法与参赛者取得联系，按自动弃权处理。</li>
