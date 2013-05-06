@@ -48,13 +48,12 @@
     }
     .modify li{
         margin: 5px 0;
-		font-size: 12px;
     }
     .modify_list{
-        font-size: 12px;
+        font-size: 14px;
     }
     .modify li span{
-        font-size: 12px;
+       font-size: 14px;
     }
     .mod_notice span{
 
@@ -95,7 +94,7 @@
                 <span class="ver_title">修订</span>以下各节提供后续版本的SDK工具，修订号表示注释。要确定您所使用的版本的SDK工具，请参阅"<a class="ver_link">安装的软件包</a>"清单中的Android<br/>
                 SDK管理器。<br/>
                 在SDK工具的所有已知问题的汇总，请参阅<a class="ver_link">http://tools.android.com/knownissues</a>。
-                <ul class="modify font_9">
+                <ul class="modify">
                     <li><label class="modify_list ver_link"><img  src="" /> SDK工具，版本21.1</label><span>(2013年2月)</span></li>
                     <li><label class="modify_list ver_link"><img  src="" /> SDK工具，版本21.1</label><span>(2013年2月)</span></li>
                     <li><label class="modify_list ver_link"><img  src="" /> SDK工具，版本21.1</label><span>(2013年2月)</span></li>
