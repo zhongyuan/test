@@ -7,11 +7,11 @@
     </div>
     <div  class="list">
         <ul >
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'site'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'news'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'device'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>
     </div>
     <div class ="search">
@@ -54,23 +54,23 @@
 
                 <?php if($control=='news'){ ?>
                 <ul style="margin-left: 235px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
-                    <li><a class="<?php echo $action=='dev'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><?php echo Yii::t('news','dev_meetings');?></a></li>
-                    <li><a class="<?php echo $action=='app'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><?php echo Yii::t('news','app_dev_race');?></a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
+                    <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><?php echo Yii::t('news','dev_meetings');?></a></li>
+                    <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><?php echo Yii::t('news','app_dev_race');?></a></li>
+                    <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
                 <?php }elseif($control=='device'){?>
                 <ul style="margin-left: 358px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">设备首页</a></li>
-                    <li><a class="<?php echo $action=='smp'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/smphone'); ?>">智能手机</a></li>
-                    <li><a class="<?php echo $action=='pad'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/pad'); ?>">平板电脑</a></li>
-                    <li><a class="<?php echo $action=='stb'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">设备首页</a></li>
+                    <li><a class="<?php echo $action=='smp'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/smphone'); ?>">智能手机</a></li>
+                    <li><a class="<?php echo $action=='pad'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/pad'); ?>">平板电脑</a></li>
+                    <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                 <?php }elseif($control=='developer'){?>
                 <ul style="margin-left: 440px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">开发指引</a></li>
-                    <li><a class="<?php echo $action=='dev'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">下载</a></li>
-                    <li><a class="<?php echo $action=='app'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">讨论区</a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">参与开发</a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">常见问题</a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">开发指引</a></li>
+                    <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">下载</a></li>
+                    <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">讨论区</a></li>
+                    <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">参与开发</a></li>
+                    <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">常见问题</a></li>
                 <?php }?>
             </ul>
         </div>
