@@ -158,7 +158,8 @@ ul.site_reg_items li.inputbox select.year{
 ul.site_reg_items li.inputbox input{
 	width: 270px;
     height: 23px;
-    border-radius: 5px;	
+    border-radius: 5px;
+	border:1px solid #C8C8C8;	
 }
 .cap_inputbox span,.inputbox span{
 	color: red;
@@ -184,6 +185,7 @@ ul.site_reg_items li.inputbox input{
 .cap_inputbox input{
 	border-radius: 3px;
 	height: 23px;
+	border: 1px solid #C8C8C8;
 }
 /*=======注册按钮相关样式========*/
  .register_button{

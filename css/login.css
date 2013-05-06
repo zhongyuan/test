@@ -53,6 +53,7 @@
         width: 300px;
         height: 30px;
         border-radius: 7px;
+		border:1px solid #C8C8C8;
         outline: medium;
         margin-left: 40px;
         overflow: hidden;
