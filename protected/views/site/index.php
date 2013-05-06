@@ -126,16 +126,16 @@ $this->pageTitle=Yii::app()->name;
 
     <p class="morePlat">多平台 More Platform</p>
     <div class="back">
-        <span style="left: 172px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 225px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
-        <span style="left: 270px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 285px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 355px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
+        <span style="left: 420px;">宏达国际电子股份有限公司是一和台湾著名的威盛电子是兄弟</span>
 
     </div>
     <div class="imgslide">
         <span class="horizebg"></span>
         <div class="phone">
-
-
+			
+			
 			<!--iSlider Begin-->
 			<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/bjqs-1.3.js"></script>
 			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bjqs_home.css"  />
@@ -149,7 +149,7 @@ $this->pageTitle=Yii::app()->name;
 		      </div>
 			<script class="secret-source">
 		        jQuery(document).ready(function($) {
-
+		          
 		          $('#banner-fade').bjqs({
 		            animtype      : 'fade',
 					prevtext 	  : "<div class='bjqs_prev_btn'></div>",
@@ -160,10 +160,10 @@ $this->pageTitle=Yii::app()->name;
 		            randomstart   : true,
 					showmarkers   :false
 		          });
-
+		          
 		        });
 		      </script>
-
+			
 			<!--iSlider End-->
 
         </div>
