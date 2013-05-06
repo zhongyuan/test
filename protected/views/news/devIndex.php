@@ -8,25 +8,6 @@
 <?php $this->widget('DevWidget');?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/scrollto/smoothDivScroll.css"  />
-
-<style type="text/css">
-	#logoParade
-	{
-		width: 900px;
-		height: 154px;
-		position: relative;
-		margin-left: 40px;
-		
-	}
-
-	#logoParade div.scrollableArea a
-	{
-		display: block;
-		float: left;
-		padding-left: 10px;
-	}
-</style>
 	
 <div class="devForward global_f">
     <p>2012年被业界评为平台征战元年项目团队成员毫不妥协的强调接口——既在产品里面，也在人与人之间。洞
@@ -71,9 +52,7 @@
 
 </style>
 <div class="devLittle global_f">
-	<div id="logoParade">
-		<img class="devNews" src="<?php echo $this->staticUrl('news/newsList/meeting/dev_news.jpg'); ?>" />
-	</div>
+	<img class="devNews" src="<?php echo $this->staticUrl('news/newsList/meeting/dev_news.jpg'); ?>" />
     <!--<div class="devNewsWords">
         <ul class="devNewsList">
             <li>
@@ -102,26 +81,3 @@
 <div class="corporation">
     <img class="devLogos" src="<?php echo $this->staticUrl('news/dev/dev_corLogo.jpg'); ?>"></img>
 </div>
-
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scrollto/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scrollto/jquery.mousewheel.min.js" type="text/javascript"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scrollto/jquery.smoothdivscroll-1.3-min.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		/*$("#logoParade").smoothDivScroll({ 
-			autoScrollingMode: "always", 
-			autoScrollingDirection: "endlessLoopRight", 
-			autoScrollingStep: 1, 
-			autoScrollingInterval: 25 
-		});
-
-		// Logo parade event handlers
-		$("#logoParade").bind("mouseover", function() {
-			$(this).smoothDivScroll("stopAutoScrolling");
-		}).bind("mouseout", function() {
-			$(this).smoothDivScroll("startAutoScrolling");
-		});*/
-
-	});
-</script>
