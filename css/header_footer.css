@@ -139,13 +139,14 @@ background: url("/images/index/header.jpg") no-repeat;
 background-position: -264px -13px;
 }
 .list,.search{float: left}
-.list{width:560px;}
+.list{width:560px;text-align: center;}
 .header_nav_1{float: left;display: block;line-height: 57px;
              font-size: 15px;
              padding: 3px 13px 0 15px;}
 
 .list ul{
-    float: left;padding: 0px 28px;
+/*    float: left;padding: 0px 28px;*/
+    display: inline-block;
 }
 .alin_right{
     text-align:right;
