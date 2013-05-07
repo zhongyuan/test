@@ -30,7 +30,7 @@
 	<div class="news_container">
 		<div class="short_news" style="margin-top: 15px;float: left;overflow: hidden;">
 	        <div class="news_second_1" style="width:350px;" >
-	            <div><img src="<?php echo $this->staticUrl('news/index/news_second_1.jpg');?>"  width="150"/></div>
+	            <div><img src="<?php echo $this->staticUrl('news/index/news_second_1.jpg');?>"  width="150" style="margin-left: 45px;"/></div>
 
 	            <div class="news_pub">
 	                <p class="font_4 news_sub_title">创新发布会</p>
@@ -43,7 +43,7 @@
 
 	        </div>
 
-	        <div style="overflow:hidden;height: 150px;width: 1px;background-color: #c2c4c8;"></div>
+	        <div style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;"></div>
 
 	        <div class="news_second_2" style="width:352px;" >
 	            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/index/news_second_2.jpg');?>" width="110"/></div>
@@ -61,7 +61,7 @@
 	            </div>
 	        </div>
 
-	        <div  style="overflow:hidden;height: 150px;width: 1px;background-color: #c2c4c8;margin-left: -4px;"></div>
+	        <div  style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;margin-left: -4px;"></div>
 
 	        <div class="news_second_3" style="width: 282px;">
 
