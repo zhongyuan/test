@@ -89,7 +89,7 @@
 
 	        </div>
 
-	        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
+	        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
 
 	    </div>
 	</div>
@@ -133,7 +133,7 @@
 
                 </div>
 				<?php endif;?>
-                <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #c2c4c8;clear: both;"></div>
+                <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
             <?php endforeach;?>
 
         </div>
