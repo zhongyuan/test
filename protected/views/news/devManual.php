@@ -15,17 +15,19 @@
         display: inline-block;
         margin-left: 60px;
 		float: right;
-		
+
     }
     .manualImg img{width: 574px;height: 258px}
     .manual_left{
         width: 320px;
         display: inline-block;
+        line-height: 20px;
         font-size: 12px;
 		float: left;
     }
     .manual{
 		overflow: hidden;
+        margin-bottom: 40px;
     }
     .textIndent{
         text-indent: 2em;
@@ -41,13 +43,13 @@
 
         <div class="manual">
             <div class="manual_left">
-                <p class="textIndent">上海国际展览中心坐落于上海最早的经济技术开发区 —— 上海虹桥经济技术开发区内</p>
-                <p class="textIndent">从她 1992 年诞生之日起，就为上海的展览业注入了新的活力，成为上海众多品牌展览会的发轫之地，促进了上海展览业的发展。上海国际展览中
-                心有限公司（ Intex Shanghai Co.,Ltd. ）是由上海虹桥经济技术开发区联合发展有限公司、上海世博（集团）
-                有限公司所属上海市国际展览有限公司及英国P&O公司共同投资建立的上海首家引进国外一流管理模式和经验的展览场
-                馆公司，也是世博（集团）所属的展览场馆公司，及全国首家获得 ISO9001 认证的国际性展览馆。</p>
+                <p class="textIndent">上海博雅酒店位于张江高科技园区碧波路，四周绿茵环绕，景观极具魅力。</p>
+                <p class="textIndent">非一般传统酒店的外观，极富现代感的时尚设计风格，饰品简约而细腻。在博雅上海您将体验的
+                    是舒适、安静、安全。 距陆家嘴10公里，距上海新国际博览中心仅2公里,离上海浦东国际机场也只有21公里，而距离
+                    虹桥国际机场为25公里、到浦东市中心也仅15分钟。 酒店的300间自然景观房，
+                    融合了古典的东方元素与现代简约时尚的设计，风格独树一帜。</p>
             </div>
-            <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/devManual_1.jpg'); ?>" /></div>
+            <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/boya.jpg'); ?>" /></div>
         </div>
 
     <style>
@@ -59,25 +61,12 @@
         </div>
         <div class="manual">
             <div class="manual_left global_f">
-                <p><span >公交路线：</span><span>81、82、83、88、32、34、观1、观2、999、333、332</span></p>
-                <p><span >地铁路线：</span><span>地铁8号线：乘坐地铁8号线到奥林匹克公园下</span></p>
-                <p><span >驾车路线：</span><span>驾车路线：地铁10号线：在北土城站下车，再换乘地铁8号线到奥林匹克公园下</span></p>
+                <p><span >公交路线：</span><span>161、609、188、636、778、大桥五线、大桥六线</span></p>
+                <p><span >地铁路线：</span><span>地铁2号线：乘坐地铁2号线到张江高科站下</span></p>
+<!--                <p><span >驾车路线：</span><span>驾车路线：地铁10号线：在北土城站下车，再换乘地铁8号线到奥林匹克公园下</span></p>-->
             </div>
             <div class="manualImg">
-<iframe width="574" height="258" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-        src="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=%E6%B
-        5%A6%E4%B8%9C%E6%96%B0%E5%8C%BA+%E5%8D%9A%E9%9C%9E%E8%B7%AF11%E5%8F%B7&amp;aq=&amp;sll=31.200634
-        ,121.604683&amp;sspn=0.006745,0.011362&amp;brcurrent=3,0x35b277c0c6f38231:0x27b7e58bc9f76994,0,0x35ad8c73cd3952c7
-        :0xbb190e9364c4e592%3B5,0,0&amp;ie=UTF8&amp;hq=&amp;hnear=%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%B5%A6%E4%B8%9C%E6%96%B0%E5%
-        8C%BA%E5%8D%9A%E9%9C%9E%E8%B7%AF11%E5%8F%B7&amp;ll=31.200634,121.604683&amp;spn=0.006745,0.011362&amp;t=m&amp;z=14&amp
-        ;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://ditu.google.cn/maps?f=q&amp;source=embed&amp;hl=zh-CN&amp;
-                                                    geocode=&amp;q=%E6%B5%A6%E4%B8%9C%E6%96%B0%E5%8C%BA+%E5%8D%9A%E9%9C%9E%E8%B7%AF11%E5
-                                                    %8F%B7&amp;aq=&amp;sll=31.200634,121.604683&amp;sspn=0.006745,0.011362&amp;brcurrent=
-                                                    3,0x35b277c0c6f38231:0x27b7e58bc9f76994,0,0x35ad8c73cd3952c7:0xbb190e9364c4e592%3B5,0,0&amp
-                                                    ;ie=UTF8&amp;hq=&amp;hnear=%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%B5%A6%E4%B8%9C%E6%96%B0%E5%8C%BA
-                                                    %E5%8D%9A%E9%9C%9E%E8%B7%AF11%E5%8F%B7&amp;ll=31.200634,121.604683&amp;spn=0.006745,0.01
-                                                    1362&amp;t=m&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left"></a></small>
-
+<iframe width="574" height="258" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/wpN-K"></iframe>
                 <!--<img  src="<?php echo $this->staticUrl('news/dev/devManual_2.jpg'); ?>" />-->
             </div>
         </div>
@@ -95,17 +84,19 @@
         </div>
         <div class="manual">
             <div class="manual_left global_f">
-                <p><span>国际会议中心附近美食<span></p>
+                <p><span>上海博雅酒店附近美食<span></p>
                 <ul>
-                    <li>A:下沉式美食广场</li>
-                    <li>B:北辰世纪中心A座美食广场</li>
-                    <li>C:北辰洲际酒店</li>
-                    <li>D:新奥购物中心</li>
-                    <li>E:东郭酒楼</li>
-                    <li>F:八先生刷羊肉</li>
+                    <li>A:穀屋(上海传奇店)</li>
+                    <li>B:喜月小厨</li>
+                    <li>C:费尼阁</li>
+                    <li>D:棒!约翰</li>
+                    <li>E:必胜客</li>
+                    <li>F:禾绿回转寿司</li>
                 </ul>
             </div>
-            <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/devManual_3.jpg'); ?>" /></div>
+            <div class="manualImg">
+                <img  src="<?php echo $this->staticUrl('news/dev/map.jpg'); ?>" />
+            </div>
         </div>
 </div>
 
