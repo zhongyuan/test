@@ -26,22 +26,22 @@
             <span>08:00-09:00</span> <span class="di_detail">签到</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">开幕词 陈昊值 触控科技ceo</span>
+            <span>09:00-09:30</span> <span class="di_detail">开幕词 陈昊值 触控科技ceo</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">签到就覅啊手机gas结果接奥</span>
+            <span>09:30-10:00</span> <span class="di_detail"> << Native HTML5和Hybrid开发技术与生态圈 >> 王哲　Cocos2D-X核心开发者</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">发多少gas巴巴水电费违法</span>
+            <span>10:00-10:30</span> <span class="di_detail"><<事半功倍的移动游戏开发工具>>　刘冠群　触控科技COO</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">打发沙发位方位访问</span>
+            <span>10:30-11:00</span> <span class="di_detail"><<谷得"世界OL"的成功要素>> 麦涛　谷得网络董事&副总经理</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">签法师打发沙发是大幅度的顶顶顶顶顶顶顶顶顶顶到</span>
+            <span>11:00-11:30</span> <span class="di_detail"><<本土游戏的突围>>　杨锦　神奇时代副总裁</span>
         </li>
         <li>
-            <span>08:00-09:00</span> <span class="di_detail">大幅度发对顶顶顶顶顶顶顶顶顶顶</span>
+            <span>11:30-12:00</span> <span class="di_detail"><<手机网游设计　开发与运营要点及与端游产品的类比>> 张沁　空中网iGame总经理　策划总监</span>
         </li>
     </ul>
 

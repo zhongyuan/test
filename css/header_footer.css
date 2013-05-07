@@ -177,7 +177,7 @@ background-position: -204px -35px;
     background-color: transparent;
 }
 .currentItem{
-    color:rgb(255, 173, 47);
+    /*color:rgb(255, 173, 47);*/
     border-bottom:4px solid rgb(255, 173, 47);
     padding-bottom: 7px;
     text-decoration:none;
@@ -266,7 +266,7 @@ border-bottom: 10px solid white;
     font-size: 12px;
 }
 .selectItem{
-    color:rgb(255, 173, 47);
+    /*color:rgb(255, 173, 47);*/
 }
 
 .global_f{

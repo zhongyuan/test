@@ -33,22 +33,22 @@
 				<br />我们不会将你的资料分享给他人。
 				</p>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'user_name',array('label'=>"COS ID")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'user_name'); ?><span id="user_name_tips">*</span>
 						<span id="ajaxCode" style="display:none;"></span>
 					</li>
 
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'passwd',array('label'=>"密码")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'passwd',array('label'=>"密码")); ?></li>
 					<li class="inputbox"><?php echo $form->passwordField($model,'passwd') ?><span id="passwd_tips">*</span></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl">&nbsp;</li>
+					<li class="lbl font_7">&nbsp;</li>
 					<li class="inputbox">密码强度：<span id='weak'></span><span id='middle'></span><span id='strength'></span></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'passwd2',array('label'=>"确认密码")); ?></li>
 					<li class="inputbox"><?php echo $form->passwordField($model,'passwd2') ?><span id="passwd2_tips">*</span></li>
 				</ul>
 
@@ -58,12 +58,12 @@
 				<h2>设定安全提示问题</h2>
 				<p class="site_reg_comment">请选择或自定一个安全问题。当您忘记密码时，此安全问题可以帮助您快速地找到密码，并确认您的身份。</p>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'question_id',array('label'=>"安全提示问题")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'question_id',array('label'=>"安全提示问题")); ?></li>
 					<li class="inputbox"><?php echo $form->dropDownList($model,'question_id',$extConfig['safeQuestions']);?></li>
 
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'answer',array('label'=>"答案")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'answer',array('label'=>"答案")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'answer'); ?></li>
 				</ul>
 
@@ -71,7 +71,7 @@
 				<h2>选择您的出生日期</h2>
 				<p class="site_reg_comment">连同您设定的安全提示问题，此资讯可在您忘记密码或需要重设密码时帮助我们识别您的身份。</p>
 				<ul class="site_reg_items">
-					<li class="lbl">&nbsp;</li>
+					<li class="lbl font_7">&nbsp;</li>
 					<li class="inputbox">
 						<?php echo $form->dropDownList($model,'year',$extConfig['years'],array('class'=>'year'));?>
 						<?php echo $form->dropDownList($model,'month',$extConfig['months'],array('class'=>'year'));?>
@@ -84,38 +84,38 @@
 				<h2>输入您的姓名</h2>
 				<p class="site_reg_comment">请输入您的完整姓名。</p>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'first_name',array('label'=>"姓氏")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'first_name',array('label'=>"姓氏")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'first_name'); ?><span id="first_name_tips">*</span></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'last_name',array('label'=>"名字")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'last_name',array('label'=>"名字")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'last_name'); ?><span id="last_name_tips">*</span></li>
 				</ul>
 
 				<h2>输入您的主要联系地址</h2>
 				<p class="site_reg_comment">请输入您的邮寄地址。</p>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'country',array('label'=>"国家或地区")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'country',array('label'=>"国家或地区")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'country'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'company',array('label'=>"公司/机构")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'company',array('label'=>"公司/机构")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'company'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'address',array('label'=>"地址")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'address',array('label'=>"地址")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'address'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'county',array('label'=>"县/市")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'county',array('label'=>"县/市")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'county'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'state',array('label'=>"州/省")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'state',array('label'=>"州/省")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'state'); ?></li>
 				</ul>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'zip_code',array('label'=>"邮递区号")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'zip_code',array('label'=>"邮递区号")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'zip_code'); ?></li>
 				</ul>
 
@@ -123,7 +123,7 @@
 				<h2>选择您最常用的语言</h2>
 				<p class="site_reg_comment">请选择您最擅长使用语种。</p>
 				<ul class="site_reg_items">
-					<li class="lbl"><?php echo $form->label($model,'language',array('label'=>"偏好的语言")); ?></li>
+					<li class="lbl font_7"><?php echo $form->label($model,'language',array('label'=>"偏好的语言")); ?></li>
 					<li class="inputbox"><?php echo $form->textField($model,'language'); ?></li>
 				</ul>
 
