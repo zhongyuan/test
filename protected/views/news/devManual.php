@@ -6,35 +6,8 @@
  */
 ?>
 <?php $this->widget('DevWidget');?>
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devManual.css"  />
 
-<style>
-    .up_down{margin: 30px 0;}
-    .manualImg{
-        width: 574px;
-        display: inline-block;
-        margin-left: 60px;
-		float: right;
-
-    }
-    .manualImg img{width: 574px;height: 258px}
-    .manual_left{
-        width: 320px;
-        display: inline-block;
-        line-height: 20px;
-        font-size: 12px;
-		float: left;
-    }
-    .manual{
-		overflow: hidden;
-        margin-bottom: 40px;
-    }
-    .textIndent{
-        text-indent: 2em;
-		line-height: 24px;
-		color: #666666;
-    }
-</style>
 
 <div style="padding:0 70px;">
         <div class="devSchedule up_down" >
@@ -52,10 +25,6 @@
             <div class="manualImg"><img  src="<?php echo $this->staticUrl('news/dev/boya.jpg'); ?>" /></div>
         </div>
 
-    <style>
-        .manual_left p span{font-size:12px;display: block;}
-        .manual_left p span:first-child{font-size:12px;font-weight: bold; margin-top: 20px;}
-    </style>
         <div class="devSchedule up_down">
             <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','traffice_guide');?></span></p></div>
         </div>
@@ -66,18 +35,11 @@
 <!--                <p><span >驾车路线：</span><span>驾车路线：地铁10号线：在北土城站下车，再换乘地铁8号线到奥林匹克公园下</span></p>-->
             </div>
             <div class="manualImg">
-<iframe width="574" height="258" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/wpN-K"></iframe>
+            <iframe width="574" height="258" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/wpN-K"></iframe>
                 <!--<img  src="<?php echo $this->staticUrl('news/dev/devManual_2.jpg'); ?>" />-->
             </div>
         </div>
 
-
-    <style>
-        .manual_left li{
-            margin-top: 10px;
-            font-size: 12px;
-        }
-    </style>
 
         <div class="devSchedule up_down">
             <div class ="di_sched" style="margin:0px;"><p class="rule"><span><?php echo Yii::t('news','restaurant');?></span></p></div>

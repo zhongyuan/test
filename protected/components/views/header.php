@@ -2,8 +2,7 @@
 
 <div style="" id="headernew">
     <div class="logo" >
-        <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/index/logo.jpg"/>-->
-        <span class="logo_jpg"></span>
+        <a href="<?php echo Yii::app()->createUrl('site/index'); ?>"><span class="logo_jpg"></span></a>
     </div>
     <div  class="list">
         <ul >

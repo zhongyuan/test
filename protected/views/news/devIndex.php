@@ -8,7 +8,7 @@
 <?php $this->widget('DevWidget');?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/devReport.css"  />
-	
+
 <div class="devForward global_f font_7">
     <p>2012年被业界评为平台征战元年项目团队成员毫不妥协的强调接口——既在产品里面，也在人与人之间。洞
         悉该模式的团队会早早的对付接口，在提交所有的组件代码之前，他们构建了一系列的程序来检验接口。
@@ -52,23 +52,23 @@
 <div class="devNews global_f">
     <ul class="devNewsList">
         <li>
-            <a class="imgNews back_pos1">
+            <a class="imgNews back_pos1" href="<?php echo $this->createUrl('news/devDetail',array('news_id'=>$id)); ?>">
             <span class="imgNews_word">刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span></a>
         </li>
         <li>
-            <a class="imgNews back_pos2">
+            <a class="imgNews back_pos2" href="<?php echo $this->createUrl('news/devDetail',array('news_id'=>$id)); ?>">
             <span class="imgNews_word">刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span></a>
         </li>
         <li>
-            <a class="imgNews back_pos3">
+            <a class="imgNews back_pos3" href="<?php echo $this->createUrl('news/devDetail',array('news_id'=>$id)); ?>">
             <span class="imgNews_word">刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span></a>
         </li>
         <li>
-            <a class="imgNews back_pos4">
+            <a class="imgNews back_pos4" href="<?php echo $this->createUrl('news/devDetail',array('news_id'=>$id)); ?>">
             <span class="imgNews_word">刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span></a>
         </li>
         <li>
-            <a class="imgNews back_pos5">
+            <a class="imgNews back_pos5" href="<?php echo $this->createUrl('news/devDetail',array('news_id'=>$id)); ?>">
             <span class="imgNews_word">刘浩：1手机游戏基地三大举措渠道、能力和"游戏梦工厂"</span></a>
         </li>
 

@@ -63,7 +63,7 @@
             <a href="<?php echo Yii::app()->createUrl('news/appWinner'); ?>"><span class="<?php echo $action == 'appWinner'?'app_selected':null ?>"><?php echo Yii::t('news','winners');?></span></a>
 
         </p>
-        <p class="app_parti">我要参赛</p>
+        <a href="<?php echo Yii::app()->createUrl('news/appPart'); ?>"><p class="app_parti">我要参赛</p></a>
     </div>
 
 
