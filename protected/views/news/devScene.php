@@ -12,6 +12,24 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox/jquery.fancybox-1.3.4.css"  />
 
+<style>
+    .devScene{
+        margin: 30px 100px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+	.devScene ul{
+		overflow: hidden;
+	}
+    .devScene ul li{
+        margin:30px 0;
+		float: left;
+    }
+    .devScene li span{
+        padding: 0 15px;
+    }
+</style>
+
 
 <div id="replace">
     <div class="devScene">
@@ -45,7 +63,6 @@
     $(function(){
 
 		$("a.grouped_elements").fancybox(); //init fancybox job.
-
         $('.yiiPager a').click(function(){
             $.ajax({
                 url:$(this).attr('href'),
