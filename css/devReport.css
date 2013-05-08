@@ -133,3 +133,20 @@
         padding: 10px 0;
         font-size:12px;
     }
+
+    /*大会现场*/
+    .devScene{
+        margin: 30px 100px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+	.devScene ul{
+		overflow: hidden;
+	}
+    .devScene ul li{
+        margin:30px 0;
+		float: left;
+    }
+    .devScene li span{
+        padding: 0 15px;
+    }

@@ -1,0 +1,65 @@
+/*
+    Document   : version
+    Created on : 2013-5-7, 18:18:42
+    Author     : liangzhongyuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+    .ver_body{
+        position: relative;
+        padding: 20px 70px;
+    }
+    .ver_left{
+        position: absolute;
+        top: 20px;
+        left: 70px;
+        width: 150px;
+        font-size: 20px;
+        line-height: 40px;
+
+    }
+    .ver_right{
+        position: relative;
+        top: 0px;
+        left: 190px;
+        width: 760px;
+        font-size: 14px;
+    }
+    .ver_link{
+        color: #6666ff;
+    }
+    .ver_title{
+        display: block;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .horizon_line{  /*可以提到公共部分去  */
+        overflow:hidden;
+        height: 1px;
+        width: 100%;
+        background-color: #c2c4c8;
+        margin: 20px 0;
+    }
+    .vertical_line{
+        height: 13px;
+        width: 3px;
+        background-color: #ff6633;
+        /*颜色未定*/
+    }
+    .modify{
+        margin: 10px 0;
+    }
+    .modify li{
+        margin: 5px 0;
+    }
+    .modify_list{
+        font-size: 14px;
+    }
+    .modify li span{
+       font-size: 14px;
+    }
+    .mod_notice span{
+
+    }
+

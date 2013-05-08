@@ -1,0 +1,40 @@
+/*
+    Document   : devManual
+    Created on : 2013-5-7, 18:16:06
+    Author     : liangzhongyuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+    .up_down{margin: 30px 0;}
+    .manualImg{
+        width: 574px;
+        display: inline-block;
+        margin-left: 60px;
+		float: right;
+
+    }
+    .manualImg img{width: 574px;height: 258px}
+    .manual_left{
+        width: 320px;
+        display: inline-block;
+        line-height: 20px;
+        font-size: 12px;
+		float: left;
+    }
+    .manual{
+		overflow: hidden;
+        margin-bottom: 40px;
+    }
+    .textIndent{
+        text-indent: 2em;
+		line-height: 24px;
+		color: #666666;
+    }
+    .manual_left p span{font-size:12px;display: block;}
+    .manual_left p span:first-child{font-size:12px;font-weight: bold; margin-top: 20px;}
+    .manual_left li{
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
