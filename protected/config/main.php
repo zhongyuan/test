@@ -45,14 +45,16 @@ return array(
         ),
 		// uncomment the following to enable URLs in path-format
 
-//		'urlManager'=>array(
-//			'urlFormat'=>'path',
-//			'rules'=>array(
+		'urlManager'=>array(
+			'urlFormat'=>'path',
+            'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
+			'rules'=>array(
 //				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-//				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
 //				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-//			),
-//		),
+			),
+            'urlSuffix' =>'.html',
+		),
 
 //		'db'=>array(
 //			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
