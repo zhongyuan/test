@@ -3,7 +3,11 @@
         <ul>
 			<?php foreach($models as $model):?>
 				<li>
-				<span><img src="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" /></span>
+				<span>
+				<a href="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" class="grouped_elements">
+					<img src="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" />
+				</a>
+				</span>
                 <!--<span><img src="<?php echo $this->staticUrl('news/newsList/devScene/'.$model['img_name']); ?>" /></span>-->
             	</li>
 			<?php endforeach;?>
@@ -24,6 +28,9 @@
 </div>
 <script>
     $(function(){
+	
+		$("a.grouped_elements").fancybox(); //init fancybox job.
+		
         $('.yiiPager a').click(function(){
             $.ajax({
                 url:$(this).attr('href'),
