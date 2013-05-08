@@ -4,7 +4,7 @@
 			<?php foreach($models as $model):?>
 				<li>
 				<span>
-				<a href="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" class="grouped_elements">
+				<a href="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" class="fancybox" data-fancybox-group="gallery">
 					<img src="<?php echo $this->staticUrl($this->_mapImagePath($model['img_name']));?>" />
 				</a>
 				</span>
@@ -29,7 +29,7 @@
 <script>
     $(function(){
 	
-		$("a.grouped_elements").fancybox(); //init fancybox job.
+		$('.fancybox').fancybox(); //init fancybox job.
 		
         $('.yiiPager a').click(function(){
             $.ajax({
