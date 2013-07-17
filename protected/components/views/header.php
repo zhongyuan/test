@@ -9,8 +9,8 @@
             <li class="header_nav_1 font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
             <li class="header_nav_1 font_1"><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
             <li class="header_nav_1 font_1"><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
+            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('store/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
         </ul>
     </div>
     <div class ="search">
@@ -65,11 +65,17 @@
                     <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                 <?php }elseif($control=='developer'){?>
                 <ul style="margin-left: 440px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">开发指引</a></li>
+<!--                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">开发指引</a></li>
                     <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">下载</a></li>
                     <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">讨论区</a></li>
                     <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">参与开发</a></li>
-                    <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">常见问题</a></li>
+                    <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">常见问题</a></li>-->
+
+                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">Training</a></li>
+                    <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">API Guides</a></li>
+                    <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">Reference</a></li>
+                    <li><a class="<?php echo $action=='too'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/tools'); ?>">Tools</a></li>
+
                 <?php }?>
             </ul>
         </div>
