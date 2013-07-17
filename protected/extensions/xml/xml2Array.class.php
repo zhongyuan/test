@@ -17,12 +17,12 @@
  * Usage:
  *       $array = XML2Array::createArray($xml);
  */
- 
+
 class XML2Array {
- 
+
     private static $xml = null;
 	private static $encoding = 'UTF-8';
- 
+
     /**
      * Initialize the root XML node [optional]
      * @param $version
@@ -34,7 +34,7 @@ class XML2Array {
         self::$xml->formatOutput = $format_output;
 		self::$encoding = $encoding;
     }
- 
+
     /**
      * Convert an XML to Array
      * @param string $node_name - name of the root node to be converted
@@ -42,6 +42,7 @@ class XML2Array {
      * @return DOMDocument
      */
     public static function &createArray($input_xml) {
+        echo 'ff';
         $xml = self::getXMLRoot();
 		if(is_string($input_xml)) {
 			$parsed = $xml->load($input_xml);
@@ -58,7 +59,7 @@ class XML2Array {
         self::$xml = null;    // clear the xml node in the class for 2nd time use.
         return $array;
     }
- 
+
     /**
      * Convert an Array to XML
      * @param mixed $node - XML as a string or as an object of DOMDocument
@@ -66,25 +67,25 @@ class XML2Array {
      */
     private static function &convert($node) {
 		$output = array();
- 
+
 		switch ($node->nodeType) {
 			case XML_CDATA_SECTION_NODE:
 				$output['@cdata'] = trim($node->textContent);
 				break;
- 
+
 			case XML_TEXT_NODE:
 				$output = trim($node->textContent);
 				break;
- 
+
 			case XML_ELEMENT_NODE:
- 
+
 				// for each child node, call the covert function recursively
 				for ($i=0, $m=$node->childNodes->length; $i<$m; $i++) {
 					$child = $node->childNodes->item($i);
 					$v = self::convert($child);
 					if(isset($child->tagName)) {
 						$t = $child->tagName;
- 
+
 						// assume more nodes of same kind are coming
 						if(!isset($output[$t])) {
 							$output[$t] = array();
@@ -97,7 +98,7 @@ class XML2Array {
 						}
 					}
 				}
- 
+
 				if(is_array($output)) {
 					// if only one node of its kind, assign it directly instead if array($value);
 					foreach ($output as $t => $v) {
@@ -110,7 +111,7 @@ class XML2Array {
 						$output = '';
 					}
 				}
- 
+
 				// loop through the attributes and collect them
 				if($node->attributes->length) {
 					$a = array();
@@ -127,7 +128,7 @@ class XML2Array {
 		}
 		return $output;
     }
- 
+
     /*
      * Get the root XML node, if there isn't one, create it.
      */
