@@ -27,6 +27,8 @@ class DeveloperController extends Controller
 	 */
 	public function actionIndex()
 	{
+
+
 		$this->render('index');
 	}
 
@@ -52,6 +54,14 @@ class DeveloperController extends Controller
     public function actionTools()
     {
         $this->render('tools');
+    }
+
+    /*
+     * 导入xml文件到数据库
+     */
+    public function actionImportXML()
+    {
+        
     }
 
 }
