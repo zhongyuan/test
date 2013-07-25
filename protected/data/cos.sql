@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 17, 2013 at 02:42 PM
+-- Generation Time: Jul 25, 2013 at 03:05 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.3.15
 
@@ -82,15 +82,16 @@ INSERT INTO `admin` (`id`, `staff_name`, `pass_word`, `authority`, `status`, `up
 
 CREATE TABLE IF NOT EXISTS `api` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `name` varchar(100) NOT NULL COMMENT '类名或者模块名',
-  `path` varchar(225) NOT NULL COMMENT '存储路径',
-  `type` tinyint(2) unsigned NOT NULL DEFAULT '11' COMMENT '1开头为getstart,2开头为guide，3开头为reference',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1为正常，0为删除',
-  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `record_time` int(11) NOT NULL DEFAULT '0' COMMENT '记录时间',
+  `name` varchar(100) NOT NULL DEFAULT '0' COMMENT '节点名',
+  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父节点',
+  `path` varchar(255) NOT NULL DEFAULT '0' COMMENT '存放路径',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '-2审核失败，-1待审核，0为删除，1为正常或审核通过',
+  `staff_id` int(11) NOT NULL DEFAULT '0' COMMENT '增加节点的人',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  `record_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `name` (`name`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='开发者资料' AUTO_INCREMENT=1 ;
+  KEY `parent_id` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='cos开发者模块' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

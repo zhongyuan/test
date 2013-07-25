@@ -61,6 +61,21 @@ class DeveloperController extends Controller
      */
     public function actionImportXML()
     {
+        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes.xml';
+//        $xml = simplexml_load_file($filePath);
+
+        $xml_par = dirname(__FILE__).'/../extensions/xml/xml2Array.class.php';
+        include $xml_par;
+        echo 'ddd';
+        $array = XML2Array::createArray($filePath);
+
+        print_r($array);exit;
+        //存入数据库流程
+        $first_level = array();
+        $second_level = array();
+        $third_level = array();
+
+        exit;
         
     }
 
