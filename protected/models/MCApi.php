@@ -12,7 +12,7 @@ class MCApi {
     const tools = 4;
 
     public $id;
-    public static $count = 0;
+    public static $limit = 0;
 
     function __construct($id) {
         $this->id = $id;
@@ -76,7 +76,12 @@ class MCApi {
     //获取id
     public static function getParIdByName($name)
     {
-        $sql = "select id from api where name = :name limit 1"; //  id > 1151 and  大于1151保证不会跟到class list
+//        if(self::$limit > 0){
+//            $str = 'id > '.self::$limit .' and ';
+//        }else{
+//            $str = '';
+//        }
+        $sql = "select id from api where {$str} name = :name  limit 1"; //随时修改  id > 1151 and  大于1151保证不会跟到class list
         $cmd = Yii::app()->db->createCommand($sql)->queryScalar(array(
             ':name' => $name,
         ));
