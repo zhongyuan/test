@@ -42,7 +42,6 @@ class XML2Array {
      * @return DOMDocument
      */
     public static function &createArray($input_xml) {
-        echo'ff';
         $xml = self::getXMLRoot();
 		if(is_string($input_xml)) {
 			$parsed = $xml->load($input_xml);
