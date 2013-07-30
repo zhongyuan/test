@@ -27,8 +27,6 @@ class DeveloperController extends Controller
 	 */
 	public function actionIndex()
 	{
-
-
 		$this->render('index');
 	}
 
@@ -57,12 +55,15 @@ class DeveloperController extends Controller
     }
 
     /*
-     * search
+     * 即时搜索
      */
     public function actionApiSearch()
     {
 
     }
+    /*
+     * 
+     */
 
     /*
      * 导入xml文件到数据库
