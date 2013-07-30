@@ -1,11 +1,3 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-?>
 <style>
     .devPhoto{
         display: block;
@@ -15,7 +7,7 @@
         float: left;
         padding: 7px 10px;
 		font-size: 14px;
-		
+
 /*        display: inline-block; li 可以不需要定义行内块*/
     }
     .c_menu{
@@ -42,7 +34,7 @@
         height: 14px;
 		margin-top: 4px;
         width: 1px;
-		
+
         overflow: hidden;
     }
     .currentItem2{

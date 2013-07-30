@@ -57,26 +57,34 @@ class DeveloperController extends Controller
     }
 
     /*
+     * search
+     */
+    public function actionApiSearch()
+    {
+
+    }
+
+    /*
      * 导入xml文件到数据库
      */
-//    public function actionImportXML()
-//    {
-////        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes.bak.xml';
-////        $xml_par = dirname(__FILE__).'/../extensions/xml/xml2Array.class.php';
-////        include $xml_par; //不能少
-////        echo 'ddd';
-////        $array = XML2Array::createArray($filePath);
-//        //第一步 加顶层 4条
-////            $top_level = array(
-////                0 => array('name' => 'Training','path' => 'ddd'),
-////                1 => array('name' => 'Developer Guides','path' => 'ddd'),
-////                2 => array('name' => 'API Reference','path' => 'ddd'),
-////                3 => array('name' => 'Tools','path' => 'ddd'),
-////            );
-////
-////            $suc = MCApi::addApiItem(0,$top_level);
-////            echo $suc; exit;
+    public function actionImportXML()
+    {
+//        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes.bak.xml';
+//        $xml_par = dirname(__FILE__).'/../extensions/xml/xml2Array.class.php';
+//        include $xml_par; //不能少
+//        echo 'ddd';
+//        $array = XML2Array::createArray($filePath);
+        //第一步 加顶层 4条
+//            $top_level = array(
+//                0 => array('name' => 'Training','path' => 'ddd'),
+//                1 => array('name' => 'Developer Guides','path' => 'ddd'),
+//                2 => array('name' => 'API Reference','path' => 'ddd'),
+//                3 => array('name' => 'Tools','path' => 'ddd'),
+//            );
 //
+//            $suc = MCApi::addApiItem(0,$top_level);
+//            echo $suc; exit;
+
 //////      第二步 加Api reference第一层 10条
 ////        if($array['DocSetNodes']['TOC']['Node']['Subnodes']['Node']){
 ////            foreach($array['DocSetNodes']['TOC']['Node']['Subnodes']['Node'] as $ar1){
@@ -181,6 +189,6 @@ class DeveloperController extends Controller
 //
 //        exit;
 //
-//    }
+    }
 
 }
