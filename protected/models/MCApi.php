@@ -87,6 +87,50 @@ class MCApi {
         ));
         return $cmd?$cmd:0;
     }
+	
+	
+	/**
+	 * 获取树型数据 
+	 * @param undefined $parent_id
+	 * @param undefined $deep
+	 * 
+	 */
+	public function getTree($parent_id,$isOpen = TRUE)
+	{
+		$sql = "SELECT id,name,parent_id,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
+		$query = Yii::app()->db->createCommand($sql)->queryAll();
+		if(empty($query)){
+			return FALSE;
+		}
+		$idx = 0;
+		$dbRst = array();
+		foreach($query as $row){
+			$idx++;
+			$subCnt = $this->getSubTreeCnt($row['id']);
+			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia/".$row['path']);
+			if($subCnt > 0){
+				$data['isParent'] = true;
+				$data['children'] = $this->getTree($row['id'],FALSE);
+				if($isOpen && $idx ==1){
+					$data['open'] = true;
+				}
+			}
+			$dbRst[] = $data;
+		}
+		return $dbRst;	
+	}
+	
+	/**
+	 * 获取当前父节点的字节点数量 
+	 * @param undefined $parent_id
+	 * 
+	 */
+	public function getSubTreeCnt($parent_id = 0)
+	{
+		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND status = 1";
+		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
+		return intval($cnt);
+	}
 
 }
 

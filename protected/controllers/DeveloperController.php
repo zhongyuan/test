@@ -27,7 +27,7 @@ class DeveloperController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		$this->_cosDeveloper(MCApi::training);
 	}
 
     /*
@@ -43,9 +43,42 @@ class DeveloperController extends Controller
      */
     public function actionGuide()
     {
-        $this->render('guide');
+		$this->_cosDeveloper(MCApi::developer);	
     }
 
+	private function _cosDeveloper($type = 1)
+	{
+		$mcApi = new MCApi();
+		$data = $mcApi->getTree($type);
+		
+		$this->render('_cosDeveloper',array(
+            'data' => $data
+        ));
+	}
+
+	/**
+	 * AJAX获取文档详细内容 
+	 * 
+	 */
+	public function actionGetFileContent()
+	{
+		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
+		$filePath = dirname(dirname(__FILE__))."/gaia/".$filePath;
+		$jsonRst = array(
+			'req' => "error",
+			'msg' => "您要查看的文件未找到,可能已被删除!"
+		);
+		if(file_exists($filePath)){
+			$content= file_get_contents($filePath);	
+			$jsonRst = array(
+				'req' => "ok",
+				'msg' => $content
+			);
+		}
+		echo json_encode($jsonRst);
+		exit(0);	
+	}
+	
     /*
      * developer guide的编辑模式
      */
