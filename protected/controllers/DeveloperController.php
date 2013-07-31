@@ -23,7 +23,7 @@ class DeveloperController extends Controller
 	}
 
 	/**
-	 * training 即是get start
+	 * training 即是get start 查看模式
 	 */
 	public function actionIndex()
 	{
@@ -31,11 +31,27 @@ class DeveloperController extends Controller
 	}
 
     /*
+     * training的编辑模式
+     */
+    public function actionEditIndex()
+    {
+
+    }
+
+    /*
      * developer guide
      */
     public function actionGuide()
     {
         $this->render('guide');
+    }
+
+    /*
+     * developer guide的编辑模式
+     */
+    public function actionEditGuide()
+    {
+        
     }
 
     /*
@@ -67,7 +83,7 @@ class DeveloperController extends Controller
      */
     public function actionFormSearch()
     {
-        
+
     }
 
     /*
