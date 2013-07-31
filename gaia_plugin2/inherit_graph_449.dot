@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::graphics::MaskFilter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d45/classgaia_1_1graphics_1_1_mask_filter.html",tooltip="MaskFilter is the base class for object that perform transformations on an alpha-channel mask before ..."];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::graphics::BlurMaskFilter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d97/classgaia_1_1graphics_1_1_blur_mask_filter.html",tooltip="This takes a mask, and blurs its edge by the specified radius."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::graphics::EmbossMaskFilter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d6f/classgaia_1_1graphics_1_1_emboss_mask_filter.html",tooltip="Create an emboss maskfilter to apply to drawing style."];
+}

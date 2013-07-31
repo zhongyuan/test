@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::connectivity::GpsStatusNmeaListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d54/classgaia_1_1connectivity_1_1_gps_status_nmea_listener.html",tooltip="Used for receiving NMEA sentences from the GPS."];
+}

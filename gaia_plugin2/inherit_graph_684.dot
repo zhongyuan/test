@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::telephony::NeighboringCellInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/dba/classgaia_1_1telephony_1_1_neighboring_cell_info.html",tooltip="Represents the neighboring cell information, including Received Signal Strength and Cell ID location..."];
+}

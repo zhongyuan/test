@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::content::AbstractThreadedSyncAdapter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d50/classgaia_1_1content_1_1_abstract_threaded_sync_adapter.html",tooltip="An abstract implementation of a SyncAdapter that spawns a thread to invoke a sync operation..."];
+}

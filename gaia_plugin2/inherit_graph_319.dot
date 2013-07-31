@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::core::IBinder::DeathRecipient",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d3e/classgaia_1_1core_1_1_i_binder_1_1_death_recipient.html",tooltip="Interface for receiving a callback when the process hosting an IBinder has gone away."];
+}

@@ -1,0 +1,27 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::text::MetricAffectingSpan",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::text::CharacterStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d29/classgaia_1_1text_1_1_character_style.html",tooltip="The classes that affect character-level text formatting extend this class."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::text::ObjectStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d55/classgaia_1_1text_1_1_object_style.html",tooltip="ObjectStyle is interface for spannable class."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::text::AbsoluteSizeSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dd1/classgaia_1_1text_1_1_absolute_size_span.html",tooltip="Describes a style in a span."];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::text::ReplacementSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d2b/classgaia_1_1text_1_1_replacement_span.html"];
+  Node5 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia::text::DynamicDrawerSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d02/classgaia_1_1text_1_1_dynamic_drawer_span.html"];
+  Node6 -> Node7 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia::text::ImageSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d21/classgaia_1_1text_1_1_image_span.html"];
+  Node1 -> Node8 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gaia::text::StyleSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d38/classgaia_1_1text_1_1_style_span.html",tooltip="Describes a style in a span."];
+  Node1 -> Node9 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="gaia::text::SubscriptSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/da6/classgaia_1_1text_1_1_subscript_span.html",tooltip="Describes a subscript style in a span."];
+  Node1 -> Node10 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="gaia::text::SuperscriptSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d36/classgaia_1_1text_1_1_superscript_span.html",tooltip="Describes a superscript style in a span."];
+  Node1 -> Node11 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="gaia::text::TypefaceSpan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d21/classgaia_1_1text_1_1_typeface_span.html",tooltip="Describes a typeface in a span."];
+}

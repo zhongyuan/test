@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::testing::DelegateTestCase\< TestDelegate, TestFixture \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d2f/classgaia_1_1testing_1_1_delegate_test_case.html",tooltip="This test case provides a framework in which you can test gaia.core.Delegate classes in a controlled ..."];
+}

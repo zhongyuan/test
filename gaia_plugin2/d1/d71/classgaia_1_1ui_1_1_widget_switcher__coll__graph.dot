@@ -1,0 +1,37 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::WidgetSwitcher",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::ui::WidgetAnimator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d9a/classgaia_1_1ui_1_1_widget_animator.html",tooltip="Base class for a FrameController container that will perform animations when switching between its vi..."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::ui::FrameController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d8d/classgaia_1_1ui_1_1_frame_controller.html",tooltip="FrameController is designed to block out an area on the screen to display a single item..."];
+  Node4 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::core::WidgetController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d6c/classgaia_1_1core_1_1_widget_controller.html",tooltip="Define the default widget layout to put sets of layout in it."];
+  Node5 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::core::Widget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dac/classgaia_1_1core_1_1_widget.html",tooltip="The Widget class is the base class of all user interface component."];
+  Node6 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia::core::PropertyAnimatable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/db2/classgaia_1_1core_1_1_property_animatable.html",tooltip="Any animation object need to implement PropertyAnimatable because of setting value."];
+  Node7 -> Node5 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpScene",fontname="Helvetica"];
+  Node7 [label="gaia::core::Scene",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/dfb/classgaia_1_1core_1_1_scene.html",tooltip="A Scene is used to build a visual interface."];
+  Node4 -> Node7 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpController",fontname="Helvetica"];
+  Node8 -> Node7 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpResources",fontname="Helvetica"];
+  Node8 [label="gaia::content::Resources",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dad/classgaia_1_1content_1_1_resources.html",tooltip="Class for accessing an application&#39;s resources."];
+  Node9 -> Node7 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mDialogList",fontname="Helvetica"];
+  Node9 [label="gaia::base::Vector\< gaia::ui::DialogBox * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d5d/classgaia_1_1base_1_1_vector.html"];
+  Node10 -> Node9 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="gaia::base::VectorImpl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d21/classgaia_1_1base_1_1_vector_impl.html",tooltip="Implements vector data structure equipped with copy-on-write mechanism."];
+  Node11 -> Node9 [dir=back,color="orange",fontsize="10",style="dashed",label="\< gaia::ui::DialogBox * \>",fontname="Helvetica"];
+  Node11 [label="gaia::base::Vector\< TYPE \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d5d/classgaia_1_1base_1_1_vector.html",tooltip="This class implements the vector data structure."];
+  Node10 -> Node11 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node7 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpPage",fontname="Helvetica"];
+  Node12 [label="gaia::core::Page",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d3f/classgaia_1_1core_1_1_page.html",tooltip="An page is a single, focused thing that the user can do."];
+  Node7 -> Node12 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpScene",fontname="Helvetica"];
+  Node13 -> Node5 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpTag",fontname="Helvetica"];
+  Node13 [label="gaia::core::WidgetTag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d88/classgaia_1_1core_1_1_widget_tag.html"];
+  Node14 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="gaia::core::EventControl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/de0/classgaia_1_1core_1_1_event_control.html",tooltip="EventControl is used to dispatch event and register listener."];
+  Node7 -> Node4 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpScene",fontname="Helvetica"];
+}

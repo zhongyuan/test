@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<plugin>
+  <extension point="org.eclipse.help.toc">
+    <toc file="_toc_COS Cplusplus Development.xml" primary="true"/>
+    <toc file="_toc_COS Web Development.xml" primary="true"/>
+    <toc file="_toc_Getting Started With COS.xml" primary="true"/>
+    <toc file="toc.xml"/>
+  </extension>
+</plugin>

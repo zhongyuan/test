@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::IActionDropDownWidgetPrepareShowListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/dbf/classgaia_1_1ui_1_1_i_action_drop_down_widget_prepare_show_listener.html",tooltip="A callback that let users do something before the popup window show."];
+}

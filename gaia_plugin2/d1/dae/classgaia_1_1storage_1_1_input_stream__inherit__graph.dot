@@ -1,0 +1,19 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::storage::InputStream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::content::AssetInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d31/classgaia_1_1content_1_1_asset_input_stream.html",tooltip="open a asset input stream for reading data."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::storage::BufferedInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d9a/classgaia_1_1storage_1_1_buffered_input_stream.html",tooltip="A Stream way to read primitive data."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::storage::ByteArrayInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d84/classgaia_1_1storage_1_1_byte_array_input_stream.html",tooltip="A specialized gaia::storage::InputStream for reading the contents of a byte array."];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::storage::DataInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d17/classgaia_1_1storage_1_1_data_input_stream.html",tooltip="Reads typed data from a file in the file system."];
+  Node1 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia::storage::FileInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/da8/classgaia_1_1storage_1_1_file_input_stream.html",tooltip="A Stream way to read primitive data."];
+  Node6 -> Node7 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia::storage::ParcelFileDescriptor::AutoCloseInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d28/classgaia_1_1storage_1_1_parcel_file_descriptor_1_1_auto_close_input_stream.html",tooltip="An InputStream you can create on a ParcelFileDescriptor, which will take care of calling ParcelFileDe..."];
+}

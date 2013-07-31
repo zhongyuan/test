@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::IRatingBarChangeListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d3c/classgaia_1_1ui_1_1_i_rating_bar_change_listener.html",tooltip="A callback that notifies clients when the rating has been changed."];
+}

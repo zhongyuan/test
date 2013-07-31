@@ -1,0 +1,31 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::graphics::Drawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d4b/classgaia_1_1graphics_1_1_drawer.html",tooltip="A Drawer is a general abstraction for &quot;an object used to draw something.&quot; Most often you will deal wi..."];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::graphics::BitmapDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d3e/classgaia_1_1graphics_1_1_bitmap_drawer.html",tooltip="A Drawer that wraps a bitmap and can be tiled, stretched, or aligned."];
+  Node2 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::graphics::BitmapDrawerPlus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d44/classgaia_1_1graphics_1_1_bitmap_drawer_plus.html",tooltip="A BitmapDrawerPlus only can be defined in an XML file with the &lt;bitmap-plus&gt; element."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::graphics::ColorDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/dcd/classgaia_1_1graphics_1_1_color_drawer.html",tooltip="A specialized Drawer that fills the Canvas with a specified color."];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::graphics::DrawerContainer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/da6/classgaia_1_1graphics_1_1_drawer_container.html",tooltip="A helper class that contains several Drawers and selects which one to use."];
+  Node5 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia::graphics::AnimationDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d9c/classgaia_1_1graphics_1_1_animation_drawer.html",tooltip="An object used to create frame-by-frame animations, defined by a series of Drawer objects..."];
+  Node5 -> Node7 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia::graphics::LevelListDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/dde/classgaia_1_1graphics_1_1_level_list_drawer.html",tooltip="A resource that manages a number of alternate Drawers, each assigned a maximum numerical value..."];
+  Node5 -> Node8 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gaia::graphics::StateListDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dbc/classgaia_1_1graphics_1_1_state_list_drawer.html",tooltip="Lets you assign a number of graphic images to a single Drawer and swap out the visible item by a stri..."];
+  Node1 -> Node9 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="gaia::graphics::GradientDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/df9/classgaia_1_1graphics_1_1_gradient_drawer.html",tooltip="A Drawer with a color gradient for buttons, backgrounds, etc."];
+  Node1 -> Node10 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="gaia::graphics::LayerDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d24/classgaia_1_1graphics_1_1_layer_drawer.html",tooltip="A Drawer that manages an array of other Drawers."];
+  Node1 -> Node11 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="gaia::graphics::NinePatchDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/dd7/classgaia_1_1graphics_1_1_nine_patch_drawer.html",tooltip="A resizeable bitmap, with stretchable areas that you define."];
+  Node11 -> Node12 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="gaia::graphics::NinePatchDrawerPlus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d08/classgaia_1_1graphics_1_1_nine_patch_drawer_plus.html",tooltip="A NinePatchDrawerPlus only can be defined in an XML file with the &lt;bitmap-plus&gt; element."];
+  Node1 -> Node13 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="gaia::graphics::RotateDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d00/classgaia_1_1graphics_1_1_rotate_drawer.html",tooltip="A Drawer that can rotate another Drawer based on the current level value."];
+}

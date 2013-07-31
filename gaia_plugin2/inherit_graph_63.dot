@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::base::trait_trivial_move\< key_value_pair_t\< K, V \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d3f/structgaia_1_1base_1_1trait__trivial__move_3_01key__value__pair__t_3_01_k_00_01_v_01_4_01_4.html"];
+}

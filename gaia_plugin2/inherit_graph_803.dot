@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::usb::UsbDeviceConnection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d8d/classgaia_1_1usb_1_1_usb_device_connection.html",tooltip="This class is used for sending and receiving data and control messages to a USB device."];
+}

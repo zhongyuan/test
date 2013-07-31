@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::system::SensorUtility",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d4e/classgaia_1_1system_1_1_sensor_utility.html",tooltip="In this class, there are many help function to process raw data from sensor."];
+}

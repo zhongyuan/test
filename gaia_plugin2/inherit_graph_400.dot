@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::core::RunningDelegationInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d7a/classgaia_1_1core_1_1_running_delegation_info.html",tooltip="Information you can retrieve about a particular Delegation that is currently running in the system..."];
+}

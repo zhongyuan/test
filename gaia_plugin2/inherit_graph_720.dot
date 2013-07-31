@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::text::TextWatcher",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d07/classgaia_1_1text_1_1_text_watcher.html",tooltip="When an object of a type is attached to an Editable, its methods will be called when the text is chan..."];
+}

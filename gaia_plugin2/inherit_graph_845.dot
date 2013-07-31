@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::webkit::WebHistoryItem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/dc6/classgaia_1_1webkit_1_1_web_history_item.html",tooltip="A convenience class for accessing fields in an entry in the back/forward list of a WebView..."];
+}

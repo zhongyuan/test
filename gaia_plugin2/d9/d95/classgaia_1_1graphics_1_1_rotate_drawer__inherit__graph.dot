@@ -1,0 +1,8 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="gaia::graphics::RotateDrawer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::graphics::Drawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d4b/classgaia_1_1graphics_1_1_drawer.html",tooltip="A Drawer is a general abstraction for &quot;an object used to draw something.&quot; Most often you will deal wi..."];
+}

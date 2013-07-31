@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::service::ExtractedText",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d56/classgaia_1_1service_1_1_extracted_text.html",tooltip="Information about text that has been extracted for use by an input method."];
+}

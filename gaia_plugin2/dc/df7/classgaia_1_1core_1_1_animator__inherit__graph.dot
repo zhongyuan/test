@@ -1,0 +1,12 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="gaia::core::Animator",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::core::AnimatorSet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/dff/classgaia_1_1core_1_1_animator_set.html",tooltip="This class plays a set of Animator objects in the specified order."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::core::ValueAnimator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/ddd/classgaia_1_1core_1_1_value_animator.html",tooltip="This class provides a simple timing engine for running animations which calculate animated values and..."];
+  Node3 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::core::ObjectAnimator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/dc3/classgaia_1_1core_1_1_object_animator.html",tooltip="This subclass of ValueAnimator provides support for animating properties on target objects..."];
+}

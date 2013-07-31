@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::connectivity::BtProfileServiceListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d97/classgaia_1_1connectivity_1_1_bt_profile_service_listener.html",tooltip="An abstract class for notifying BluetoothProfile IPC clients when they have been connected or disconn..."];
+}

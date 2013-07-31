@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::service::IMEKeyboardKey",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d99/classgaia_1_1service_1_1_i_m_e_keyboard_key.html",tooltip="Class for describing the position and characteristics of a single key in the keyboard(IMEKeyboard)."];
+}

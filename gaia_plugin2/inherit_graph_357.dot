@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::core::OnScaleGestureListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d49/classgaia_1_1core_1_1_on_scale_gesture_listener.html",tooltip="The listener for receiving notifications when gestures occur."];
+}

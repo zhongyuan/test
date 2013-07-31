@@ -1,0 +1,10 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="gaia::storage::FileInputStream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::storage::InputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d26/classgaia_1_1storage_1_1_input_stream.html"];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::storage::ParcelFileDescriptor::AutoCloseInputStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d28/classgaia_1_1storage_1_1_parcel_file_descriptor_1_1_auto_close_input_stream.html",tooltip="An InputStream you can create on a ParcelFileDescriptor, which will take care of calling ParcelFileDe..."];
+}

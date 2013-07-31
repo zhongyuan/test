@@ -1,0 +1,22 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/gpdbuildserver3/Jenkins_Workspace/workspace/BuildGaia2SDKLauncher/sdk/include/gaia/graphics/NinePatchDrawer.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia/graphics/Drawer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/dc0/_drawer_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia/base/gmacros.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dd0/gmacros_8h.html"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia/graphics/PorterDuff.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/df6/_porter_duff_8h.html"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia/base/HashMap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d0b/_hash_map_8h.html"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia/base/HashFunc.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d83/_hash_func_8h.html"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="sys/types.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gaia/base/HashMapImpl.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d11/_hash_map_impl_8h.html"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

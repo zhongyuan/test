@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<toc label="Getting Started With COS" topic="html/Getting Started With COS.html">
+
+  <topic href="html/Getting Started With COS/Building your first app.html" label="Building your first app">
+    <topic href="html/Getting Started With COS/Building your first app/Create a COS project in Linux.html" label="Create a COS project in Linux"/>
+    <topic href="html/Getting Started With COS/Building your first app/Create a COS project in Windows.html" label="Create a COS project in Windows"/>
+  </topic>
+
+  <topic href="html/Getting Started With COS/COS Building.html" label="COS Building">
+    <topic href="html/Getting Started With COS/COS Building/Building COS step by step.html" label="Building COS step by step"/>
+  </topic>
+
+  <topic href="html/Getting Started With COS/Overview.html" label="Overview">
+    <topic href="html/Getting Started With COS/Overview/Application Types.html" label="Application Types"/>
+    <topic href="html/Getting Started With COS/Overview/Architecture.html" label="Architecture"/>
+    <topic href="html/Getting Started With COS/Overview/Core data type.html" label="Core data type"/>
+    <topic href="html/Getting Started With COS/Overview/SDK Memory ownership define.html" label="SDK Memory ownership define"/>
+    <topic href="html/Getting Started With COS/Overview/Your First COS Application.html" label="Your First COS Application"/>
+  </topic>
+
+  <topic href="html/Getting Started With COS/Setup Environment.html" label="Setup Environment">
+
+    <topic href="html/Getting Started With COS/Setup Environment/Architecture.html" label="Architecture"/>
+    <topic href="html/Getting Started With COS/Setup Environment/IDE installation.html" label="IDE installation">
+      <topic href="html/Getting Started With COS/Setup Environment/IDE installation/Install step by step.html" label="Install step by step"/>
+      <topic href="html/Getting Started With COS/Setup Environment/IDE installation/Requirement.html" label="Requirement"/>
+    </topic>
+    <topic href="html/Getting Started With COS/Setup Environment/SDK installation.html" label="SDK installation">
+      <topic href="html/Getting Started With COS/Setup Environment/SDK installation/Requirement.html" label="Requirement"/>
+    </topic>
+    
+  </topic>
+
+</toc>

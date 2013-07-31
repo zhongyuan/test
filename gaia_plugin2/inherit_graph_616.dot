@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::security::X500Principal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dd7/classgaia_1_1security_1_1_x500_principal.html",tooltip="The class describes a X509 name for X509Certificate."];
+}

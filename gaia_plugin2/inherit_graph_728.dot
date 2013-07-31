@@ -1,0 +1,27 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::ControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d2f/classgaia_1_1ui_1_1_controller_params.html",tooltip="ControllerParams are used by widgets to tell their parents how they want to be laid out..."];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::ui::AbsoluteControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/df5/classgaia_1_1ui_1_1_absolute_controller_params.html",tooltip="AbsoluteControllerParams are used by widgets to tell their AbsoluteController how they want to be lai..."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::ui::ListItemControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dec/classgaia_1_1ui_1_1_list_item_controller_params.html",tooltip="ListItemControllerParams are used by widgets to tell their parents how they want to be laid out..."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::ui::MarginControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dd1/classgaia_1_1ui_1_1_margin_controller_params.html",tooltip="Per-child layout information for layouts that support margins."];
+  Node4 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::ui::ActionBarControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dcf/classgaia_1_1ui_1_1_action_bar_controller_params.html",tooltip="ActionBarControllerParams are used by widgets to tell their RadioGroupController how they want to be ..."];
+  Node4 -> Node6 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia::ui::CellControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d6f/classgaia_1_1ui_1_1_cell_controller_params.html"];
+  Node4 -> Node7 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia::ui::FrameControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d11/classgaia_1_1ui_1_1_frame_controller_params.html",tooltip="FrameControllerParams are used by widgets to tell their FrameController how they want to be laid out..."];
+  Node4 -> Node8 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gaia::ui::GridControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/dfe/classgaia_1_1ui_1_1_grid_controller_params.html",tooltip="Layout information associated with each of the children of a GridLayout."];
+  Node4 -> Node9 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="gaia::ui::LinearControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/dee/classgaia_1_1ui_1_1_linear_controller_params.html",tooltip="LinearControllerParams are used by widgets to tell their LinearLayout how they want to be laid out..."];
+  Node9 -> Node10 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="gaia::ui::RadioGroupControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d81/classgaia_1_1ui_1_1_radio_group_controller_params.html",tooltip="RadioGroupControllerParams are used by widgets to tell their RadioGroupController how they want to be..."];
+  Node4 -> Node11 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="gaia::ui::RelativeControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d61/classgaia_1_1ui_1_1_relative_controller_params.html",tooltip="RelativeControllerParams are used by widgets to tell their RelativeController how they want to be lai..."];
+}

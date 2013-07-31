@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::graphics::DrawerContainer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::graphics::Drawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d4b/classgaia_1_1graphics_1_1_drawer.html",tooltip="A Drawer is a general abstraction for &quot;an object used to draw something.&quot; Most often you will deal wi..."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::graphics::AnimationDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d9c/classgaia_1_1graphics_1_1_animation_drawer.html",tooltip="An object used to create frame-by-frame animations, defined by a series of Drawer objects..."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia::graphics::LevelListDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/dde/classgaia_1_1graphics_1_1_level_list_drawer.html",tooltip="A resource that manages a number of alternate Drawers, each assigned a maximum numerical value..."];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::graphics::StateListDrawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dbc/classgaia_1_1graphics_1_1_state_list_drawer.html",tooltip="Lets you assign a number of graphic images to a single Drawer and swap out the visible item by a stri..."];
+}

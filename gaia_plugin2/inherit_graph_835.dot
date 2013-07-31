@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::webkit::MimeTypeMap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d3c/classgaia_1_1webkit_1_1_mime_type_map.html",tooltip="Two-way map that maps MIME-types to file extensions and vice versa."];
+}

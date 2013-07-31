@@ -1,0 +1,24 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/gpdbuildserver3/Jenkins_Workspace/workspace/BuildGaia2SDKLauncher/sdk/include/gaia/text/style/AbsoluteSizeSpan.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia/text/style/MetricAffectingSpan.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d5c/_metric_affecting_span_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia/text/style/CharacterStyle.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/dc5/_character_style_8h.html"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gaia/text/style/ObjectStyle.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d81/_object_style_8h.html"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="stdint.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gaia/base/gmacros.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dd0/gmacros_8h.html"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia/text/TextPaint.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d4f/_text_paint_8h.html"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gaia/graphics/Paint.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d7d/_paint_8h.html"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="gaia/base/CharSequence.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d97/_char_sequence_8h.html"];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,22 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::net::SSLInfo",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpCertificate",fontname="Helvetica"];
+  Node2 [label="gaia::security::X509Certificate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/da9/classgaia_1_1security_1_1_x509_certificate.html",tooltip="The class describes a X509 certificate , it is inherit base class Certificate, we can use it constrac..."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::security::Certificate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/dd9/classgaia_1_1security_1_1_certificate.html",tooltip="The class describes a certificate , it is a abstract base class, we can not use it constractor a obje..."];
+  Node4 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="_subjectName\n_issuerName",fontname="Helvetica"];
+  Node4 [label="gaia::base::String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/ddb/classgaia_1_1base_1_1_string.html",tooltip="A String is represented by array of UTF-16 values, such that Unicode supplementary characters (code p..."];
+  Node5 -> Node4 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gaia::base::CharSequence",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d0f/classgaia_1_1base_1_1_char_sequence.html",tooltip="This interface represents an ordered set of characters and defines the methods to probe them..."];
+  Node6 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mPublishKeyHash",fontname="Helvetica"];
+  Node6 [label="gaia::base::Array\< SHA1FingerPrint \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/db0/classgaia_1_1base_1_1_array.html"];
+  Node7 -> Node6 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gaia::base::ArrayImpl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d80/classgaia_1_1base_1_1_array_impl.html",tooltip="Implements array data structure and its operation methods."];
+  Node8 -> Node6 [dir=back,color="orange",fontsize="10",style="dashed",label="\< SHA1FingerPrint \>",fontname="Helvetica"];
+  Node8 [label="gaia::base::Array\< TYPE \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/db0/classgaia_1_1base_1_1_array.html",tooltip="Implements array to replace C-style array."];
+  Node7 -> Node8 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,22 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::security::KeyStoreSecurity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpCertsIgnoresCase\nmpKeysIgnoresCase",fontname="Helvetica"];
+  Node2 [label="gaia::base::HashMap\< gaia::base::String, gaia::base::String \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d57/classgaia_1_1base_1_1_hash_map.html"];
+  Node3 -> Node2 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::base::HashMapImpl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d6e/classgaia_1_1base_1_1_hash_map_impl.html"];
+  Node4 -> Node2 [dir=back,color="orange",fontsize="10",style="dashed",label="\< gaia::base::String, gaia::base::String \>",fontname="Helvetica"];
+  Node4 [label="gaia::base::HashMap\< KEY, VAL \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d57/classgaia_1_1base_1_1_hash_map.html",tooltip="Implements hashmap data structure and operation functions."];
+  Node3 -> Node4 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpTrustedCertificateStore",fontname="Helvetica"];
+  Node5 [label="gaia::security::TrustedCertificateStore",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/da3/classgaia_1_1security_1_1_trusted_certificate_store.html"];
+  Node6 -> Node5 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpDeletedDir\nmpAddedDir\nmpSystemDir",fontname="Helvetica"];
+  Node6 [label="gaia::storage::File",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d31/classgaia_1_1storage_1_1_file.html",tooltip="An &quot;abstract&quot; representation of a file system entity identified by a pathname."];
+  Node7 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="mpKeys\nmpChainCerts\nmpCerts",fontname="Helvetica"];
+  Node7 [label="gaia::base::HashMap\< gaia::base::String, ByteBuffer * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d57/classgaia_1_1base_1_1_hash_map.html"];
+  Node3 -> Node7 [dir=back,color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node7 [dir=back,color="orange",fontsize="10",style="dashed",label="\< gaia::base::String, ByteBuffer * \>",fontname="Helvetica"];
+}

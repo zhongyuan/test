@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::IOnPreferenceChangeListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/db8/classgaia_1_1ui_1_1_i_on_preference_change_listener.html",tooltip="Interface definition for a callback to be invoked when the value of this Preference has been changed ..."];
+}

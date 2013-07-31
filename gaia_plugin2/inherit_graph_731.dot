@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::ui::FilterQueryProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/de5/classgaia_1_1ui_1_1_filter_query_provider.html",tooltip="This class can be used by external clients of CursorListItemProvider to define how the content of the..."];
+}

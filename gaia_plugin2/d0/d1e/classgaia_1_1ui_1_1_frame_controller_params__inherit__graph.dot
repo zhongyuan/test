@@ -1,0 +1,10 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="gaia::ui::FrameControllerParams",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gaia::ui::MarginControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dd1/classgaia_1_1ui_1_1_margin_controller_params.html",tooltip="Per-child layout information for layouts that support margins."];
+  Node3 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gaia::ui::ControllerParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d2f/classgaia_1_1ui_1_1_controller_params.html",tooltip="ControllerParams are used by widgets to tell their parents how they want to be laid out..."];
+}

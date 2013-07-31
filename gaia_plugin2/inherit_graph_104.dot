@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="gaia::connectivity::ScanResult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d0c/classgaia_1_1connectivity_1_1_scan_result.html",tooltip="Describes information about a detected access point."];
+}
