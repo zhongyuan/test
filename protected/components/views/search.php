@@ -117,5 +117,14 @@
 
 <form class="form-wrapper cf">
 	<input type="text" placeholder="Search here..." required>
-	<button type="submit">Search</button>
+	<button type="submit" id="submit">Search</button>
 </form>
+
+
+<script>
+$(function(){
+    $('#submit').click(function(){
+        
+    });
+});
+</script>

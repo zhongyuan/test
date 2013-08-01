@@ -6,92 +6,106 @@
  */
 $this->widget('SearchWidget');
 ?>
-<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/default.css"  />-->
+<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.jscrollpane.css" type="text/css">
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.mousewheel.js"></script>
 <style>
-#body-content {
-margin: 0;
-}
-.wrap{
-    width: 100%;
-    min-width: 600px;
-    clear: both;
-}
-div{
-    display: block;
-}
-#devdoc-nav.fixed {
-position: fixed;
-margin: 0;
-top: 20px;
-}
-#api-nav-header {
-height: 19px;
-font-size: 14px;
-padding: 8px 0;
-margin: 0;
-border-bottom: 1px solid #CCC;
-background: #e9e9e9;
-background: rgba(0, 0, 0, 0.05);
-}
-#api-level-toggle {
-float: right;
-padding: 0 5px;
-}
-#api-level-toggle label {
-margin: 0;
-vertical-align: top;
-line-height: 19px;
-font-size: 13px;
-height: 19px;
-}
-#api-nav-title {
-padding: 0 5px;
-white-space: nowrap;
-}
-#nav-tree{
-    display: none;
-    overflow: hidden;
-    padding: 0px;
-    width: 0px;
-}
-.ui-resizable {
-position: relative;
-}
+    .ref_body{
+        width: 100%;
+    }
+    .leftpar{
+        display: inline-block;
+        width: 24%;
+        vertical-align: top;
+    }
+    .rightpar{
+        display: inline-block;
+        width: 75%;
+    }
+    #leftpar-header {
+        height: 19px;
+        font-size: 14px;
+        padding: 8px 0;
+        margin: 0;
+        border-bottom: 1px solid #CCC;
+        background: rgba(242, 242, 242, 0.57)
+    }
+    .left_content{
+        height: auto;
+        max-height: 400px;
+        color: #222;
+        font:12px/19px Roboto, sans-serif;
+        outline: none;
+        background-color: rgba(221, 221, 221, 0.04);
+        overflow: auto;
+    }
+    .title{
+        padding: 0 5px;
+    }
+    .active{
+        font-weight: 500;
+        color: rgb(255, 173, 47);
+        background-color: rgba(242, 242, 242, 0.57);
+    }
+
 </style>
-<div class="wrap clearfix" id="body-content">
-    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
-      <div id="devdoc-nav" class="fixed" style="width: 280px; left: 20px;">
+<script>
+    var demoIframe;
+    $(function(){
+        demoIframe = $("#testIframe");
+        demoIframe.bind("load", loadReady);
+        $('.child_node:first').addClass('active');
 
-            <div id="api-nav-header">
-                <div id="api-level-toggle">
-                  <label for="apiLevelCheckbox" class="disabled">API level: </label>
+        $('.child_node').click(function(){
+            var server = "<?php echo Yii::app()->request->hostInfo; ?>"+'/gaia_plugin2/';
+            var link = $(this).attr('val');
+            $('.child_node').removeClass('active');
+            $(this).addClass('active');
+            demoIframe.attr("src", server+link);
+            return false;
+        });
+        return false;
+    });
+	function loadReady() {
+		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
+		htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
+		maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
+		h = demoIframe.height() >= maxH ? minH:maxH ;
+		if (h < 530) h = 530;
+		demoIframe.height(h);
+	}
+</script>
 
-                </div><!-- end toggle -->
-                <div id="api-nav-title">Android APIs</div>
-            </div>
+<div class="ref_body">
+    <div class="leftpar">
+        <div id ="leftpar-header">
+            <div class="title">COS APIs</div>
+        </div>
+        <div class="left_content">
+            <ul >
+                <?php foreach($cl_child as $child): ?>
+                <a href="#_self"><li class="child_node" val="<?php echo $child['path']; ?>"><?php echo $child['name']; ?></li></a>
+                <?php endforeach;?>
+            </ul>
+        </div>
 
-          <!-- 列表 -->
-          <div id="swapper" style="height: 507px;">
-              <div id="nav-panels">
-                    <div id="resize-packages-nav" style="height: 288px; top: 0px; left: 0px; width: 280px;" class="ui-resizable">
-                        <div id="packages-nav" class="scroll-pane jspScrollable" style="overflow: hidden; padding: 0px; height: 288px; width: 280px;">
-                            <div class="jspContainer" style="width: 280px; height: 288px;">
-                                <div class="jspPane" style="padding: 0px; top: -3407px; width: 276px;">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-              </div>
-              <div id="nav-tree"  class="scroll-pane">
-
-              </div>
-          </div>
-
-      </div>
     </div>
 
-
+    <div class="rightpar">
+        <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=600px SRC="<?php echo Yii::app()->request->hostInfo; ?>/gaia_plugin2/d5/d86/class_____gaia_call_log____.html">
+        </IFRAME>
+    </div>
 </div>
+
+<script>
+    $(function(){
+        var settings = {
+            showArrows: true,
+            verticalDragMinHeight: 20,
+            verticalDragMaxHeight: 20,
+            horizontalDragMinWidth: 30,
+            horizontalDragMaxWidth: 30
+        };
+        $('.left_content').jScrollPane(settings);
+    });
+</script>

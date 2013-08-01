@@ -10,6 +10,7 @@ class MCApi {
     const developer = 2;
     const reference = 3;
     const tools = 4;
+    const classList = 6;
 
     public $id;
     public static $limit = 0;
@@ -88,6 +89,15 @@ class MCApi {
         return $cmd?$cmd:0;
     }
 
+    //获取class list 的子列表
+    public function getChildById()
+    {
+        $sql = "select id,name,path from api where parent_id = :parent_id and status = 1";
+        $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
+            ':parent_id' => $this->id,
+        ));
+        return $cmd?$cmd:array();
+    }
 }
 
 ?>

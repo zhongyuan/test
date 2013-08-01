@@ -51,7 +51,7 @@ class DeveloperController extends Controller
      */
     public function actionEditGuide()
     {
-        
+
     }
 
     /*
@@ -59,7 +59,12 @@ class DeveloperController extends Controller
      */
     public function actionReference()
     {
-        $this->render('reference');
+        //拿数据
+        $class_list = new MCApi(MCApi::classList);
+        $cl_child = $class_list->getChildById();
+        $this->render('reference',array(
+            'cl_child' => $cl_child,
+        ));
     }
 
     /*
