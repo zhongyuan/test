@@ -1,0 +1,7 @@
+#Support Online Web Applications#
+
+COS requires web applications are packaged and installed locally. This ensures web applications can run offline and launch quickly, delivering the best use experiences. However, online web applications also have some advantages, such as easy to update.
+
+It is straightforward to support online web applications: just use a iframe element with a URL pointed to your online web page in the start page in the package. This way doesn't compromise the capability and security provided by Web Runtime.
+
+You can take advantage of HTML5 application cache technology to make your applications cached locally, so users can still open your applications when no network connection is available.

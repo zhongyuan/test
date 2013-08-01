@@ -1,0 +1,94 @@
+<div>
+<a href = "../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>UI construction and manipulationa</h1>
+<h2>Managing UI controls</h2>
+<p>In a gaia application, the user interface is controled by Scene. Scene contain WidgetController such as LinearController, AbsoluteController or ScrollWidget ...etc. WidgetController contains widget objects to dispaly user interface.</p>
+<p align="center"><img src="UI_construction_and_manipulation_Overview.png" width="400"/></p>
+
+<p>Widget objects are the basic units of user interface expression on the gaia platform. The Widget class serves as the base for subclasses called "Widgets," which offer fully implemented UI objects, like text fields and buttons. The WidgetController class serves as the base for subclasses called "controller," which offer different kinds of layout architecture, like linear and absolute.</p>
+<p>A Widget object is a data structure whose properties store the controller parameters and content for a specific rectangular area of the screen. A Widget object handles its own measurement, layout, drawing, focus change, scrolling, and key/gesture interactions for the rectangular area of the screen in which it resides. As an object in the user interface, a Widget is also a point of interaction for the user and the receiver of the interaction events.</p>
+<h2>How to define UI</h2>
+<p>This section describes some of the more common types of layout objects to use in your applications. Like all layouts, they are subclasses of WidgetController. Gaia provides common type include LinearController and AbsoluteController.
+To learn about some of the different kinds of WidgetController used for a layout, read <a href="UI construction and manipulation/Layout.html">Layout Controller Objects</a>.</p>
+<h2>UI ToolKits</h2>
+<p>Gaia is provided many types of Widgets and WidgetControllers, each of which is a descendant of the Widget class. 
+<table>
+<tr><th>Component</th><th>Descripute</th></tr>
+<tr>
+  <td><a href="UI construction and manipulation/Layout.html#LinearController">LinearController</a></td>
+  <td>LinearController containers Widgets in a linear direction, either vertically or horizontally.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Layout.html#AbsoluteController">AbsoluteController</a></td>
+  <td>AbsoluteController clets you specify exact locations (x/y coordinates) of its children.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Layout.html#ScrollWidget">ScrollWidget</a></td>
+  <td>A vertically scrolling column of elements.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/TextWidget.html#TextWidget">TextWidget</a></td>
+  <td>Displays text to the user.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/TextWidget.html#EditWidget">EditWidget</a></td>
+  <td>When the user presses an EditWidget, a software keypad is displayed for entering input.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Button.html">Button</a></a></td>
+  <td>Represents a push-button widget. Push-buttons can be pressed, or clicked, by the user to perform an action.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Button.html#CheckBox">CheckBox</a></a></td>
+  <td>A checkbox is a specific type of two-states button that can be either checked or unchecked.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Button.html#RadioButton">RadioButton</a></a></td>
+  <td>A radio button is a two-states button that can be either checked or unchecked.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Button.html#ToggleButton">ToggleButton</a></a></td>
+  <td>A toggle button displays checked/unchecked states and is default accompanied with the text "ON" or "OFF".</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/ImageWidget.html#ImageWidget">ImageWidget</a></td>
+  <td>Displays an arbitrary image, such as an icon.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/ImageWidget.html#ImageButton">ImageButton</a></td>
+  <td>Displays a button with an image (instead of text) that can be pressed or clicked by the user.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Slider.html#ProgressBar">ProgressBar</a></td>
+  <td>A progress bar displays a bar to the user representing how far the operation has progressed. In the indeterminate mode, a progress bar shows a cyclic animation without an indication of progress.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Slider.html#SeekBar">SeekBar</a></td>
+  <td>A SeekBar has a draggable thumb. The user can touch the thumb and drag left or right to set the current progress level.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/Slider.html#RatingBar">RatingBar</a></td>
+  <td>A RatingBar shows a rating in stars. The user can touch or drag it to set its rating.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/ListWidget.html">ListWidget</a></td>
+  <td>Displays a scrolling single column list.</td>
+</tr>
+<tr>
+  <td><a href="UI construction and manipulation/GridWidget.html">GridWidget</a></td>
+  <td>Displays a scrolling grid of m columns and n rows.</td>
+</tr>
+</table></p>
+<h2>Advanced Topics</h2>
+<p>Once you've grappled the fundamentals of creating a user interface, you can explore some advanced features for creating a more complex application interface.</p>
+<ul>
+<li>
+<p><a href="Widget customization.html">Customize Widget</a><br />
+Building your UI, based on the fundamental layout classes: Widget and WidgetController. To start with, the platform includes a variety of prebuilt Widget and WidgetController subclasses.</p>
+</li>
+<li>
+<p>Adapters<br />
+Sometimes you'll want to populate a WidgetController with some information that can't be hard-coded, instead, you want to bind your widget to an external source of data. To do this, you use an AdapterWidget as your WidgetController and each child Widget is initialized and populated with data from the Adapter.</p>
+</li>
+</ul>

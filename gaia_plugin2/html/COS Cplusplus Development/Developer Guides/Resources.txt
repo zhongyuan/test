@@ -1,0 +1,2620 @@
+# Application Resources 
+
+Developer should externalize resources such as images and strings from your application code, so that developer can maintain them independently.
+Developer can provide alternative resources that support specific device configurations such as different languages or screen sizes.
+Resources framework check system compatibility and provide resource files properly.
+
+<p>Developer should place each type of resource in a specific subdirectory of your project's <code>res/</code> directory
+For example, here is the file hierarchy</p>
+
+<pre><code>
+ProjectName/
+    res/
+        drawer/
+            icon.png
+        layout/
+            main.xml
+        value/
+            strings.xml
+    assets/
+    src/
+        MyPage.h
+        MyPage.cpp
+    Gaia.xml
+</code></pre>
+
+<p>The <code>res/</code> directory contains all the resources (in subdirectories): an image resource, a layout resources, and a string resource file. The resource directory names are important and are described in
+belowed table:</p>
+
+<table border="1">
+    <tr>
+        <th scope="col">Directory</th>
+        <th scope="col">Resource Type</th>
+    </tr>
+
+    <tr>
+      <td><code>animator/</code></td>
+      <td>XML files that define <a href="/Animation/PropertyAnimation.html">property animations</a>.</td>
+    </tr>
+
+    <tr>
+        <td><code>anim/</code></td>
+        <td>XML files that define <a href="/Animation/WidgetAnimation.html">Widget animations</a>.
+        (Property animations can also be saved in this directory, but the <code>animator/</code> directory is
+        preferred for property animations to distinguish between the two types.)</td>
+    </tr>
+
+    <tr>
+        <td><code>color/</code></td>
+        <td>XML files that define a state list of colors. See <a href="#ColorStateList">ColorStateList</a></td>
+    </tr>
+
+    <tr>
+        <td><code>drawer/</code></td>
+        <td><p>Bitmap files (<code>.png</code>, <code>.9.png</code>, <code>.jpg</code>, <code>.gif</code>) or XML files that are compiled into the following drawer resource subtypes:</p>
+            <ul>
+                <li>Bitmap files</li>
+                <li>Nine-Patches (re-sizable bitmaps)</li>
+                <li>State lists</li>
+                <li>Shapes</li>
+                <li>Animation drawers</li>
+                <li>Other drawers</li>
+            </ul>
+            <p>See <a href="#Drawer">Drawer Resources</a>.</p>
+        </td>
+    </tr>
+
+    <tr>
+        <td><code>layout/</code></td>
+        <td>XML files that define a user interface layout.
+            See <a href="#Layout">Layout Resource</a>.</td>
+    </tr>
+
+    <tr>
+        <td><code>raw/</code></td>
+        <td><p>Arbitrary files to save in their raw form. To open these
+        resources with a raw <code><a
+        href="/reference/java/io/InputStream.html">InputStream</a></code>,
+        call <code><a href="/reference/gaia/content/res/Resources.html#openRawResource(int)">Resources::openRawResource()</a></code>
+        with the resource ID, which is <code>R::raw::<em>filename</em></code>.</p>
+            <p>However, if you need access to original file names and file hierarchy, you might consider saving some resources in the <code>assets/</code> directory (instead of <code>res/raw/</code>). Files in <code>assets/</code> are not given a resource ID, so you can read them only using <code><a href="/reference/gaia/content/res/AssetManager.html">AssetManager</a></code>.</p></td>
+    </tr>
+
+    <tr>
+        <td><code>values/</code></td>
+        <td><p>XML files that contain simple values, such as strings, integers, and colors.</p>
+            <p>Whereas XML resource files in other <code>res/</code> subdirectories define a single resource based on the XML filename, files in the <code>values/</code> directory describe multiple resources. For a file in this directory, each child of the <code>&lt;resources&gt;</code> element defines a single resource. For example, a <code>&lt;string&gt;</code> element creates an <code>R::string</code> resource and a <code>&lt;color&gt;</code> element creates an <code>R::color</code> resource.</p>
+            <p>Because each resource is defined with its own XML element, you can name the file whatever you want and place different resource types in one file. However, for clarity, you might want to place unique resource types in different files. For example, here are some filename conventions for resources you can create in this directory:</p>
+            <ul>
+                <li>arrays.xml for resource arrays (<a href="#TypedArray">typed arrays</a>).</li>
+                <li>colors.xml for <a href="#Color">color values</a></li>
+                <li>dimens.xml for <a href="#Dimension">dimension values</a>.</li>
+                <li>strings.xml for <a href="#Strings">string values</a>.</li>
+            </ul>
+            <p>See <a href="#Values">Resource Types-Value</a>.</p>
+        </td>
+    </tr>
+
+    <tr>
+        <td><code>xml/</code></td>
+        <td>Arbitrary XML files that can be read at runtime by calling <code><a href="/reference/gaia/content/res/Resources.html#getXml(int)">Resources.getXML()</a></code>. Various XML configuration files must be saved here, such as a <a href="/guide/topics/search/searchable-config.html">searchable configuration</a>. <!-- or preferences configuration. --></td>
+    </tr>
+
+</table>
+
+<p class="caution"><strong>Caution:</strong> Never save resource files
+directly inside the <code>res/</code> directory&mdash;it will cause a compiler error.</p>
+
+<p>The resources that you save in the subdirectories defined in table 1 are your "default"
+resources. That is, these resources define the default design and content for your application.
+However, different types of gaia-powered devices might call for different types of resources.
+For example, if a device has a larger than normal screen, then you should provide
+different layout resources that take advantage of the extra screen space. Or, if a device has a
+different language setting, then you should provide different string resources that translate the
+text in your user interface. To provide these different resources for different device
+configurations, you need to provide alternative resources, in addition to your default resources.</p>
+
+# <a id ="Types">Resorce Types</a> 
+<p>Each of the topics in this section describe the usage, format and syntax for a certain type
+of application resource that you can provide in your resources directory (<code>res/</code>).</p>
+
+<p>Here's a brief summary of each resource type:</p>
+
+<dl>
+    <dt><a href="#Animation">Animation Resources</a></dt>
+        <dd>Define pre-determined animations.<br/>
+        Widget animations are saved in <code>res/anim/</code> and accessed from the <code>R::anim</code> class.<br/>
+        Drawer animations are saved in <code>res/drawable/</code> and accessed from the <code>R::drawer</code> class.</dd>
+    <dt><a href="#ColorStateList">Color State List Resource</a></dt>
+        <dd>Define a color resources that changes based on the Widget state.<br/>
+        Saved in <code>res/color/</code> and accessed from the <code>R::color</code> class.</dd>
+    <dt><a href="#Drawer">Drawer Resources</a></dt>
+        <dd>Define various graphics with bitmaps or XML.<br/>
+        Saved in <code>res/drawable/</code> and accessed from the <code>R::drawer</code> class.</dd>
+    <dt><a href="#Layout">Layout Resource</a></dt>
+        <dd>Define the layout for your application UI.<br/>
+        Saved in <code>res/layout/</code> and accessed from the <code>R::layout</code> class.</dd>
+    <dt><a href="#Strings">String Resources</a></dt>
+        <dd>Define strings, string arrays, and plurals (and include string formatting and styling).<br/>
+        Saved in <code>res/values/</code> and accessed from the <code>R::string</code>, <code>R::array</code>,
+        and <code>R::plurals</code> classes.</dd>
+    <dt><a href="#MoreTypes">More Resource Types</a></dt>
+        <dd>Define values such as booleans, integers, dimensions, colors, and other arrays.<br/>
+        Saved in <code>res/values/</code> but each accessed from unique <code>R</code> sub-classes (such as <code>R::bool</code>,
+        <code>R::integer</code>, <code>R::dimen</code>, etc.).</dd>
+</dl>
+
+## <a id="Animation">Resource Types - Aniamtion</a> 
+<p>An animation resource can define one of three types of animations:</p>
+
+<dl>
+    <dt><a href="/Animation/PropertyAnimation.html">Property Animation</a></dt>
+    <dd>Creates an animation by modifying an object's property values over a set period
+    of time with an <code><a href="/Animator.html">Animator</a></code>.</dd>
+    <p>The other two types of animations that you can do with the widget animation framework:</p>
+    <dd>
+    <ul>
+        <li><a href="/Animation/WidgetAnimation.html">Widget animation</a>: Creates an animation by performing a series of transformations on a single image
+        with an <code><a href="/Animation.html">Animation</a></code></li>
+        <li><a href="/Animation/DrawerAnimation.html">Drawer animation</a>: or creates an animation by showing a sequence of images in order
+        with an <code><a href="/AnimationDrawer.html">AnimationDrawer</a></code>.</li>
+    </ul>
+    </dd>
+</dl>
+
+<p>For more information, please refer to the document of <a href="/Animation.html">Animation</a>.</p>
+
+## <a id="ColorStateList">Resource Types - Color State List</a> 
+<p>A <code>ColorStateList</code> is an object you can define in XML
+that you can apply as a color, but will actually change colors, depending on
+the state of the <code>Widget</code> object to which it is applied. For example, a
+<code><a href="/UI construction and manipulation/Button.html#Button">Button</a></code>
+widget can exist in one of several different states (pressed, focused,
+or niether) and, using a color state list, you can provide a different color
+during each state.</p>
+
+<p>You can describe the state list in an XML file. Each color is defined in an
+<code>&lt;item></code> element inside a single <code>&lt;selector></code>
+element. Each <code>&lt;item></code>
+uses various attributes to describe the state in which it should be used.</p>
+
+<p>During each state change, the state list is traversed top to bottom and the
+first item that
+matches the current state will be used&mdash;the selection is <em>not</em>
+based on the "best
+match," but simply the first item that meets the minimum criteria of the
+state.</p>
+
+<p class="note"><strong>Note:</strong> If you want to provide a static color
+resource, use a
+simple <a href="#Color">Color</a> value.</p>
+
+<dt>file location:</dt>
+<dd><code>res/color/<em>filename</em>.xml</code><br/>
+The filename will be used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a
+href="/reference/gaia/content/res/ColorStateList.html">ColorStateList</a></code>.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::color::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]color/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#selector-element">selector</a>xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia" >
+    &lt;<a href="#item-element">item</a>
+        gaia:color="<em>hex_color</em>"
+        gaia:state_pressed=["true" | "false"]
+        gaia:state_focused=["true" | "false"]
+        gaia:state_selected=["true" | "false"]
+        gaia:state_checkable=["true" | "false"]
+        gaia:state_checked=["true" | "false"]
+        gaia:state_enabled=["true" | "false"]
+        gaia:state_window_focused=["true" | "false"] />
+&lt;/selector>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+    <dt id="selector-element"><code>&lt;selector&gt;</code></dt>
+        <dd><strong>Required.</strong> This must be the root element. Contains one or more <code>&lt;item></code> elements.
+            <p class="caps">attributes:</p>
+            <dl class="atn-list">
+                <dt><code>xmlns:gaia</code></dt>
+                    <dd><em>String</em>.
+                    <strong>Required.</strong> Defines the XML namespace, which must be
+                    <code>"http://schemas.gaia.com/pkg/res/gaia"</code>.
+            </dl>
+        </dd>
+    <dt id="item-element"><code>&lt;item&gt;</code></dt>
+        <dd>Defines a color to use during certain states, as described by its attributes. Must be a
+        child of a <code>&lt;selector&gt;</code> element.
+            <p class="caps">attributes:</p>
+            <dl class="atn-list">
+                <dt><code>gaia:color</code></dt>
+                    <dd><em>Hexadeximal color</em>. <strong>Required</strong>. The color is specified with an
+                    RGB value and optional alpha channel.
+                    <p>The value always begins with a pound (#) character and then followed by the
+                    Alpha-Red-Green-Blue information in one of the following formats:</p>
+        <ul>
+            <li>#<em>RGB</em></li>
+            <li>#<em>ARGB</em></li>
+            <li>#<em>RRGGBB</em></li>
+            <li>#<em>AARRGGBB</em></li>
+        </ul></dd>
+                <dt><code>gaia:state_pressed</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is pressed (such as when a button
+                    is touched/clicked); "false" if this item should be used in the default, non-pressed state.</dd>
+                <dt><code>gaia:state_focused</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is focused (such as when a button
+                    is highlighted using the trackball/d-pad); "false" if this item should be used in the default, non-focused state.</dd>
+                <dt><code>gaia:state_selected</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is selected (such as when a
+                    tab is opened); "false" if this item should be used when the object is not selected.</dd>
+                <dt><code>gaia:state_checkable</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is checkable; "false" if this
+                    item should be used when the object is not checkable. (Only useful if the object can
+                    transition between a checkable and non-checkable widget.)</dd>
+                <dt><code>gaia:state_checked</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is checked; "false" if it
+                    should be used when the object is un-checked.</dd>
+                <dt><code>gaia:state_enabled</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the object is enabled (capable of
+                    receiving touch/click events); "false" if it should be used when the object is disabled.</dd>
+                <dt><code>gaia:state_window_focused</code></dt>
+                    <dd><em>Boolean</em>. "true" if this item should be used when the application window has focus (the
+                    application is in the foreground), "false" if this item should be used when the application
+                    window does not have focus (for example, if the notification shade is pulled down or a dialog
+                    appears).</dd>
+            </dl>
+            <p class="note"><strong>Note:</strong> Remember that the first item in the state list that
+            matches the current state of the object will be applied. So if the first item in the list contains
+            none of the state attributes above, then it will be applied every time, which is why your
+            default value should always be last (as demonstrated in the following example).</p>
+        </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/color/button_text.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;selector xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia">
+    &lt;item gaia:state_pressed="true"
+           gaia:color="#ffff0000"/> &lt;!-- pressed --&gt;
+    &lt;item gaia:state_focused="true"
+           gaia:color="#ff0000ff"/> &lt;!-- focused --&gt;
+    &lt;item gaia:color="#ff000000"/> &lt;!-- default --&gt;
+&lt;/selector>
+</pre>
+
+<p>This layout XML will apply the color list
+to a Widget:</p>
+<pre>
+&lt;Button
+    gaia:layout_width="fill_parent"
+    gaia:layout_height="wrap_content"
+    gaia:text="@string/button_text"
+    gaia:textColor="@color/button_text" />
+</pre>
+
+<p>Or using in your source code:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* mpResources = pScene->getResources();
+ColorStateList* colorlist =
+mpResources->getColorStateListN(ResourceTest::R::color::button_text);
+</code></pre>
+</dd> <!-- end example -->
+
+## <a id="Drawer">Resource Types - Drawer</a> 
+<p>A drawer resource is a general concept for a graphic that can be drawn to the screen and which
+you can retrieve with APIs such as <code><a href="/Resources.html#getDrawer(int)">getDrawer(int32_t)</a></code>
+or apply to another XML resource with attributes such as <code>gaia:drawer</code>
+and <code>gaia:icon</code>.
+There are several different types of drawers:</p>
+<dl>
+    <dt><a href="#Bitmap">Bitmap File</a><dt>
+        <dd>A bitmap graphic file (<code>.png</code>, <code>.jpg</code>, or <code>.gif</code>).
+        Creates a <code><a href="/BitmapDrawer.html">BitmapDrawer</a></code>.</dd>
+    <dt><a href="#NinePatch">Nine-Patch File</a></dt>
+        <dd>A PNG file with stretchable regions to allow image resizing based
+        on content (<code>.9.png</code>). Creates a <code><a href="/NinePatchDrawer.html">NinePatchDrawer</a></code>.</dd>
+    <dt><a href="#LayerList">Layer List</a></dt>
+        <dd>A Drawaer that manages an array of other Drawers. These are drawn in array order, so the
+        element with the largest index is be drawn on top. Creates a <code><a href="/LayerDrawer.html">LayerDrawer</a></code>.</dd>
+    <dt><a href="#StateList">State List</a></dt>
+        <dd>An XML file that references different bitmap graphics for different states (for example, to use a
+        different image when a button is pressed). Creates a <code><a href="/StateListDrawer.html">StateListDrawer</a></code>.</dd>
+    <dt><a href="#LevelList">Level List</a></dt>
+        <dd>An XML file that defines a drawer that manages a number of alternate Drawers, each assigned a maximum numerical
+        value. Creates a <code><a href="/LevelListDrawer.html">LevelListDrawer</a></code>.</dd>
+
+<p>Also see the <a href="#Animation.html">Animation Resource</a> document for how to
+create an <code><a href="/AnimationDrawer.html">AnimationDrawaer</a></code>.</p>
+
+<p class="note"><strong>Note:</strong> A <a href="#Color">color resource</a> can also be
+used as a drawer in XML. For example, when creating a <a href="#StateList">state list
+drawer</a>, you can reference a color resource for the <code>gaia:drawer</code> attribute (<code>gaia:drawer="@color/green"</code>).</p>
+
+### <a id="Bitmap">Bitmap</a> 
+
+<p>A bitmap image. Gaia supports bitmap files in a three formats:
+<code>.png</code> (preferred), <code>.jpg</code> (acceptable),
+<code>.gif</code> (discouraged).</p>
+
+<p>You can reference a bitmap file directly, using the filename as the resource ID, or create an
+alias resource ID in XML.</p>
+
+<p class="note"><strong>Note:</strong> Bitmap files may be automatically optimized with lossless
+image compression by the <code>aapt</code> tool during the build process. For
+example, a true-color PNG that does not require more than 256 colors may be converted to an 8-bit
+PNG with a color palette. This will result in an image of equal quality but which requires less
+memory. So be aware that the image binaries placed in this directory can change during the build. If
+you plan on reading an image as a bit stream in order to convert it to a bitmap, put your images in
+the <code>res/raw/</code> folder instead, where they will not be optimized.</p>
+
+#### <a id="BitmapFile">Bitmap File</a> 
+
+<p>A bitmap file is a <code>.png</code>, <code>.jpg</code>, or <code>.gif</code> file. gaia creates a <code><a href="/Drawer.html">Drawer</a></code>
+resource for any of these files when you save them in the <code>res/drawable/</code> directory.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.png</code> (<code>.png</code>, <code>.jpg</code>, or <code>.gif</code>)<br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/BitmapDrawer.html">BitmapDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code></li><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>example:</dt>
+
+<dd>With an image saved at <code>res/drawable/myimage.png</code>, this layout XML applies
+the image to a Widget:
+<pre>
+&lt;ImageWidget
+    gaia:layout_height="wrap_content"
+    gaia:layout_width="wrap_content"
+    gaia:src="@drawable/myimage" />
+</pre>
+<p>The following application code retrieves the image as a <code><a href="/Drawer.html">Drawer</a></code>:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* mpResources = pScene->getResources();
+Drawer* drawer = mpResources->getDrawer(R::drawable::myimage);
+</code></pre>
+</dd>
+
+<dt>see also:</dt>
+<dd>
+<ul>
+    <li><a href="/Graphics.html">Graphics</a></li>
+    <li><code><a href="/BitmapDrawer.html">BitmapDrawer</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+####<a id="XmlBitmap">XML Bitmap</a>####
+
+<p>An XML bitmap is a resource defined in XML that points to a bitmap file. The effect is an alias for a
+raw bitmap file. The XML can specify additional properties for the bitmap such as dithering and tiling.</p>
+
+<p class="note"><strong>Note:</strong> You can use a <code>&lt;bitmap&gt;</code> element as a child of
+an <code>&lt;item&gt;</code> element. For
+example, when creating a <a href="#StateList">state list</a> or <a href="#LayerList">layer list</a>,
+you can exclude the <code>gaia:drawable</code>
+attribute from an <code>&lt;item&gt;</code> element and nest a <code>&lt;bitmap&gt;</code> inside it
+that defines the drawer item.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.xml</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/BitmapDrawer.html">BitmapDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code></li><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;<a href="#bitmap-element">bitmap</a>
+    xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:src="@[package:]drawable/<em>drawable_resource</em>"
+    gaia:antialias=["true" | "false"]
+    gaia:dither=["true" | "false"]
+    gaia:filter=["true" | "false"]
+    gaia:gravity=["top" | "bottom" | "left" | "right" | "center_vertical" |
+                     "fill_vertical" | "center_horizontal" | "fill_horizontal" |
+                     "center" | "fill" | "clip_vertical" | "clip_horizontal"]
+    gaia:tileMode=["disabled" | "clamp" | "repeat" | "mirror"]
+    <font color=red>
+    xmlns:cos="http://schemas.gaia.com/pkg/res/com.gaia"
+    cos:srcAlpha="<i>integer</i>"</font>/&gt;
+</pre>
+  <font color=red>
+  <b>NOTE :</b> COS provide extra attributes, you can use it after defined xml namespace by "http://schemas.gaia.com/pkg/res/com.gaia" as the example.
+  </font>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+    <dt id="bitmap-element"><code>&lt;bitmap&gt;</code></dt>
+        <dd>Defines the bitmap source and its properties.
+            <p class="caps">attributes:</p>
+            <dl class="atn-list">
+                <dt><code>xmlns:gaia</code></dt>
+                    <dd><em>String</em>. Defines the XML namespace, which must be
+                    <code>"http://schemas.gaia.com/pkg/res/gaia"</code>. This is required only if the
+                    <code>&lt;bitmap&gt;</code> is the root element&mdash;it is not needed when the
+                    <code>&lt;bitmap&gt;</code> is nested inside an <code>&lt;item&gt;</code>.</dd>
+                <dt><code>gaia:src</code></dt>
+                    <dd><em>Drawer resource</em>. <strong>Required</strong>. Reference to a drawer
+                    resource.</dd>
+                <dt><code>gaia:antialias</code></dt>
+                    <dd><em>Boolean</em>. Enables or disables antialiasing.</dd>
+                <dt><code>gaia:dither</code></dt>
+                    <dd><em>Boolean</em>. Enables or disables dithering of the bitmap
+                    if the bitmap does not have the same pixel configuration as the screen
+                    (for instance: a ARGB 8888 bitmap with an RGB 565 screen).</dd>
+                <dt><code>gaia:filter</code></dt>
+                    <dd><em>Boolean</em>. Enables or disables bitmap filtering. Filtering is used when the
+                    bitmap is shrunk or stretched to smooth its apperance.</dd>
+                <dt><code>gaia:gravity</code></dt>
+                    <dd><em>Keyword</em>. Defines the gravity for the bitmap. The gravity indicates where to
+                    position the drawer in its container if the bitmap is smaller than the container.
+                    <p>Must be one or more (separated by '|') of the following constant values:</p>
+<table border="1">
+<tr><th>Value</th><th>Description</th></tr>
+<tr><td><code>top</code></td>
+<td>Put the object at the top of its container, not changing its size.</td></tr>
+<tr><td><code>bottom</code></td>
+<td>Put the object at the bottom of its container, not changing its size. </td></tr>
+<tr><td><code>left</code></td>
+<td>Put the object at the left edge of its container, not changing its size. </td></tr>
+<tr><td><code>right</code></td>
+<td>Put the object at the right edge of its container, not changing its size. </td></tr>
+<tr><td><code>center_vertical</code></td>
+<td>Place object in the vertical center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_vertical</code></td>
+<td>Grow the vertical size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>center_horizontal</code></td>
+<td>Place object in the horizontal center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_horizontal</code></td>
+<td>Grow the horizontal size of the object if needed so it completely fills its container.
+</td></tr>
+<tr><td><code>center</code></td>
+<td>Place the object in the center of its container in both the vertical and horizontal axis, not
+changing its size. </td></tr>
+<tr><td><code>fill</code></td>
+<td>Grow the horizontal and vertical size of the object if needed so it completely fills its
+container. This is the default.</td></tr>
+<tr><td><code>clip_vertical</code></td>
+<td>Additional option that can be set to have the top and/or bottom edges of the child clipped to
+its container's bounds. The clip is based on the vertical gravity: a top gravity clips the
+bottom edge, a bottom gravity clips the top edge, and neither clips both edges.
+</td></tr>
+<tr><td><code>clip_horizontal</code></td>
+<td>Additional option that can be set to have the left and/or right edges of the child clipped to
+its container's bounds. The clip is based on the horizontal gravity: a left gravity clips
+the right edge, a right gravity clips the left edge, and neither clips both edges.
+</td></tr>
+</table>
+
+          </dd>
+        <dt><code>gaia:tileMode</code></dt>
+          <dd><em>Keyword</em>. Defines the tile mode. When the tile mode is enabled, the bitmap is
+repeated. Gravity is ignored when the tile mode is enabled.
+            <p>Must be one of the following constant values:</p>
+<table border="1">
+<tr><th>Value</th><th>Description</th></tr>
+<tr><td><code>disabled</code></td>
+<td>Do not tile the bitmap. This is the default value.</td></tr>
+<tr><td><code>clamp</code></td>
+<td>Replicates the edge color if the shader draws outside of its original bounds</td></tr>
+<tr><td><code>repeat</code></td>
+<td>Repeats the shader's image horizontally and vertically.</td></tr>
+<tr><td><code>mirror</code></td>
+<td>Repeats the shader's image horizontally and vertically, alternating mirror images so that
+adjacent images always seam.</td></tr>
+</table>
+
+          </dd>
+      </dl>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;bitmap xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:src="@drawable/icon"
+    gaia:tileMode="repeat" /&gt;
+</pre>
+
+</dd>
+
+<dt>see also:</dt>
+<dd>
+<ul>
+  <li><code><a href="/reference/gaia/graphics/drawable/BitmapDrawer.html">BitmapDrawer</a></code></li>
+  <li><a href="/guide/topics/resources/providing-resources.html#AliasResources">Creating
+alias resources</a>
+</ul>
+</dd>
+
+</dl>
+
+### <a id="NinePatch">Nine-Patch</a> 
+
+<p>A <code><a href="/reference/gaia/graphics/NinePatch.html">NinePatch</a></code> is a PNG image in which you can define stretchable regions
+that gaia scales when content within the Widget exceeds the normal image bounds. You
+typically assign this type of image as the background of a Widget that has at least one dimension set
+to <code>"wrap_content"</code>, and when the Widget grows to accomodate the content, the Nine-Patch image
+is also scaled to match the size of the Widget. An example use of a Nine-Patch image is the
+background used by gaia's standard <code><a href="/reference/gaia/widget/Button.html">Button</a></code> widget, which must stretch to
+accommodate the text (or image) inside the button.</p>
+
+<p>Same as with a normal <a href="#Bitmap">bitmap</a>, you can reference a Nine-Patch file directly
+or from a resource defined by XML.</p>
+
+<p>For a complete discussion about how to create a Nine-Patch file with stretchable regions,
+see the <a href="/guide/topics/graphics/2d-graphics.html#nine-patch">2D Graphics</a>
+document.</p>
+
+
+#### <a id="NinePatchFile">Nine-Patch File</a> 
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.9.png</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/graphics/drawable/NinePatchDrawer.html">NinePatchDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>example:</dt>
+
+<dd>With an image saved at <code>res/drawable/myninepatch.9.png</code>, this layout XML
+applies the Nine-Patch to a Widget:
+<pre>
+&lt;Button
+    gaia:layout_height="wrap_content"
+    gaia:layout_width="wrap_content"
+    gaia:background="@drawable/myninepatch" />
+</pre>
+</dd>
+
+<dt>see also:</dt>
+
+<dd>
+<ul>
+  <li><a href="/guide/topics/graphics/2d-graphics.html#nine-patch">2D Graphics</a></li>
+  <li><code><a href="/reference/gaia/graphics/drawable/NinePatchDrawer.html">NinePatchDrawer</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+
+
+
+#### <a id="NinePatchXml">XML Nine-Patch</a> 
+
+<p>An XML Nine-Patch is a resource defined in XML that points to a Nine-Patch file. The XML can
+specify dithering for the image.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.xml</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/graphics/drawable/NinePatchDrawer.html">NinePatchDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+
+<dt>syntax:</dt>
+
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;<a href="#ninepatch-element">nine-patch</a>
+    xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:src="@[package:]drawable/<em>drawable_resource</em>"
+    gaia:dither=["true" | "false"]
+    <font color=red>
+    xmlns:cos="http://schemas.gaia.com/pkg/res/com.gaia"
+    cos:srcAlpha="<i>integer</i>"</font>/&gt;
+</pre>
+  <font color=red>
+  <b>NOTE :</b> COS provide extra attributes, you can use it after defined xml namespace by "http://schemas.gaia.com/pkg/res/com.gaia" as the example.
+  </font>
+</dd>
+
+
+<dt>elements:</dt>
+
+<dd>
+<dl class="tag-list">
+
+  <dt id="ninepatch-element"><code>&lt;nine-patch&gt;</code></dt>
+    <dd>Defines the Nine-Patch source and its properties.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>xmlns:gaia</code></dt>
+          <dd><em>String</em>. <strong>Required.</strong> Defines the XML namespace, which must be
+          <code>"http://schemas.gaia.com/pkg/res/gaia"</code>.
+        <dt><code>gaia:src</code></dt>
+          <dd><em>Drawer resource</em>. <strong>Required</strong>. Reference to a Nine-Patch
+file.</dd>
+        <dt><code>gaia:dither</code></dt>
+          <dd><em>Boolean</em>. Enables or disables dithering of the bitmap if the bitmap does not
+have the same pixel configuration as the screen (for instance: a ARGB 8888 bitmap with an RGB 565
+screen).</dd>
+      </dl>
+    </dd>
+</dl>
+</dd>
+
+
+<dt>example:</dt>
+
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;nine-patch xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:src="@drawable/myninepatch"
+    gaia:dither="false" /&gt;
+</pre>
+</dd>
+</dl>
+
+
+### <a id="LayerList">Layer List</a> 
+
+<p>A <code><a href="/reference/gaia/graphics/drawable/LayerDrawer.html">LayerDrawer</a></code> is a drawer object
+that manages an array of other drawers. Each drawer in the list is drawn in the order of the
+list&mdash;the last drawer in the list is drawn on top.</p>
+
+<p>Each drawer is represented by an <code>&lt;item&gt;</code> element inside a single <code>&lt;layer-list&gt;</code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.xml</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/graphics/drawable/LayerDrawer.html">LayerDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#layerlist-element">layer-list</a>
+    xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia" &gt;
+    &lt;<a href="#layerlist-item-element">item</a>
+        gaia:drawable="@[package:]drawable/<em>drawable_resource</em>"
+        gaia:id="@[+][<em>package</em>:]id/<i>resource_name</i>"
+        gaia:top="<em>dimension</em>"
+        gaia:right="<em>dimension</em>"
+        gaia:bottom="<em>dimension</em>"
+        gaia:left="<em>dimension</em>" /&gt;
+&lt;/layer-list>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+
+<dd>
+<dl class="tag-list">
+
+  <dt id="layerlist-element"><code>&lt;layer-list&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root element. Contains one or more <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>xmlns:gaia</code></dt>
+          <dd><em>String</em>. <strong>Required.</strong> Defines the XML namespace, which must be
+          <code>"http://schemas.gaia.com/pkg/res/gaia"</code>.
+      </dl>
+    </dd>
+  <dt id="layerlist-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>Defines a drawer to place in the layer drawer, in a position defined by its attributes.
+Must be a child of a <code>&lt;selector&gt;</code> element. Accepts child <code>&lt;bitmap&gt;</code>
+elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:drawable</code></dt>
+          <dd><em>Drawer resource</em>. <strong>Required</strong>. Reference to a drawer
+resource.</dd>
+        <dt><code>gaia:id</code></dt>
+          <dd><em>Resource ID</em>. A unique resource ID for this drawer. To create a new resource
+ID for this item, use the form:
+<code>"@+id/<em>name</em>"</code>. The plus symbol indicates that this should be created as a new
+ID. You can use this identifier to
+retrieve and modify the drawer with <code><a href="/reference/gaia/widget/Widget.html#findWidgetById(int)">Widget.findWidgetById()</a></code> or <code><a href="/reference/gaia/app/Page.html#findWidgetById(int)">Page.findWidgetById()</a></code>.</dd>
+        <dt><code>gaia:top</code></dt>
+          <dd><em>Integer</em>. The top offset in pixels.</dd>
+        <dt><code>gaia:right</code></dt>
+          <dd><em>Integer</em>. The right offset in pixels.</dd>
+        <dt><code>gaia:bottom</code></dt>
+          <dd><em>Integer</em>. The bottom offset in pixels.</dd>
+        <dt><code>gaia:left</code></dt>
+          <dd><em>Integer</em>. The left offset in pixels.</dd>
+      </dl>
+      <p>All drawer items are scaled to fit the size of the containing Widget, by default. Thus,
+placing your images in a layer list at different positions might increase the size of the Widget and
+some images scale as appropriate. To avoid
+scaling items in the list, use a <code>&lt;bitmap&gt;</code> element inside the <code>&lt;item&gt;</code> element to specify the drawer and define the gravity to something that does not
+scale, such as <code>"center"</code>. For example, the following <code>&lt;item&gt;</code> defines an item
+that scales to fit its container Widget:</p>
+<pre>
+&lt;item gaia:drawable="@drawable/image" /&gt;
+</pre>
+
+<p>To avoid scaling, the following example uses a <code>&lt;bitmap&gt;</code> element with centered
+gravity:</p>
+<pre>
+&lt;item&gt;
+  &lt;bitmap gaia:src="<b>@drawable/image</b>"
+          gaia:gravity="center" /&gt;
+&lt;/item&gt;
+</pre>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+
+<dd>XML file saved at <code>res/drawable/layers.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;layer-list xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"&gt;
+    &lt;item&gt;
+      &lt;bitmap gaia:src="@drawable/gaia_red"
+        gaia:gravity="center" /&gt;
+    &lt;/item&gt;
+    &lt;item gaia:top="10dp" gaia:left="10dp"&gt;
+      &lt;bitmap gaia:src="@drawable/gaia_green"
+        gaia:gravity="center" /&gt;
+    &lt;/item&gt;
+    &lt;item gaia:top="20dp" gaia:left="20dp"&gt;
+      &lt;bitmap gaia:src="@drawable/gaia_blue"
+        gaia:gravity="center" /&gt;
+    &lt;/item&gt;
+&lt;/layer-list&gt;
+</pre>
+<p>Notice that this example uses a nested <code>&lt;bitmap&gt;</code> element to define the drawer
+resource for each item with a "center" gravity. This ensures that none of the images are scaled to
+fit the size of the container, due to resizing caused by the offset images.</p>
+
+<p>This layout XML applies the drawer to a Widget:</p>
+<pre>
+&lt;ImageWidget
+    gaia:layout_height="wrap_content"
+    gaia:layout_width="wrap_content"
+    gaia:src="@drawable/layers" /&gt;
+</pre>
+
+<p>The result is a stack of increasingly offset images:</p>
+<img src="/images/resources/layers.png" alt="" />
+</dd> <!-- end example -->
+
+<dt>see also:</dt>
+<dd>
+<ul>
+  <li><code><a href="/reference/gaia/graphics/drawable/LayerDrawer.html">LayerDrawer</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+
+### <a id="StateList">State List</a> 
+
+<p>A <code><a href="/reference/gaia/graphics/drawable/StateListDrawer.html">StateListDrawer</a></code> is a drawer object defined in XML
+that uses a several different images to represent the same graphic, depending on the state of
+the object. For example, a <code><a href="/reference/gaia/widget/Button.html">Button</a></code> widget can exist in one of several different states (pressed, focused,
+or niether) and, using a state list drawer, you can provide a different background image for each
+state.</p>
+
+<p>You can describe the state list in an XML file. Each graphic is represented by an <code>&lt;item></code> element inside a single <code>&lt;selector></code> element. Each <code>&lt;item></code>
+uses various attributes to describe the state in which it should be used as the graphic for the
+drawable.</p>
+
+<p>During each state change, the state list is traversed top to bottom and the first item that
+matches the current state is used&mdash;the selection is <em>not</em> based on the "best
+match," but simply the first item that meets the minimum criteria of the state.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.xml</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/graphics/drawable/StateListDrawer.html">StateListDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#selector-element">selector</a> xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:constantSize=["true" | "false"]
+    gaia:dither=["true" | "false"]
+    gaia:variablePadding=["true" | "false"] >
+    &lt;<a href="#item-element">item</a>
+        gaia:drawable="@[package:]drawable/<em>drawable_resource</em>"
+        gaia:state_pressed=["true" | "false"]
+        gaia:state_focused=["true" | "false"]
+        gaia:state_hovered=["true" | "false"]
+        gaia:state_selected=["true" | "false"]
+        gaia:state_checkable=["true" | "false"]
+        gaia:state_checked=["true" | "false"]
+        gaia:state_enabled=["true" | "false"]
+        gaia:state_activated=["true" | "false"]
+        gaia:state_window_focused=["true" | "false"] />
+&lt;/selector>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+
+<dd>
+<dl class="tag-list">
+
+  <dt id="selector-element"><code>&lt;selector&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root element. Contains one or more <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>xmlns:gaia</code></dt>
+          <dd><em>String</em>. <strong>Required.</strong> Defines the XML namespace, which must be
+          <code>"http://schemas.gaia.com/pkg/res/gaia"</code>.
+        <dt><code>gaia:constantSize</code></dt>
+          <dd><em>Boolean</em>. "true" if the drawer's reported internal size remains constant as the state
+changes (the size is the maximum of all of the states); "false" if the size varies based on
+the current state. Default is false.</dd>
+        <dt><code>gaia:dither</code></dt>
+          <dd><em>Boolean</em>. "true" to enable dithering of the bitmap if the bitmap does not have the same pixel
+configuration as the screen (for instance, an ARGB 8888 bitmap with an RGB 565 screen); "false" to
+disable dithering. Default is true.</dd>
+        <dt><code>gaia:variablePadding</code></dt>
+          <dd><em>Boolean</em>. "true" if the drawer's padding should change based on the current
+state that is selected; "false" if the padding should stay the same (based on the maximum
+padding of all the states). Enabling this feature requires that you deal with
+performing layout when the state changes, which is often not supported. Default is false.</dd>
+      </dl>
+    </dd>
+  <dt id="item-element"><code>&lt;item&gt;</code></dt>
+    <dd>Defines a drawer to use during certain states, as described by its attributes. Must be a
+child of a <code>&lt;selector&gt;</code> element.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:drawable</code></dt>
+          <dd><em>Drawer resource</em>. <strong>Required</strong>. Reference to a drawer resource.</dd>
+        <dt><code>gaia:state_pressed</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is pressed (such as when a button
+is touched/clicked); "false" if this item should be used in the default, non-pressed state.</dd>
+        <dt><code>gaia:state_focused</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object has input focus
+(such as when the user selects a text input); "false" if this item should be used in the default,
+non-focused state.</dd>
+        <dt><code>gaia:state_hovered</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is being hovered
+by a cursor; "false" if this item should be used in the default, non-hovered state. Often, this
+drawable may be the same drawer used for the "focused" state.
+          <p>Introduced in API level 14.</p></dd>
+        <dt><code>gaia:state_selected</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is the current
+user selection when navigating with a directional control (such as when navigating through a list
+with a d-pad); "false" if this item should be used when the object is not selected.
+<p>The selected state is used when focus (<code>gaia:state_focused</code>) is not sufficient
+(such as when list widget has focus and an item within it is selected with a d-pad).</p></dd>
+        <dt><code>gaia:state_checkable</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is checkable; "false" if this
+item should be used when the object is not checkable. (Only useful if the object can
+transition between a checkable and non-checkable widget.)</dd>
+        <dt><code>gaia:state_checked</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is checked; "false" if it
+should be used when the object is un-checked.</dd>
+        <dt><code>gaia:state_enabled</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is enabled
+(capable of receiving touch/click events); "false" if it should be used when the object is
+disabled.</dd>
+        <dt><code>gaia:state_activated</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the object is activated as
+the persistent selection (such as to "highlight" the previously selected list item in a persistent
+navigation widget); "false" if it should be used when the object is not activated.
+<p>Introduced in API level 11.</p></dd>
+        <dt><code>gaia:state_window_focused</code></dt>
+          <dd><em>Boolean</em>. "true" if this item should be used when the application window has focus (the
+application is in the foreground), "false" if this item should be used when the application
+window does not have focus (for example, if the notification shade is pulled down or a dialog appears).</dd>
+      </dl>
+      <p class="note"><strong>Note:</strong> Remember that gaia applies the first item in the state list that
+matches the current state of the object. So, if the first item in the list contains
+none of the state attributes above, then it is applied every time, which is why your
+default value should always be last (as demonstrated in the following example).</p>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+
+<dd>XML file saved at <code>res/drawable/button.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;selector xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia">
+    &lt;item gaia:state_pressed="true"
+          gaia:drawable="@drawable/button_pressed" /> &lt;!-- pressed --&gt;
+    &lt;item gaia:state_focused="true"
+          gaia:drawable="@drawable/button_focused" /> &lt;!-- focused --&gt;
+    &lt;item gaia:state_hovered="true"
+          gaia:drawable="@drawable/button_focused" /> &lt;!-- hovered --&gt;
+    &lt;item gaia:drawable="@drawable/button_normal" /> &lt;!-- default --&gt;
+&lt;/selector>
+</pre>
+
+<p>This layout XML applies the state list drawer to a Button:</p>
+<pre>
+&lt;Button
+    gaia:layout_height="wrap_content"
+    gaia:layout_width="wrap_content"
+    gaia:background="@drawable/button" />
+</pre>
+</dd> <!-- end example -->
+
+<dt>see also:</dt>
+<dd>
+<ul>
+  <li><code><a href="/reference/gaia/graphics/drawable/StateListDrawer.html">StateListDrawer</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+
+### <a id="LevelList">Level List</a> 
+
+<p>A Drawer that manages a number of alternate Drawers, each assigned a maximum numerical
+value. Setting the level value of the drawer with <code><a href="/reference/gaia/graphics/drawable/Drawer.html#setLevel(int)">setLevel()</a></code> loads the drawer resource in the
+level list that has a <code>gaia:maxLevel</code> value greater than or equal to the value
+passed to the method.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/drawable/<em>filename</em>.xml</code><br/>
+The filename is used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/graphics/drawable/LevelListDrawer.html">LevelListDrawer</a></code>.</dd>
+
+<dt>resource reference:</dt>
+
+<dd>
+In C++: <code>R::drawable::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]drawable/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#levellist-element">level-list</a>
+    xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia" &gt;
+    &lt;<a href="#levellist-item-element">item</a>
+        gaia:drawable="@drawable/<i>drawable_resource</i>"
+        gaia:maxLevel="<i>integer</i>"
+        gaia:minLevel="<i>integer</i>" /&gt;
+&lt;/level-list&gt;
+</pre>
+</dd>
+
+<dt>elements:</dt>
+
+<dd>
+<dl class="tag-list">
+
+  <dt id="levellist-element"><code>&lt;level-list&gt;</code></dt>
+  <dd>This must be the root element. Contains one or more <code>&lt;item&gt;</code> elements.
+    <p class="caps">attributes:</p>
+    <dl class="atn-list">
+      <dt><code>xmlns:gaia</code></dt>
+        <dd><em>String</em>. <strong>Required.</strong> Defines the XML namespace, which must be
+        <code>"http://schemas.gaia.com/pkg/res/gaia"</code>.
+    </dl>
+  </dd>
+
+  <dt id="levellist-item-element"><code>&lt;item&gt;</code></dt>
+  <dd>Defines a drawer to use at a certain level.
+    <p class="caps">attributes:</p>
+    <dl class="atn-list">
+      <dt><code>gaia:drawable</code></dt>
+        <dd><em>Drawer resource</em>. <strong>Required</strong>. Reference to a drawer
+resource to be inset.</dd>
+      <dt><code>gaia:maxLevel</code></dt>
+        <dd><em>Integer</em>. The maximum level allowed for this item.</dd>
+      <dt><code>gaia:minLevel</code></dt>
+        <dd><em>Integer</em>. The minimum level allowed for this item.</dd>
+    </dl>
+  </dd>
+</dl>
+
+</dd>
+
+<dt>example:</dt>
+
+<dd>
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;level-list xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia" &gt;
+    &lt;item
+        gaia:drawable="@drawable/status_off"
+        gaia:maxLevel="0" /&gt;
+    &lt;item
+        gaia:drawable="@drawable/status_on"
+        gaia:maxLevel="1" /&gt;
+&lt;/level-list&gt;
+</pre>
+<p>Once this is applied to a <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code>, the level can be changed with <code><a href="/reference/gaia/graphics/drawable/Drawer.html#setLevel(int)">setLevel()</a></code> or <code><a href="/reference/gaia/widget/ImageWidget.html#setImageLevel(int)">setImageLevel()</a></code>.</p>
+
+</dd>
+
+<dt>see also:</dt>
+
+<dd>
+<ul>
+  <li><code><a href="/reference/gaia/graphics/drawable/LevelListDrawer.html">LevelListDrawer</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+
+<!---- end of drawer ---->
+
+
+## <a id="Layout">Resources Types - Layout</a> 
+<p>A layout resource defines the architecture for the UI in an Page or a component of a UI.</p>
+
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/layout/<em>filename</em>.xml</code><br/>
+The filename will be used as the resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> (or subclass) resource.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::layout::<em>filename</em></code><br/>
+In XML: <code>@[<em>package</em>:]layout/<em>filename</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#widgetcontroller-element"><em>WidgetController</em></a> xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+    gaia:id="@[+][<em>package</em>:]id/<em>resource_name</em>"
+    gaia:layout_height=["<em>dimension</em>" | "fill_parent" | "wrap_content"]
+    gaia:layout_width=["<em>dimension</em>" | "fill_parent" | "wrap_content"]
+    [<em>WidgetController-specific attributes</em>] &gt;
+    &lt;<a href="#widget-element"><em>Widget</em></a>
+        gaia:id="@[+][<em>package</em>:]id/<em>resource_name</em>"
+        gaia:layout_height=["<em>dimension</em>" | "fill_parent" | "wrap_content"]
+        gaia:layout_width=["<em>dimension</em>" | "fill_parent" | "wrap_content"]
+        [<em>Widget-specific attributes</em>] &gt;
+        &lt;<a href="#requestfocus-element">requestFocus</a>/&gt;
+    &lt;/<em>Widget</em>&gt;
+    &lt;<a href="#widgetcontroller-element"><em>WidgetController</em></a> &gt;
+        &lt;<a href="#widget-element"><em>Widget</em></a> /&gt;
+    &lt;/<em>WidgetController</em>&gt;
+    &lt;<a href="#include-element">include</a> layout="@layout/<i>layout_resource</i>"/&gt;
+&lt;/<em>WidgetController</em>&gt;
+</pre>
+<p class="note"><strong>Note:</strong> The root element can be either a
+<code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>, a <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code>, or a <a
+href="#merge-element"><code>&lt;merge&gt;</code></a> element, but there must be only
+one root element and it must contain the <code>xmlns:gaia</code> attribute with the <code>gaia</code>
+namespace as shown.</p>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+  <dl class="tag-list">
+
+  <dt id="widgetcontroller-element"><code>&lt;WidgetController&gt;</code></dt>
+    <dd>A container for other <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> elements. There are many
+    different kinds of <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code> objects and each one lets you
+    specify the layout of the child elements in different ways. Different kinds of
+    <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code> objects include <code><a href="/reference/gaia/widget/LinearController.html">LinearController</a></code>, and
+    <code><a href="/reference/gaia/widget/RelativeController.html">RelativeController</a></code>.
+    <p>You should not assume that any derivation of <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>
+    will accept nested <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code>s. Some <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>s
+    are implementations of the <code><a href="/reference/gaia/widget/AdapterWidget.html">AdapterWidget</a></code> class, which determines
+    its children only from an <code><a href="/reference/gaia/widget/Adapter.html">Adapter</a></code>.</p>
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:id</code></dt>
+        <dd><em>Resource ID</em>. A unique resource name for the element, which you can
+use to obtain a reference to the <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code> from your application. See more
+about the <a href="#idvalue">value for <code>gaia:id</code></a> below.
+        </dd>
+        <dt><code>gaia:layout_height</code></dt>
+        <dd><em>Dimension or keyword</em>. <strong>Required</strong>. The height for the group, as a
+dimension value (or <a
+href="#Dimension">dimension resource</a>) or a keyword (<code>"fill_parent"</code>
+or <code>"wrap_content"</code>). See the <a href="#layoutvalues">valid values</a> below.
+        </dd>
+        <dt><code>gaia:layout_width</code></dt>
+        <dd><em>Dimension or keyword</em>. <strong>Required</strong>. The width for the group, as a
+dimension value (or <a
+href="#Dimension">dimension resource</a>) or a keyword (<code>"fill_parent"</code>
+or <code>"wrap_content"</code>). See the <a href="#layoutvalues">valid values</a> below.
+        </dd>
+      </dl>
+      <p>More attributes are supported by the <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>
+      base class, and many more are supported by each implementation of
+      <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>. For a reference of all available attributes,
+      see the corresponding reference documentation for the <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code> class
+(for example, the <a
+      href="/reference/gaia/widget/LinearController.html#lattrs">LinearController XML
+attributes</a>).</p>
+    </dd>
+  <dt id="widget-element"><code>&lt;Widget&gt;</code></dt>
+    <dd>An individual UI component, generally referred to as a "widget". Different
+    kinds of <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> objects include <code><a href="/reference/gaia/widget/TextWidget.html">TextWidget</a></code>,
+    <code><a href="/reference/gaia/widget/Button.html">Button</a></code>, and <code><a href="/reference/gaia/widget/CheckBox.html">CheckBox</a></code>.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:id</code></dt>
+        <dd><em>Resource ID</em>. A unique resource name for the element, which you can use to
+          obtain a reference to the <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> from your application. See more about
+the <a href="#idvalue">value for <code>gaia:id</code></a> below.
+        </dd>
+        <dt><code>gaia:layout_height</code></dt>
+        <dd><em>Dimension or keyword</em>. <strong>Required</strong>. The height for the element, as
+a dimension value (or <a
+href="#Dimension">dimension resource</a>) or a keyword (<code>"fill_parent"</code>
+or <code>"wrap_content"</code>). See the <a href="#layoutvalues">valid values</a> below.
+        </dd>
+        <dt><code>gaia:layout_width</code></dt>
+        <dd><em>Dimension or keyword</em>. <strong>Required</strong>. The width for the element, as
+a dimension value (or <a
+href="#Dimension">dimension resource</a>) or a keyword (<code>"fill_parent"</code>
+or <code>"wrap_content"</code>). See the <a href="#layoutvalues">valid values</a> below.
+        </dd>
+      </dl>
+      <p>More attributes are supported by the <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code>
+      base class, and many more are supported by each implementation of
+      <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code>. Read <a
+href="/UI construction and manipulation/Layout.html">Layouts</a> for more information. For
+a reference of all available attributes,
+      see the corresponding reference documentation (for example, the <a
+      href="/reference/gaia/widget/TextWidget.html#lattrs">TextWidget XML attributes</a>).</p>
+    </dd>
+  <dt id="requestfocus-element"><code>&lt;requestFocus&gt;</code></dt>
+    <dd>Any element representing a <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> object can include this empty element,
+    which gives it's parent initial focus on the screen. You can have only one of these
+    elements per file.</dd>
+
+  <dt id="include-element"><code>&lt;include&gt;</code></dt>
+    <dd>Includes a layout file into this layout.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>layout</code></dt>
+        <dd><em>Layout resource</em>. <strong>Required</strong>. Reference to a layout
+resource.</dd>
+        <dt><code>gaia:id</code></dt>
+        <dd><em>ID</em>. Overrides the ID given to the root widget in the included layout.
+        </dd>
+        <dt><code>gaia:layout_height</code></dt>
+        <dd><em>Dimension or keyword</em>. Overrides the height given to the root widget in the
+included layout. Only effective if <code>gaia:layout_width</code> is also declared.
+        </dd>
+        <dt><code>gaia:layout_width</code></dt>
+        <dd><em>Dimension or keyword</em>. Overrides the width given to the root widget in the
+included layout. Only effective if <code>gaia:layout_height</code> is also declared.
+        </dd>
+      </dl>
+      <p>You can include any other layout attributes in the <code>&lt;include&gt;</code> that are
+supported by the root element in the included layout and they will override those defined in the
+root element.</p>
+
+    <p class="caution"><strong>Caution:</strong> If you want to override layout attributes using
+      the <code>&lt;include&gt;</code> tag, you must override both
+      <code>gaia:layout_height</code> and <code>gaia:layout_width</code> in order for
+      other layout attributes to take effect.</p>
+
+    </dd>
+
+  <dt id="merge-element"><code>&lt;merge&gt;</code></dt>
+    <dd>An alternative root element that is not drawn in the layout hierarchy. Using this as the
+root element is useful when you know that this layout will be placed into a layout
+that already contains the appropriate parent Widget to contain the children of the
+<code>&lt;merge&gt;</code> element. This is particularly useful when you plan to include this layout
+in another layout file using <a href="#include-element"><code>&lt;include&gt;</code></a> and
+this layout doesn't require a different <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code> container.</dd>
+
+  </dl>
+
+
+
+#### <a id="idvalue">Value for <code>gaia:id</code></a> 
+
+<p>For the ID value, you should usually use this syntax form: <code>"@+id/<em>name</em>"</code>. The
+plus symbol, <code>+</code>, indicates that this is a new resource ID and the <code>aapt</code> tool will
+create a new resource integer in the <code>R</code> class, if it doesn't already exist. For
+example:</p>
+<pre>
+&lt;TextWidget gaia:id="@+id/nameTextbox"/>
+</pre>
+<p>The <code>nameTextbox</code> name is now a resource ID attached to this element. You can then
+refer to the <code><a href="/reference/gaia/widget/TextWidget.html">TextWidget</a></code> to which the ID is associated in C++:</p>
+<pre>
+findWidgetById(R::id::nameTextbox);
+</pre>
+<p>This code returns the <code><a href="/reference/gaia/widget/TextWidget.html">TextWidget</a></code> object.</p>
+
+<p>However, if you have already defined an <a href="#Drawer">ID resource</a> (and it is not
+already used), then you can apply that ID to a <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> element by excluding the
+plus symbol in the <code>gaia:id</code> value.</p>
+
+#### <a id="layoutvalues">Value for <code>gaia:layout_height</code> and <code>gaia:layout_width</code>:</a> 
+
+  <p>The height and width value can be expressed using any of the
+  <a href="#Dimension">dimension
+  units</a> supported by Gaia (px, dp, sp, pt, in, mm) or with the following keywords:</p>
+  <table border="1"><tr><th>Value</th><th>Description</th></tr>
+    <tr>
+      <td><code>match_parent</code></td>
+      <td>Sets the dimension to match that of the parent element. Added in API Level 8 to
+deprecate <code>fill_parent</code>.</td>
+    </tr>
+    <tr>
+      <td><code>fill_parent</code></td>
+      <td>Sets the dimension to match that of the parent element.</td>
+    </tr><tr>
+      <td><code>wrap_content</code></td>
+      <td>Sets the dimension only to the size required to fit the content of this element.</td>
+    </tr>
+  </table>
+
+#### <a>Custom Widget elements</a> 
+
+<p>You can create your own custom <code><a href="/reference/gaia/widget/Widget.html">Widget</a></code> and <code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code>
+elements and apply them to your layout the same as a standard layout
+element. You can also specify the attributes supported in the XML element. To learn more,
+see the <a href="/Widget customization.html">Widget customization</a> developer
+guide.
+</p>
+
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/layout/main_activity.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;LinearController xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+              gaia:layout_width="fill_parent" 
+              gaia:layout_height="fill_parent" 
+              gaia:orientation="vertical" >
+    &lt;TextWidget gaia:id="@+id/text"
+              gaia:layout_width="wrap_content"
+              gaia:layout_height="wrap_content"
+              gaia:text="Hello, I am a TextWidget" />
+    &lt;Button gaia:id="@+id/button"
+            gaia:layout_width="wrap_content"
+            gaia:layout_height="wrap_content"
+            gaia:text="Hello, I am a Button" />
+&lt;/LinearController>
+</pre>
+    <p>This application code will load the layout for an <code><a href="/reference/gaia/app/Page.html">Page</a></code>, in the
+    <code><a href="/reference/gaia/app/Page.html#onInit(gaia.os.Bundle)">onInit()</a></code> method:</dt>
+<pre>
+public void MyPage::onInit(Persistence* const p) {
+    super.onInit(p);
+    setContentWidget(R::layout::.main_activity);
+}
+</pre>
+</dd> <!-- end example -->
+UI construction and manipulation
+
+<dt>see also:</dt>
+<dd>
+<ul>
+  <li><a href="/UI construction and manipulation/Layoutsmb://10.116.121.165/share@1tb/Movies/SILVER%20LININGS%20DVDRIP%20EDAW2013.html">Layouts</a></li>
+  <li><code><a href="/reference/gaia/widget/Widget.html">Widget</a></code></li>
+  <li><code><a href="/reference/gaia/widget/WidgetController.html">WidgetController</a></code></li>
+</ul>
+</dd>
+
+</dl>
+
+<!---------------- end of layout ---------------->
+
+## <a id="Values">Resource Types - Values</a>
+Because each resource is defined with its own XML element, you can name the file whatever you want and place different resource types in one file.
+<li> arrays.xml for <a href="#Array">resource arrays</a>. </li>
+<li> colors.xml for <a href="#Color">color values</a>. </li>
+<li> dimens.xml for <a href="#Dimension">dimension values</a>. </li>
+<li> strings.xml for <a href="#Strings">string values</a>. </li>
+For more resouce type, please see <a href="#MoreTypes">More Types<a>.
+
+### <a id="Strings">Strings</a> 
+<p>A string resource provides text strings for your application
+with optional text styling and formatting. There are three types of resources that can provide
+your application with strings:</p>
+
+<dl>
+  <dt><a href="#String">String</a></dt>
+    <dd>XML resource that provides a single string.</dd>
+  <dt><a href="#StringArray">String Array</a></dt>
+    <dd>XML resource that provides an array of strings.</dd>
+  <dt><a href="#Plurals">Quantity Strings (Plurals)</a></dt>
+    <dd>XML resource that carries different strings for pluralization.</dd>
+</dl>
+
+<p>All strings are capable of applying some styling markup and formatting arguments. For
+information about styling and formatting strings, see the section about <a href="#FormattingAndStyling">Formatting and Styling</a>.</p>
+
+
+
+
+#### <a id="String">String</a>  
+
+<p>A single string that can be referenced from the application or from other resource files (such
+as an XML layout).</p>
+
+<p class="note"><strong>Note:</strong> A string is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). So, you can
+combine string resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;string></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/java/lang/String.html">String</a></code>.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::string::<em>string_name</em></code><br/>
+In XML:<code>@string/<em>string_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#string-resources-element">resources</a>>
+    &lt;<a href="#string-element">string</a>
+        name="<em>string_name</em>"
+        &gt;<em>text_string</em>&lt;/string&gt;
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="string-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="string-element"><code>&lt;string&gt;</code></dt>
+    <dd>A string, which can include styling tags. Beware that you must escape apostrophes and
+quotation marks. For more information about how to properly style and format your strings see <a
+href="#FormattingAndStyling">Formatting and Styling</a>, below.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the string. This name will be used as the resource
+ID.</dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/strings.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;string name="hello">Hello!&lt;/string>
+&lt;/resources>
+</pre>
+
+  <p>This layout XML applies a string to a Widget:</p>
+<pre>
+&lt;TextWidget
+    gaia:layout_width="fill_parent"
+    gaia:layout_height="wrap_content"
+    <strong>gaia:text="@string/hello"</strong> />
+</pre>
+
+  <p>This application code retrieves a string:</p>
+<pre><code>pScene = new Scene(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+String string = <code><a href="/reference/gaia/content/Context.html#getString(int)">res->getString</a></code>(R::string::hello);</code></pre>
+
+</dd> <!-- end example -->
+
+</dl>
+
+
+
+#### <a id="StringArray">String Array</a>  
+
+<p>An array of strings that can be referenced from the application.</p>
+
+<p class="note"><strong>Note:</strong> A string array is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine string array resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;string-array></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to an array of <code><a href="/reference/java/lang/String.html">String</a></code>s.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::array::<em>string_array_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#string-array-resources-element">resources</a>>
+    &lt;<a href="#string-array-element">string-array</a>
+        name="<em>string_array_name</em>">
+        &lt;<a href="#string-array-item-element">item</a>
+            &gt;<em>text_string</em>&lt;/item&gt;
+    &lt;/string-array>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+  <dt id="string-array-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="string-array-element"><code>&lt;string-array&gt;</code></dt>
+    <dd>Defines an array of strings. Contains one or more <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the array. This name will be used as the resource
+ID to reference the array.</dd>
+      </dl>
+
+    </dd>
+  <dt id="string-array-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>A string, which can include styling tags. The value can be a reference to another
+string resource. Must be a child of a <code>&lt;string-array&gt;</code> element. Beware that you
+must escape apostrophes and
+quotation marks. See <a href="#FormattingAndStyling">Formatting and Styling</a>, below, for
+information about to properly style and format your strings.
+      <p>No attributes.</p>
+    </dd>
+</dl>
+</dd> <!-- end  elements -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/strings.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;string-array name="planets_array">
+        &lt;item>Mercury&lt;/item>
+        &lt;item>Venus&lt;/item>
+        &lt;item>Earth&lt;/item>
+        &lt;item>Mars&lt;/item>
+    &lt;/string-array>
+&lt;/resources>
+</pre>
+
+  <p>This application code retrieves a string array:</p>
+<pre><code>pScene = new Scene(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+Vector&lt;String> planets = res-><code><a href="/reference/gaia/content/res/Resources.html#getStringArray(int)">getStringArray</a></code>(R::array::planets_array);</code></pre>
+</dd> <!-- end example -->
+
+</dl>
+
+
+#### <a id="Plurals">Quantity Strings (Plurals)</a>  
+
+<p>Different languages have different rules for grammatical agreement with quantity. In English,
+for example, the quantity 1 is a special case. We write "1 book", but for any other quantity we'd
+write "<i>n</i> books". This distinction between singular and plural is very common, but other
+languages make finer distinctions. The full set supported by Gaia is <code>zero</code>,
+<code>one</code>, <code>two</code>, <code>few</code>, <code>many</code>, and <code>other</code>.
+
+<p>The rules for deciding which case to use for a given language and quantity can be very complex,
+so Gaia provides you with methods such as
+<code><a href="/reference/gaia/content/res/Resources.html#getQuantityString(int, int)">getQuantityString()</a></code> to select
+the appropriate resource for you.
+
+<p>Although historically called "quantity strings" (and still called that in API), quantity
+strings should <i>only</i> be used for plurals. It would be a mistake to use quantity strings to
+implement something like Gmail's "Inbox" versus "Inbox (12)" when there are unread messages, for
+example. It might seem convenient to use quantity strings instead of an <code>if</code> statement,
+but it's important to note that some languages (such as Chinese) don't make these grammatical
+distinctions at all, so you'll always get the <code>other</code> string.
+
+<p>The selection of which string to use is made solely based on grammatical <i>necessity</i>.
+In English, a string for <code>zero</code> will be ignored even if the quantity is 0, because 0
+isn't grammatically different from 2, or any other number except 1 ("zero books", "one book",
+"two books", and so on).
+
+<p>Don't be misled either by the fact that, say, <code>two</code> sounds like it could only apply to
+the quantity 2: a language may require that 2, 12, 102 (and so on) are all treated like one
+another but differently to other quantities. Rely on your translator to know what distinctions
+their language actually insists upon.
+
+<p>It's often possible to avoid quantity strings by using quantity-neutral formulations such as
+"Books: 1". This will make your life and your translators' lives easier, if it's a style that's
+in keeping with your application.
+
+<p class="note"><strong>Note:</strong> A plurals collection is a simple resource that is
+referenced using the value provided in the <code>name</code> attribute (not the name of the XML
+file). As such, you can combine plurals resources with other simple resources in the one
+XML file, under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;plurals></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::plurals::<em>plural_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#plurals-resources-element">resources</a>>
+    &lt;<a href="#plurals-element">plurals</a>
+        name="<em>plural_name</em>">
+        &lt;<a href="#plurals-item-element">item</a>
+            quantity=["zero" | "one" | "two" | "few" | "many" | "other"]
+            &gt;<em>text_string</em>&lt;/item>
+    &lt;/plurals>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="plurals-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="plurals-element"><code>&lt;plurals&gt;</code></dt>
+    <dd>A collection of strings, of which, one string is provided depending on the amount of
+something. Contains one or more <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the pair of strings. This name will be used as the
+resource ID.</dd>
+      </dl>
+
+    </dd>
+  <dt id="plurals-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>A plural or singular string. The value can be a reference to another
+string resource. Must be a child of a <code>&lt;plurals&gt;</code> element. Beware that you must
+escape apostrophes and quotation marks. See <a href="#FormattingAndStyling">Formatting and
+Styling</a>, below, for information about to properly style and format your strings.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>quantity</code></dt>
+        <dd><em>Keyword</em>. A value indicating when this string should be used. Valid
+values, with non-exhaustive examples in parentheses:
+          <table border="1">
+            <tr><th>Value</th><th>Description</th></tr>
+            <tr>
+              <td><code>zero</code></td><td>When the language requires special treatment of the number 0 (as in Arabic).</td>
+            </tr>
+            <tr>
+              <td><code>one</code></td><td>When the language requires special treatment of numbers like one (as with the number 1 in English and most other languages; in Russian, any number ending in 1 but not ending in 11 is in this class).</td>
+            </tr>
+            <tr>
+              <td><code>two</code></td><td>When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian).</td>
+            </tr>
+            <tr>
+              <td><code>few</code></td><td>When the language requires special treatment of "small" numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).</td>
+            </tr>
+            <tr>
+              <td><code>many</code></td><td>When the language requires special treatment of "large" numbers (as with numbers ending 11-99 in Maltese).</td>
+            </tr>
+            <tr>
+              <td><code>other</code></td><td>When the language does not require special treatment of the given quantity (as with all numbers in Chinese, or 42 in English).</td>
+            </tr>
+          </table>
+        </dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end elements -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/strings.xml</code>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;plurals name="numberOfSongsAvailable">
+        &lt;item quantity="one">One song found.&lt;/item>
+        &lt;item quantity="other">%d songs found.&lt;/item>
+    &lt;/plurals>
+&lt;/resources>
+</pre>
+    <p>XML file saved at <code>res/values-pl/strings.xml</code>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;plurals name="numberOfSongsAvailable">
+        &lt;item quantity="one">Znaleziono jedn&#x0105; piosenk&#x0119;.&lt;/item>
+        &lt;item quantity="few">Znaleziono %d piosenki.&lt;/item>
+        &lt;item quantity="other">Znaleziono %d piosenek.&lt;/item>
+    &lt;/plurals>
+&lt;/resources>
+</pre>
+    <p>C++ code:</p>
+<pre><code>int32_t count = getNumberOfsongsAvailable();
+pScene = new Scene(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+String songsFound = res-><a href="/reference/gaia/content/res/Resources.html#getQuantityString(int, int, java.lang.Object...)">getQuantityString</a>(R::plurals::numberOfSongsAvailable, count, count);</code></pre>
+
+<p>When using the <a
+href="/reference/gaia/content/res/Resources.html#getQuantityString(int, int, java.lang.Object...)"><code>getQuantityString()</code></a> method, you need to pass the <code>count</code> twice if your string includes
+<a href="#FormattingAndStyling">string formatting</a> with a number. For example, for the string
+<code>%d songs found</code>, the first <code>count</code> parameter selects the appropriate plural string and
+the second <code>count</code> parameter is inserted into the <code>%d</code> placeholder. If your plural
+strings do not include string formatting, you don't need to pass the third parameter to <code><a href="/reference/gaia/content/res/Resources.html#getQuantityString(int, int)">getQuantityString</a></code>.</p>
+</dd> <!-- end example -->
+
+</dl>
+
+
+#### <a id="FormattingAndStyling">Formatting and Styling</a>  
+
+<p>Here are a few important things you should know about how to properly
+format and style your string resources.</p>
+
+<dd>
+<strong>Escaping apostrophes and quotes</strong>
+
+<p>If you have an apostrophe or a quote in your string, you must either escape it or enclose the
+whole string in the other type of enclosing quotes. For example, here are some stings that
+do and don't work:</p>
+
+<pre>
+&lt;string name="good_example">"This'll work"&lt;/string>
+&lt;string name="good_example_2">This\'ll also work&lt;/string>
+&lt;string name="bad_example">This doesn't work&lt;/string>
+&lt;string name="bad_example_2">XML encodings don&amp;apos;t work&lt;/string>
+</pre>
+
+
+<strong>Formatting strings</strong>
+
+<p>If you need to format your strings using <a
+href="/reference/java/lang/String.html#format(java.lang.String,
+java.lang.Object...)"><code>String::format(String, Object...)</code></a>,
+then you can do so by putting
+your format arguments in the string resource. For example, with the following resource:</p>
+
+<pre>
+&lt;string name="welcome_messages">Hello, %1$s! You have %2$d new messages.&lt;/string>
+</pre>
+
+<p>In this example, the format string has two arguments: <code>%1$s</code> is a string and <code>%2$d</code>
+is a decimal number. You can format the string with arguments from your application like this:</p>
+
+<pre><code>pScene = new Scene(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+String text = String::<a href="/reference/java/lang/String.html#format(java.lang.String, java.lang.Object...)">format</a>(res->getString(R::string::welcome_messages), username, mailCount);</code></pre>
+</dd>
+
+
+<!-------------------- end of strings -------------------->
+
+
+
+### <a id="MoreTypes">More Types</a> 
+
+<p>This page defines more types of resources you can externalize, including:</p>
+
+<dl>
+  <dt><a href="#Bool">Bool</a></dt>
+    <dd>XML resource that carries a boolean value.</dd>
+  <dt><a href="#Color">Color</a></dt>
+    <dd>XML resource that carries a color value (a hexadecimal color).</dd>
+  <dt><a href="#Dimension">Dimension</a></dt>
+    <dd>XML resource that carries a dimension value (with a unit of measure).</dd>
+  <dt><a href="#Id">ID</a></dt>
+    <dd>XML resource that provides a unique identifier for application resources and
+components.</dd>
+  <dt><a href="#Integer">Integer</a></dt>
+    <dd>XML resource that carries an integer value.</dd>
+  <dt><a href="#IntegerArray">Integer Array</a></dt>
+    <dd>XML resource that provides an array of integers.</dd>
+  <dt><a href="#TypedArray">Typed Array</a></dt>
+    <dd>XML resource that provides a <code><a href="/reference/gaia/content/res/TypedArray.html">TypedArray</a></code> (which you can use
+for an array of drawables).</dd>
+</dl>
+
+
+
+
+#### <a id="Bool">Bool</a>
+
+<p>A boolean value defined in XML.</p>
+
+<p class="note"><strong>Note:</strong> A bool is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine bool resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;bool></code> element's <code>name</code> will be used as the resource
+ID.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::bool::<em>bool_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]bool/<em>bool_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#bool-resources-element">resources</a>&gt;
+    &lt;<a href="#bool-element">bool</a>
+        name="<em>bool_name</em>"
+        &gt;[true | false]&lt;/bool>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="bool-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="bool-element"><code>&lt;bool&gt;</code></dt>
+    <dd>A boolean value: <code>true</code> or <code>false</code>.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the bool value. This will be used as the resource ID.</dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values-small/bools.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources&gt;
+    &lt;bool name="screen_small">true&lt;/bool>
+    &lt;bool name="adjust_view_bounds">true&lt;/bool>
+&lt;/resources>
+</pre>
+
+  <p>This application code retrieves the boolean:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+bool screenIsSmall = res-><code><a href="/reference/gaia/content/res/Resources.html#getBoolean(int)">getBoolean</a></code>(R::bool::screen_small);
+</code></pre>
+  <p>This layout XML uses the boolean for an attribute:</p>
+<pre>
+&lt;ImageWidget
+    gaia:layout_height="fill_parent"
+    gaia:layout_width="fill_parent"
+    gaia:src="@drawable/logo"
+    gaia:adjustWidgetBounds="@bool/adjust_view_bounds" />
+</pre>
+</dd> <!-- end example -->
+
+</dl>
+
+
+
+
+#### <a id="Color">Color</a>
+
+<p>A color value defined in XML.
+The color is specified with an RGB value and alpha channel. You can use a color resource
+any place that accepts a hexadecimal color value. You can also use a color resource when a
+drawable resource is expected in XML (for example, <code>gaia:drawable="@color/green"</code>).</p>
+
+<p>The value always begins with a pound (#) character and then followed by the
+Alpha-Red-Green-Blue information in one of the following formats:</p>
+<ul>
+  <li>#<em>RGB</em></li>
+  <li>#<em>ARGB</em></li>
+  <li>#<em>RRGGBB</em></li>
+  <li>#<em>AARRGGBB</em></li>
+</ul>
+
+<p class="note"><strong>Note:</strong> A color is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine color resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/colors.xml</code><br/>
+The filename is arbitrary. The <code>&lt;color></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::color::<em>color_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]color/<em>color_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#color-resources-element">resources</a>>
+    &lt;<a href="#color-element">color</a>
+        name="<em>color_name</em>"
+        &gt;<em>hex_color</em>&lt;/color>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="color-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="color-element"><code>&lt;color&gt;</code></dt>
+    <dd>A color expressed in hexadecimal, as described above.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the color. This will be used as the resource ID.
+        </dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/colors.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+   &lt;color name="opaque_red">#f00&lt;/color>
+   &lt;color name="translucent_red">#80ff0000&lt;/color>
+&lt;/resources>
+</pre>
+
+    <p>This application code retrieves the color resource:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+int32_t color = res-><code><a href="/reference/gaia/content/res/Resources.html#getColor(int)">getColor</a></code>(R::color::opaque_red);
+</code></pre>
+  <p>This layout XML applies the color to an attribute:</p>
+<pre>
+&lt;TextWidget
+    gaia:layout_width="fill_parent"
+    gaia:layout_height="wrap_content"
+    gaia:textColor="@color/translucent_red"
+    gaia:text="Hello"/>
+</pre>
+</dd> <!-- end example -->
+
+</dl>
+
+
+
+
+
+#### <a id="Dimension">Dimension</a>
+
+<p>A dimension value defined in XML. A dimension
+is specified with a number followed by a unit of measure.
+For example: 10px, 2in, 5sp. The following units of measure are supported by Gaia:</p>
+<dl>
+  <dt><code>dp</code></dt>
+    <dd>Density-independent Pixels - An abstract unit that is based on the physical density of the
+screen. These units are relative to a 160 dpi (dots per inch) screen, on which 1dp is roughly equal
+to 1px. When running on a higher density screen, the number of pixels used to draw 1dp is scaled up
+by a factor appropriate for the screen's dpi. Likewise, when on a lower density screen, the number
+of pixels used for 1dp is scaled down. The ratio of dp-to-pixel will change with the screen density,
+but not necessarily in direct proportion. Using dp units (instead of px units) is a simple solution
+to making the view dimensions in your layout resize properly for different screen densities. In
+other words, it provides consistency for the real-world sizes of your UI elements across different
+devices.</dd>
+  <dt><code>sp</code></dt>
+    <dd>Scale-independent Pixels - This is like the dp unit, but it is also scaled by the user's font
+    size preference. It is recommend you use this unit when specifying font sizes, so they will be adjusted
+    for both the screen density and the user's preference.</dd>
+  <dt><code>pt</code></dt>
+    <dd>Points - 1/72 of an inch based on the physical size of the screen.</dd>
+  <dt><code>px</code></dt>
+    <dd>Pixels - Corresponds to actual pixels on the screen. This unit of measure is not recommended because
+    the actual representation can vary across devices; each devices may have a different number of pixels
+    per inch and may have more or fewer total pixels available on the screen.</dd>
+  <dt><code>mm</code></dt>
+    <dd>Millimeters - Based on the physical size of the screen.</dd>
+  <dt><code>in</code></dt>
+    <dd>Inches - Based on the physical size of the screen.</dd>
+</dl>
+
+<p class="note"><strong>Note:</strong> A dimension is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine dimension resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;dimen></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::dimen::<em>dimension_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]dimen/<em>dimension_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#dimen-resources-element">resources</a>>
+    &lt;<a href="#dimen-element">dimen</a>
+        name="<em>dimension_name</em>"
+        &gt;<em>dimension</em>&lt;/dimen&gt;
+&lt;/resources&gt;
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="dimen-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="dimen-element"><code>&lt;dimen&gt;</code></dt>
+    <dd>A dimension, represented by a float, followed by a unit of measurement (dp, sp, pt, px, mm, in),
+      as described above.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the dimension. This will be used as the resource ID.
+        </dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/dimens.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;dimen name="textwidget_height">25dp&lt;/dimen>
+    &lt;dimen name="textwidget_width">150dp&lt;/dimen>
+    &lt;dimen name="ball_radius">30dp&lt;/dimen>
+    &lt;dimen name="font_size">16sp&lt;/dimen>
+&lt;/resources>
+</pre>
+
+    <p>This application code retrieves a dimension:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+float fontSize = res.<code><a href="/reference/gaia/content/res/Resources.html#getDimension(int)">getDimension</a></code>(R::dimen::font_size);
+</code></pre>
+  <p>This layout XML applies dimensions to attributes:</p>
+<pre>
+&lt;TextWidget
+    gaia:layout_height="@dimen/textwidget_height"
+    gaia:layout_width="@dimen/textwidget_width"
+    gaia:textSize="@dimen/font_size"/>
+</pre>
+  </dl>
+</dd> <!-- end example -->
+
+</dl>
+
+
+
+
+
+
+#### <a id="Id">ID</a>
+
+<p>A unique resource ID defined in XML. Using the name you provide in the <code>&lt;item&gt;</code>
+element, the Gaia developer tools create a unique integer in your project's <code>R</code> class, which you can use as an
+identifier for an application resources (for example, a <code><a href="/reference/gaia/view/Widget.html">Widget</a></code> in your UI layout)
+or a unique integer for use in your application code (for example, as an ID for a dialog or a
+result code).</p>
+
+<p class="note"><strong>Note:</strong> An ID is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine ID resources with other simple resources in the one XML file,
+under one <code>&lt;resources&gt;</code> element. Also, remember that an ID resources does not reference
+an actual resource item; it is simply a unique ID that you can attach to other resources or use
+as a unique integer in your application.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename.xml</em></code><br/>
+The filename is arbitrary.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::id::<em>name</em></code><br/>
+In XML: <code>@[<em>package</em>:]id/<em>name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#id-resources-element">resources</a>&gt;
+    &lt;<a href="#id-item-element">item</a>
+        type="id"
+        name="<em>id_name</em>" /&gt;
+&lt;/resources&gt;
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="id-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="id-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>Defines a unique ID. Takes no value, only attributes.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>type</code></dt>
+        <dd>Must be "id".</dd>
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A unique name for the ID.</dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>
+  <p>XML file saved at <code>res/values/ids.xml</code>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;item type="id" name="button_ok" /&gt;
+    &lt;item type="id" name="dialog_exit" /&gt;
+&lt;/resources>
+</pre>
+
+    <p>Then, this layout snippet uses the "button_ok" ID for a Button widget:</p>
+<pre>
+&lt;Button gaia:id="<b>@id/button_ok</b>"
+    style="@style/button_style" /&gt;
+</pre>
+
+    <p>Notice that the <code>gaia:id</code> value does not include the plus sign in the ID reference,
+because the ID already exists, as defined in the <code>ids.xml</code> example above. (When you specify an
+ID to an XML resource using the plus sign&mdash;in the format <code>gaia:id="@+id/name"</code>&mdash;it means that the "name" ID does not exist and should be created.)</p>
+
+</dd> <!-- end example -->
+
+
+</dl>
+
+
+
+
+
+#### <a id="Integer">Integer</a>
+
+<p>An integer defined in XML.</p>
+
+<p class="note"><strong>Note:</strong> An integer is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine integer resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename.xml</em></code><br/>
+The filename is arbitrary. The <code>&lt;integer></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::integer::<em>integer_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]integer/<em>integer_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#integer-resources-element">resources</a>>
+    &lt;<a href="#integer-element">integer</a>
+        name="<em>integer_name</em>"
+        &gt;<em>integer</em>&lt;/integer&gt;
+&lt;/resources&gt;
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+
+  <dt id="integer-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="integer-element"><code>&lt;integer&gt;</code></dt>
+    <dd>An integer.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>name</code></dt>
+        <dd><em>String</em>. A name for the integer. This will be used as the resource ID.
+        </dd>
+      </dl>
+    </dd>
+
+</dl>
+</dd> <!-- end  elements and attributes -->
+
+<dt>example:</dt>
+<dd>
+  <p>XML file saved at <code>res/values/integers.xml</code>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;integer name="max_speed">75&lt;/integer>
+    &lt;integer name="min_speed">5&lt;/integer>
+&lt;/resources>
+</pre>
+    <p>This application code retrieves an integer:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+int32_t maxSpeed = res-><code><a href="/reference/gaia/content/res/Resources.html#getInteger(int)">getInteger</a></code>(R::integer::max_speed);
+</code></pre>
+</dd> <!-- end example -->
+
+
+</dl>
+
+
+
+
+
+#### <a id="IntegerArray">Integer Array</a>
+
+<p>An array of integers defined in XML.</p>
+
+<p class="note"><strong>Note:</strong> An integer array is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine integer array resources with other simple resources in the one XML file,
+under one <code>&lt;resources></code> element.</p>
+
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;integer-array></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to an array of integers.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::array::<em>integer_array_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]array.<em>integer_array_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#integer-array-resources-element">resources</a>>
+    &lt;<a href="#integer-array-element">integer-array</a>
+        name="<em>integer_array_name</em>">
+        &lt;<a href="#integer-array-item-element">item</a>
+            &gt;<em>integer</em>&lt;/item&gt;
+    &lt;/integer-array>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+  <dt id="integer-array-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="integer-array-element"><code>&lt;integer-array&gt;</code></dt>
+    <dd>Defines an array of integers. Contains one or more child <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:name</code></dt>
+        <dd><em>String</em>. A name for the array. This name will be used as the resource
+ID to reference the array.</dd>
+      </dl>
+    </dd>
+  <dt id="integer-array-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>An integer. The value can be a reference to another
+integer resource. Must be a child of a <code>&lt;integer-array&gt;</code> element.
+      <p>No attributes.</p>
+    </dd>
+</dl>
+</dd> <!-- end  elements -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/integers.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;integer-array name="bits">
+        &lt;item>4&lt;/item>
+        &lt;item>8&lt;/item>
+        &lt;item>16&lt;/item>
+        &lt;item>32&lt;/item>
+    &lt;/integer-array>
+&lt;/resources>
+</pre>
+
+  <p>This application code retrieves the integer array:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+Vector&lt;int32_t> bits = res-><code><a href="/reference/gaia/content/res/Resources.html#getIntArray(int)">getIntArray</a></code>(R::array::bits);
+</code></pre>
+</dd> <!-- end example -->
+
+</dl>
+
+
+
+
+
+#### <a id="TypedArray">Typed Array</a>
+
+<p>A <code><a href="/reference/gaia/content/res/TypedArray.html">TypedArray</a></code> defined in XML. You can use
+this to create an array of other resources, such as drawables. Note that the array
+is not required to be homogeneous, so you can create an array of mixed resource types, but
+you must be aware of what and where the data types are in the array so that you can properly obtain
+each item with the <code><a href="/reference/gaia/content/res/TypedArray.html">TypedArray</a></code>'s <code>get...()</code> methods.</p>
+
+<p class="note"><strong>Note:</strong> A typed array is a simple resource that is referenced
+using the value provided in the <code>name</code> attribute (not the name of the XML file). As
+such, you can combine typed array resources with other simple resources in the one XML file,
+under one <code>&lt;resources&gt;</code> element.</p>
+
+
+<dl class="xml">
+
+<dt>file location:</dt>
+<dd><code>res/values/<em>filename</em>.xml</code><br/>
+The filename is arbitrary. The <code>&lt;array></code> element's <code>name</code> will be used as the
+resource ID.</dd>
+
+<dt>compiled resource datatype:</dt>
+<dd>Resource pointer to a <code><a href="/reference/gaia/content/res/TypedArray.html">TypedArray</a></code>.</dd>
+
+<dt>resource reference:</dt>
+<dd>
+In C++: <code>R::array::<em>array_name</em></code><br/>
+In XML: <code>@[<em>package</em>:]array.<em>array_name</em></code>
+</dd>
+
+<dt>syntax:</dt>
+<dd>
+<pre class="stx">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;<a href="#array-resources-element">resources</a>>
+    &lt;<a href="#array-element">array</a>
+        name="<em>integer_array_name</em>">
+        &lt;<a href="#array-item-element">item</a>&gt;<em>resource</em>&lt;/item&gt;
+    &lt;/array>
+&lt;/resources>
+</pre>
+</dd>
+
+<dt>elements:</dt>
+<dd>
+<dl class="tag-list">
+  <dt id="array-resources-element"><code>&lt;resources&gt;</code></dt>
+    <dd><strong>Required.</strong> This must be the root node.
+      <p>No attributes.</p>
+    </dd>
+  <dt id="array-element"><code>&lt;array&gt;</code></dt>
+    <dd>Defines an array. Contains one or more child <code>&lt;item></code> elements.
+      <p class="caps">attributes:</p>
+      <dl class="atn-list">
+        <dt><code>gaia:name</code></dt>
+        <dd><em>String</em>. A name for the array. This name will be used as the resource
+ID to reference the array.</dd>
+      </dl>
+    </dd>
+  <dt id="array-item-element"><code>&lt;item&gt;</code></dt>
+    <dd>A generic resource. The value can be a reference to a resource or a simple data type.
+Must be a child of an <code>&lt;array&gt;</code> element.
+      <p>No attributes.</p>
+    </dd>
+</dl>
+</dd> <!-- end  elements -->
+
+<dt>example:</dt>
+<dd>XML file saved at <code>res/values/arrays.xml</code>:
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;resources>
+    &lt;array name="icons">
+        &lt;item>@drawable/home&lt;/item>
+        &lt;item>@drawable/settings&lt;/item>
+        &lt;item>@drawable/logout&lt;/item>
+    &lt;/array>
+    &lt;array name="colors">
+        &lt;item>#FFFF0000&lt;/item>
+        &lt;item>#FF00FF00&lt;/item>
+        &lt;item>#FF0000FF&lt;/item>
+    &lt;/array>
+&lt;/resources>
+</pre>
+
+  <p>This application code retrieves each array and then obtains the first entry in each array:</p>
+<pre><code>pScene = Scene::SceneFactory(static_cast<Page*>(this));
+Resources* res = pScene->getResources();
+TypedArray* icons = res-><code><a href="/reference/gaia/content/res/Resources.html#obtainTypedArray(int)">obtainTypedArrayN</a></code>(R::array::icons);
+Drawer* drawer = icons-><code><a href="/reference/gaia/content/res/TypedArray.html#getDrawerN(int)">getDrawerN</a></code>(0);
+
+TypedArray* colors = res-><code><a href="/reference/gaia/content/res/Resources.html#obtainTypedArray(int)">obtainTypedArrayN</a></code>(R::array::colors);
+int32_t color = colors-><code><a href="/reference/gaia/content/res/TypedArray.html#getColor(int, int)">getColor</a></code>(0,0);
+</code></pre>
+</dd> <!-- end example -->
+
+</dl>
+
+
+<!-------------------- end of more types ----------------------->
+
+<!-------------------- end of resource type -------------------->
+
+## Alternative Resources 
+To specify configuration-specific alternatives for a set of resources:
+<ol>
+<li>Create a new directory in <code>res/</code> named in the form <code><em>&lt;resources_name&gt;</em>-<em>&lt;config_qualifier&gt;</em></code>.
+    <ul>
+      <li><em><code>&lt;resources_name&gt;</code></em> is the directory name of the corresponding default resources.</li>
+      <li><em><code>&lt;qualifier&gt;</code></em> is a name that specifies an individual configuration for which these resources are to be used.</li>
+    </ul>
+</li>
+<li>
+Save the respective alternative resources in this new directory. The resource files must be named exactly the same as the default resource files.
+</li>
+</ol>
+
+<table border="1">
+    <tbody>
+    <tr>
+        <th>Configuration</th>
+        <th>Qualifier Values</th>
+        <th>Description</th>
+    </tr>
+    <tr id="ScreenSizeQualifier">
+      <td>Screen size</td>
+      <td>
+        <code>small</code><br>
+        <code>normal</code><br>
+
+        <code>large</code><br>
+        <code>xlarge</code>
+      </td>
+      <td>
+        <ul class="nolist">
+        <li><code>small</code>: Screens that are of similar size to a
+        low-density QVGA screen. The minimum layout size for a small screen
+        is approximately 320x426 dp units.  Examples are QVGA low density and VGA high
+        density.</li>
+        <li><code>normal</code>: Screens that are of similar size to a
+        medium-density HVGA screen. The minimum
+        layout size for a normal screen is approximately 320x470 dp units.  Examples
+        of such screens a WQVGA low density, HVGA medium density, WVGA
+        high density.</li>
+
+        <li><code>large</code>: Screens that are of similar size to a
+        medium-density VGA screen.
+        The minimum layout size for a large screen is approximately 480x640 dp units.
+        Examples are VGA and WVGA medium density screens.</li>
+        <li><code>xlarge</code>: Screens that are considerably larger than the traditional
+        medium-density HVGA screen. The minimum layout size for an xlarge screen
+        is approximately 720x960 dp units.  In most cases, devices with extra large
+        screens would be too large to carry in a pocket and would most likely
+        be tablet-style devices.</li>
+        </ul>
+        <p class="note"><strong>Note:</strong> Using a size qualifier does not imply that the
+resources are <em>only</em> for screens of that size. If you do not provide alternative
+resources with qualifiers that better match the current device configuration, the system may use
+whichever resources are the <a href="#BestMatch">best match</a>.</p>
+
+        <p class="caution"><strong>Caution:</strong> If all your resources use a size qualifier that
+is <em>larger</em> than the current screen, the system will <strong>not</strong> use them and your
+application will crash at runtime (for example, if all layout resources are tagged with the <code>xlarge</code> qualifier, but the device is a normal-size screen).</p>
+        <p>Also see the <code><a href="/reference/gaia/content/res/Configuration.html#screenLayout">screenLayout</a></code> configuration field,
+which indicates whether the screen is small, normal,
+or large.</p>
+      </td>
+    </tr>
+    <tr id="OrientationQualifier">
+      <td>Screen orientation</td>
+      <td>
+        <code>port</code><br>
+        <code>land</code>
+      </td>
+      <td>
+        <ul class="nolist">
+          <li><code>port</code>: Device is in portrait orientation (vertical)</li>
+          <li><code>land</code>: Device is in landscape orientation (horizontal)</li>
+          <!-- Square mode is currently not used. -->
+        </ul>
+      </td>
+    </tr>
+    <tr id="DensityQualifier">
+      <td>Screen pixel density (dpi)</td>
+
+      <td>
+        <code>ldpi</code><br>
+        <code>mdpi</code><br>
+        <code>hdpi</code><br>
+        <code>xhdpi</code><br>
+        <code>xxhdpi</code><br>
+        <code>nodpi</code><br>
+        <code>tvdpi</code>
+      </td>
+      <td>
+        <ul class="nolist">
+          <li><code>ldpi</code>: Low-density screens; approximately 120dpi.</li>
+          <li><code>mdpi</code>: Medium-density (on traditional HVGA) screens; approximately
+160dpi.</li>
+
+          <li><code>hdpi</code>: High-density screens; approximately 240dpi.</li>
+          <li><code>xhdpi</code>: Extra high-density screens; approximately 320dpi. </li>
+          <li><code>xxhdpi</code>: Extremely high-density screens; approximately 480dpi. </li>
+          <li><code>nodpi</code>: This can be used for bitmap resources that you do not want to be scaled
+to match the device density.</li>
+        </ul>
+        <p>There is a 3:4:6:8:12 scaling ratio between the four primary densities (ignoring the
+tvdpi density). So, a 9x9 bitmap in ldpi is 12x12 in mdpi, 18x18 in hdpi, 24x24 in xhdpi, and 36x36 in xxhdpi.</p>
+        <p>If you decide that your image resources don't look good enough on a television or
+other certain devices and want to try tvdpi resources, the scaling factor is 1.33*mdpi. For
+example, a 100px x 100px image for mdpi screens should be 133px x 133px for tvdpi.</p>
+        <p class="note"><strong>Note:</strong> Using a density qualifier does not imply that the
+resources are <em>only</em> for screens of that density. If you do not provide alternative
+resources with qualifiers that better match the current device configuration, the system may use
+whichever resources are the <a href="#BestMatch">best match</a>.</p>
+       </td>
+    </tr>
+</tbody></table>

@@ -1,0 +1,177 @@
+# Buttons #
+***
+# Description #
+A [Button](#Button) represents a push-button widget. Push-buttons can be pressed or clicked by the user to perform an action.
+The [Button](#Button) class is the base class for creating buttons. The CompoundButton class extends the [Button](#Button)   class. A compound button with two states, checked and unchecked. When the button is pressed or clicked, the state changes automatically. However, you typically should not instantiate a CompoundButton directly. Instead, you should use one of the following subclasses:
+
+* [CheckBox](#CheckBox)  
+A checkbox is a specific type of two-states button that can be either checked or unchecked.
+
+* [RadioButton](#RadioButton)  
+A radio button is a two-states button that can be either checked or unchecked. Radio buttons are normally used together in a RadioGroup. When several radio buttons live inside a radio group, checking one radio button unchecks all the others.
+
+* [ToggleButton](#ToggleButton)  
+A toggle button displays checked/unchecked states and is default accompanied with the text "ON" or "OFF".
+
+## <a name="Button">Button</a> ##
+<img src="Button_Button.png" width="268" height="86"/>
+<br>
+In this section, you will create a button, using the Button widget.
+
+1. create the Button widget
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController\* layout = new gaia::ui::LinearController(this); <br>
+    //create the Button widget
+    gaia::ui::Button\* mpButton = new gaia::ui::Button(this); <br>
+    // set button text
+    gaia::base::String\* text = new gaia::base::String("Hello, World!");
+    mpButton->setText((\*text));<br>
+    // add thet Button to the LinearController
+    layout->addWidget(mpButton);
+    mpScene->attachController(layout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+2. set up the onClickListener of the Button widget
+      1. create the MyBtnClickListener which extends the OnClickListener
+<pre><code>class MyBtnClickListener: public gaia::core::OnClickListener {
+public:
+   MyBtnClickListener(gaia::core::Page\* page){};
+   virtual ~MyBtnClickListener(){};
+   virtual void onClick(gaia::core::Widget\* v){};
+};
+</code></pre>
+    2. add the MyBtnClickListener to the Button widget
+<pre><code>OnClickListener\* listener = new MyBtnClickListener(this);
+mpButton->setOnClickListener(listener);
+</code></pre>
+
+## <a name="CheckBox">CheckBox</a> ##
+<img src="Button_CheckBox.png" width="320" height="78"/>
+<br>
+In this section, you will create a checkbox for selecting items, using the CheckBox widget. 
+
+1. create the CheckBox widget
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController\* layout = new gaia::ui::LinearController(this); <br>
+    //create the CheckBox widget
+    gaia::ui::CheckBox\* mpCheckBox = new gaia::ui::CheckBox(this);<br>
+    // set button text
+    gaia::base::String\* text = new gaia::base::String("Hello, World!");
+    mpCheckBox->setText((\*text));<br>
+    // set state of this button is checked
+    mpCheckBox->setChecked(true);<br>
+    // add the CheckBox to the LinearController
+    layout->addWidget(mpCheckBox);
+    mpScene->attachController(layout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+2. set up the ICompoundBtnCheckedChangeListener of the CheckBox widget
+    1. create the MyBtnCheckedListener which extends the ICompoundBtnCheckedChangeListener
+<pre><code>class MyBtnCheckedListener: public gaia::ui::ICompoundBtnCheckedChangeListener {
+    public:
+        MyBtnCheckedListener(gaia::core::Page\* page){};
+        virtual ~MyBtnCheckedListener(){};
+        virtual void onCheckedChanged(gaia::ui::CompoundButton\* buttonView, bool isChecked){};
+};
+</code></pre>
+    2. add the MyBtnCheckedListener to the CheckBox widget
+<pre><code>ICompoundBtnCheckedChangeListener\* listener = new MyBtnCheckedListener(this);
+mpCheckBox->setOnCheckedChangeListener(listener);
+</code></pre>
+
+## <a name="RadioButton">RadioButton</a> ##
+<img src="Button_RadioButton.png" width="190" height="226"/>
+<br>
+In this section, you will create two mutually-exclusive radio buttons (enabling one disables the other), using the RadioGroup and the RadioButton widgets.
+
+1. create a RadioGroup to control these RadioButtons
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController\* layout = new gaia::ui::LinearController(this); <br>
+    //create the RadioGroup widget
+    gaia::ui::RadioGroup\* mpRadioGroup = new gaia::ui::RadioGroup(this); <br>
+    // add RadioGroup to LinearController
+    layout->addWidget(mpRadioGroup);
+    mpScene->attachController(layout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+2. create some RadioButtons
+<pre><code>gaia::ui::RadioButton\* mpRadioButton = new gaia::ui::RadioButton(this); <br>
+// set RadioButton text
+gaia::base::String\* text = new gaia::base::String("Sneak");
+mpRadioButton->setText((\*text));
+</code></pre>
+3. create a RadioGroupLayoutParams to set layout 
+<pre><code>gaia::ui::RadioGroupLayoutParams\* mpRadioGroupLayoutParams = new gaia::ui::RadioGroupLayoutParams(
+ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+</code></pre>
+4. add the RadioButton to the RadioGroup
+<pre><code>//Notice that before layout->addWidget(mpRadioGroup);<br>mpRadioGroup->addWidget(mpRadioButton, 0, mpRadioGroupLayoutParams);
+</code></pre>
+5. set up the IRadioGroupCheckedChangeListener of the RadioGroup widget
+    1. create the MyRadioCheckedChangeListener which extends the IRadioGroupCheckedChangeListener
+<pre><code>class MyRadioCheckedChangeListener: public gaia::ui::IRadioGroupCheckedChangeListener {
+    public:
+        MyBtnCheckedListener(gaia::core::Page\* page){};
+        virtual ~MyBtnCheckedListener(){};
+        virtual void onCheckedChanged(gaia::ui::RadioGroup\* group, int checkedId){};
+};
+</code></pre>
+    2. add the MyRadioCheckedChangeListener to the RadioGroup widget
+<pre><code>IRadioGroupCheckedChangeListener\* listener = new MyRadioCheckedChangeListener(this);
+mpRadioGroup->setOnCheckedChangeListener(listener);
+</code></pre>
+
+## <a name="ToggleButton">ToggleButton</a> ##
+<img src="Button_ToggleButton.png" width="140" height="96"/>
+<br>
+In this section, you'll create a button used specifically for toggling between two states, using the ToggleButton widget. 
+
+1. create the ToggleButton widget
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController\* layout = new gaia::ui::LinearController(this); <br>
+    //create the ToggleButton widget
+    gaia::ui::ToggleButton\* mpToggleButton = new gaia::ui::ToggleButton(this);<br>
+    // set state of this button is checked
+    mpToggleButton->setChecked(true);<br>
+    // add ToggleButton to LinearController
+    layout->addWidget(mpToggleButton);
+    mpScene->attachController(layout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+2. set up the ICompoundBtnCheckedChangeListener of the ToggleButton widget
+    1. create the MyBtnCheckedListener which extends the ICompoundBtnCheckedChangeListener
+<pre><code>class MyBtnCheckedListener: public gaia::ui::ICompoundBtnCheckedChangeListener {
+    public:
+        MyBtnCheckedListener(gaia::core::Page\* page){};
+        virtual ~MyBtnCheckedListener(){};
+        virtual void onCheckedChanged(gaia::ui::CompoundButton\* buttonView, bool isChecked){};
+};
+</code></pre>
+    2. add the ICompoundBtnCheckedChangeListener to the ToggleButton widget
+<pre><code>ICompoundBtnCheckedChangeListener\* listener = new MyBtnCheckedListener(this);
+mpToggleButton->setOnCheckedChangeListener(listener);
+</code></pre>
+
+
+## References##
+1. Button
+2. CompoundButton
+3. CheckBox
+4. RadioButton
+5. RadioGroup
+6. RadioGroupLayoutParams
+7. ToggleButton
+8. ICompoundBtnCheckedChangeListener
+9. IRadioGroupCheckedChangeListener

@@ -1,0 +1,43 @@
+#Web APIs Guide#
+
+COS Web Runtime supports various web APIs which enable applications handle all kinds of common tasks. Below is a brief guide on how to use these APIs.
+
+##Storage##
+
+You can use [web storage APIs](http://www.w3.org/TR/webstorage/) for basic key / value data storing.
+
+If web storage can't meet your needs, turn to [IndexedDB](http://www.w3.org/TR/IndexedDB/) which provides database APIs for storing structured records and high performance searching.
+
+##Device APIs##
+
+[Geolocation API](http://dev.w3.org/geo/api/spec-source.html): Obtain the current location of the device.
+
+[Sensors API](https://dvcs.w3.org/hg/dap/raw-file/default/sensor-api/Overview.html): Obtain information given by the various sensors available on the device.
+
+[Screen orientation API](http://www.w3.org/TR/screen-orientation): Get notification when screen orientation changes as well as control which screen orientation a page/app wants.
+
+[Vibration API](http://www.w3.org/TR/vibration): Control device vibration for things like haptic feedback in games.
+
+[Battery status API](http://www.w3.org/TR/battery-status): Allow you to get battery status such as battery level and whether is in charing.
+
+## Network##
+
+The most commonly used network APIs are XMLHttpRequest. However, be sure to keep the same origin policy in mind. Your packaged application is hosted within an independent origin, so XMLHttpRequest is disabled by default for external websites, since the origins are not the same. A variant of XMLHttpRequest, named system XMLHttpRequest, is provided for cross origin communication. To use system XMLHttpRequest, you must declare "http://china-liantong.com/webruntime/api/systemXHR" feature in "config.xml", and use the following way to create the XMLHttpRequest object:
+
+    var xhr = new XMLHttpRequest({mozSystem: true});
+
+The [network information API](http://www.w3.org/TR/netinfo-api/) gives you the ability to get the bandwidth information and the data connection type is being used. This is useful, for example, your application wants to choose online video's quality automatically based on network bandwidth. 
+
+The [online and offline events](http://www.whatwg.org/specs/web-apps/current-work/#offline) can be used to detect whether network is connected.
+
+A private [TCPSocket API](https://developer.mozilla.org/en-US/docs/DOM/TCPSocket) is provided for using TCP connections.
+
+##Graphics##
+
+You can use HTML5 canvas for 2D bitmap drawing and use SVG for vector graphics. You can even play with 3D graphics with WebGL.
+
+##Media##
+
+The standard HTML5 video and audio elements can be used for media playback.
+
+COS Web Runtime also supports experimental camera APIs for camera preview, taking pictures and setting parameters, which allow you to develop a full featured camera application.

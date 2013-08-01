@@ -1,0 +1,45 @@
+# Gaia Application Fundamentals
+
+Gaia Applications are written in the C++ programming language. The COS sdk compile the code--along with any data and resource file--into COS package, an archive file with an .apk suffix.
+
+Once installed on a device, each COS application lives in its own security sandbox:  
+
+* The COS operating system is a multi-user Linux system in which each application is a different user.
+* By default, the system assigns each application a unique Linux user ID (the ID is used only by the system and is unknown to the application). The system sets permissions for all the files in an application so that only the user ID assigned to that application can access them. 
+* By default, every application runs in its own Linux process. COS starts the process when any of the application's components need to be executed, then shuts down the process when it's no longer needed or when the system must recover memory for other applications.
+
+In this way, the COS system implements the *principle of least privilege*. That is, each application, by default, has access only to the components that it requires to do its work and no more. This creates a very secure environment in which an application cannot access parts of the system for which it is not given permission.
+
+#Application Components#
+
+--------------------------------------------
+
+Application components are the essential building blocks of an COS application. Each component is a different point through which the system can enter your application. Not all components are actual entry points for the user and some depend on each other, but each one exists as its own entity and plays a specific role—each one is a unique building block that helps define your application's overall behavior.
+
+There are four different types of application components. Each type serves a distinct purpose and has a distinct lifecycle that defines how the component is created and destroyed.
+
+Here are the four types of application components:
+
+* Pages
+
+Please refer to [Page](Page.html) for more information.
+
+* Delegate
+
+Please refer to [Delegate](Delegate.html) for more information.
+
+* ContentProviders
+
+Please refer to [ContentProviders](Content Provider.html) for more information.
+
+* ProcessCommunication
+
+Please refer to [ProcessCommunication](Process Communication.html) for more information.
+
+
+
+
+
+
+
+

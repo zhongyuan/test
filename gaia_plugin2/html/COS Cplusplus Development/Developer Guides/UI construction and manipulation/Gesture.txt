@@ -1,0 +1,10 @@
+#Gesture
+Gaia gesture framework is designed for the realization the interaction between user's gesture and device's UI. Although Gaia is based on the EFL, it seems that there is no support of gesture in EFL. Because there is high relevant between gesture and UI, it is useful to cross reference to Gaia UI toolkit.
+
+##Description
+From Gaia's perspective, the gesture is a collection of a sequence mouse events or touch event. Gaia roughly separates the geature into two major parts. The first one is for user defined gesture. the second one is for the interaction between gesture and UI component.
+
+*   [Gesture Recognizer](./GestureRecognizer.html)  
+User defined gesture (for user)：User can defined his own gesture and run a function.
+*   [Gesture Detector](./GestureDetector.html)  
+Gesture interact with UI component (for developer)：Developer can develop a UI-based AP which can interact with gesture.

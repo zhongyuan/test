@@ -1,0 +1,346 @@
+# Process Communication
+
+A COS app typically has several pages.
+Each page displays a user interface that allows the user to perform a specific task (such as view a map or take a photo).
+To take the user from one page to another, your app must use a Demand to define your app's "demand" to do something.
+When you pass a Demand to the system with a method such as startPage(), the system uses the Demand to identify and start the appropriate app component.
+Using demands even allows your app to start a page that is contained in a separate app.
+
+A Demand can be explicit in order to start a specific component (a specific Page instance) or implicit in order to start any component that can handle the intended action (such as "capture a photo").
+
+This class shows you how to use a Demand to perform some basic interactions with other apps, such as start another app, receive a result from that app, and make your app able to respond to demands from other apps.
+
+
+* [Sending the User to Another App](#sending-user-to-another-app)
+
+    Shows how you can create implicit demands to launch other apps that can perform an action.
+
+* [Getting a Result from a Page](#getting-a-result-from-a-page)
+
+    Shows how to start another page and receive a result from the page.
+
+* [Allowing Other Apps to Start Your Page](#allowing-other-apps-to-start-your-page)
+
+    Shows how to make pages in your app open for use by other apps by defining demand filters that declare the implicit demands your app accepts. 
+
+
+
+
+## <a id="sending-user-to-another-app"></a> Sending the User to Another App
+
+One of COS's most important features is an app's ability to send the user to another app based on an "action" it would like to perform.
+For example, if your app has the address of a business that you'd like to show on a map, you don't have to build an page in your app that shows a map.
+Instead, you can create a request to view the address using a Demand. The COS system then starts an app that's able to show the address on a map.
+
+You must use demands to navigate between pages in your own app.
+You generally do so with an explicit demand, which defines the exact class name of the component you want to start.
+However, when you want to have a separate app perform an action, such as "view a map," you must use an implicit demand.
+
+This lesson shows you how to create an implicit demand for a particular action, and how to use it to start a page that performs the action in another app.
+
+### Building an Implicit Demand
+
+Implicit demands do not declare the class name of the component to start, but instead declare an action to perform.
+The action specifies the thing you want to do, such as view, edit, send, or get something.
+Demands often also include data associated with the action, such as the address you want to view, or the email message you want to send.
+Depending on the demand you want to create, the data might be a Uri, one of several other data types, or the demand might not need data at all.
+
+If your data is a Uri, there's a simple Demand() constructor you can use define the action and data.
+
+For example, here's how to create an demand to initiate a phone call using the Uri data to specify the telephone number:
+
+    Uri number = Uri::parse("tel:5551234");
+    Demand callDemand(Demand::ACTION_DIAL, number);
+
+When your app invokes this demand by calling startPage(), the Phone app initiates a call to the given phone number.
+
+Here are a couple other demands and their action and Uri data pairs:
+
+
+View a map:
+
+    // Map point based on address
+    Uri location = Uri::parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+    // Or map point based on latitude/longitude
+    // Uri location = Uri::parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
+    Demand mapDemand(Demand::ACTION_VIEW(), location);
+
+View a web page:
+
+    Uri webpage = Uri::parse("http://www.example.com");
+    Demand webDemand(Demand::ACTION_VIEW(), webpage);
+
+Other kinds of implicit demands require "extra" data that provide different data types, such as a string.
+You can add one or more pieces of extra data using the various putExtra() methods.
+
+By default, the system determines the appropriate MIME type required by a demand based on the Uri data that's included.
+If you don't include a Uri in the demand, you should usually use setType() to specify the type of data associated with the demand.
+Setting the MIME type further specifies which kinds of pages should receive the demand.
+
+Here are some more demands that add extra data to specify the desired action:
+
+Send an email with an attachment:
+
+    Demand emailDemand(Demand::ACTION_SEND());
+    // The demand does not have a URI, so declare the "text/plain" MIME type
+    emailDemand.setType("text/plain");
+    StringArray mails(1);
+    mails[0] = "jon@example.com";
+    emailDemand.putStringExtra(Demand::EXTRA_EMAIL(), mails); // recipients
+    emailDemand.putStringExtra(Demand::EXTRA_SUBJECT(), "Email subject");
+    emailDemand.putStringExtra(Demand::EXTRA_TEXT(), "Email message text");
+
+Note: It's important that you define your Demand to be as specific as possible.
+For example, if you want to display an image using the ACTION_VIEW demand, you should specify a MIME type of image/*.
+This prevents apps that can "view" other types of data (like a map app) from being triggered by the demand.
+
+
+### Verify There is an App to Receive the Demand
+
+Although the COS platform guarantees that certain demands will resolve to one of the built-in apps (such as the Phone, Email, or Calendar app),
+you should always include a verification step before invoking a demand.
+
+Caution: If you invoke an demand and there is no app available on the device that can handle the demand, your app will crash.
+
+To verify there is a page available that can respond to the demand, call queryDemandPages() to get a list of pages capable of handling your Demand.
+If the returned Vector is not empty, you can safely use the demand. For example:
+
+    PackageManager packageManager(*this);
+    Vector<ResolveInfo> pages = packageManager.queryDemandPages(demand, 0);
+    bool isDemandSafe = pages.size() > 0;
+
+If isDemandSafe is true, then at least one app will respond to the demand. If it is false, then there aren't any apps to handle the demand.
+
+Note: You should perform this check when your page first starts in case you need to disable the feature that uses the demand before the user attempts to use it.
+
+
+### Start a Page with the Demand
+
+Once you have created your Demand and set the extra info, call startPage() to send it to the system.
+
+    startPage(&demand);
+
+Here's a complete example that shows how to create a demand to view a map, verify that an app exists to handle the demand, then start it:
+
+    // Build the demand
+    Uri location = Uri::parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+    Demand mapDemand(Demand::ACTION_VIEW(), location);
+
+    // Verify it resolves
+    PackageManager packageManager(this);
+    Vector<ResolveInfo> pages = packageManager.queryDemandPages(mapDemand, 0);
+    bool isDemandSafe = pages.size() > 0;
+  
+    // Start a page if it's safe
+    if (isDemandSafe) {
+        startPage(&mapDemand);
+    }
+
+
+
+
+## <a id="getting-a-result-from-a-page"></a> Getting a Result from a Page
+
+Starting another page doesn't have to be one-way.
+You can also start another page and receive a result back.
+To receive a result, call startPageForResult() (instead of startPage()).
+
+For example, your app can start a camera app and receive the captured photo as a result.
+Or, you might start the People app in order for the user to select a contact and you'll receive the contact details as a result.
+
+Of course, the page that responds must be designed to return a result. When it does, it sends the result as another Demand object.
+Your page receives it in the onPageResult() callback.
+
+Note: You can use explicit or implicit demands when you call startPageForResult().
+When starting one of your own pages to receive a result, you should use an explicit demand to ensure that you receive the expected result.
+
+
+### Start the Page
+
+There's nothing special about the Demand object you use when starting a page for a result, but you do need to pass an additional integer argument to the startPageForResult() method.
+
+The integer argument is a "request code" that identifies your request.
+When you receive the result Demand, the callback provides the same request code so that your app can properly identify the result and determine how to handle it.
+
+For example, here's how to start a page that allows the user to pick a contact:
+
+    static const int32_t PICK_CONTACT_REQUEST = 1;  // The request code
+    ...
+    void pickContact() {
+        Demand pickContactDemand(Demand::ACTION_PICK(), Uri::parse("content://contacts"));
+        startPageForResult(pickContactDemand, PICK_CONTACT_REQUEST);
+    }
+
+
+### Receive the Result
+
+When the user is done with the subsequent page and returns, the system calls your page's onPageResult() method. This method includes three arguments:
+
+* The request code you passed to startPageForResult().
+* A result code specified by the second page. This is either RESULT_OK if the operation was successful or RESULT_CANCELED if the user backed out or the operation failed for some reason.
+* A Demand that carries the result data.
+
+For example, here's how you can handle the result for the "pick a contact" demand:
+
+    virtual void onPageResult(int requestCode, int resultCode, Demand* data) {
+        // Check which request we're responding to
+        if (requestCode == PICK_CONTACT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Demand's data Uri identifies which contact was selected.
+
+                // Do something with the contact here
+            }
+        }
+    }
+
+In this example, the result Demand returned by COS's Contacts or People app provides a content Uri that identifies the contact the user selected.
+
+In order to successfully handle the result, you must understand what the format of the result Demand will be.
+Doing so is easy when the page returning a result is one of your own pages.
+Apps included with the COS platform offer their own APIs that you can count on for specific result data.
+For instance, the Contacts app always returns a result with the content URI that identifies the selected contact, and the Camera app returns a Bitmap in the "data" extra (see the class about Capturing Photos).
+
+
+
+
+## <a id="allowing-other-apps-to-start-your-page"></a>  Allowing Other Apps to Start Your Page
+
+The previous two lessons focused on one side of the story: starting another app's page from your app.
+But if your app can perform an action that might be useful to another app, your app should be prepared to respond to action requests from other apps.
+For instance, if you build a social app that can share messages or photos with the user's friends,
+it's in your best interest to support the ACTION_SEND demand so users can initiate a "share" action from another app and launch your app to perform the action.
+
+To allow other apps to start your page, you need to add an <demand-filter> element in your manifest file for the corresponding <page> element.
+
+When your app is installed on a device, the system identifies your demand filters and adds the information to an internal catalog of demands supported by all installed apps.
+When an app calls startPage() or startPageForResult(), with an implicit demand, the system finds which page can respond to the demand.
+
+
+### Add an Demand Filter
+
+In order to properly define which demands your page can handle, each demand filter you add should be as specific as possible in terms of the type of action and data the demand accepts.
+
+The system may send a given Demand to a page if that page has an demand filter fulfills the following criteria of the Demand object:
+
+* Action
+
+    A string naming the action to perform. Usually one of the platform-defined values such as ACTION_SEND or ACTION_VIEW.
+
+    Specify this in your demand filter with the <action> element.
+    The value you specify in this element must be the full string name for the action, instead of the API constant (see the examples below).
+
+* Data
+
+    A description of the data associated with the demand.
+
+    Specify this in your demand filter with the <data> element.
+     Using one or more attributes in this element, you can specify just the MIME type, just a URI prefix, just a URI scheme, or a combination of these and others that indicate the data type accepted.
+
+    Note: If you don't need to declare specifics about the data Uri (such as when your page handles to other kind of "extra" data, instead of a URI),
+    you should specify only the gaia:mimeType attribute to declare the type of data your page handles, such as text/plain or image/jpeg.
+
+* Category
+
+    Provides an additional way to characterize the page handling the demand, usually related to the user gesture or location from which it's started.
+    There are several different categories supported by the system, but most are rarely used.
+    However, all implicit demands are defined with CATEGORY_DEFAULT by default.
+
+    Specify this in your demand filter with the <category> element.
+
+In your demand filter, you can declare which criteria your page accepts by declaring each of them with corresponding XML elements nested in the <demand-filter> element.
+
+For example, here's a page with a demand filter that handles the ACTION_SEND demand when the data type is either text or an image:
+
+<page gaia:name="SharePage">
+    <demand-filter>
+        <action gaia:name="android.intent.action.SEND"/>
+        <category gaia:name="android.intent.category.DEFAULT"/>
+        <data gaia:mimeType="text/plain"/>
+        <data gaia:mimeType="image/*"/>
+    </demand-filter>
+</page>
+
+Each incoming demand specifies only one action and one data type, but it's OK to declare multiple instances of the <action>, <category>, and <data> elements in each <demand-filter>.
+
+If any two pairs of action and data are mutually exclusive in their behaviors, you should create separate demand filters to specify which actions are acceptable when paired with which data types.
+
+For example, suppose your page handles both text and images for both the ACTION_SEND and ACTION_SENDTO demands.
+In this case, you must define two separate demand filters for the two actions because a ACTION_SENDTO demand must use the data Uri to specify the recipient's address using the send or sendto URI scheme.
+For example:
+
+<page gaia:name="SharePage">
+    <!-- filter for sending text; accepts SENDTO action with sms URI schemes -->
+    <demand-filter>
+        <action gaia:name="android.intent.action.SENDTO"/>
+        <category gaia:name="android.intent.category.DEFAULT"/>
+        <data gaia:scheme="sms" />
+        <data gaia:scheme="smsto" />
+    </demand-filter>
+    <!-- filter for sending text or images; accepts SEND action and text or image data -->
+    <demand-filter>
+        <action gaia:name="android.intent.action.SEND"/>
+        <category gaia:name="android.intent.category.DEFAULT"/>
+        <data gaia:mimeType="image/*"/>
+        <data gaia:mimeType="text/plain"/>
+    </demand-filter>
+</page>
+
+Note: In order to receive implicit demands, you must include the CATEGORY_DEFAULT category in the demand filter.
+The methods startPage() and startPageForResult() treat all demands as if they contained the CATEGORY_DEFAULT category.
+If you do not declare it, no implicit demands will resolve to your page.
+
+
+### Handle the Demand in Your Page
+
+In order to decide what action to take in your page, you can read the Demand that was used to start it.
+
+As your demand starts, call getDemand() to retrieve the Demand that started the page.
+You can do so at any time during the lifecycle of the page, but you should generally do so during early callbacks such as onInit() or onStart().
+
+For example:
+
+    virtual void onInit(Persistence* savedInstanceState) {
+        // Get the demand that started this page
+        Demand demand = getDemand();
+        Uri data = demand.getData();
+
+        // Figure out what to do based on the demand type
+        if (demand.getType().indexOf("image/") != -1) {
+            // Handle demands with image data ...
+        } else if (demand.getType().equals("text/plain")) {
+            // Handle demands with text ...
+        }
+    }
+
+
+### Return a Result
+
+If you want to return a result to the page that invoked yours, simply call setResult() to specify the result code and result Demand.
+When your operation is done and the user should return to the original page, call finish() to close (and destroy) your page. For example:
+
+    // Create demand to deliver some kind of result data
+    Demand result("com.example.RESULT_ACTION", Uri::parse("content://result_uri"));
+    setResult(Page::RESULT_OK, &result);
+    finish();
+
+You must always specify a result code with the result.
+Generally, it's either RESULT_OK or RESULT_CANCELED.
+You can then provide additional data with an Demand, as necessary.
+
+Note: The result is set to RESULT_CANCELED by default.
+So, if the user presses the Back button before completing the action and before you set the result, the original page receives the "canceled" result.
+
+If you simply need to return an integer that indicates one of several result options, you can set the result code to any value higher than 0.
+If you use the result code to deliver an integer and you have no need to include the Demand, you can call setResult() and pass only a result code. For example:
+
+    setResult(RESULT_COLOR_RED);
+    finish();
+
+In this case, there might be only a handful of possible results, so the result code is a locally defined integer (greater than 0).
+This works well when you're returning a result to a page in your own app, because the page that receives the result can reference the public constant to determine the value of the result code.
+
+Note: There's no need to check whether your page was started with startPage() or startPageForResult().
+Simply call setResult() if the demand that started your page might expect a result.
+If the originating page had called startPageForResult(), then the system delivers it the result you supply to setResult(); otherwise, the result is ignored.

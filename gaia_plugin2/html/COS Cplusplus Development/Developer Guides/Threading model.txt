@@ -1,0 +1,146 @@
+# Threading Model #
+
+## Overview ##
+
+In Gaia, we use Dispatch API to create multi-threading applications.
+
+In Dispatch API, there are three kinds of WorkQueue:
+
+1. Main Queue
+2. Global Queue
+3. Serial Queue
+
+Main Queue is used to update UI components since the UI things can only be updated in main thread.
+
+Global Queue is used to make something running in backbround. If you just want a one time background task, we suggest to use Global Queue to achieve it.
+
+Serial Queue is use to do some data synchronizations between different threads. The task queued in Serial Queue is First-In-First-Out order. We use Serial Queue instead of Mutex to make sure the critical section is accessed by one thread at a time.
+
+## Basic Usage ##
+
+Before you start to create a any Queue to run asynchronous task, you should create a class derived from WorkItem and implement its run() function. The run() function is the execution block of the task.
+
+<pre>
+    class AsyncTask : public WorkItem
+    {
+    public:
+        virtual void run()
+        {
+            // do something asynchronously
+        }
+    };
+</pre>
+
+Then, you can use async() api to make the task to be executed on another thread.
+
+<pre>
+    WorkQueue workqueue;
+    workqueue.async(new AsyncTask());
+</pre>
+
+And, you don't need to handle the destruction of the AsyncTask instance. It will be released automatically after the task being executed.
+
+## Synchronization ##
+
+There is another api called sync() in Queue. It always the caller until the task is completed. Hence, There is a pitfall that use Main Queue to invoke sync() in Main Thread. You should avoid it. It will cause the deadlock on Main Thread.
+
+As we have mentioned above, sync() is often used to do data synchronization like Mutex. The following code snippets demonstrate how to use Serial Queue and sync() to solve producer/consumer problem.
+
+* Create a Store class for putting/setting the products.
+
+<pre>
+    // 
+    // Store is used to store the products.
+    //
+    // When Producer produce a new product, it will
+    // call Store::put() to put products into Store;
+    // Consumer will call Store::get() to get a
+    // product to be consumed.
+    //
+    class Store
+    {
+    public:
+        void put(int productNum)
+        {
+            mProducts.append(productNum);
+        }
+        int get()
+        {
+            int productNum = mProducts.firstItem();
+            mProducts.removeAt(0);
+            return productNum;
+        }
+    private:
+        Vector&lt;int&gt; mProducts;
+    };
+
+</pre>
+
+* Create two kinds of SynchronizeTask for Producer/Consumer
+
+<pre>
+    template &lt;class TYPE&gt;
+    class SynchronizeTask;<br/>
+    //
+    // SynchronizeTask for Producer to put product
+    // into Store.
+    //
+    template &lt;&gt;
+    class SynchronizeTask&lt;Producer&gt; : public WorkItem
+    {
+    public:
+        SynchronizeTask(Store* store, int productNum)
+            : mStore(store),
+              mProductNum(productNum)
+        {
+        }
+        virtual void run()
+        {
+            mStore-&gt;put(mProductNum);
+        }
+    private:
+        Store* mStore;
+        int mProductNum;
+    };<br/>
+    //
+    // SynchronizeTask for Consumer to get product
+    // from Store.
+    //
+    template &lt;&gt;
+    class SynchronizeTask&lt;Consumer&gt; : public WorkItem
+    {
+    public:
+        SynchronizeTask(Store* store, int& productNum)
+            : mStore(store),
+              mProductNum(productNum)
+        {
+        }
+        virtual void run()
+        {
+            mProductNum = mStore->get();
+        }
+    private:
+        Store* mStore;
+        int& mProductNum;
+    };
+</pre>
+
+* We need a Serial Queue to do synchronization for accessing Store. 
+
+<pre>
+    WorkQueue storeSyncQueue("StoreSync");
+</pre>
+
+* Finally, we use sync() api to achieve it.
+
+<pre>
+    void ProducerConsumer::produce(int productNum)
+    {
+        storeSyncQueue.sync(new SynchronizeTask&lt;Producer&gt;(mStore, productNum));
+    } <br/>
+    void ProducerConsumer::consume()
+    {
+        int productNum;
+        storeSyncQueue.sync(new SynchronizeTask&lt;Consumer&gt;(mStore, productNum));
+    }
+</pre>

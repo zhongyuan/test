@@ -1,0 +1,79 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../WebView Component.html">WebView Component</a>&gt;
+</div>
+<h1>Callback Handler</h1>
+<p>In order to enhance user interaction experience when viewing web pages, WebView apps need to implement some of WebView callbacks by inheriting WebViewClient and WebChromeClient. They are base classes which have only virtual member functions for COS app to implement.</p>
+<h2>WebViewClient</h2>
+<p>WebViewClient helps WebView app to process WebKit notifications and events.</p>
+<pre class="prettyprint">
+
+Class MyWebViewClient : public gaia::webkit::WebViewClient {
+  public:
+    virtual void doUpdateVisitedHistory(const WebView* view,
+                const gaia::base::String& url, bool isReload) {
+        /**
+         * Notify the host application to update its visited links database.
+         */
+    }
+
+virtual void onFormResubmission(const WebView* view,
+                int32_t policyFunction) {
+        /**
+         * As the host application if the browser should resend data as the
+         * requested page was a result of a POST. The default is to not resend the
+         * data.
+         */
+    }
+
+virtual void onLoadResource(const WebView* view,
+                const gaia::base::String& url) {
+        /**
+         * Notify the host application that the WebView will load the resource
+         * specified by the given url.
+         */
+    }
+
+virtual void onPageFinished(const WebView* view,
+                const gaia::base::String& url) {
+        /**
+         * Notify the host application that a page has finished loading. This method
+         * is called only for main frame. When onPageFinished() is called, the
+         * rendering picture may not be updated yet. To get the notification for the
+         * new Picture.
+         */
+    }
+
+...
+}
+
+</pre>
+
+<h2>WebChromeClient</h2>
+<p>WebChromeClient helps WebView app to handle Javascript dialog box, web icons, website title, loading progress and so on.</p>
+<pre class="prettyprint">
+Class MyWebChromeClient : public gaia::webkit::WebChromeClient {
+  public:
+    virtual void onProgressChanged(const WebView* view,
+                int32_t newProgress) {
+        /**
+         * Tell the host application the current progress of loading a page.
+         */
+    }
+
+virtual void onReceivedTitle(const WebView* view,
+                const gaia::base::String& title) {
+        /**
+         * Notify the host application of a change in the document title.
+         */
+    }
+
+virtual void onReceivedIcon(const WebView* view,
+                const gaia::graphics::Bitmap* icon) {
+        /**
+         * Notify the host application of a new favicon for the current page.
+         */
+    }
+
+...
+}
+</pre>

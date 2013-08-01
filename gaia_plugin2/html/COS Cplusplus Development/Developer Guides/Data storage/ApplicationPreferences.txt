@@ -1,0 +1,194 @@
+# ApplicationPreferences
+
+## Saving Key-Value Sets
+
+if you have a relatively small collection of key-values that you'd like to save, you should use the ApplicationPreferences APIs.
+
+A ApplicationPreferences object points to a file containing key-value pairs and provides simple methods to read and write them.
+
+
+>  NOTE: Note: The ApplicationPreferences APIs are only for reading and writing key-value pairs and you should not confuse them with the Preference APIs, which help you build a user interface for your app settings (although they use ApplicationPreferences as their implementation to save the app settings).
+
+
+
+### Get a ApplicationPreferences object for your application.
+
+To get a ApplicationPreferences object for your application, use one of two APIs:
+
+1. __Context::getApplicationPreferencesN(int permission)__ - Use this if you need only one preferences files for your whole application package. The ApplicationPreferences will store undaer /data/data/your_package_name/shared_prefs/your_package_name.xml
+
+2. __Context::getPageApplicationPreferencesN(Page *page, int permission)__ - Use this if you need to separate preferences files for your Page. The ApplicationPreferences will store undaer /data/data/your_package_name/shared_prefs/page_name.xml
+
+
+##### The permission is as following.
+
+* __MODE_SELF__ - preference permission. The created file can only be accessed by the calling application.
+
+* __MODE_ALL_READ__ - preference permission. The created file can only be writed by the calling application, but can be read by other application under the same package (.pkg)
+
+* __MODE_ALL_WRITE__ - preference permission. Every application in the same package can read/write.
+
+
+##### The exampe code to get a package level ApplicationPreferences:
+
+        // new Context instance
+        Context* context = new Context(this);
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+
+##### And The exampe code to get a page level ApplicationPreferences:
+
+        // new Context instance
+        Context* context = new Context(this);
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getPageApplicationPreferencesN(this, content::ApplicationPreferences::MODE_ALL_WRITE);
+
+
+
+### To write ApplicationPreferences as following two steps:
+
+
+##### 1. Add values with ApplicationPreferences put APIs such as:
+
+* void putBool(const base::String &key, bool value);
+* void putInt(const base::String &key, int32_t value);
+* void putLong(const base::String &key, int64_t value);
+* void putFloat(const base::String &key, float value);
+* void putDouble(const base::String &key, double value);
+* void putString(const base::String &key, const base::String &value);
+
+
+##### 2. Save new values with ApplicationPreferences API save():
+
+* bool save();
+
+
+###### Example:
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+        // Set values
+        preference->setInt("int32_t_key", 1000);
+        preference->setBool("bool_key", true);
+        preference->setFloat("float_key", 0.123);
+        preference->setString("string_key", "this is String value");
+
+        // Save modify to persistent storage.
+        preference->save();
+
+
+### To read ApplicationPreferences:
+
+##### You can read values with ApplicationPreferences get APIs such as:
+
+* bool getBool(const base::String &key, bool defaultValue) const;
+* int32_t getInt(const base::String &key, int32_t defaultValue) const;
+* int64_t getLong(const base::String &key, int64_t defaultValue) const;
+* float getFloat(const base::String &key, float defaultValue) const;
+* double getDouble(const base::String &key, double defaultValue) const;
+* base::String getString(const base::String &key, const base::String &defaultValue) const;
+* base::HashMap<base::String, base::String> getAllAsString() const;
+
+
+##### Example:
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+        // Get values
+        int32_t int32_t_value = preference->getInt("int32_t_key", 0);
+        bool bool_value = preference->getBool("bool_key", 0.0);
+        float float_value = preference->getFoat("float_key", 0.0);
+        gaia::base::String string_value = preference->getString("string_key", "default value");
+
+
+### Check if the key contains in this ApplicationPreferences.
+
+
+##### ApplicationPreferences also provide the API to check if the key contains in this ApplicationPreferences or not.
+
+* bool contains(const base::String &key) const;
+
+
+##### Example:
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+        bool is_contains = preference->contains("int32_t_key");
+
+
+
+### To remove ApplicationPreferences as following two steps:
+
+
+##### 1. Remove values with ApplicationPreferences API remove():
+
+* bool remove(const base::String &key);
+
+
+##### 2. Save the removed change with ApplicationPreferences API save():
+
+* bool save();
+
+
+###### Example:
+
+        // Get ApplicationPreferences instance
+        content::ApplicationPreferences* preference =
+            context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+        // Check if contains key first
+        if (preference->contains("int32_t_key")) {
+            // Remove value
+
+            preference->remove("int32_t_key");
+            // Save modify to persistent storage.
+            preference->save();
+        }
+
+
+
+### Here is the full example shows how to use the ApplicationPreferences.
+
+        MyPage::onInit(Persistence* const savedInstanceState) {
+             // new Context instance
+             Context* context = new Context(this);
+
+             // Get ApplicationPreferences instance
+             content::ApplicationPreferences* preference =
+                 context->getApplicationPreferencesN(content::ApplicationPreferences::MODE_ALL_WRITE);
+
+             // Set values
+             preference->setInt("int32_t_key", 1000);
+             preference->setBool("bool_key", true);
+             preference->setFloat("float_key", 0.123);
+             preference->setString("string_key", "this is String value");
+
+             // Save modify to persistent storage.
+             preference->save();
+
+             // Get values
+             int32_t int32_t_value = preference->getInt("int32_t_key", 0);
+             bool bool_value = preference->getBool("bool_key", 0.0);
+             float float_value = preference->getFoat("float_key", 0.0);
+             gaia::base::String string_value = preference->getString("string_key", "default value");
+
+             // Check if contains key first
+             if (preference->contains("int32_t_key")) {
+                 // Remove value
+                 preference->remove("int32_t_key");
+
+                 // Save modify to persistent storage.
+                 preference->save();
+             }
+         }

@@ -16,3 +16,9 @@
 	/*border: 1px solid green;*/
 	overflow: hidden;
 }
+.content_wrap h3{
+	text-align: right;
+}
+.content_wrap h3 a{
+	color:green;
+}

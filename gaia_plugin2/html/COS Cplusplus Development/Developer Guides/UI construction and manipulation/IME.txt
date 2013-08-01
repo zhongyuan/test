@@ -1,0 +1,333 @@
+# Input Method Editor (IME)
+
+***
+
+## IME Customization
+Gaia provide a way to customize an IME. As we know, an IME is a background-running service which does nothing
+but waiting for the requirement of editing from user. On starting input, the service will provide a UI serface
+to interact with the user.
+
+If you want to customize one, please create a new class which is inherited by the class __IMEService__ and
+listener. Then you should override some functions to attach the UI to service or doing something.
+
+In this example, we use __OnKeyboardActionListener__ as a listener set to IMEKeyboardWidget, and override
+"onCreateInputView()" function to return a input view to this service.
+
+    class MyIME : public IMEService
+                , public OnKeyboardActionListener {
+        // override
+        virtual IMEKeyboardWidget* onCreateInputView();
+    };
+
+    Widget* MyIME::onCreateInputView() {
+        Wiget* pWidget = new IMEKeyboardWidget();
+        // initial the keyboard widget
+        return pWidget;
+    }
+
+***
+
+Following are IME related class in gaia.
+## Class List
+-  InputMethodManager
+-  InputMethodInfo
+-  InputMethodConnection
+-  IMECompletionInfo
+-  IMEInfo
+-  IMEKeyboard
+-  IMEKeyboardRow
+-  IMEKeyboardKey
+-  IMEKeyboardWidget
+-  OnKeyboardActionListener
+-  IMEService
+
+***
+
+## Input Method Manager
+In SDK, Gaia provide the InputMethodManager to arbitrates interaction between applications and the current input method.
+
+-   The __input method manager__ as expressed by this class is the central point of the system that manages interaction 
+    between all other parts. It exists in each application context and commuicates with a global system service that 
+    manages the interaction across all processes.
+-   An __input method (IME)__ implements an interaction model allowing the user to generate text. The system binds to the 
+    current input method that is use, causing it to be created and run, and tells it when to hide and show its UI. Only 
+    one IME is running at a time.
+-   Only one client application could working with the IME at a time.
+
+While you need to arbitrates interaction between the text area and the IME, please use input method manager and there will be some simple functions to use.
+
+Usage: You must new this instance with TextWidget
+
+Header file : __gaia/service/InputMethodManager.h__
+
+    InputMethodManager* pImm = new InputMethodManager();  
+    pImm->showSoftInput(TextWidget);
+    delete pImm;
+
+***
+
+## Input Method Info
+This class is used to specify meta information of an input method.
+
+The InputMethodInfo can only get from InputMethodManager. 
+
+Header file : __gaia/service/InputMethodInfo.h__
+
+    InputMethodManager* pImm = new InputMethodManager();
+    Vector<InputMethodInfo*> infoList = pImm->getInputMethodList();
+    String id = infoList.itemAt(i)->getId();
+    delete pImm;
+    for(size_t i;i<infoList.size();i++) {
+        delete infoList.itemAt(i);
+    }
+
+***
+
+## Input Method Connection
+This class is the communication channel from an InputMethod back to the application that is receiving its input. 
+It is used to perform such things as reading text around the cursor, committing text to the text box, and sending 
+raw key events to the application.
+
+The connection can only get from IMEService.
+
+Header file : __gaia/service/InputMethodConnection.h__
+
+    InputMethodConnection* pImc = IMEService::getCurrentInputMethodConnection();
+    int code = 100;
+    pImc->commitText(String::valueOf((char16_t)code),1);
+    delete pImc;
+
+***
+
+## IME Completion Info
+Information about a single text completion that an editor has reported to an input method.
+
+For IME customization.
+
+Header file : __gaia/service/IMECompletionInfo.h__
+
+***
+
+## IME Info
+An IMEInfo describes several attributes of a text editing object that an input method is communicating with (typically an EditWidget), 
+most importantly the type of text content it contains.
+
+For IME customization.
+
+Header file : __gaia/service/IMEInfo.h__
+
+***
+
+## IME Keyboard
+Loads an XML description of a keyboard and stores the attributes of the keys. A keyboard consists of rows of keys.
+
+For IME customization. You can inherit it and override some function to customize it.
+
+The layout file for a keyboard contains XML that looks like the following snippet:  
+
+    <Keyboard android:keyWidth="10%p"
+              android:keyHeight="50px"  
+              android:horizontalGap="2px"  
+              android:verticalGap="2px" >  
+              <Row android:keyWidth="32px" >  
+                   <Key android:keyLabel="A" />  
+                   ...  
+              </Row>  
+              ...  
+    </Keyboard>  
+
+<table border="1" width="100%">
+<tr><th colspan="2">XML Attributes</th></tr>
+<tr><th>Attribute Name</th><th>Description</th></tr>
+<tr><td>android:horizontalGap</td><td>Default horizontal gap between keys.</td></tr>
+<tr><td>android:keyHeight</td><td>Default height of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:keyWidth</td><td>Default width of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:verticalGap</td><td>Default vertical gap between rows of keys. </td></tr>
+</table>
+<br>
+<table border="1" width="400">
+<tr><th colspan="2">Valid units</th></tr>
+<tr><td>px</td><td>pixels</td></tr>
+<tr><td>dp</td><td>density-independent pixels</td></tr>
+<tr><td>sp</td><td>scaled pixels based on preferred font size</td></tr>
+<tr><td>in</td><td>inches</td></tr>
+<tr><td>mm</td><td>millimeters</td></tr>
+<tr><td>%</td><td>percentage of the base size</td></tr>
+<tr><td>%p</td><td>a size relative to some parent container</td></tr>
+</table>
+
+Header file : __gaia/service/IMEKeyboard.h__
+
+    class MyKeyboard : public IMEKeyboard {
+        //members and function declaration here
+        };
+
+    MyKeyboard* myKeyboard = new MyKeyboard(IMEService, Resource_ID);
+    myKeyboard->initializer(IMEService, Resource_ID);
+    delete myKeyboard;
+
+***
+
+## IMEKeyboardRow
+Container for keys(IMEKeyboardKey) in the keyboard(IMEKeyboard). All keys in a row are at the same Y-coordinate. 
+Some of the key size defaults can be overridden per row from what the Keyboard defines.
+
+For IME customization. You can inherit it and override some function to customize it.
+
+<table border="1" width="100%">
+<tr><th colspan="2">XML Attributes</th></tr>
+<tr><th>Attribute Name</th><th>Description</th></tr>
+<tr><td>android:horizontalGap</td><td>Default horizontal gap between keys.</td></tr>
+<tr><td>android:keyHeight</td><td>Default height of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:keyWidth</td><td>Default width of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:verticalGap</td><td>Default vertical gap between rows of keys. </td></tr>
+<tr><td>android:keyboardMode</td><td>Mode of the Keyboard. </td></tr>
+<tr><td>android:rowEdgeFlags</td><td>Row edge flags. </td></tr>
+</table>
+<br>
+<table border="1" width="400">
+<tr><th colspan="2">Valid units</th></tr>
+<tr><td>px</td><td>pixels</td></tr>
+<tr><td>dp</td><td>density-independent pixels</td></tr>
+<tr><td>sp</td><td>scaled pixels based on preferred font size</td></tr>
+<tr><td>in</td><td>inches</td></tr>
+<tr><td>mm</td><td>millimeters</td></tr>
+<tr><td>%</td><td>percentage of the base size</td></tr>
+<tr><td>%p</td><td>a size relative to some parent container</td></tr>
+</table>
+<br>
+<table border="1" width="600">
+<tr><th colspan="3">Row edge flags</th></tr>
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td>top</td><td>4</td><td>Row is anchored to the top of the keyboard</td></tr>
+<tr><td>bottom</td><td>8</td><td>Row is anchored to the bottom of the keyboard</td></tr>
+</table>
+
+Header file : __gaia/service/IMEKeyboardRow.h__
+
+***
+
+## IMEKeyboardKey
+Class for describing the position and characteristics of a single key in the keyboard.
+
+For IME customization. You can inherit it and override some function to customize it.
+
+<table border="1" width="100%">
+<tr><th colspan="2">XML Attributes</th></tr>
+<tr><th>Attribute Name</th><th>Description</th></tr>
+<tr><td>android:codes</td><td>The unicode value or comma-separated values that this key outputs. </td></tr>
+<tr><td>android:horizontalGap</td><td>Default horizontal gap between keys.</td></tr>
+<tr><td>android:iconPreview</td><td>The icon to show in the popup preview. </td></tr>
+<tr><td>android:isModifier</td><td>Whether this is a modifier key such as Alt or Shift. </td></tr>
+<tr><td>android:isRepeatable</td><td>Whether long-pressing on this key will make it repeat. </td></tr>
+<tr><td>android:isSticky</td><td>Whether this is a toggle key. </td></tr>
+<tr><td>android:keyEdgeFlags</td><td>Key edge flags. </td></tr>
+<tr><td>android:keyHeight</td><td>Default height of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:keyIcon</td><td>The icon to display on the key instead of the label. </td></tr>
+<tr><td>android:keyLabel</td><td>The label to display on the key. </td></tr>
+<tr><td>android:keyOutputText</td><td>The string of characters to output when this key is pressed. </td></tr>
+<tr><td>android:keyWidth</td><td>Default width of a key, in pixels or percentage of display width. </td></tr>
+<tr><td>android:popupCharacters</td><td>The characters to display in the popup keyboard. </td></tr>
+<tr><td>android:popupKeyboard</td><td>The XML keyboard layout of any popup keyboard. </td></tr>
+</table>
+<br>
+<table border="1" width="400">
+<tr><th colspan="2">Valid units</th></tr>
+<tr><td>px</td><td>pixels</td></tr>
+<tr><td>dp</td><td>density-independent pixels</td></tr>
+<tr><td>sp</td><td>scaled pixels based on preferred font size</td></tr>
+<tr><td>in</td><td>inches</td></tr>
+<tr><td>mm</td><td>millimeters</td></tr>
+<tr><td>%</td><td>percentage of the base size</td></tr>
+<tr><td>%p</td><td>a size relative to some parent container</td></tr>
+</table>
+<br>
+<table border="1" width="600">
+<tr><th colspan="3">Key edge flags</th></tr>
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td>left</td><td>1</td><td>Key is anchored to the left of the keyboard</td></tr>
+<tr><td>right</td><td>2</td><td>Key is anchored to the right of the keyboard</td></tr>
+</table>
+
+Header file : __gaia/service/IMEKeyboardKey.h__
+
+***
+
+## IME Keyboard Widget
+A widget that renders a virtual Keyboard. It handles rendering of keys and detecting key presses and touch movements.
+
+For IME customization. You can inherit it and override some function to customize it.
+
+<table border="1" width="100%">
+<tr><th colspan="2">XML Attributes</th></tr>
+<tr><th>Attribute Name</th><th>Description</th></tr>
+<tr><td>android:keyBackground</td><td>Image for the key. </td></tr>
+<tr><td>android:keyPreviewLayout</td><td>Layout resource for key press feedback.</td></tr>
+<tr><td>android:keyPreviewOffset</td><td>Vertical offset of the key press feedback from the key.</td></tr>
+<tr><td>android:keyTextColor</td><td>Color to use for the label in a key.</td></tr>
+<tr><td>android:keyTextSize</td><td>Size of the text for character keys.</td></tr>
+<tr><td>android:labelTextSize</td><td>Size of the text for custom keys with some text and no icon.</td></tr>
+<tr><td>android:popupLayout</td><td>Layout resource for popup keyboards.</td></tr>
+<tr><td>android:verticalCorrection</td><td>Amount to offset the touch Y coordinate by, for bias correction.</td></tr>
+</table>
+
+Header file : __gaia/service/IMEKeyboardWidget.h__
+
+    class MyKeyboardWidget : public gaia::service::IMEKeyboardWidget {
+        //members and function declaration here
+    };
+
+    MyKeyboardWidget* myKeyboardWidget = new gaia::service::IMEKeyboardWidget();
+    IMEService::initialKeyboardWidget(myKeyboardWidget, Resource_ID);
+    myKeyboardWidget->setOnKeyboardActionListener(IMEService);
+    myKeyboardWidget->setKeyboard(IMEKeyboard);
+    delete myKeyboardWidget;
+
+***
+
+## On Keyboard Action Listener
+Listener for virtual keyboard events. For example 'onKey()'.
+
+For IME customization. You should inherit it and IMEService to customize it.
+
+Header file : __gaia/service/IMEKeyboardWidget.h__
+
+    class MyKeyboardService : public IMEService, public OnKeyboardActionListener {
+        // members and function delcaration
+    };
+
+    //override
+    void onKey(int primaryCode, const gaia::base::Vector<int32_t>& keyCodes) {
+        //inplements here
+    }
+
+***
+
+## IME Service
+IMEService provides a standard implementation of an InputMethod, which final implementations can derive from and customize.
+This provides a basic framework for standard UI elements (input view, candidates view, and running in fullscreen mode), but it is 
+up to a particular implementor to decide how to use them. For example, one input method could implement an input area with a 
+keyboard, another could allow the user to draw text, while a third could have no input area (and thus not be visible to the user) 
+but instead listen to audio and perform text to speech conversion.
+
+In the implementation provided here, all of these elements are placed together in a single window managed by the IMEService. 
+It will execute callbacks as it needs information about them, and provides APIs for programmatic control over them. They layout of 
+these elements is explicitly defined:
+
+-     The soft input view, if available, is placed at the bottom of the screen.
+-     The candidates view, if currently shown, is placed above the soft input view.
+-     If not running fullscreen, the application is moved or resized to be above these views; if running fullscreen, the window will 
+completely cover the application and its top part will contain the extract text of what is currently being edited by the application.
+
+For IME customization. You should inherit it and override some function to customize it.
+
+Header file : __gaia/service/IMEService.h__
+
+    class CustomizeKeyboard : public IMEService {
+        //members and function declarations here
+    };
+
+    //override
+    void onInitializeInterface() {
+        //inplements here
+    }

@@ -1,0 +1,26 @@
+<div>
+<a href = "../../COS Web Development.html">COS Web Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Web APIs Guide</h1>
+<p>COS Web Runtime supports various web APIs which enable applications handle all kinds of common tasks. Below is a brief guide on how to use these APIs.</p>
+<h2>Storage</h2>
+<p>You can use <a href="http://www.w3.org/TR/webstorage/">web storage APIs</a> for basic key / value data storing.</p>
+<p>If web storage can't meet your needs, turn to <a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> which provides database APIs for storing structured records and high performance searching.</p>
+<h2>Device APIs</h2>
+<p><a href="http://dev.w3.org/geo/api/spec-source.html">Geolocation API</a>: Obtain the current location of the device.</p>
+<p><a href="https://dvcs.w3.org/hg/dap/raw-file/default/sensor-api/Overview.html">Sensors API</a>: Obtain information given by the various sensors available on the device.</p>
+<p><a href="http://www.w3.org/TR/screen-orientation">Screen orientation API</a>: Get notification when screen orientation changes as well as control which screen orientation a page/app wants.</p>
+<p><a href="http://www.w3.org/TR/vibration">Vibration API</a>: Control device vibration for things like haptic feedback in games.</p>
+<p><a href="http://www.w3.org/TR/battery-status">Battery status API</a>: Allow you to get battery status such as battery level and whether is in charing.</p>
+<h2>Network</h2>
+<p>The most commonly used network APIs are XMLHttpRequest. However, be sure to keep the same origin policy in mind. Your packaged application is hosted within an independent origin, so XMLHttpRequest is disabled by default for external websites, since the origins are not the same. A variant of XMLHttpRequest, named system XMLHttpRequest, is provided for cross origin communication. To use system XMLHttpRequest, you must declare "http://china-liantong.com/webruntime/api/systemXHR" feature in "config.xml", and use the following way to create the XMLHttpRequest object:</p>
+<pre><code>var xhr = new XMLHttpRequest({mozSystem: true});
+</code></pre>
+<p>The <a href="http://www.w3.org/TR/netinfo-api/">network information API</a> gives you the ability to get the bandwidth information and the data connection type is being used. This is useful, for example, your application wants to choose online video's quality automatically based on network bandwidth. </p>
+<p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/#offline">online and offline events</a> can be used to detect whether network is connected.</p>
+<p>A private <a href="https://developer.mozilla.org/en-US/docs/DOM/TCPSocket">TCPSocket API</a> is provided for using TCP connections.</p>
+<h2>Graphics</h2>
+<p>You can use HTML5 canvas for 2D bitmap drawing and use SVG for vector graphics. You can even play with 3D graphics with WebGL.</p>
+<h2>Media</h2>
+<p>The standard HTML5 video and audio elements can be used for media playback.</p>
+<p>COS Web Runtime also supports experimental camera APIs for camera preview, taking pictures and setting parameters, which allow you to develop a full featured camera application.</p>

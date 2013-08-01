@@ -1,0 +1,101 @@
+# Saving Data in SQL Databases
+Saving data to a database is ideal for repeating or structured data, such as contact information. This class assumes that you are familiar with SQL databases in general and helps you get started with SQLite databases on COS. The APIs you'll need to use a database on COS are available in the gaia/content/storage/SQLiteDatabase class.
+
+##Create a Database Using a SQL Helper
+Just like files that you save on the device's internal storage, COS stores your database in private disk space that's associated application. Your data is secure, because by default this area is not accessible to other applications.
+
+A useful set of APIs is available in the SQLiteOpenHelper class. When you use this class to obtain references to your database, the system performs the potentially long-running operations of creating and updating the database only when needed and not during app startup. All you need to do is call getWritableDatabase() or getReadableDatabase().
+
+To use SQLiteOpenHelper, create a subclass that overrides the onCreate(), onUpgrade() and onOpen() callback methods.
+
+For example, here's an implementation of SQLiteOpenHelper
+
+    class SubSQLiteOpenHelper : public SQLiteOpenHelper
+    {
+      public:
+        SubSQLiteOpenHelper(Page* page,const String& name, int32_t version) : SQLiteOpenHelper(page, name, version){}
+        ~SubSQLiteOpenHelper(){}
+        void onCreate(const SQLiteDatabase& db)
+        {
+            String* sql = new Sting("CREATE TABLE IF NOT EXISTS db_name (_id INTEGER  PRIMARY KEY , name TEXT , email TEXT)");
+            db.execSQL(*sql);
+        }
+        void onUpgrade(const SQLiteDatabase& db, int32_t oldVersion, int32_t newVersion)
+        {
+            db.execSQL("DROP TABLE IF EXISTS db_name");
+            onCreate(db);
+        }
+    };
+
+####Get Readable Database
+
+To access your database, instantiate your subclass of SQLiteOpenHelper:
+
+    String* dbName = new String("DatabaseTest.db");
+    int32_t version = 1;
+    SQLiteDatabase* readableDatabase;
+    SubSQLiteOpenHelper*  helper = new SubSQLiteOpenHelper(this, *dbName, version);
+    if(helper != NULL){
+        readableDatabase = helper->getWritableDatabase();
+    }
+####Get Writable Database
+Create or open a database than will be used for reading and writing.
+
+    String* dbName = new String("DatabaseTest.db");
+    int32_t version = 1;
+    SQLiteDatabase* writableDatabase;
+    SubSQLiteOpenHelper*  helper = new SubSQLiteOpenHelper(this, *dbName, version);
+    if(helper != NULL){
+        writableDatabase = helper->getWritableDatabase();
+    }
+##Create Database
+SQLiteDatabase has methods to create, delete, execute SQL commands, and perform other common database management tasks.
+The other way, you can then get an instance of your SQLiteOpenHelper implementation using the constructor you've defined. To write to and read from the database, call getWritableDatabase() and getReadableDatabase(), respectively. These both return a SQLiteDatabase object that represents the database and provides methods for SQLite operations.
+
+    String* path = new String("/data/data/DatabaseTest/DatabaseTest.db");
+    SQLiteDatabase* database = SQLiteDatabase::openOrCreateDatabaseN(*path);
+
+##Put Information into a Database
+Add data into the database by passing a ContentValues object to the add() method:
+
+    ContentValues* cv = new ContentValues();
+    String* key1 = new String("name");
+    String* key2 = new String("email");
+    String* val1 = new String("example_name");
+    String* val2 = new String("example_mail@mail.com");
+    cv->addValue(*key1, *val1);
+    cv->addValue(*key2, *val2);
+    database->insert("table_name", NULL, *cv);
+The first argument for insert() is simply the table name. The second argument provides the name of a column in which the framework can insert NULL in the event that the ContentValues is empty (if you instead set this to "null", then the framework will not insert a row when there are no values).
+##Read Information from a Database
+To read from a database, use the query() method, passing it your selection criteria and desired columns. The method combines elements of insert() and update(), except the column list defines the data you want to fetch, rather than the data to insert. The results of the query are returned to you in a Cursor object.
+
+Query the given table, returning a Cursor over the result set.
+
+    String* tableName = new String("database_test");
+    Cursor* cursor = database->query(*tableName);
+    StringArray* columnName(2);
+    columnName[0]= "column_name_1";
+    columnName[1]= "column_name_2";
+    Cursor* cursor = database->queryN(*tableName, columnName, NULL, NULL, NULL, NULL, NULL);
+
+    int32_t columnNamePosition  = 0;
+    int32_t columnValuePosition = 0;
+    cursor->moveToFirst();
+    while(cursor->moveToNext()){
+       String columnName  = cursor->getColumnName(columnNamePosition);
+       String columnValue = cursor->getString(columnValuePostion); 
+    }
+
+##Delete Information from a Database
+To delete rows from a table, you need to provide selection criteria that identify the rows. The database API provides a mechanism for creating selection criteria that protects against SQL injection. The mechanism divides the selection specification into a selection clause and selection arguments. The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause. Because the result isn't handled the same as a regular SQL statement, it is immune to SQL injection.
+
+    database->deleteRows("table_name", new String("_id=1"), NULL);
+##Update a Database
+Convenience method for updating rows in the database.
+
+    ContentValues* cv = new ContentValues();
+    String* key = new String("email");
+    String* val = new String("example_mail@mail.com");
+    cv->addValue(key,val);
+    database->update("table_name", *cv2, new String("_id=1"), NULL);

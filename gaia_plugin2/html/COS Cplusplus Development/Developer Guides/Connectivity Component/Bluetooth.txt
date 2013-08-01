@@ -1,0 +1,56 @@
+#Bluetooth#
+
+The Gaia platform includes support for the Bluetooth network stack, which allows a device to wirelessly exchange data with other Bluetooth devices. The application framework provides access to the Bluetooth functionality through the Gaia Bluetooth APIs. These APIs let applications wirelessly connect to other Bluetooth devices, enabling point-to-point and multipoint wireless features.
+
+Using the Bluetooth APIs, an Gaia application can perform the following:
+
+  - Scan for other Bluetooth devices
+  - Query the local Bluetooth adapter for paired Bluetooth devices
+  - Establish RFCOMM channels
+  - Connect to other devices through service discovery
+  - Transfer data to and from other devices
+  - Manage multiple connections
+
+-------------------------------------------------------------------------
+
+##The Basics##
+
+This document describes how to use the Gaia Bluetooth APIs to accomplish the four major tasks necessary to communicate using Bluetooth: setting up Bluetooth, finding devices that are either paired or available in the local area, connecting devices, and transferring data between devices.
+
+Here's a summary of the classes and interfaces you will need to create Bluetooth connections:
+
+###BluetoothAdapter:
+	Represents the local Bluetooth adapter. The BluetoothAdapter is the entry-point for all Bluetooth interaction. Using this, you can discover other Bluetooth devices, query a list of bonded (paired) devices, instantiate a BluetoothDevice using a known MAC address, and create a BluetoothServerSocket to listen for communications from other devices.
+
+###BluetoothDevice:
+	Represents a remote Bluetooth device. Use this to request a connection with a remote device through a BluetoothSocket or query information about the device such as its name, address, class, and bonding state.
+
+###BluetoothSocket:
+	Represents the interface for a Bluetooth socket (similar to a TCP Socket). This is the connection point that allows an application to exchange data with another Bluetooth device via InputStream and OutputStream.
+
+###BluetoothServerSocket:
+	Represents an open server socket that listens for incoming requests (similar to a TCP ServerSocket). In order to connect two Gaia devices, one device must open a server socket with this class. When a remote Bluetooth device makes a connection request to the this device, the BluetoothServerSocket will return a connected BluetoothSocket when the connection is accepted.
+
+###BluetoothClass:
+	Describes the general characteristics and capabilities of a Bluetooth device. This is a read-only set of properties that define the device's major and minor device classes and its services. However, this does not reliably describe all Bluetooth profiles and services supported by the device, but is useful as a hint to the device type.
+
+###BluetoothProfile:
+	An interface that represents a Bluetooth profile. A Bluetooth profile is a wireless interface specification for Bluetooth-based communication between devices. An example is the Hands-Free profile. For more discussion of profiles, see #Working with Profiles
+
+###BluetoothHeadset:
+	Provides support for Bluetooth headsets to be used with mobile phones. This includes both Bluetooth Headset and Hands-Free profiles.
+
+###BluetoothA2dp:
+	Defines how high quality audio can be streamed from one device to another over a Bluetooth connection. "A2DP" stands for Advanced Audio Distribution Profile.
+
+###BluetoothHealth:
+	Represents a Health Device Profile proxy that controls the Bluetooth service.
+
+###BluetoothHealthCallback:
+	An abstract class that you use to implement BluetoothHealth callbacks. You must extend this class and implement the callback methods to receive updates about changes in the application's registration state and Bluetooth channel state.
+
+###BluetoothHealthAppConfiguration:
+	Represents an application configuration that the Bluetooth Health third-party application registers to communicate with a remote Bluetooth health device.
+
+###BtProfileServiceListener:
+	An interface that notifies BluetoothProfile IPC clients when they have been connected to or disconnected from the service (that is, the internal service that runs a particular profile).

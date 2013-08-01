@@ -1,0 +1,18 @@
+<div>
+<a href = "../../COS Web Development.html">COS Web Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Support Multiple Screens</h1>
+<p>COS supports devices with different screen sizes. You need to follow some patterns to make your app fit multiple screen sizes. Viewport meta tag and CSS media query are the two essential concepts you need to understand.</p>
+<h2>Viewport Meta Tag</h2>
+<p>Viewport meta tag is widely used in web pages optimized for mobile. COS Web Runtime supports this tag in the same way as mobile browsers.</p>
+<p>The viewport meta tag tells COS Web Runtime how to behave when it renders the webpage. When viewport is not declared, COS Web Runtime will use device's physical resolution for viewport size. It will make applications' UI difficult to scale. When viewport meta tag is used, DPI will be taken into account when deciding the viewport and virtual pixels will be used for rendering. This makes UI behave the same on devices with different DPIs. </p>
+<p>An example of using the viewport meta tag is below:</p>
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"&gt;
+</code></pre>
+<p>In this case, COS Web Runtime will use virtual device width as the viewport width and use virtual pixels to render the web page. The virtual device width is calculated by multiplying the physical device width and a factor depends on device's DPI. On high DPI devices, multiple physical pixels are mapped into one virtual pixel. For example, on a 1280x720 screen (in portrait mode) with 320 DPI, the virtual device width is 360 and 4 physical pixels are mapped into one virtual pixel.</p>
+<h2>CSS Media Query</h2>
+<p><a href="http://www.w3.org/TR/css3-mediaqueries/">Media query</a> is a W3C CSS3 standard allowing content rendering to adapt to conditions such as screen resolution and orientation. It is the key technology for responsive web design. Here are some examples you can do with media query:</p>
+<ul>
+<li>Use a single application to support two different UI layouts on phones and tablets.</li>
+<li>Use different UI resources for devices with different DPIs: use high resolution images for high DPI devices and use low resolution images for low DPI devices.</li>
+</ul>

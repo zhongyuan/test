@@ -1,0 +1,88 @@
+<div>
+<a href = "../../Getting Started With COS.html">Getting Started With COS</a>&gt;<a href = "../Overview.html">Overview</a>&gt;
+</div>
+<h1>Hello World</h1>
+<p>Sample Code for Hello World:</p>
+<p>PageTest.h
+<pre><code>
+#pragma once
+#include &lt;gaia/core/Page.h&gt;
+#include &lt;gaia/core/Context.h&gt;
+#include &lt;gaia/core/Persistence.h&gt;
+#include &lt;gaia/core/vision/Scene.h&gt;
+#include &lt;gaia/ui/LinearController.h&gt;
+#include &lt;gaia/ui/TextWidget.h&gt;</p>
+<p>namespace gaia
+{</p>
+<p>class HelloWorld: public core::Page
+{
+public:
+    virtual void onInit(core::Persistence* const p);
+    virtual void onRestart();
+    virtual void onStart();
+    virtual void onResume();
+    virtual void onPause();
+    virtual void onStop();
+    virtual void onTear();</p>
+<p>private:
+    core::Scene<em> mScene;
+    ui::LinearController</em> mpController;
+    ui::TextWidget* mpText;</p>
+<p>};</p>
+<p>} //gaia</p>
+<p></code></pre></p>
+<p>PageTest.cpp</p>
+<pre><code>
+#include "HelloWorld.h"
+
+namespace gaia
+{
+
+using namespace core;
+using namespace ui;
+
+void HelloWorld::onInit(Persistence* const p)
+{
+    mScene = Scene::SceneFactory(this);
+    mpText = new TextWidget(this);
+
+mpText->setText("HelloWorld");
+    mpText->setTextSize(30);
+
+mpController = new LinearController(this);
+    mpController->addWidget(mpText);
+    mScene->attachController(mpController);
+    mScene->setupSceneLayout();
+
+}
+void HelloWorld::onRestart()
+{
+}
+void HelloWorld::onStart()
+{
+}
+
+void HelloWorld::onResume()
+{
+}
+
+void HelloWorld::onPause()
+{
+}
+
+void HelloWorld::onStop()
+{
+}
+
+void HelloWorld::onTear()
+{
+    delete mpController;
+    delete mpText;
+    mScene->SceneDestroy();
+}
+
+template class Export<HelloWorld, Page>;
+
+}//gaia
+
+</code></pre>

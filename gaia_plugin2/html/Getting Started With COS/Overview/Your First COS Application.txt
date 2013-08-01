@@ -1,0 +1,99 @@
+#Hello World#
+Sample Code for Hello World:
+
+PageTest.h
+<pre><code>
+\#pragma once
+\#include <gaia/core/Page.h\>
+\#include <gaia/core/Context.h\>
+\#include <gaia/core/Persistence.h\>
+\#include <gaia/core/vision/Scene.h\>
+\#include <gaia/ui/LinearController.h\>
+\#include <gaia/ui/TextWidget.h\>
+
+
+namespace gaia
+{
+
+class HelloWorld: public core::Page
+{
+public:
+	virtual void onInit(core::Persistence* const p);
+	virtual void onRestart();
+	virtual void onStart();
+	virtual void onResume();
+	virtual void onPause();
+	virtual void onStop();
+	virtual void onTear();
+
+private:
+    core::Scene* mScene;
+    ui::LinearController* mpController;
+    ui::TextWidget* mpText;
+
+};
+
+} //gaia
+
+
+</code></pre>
+
+PageTest.cpp
+
+<pre><code>
+#include "HelloWorld.h"
+
+
+namespace gaia
+{
+
+using namespace core;
+using namespace ui;
+
+
+void HelloWorld::onInit(Persistence* const p)
+{
+    mScene = Scene::SceneFactory(this);
+    mpText = new TextWidget(this);
+
+    mpText->setText("HelloWorld");
+    mpText->setTextSize(30);
+
+    mpController = new LinearController(this);
+    mpController->addWidget(mpText);
+    mScene->attachController(mpController);
+    mScene->setupSceneLayout();
+
+}
+void HelloWorld::onRestart()
+{
+}
+void HelloWorld::onStart()
+{
+}
+
+void HelloWorld::onResume()
+{
+}
+
+void HelloWorld::onPause()
+{
+}
+
+void HelloWorld::onStop()
+{
+}
+
+void HelloWorld::onTear()
+{
+	delete mpController;
+	delete mpText;
+	mScene->SceneDestroy();
+}
+
+template class Export<HelloWorld, Page>;
+
+}//gaia
+
+
+</code></pre>

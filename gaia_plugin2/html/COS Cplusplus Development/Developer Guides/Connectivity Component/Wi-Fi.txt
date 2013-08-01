@@ -1,0 +1,12 @@
+#Wi-Fi#
+
+Wi-Fi allows your application to connect to a Wireless Local Area Network (WLAN) and to transfer data over the network.
+
+The gaia::connectivity namespace enables your application to activate and deactivate a local Wi-Fi device, and to connect to a WLAN network in the infrastructure mode. The Wi-Fi features include:
+
+    Wi-Fi device management with the gaia::connectivity::WifiManager class
+    Wi-Fi connection management with the WifiManager class for the infrastructure mode
+
+
+##Infrastructure Mode##
+Infrastructure mode is used to connect to a wireless local area network (WLAN). Infrastructure mode requires a wireless access point. To connect to a WLAN, a client must be configured to use the same service set identifier (SSID) as the access point.

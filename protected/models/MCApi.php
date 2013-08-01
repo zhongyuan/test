@@ -107,7 +107,7 @@ class MCApi {
 		foreach($query as $row){
 			$idx++;
 			$subCnt = $this->getSubTreeCnt($row['id']);
-			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia/".$row['path']);
+			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia_plugin2/".$row['path']);
 			if($subCnt > 0){
 				$data['isParent'] = true;
 				$data['children'] = $this->getTree($row['id'],FALSE);
