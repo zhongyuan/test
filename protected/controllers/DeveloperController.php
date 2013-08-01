@@ -35,7 +35,7 @@ class DeveloperController extends Controller
      */
     public function actionEditIndex()
     {
-
+		$this->_cosDeveloper(MCApi::training,TRUE);
     }
 
     /*
@@ -46,13 +46,44 @@ class DeveloperController extends Controller
 		$this->_cosDeveloper(MCApi::developer);	
     }
 
-	private function _cosDeveloper($type = 1)
+	/*
+     * developer guide的编辑模式
+     */
+    public function actionEditGuide()
+    {
+        $this->_cosDeveloper(MCApi::developer,TRUE);
+    }
+	
+	/**
+	* 编辑模式与浏览模式的总输出方法 
+	* @param undefined $type
+	* @param undefined $editMode
+	* 
+	*/
+	private function _cosDeveloper($type = 1,$editMode = FALSE)
 	{
 		$mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
+		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
 		
-		$this->render('_cosDeveloper',array(
-            'data' => $data
+		$switchUrl = "#";
+		if($editMode){
+			if($type == MCApi::training){
+				$switchUrl = 'developer/index';
+			}elseif($type == MCApi::developer){
+				$switchUrl = 'developer/guide';
+			}	
+		}else{
+			if($type == MCApi::training){
+				$switchUrl = 'developer/editIndex';
+			}elseif($type == MCApi::developer){
+				$switchUrl = 'developer/editGuide';
+			}
+		}
+		
+		$this->render($view,array(
+            'data' => $data,
+			'switchUrl'=>$switchUrl
         ));
 	}
 
@@ -63,7 +94,7 @@ class DeveloperController extends Controller
 	public function actionGetFileContent()
 	{
 		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
-		$filePath = dirname(dirname(__FILE__))."/gaia/".$filePath;
+		$filePath = dirname(dirname(dirname(__FILE__))).$filePath;
 		$jsonRst = array(
 			'req' => "error",
 			'msg' => "您要查看的文件未找到,可能已被删除!"
@@ -79,14 +110,89 @@ class DeveloperController extends Controller
 		exit(0);	
 	}
 	
-    /*
-     * developer guide的编辑模式
-     */
-    public function actionEditGuide()
-    {
-        
-    }
-
+	
+	/**
+	 * AJAX更新节点名称 
+	 * 
+	 */
+	public function actionAjaxUpdateNodeName()
+	{
+		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
+		$nodeId = intval($_POST['nodeId']);
+		
+		$mcApi = new MCApi();
+		$flag = $mcApi->updateNodeName($nodeName,$nodeId);
+		if($flag){
+			$jsonRst = array('req'=>"ok",'msg'=>"节点名称更新成功");	
+		}else{
+			$jsonRst = array('req'=>"error",'msg'=>"节点名称未作更新");
+		}
+		echo json_encode($jsonRst);
+		exit(0);
+			
+	}
+	
+	
+	/**
+	 * 保存修改后的文档信息 
+	 * 
+	 */
+	public function actionSaveFile()
+	{
+		$f_comment = $_POST['f_comment'];
+		$f_path = filter_var($_POST['f_path'],FILTER_SANITIZE_STRING);
+		$f_path = dirname(dirname(dirname(__FILE__))).$f_path;
+		$jsonRst = array(
+			'req' => "error",
+			'msg' => "文件不存在，无法修改!"
+		);
+		if(file_exists($f_path)){
+			if(file_put_contents($f_path,$f_comment)){
+				$jsonRst = array(
+					'req'=>"ok",
+					'msg'=>"文档修改成功!"
+				);
+			}else{
+				$jsonRst = array(
+					'req'=>"error",
+					'msg'=>"文档修改失败,可能您没有权限修改此文档!"
+				);
+			}
+		}
+		echo json_encode($jsonRst);
+		exit(0);
+		
+	}
+	
+	
+	/**
+	 * AJAX删除树节点 
+	 * 
+	 */
+	public function actionAjaxRemoveNode()
+	{
+		$nodeId = intval($_POST['nodeId']);
+		$mcApi = new MCApi();
+		$flag = $mcApi->removeNode($nodeId);
+		if($flag){
+			$jsonRst = array(
+				'req'=>"ok",
+				'msg'=>"节点删除成功"
+			);
+		}else{
+			$jsonRst = array(
+				'req'=>"error",
+				'msg'=>"节点删除失败"
+			);
+		}
+		
+		echo json_encode($jsonRst);
+		exit(0);
+		
+	}
+	
+	
+	
     /*
      * reference
      */

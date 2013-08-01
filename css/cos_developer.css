@@ -14,6 +14,7 @@
 }
 .content_wrap .right{
 	/*border: 1px solid green;*/
+	padding-left: 10px;
 	overflow: hidden;
 }
 .content_wrap h3{
@@ -21,4 +22,14 @@
 }
 .content_wrap h3 a{
 	color:green;
+}
+.content_wrap textarea{
+	width:800px;
+	height: 500px;
+}
+.content_wrap #sbt{
+	margin-top: 20px;
+	width:120px;
+	height: 40px;
+	font-size: 20px;
 }

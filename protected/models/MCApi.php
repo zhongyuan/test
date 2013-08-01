@@ -132,6 +132,53 @@ class MCApi {
 		return intval($cnt);
 	}
 
+
+	/**
+	 * 更新节点名称的操作 
+	 * @param undefined $nodeName
+	 * @param undefined $nodeId
+	 * 
+	 */
+	public function updateNodeName($nodeName,$nodeId = 0)
+	{
+		$sql = "UPDATE api SET name = :nodeName,update_time = :update_time WHERE id = :nodeId";
+		$cmd = Yii::app()->db->createCommand($sql)->execute(array(
+            ':nodeName' => $nodeName,
+			':update_time'=>time(),
+			':nodeId'	=> $nodeId
+        ));
+		return $cmd;
+	}
+	
+	
+	/**
+	 * 删除树节点操作,只修改状态,不实际删除此记录
+	 * @param undefined $nodeId
+	 * 
+	 */
+	public function removeNode($nodeId = 0)
+	{
+		if($nodeId<1){
+			return FALSE;
+		}
+		$sql = "UPDATE api SET status = 0,update_time = :update_time WHERE id = :nodeId";
+		$cmd = Yii::app()->db->createCommand($sql)->execute(array(
+			':nodeId'	=> $nodeId,
+			':update_time'=>time()
+        ));
+		if($cmd){
+			$sql2 = "SELECT id FROM api WHERE parent_id = :parent_id AND status = 1";
+			$query2 = Yii::app()->db->createCommand($sql2)->queryAll(true,array(
+				':parent_id'	=> $nodeId
+	        ));
+			if($query2){
+				foreach($query2 as $r){
+					$this->removeNode($r['id']);
+				}
+			}
+		}
+		return $cmd;
+	}
 }
 
 ?>

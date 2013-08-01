@@ -68,7 +68,7 @@ $this->widget('SearchWidget');
 	</SCRIPT>
 	
 <div class="content_wrap">
-	<h3><a href="#">→进入编辑模式</a></h3>
+	<h3><a href="<?php echo $this->createUrl($switchUrl);?>">→进入编辑模式</a></h3>
 	<div class="zTreeDemoBackground left">
 		<ul id="tree" class="ztree"></ul>
 	</div>
