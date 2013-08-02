@@ -179,6 +179,59 @@ class MCApi {
 		}
 		return $cmd;
 	}
+	
+	
+	/**
+	 * 
+	 * @param undefined $nodeName
+	 * @param undefined $parent_id
+	 * 
+	 */
+	public function addNode($nodeName,$parent_id = 0)
+	{
+		//检查当前父节点下的子节点名称是否已存在
+		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND name = '$nodeName'";
+		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
+		if($cnt > 0){
+			return array(FALSE,"节点文档已存在,不能重复创建");
+		}
+		
+		//创建一个新的节点文档
+		$path = $this->_genRandomFile($parent_id);
+		if(!$path){
+			return array(FALSE,"节点文档创建失败,可能没有写入权限");
+		}
+		$sql2 = "INSERT INTO api(name,parent_id,path,status,record_time) VALUES(:name,:parent_id,:path,:status,:record_time)";
+		$cmd2 = Yii::app()->db->createCommand($sql2)->execute(array(
+            ':name' => $nodeName,
+			':parent_id'=>$parent_id,
+			':path'	=> $path,
+			':status'=>1,
+			':record_time'=>time()
+        ));
+		if($cmd2){
+			return array(TRUE,"节点文档创建成功");
+		}
+		return array(FALSE,"节点文档创建失败");
+			
+	}
+	
+	private function _genRandomFile($parent_id = 0)
+	{
+		$targetFolder = $_SERVER['DOCUMENT_ROOT']."/gaia_plugin2/ext_html";
+		if(!is_dir($targetFolder)){
+			$m = mkdir($targetFolder,0777,TRUE);
+			if(!$m){
+				return FALSE;
+			}
+		}
+		$targetFile = $targetFolder."/".$parent_id."_".uniqid().".html";
+		if(touch($targetFile)){
+			return str_replace($_SERVER['DOCUMENT_ROOT']."/gaia_plugin2","",$targetFile);
+		}
+		return FALSE;	
+	}	
+	
 }
 
 ?>

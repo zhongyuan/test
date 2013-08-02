@@ -43,12 +43,14 @@ $this->widget('SearchWidget');
 	
 		var zTree;
 		var demoIframe;
-
+		var newCount;
 		var setting = {
 			view: {
 				dblClickExpand: false,
 				showLine: true,
-				selectedMulti: false
+				selectedMulti: false,
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
 			},
 			data: {
 				simpleData: {
@@ -103,7 +105,7 @@ $this->widget('SearchWidget');
 					     data: {nodeId:treeNode.id} ,
 					  success: function(data){
 							alert(data.msg);
-							window.location.reload();//重新加载页面
+							//window.location.reload();//重新加载页面
 					  } ,
 					 dataType: "json"
 					});	
@@ -111,6 +113,57 @@ $this->widget('SearchWidget');
 			}
 		};
 
+		//鼠标悬停操作
+		function addHoverDom(treeId, treeNode) {
+			
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+			var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+				+ "' title='add node' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			
+			
+			var btn = $("#addBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", function(){
+				
+				//开始设置节点名称
+				var newName = window.prompt("请填写节点名称","");
+				if(!newName){
+					return false;
+				}
+				var zTree = $.fn.zTree.getZTreeObj("tree");
+				zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:newName});
+				
+				//提交后台操作
+				ajaxAddNode(treeNode.id,newName);
+				return false;
+			});
+		};
+		
+		
+		//AJAX提交后台处理新增节点
+		function ajaxAddNode(parentId,nodeName)
+		{
+			$.ajax({
+			     type: 'POST',
+			      url: "<?php echo $this->createUrl('developer/ajaxAddNode');?>",
+			     data: {parentId:parentId,nodeName:nodeName} ,
+			  success: function(data){
+					alert(data.msg);
+					window.location.reload();//重新加载页面
+					/*if(data.req == "error"){
+						window.location.reload();//重新加载页面	
+					}*/
+			  } ,
+			 dataType: "json"
+			});	
+		}
+		
+		//鼠标移走操作
+		function removeHoverDom(treeId, treeNode) {
+			$("#addBtn_"+treeNode.tId).unbind().remove();
+		};
+		
 		var zNodes = <?php echo json_encode($data);?>
 
 		$(document).ready(function(){

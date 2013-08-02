@@ -83,10 +83,37 @@ class DeveloperController extends Controller
 		
 		$this->render($view,array(
             'data' => $data,
-			'switchUrl'=>$switchUrl
+			'switchUrl'=>$switchUrl,
+			'dataHtml'=>$this->_generateTreeHtml($data)
         ));
 	}
 
+	/**
+	 * 生成结点树对应的HTML 
+	 * @param undefined $data
+	 * 
+	 */
+	private function _generateTreeHtml($data,$active=TRUE)
+	{
+		$idx = 0;
+		$html = "<ul>";
+		foreach($data as $index=>$item){
+			$idx++;
+			if($idx == 1 && $active){
+				$class = "active";
+			}else{
+				$class = "inactive";
+			}
+			$html.="<li><a class=\"".$class."\" id=\"".$item['file']."\" href=\"#\">".$item['name']."</a>";
+			if($item['isParent']){
+				$html.=$this->_generateTreeHtml($item['children'],FALSE);//子节点初始化时无需激活
+			}
+			$html.="</li>";
+		}
+		$html.="</ul>";	
+		return $html;
+	}
+	
 	/**
 	 * AJAX获取文档详细内容 
 	 * 
@@ -192,6 +219,32 @@ class DeveloperController extends Controller
 	}
 	
 	
+	/**
+	 * AJAX方式添加树节点 
+	 * 
+	 */
+	public function actionAjaxAddNode()
+	{
+		$parentId = intval($_POST['parentId']);
+		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
+		$mcApi = new MCApi();
+		$dbRst = $mcApi->addNode($nodeName,$parentId);
+		if(!$dbRst[0]){
+			$jsonRst = array(
+				'req'=>"error",
+				'msg'=>$dbRst[1]
+			);
+		}else{
+			$jsonRst = array(
+				'req'=>"ok",
+				'msg'=>$dbRst[1]
+			);
+		}
+		
+		echo json_encode($jsonRst);
+		exit(0);
+		
+	}
 	
     /*
      * reference
