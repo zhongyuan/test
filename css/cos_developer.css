@@ -19,9 +19,14 @@
 }
 .content_wrap h3{
 	text-align: right;
+	margin-bottom: 10px;
 }
 .content_wrap h3 a{
 	color:green;
+	border:1px solid green;
+	color: #4db385;
+	border-radius: 5px;
+	padding: 3px;
 }
 .content_wrap textarea{
 	width:800px;
@@ -41,7 +46,7 @@
 #leftMenu a {color:#1c769a; text-decoration:none; font-size:1.1em;}
 #leftMenu a:hover {text-decoration:underline;}
 #leftMenu {
-	width:311px;
+	width:251px;
 	padding:10px;
 	border:solid 1px #dfdfdf;
 	border-radius: 10px;
@@ -64,7 +69,7 @@
 
 #leftMenu .menu ul li {
 display:block;
-width:311px;
+width:251px;
 padding-top:2px;
 margin-bottom:5px;
 background: url(/images/developer/zakladka.png) top left no-repeat;
@@ -73,7 +78,7 @@ overflow:visible;
 }
 #leftMenu .menu ul li a {
 display:block;
-height:34px; width:273px;
+height:34px; width:223px;
 margin-top:0px;
 padding-top:10px;
 padding-left:35px;
