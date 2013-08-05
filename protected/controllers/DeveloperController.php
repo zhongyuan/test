@@ -81,11 +81,15 @@ class DeveloperController extends Controller
 			}
 		}
 		
-		$this->render($view,array(
-            'data' => $data,
-			'switchUrl'=>$switchUrl,
-			'dataHtml'=>$this->_generateTreeHtml($data)
-        ));
+		$viewData = array(
+			'data' => $data,
+			'switchUrl'=>$switchUrl
+		);
+		if(!$editMode){//普通浏览模式下
+			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
+			$viewData['first_id'] = $data[0]['file'];
+		}
+		$this->render($view,$viewData);
 	}
 
 	/**

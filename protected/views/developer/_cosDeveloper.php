@@ -19,6 +19,9 @@ $this->widget('SearchWidget');
 			demoIframe.bind("load", loadReady);
 			$(".menu ul li").menu();
 			
+			//设置初始化IFRAME信息
+			$("#testIframe").attr("src","<?php echo $first_id?>");
+			
 			//控制节点点击链接操作
 			$(".menu a").click(function(){
 				$("#testIframe").attr("src",this.id);
