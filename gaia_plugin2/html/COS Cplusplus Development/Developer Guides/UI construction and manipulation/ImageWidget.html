@@ -1,0 +1,188 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>ImageWidget and ImageButton</h1>
+<h2><a name="ImageWidget" id="ImageWidget">ImageWidget</a></h2>
+<p>ImageWidget is a UI control that you can use to display a image.</p>
+<h3>Interface setup</h3>
+<pre><code>void MyPage::onInit(Persistence* const p)
+{
+    // create scene
+    mpScene = Scene::SceneFactory(this);
+    LinearController* layout = new LinearController(this);
+    ImgWdg = new ImageWidget(this);
+
+    layout-&gt;setOrientation(LinearController::VERTICAL);
+    // set image from resource
+    ImgWdg-&gt;setImageResource(com::gaia::R::drawable::sym_action_call);
+
+    // attach widget
+    layout-&gt;addWidget(ImgWdg);
+    mpScene-&gt;attachController(layout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<h3>Source Setting</h3>
+<p>Sets a Drawer/Bitmap as the content of this ImageWidget.</p>
+<pre><code>void MyPage::onInit(Persistence* const p)
+{
+    // create scene
+    mpScene = Scene::SceneFactory(this);
+    LinearController* layout = new LinearController(this);
+    Resources* resources = mpScene-&gt;getResources();
+
+    // load from Drawer
+    Drawer* drawer = resources-&gt;getDrawer(R::drawable::beach);
+    ImageWidget* pImgWdgDr = new ImageWidget(this);
+    pImgWdgDr-&gt;setImageDrawer(drawer);
+
+    // load from Bitmap
+    Bitmap* pBitmap = gaia::graphics::BitmapFactory::decodeResource(*resources, R::drawable::beach);
+    ImageWidget* ImgWdgBmp = new ImageWidget(this);
+    ImgWdgBmp-&gt;setImageBitmap(pBitmap);
+
+    // attach widget
+    layout-&gt;addWidget(pImgWdgDr);
+    layout-&gt;addWidget(ImgWdgBmp);
+    mpScene-&gt;attachController(layout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<h3>Scale setting</h3>
+<p>Controls how the image should be resized or moved to match the size of this ImageWidget. </p>
+<img src="ImageWidget_Scale.jpg" width="240"/>
+
+<pre><code>void MyPage::onInit(Persistence* const p)
+{
+    // create scene
+    mpScene = Scene::SceneFactory(this);
+    LinearController* layout = new LinearController(this);
+
+    // create image widget
+    for (int i = 0; i &lt; 7; i++) {
+        ImgWdg[0] = new ImageWidget(this);
+        ImgWdg[0]-&gt;setImageResource(R::drawable::gingerdroid);
+        ImgWdg[0]-&gt;setMaxHeight(70);
+        ImgWdg[0]-&gt;setMaxWidth(70);
+        ImgWdg[0]-&gt;setAdjustViewBounds(true);
+        layout-&gt;addWidget(ImgWdg[0]);
+    }
+
+    // Scaled to exactily 70*70 width padding
+    ImgWdg[0]-&gt;setScaleType(ImageWidget::CENTER_INSIDE);
+
+    // Scaled to exactily 70*70 width center
+    ImgWdg[1]-&gt;setScaleType(ImageWidget::CENTER);
+
+    // Scaled to exactily 70*70 width center crop
+    ImgWdg[2]-&gt;setScaleType(ImageWidget::CENTER_CROP);
+    layout-&gt;addWidget(ImgWdg[2]);
+
+    // Small image scaled to Fit Center
+    ImgWdg[3]-&gt;setScaleType(ImageWidget::FIT_CENTER);
+
+    // Small image scaled to Fit End
+    ImgWdg[4]-&gt;setScaleType(ImageWidget::FIT_END);
+
+    // Small image scaled to Fit Start
+    ImgWdg[5]-&gt;setScaleType(ImageWidget::FIT_START);
+
+    // Small image scaled to Fit XY
+    ImgWdg[6]-&gt;setScaleType(ImageWidget::FIT_XY);
+
+    mpScene-&gt;attachController(layout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<h3>Color Filter setting</h3>
+<p>Set a tinting color for the image.</p>
+<ul>
+<li>PorterDuff::DST_ATOP</li>
+</ul>
+<img src="ImageWidget_cf_DST_ATOP.jpg" width="240"/>
+
+<pre><code>void MyPage::onInit(Persistence* const p)
+{
+    // create scene
+    mpScene = Scene::SceneFactory(this);
+    LinearController* layout = new LinearController(this);
+    ImgWdg = new ImageWidget(this);
+    ImgWdg = new ImageWidget(this);
+    ImgWdg-&gt;setImageResource(R::drawable::gingerdroid);
+    ImgWdg-&gt;setColorFilter(gaia::graphics::Color::argb(255, 0, 255, 0), gaia::graphics::PorterDuff::DST_ATOP);
+    layout-&gt;addWidget(ImgWdg);
+    mpScene-&gt;attachController(layout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<ul>
+<li>PorterDuff::LIGHTEN</li>
+</ul>
+<img src="ImageWidget_cf_LIGHTEN.jpg" width="240"/>
+
+<pre><code>ImgWdg-&gt;setColorFilter(gaia::graphics::Color::argb(255, 0, 255, 0), gaia::graphics::PorterDuff::LIGHTEN);
+</code></pre>
+<ul>
+<li>PorterDuff::SRC_ATOP</li>
+</ul>
+<img src="ImageWidget_cf_SRC_ATOP.jpg" width="240"/>
+
+<pre><code>ImgWdg-&gt;setColorFilter(gaia::graphics::Color::argb(255, 0, 255, 0), gaia::graphics::PorterDuff::SRC_ATOP);
+</code></pre>
+<ul>
+<li>PorterDuff::SRC_OUT</li>
+</ul>
+<img src="ImageWidget_cf_SRC_OUT.jpg" width="240"/>
+
+<pre><code>ImgWdg-&gt;setColorFilter(gaia::graphics::Color::argb(255, 0, 255, 0), gaia::graphics::PorterDuff::SRC_OUT);
+</code></pre>
+<h2><a name="ImageButton" id="ImageButton">ImageButton</a></h2>
+<p>ImageButton is the same with ImageWidget. There defferent is that ImageButton had default background.</p>
+<h3>Interface setup</h3>
+<img src="ImageWidget_Button.jpg" width="240"/>
+
+<pre><code>void MyPage::onInit(Persistence* const p)
+{
+    // create scene
+    mpScene = Scene::SceneFactory(this);
+    LinearController* layout = new LinearController(this);
+    layout-&gt;setOrientation(LinearController::VERTICAL);
+
+    ImgBtn[0] = new ImageButton(this);
+    ImgBtn[0]-&gt;setImageResource(com::gaia::R::drawable::sym_action_call);
+
+    ImgBtn[1] = new ImageButton(this);
+    ImgBtn[1]-&gt;setImageResource(com::gaia::R::drawable::sym_action_chat);
+
+    ImgBtn[2] = new ImageButton(this);
+    ImgBtn[2]-&gt;setImageResource(com::gaia::R::drawable::sym_action_email);
+
+    ImgBtn[3] = new ImageButton(this);
+    ImgBtn[3]-&gt;setImageResource(R::drawable::honeycomb);
+    ImgBtn[3]-&gt;setMaxWidth(100);
+    ImgBtn[3]-&gt;setAdjustViewBounds(true);
+    ImgBtn[3]-&gt;setScaleType(ImageWidget::CENTER_INSIDE);
+
+    ImgBtn[4] = new ImageButton(this);
+    ImgBtn[4]-&gt;setImageResource(R::drawable::gingerdroid);
+    ImgBtn[4]-&gt;setScaleType(ImageWidget::CENTER);
+
+    // attach widget
+    layout-&gt;addWidget(ImgBtn[0]);
+    layout-&gt;addWidget(ImgBtn[1]);
+    layout-&gt;addWidget(ImgBtn[2]);
+    layout-&gt;addWidget(ImgBtn[3]);
+    layout-&gt;addWidget(ImgBtn[4]);
+    mpScene-&gt;attachController(layout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<h2>References</h2>
+<ul>
+<li>ImageWidget</li>
+<li>ImageButton</li>
+<li>Resource</li>
+<li>Drawer</li>
+<li>Bitmap</li>
+<li>ColorFilter</li>
+</ul>

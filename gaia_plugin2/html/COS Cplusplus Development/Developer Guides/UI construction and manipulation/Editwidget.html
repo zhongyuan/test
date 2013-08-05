@@ -1,0 +1,82 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>EditWidget</h1>
+<hr />
+<h1>Description</h1>
+<pre><code>A [EditWidget](#EditWidget) EditWidget is a thin veneer over TextWidget that configures itself
+</code></pre>
+<p>to be editable. Via this component developer can know what developer type in.</p>
+<h2><a name="EditWidget">EditWidget</a></h2>
+<p><img src="EditWidget.png" width="479" height="68"/>
+<br></p>
+<p>In this section, you can know how to use the EditWidget.</p>
+<h3>Using TabPageController</h3>
+<p><pre><code></p>
+<p>const String TextWidgetTest::dummyText("input what you want");</p>
+<p>// Customize your own text change watcher
+class MyTextWatcher : public gaia::text::TextWatcher {
+  private:
+      Page<em> mpPage;
+  public:
+      explicit MyTextWatcher(Page</em> page) : mpPage(page) {</p>
+<pre><code>  // call while focus on EditText and user start to input text to EditText
+  void beforeTextChanged(const gaia::base::CharSequence* s, int32_t start, 
+                                             int32_t count, int32_t after) {
+    GLOG(LOG_TAG, LOGDBG, "beforeTextChanged: String= %s", (s-&gt;toString()).string());
+  };
+
+  // call while user ongoing chnage the text in EditText
+  void onTextChanged(const gaia::base::CharSequence* s, int32_t start, 
+                                            int32_t before, int32_t count) {
+    GLOG(LOG_TAG, LOGDBG, "onTextChanged: String= %s", (s-&gt;toString()).string());
+  };
+
+  // call while user finish change the text in EditText
+  void afterTextChanged(const gaia::text::Editable* s) {
+    GLOG(LOG_TAG, LOGDBG, "AfterTextChanged: String= %s", (s-&gt;toString()).string());
+  };
+</code></pre>
+<p>};</p>
+<p>void EditWidgetTest::onInit(
+        gaia::core::Persistence* const savedInstanceState) {
+    mpScene = Scene::SceneFactory(static_cast<Page*>(this));</p>
+<pre><code>LinearController* mpDashboard;
+mpDashboard = new LinearController(this);
+mpDashboard-&gt;setOrientation(LinearController::VERTICAL);
+
+mpCp_WW = new ControllerParams(ControllerParams::WRAP_CONTENT,
+                             ControllerParams::WRAP_CONTENT);
+
+EditWidget* mpEditTarget = new EditWidget(this);
+mpEditTarget-&gt;setText(dummyText);
+
+mpwatcher = new MyTextWatcher(this);
+// add textwatcher to EditText to information developer user change the text in EditText.
+mpEditTarget-&gt;addTextChangedListener(mpwatcher);
+
+mpDashboard-&gt;addWidget(mpEditTarget, mpCp_WW);
+mpScene-&gt;attachController(mpDashboard);
+mpScene-&gt;setupSceneLayout();
+</code></pre>
+<p>}
+</code></pre></p>
+<h3>TabPageController API</h3>
+<p>Add fragment to TabPageController.</p>
+<pre><code>// Set the selection anchor to &lt;code&gt;start&lt;/code&gt; and the selection edge to stop.
+void setSelection(int32_t start, int32_t stop);
+
+// Move the cursor to offset index
+void setSelection(int32_t index);
+
+// Select the entire text.
+void selectAll();
+
+// Move the selection edge to offset &lt;code&gt;index&lt;/code&gt;.
+void extendSelection(int32_t index);
+</code></pre>
+<h2>References</h2>
+<ol>
+<li>Textwidget</li>
+<li>Text</li>
+</ol>

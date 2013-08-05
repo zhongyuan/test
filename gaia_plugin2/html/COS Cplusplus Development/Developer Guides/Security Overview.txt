@@ -1,0 +1,97 @@
+#Gaia Security Overview#
+
+##Introduction##
+
+Gaia is a modern mobile platform that was designed to be truly open. Gaia applications make use of advanced hardware and software, as well as local and served data, exposed through the platform to bring innovation and value to consumers. To protect that value, the platform must offer an application environment that ensures the security of users, data, applications, the device, and the network.
+
+Securing an open platform requires a robust security architecture and rigorous security programs. Gaia was designed with multi-layered security that provides the flexibility required for an open platform, while providing protection for all users of the platform.
+
+Gaia was designed with developers in mind. Security controls were designed to reduce the burden on developers. Security-savvy developers can easily work with and rely on flexible security controls. Developers less familiar with security will be protected by safe defaults.
+
+Gaia was designed with device users in mind. Users are provided visibility into how applications work, and control over those applications. This design includes the expectation that attackers would attempt to perform common attacks, such as social engineering attacks to convince device users to install malware, and attacks on third-party applications on Gaia. Gaia was designed to both reduce the probability of these attacks and greatly limit the impact of the attack in the event it was successful.
+
+This document outlines the goals of the Gaia security program, describes the fundamentals of the Gaia security architecture, and answers the most pertinent questions for system architects and security analysts. This document focuses on the security features of Gaia's core platform and does not discuss security issues that are unique to specific applications, such as those related to the browser or SMS application. Recommended best practices for building Gaia devices, deploying Gaia devices, or developing applications for Gaia are not the goal of this document and are provided elsewhere.
+
+##System and Kernel Level Security##
+
+At the operating system level, the Gaia platform provides the security of the Linux kernel, as well as a secure inter-process communication (IPC) facility to enable secure communication between applications running in different processes. These security features at the OS level ensure that even native code is constrained by the Application Sandbox. Whether that code is the result of included application behavior or a exploitation of an application vulnerability, the system would prevent the rogue application from harming other applications, the Gaia system, or the device itself.
+Linux Security
+
+The foundation of the Gaia platform is the Linux kernel. The Linux kernel itself has been in widespread use for years, and is used in millions of security-sensitive environments. Through its history of constantly being researched, attacked, and fixed by thousands of developers, Linux has become a stable and secure kernel trusted by many corporations and security professionals.
+
+As the base for a mobile computing environment, the Linux kernel provides Gaia with several key security features, including:
+
+1. A user-based permissions model
+2. Process isolation
+3. Extensible mechanism for secure IPC
+4. The ability to remove unnecessary and potentially insecure parts of the kernel
+
+As a multiuser operating system, a fundamental security objective of the Linux kernel is to isolate user resources from one another. The Linux security philosophy is to protect user resources from one another. Thus, Linux:
+
+1. Pevents user A from reading user B's files
+2. Ensures that user A does not exhaust user B's memory
+3. Ensures that user A does not exhaust user B's CPU resources
+4. Ensures that user A does not exhaust user B's devices (e.g. telephony, GPS, bluetooth)
+
+###The Application Sandbox###
+
+The Gaia platform takes advantage of the Linux user-based protection as a means of identifying and isolating application resources. The Gaia system assigns a unique user ID (UID) to each Gaia application and runs it as that user in a separate process. This approach is different from other operating systems (including the traditional Linux configuration), where multiple applications run with the same user permissions.
+
+This sets up a kernel-level Application Sandbox. The kernel enforces security between applications and the system at the process level through standard Linux facilities, such as user and group IDs that are assigned to applications. By default, applications cannot interact with each other and applications have limited access to the operating system. If application A tries to do something malicious like read application B's data or dial the phone without permission (which is a separate application), then the operating system protects against this because application A does not have the appropriate user privileges. The sandbox is simple, auditable, and based on decades-old UNIX-style user separation of processes and file permissions.
+
+Since the Application Sandbox is in the kernel, this security model extends to native code and to operating system applications. All of the software above the kernel in Figure 1, including operating system libraries, application framework, application runtime, and all applications run within the Application Sandbox. On some platforms, developers are constrained to a specific development framework, set of APIs, or language in order to enforce security. On Gaia, there are no restrictions on how an application can be written that are required to enforce security; in this respect, native code is just as secure as interpreted code.
+
+In some operating systems, memory corruption errors generally lead to completely compromising the security of the device. This is not the case in Gaia due to all applications and their resources being sandboxed at the OS level. A memory corruption error will only allow arbitrary code execution in the context of that particular application, with the permissions established by the operating system.
+
+Like all security features, the Application Sandbox is not unbreakable. However, to break out of the Application Sandbox in a properly configured device, one must compromise the security of the the Linux kernel.
+
+###System Partition and Safe Mode###
+
+The system partition contains Gaia's kernel as well as the operating system libraries, application runtime, application framework, and applications. This partition is set to read-only. When a user boots the device into Safe Mode, only core Gaia applications are available. This ensures that the user can boot their phone into an environment that is free of third-party software.
+
+###Filesystem Permissions###
+
+In a UNIX-style environment, filesystem permissions ensure that one user cannot alter or read another user's files. In the case of Gaia, each application runs as its own user. Unless the developer explicitly exposes files to other applications, files created by one application cannot be read or altered by another application.
+Filesystem Encryption
+
+Gaia provides full filesystem encryption, so all user data can be encrypted in the kernel using the dmcrypt implementation of AES128 with CBC and ESSIV:SHA256. The encryption key is protected by AES128 using a key derived from the user password, preventing unauthorized access to stored data without the user device password. To provide resistance against systematic password guessing attacks (e.g. “rainbow tables” or brute force), the password is combined with a random salt and hashed repeatedly with SHA1 using the standard PBKDF2 algorithm prior to being used to decrypt the filesystem key. To provide resistance against dictionary password guessing attacks, Gaia provides password complexity rules that can be set by the device administrator and enforced by the operating system. Filesystem encryption requires the use of a user password, pattern-based screen lock is not supported.
+
+More details on implementation of filesystem encryption are available at http://source.Gaia.com/tech/encryption/Gaia_crypto_implementation.html
+Password Protection
+
+Gaia can be configured to verify a user-supplied password prior to providing access to a device. In addition to preventing unauthorized use of the device, this password protects the cryptographic key for full filesystem encryption.
+
+Use of a password and/or password complexity rules can be required by a device administrator.
+
+###Device Administration###
+
+Gaia provide the Gaia Device Administration API, which provides device administration features at the system level. For example, the built-in Gaia Email application uses the APIs to improve Exchange support. Through the Email application, Exchange administrators can enforce password policies — including alphanumeric passwords or numeric PINs — across devices. Administrators can also remotely wipe (that is, restore factory defaults on) lost or stolen handsets.
+
+In addition to use in applications included with the Gaia system, these APIs are available to third-party providers of Device Management solutions. Details on the API are provided here: http://developer.Gaia.com/guide/topics/admin/device-admin.html.
+Memory Management Security Enhancements
+
+Gaia includes many features that make common security issues harder to exploit. The Gaia SDK, compilers, and OS use tools to make common memory corruption issues significantly harder to exploit, including:
+
+1. Address Space Layout Randomization (ASLR) to randomize key locations in memory
+2. Hardware-based No eXecute (NX) to prevent code execution on the stack and heap
+3. ProPolice to prevent stack buffer overruns
+4. safe_iop to reduce integer overflows
+5. Extensions to OpenBSD dlmalloc to prevent double free() vulnerabilities and to prevent chunk consolidation attacks. Chunk consolidation attacks are a common way to exploit heap corruption.
+6. OpenBSD calloc to prevent integer overflows during memory allocation
+7. Linux mmap_min_addr() to mitigate null pointer dereference privilege escalation
+
+###Rooting of Devices###
+
+By default, on Gaia only the kernel and a small subset of the core applications run with root permissions. Gaia does not prevent a user or application with root permissions from modifying the operating system, kernel, and any other application. In general, root has full access to all applications and all application data. Users that change the permissions on an Gaia device to grant root access to applications increase the security exposure to malicious applications and potential application flaws.
+
+The ability to modify an Gaia device they own is important to developers working with the Gaia platform. On many Gaia devices users have the ability to unlock the bootloader in order to allow installation of an alternate operating system. These alternate operating systems may allow an owner to gain root access for purposes of debugging applications and system components or to access features not presented to applications by Gaia APIs.
+
+On some devices, a person with physical control of a device and a USB cable is able to install a new operating system that provides root privileges to the user. To protect any existing user data from compromise the bootloader unlock mechanism requires that the bootloader erase any existing user data as part of the unlock step. Root access gained via exploiting a kernel bug or security hole can bypass this protection.
+
+Encrypting data with a key stored on-device does not protect the application data from root users. Applications can add a layer of data protection using encryption with a key stored off-device, such as on a server or a user password. This approach can provide temporary protection while the key is not present, but at some point the key must be provided to the application and it then becomes accessible to root users.
+
+A more robust approach to protecting data from root users is through the use of hardware solutions. OEMs may choose to implement hardware solutions that limit access to specific types of content such as DRM for video playback.
+
+In the case of a lost or stolen device, full filesystem encryption on Gaia devices uses the device password to protect the encryption key, so modifying the bootloader or operating system is not sufficient to access user data without the user’s device password.
+
+

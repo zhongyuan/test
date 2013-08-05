@@ -1,0 +1,59 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>Popup Widget</h1>
+<hr />
+<h2>Description</h2>
+<p><em>PopupWidget</em> is a temporary widget displayed on the top of screen, the running application can use the widget to interact with users. 
+Developers might design different popup widgets for various purposes. </p>
+<img src="popupwidget_1.png" alt="PopupWidget_1" height="350" width="225" />
+
+<h2>Design the Content</h2>
+<p><em>PopupWidget</em> is a widget carrier. 
+Developers have to design their own widget and anchor to the target <em>PopupWidget</em>.
+For instance, developers would like to ask some donate from users and they design a widget for this purpose. 
+The widget includes a text string and two buttons. 
+Finally, the widget is anchored to a <em>PopupWidget</em> by calling <em>setWidget()</em>.</p>
+<pre><code>FakeButton *mpBtn1 = new FakeButton(mpPage);
+mpBtn1-&gt;setId(200);
+mpBtn1-&gt;setText();
+
+FakeButton *mpBtn2 = new FakeButton(mpPage);
+mpBtn2-&gt;setId(500);
+mpBtn2-&gt;setText();
+
+gaia::ui::LinearController* pLCH = new gaia::ui::LinearController(static_cast&lt;Page*&gt;(mpPage));
+pLCH-&gt;setOrientation(gaia::ui::LinearController::HORIZONTAL);
+gaia::ui::LinearController* pLCV = new gaia::ui::LinearController(static_cast&lt;Page*&gt;(mpPage));
+pLCH-&gt;setOrientation(gaia::ui::LinearController::VERTICAL);
+
+pLCV-&gt;addWidget(mpBtn1);
+pLCV-&gt;addWidget(mpBtn2);
+
+mpTextWidget-&gt;setText("Donate how much?");
+
+pLCH-&gt;addWidget(mpTextWidget);
+pLCH-&gt;addWidget(pLCV);
+
+mpPopupWidget-&gt;setWidget(pLCH);
+</code></pre>
+<h2>Show the Widget by PopupWidget</h2>
+<p>Upon developers want to show the widget to users, just call <em>showAtLocation()</em> to bring it out.
+<em>showAtLocation()</em> also allows developers to defined the displaying location.<br />
+</p>
+<pre><code>mpPopupWidget-&gt;showAtLocation(pParent, Gravity::CENTER,0,0); //show in the screen center.
+</code></pre>
+<h2>Dismiss the PopupWidget</h2>
+<p>If running application got the response from users or it was timeout, call <em>dismiss()</em> to dismiss the <em>PopupWidget</em> from the screen. </p>
+<pre><code>if ( mpPopupWidget-&gt;isShowing() ){
+    mpPopupWidget-&gt;dismiss();
+}
+</code></pre>
+<h2>Note</h2>
+<ul>
+<li>Header: gaia/ui/PopupWidget.h</li>
+</ul>
+<h2>Reference</h2>
+<ul>
+<li>PopupWidget</li>
+</ul>

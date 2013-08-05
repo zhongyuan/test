@@ -1,0 +1,113 @@
+# Audio Capture
+
+There are two ways to capture audio, and describles as below:
+
+## AudioStreamIn
+
+When an application has used the gaia.media.AudioStreamIn API to start recording an audio stream, device implementations that include microphone hardware and declare gaia.hardware.microphone MUST sample and record audio with each of these behaviours:
+
+* The device MUST exhibit approximately flat amplitude versus frequency characteristics; specifically, (+-)3dB,from 100 Hz to 4000 Hz
+* Audio input sensitivity SHOULD be set such that a 90 dB sound power level (SPL) source at 1000 Hz yields RMS of 2500 for 16-bit samples.
+* PCM amplitude levels MUST linearly track input SPL changes over at least a 30 dB range from -18 dB to +12 dB re 90 dB SPL at the microphone.
+* Total harmonic distortion MUST be less than 1% from 100 Hz to 4000 Hz at 90 dB SPL input level.
+
+In addition to the above recording specifications, when an application has started recording an audio stream using the gaia.media.MediaRecorder.AudioSource.VOICE_RECOGNITION audio source:
+
+* Noise reduction processing, if present, MUST be disabled.
+* Automatic gain control, if present, MUST be disabled.
+
+This document shows you how to write an application using AudioStreamIn that captures audio from a device microphone.
+
+    int32_t BufSize = AudioStreamIn::getFitBufferSize(
+    8000,
+    AudioControl::CHANNEL_CONFIGURATION_MONO,
+    AudioControl::ENCODING_PCM_16BIT);
+ 
+    AudioStreamIn *mpAudioStreamIn = new AudioStreamIn(
+        MediaRecorder::AUDIOSOURCE_MIC,
+        8000,
+        AudioControl::CHANNEL_CONFIGURATION_MONO,
+        AudioControl::ENCODING_PCM_16BIT,
+        BufSize);
+ 
+    IAudioStreamInListener *pIAudioStreamInListener = new MyIAudioStreamInListener();
+ 
+    mpAudioStreamIn->setFrameNotifyListener(pIAudioStreamInListener);
+  
+    mpAudioStreamIn->setFrameNotifyPeriod(500);
+ 
+    mpAudioStreamIn->setNotificationMarkerPosition(100);
+ 
+    mpAudioStreamIn->startGetStreaming();
+ 
+    Array < int16_t > tmpbuffer(512);
+ 
+    sleep(2);
+ 
+    int32_t readByte = mpAudioStreamIn->getStreamingBuffer(tmpbuffer, 0, 512);
+ 
+    mpAudioStreamIn->stopGetStreaming();
+ 
+    delete pIAudioStreamInListener;
+    delete mpAudioStreamIn;
+
+
+
+# MediaRecorder
+
+The gaia multimedia framework includes support for capturing and encoding a variety of common audio formats, so that you can easily integrate audio into your applications. You can record audio using the MediaRecorder APIs if supported by the device hardware.
+
+This document shows you how to write an application using MediaRecorder that captures audio from a device microphone.
+
+      // new a instance
+      MediaRecorder *mr = new MediaRecorder();
+ 
+      // new a listener
+      MyMediaRecorderListener *mrl = new MyMediaRecorderListener();
+ 
+      // set a listener
+      mr->setListener(mrl);
+ 
+      // set audio source to Mic
+      mr->setAudioSource(MediaRecorder::AUDIOSOURCE_MIC);
+ 
+      // set output format to 8bit amr
+      mr->setOutputFormat(MediaRecorder::OUTPUTFORMAT_AMR_NB);
+ 
+      // set audio encoder to 8bit amr
+      mr->setAudioEncoder(MediaRecorder::AUDIOENCODER_AMR_NB);
+ 
+      // set a output file path
+     mr->setOutputFile(path);
+ 
+      // start to record a voice
+      mr->start();
+ 
+      // Recording 5 seconds...
+      sleep(5);
+ 
+      // stop to record
+      mr->stop();
+
+
+
+# Audio Latency
+
+Audio latency is broadly defined as the interval between when an application requests an audio playback or record operation, and when the device implementation actually begins the operation. Many classes of applications rely on short latencies, to achieve real-time effects such sound effects or VOIP communication. Device implementations that include microphone hardware and declare gaia.hardware.microphone MUST meet all audio latency requirements outlined in this section. See "Hardware Compatibility" Section for details on the conditions under which microphone hardware
+may be omitted by device implementations.
+
+For the purposes of this section:
+
+* "cold output latency" is defined to be the interval between when an application requests audio playback and when sound begins playing, when the audio system has been idle and powered down prior to the request
+* "warm output latency" is defined to be the interval between when an application requests audio playback and when sound begins playing, when the audio system has been recently used but is currently idle (that is, silent)
+* "continuous output latency" is defined to be the interval between when an application issues a sample to be played and when the speaker physically plays the corresponding sound, while the device is currently playing back audio
+* "cold input latency" is defined to be the interval between when an application requests audio recording and when the first sample is delivered to the application via its callback, when the audio system and microphone has been idle and powered down prior to the request
+* "continuous input latency" is defined to be when an ambient sound occurs and when the sample corresponding to that sound is delivered to a recording application via its callback, while the device is in recording mode
+
+Using the above definitions, device implementations MUST exhibit each of these properties:
+
+* cold output latency of 100 milliseconds or less 
+* warm output latency of 10 milliseconds or less 
+* continuous output latency of 45 milliseconds or less 
+* cold input latency of 100 milliseconds or less
+* continuous input latency of 50 milliseconds or less

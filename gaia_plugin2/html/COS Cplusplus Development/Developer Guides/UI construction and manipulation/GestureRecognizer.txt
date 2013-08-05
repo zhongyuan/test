@@ -1,0 +1,134 @@
+#Gesture Recognizer
+Application can use gesture tool library to collect, store, and recognize user definition gesture to implement more complicated gesture behavior.  
+
+***
+
+##User-defined Gesture Analyze
+To use Gaia gesture, there are several things you need to know:  
+
+*   _What is a gesture?_  
+To understand Gaia gesture, we need to know what is a gesture first.  
+A gesture is composed of a sequence of gesture strokes.  
+And a gestrue stroke is composed of a sequence of gestrue pointers.
+
+*   _How Gaia generate a gesture?_  
+Gaia use GestureController to collect gesture pointers. These gesture pointers will form gesture strokes.  
+These gesture strokes then form a gesture.
+
+*   _How Gaia store gesture?_  
+When GestureController collect a gestrue, the gesture will be keeped as a menber.  
+If user have interest to this gesture, he can create a gesture recognizer(GestureRecognizer) to store this gesture.  
+And the gesture recognizer(GestureRecognizer) can be stored into media repository.
+   
+*   _How Gaia recoginize gesture?_  
+When GestureController collect a gesture, there must be a comparable base to recognize the gesture.  
+The comparable base can be a gesture libray which is in user media repository.  
+Through gesture libraries, we can use instance learner to count the similarity score, and the entry of highest similarity score will be the gesture patten.
+
+***
+
+##Basic Usage
+Before you start to handle the user-defined gesture, you should add a _GestureController_ to your _Page_ first. _GestureController_ is a transparent overlay for gesture input that can be placed on top of other widgets or contain other widgets.
+
+    // Assume that we have a GestureController pointer named "mpView"
+    // Create a instance of GestureController
+    mpView = new GestureController(static_cast<Page*>(this));
+
+You can modify the features of the displayed gesture, such as color, width of strokes...etc.
+
+    // Set the color we used to draw a gesture
+    mpView->setGestureColor(gaia::graphics::COLOR::WHITE);
+
+To handle the gesture event, you have to create some listener and regist it to the _GestureController_. Sample code below is showing one of them, rest will be revealed in next paragraph.
+
+    // Assume that we have a OnGestureListener pointer named "mpListener"
+    // Add that listener to this overlay
+    mpView->addOnGestureListener(mpListener);
+
+***
+
+##Gesture Event Handler
+There are some listeners with their unique callback functions to handle user-defined gestures:
+<br>
+###OnGestureListener
+The interface that is used to notify when gestures occur.
+####Statement
+*   _onGesture_  
+Notified when the gesture drawing with on __move__ MotionEvent.
+*   _onGestureCancelled_  
+Notified when the gesture end with on __cancel__ MotionEvent.
+*   _onGestureEnded_  
+Notified when the gesture end with on __up__ MotionEvent.
+*   _onGestureStarted_  
+Notified when the gesture start with on __down__ MotionEvent.
+
+###OnGesturingListener
+The interface that is used to notify when gesturing.
+####Statement
+*   _onGesturingEnded_  
+Notified when user __end__ gesturing.
+*   _onGesturingStarted_  
+Notified when user __start__ gesturing.
+
+###OnGesturePerformedListener
+The interface that is used to notify when a gesture performed.
+####Statement
+*   _onGesturePerformed_  
+Notified when a gesture __performed__.
+
+***
+
+##Gesture-Recognizing System
+Here we start to present how to using this powerful system.
+
+###Loading Gesture Database from Resource
+We provide _four_ way to load and store the gesture database. One can easily use the static functions of _GestureLibraries_ to determine the loading type.  
+Each of them will return a pointer of _GestureRecognizer_  
+
+*   _loadFromFile(gaia::base::String)_  
+Load gesture patterns from file by __address__.
+*   _loadFromFile(gaia::storage::File)_  
+Load gesture patterns from file by __gaia::storage::File__.
+*   _loadFromPrivateFile(Page, gaia::base::String)_  
+Load gesture patterns from __private file__.
+*   _loadFromRawResource(Page, int resourceId)_  
+load gesture patterns from __raw resource__.
+
+The main character of our gesture-recognizing system is __GestureRecognizer__ which could do saving, loading, editing(the database) and recognizing.
+Therefore, you have to create _GestureRecognizer_ in the beginning.
+
+    // Here we want loading gestures from file by given address(stored in gaia::base::String path).
+    // Assume there is a GestureRecognizer point named mpRecog, using static function of GestureLibraries to get the instance:
+    mpRecog = GestureLibraries::loadFromFile(path);
+    if(!(mpRecog->load())) {
+        GLOGE("Recognizer not exist!");
+    }
+
+###Recognize Gesture
+Below shows that how to recognize a gesture from the user's input.  
+
+    // If you want to recognizer a given gesture from the library hold by GestureRecognizer(named mpRecog),
+    // you need to create a vector contains of Prediction to store the return compared result.
+    // The first predicion in vector contain name and score of the most liked gesture.
+    gaia::base::Vector<gaia::core::Prediction*> vPredic = mpRecog->recognize(gesture);
+    // If the vector is not empty and the score of the first Prediction is reliable. Then, that's the result.
+    if(!vPredic.isEmpty()) {
+        Prediction* pPredic = vPredic[0];
+        if(pPredic->getScore()>1.0) {
+            mpPage->mpText->setText((pPredic->getName()).string());
+        }
+    }
+
+###Saving Gesture Data to Resource
+The complete and performd gesture will be sent to the callback function of _OnGesturePerformedListener_ which is _onGesturePerformed_.  
+Once you get the gesture, you can store(and edit) the gesture.  
+
+    // To add a gesture to the GestureRecognizer(named mpRecog), you'll need to assign a name:
+    mpRecog->addGesture(gaia::base::String("Test_Gesture"), gesture);
+
+If there are enough gesture in your _GestureRecognizer_, call function 'save()' to save.  
+
+    // The saving method is based on how you load.
+    if(!(mpRecog->save())) {
+        GLOGE("Fail to save gesture library!");
+    }

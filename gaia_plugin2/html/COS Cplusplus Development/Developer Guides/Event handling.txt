@@ -1,0 +1,139 @@
+# Event
+
+In general, a Control refers to a component on the screen used to interact (input and output) with the user.
+In Gaia, EventControl provides the infrastructure to respond to user input. A UI component who wants to handle event needs to inherit EventControl.
+
+# Event Listener
+
+## OnClickListener
+Interface definition for a callback to be invoked when a widget is clicked.
+### Methods
+onClick(Widget v) - Called when a widget has been clicked. Parameter v is the widget that was clicked.
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>v
+          </th><td>The widget that was clicked.</td>
+        </tr>
+      </tbody></table>
+
+<li>For example:</li>
+<pre><code>
+mpBtnListener = new SimpleOnClickListener(this);
+mpBtn = new Button(this/*Page*/);
+mpBtn->setId(100);
+mpBtn->setText();
+mpBtn->setOnClickListener(mpBtnListener);
+
+void SimpleOnClickListener::onClick(Widget* v) {
+    GLOG("click done");
+}
+</code></pre>
+
+## OnLongClickListener
+Interface definition for a callback to be invoked when a widget has been clicked and held. 
+### Methods
+onLongClick(Widget v) - Called when a widget has been clicked and held. Parameter v is the widget that was clicked and held.
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>v
+          </th><td>The widget that was clicked and held.</td>
+        </tr>
+      </tbody></table>
+
+<li>For example:</li>
+<pre><code>
+mpBtnListener = new SimpleOnLongListener(this);
+mpBtn = new Button(this/*Page*/);
+mpBtn->setId(100);
+mpBtn->setText();
+mpBtn->setOnLongClickListener(mpBtnListener);
+
+bool SimpleOnLongListener::onLongClick(Widget* v) {
+    GLOG("long click done");
+    return true;
+}
+</code></pre>
+
+
+## OnKeyListener
+Interface definition for a callback to be invoked when a key event is dispatched to this widget. The callback will be invoked before the key event is given to the widget.
+### Methods
+onKey(Widget v, int keyCode, KeyEvent event) - Called when a key is dispatched to a widget. 
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>v
+          </th><td>The widget the key has been dispatched to.</td>
+        </tr>
+        <tr>
+          <th>keyCode</th><td>The code for the physical key that was pressed</td>
+        </tr>
+        <tr>
+          <th>event</th><td>The KeyEvent object containing full information about the event.</td>
+        </tr>
+      </tbody></table>
+
+## OnTouchListener
+Interface definition for a callback to be invoked when a touch event is dispatched to this widget. The callback will be invoked before the touch event is given to the widget.
+### Methods
+onTouch(Widget v, MotionEvent event) - Called when a touch event is dispatched to a widget.
+<h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>v</th><td>The widget the touch event has been dispatched to.</td>
+        </tr>
+        <tr>
+          <th>event</th><td>The MotionEvent object containing full information about the event.</td>
+        </tr>
+      </tbody></table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if the listener has consumed the event, false otherwise.</li></ul>
+
+# Event Dispather
+## dispatchKeyEvent(KeyEvent event)
+<p>Dispatches a key shortcut event.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>event</th><td>The key event to be dispatched.</td>
+        </tr>
+      </tbody></table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if the event was handled by the widget, false otherwise.</li></ul>
+
+## dispatchTouchEvent(MotionEvent event)
+<p>Pass the touch screen motion event down to the target widget, or this widget if it is the target.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>event
+          </th><td>The motion event to be dispatched.</td>
+        </tr>
+      </tbody></table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if the event was handled by the widget, false otherwise.</li></ul>
+
+## dispatchTrackballEvent(MotionEvent event)
+<p>Pass a trackball motion event down to the focused widget.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>event</th><td>The motion event to be dispatched.</td>
+        </tr>
+      </tbody></table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if the event was handled by the widget, false otherwise.</li></ul>
+

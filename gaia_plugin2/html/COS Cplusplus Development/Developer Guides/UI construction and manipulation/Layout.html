@@ -1,0 +1,77 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>Common Layout Object</h1>
+<hr />
+<h1>Description</h1>
+<p>In our system we call layout as controller, one or more Widgets can be grouped together into a Controller. A Controller provides the layout in which you can order the appearance and sequence of widgets. In this tutorial, we provide an overview of  the specific controllers such as FrameController, LinearController, etc. Available for organizing application screen content.</p>
+<ul>
+<li>
+<p><a href="#LinearController">LinearController</a><br />
+The LinearController arranges widgets in a single column or single row. Child widgets can either be arranged vertically or horizontally.</p>
+</li>
+<li>
+<p><a href="#AbsoluteController">AbsoluteController</a> <br />
+The AbsoluteController lays widgets by specifying their exact X and Y positions.</p>
+</li>
+<li>
+<p><a href="#ScrollWidget">ScrollWidget</a><br />
+A ScrollWidget is a special type of FrameController in that it allows users to scroll through a list of widgets that occupy more space than the physical display.</p>
+</li>
+</ul>
+<h2><a name="LinearController">LinearController</a></h2>
+<p>LinearController organizes widgets along a single line. You specify whether that line is verticle or horizontal using setOrientation().
+Here is some sample code using LinearController.</p>
+<pre><code>LinearController* lc = new LinearController(this);
+lc-&gt;setOrientation(LinearController::VERTICAL);
+
+TextWidget* tv = new TextWidget(this);
+tv-&gt;setText("LinearController test");
+
+ImageWidget* im = new ImageWidget(this);
+im-&gt;setImageResource(com::gaia::R::drawable::btn_square_overlay_normal);
+
+ImageWidget* im2 = new ImageWidget(this);
+im2-&gt;setImageResource(com::gaia::R::drawable::btn_square_overlay_selected);
+
+LinearControllerParams* lcp = new LinearControllerParams(100,100);
+lc-&gt;addWidget(tv);
+lc-&gt;addWidget(im, lcp);
+lc-&gt;addWidget(im2, lcp);
+</code></pre>
+<!-- ![LinearController](Layout_LinearController.png "LinearController") -->
+<img src="Layout_LinearController.png" alt="LinearController" height="350" width="225" />
+
+<h2><a name="AbsoluteController">AbsoluteController</a></h2>
+<p>AbsoluteController lays widgets by specifying their exact X and Y positions. By default, if you define any widget in absolute layout without defining it’s x,y coordinates, it will be placed in the origin point at (x,y)=(0,0). If you define x,y values that are too large, the widget will not appear on the screen.
+Here is some sample code using AbsoluteController.</p>
+<pre><code>AbsoluteController* ac = new AbsoluteController(this);
+
+AbsoluteControllerParams* acp1 = new AbsoluteControllerParams(ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT, 100, 100);
+ImageWidget* imw = new ImageWidget(this);
+imw-&gt;setImageResource(com::gaia::R::drawable::btn_square_overlay_selected);
+ac-&gt;addWidget(imw, acp1);
+
+AbsoluteControllerParams* acp2 = new AbsoluteControllerParams(ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT, 200, 200);
+TextWidget* tv = new TextWidget(this);
+tv-&gt;setText("(200,200)");
+ac-&gt;addWidget(tv, acp2);
+
+AbsoluteControllerParams* acp3 = new AbsoluteControllerParams(ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT, 200, 300);
+TextWidget* tv2 = new TextWidget(this);
+tv2-&gt;setText("(200,300)");
+ac-&gt;addWidget(tv2, acp3);
+</code></pre>
+<!-- ![AbsoluteController](Layout_AbsoluteController.png "AbsoluteController") -->
+<img src="Layout_AbsoluteController.png" alt="AbsoluteController" height="350" width="225" />
+
+<h2><a name="ScrollWidget">ScrollWidget</a></h2>
+<p>The ScrollWidget can contain only one child Widget or Controller, we specify whether that orientation is verticle or horizontal when construct. We usually won't use ListWidget together with the ScrollWidget. The ListWidget is designed for showing a list of related information and is optimized for dealing with large lists.
+Here is some sample code using ScrollWidget.</p>
+<pre><code>TextWidget* tv = new TextWidget(this);
+tv-&gt;setText("The ScrollWidget can contain only one child Widget or Controller,\n which normally use LinearController.\n We usually won't use ListWidget together with the ScrollWidget.\n The ListWidget is designed for showing a list of related information and is optimized for dealing with large lists.");
+ScrollWidget* sw = new ScrollWidget(this, ScrollWidget::HORIZONTAL);
+sw-&gt;addWidget(tv);
+</code></pre>
+<!-- ![ScrollWidget](Layout_ScrollWidget.png "ScrollWidget") -->
+<img src="Layout_ScrollWidget.png" alt="ScrollWidget" height="350" width="225" />

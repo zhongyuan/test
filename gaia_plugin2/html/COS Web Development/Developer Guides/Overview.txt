@@ -1,0 +1,15 @@
+#Overview#
+
+COS supports standalone web applications with its builtin Web Runtime. You can develop applications using common web languages: HTML, CSS and JavaScript, then install and run them on COS devices.
+
+The power of web applications is based on the openness of web technologies. By embracing open web technologies, you can benefit from hundreds of open source web frameworks and libraries; you can choose from different kinds of development tools; at the same time, cross-platoform becomes possible, you can easily port web applications to other platforms.
+
+COS Web Runtime functions like a container for web applications. It aims to maximize the value of open web technologies for applications. Here are some feature highlights:
+
+- State-of-art HTML5 / CSS3 support. Allow you to create fancy UIs and much more.
+- Great JavaScript performance.
+- Supports a variety of standard web APIs. So you can do many things traditionally only available for native applications, such as using device's accelerometer sensor.
+- Support packaged application. Run applications offline.
+- Applications run in separate processes. Better security.
+
+All of these enable you create web applications with native-like user experiences.

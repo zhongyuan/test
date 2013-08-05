@@ -1,0 +1,140 @@
+<div>
+<a href = "../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Threading Model</h1>
+<h2>Overview</h2>
+<p>In Gaia, we use Dispatch API to create multi-threading applications.</p>
+<p>In Dispatch API, there are three kinds of WorkQueue:</p>
+<ol>
+<li>Main Queue</li>
+<li>Global Queue</li>
+<li>Serial Queue</li>
+</ol>
+<p>Main Queue is used to update UI components since the UI things can only be updated in main thread.</p>
+<p>Global Queue is used to make something running in backbround. If you just want a one time background task, we suggest to use Global Queue to achieve it.</p>
+<p>Serial Queue is use to do some data synchronizations between different threads. The task queued in Serial Queue is First-In-First-Out order. We use Serial Queue instead of Mutex to make sure the critical section is accessed by one thread at a time.</p>
+<h2>Basic Usage</h2>
+<p>Before you start to create a any Queue to run asynchronous task, you should create a class derived from WorkItem and implement its run() function. The run() function is the execution block of the task.</p>
+<pre>
+    class AsyncTask : public WorkItem
+    {
+    public:
+        virtual void run()
+        {
+            // do something asynchronously
+        }
+    };
+</pre>
+
+<p>Then, you can use async() api to make the task to be executed on another thread.</p>
+<pre>
+    WorkQueue workqueue;
+    workqueue.async(new AsyncTask());
+</pre>
+
+<p>And, you don't need to handle the destruction of the AsyncTask instance. It will be released automatically after the task being executed.</p>
+<h2>Synchronization</h2>
+<p>There is another api called sync() in Queue. It always the caller until the task is completed. Hence, There is a pitfall that use Main Queue to invoke sync() in Main Thread. You should avoid it. It will cause the deadlock on Main Thread.</p>
+<p>As we have mentioned above, sync() is often used to do data synchronization like Mutex. The following code snippets demonstrate how to use Serial Queue and sync() to solve producer/consumer problem.</p>
+<ul>
+<li>Create a Store class for putting/setting the products.</li>
+</ul>
+<pre>
+    // 
+    // Store is used to store the products.
+    //
+    // When Producer produce a new product, it will
+    // call Store::put() to put products into Store;
+    // Consumer will call Store::get() to get a
+    // product to be consumed.
+    //
+    class Store
+    {
+    public:
+        void put(int productNum)
+        {
+            mProducts.append(productNum);
+        }
+        int get()
+        {
+            int productNum = mProducts.firstItem();
+            mProducts.removeAt(0);
+            return productNum;
+        }
+    private:
+        Vector&lt;int&gt; mProducts;
+    };
+
+</pre>
+
+<ul>
+<li>Create two kinds of SynchronizeTask for Producer/Consumer</li>
+</ul>
+<pre>
+    template &lt;class TYPE&gt;
+    class SynchronizeTask;<br/>
+    //
+    // SynchronizeTask for Producer to put product
+    // into Store.
+    //
+    template &lt;&gt;
+    class SynchronizeTask&lt;Producer&gt; : public WorkItem
+    {
+    public:
+        SynchronizeTask(Store* store, int productNum)
+            : mStore(store),
+              mProductNum(productNum)
+        {
+        }
+        virtual void run()
+        {
+            mStore-&gt;put(mProductNum);
+        }
+    private:
+        Store* mStore;
+        int mProductNum;
+    };<br/>
+    //
+    // SynchronizeTask for Consumer to get product
+    // from Store.
+    //
+    template &lt;&gt;
+    class SynchronizeTask&lt;Consumer&gt; : public WorkItem
+    {
+    public:
+        SynchronizeTask(Store* store, int& productNum)
+            : mStore(store),
+              mProductNum(productNum)
+        {
+        }
+        virtual void run()
+        {
+            mProductNum = mStore->get();
+        }
+    private:
+        Store* mStore;
+        int& mProductNum;
+    };
+</pre>
+
+<ul>
+<li>We need a Serial Queue to do synchronization for accessing Store. </li>
+</ul>
+<pre>
+    WorkQueue storeSyncQueue("StoreSync");
+</pre>
+
+<ul>
+<li>Finally, we use sync() api to achieve it.</li>
+</ul>
+<pre>
+    void ProducerConsumer::produce(int productNum)
+    {
+        storeSyncQueue.sync(new SynchronizeTask&lt;Producer&gt;(mStore, productNum));
+    } <br/>
+    void ProducerConsumer::consume()
+    {
+        int productNum;
+        storeSyncQueue.sync(new SynchronizeTask&lt;Consumer&gt;(mStore, productNum));
+    }
+</pre>

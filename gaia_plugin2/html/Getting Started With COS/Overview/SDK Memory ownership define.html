@@ -1,0 +1,49 @@
+<div>
+<a href = "../../Getting Started With COS.html">Getting Started With COS</a>&gt;<a href = "../Overview.html">Overview</a>&gt;
+</div>
+<h1>SDK memory ownership define</h1>
+<p>To try to unify the <strong>new</strong> / <strong>delete</strong> and instance passing, we write a high-level concept for reference while you define your SDK APIs. You should think about it and try follow this concept. If you have any question, feel free to discuss with your leaders / archs.</p>
+<blockquote>
+<p><strong>The instance new by user should be deleted by user</strong></p>
+<p><strong>The instance new by framework should be deleted by framework.</strong></p>
+<p><strong>If we (sdk wrapper or framework) new an instance and pass to user (AP) but we can’t auto free it. We need clearly tell user about ownership transfer - &gt; use prefix new or postfix N in function name</strong></p>
+<p><strong>If user new an instance and pass to sdk api but sdk / framework will hold this and auto delete later. Then we need let user know he can't delete it. -&gt; user postfix N in parameter name</strong></p>
+<p><strong>If user new an instance and pass to sdk api, and sdk / framework will hold this a while so user must delete it in certain stage. -&gt; Write comment to let user know when to delete it.</strong></p>
+<p><strong>Avoid complex relation like wrap new an instance to user and user may pass to framework. Then who should free this instance without dangling pointer?</strong></p>
+</blockquote>
+<h2>Some sample</h2>
+<p>If your SDK class has Singleton character, you should provide class static member function <strong><em>getInstance()</em></strong> to get this instance. The life-cycle of it will continue to process dead or till no one reference it .</p>
+<p>Some class don’t have public constructor and need use factory function to help new the instance
+ex: </p>
+<blockquote>
+<pre><code>class Scene {
+public:
+    static Scene* SceneFactory(const Page&amp; page);
+}
+</code></pre>
+</blockquote>
+<p>Scene is not Singleton, but everyone Page only have one Scene. We use SceneFactory to get page instance, use mScene-&gt;SceneDestroy() to free it. Try naming such function as XxxxFactory, XxxxDestory or other familiar names.</p>
+<p>The class member function will return an new instance (any type) to caller</p>
+<p><strong>case 1</strong></p>
+<p>If the class type of the instance doesn’t have or don’t need polymorphism (or we say dynamic dispatch), you can reference how String do it.
+ex: </p>
+<blockquote>
+<pre><code>class String {
+    String concat(const String&amp; string) const;
+}
+</code></pre>
+</blockquote>
+<p>In concat function, it generate a temporary object and directly return to caller (throw RVO or copy constructor). This temporary object will live in the stack of caller function and auto recycling after stack pop. If user want to pass this temporary object from it function stack to heap or other stack, it may use copy constructor to generate another instance.</p>
+<p><strong>case 2</strong></p>
+<p>If need polymorphism (or we say dynamic dispatch) or NULL return, that means you need return pointer instead of reference. In this case please name your function lead with “new” keyword or postfix N. The new keyword has ownership transfer meaning.
+ex:</p>
+<blockquote>
+<pre><code>class Resource{
+    TypedArray* newTypedArray(int id);
+    TypeArray* popTypedArrayN(int id);
+}
+</code></pre>
+</blockquote>
+<p><strong>case 3</strong></p>
+<p>like case 2, but this instance maybe pass to framework: One solution is, since we have proxy / stub between SDK and framework, we can let framework hold the internal implementation. Then use can delete the SDK instance at anytime, and if user or SDK layer want to get this object again, we can return a new SDK instance but point to same framework implementation instance.</p>
+<p>However if you condition too complex, no simple solution, then you need write clearly comments to tell user and other developer when or how is safe to free the instance. Like tell user to delete it on <strong><em>::onTear</em></strong> or tell him call some function to inform framework while deleting etc.</p>

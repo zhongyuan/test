@@ -1,0 +1,135 @@
+<div>
+<a href = "../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>How to Customize a Widget</h1>
+<p>This example will demonstrate that how to create a customized widget to meet your requirement.</p>
+<p>A widget is the basic unit to show content on screen. In SDK Widget class, it includes three fundamental functions:
+<li>onMeasure()</li>
+<li>onLayout()</li>
+<li>onDraw()</li></p>
+<p>You can override these functions to personalize your Widget for your application. In addition to the three major functions, you can also override other onXXX() functions according to your need, like onVisibilityChanged() and onFocusChanged()...etc. 
+In this example, we create a class called "CustomizedWidgetTest", which will draw text on screen with the string and color as you wish. For all customized Widget, remember to inherit Widget class from SDK. After inheriting Widget class, you need to call its specific constructor in customized Widget's initialization list. 
+For example, the constructor of customized Widget will look like:</p>
+<p>CustomizedWidgetTest::CustomizedWidgetTest(Page* page):Widget(page, true)<br>
+{<br>
+    ...<br>
+}<br></p>
+<p>In out customized Widget, we mainly override 2 function: onMeasure() and onDraw().</p>
+
+<li>We override onMeasure(), which will measure the content of widget and let system know how big it shoule be.</li>
+<li>We override onDraw(), which will apply drawText() function of Canvas class to show the text you want to show up on the new created widget.</li>
+    Besides, we also have other functions which allow you to set the parameter to draw the content of widget:
+<li>setText(): Set the text you want to show on widget.</li>
+<li>setTextSize(): Assign the text size.</li>
+<li>setTextColor(): Assign the text color.</li>
+
+<h2>Declare Customized Widget in your application</h2>
+<h4>Sample code to demostrate how to create CustomizedWidgetTest objects and set corresponding attributes.</h4>
+<li>Example</li>
+
+<p>CustomizedWidgetTest cWidget1 = new CustomizedWidgetTest(static_cast&lt;Page*&gt;(this));<br>
+cWidget1-&gt;setText(new String("Customized Widget in RED"));<br>
+cWidget1-&gt;setTextColor(Color::RED);<br></p>
+<hr />
+<h1>How to Customize a WidgetController</h1>
+<p>In addition to customizing Widget, you can also customize WidgetController to layout the widgets on screen.
+In the same example, we create another class call "CustomizedWidgetControllerTest", which will override onLayout() function to customize a WidgetController.
+In the onLayout() function, we call layout() function from Widget class and shift each child widgets to right-down by 50. You can see the result of the example application "CustomizedWidget". <br>
+When creating customized WidgetController, do remember to inherit WidgetController and call its specific constructor in customized WidgetController's initialization list, just like we do for customized Widget above.<br></p>
+<p>CustomizedWidgetControllerTest::CustomizedWidgetControllerTest(Page* page): WidgetController(page,true)<br>
+{<br>
+    ...<br>
+}<br></p>
+<h2>Declare Customized WidgetController in your application</h2>
+<h4>Sample code to demostrate how to create a CustomizedWidgetControllerTest object.</h4>
+<li>Example</li>
+
+<p>CustomizedWidgetControllerTest cWidgetControler = new CustomizedWidgetControllerTest(static_cast&lt;Page*&gt;(this));<br></p>
+<h4>Sample code to add an ImageWidget to CustomizedWidgetControllerTest.</h4>
+<p><li>Example</li><br>
+ImageWidget* iw1 = new ImageWidget(this);<br>
+iw1-&gt;setImageResource(com::example::customizedwidget::R::drawable::honeycomb);<br>
+cWidgetControler-&gt;addWidget(iw1);<br></p>
+<p>After creating CustomizedWidgetTest and CustomizedWidgetController objects and setting the properties, you can then add them into a controller and show on screen.</p>
+<hr />
+<p>Below are Widget relative classes in Gaia. You can refer to them for detail usage.</p>
+<h2>AbsSavedState</h2>
+<p>Base class for derived classes that want to save and restore their own state.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::AbsSavedState.<br>
+Header file: gaia/core/vision/AbsSavedState.h<br></p>
+<h2>Display</h2>
+<p>Provides information about the display size and density.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::Display.<br>
+Header file: gaia/core/vision/Display.h<br></p>
+<h2>FocusDetect</h2>
+<p>The algorithm used for finding the next focusable Widget.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::FocusDetect.<br>
+Header file: gaia/core/vision/FocusDetect.h<br></p>
+<h2>Gravity</h2>
+<p>Standard constants and tools for placing an object within a potentially larger container.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::Gravity.<br>
+Header file: gaia/core/vision/Gravity.h<br></p>
+<h2>IFocusChangeListener</h2>
+<p>Interface definition for a callback to be invoked when the focus state of a view changed.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::IFocusChangeListener.<br>
+Header file: gaia/core/vision/IFocusChangeListener.h<br></p>
+<h2>IHierarchyChangeListener</h2>
+<p>Interface definition for a callback to be invoked when the hierarchy within this widget changed.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::IHierarchyChangeListener.<br>
+Header file: gaia/core/vision/IHierarchyChangeListener.h<br></p>
+<h2>MeasureSpec</h2>
+<p>A MeasureSpec is used to describe the layout requirements passed from parent to child widget.<br>
+MeasureSpec is consisted of a combination {mode, size}. You can call below functions to get the correspondin velue.<br> 
+mode = getMode(int32_t measureSpec)<br>
+size = getSize(int32_t measureSpec)<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::MeasureSpec.<br>
+Header file: gaia/core/vision/MeasureSpec.h<br></p>
+<h2>Scene</h2>
+<p>A Scene is used to build a visual interface.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::Scene.<br>
+Header file: gaia/core/vision/Scene.h<br></p>
+<h2>TouchHelper</h2>
+<p>Helper class to handle touch area if you want a widget to have a larger touch area than its actual bounds.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::TouchHelper.<br>
+Header file: gaia/core/vision/TouchHelper.h<br></p>
+<h2>VelocityTracker</h2>
+<p>Helper for tracking the velocity of touch events, for implementing flinging and other such gestures.<br>
+A simple example to use VelocityTracker will be like below:<br><br>
+bool SimpleTouchListener::onTouch(Widget* v, const MotionEvent&amp; event)<br>
+{<br>
+    vTracker = vTracker-&gt;obtain(); <br>
+<br>
+    if(event.getAction() == 0) { <br>
+        if(vTracker != NULL) {<br>
+                    vTracker-&gt;clear();  <br>
+                }  <br>
+                vTracker-&gt;addMovement(&amp;event);<br>
+    }<br>
+    if(event.getAction() == 1)<br>
+    if(event.getAction() == 2) {<br>
+        vTracker-&gt;addMovement(&amp;event);  <br>
+                vTracker-&gt;computeCurrentVelocity(1000); <br>
+        float x = vTracker-&gt;getXVelocity();<br>
+                float y = vTracker-&gt;getYVelocity();<br>
+    }<br>
+<br>
+    return true;<br>
+}<br><br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::VelocityTracker.<br>
+Header file: gaia/core/vision/VelocityTracker.h<br></p>
+<h2>Widget</h2>
+<p>Widget class is the base class of all user interface component.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::Widget.<br>
+Header file: gaia/core/vision/Widget.h<br></p>
+<h2>WidgetConfiguration</h2>
+<p>It contains methods to standard constants used in the UI for timeouts, sizes, and distances.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::WidgetConfiguration.<br>
+Header file: gaia/core/vision/WidgetConfiguration.h<br></p>
+<h2>WidgetController</h2>
+<p>Define the default widget layout to put sets of layout in it.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::WidgetController.<br>
+Header file: gaia/core/vision/WidgetController.h<br></p>
+<h2>WidgetSavedState</h2>
+<p>A classes that want to save and restore widget own state.<br>
+For more information, please refer to API reference -&gt; Class List -&gt; gaia::core::WidgetSavedState.<br>
+Header file: gaia/core/vision/WidgetSavedState.h<br></p>

@@ -1,0 +1,13 @@
+#Application Component#
+
+The Document for Application Component
+
+[Gaia application fundamentals](Application Component/Gaia application fundamentals.html)
+
+[Page](Application Component/Page.html)
+
+[Delegate](Application Component/Delegate.html)
+
+[Content Provider](Application Component/Content Provider.html)
+
+[Process Communication](Application Component/Process Communication.html)

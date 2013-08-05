@@ -1,0 +1,172 @@
+<div>
+<a href = "../../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>AutoCompleteEditWidget</h1>
+<hr />
+<h1>Description</h1>
+<pre><code> A [AutoCompleteEditWidget](#AutoCompleteEditWidget) An editable TextView that shows completion
+</code></pre>
+<p>suggestions automatically while the user is typing.
+     The list of suggestions is displayed in a drop down menu from which the user
+   can choose an item to replace the content of the edit box with.</p>
+<h2><a name="AutoCompleteEditWidget">AutoCompleteEditWidget</a></h2>
+<p><img src="AutoCompleteEditWidget.png" width="480" height="853"/>
+<br></p>
+<p>In this section, you can know how to use the AutoCompleteEditWidget.</p>
+<h3>Using TabPageController</h3>
+<p><pre><code></p>
+<p>class MyWidgetBinder : public WidgetBinder {
+  public:
+    MyWidgetBinder(AutoCompleteEditWidgetTest<em> parent)
+        : mParent(parent) {
+    }
+    // bind the widget data to present.
+    bool setWidgetValue(Widget</em> widget, int32_t id, const String&amp; data) {
+        bool handled = false;
+        if (id == SDKWidgetTest::R::id::icon) {
+            int index = atoi(data.string());
+            ImageWidget<em> castImageWidget = dynamic_cast<ImageWidget*>(widget);
+            if (castImageWidget != NULL) {
+                castImageWidget-&gt;setImageDrawer(mParent-&gt;getDrawers(index));
+                handled = true;
+            }
+        } else if (id == SDKWidgetTest::R::id::name) {
+            TextWidget</em> castTextWidget = dynamic_cast<TextWidget*>(widget);
+            if (castTextWidget != NULL) {
+                castTextWidget-&gt;setText(data);
+                handled = true;
+            }
+        }
+        return handled;
+    }</p>
+<p>private:
+    AutoCompleteEditWidgetTest* mParent;
+};  // class MyWidgetBinder</p>
+<p>// While use press select item, this will convert what user  press to string.
+class MyStringConvert : public StringConvert {
+  public:
+    String convertToString(const StringHashMap&amp; selectedItem) {
+        return selectedItem.valueFor(String("name"));
+    }
+};  // class MyStringConvert</p>
+<p>// Filter the Text then show filter result to user
+class MyFilter : public Filter {
+  public:
+    // From this developer can know user input string "prefix", user 
+    // wnat to get thre prefix string with "prefix" then unfilteredData
+    // is total data that you need to filter then filter data will put in result then return it
+    StringHashMapVector performFiltering(
+            const String&amp; prefix,
+            const StringHashMapVector&amp; unfilteredData) {
+        if (prefix.length() == 0) {
+            return unfilteredData;
+        }
+        StringHashMapVector result;</p>
+<pre><code>    String prefixString = prefix.toLowerCase();
+    for (size_t i = 0; i &lt; unfilteredData.size(); i++) {
+        StringHashMap dataset = unfilteredData[i];
+
+        String dataStr = dataset.valueFor(String("name"));
+        StringArray words = dataStr.split(String(" "));
+
+        for (size_t j = 0; j &lt; words.size(); j++) {
+            String word = words[j].toLowerCase();
+            if (word.indexOf(prefixString) == 0) {
+                result.push(dataset);
+                break;
+            }
+        }
+    }
+    return result;
+}
+</code></pre>
+<p>};  // class MyFilter</p>
+<p>Drawer<em> AutoCompleteEditWidgetTest::getDrawers(int index) {
+    return (</em>mpPackageIconLists)[index];
+}</p>
+<p>void AutoCompleteEditWidgetTest::onInit(
+        mpPackageManager = new PackageManager(*this);
+    Demand demand(Demand::ACTION_MAIN());
+    demand.addCategory(Demand::CATEGORY_LAUNCHER());</p>
+<pre><code>// get all AP from packageManager, we get the package name and AP icon
+Vector&lt;ResolveInfo&gt; matches = mpPackageManager-&gt;queryDemandPages(demand, 0);
+size_t matches_size = matches.size();
+if (matches_size &gt; 0) {
+    mpPackageNameLists = new Array&lt;String&gt;(matches_size);
+    mpPackageIconLists = new Array&lt;Drawer*&gt;(matches_size);
+    for (int i = 0; i &lt; matches_size; i++) {
+        (*mpPackageNameLists)[i] = matches[i].loadLabel(*mpPackageManager);
+        (*mpPackageIconLists)[i] = matches[i].loadIconN(*mpPackageManager);
+    }
+}
+
+mpContext = new Context(this);
+
+StringHashMapVector data;
+// put AP icon and name to the data
+for (int i = 0; i &lt; mpPackageNameLists-&gt;size(); i++) {
+    StringHashMap dataset;
+    dataset.add(String("icon"), String::valueOf(i));
+    dataset.add(String("name"), (*mpPackageNameLists)[i]);
+    data.push(dataset);
+}
+
+Array&lt;String&gt; from(2);
+from[0] = String("icon");
+from[1] = String("name");
+
+Array&lt;int&gt; to(2);
+to[0] = SDKWidgetTest::R::id::icon;
+to[1] = SDKWidgetTest::R::id::name;
+
+// new the filter data provider, put the filter data to provider and data
+// set the data formate
+mpProvider = new ISimpleListItemProvider(mpContext, data,
+                    SDKWidgetTest::R::layout::autocomplete_layout,
+                    from, to);
+
+// new the WidgetBinder to let developer set widget to show to user
+mpWidgetBinder = new MyWidgetBinder(this);
+mpProvider-&gt;setWidgetBinder(mpWidgetBinder);
+
+mpStringConvert = new MyStringConvert();
+mpProvider-&gt;setStringConvert(mpStringConvert);
+
+// filter the text that user input.
+mpFilter = new MyFilter();
+mpProvider-&gt;setFilter(mpFilter);
+
+mpLinearController = new LinearController(this);
+mpLinearController-&gt;setOrientation(LinearController::VERTICAL);
+
+mpAutoComplete = new AutoCompleteEditWidget(this);
+mpAutoComplete-&gt;setThreshold(1);
+
+// set provider to autocompleteEditWidget.
+mpAutoComplete-&gt;setProvider(mpProvider);
+
+mpLinearController-&gt;addWidget(mpAutoComplete);
+
+Scene* scene = Scene::SceneFactory(this);
+scene-&gt;attachController(mpLinearController);
+scene-&gt;setupSceneLayout();
+</code></pre>
+<p>}
+</code></pre></p>
+<h3>TabPageController API</h3>
+<pre><code>// Returns the number of characters the user must type before the drop down list is shown.
+int32_t getThreshold() const;
+
+// Specifies the minimum number of characters the user has to type in the
+// edit box before the drop down list is shown.
+void setThreshold(int32_t threshold);
+
+// Changes the list of data used for auto completion.
+void setProvider(ISimpleListItemProvider* pProvider);
+</code></pre>
+<h2>References</h2>
+<ol>
+<li>Textwidget</li>
+<li>EditWidget</li>
+<li>ISimpleListItemProvider</li>
+</ol>

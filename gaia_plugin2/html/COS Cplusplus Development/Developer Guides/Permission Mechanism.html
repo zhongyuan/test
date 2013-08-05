@@ -1,0 +1,97 @@
+<div>
+<a href = "../../COS Cplusplus Development.html">COS Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>COS Permission Mechanism</h1>
+<h2>Permissions</h2>
+<p>This document describes how application developers can use the security features provided by COS. A more general COS Security Overview is provided in the COS Project.</p>
+<p>COS is a privilege-separated operating system, in which each application runs with a distinct system identity (Linux user ID and group ID). Parts of the system are also separated into distinct identities. Linux thereby isolates applications from each other and from the system.</p>
+<p>Additional finer-grained security features are provided through a "permission" mechanism that enforces restrictions on the specific operations that a particular process can perform, and per-URI permissions for granting ad-hoc access to specific pieces of data.</p>
+<h2>Security Architecture</h2>
+<p>A central design point of the COS security architecture is that no application, by default, has permission to perform any operations that would adversely impact other applications, the operating system, or the user. This includes reading or writing the user's private data (such as contacts or e-mails), reading or writing another application's files, performing network access, keeping the device awake, etc.</p>
+<p>Because COS sandboxes applications from each other, applications must explicitly share resources and data. They do this by declaring the permissions they need for additional capabilities not provided by the basic sandbox. Applications statically declare the permissions they require, and the COS system prompts the user for consent at the time the application is installed. COS has no mechanism for granting permissions dynamically (at run-time) because it complicates the user experience to the detriment of security.</p>
+<h2>Application Signing</h2>
+<p>All COS applications (.pkg files) must be signed with a certificate whose private key is held by their developer. This certificate identifies the author of the application. The certificate does not need to be signed by a certificate authority: it is perfectly allowable, and typical, for COS applications to use self-signed certificates. The purpose of certificates in COS is to distinguish application authors. This allows the system to grant or deny applications access to signature-level permissions and to grant or deny an application's request to be given the same Linux identity as another application.</p>
+<h2>User IDs and File Access</h2>
+<p>At install time, COS gives each package a distinct Linux user ID. The identity remains constant for the duration of the package's life on that device. On a different device, the same package may have a different UID; what matters is that each package has a distinct UID on a given device.</p>
+<p>Because security enforcement happens at the process level, the code of any two packages can not normally run in the same process, since they need to run as different Linux users. You can use the sharedUserId attribute in the Gaia.xml's manifest tag of each package to have them assigned the same user ID. By doing this, for purposes of security the two packages are then treated as being the same application, with the same user ID and file permissions. Note that in order to retain security, only two applications signed with the same signature (and requesting the same sharedUserId) will be given the same user ID.</p>
+<p>Any data stored by an application will be assigned that application's user ID, and not normally accessible to other packages. When creating a new file with getSharedPreferences(String, int), openFileOutput(String, int), or openOrCreateDatabase(String, int, SQLiteDatabase.CursorFactory), you can use the MODE_WORLD_READABLE and/or MODE_WORLD_WRITEABLE flags to allow any other package to read/write the file. When setting these flags, the file is still owned by your application, but its global read and/or write permissions have been set appropriately so any other application can see it.</p>
+<h2>Using Permissions</h2>
+<p>A basic COS application has no permissions associated with it by default, meaning it can not do anything that would adversely impact the user experience or any data on the device. To make use of protected features of the device, you must include in your Gaia.xml one or more <uses-permission> tags declaring the permissions that your application needs.</p>
+<p>For example, an application that needs to monitor incoming SMS messages would specify:</p>
+<blockquote>
+<p><code>&lt;manifest xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"</code><br>
+ <code>package="com.gaia.app.myapp" &gt;</code><br>
+ <code>&lt;uses-permission gaia:name="android.permission.RECEIVE_SMS" /&gt;</code><br>
+ <code>...</code><br>
+<code>&lt;/manifest&gt;</code><br></p>
+</blockquote>
+<p>At application install time, permissions requested by the application are granted to it by the package installer, based on checks against the signatures of the applications declaring those permissions and/or interaction with the user. No checks with the user are done while an application is running: it either was granted a particular permission when installed, and can use that feature as desired, or the permission was not granted and any attempt to use the feature will fail without prompting the user.</p>
+<p>Often times a permission failure will result in a SecurityException being thrown back to the application. However, this is not guaranteed to occur everywhere. For example, the sendBroadcast(Intent) method checks permissions as data is being delivered to each receiver, after the method call has returned, so you will not receive an exception if there are permission failures. In almost all cases, however, a permission failure will be printed to the system log.</p>
+<p>The permissions provided by the COS system can be found at Manifest.permission. Any application may also define and enforce its own permissions, so this is not a comprehensive list of all possible permissions.</p>
+<p>A particular permission may be enforced at a number of places during your program's operation: At the time of a call into the system, to prevent an application from executing certain functions. When starting an page, to prevent applications from launching activities of other applications. Both sending and receiving broadcasts, to control who can receive your broadcast or who can send a broadcast to you. When accessing and operating on a content provider. Binding to or starting a delegate.</p>
+<p>Caution: Over time, new restrictions may be added to the platform such that, in order to use certain APIs, your app must request a permission that it previously did not need. Because existing apps assume access to those APIs is freely available, COS may apply the new permission request to the app's manifest to avoid breaking the app on the new platform version. COS makes the decision as to whether an app might need the permission based on the value provided for the targetSdkVersion attribute. If the value is lower than the version in which the permission was added, then COS adds the permission.</p>
+<p>For example, the WRITE_EXTERNAL_STORAGE permission was added in API level 4 to restrict access to the shared storage space. If your targetSdkVersion is 3 or lower, this permission is added to your app on newer versions of COS.</p>
+<p>Beware that if this happens to your app, your app listing on Google Play will show these required permissions even though your app might not actually require them.</p>
+<p>To avoid this and remove the default permissions you don't need, always update your targetSdkVersion to be as high as possible. You can see which permissions were added with each release in the Build.VERSION_CODES documentation.</p>
+<h2>Declaring and Enforcing Permissions</h2>
+<p>To enforce your own permissions, you must first declare them in your Gaia.xml using one or more <permission> tags. For example, an application that wants to control who can start one of its pages could declare a permission for this operation as follows:</p>
+<blockquote>
+<p><code>&lt;manifest xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"</code><br>
+   <code>package="com.me.app.myapp" &gt;</code><br>
+   <code>&lt;permission gaia:name="com.me.app.myapp.permission.DEADLY_PAGE"</code><br>
+      <code>gaia:label="@string/permlab_deadlyPage"</code><br>
+       <code>gaia:description="@string/permdesc_deadlyPage"</code><br>
+       <code>gaia:permissionGroup="android.permission-group.COST_MONEY"</code><br>
+       <code>gaia:protectionLevel="dangerous" /&gt;</code><br>
+   <code>...</code><br>
+<code>&lt;/manifest&gt;</code><br></p>
+</blockquote>
+<p>The <protectionLevel> attribute is required, telling the system how the user is to be informed of applications requiring the permission, or who is allowed to hold that permission, as described in the linked documentation.</p>
+<p>The <permissionGroup> attribute is optional, and only used to help the system display permissions to the user. You will usually want to set this to either a standard system group (listed in gaia.Manifest.permission_group) or in more rare cases to one defined by yourself. It is preferred to use an existing group, as this simplifies the permission UI shown to the user.</p>
+<p>Note that both a label and description should be supplied for the permission. These are string resources that can be displayed to the user when they are viewing a list of permissions (gaia:label) or details on a single permission ( gaia:description). The label should be short, a few words describing the key piece of functionality the permission is protecting. The description should be a couple sentences describing what the permission allows a holder to do. Our convention for the description is two sentences, the first describing the permission, the second warning the user of what bad things can happen if an application is granted the permission.</p>
+<p>Here is an example of a label and description for the CALL_PHONE permission:</p>
+<blockquote>
+<p><code>&lt;string name="permlab_callPhone"&gt;directly call phone numbers&lt;/string&gt;</code><br>
+   <code>&lt;string name="permdesc_callPhone"&gt;Allows the application to call</code><br>
+       <code>phone numbers without your intervention. Malicious applications may</code><br>
+       <code>cause unexpected calls on your phone bill. Note that this does not</code><br>
+       <code>allow the application to call emergency numbers.&lt;/string&gt;</code><br></p>
+</blockquote>
+<p>You can look at the permissions currently defined in the system with the Settings app and the shell command adb shell pm list permissions. To use the Settings app, go to Settings &gt; Applications. Pick an app and scroll down to see the permissions that the app uses. For developers, the adb '-s' option displays the permissions in a form similar to how the user will see them:</p>
+<blockquote>
+<p><code>$ adb shell pm list permissions -s</code>
+<code>All Permissions:</code></p>
+<p><code>Network communication: view Wi-Fi state, create Bluetooth connections, full</code>
+<code>Internet access, view network state</code></p>
+<p><code>Your location: access extra location provider commands, fine (GPS) location,</code>
+<code>mock location sources for testing, coarse (network-based) location</code></p>
+<p><code>Delegates that cost you money: send SMS messages, directly call phone numbers</code></p>
+<p><code>...</code></p>
+</blockquote>
+<h2>Enforcing Permissions in Gaia.xml</h2>
+<p>High-level permissions restricting access to entire components of the system or application can be applied through your Gaia.xml. All that this requires is including an gaia:permission attribute on the desired component, naming the permission that will be used to control access to it.</p>
+<p>Page permissions (applied to the <Page> tag) restrict who can start the associated page. The permission is checked during Context.startPage() and Page.startPageForResult(); if the caller does not have the required permission then SecurityException is thrown from the call.</p>
+<p>Delegate permissions (applied to the <delegate> tag) restrict who can start or bind to the associated delegate. The permission is checked during Context.startDelegate(), Context.stopDelegate() and Context.bindDelegate();</p>
+<p>BroadcastReceiver permissions (applied to the <receiver> tag) restrict who can send broadcasts to the associated receiver. The permission is checked after Context.sendBroadcast() returns, as the system tries to deliver the submitted broadcast to the given receiver. As a result, a permission failure will not result in an exception being thrown back to the caller; it will just not deliver the intent. In the same way, a permission can be supplied to Context.registerReceiver() to control who can broadcast to a programmatically registered receiver. Going the other way, a permission can be supplied when calling Context.sendBroadcast() to restrict which BroadcastReceiver objects are allowed to receive the broadcast (see below).</p>
+<p>ContentProvider permissions (applied to the <provider> tag) restrict who can access the data in a ContentProvider. (Content providers have an important additional security facility available to them called URI permissions which is described later.) Unlike the other components, there are two separate permission attributes you can set: gaia:readPermission restricts who can read from the provider, and gaia:writePermission restricts who can write to it. Note that if a provider is protected with both a read and write permission, holding only the write permission does not mean you can read from a provider. The permissions are checked when you first retrieve a provider (if you don't have either permission, a SecurityException will be thrown), and as you perform operations on the provider. Using ContentResolver.query() requires holding the read permission; using ContentResolver.insert(), ContentResolver.update(), ContentResolver.delete() requires the write permission. In all of these cases, not holding the required permission results in a SecurityException being thrown from the call.</p>
+<h2>Enforcing Permissions when Sending Broadcasts</h2>
+<p>In addition to the permission enforcing who can send Intents to a registered BroadcastReceiver (as described above), you can also specify a required permission when sending a broadcast. By calling Context.sendBroadcast() with a permission string, you require that a receiver's application must hold that permission in order to receive your broadcast.</p>
+<p>Note that both a receiver and a broadcaster can require a permission. When this happens, both permission checks must pass for the Intent to be delivered to the associated target.</p>
+<h2>Other Permission Enforcement</h2>
+<p>Arbitrarily fine-grained permissions can be enforced at any call into a delegate. This is accomplished with the Context.checkCallingPermission() method. Call with a desired permission string and it will return an integer indicating whether that permission has been granted to the current calling process. Note that this can only be used when you are executing a call coming in from another process, usually through an IDL interface published from a delegate or in some other way given to another process.</p>
+<p>There are a number of other useful ways to check permissions. If you have the pid of another process, you can use the Context method Context.checkPermission(String, int, int) to check a permission against that pid. If you have the package name of another application, you can use the direct PackageManager method PackageManager.checkPermission(String, String) to find out whether that particular package has been granted a specific permission.</p>
+<h2>URI Permissions</h2>
+<p>The standard permission system described so far is often not sufficient when used with content providers. A content provider may want to protect itself with read and write permissions, while its direct clients also need to hand specific URIs to other applications for them to operate on. A typical example is attachments in a mail application. Access to the mail should be protected by permissions, since this is sensitive user data. However, if a URI to an image attachment is given to an image viewer, that image viewer will not have permission to open the attachment since it has no reason to hold a permission to access all e-mail.</p>
+<p>The solution to this problem is per-URI permissions: when starting an page or returning a result to an page, the caller can set Intent.FLAG_GRANT_READ_URI_PERMISSION and/or Intent.FLAG_GRANT_WRITE_URI_PERMISSION. This grants the receiving page permission access the specific data URI in the Intent, regardless of whether it has any permission to access data in the content provider corresponding to the Intent.</p>
+<p>This mechanism allows a common capability-style model where user interaction (opening an attachment, selecting a contact from a list, etc) drives ad-hoc granting of fine-grained permission. This can be a key facility for reducing the permissions needed by applications to only those directly related to their behavior.</p>
+<p>The granting of fine-grained URI permissions does, however, require some cooperation with the content provider holding those URIs. It is strongly recommended that content providers implement this facility, and declare that they support it through the gaia:grantUriPermissions attribute or <grant-uri-permissions> tag.</p>
+<p>More information can be found in the</p>
+<blockquote>
+<p><code>Context.grantUriPermission(),</code><br>
+<code>Context.revokeUriPermission(), and</code><br>
+<code>Context.checkUriPermission() methods.</code><br></p>
+</blockquote>
+<h2>Permission Content</h2>
+<p>Developers can use the following defined permission string in their code to use permission in COS.
+<br>
+<a href="Permission.html">Permission Content</a></p>

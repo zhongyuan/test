@@ -1,0 +1,339 @@
+# About App Widget
+App Widgets are simple small application views that can be embedded in other applications. These views can be updated periodically and be published with an App Widget provider.
+
+# Components
+* AppWidgetProvider<br>
+Defines the basic methods that allow you to programmatically interface with the App Widget, based on broadcast events. You will receive broadcasts when the App Widget is updated, enabled, disabled and deleted.
+
+* AppWidgetProviderInfo<br>
+Describes the metadata for an App Widget, such as the App Widget's layout, update period, and the AppWidgetProvider class. This should be defined in XML.
+
+* AppWidgetManager<br>
+You can use this manager to update AppWidgets, notify AppWidget data changed, and retrieve the information of installed AppWidget Providers.
+
+* AppWidgetHost<br>
+Provide a simple class to hold an App Widgets, and provide some management with App Widgets. For example, allocate/delete App Widget id, listen to App Widgets, and create AppWidgetHostWidget.
+
+* AppWidgetHostWidget<br>
+A container for an App Widget to display its view.
+
+# How to use App Widget?
+## Declaring an App Widget Provider
+First, declare the AppWidgetProvider class in your application's Gaia.xml file. For example:
+
+        <receiver gaia:name=".MyButtonAppWidgetProvider">
+            <demand-filter>
+                <action gaia:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </demand-filter>
+            <meta-data gaia:name="android.appwidget.provider"
+                gaia:resource="@xml/appwidget_info" />
+        </receiver>
+
+1. receiver
+    * gaia:name - specifies the AppWidgetProvider used by the App Widget.
+2. demand-filter: add a action to receive broadcast
+    * gaia:name - specifies that the AppWidgetProvider accepts the ACTION_APPWIDGET_UPDATE broadcast.
+3. meta-data: specifies the AppWidgetProviderInfo resource and requires the following attributes:<br>
+    * gaia:name - specifies the metadata name. Use android.appwidget.provider to identify the data as the AppWidgetProviderInfo descriptor.<br>
+    * gaia:resource - specifies the AppWidgetProviderInfo resource location.<br>
+
+## Adding the AppWidgetProviderInfo Metadata
+The AppWidgetProviderInfo defines the essential qualities of an App Widget, such as its minimum layout dimensions, its initial layout resource, how often to update the App Widget, and (optionally) a configuration Activity to launch at create-time. Define the AppWidgetProviderInfo object in an XML resource using a single <appwidget-provider> element and save it in the project's res/xml/ folder.
+
+        <appwidget-provider
+            xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+            xmlns:com.gaia="http://schemas.gaia.com/pkg/res/com.gaia"
+            gaia:minWidth="240dp"
+            gaia:minHeight="100dp"
+            gaia:updatePeriodMillis="2000"
+            gaia:initialLayout="@layout/widget_layout1"
+            gaia:previewImage="@drawable/preview"
+            gaia:resizeMode="horizontal|vertical"
+            gaia:configure="ButtonAppWidgetProvider.MyButtonAppWidgetConfigure"
+            com.gaia:maxResizeWidth="480dp"
+            com.gaia:maxResizeHeight="200dp"
+            com.gaia:resizeStyle="contentScale"
+            com.gaia:providerType="homeWidget|banner">
+        </appwidget-provider>
+
+Here's a brief desciption for the "appwidget-provider" attributes:
+
+1. android attributes
+    * minWidth, minHeight: the minimum amount of space the App Widget consumes by default.
+    * minResizeWidth, minResizeHeight: the App Widget's absolute minimum size.
+    * updatePeriodMillis: defines how often the App Widget framework should request an update from the AppWidgetProvider by calling the onUpdate() callback method.
+    * initialLayout: the layout resource that defines the App Widget layout.
+    * previewImage: a preview which the user sees when selecting the app widget.
+    * resizeMode: specifies the rules by which a widget can be resized. Values for the resizeMode attribute include "horizontal", "vertical", and "none".
+    * configure: defines the Page to launch when the user adds the App Widget, in order to configure App Widget properties. This is optional.
+2. gaia original attributes
+    * maxResizeWidth, maxResizeHeight: specify the App Widget's absolute maximum size.
+    * resizeStyle: the style for a widget to resize to its container.
+    * providerType: determines whether this widget can be displayed on the home widget, banner, or both.
+
+See the AppWidgetProviderInfo class for more information on the attributes accepted by the "appwidget-provider" element.
+
+## Using App Widget Provider
+The AppWidgetProvider is a broadcast receiver to handle the App Widget broadcasts. The AppWidgetProvider receives only the event broadcasts that are relevant to the App Widget, such as when the App Widget is updated, deleted, enabled, and disabled. When these broadcast events occur, the AppWidgetProvider receives the following method calls:
+
+* onUpdate<br>
+    This is called to update the App Widget at intervals defined by the updatePeriodMillis attribute in the AppWidgetProviderInfo (see Adding the AppWidgetProviderInfo Metadata above). This method is also called when the user adds the App Widget, so it should perform the essential setup, such as define event handlers for Views and start a temporary Service, if necessary. However, if you have declared a configuration Activity, this method is not called when the user adds the App Widget, but is called for the subsequent updates. It is the responsibility of the configuration Activity to perform the first update when configuration is done. (See Creating an App Widget Configuration Activity below.)
+* onDeleted<br>
+    This is called every time an App Widget is deleted from the App Widget host.
+* onEnabled<br>
+    This is called when an instance the App Widget is created for the first time. For example, if the user adds two instances of your App Widget, this is only called the first time. If you need to open a new database or perform other setup that only needs to occur once for all App Widget instances, then this is a good place to do it.
+* onDisabled<br>
+    This is called when the last instance of your App Widget is deleted from the App Widget host. This is where you should clean up any work done in onEnabled(Context), such as delete a temporary database.
+* onReceive<br>
+    This is called for every broadcast and before each of the above callback methods. You normally don't need to implement this method because the default AppWidgetProvider implementation filters all App Widget broadcasts and calls the above methods as appropriate.
+* onAppWidgetOptionsChanged<br>
+    This is called any time the widget is resized. You can get the size ranges by calling getAppWidgetOptions(), which returns a Persistence that includes the following:
+
+        OPTION_APPWIDGET_MIN_WIDTH
+        OPTION_APPWIDGET_MIN_HEIGHT
+        OPTION_APPWIDGET_MAX_WIDTH
+        OPTION_APPWIDGET_MAX_HEIGHT
+
+* onAppWidgetStateChanged
+    This is called when widget has been changed to the other state. The supported states are STATE_PAUSE and STATE_RESUME, and you can refer to AppWidgetManager.h for more details.
+
+## Receiving App Widget broadcast Demands
+
+AppWidgetProvider is just a convenience class. If you would like to receive the App Widget broadcasts directly, you can implement your own BroadcastReceiver or override the onReceive callback. The Demands you need to care about are as follows:
+
+* ACTION_APPWIDGET_UPDATE
+* ACTION_APPWIDGET_DELETED
+* ACTION_APPWIDGET_ENABLED
+* ACTION_APPWIDGET_DISABLED
+* ACTION_APPWIDGET_OPTIONS_CHANGED
+* ACTION_APPWIDGET_STATE_CHANGED
+
+# How to use App Host Widget?
+
+App Host Widget provide a simple layout for remote widget. You can operate this host widget just like a normal widget, without concerning about remote widget behavior. You cant use updateAppWidgetSize to resize App Widget Host Widget, and this will cause App Widget Provider onAppWidgetOptionsChanged be triggered. If you want use different layout to fit different size App Widget Host Widget, you should do updateAppWidget here.
+
+    void MyButtonAppWidgetProvider::onAppWidgetOptionsChanged(Context* context,
+        AppWidgetManager* appWidgetManager, int32_t appWidgetId, Persistence* newOptions) {
+        if (newOptions != NULL) {
+            // Get Left, Top, Right and Bottom value after resize
+            int32_t left  = newOptions->getInt(AppWidgetManager::OPTION_APPWIDGET_MIN_WIDTH());
+            int32_t top = newOptions->getInt(AppWidgetManager::OPTION_APPWIDGET_MIN_HEIGHT());
+            int32_t right  = newOptions->getInt(AppWidgetManager::OPTION_APPWIDGET_MAX_WIDTH());
+            int32_t bottom  = newOptions->getInt(AppWidgetManager::OPTION_APPWIDGET_MAX_HEIGHT());
+
+            // Get widget and height using Left, Top, Right and Bottom
+            int32_t width = right - left;
+            int32_t height = bottom - top;
+
+            // Get current LayoutMode
+            int32_t currentLayout = 0;
+            if (msIdLayoutMode.containsKey(appWidgetId)) {
+                currentLayout = msIdLayoutMode.valueFor(appWidgetId);
+            }
+            // Change Layout when currentLayout != changeLayout
+            if ((width <= 400) || (height <= 400)) {  // Do LAYOUT_MODE_3
+                if (currentLayout != LAYOUT_MODE_3) {
+                    RemoteWidget* rw = getRemoteWidgetLayout3(context);
+                    appWidgetManager->updateAppWidget(appWidgetId, rw);
+                    delete rw;
+                    msIdLayoutMode.add(appWidgetId, LAYOUT_MODE_3);
+                }
+            } else if ((width <= 500) || (height <= 500)) {  // Do LAYOUT_MODE_2
+                if (currentLayout != LAYOUT_MODE_2) {
+                    RemoteWidget* rw = getRemoteWidgetLayout2(context);
+                    appWidgetManager->updateAppWidget(appWidgetId, rw);
+                    delete rw;
+                    msIdLayoutMode.add(appWidgetId, LAYOUT_MODE_2);
+                }
+            } else {  // Do LAYOUT_MODE_1
+                if (currentLayout != LAYOUT_MODE_1) {
+                    RemoteWidget* rw = getRemoteWidgetLayout1(context, appWidgetId);
+                    appWidgetManager->updateAppWidget(appWidgetId, rw);
+                    delete rw;
+                    msIdLayoutMode.add(appWidgetId, LAYOUT_MODE_1);
+                }
+            }
+        }
+    }
+
+# How to use App Widgets with collections?
+
+These kinds of App Widgets use the RemoteViewsDelegate to display collections that are backed by remote data, such as from a content provider. The collections we mean here are ListView and GridView.
+
+## Adding customized RemoteWidgetDelegate and RemoteWidgetFactory
+We use an Adapter to bind user interface to their data. When requested for a specific item in the collection, the RemoteWidgetFactory creates and returns the item for the collection as a RemoteWidget object. In order to include a collection view in your app widget, you must implement RemoteViewsService and RemoteViewsFactory.
+
+RemoteWidgetDelegate is an interface to implement the service that allows a remote adapter to request RemoteWidget objects. Take ListAppWidgetService for example:
+
+    class MyListAppWidgetService : virtual public gaia::ui::RemoteWidgetDelegate {
+      public:
+        gaia::ui::RemoteWidgetFactory* onGetWidgetFactory(const gaia::core::Demand* demand) {
+            return new MyListAppRemoteWidgetFactory(new gaia::core::Context(this), demand);
+        }
+    };
+
+RemoteWidgetFactory is an interface for an adapter between a collection view and the underlying data for that view. The function getWidgetAt() is used to apply the collection item for remote adapter.
+
+## Adding behavior to collection items
+
+Individuals items of a collection cannot set up their own pending demands. Instead, the collection as a whole sets up a pending demand template, and the individual items set a fill-in demand to create unique behavior on an item-by-item basis.
+
+1. First we set a pending demand template (toastPendingdemand) to the ListWidget.
+
+        void ListWidgetProvider::onUpdate(Context* context, AppWidgetManager* appWidgetManager,
+            const gaia::base::Array<int32_t> appWidgetIds) {
+
+            // update each of the widgets with the remote adapter
+            for (uint32_t i = 0; i < appWidgetIds.size(); ++i) {
+                RemoteWidget* rw = NULL;
+                String pkgName("AppWidgetExample");
+                String clsName("ListWidgetService");
+                Demand* demand = new Demand();
+                demand->setClassName(pkgName, clsName);
+                demand->putIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(), appWidgetIds[i]);
+                demand->putStringExtra(AdapterWidgetFactory::EXTRA_REQUESTER, clsName);
+
+                rw = new RemoteWidget(context->getPackageName(), AppWidgetExample::R::layout::list_layout);
+                rw->setRemoteAdapter(appWidgetIds[i], AppWidgetExample::R::id::list_view, demand);
+                rw->setEmptyWidget(AppWidgetExample::R::id::list_view, AppWidgetExample::R::id::list_empty_view);
+
+                clsName = String("AppWidgetExample.ListWidgetProvider");
+                Demand* toastDemand = new Demand();
+                toastDemand->setClassName(pkgName, clsName);
+                toastDemand->setAction(AdapterWidgetFactory::ACTION_ITEM_CLICK);
+                PendingDemand* toastPendingdemand = PendingDemand::getBroadcastN(*context, *toastDemand,
+                       PendingDemand::FLAG_UPDATE_CURRENT);
+                rw->setPendingDemandTemplate(AppWidgetExample::R::id::list_view, toastPendingdemand);
+                appWidgetManager->updateAppWidget(appWidgetIds[i], rw);
+            }
+        }
+
+2. Then we set fill-in demand to each remote widget in list widget. When the fillin demand triggered, the provider will receive it in onReceive.
+
+        RemoteWidget* MyListAppRemoteWidgetFactory::getWidgetAt(int32_t position) {
+            rw = new RemoteWidget(mpContext->getPackageName(), ListAppWidgetProvider::R::layout::widget_item);
+            rw->setTextWidgetText(ListAppWidgetProvider::R::id::widget_item, mWidgetItems[position]->mpText);
+
+            Persistence* persistence = new Persistence();
+            persistence->putInt(MyListAppWidgetProvider::EXTRA_ITEM, position);
+            Demand* fillInDemand = new Demand();
+            fillInDemand->putExtras(*persistence);
+
+            int32_t posi = fillInDemand->getIntExtra(MyListAppWidgetProvider::EXTRA_ITEM, -1);
+            rw->setOnClickFillInDemand(ListAppWidgetProvider::R::id::widget_item, fillInDemand);
+
+            posi = fillInDemand->getIntExtra(MyListAppWidgetProvider::EXTRA_ITEM, -1);
+
+            if (persistence != NULL) delete persistence;
+            if (fillInDemand != NULL) delete fillInDemand;
+            return rw;
+        }
+
+3. After you set pending demand template on collections, and also set fill-in demand on individual collection items, you can retrive the information and handle it in onReceive.
+
+        void ListWidgetProvider::onReceive(Context* context, const Demand& demand) {
+            AppWidgetManager* mgr = new AppWidgetManager(context);
+            if (demand.getAction().equals(AdapterWidgetFactory::ACTION_ITEM_CLICK)) {
+                int32_t appWidgetId = demand.getIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(),
+                        AppWidgetManager::INVALID_APPWIDGET_ID());
+            }
+        }
+
+### Update Data
+
+Because the displayed view in this kind of remote widget is given by adapter, we need to notify it once the data changed. Just use AppWidgetManager::notifyAppWidgetViewDataChanged to notify your data is changed, and the RemoteWidgetFactory::onDataSetChanged will be triggered. You should provide updated remote widget once onDataSetChanged is called.
+
+# How to configure App Widget
+If you want user do some configuration before your App Widget added, you can create a Configuration page to handle this. The following will introduce how to add a configuration page and do the configuration.
+
+## Side App Widget Provider
+1. Create a configure page, in our example it means MyButtonAppWidgetConfigure. Here are 2 points to implement the configure page:
+    * setResult(RESULT_CANCELED) in onInit, so it will be a canceled case if you press back key in configure page.
+    *	set result and App Widget id to host, and call finish to complete the configuration.
+
+            Demand* resultValue = new Demand();
+            resultValue->putIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(), mAppWidgetId);
+            setResult(RESULT_OK, resultValue);
+            delete resultValue;
+            finish();
+
+2. Add the configure page into Gaia.xml, and add a demand filter for APPWIDGET_CONFIGURE for it.
+
+        <page gaia:name=".MyButtonAppWidgetConfigure" gaia:label="@string/app_configure_name">
+            <demand-filter>
+                <action gaia:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </demand-filter>
+        </page>
+
+3. Add gaia:configure into provider info
+
+        <appwidget-provider
+            ...
+            gaia:configure="ButtonAppWidgetProvider.MyButtonAppWidgetConfigure"
+            ...
+        </appwidget-provider>
+
+4. Implement a static funtion in App Widget Provider for configure page calling to update App Widget. In this static function, provider must apply the configuration immediately, because the onUpdate will not be triggered once there is a configure in App Widget Provider. Of course, you can save the configuration into Preference or files.
+
+        void MyButtonAppWidgetProvider::updateAppWidget(Context* context, AppWidgetManager* appWidgetManager,
+                int32_t appWidgetId, int32_t layout) {
+
+            RemoteWidget* rw = NULL;
+
+            switch (layout) {
+                case LAYOUT_MODE_1:
+                    rw = getRemoteWidgetLayout1(context, appWidgetId);
+                    break;
+                case LAYOUT_MODE_2:
+                    rw = getRemoteWidgetLayout2(context);
+                    break;
+                case LAYOUT_MODE_3:
+                    rw = getRemoteWidgetLayout3(context);
+                    break;
+            }
+            if (rw !=  NULL) {
+                appWidgetManager->updateAppWidget(appWidgetId, rw);
+                delete rw;
+            }
+        }
+
+## Side Host (ex. Home Screen)
+1. Check if there is a configure in provider when you want to add an App Widget. If yes, launch the configure page instead of adding the App Widget directly.
+
+        void ShowGaiaAppWidgetPage::addAppWidget(int32_t index, AppWidgetProviderInfo* info) {
+            ......
+            ComponentName* component = info->getConfigureN();
+            if (component != NULL) {
+                Demand demand = Demand(AppWidgetManager::ACTION_APPWIDGET_CONFIGURE());
+                demand.setComponent(*component);
+                demand.putIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(), widgetID);
+                startPageForResult(&demand, REQUEST_CREATE_APPWIDGET);
+            } else {
+                mpWidgetContainer->addWidget(mpController);
+            }
+            if (component != NULL) {
+                delete component;
+            }
+        }
+
+2. Implement onPageResult in your Host. According to the configure result, add or delete the App Widget.
+
+        void ShowGaiaAppWidgetPage::onPageResult(int32_t requestCode, int32_t resultCode, Demand* data) {
+            if (requestCode == REQUEST_CREATE_APPWIDGET) {
+                if (resultCode != RESULT_OK) {
+                    if (data != NULL) {
+                        int32_t appWidgetId = data->getIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(), -1);
+                        if (appWidgetId != -1) {
+                            mpHost->deleteAppWidgetId(appWidgetId);
+                        }
+                    }
+                } else {
+                    if (data != NULL) {
+                        int32_t appWidgetId = data->getIntExtra(AppWidgetManager::EXTRA_APPWIDGET_ID(), -1);
+                        if (appWidgetId != -1) {
+                            completeAddAppWidget(appWidgetId);
+                        }
+                    }
+                }
+            }
+        }

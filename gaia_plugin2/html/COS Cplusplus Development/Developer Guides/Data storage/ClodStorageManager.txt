@@ -1,0 +1,227 @@
+#CloudStorage#
+
+CloudStorage can divider into two part
+
+(1) CloudStorageManager: help to load the all plugin in device and let developer can know how manny and what plugins are in device.
+
+(2) CloudStorageFile: for develop to access/upload/change cloudStorage file.
+
+## Find the Plugin, login and access cloud plugin file
+
+If developer want to access a cloud storage, he need follow below two steps.
+
+(1)Get the CloudStoragePlugin via CloudStorageManager 
+
+(2)Access Cloudstorage Directory or File
+
+### (1)Get the CloudStoragePlugin via CloudStorageManager ###
+
+via using 
+           mpCloudStorageMgr = CloudStorageManager::instance(mpContext);
+then it will help you to scan and load what cloudstorage plugins are in this device.
+Via using 
+           StringArray pluginsType= mpCloudStorageMgr->getCloudStorageAccountTypes();
+
+### (2)Access Cloudstorage Directory or File ###
+
+First you need create AccoutManager as below 
+mpAccountMgr = new AccountManager(*mpContext); then use 
+
+AuthenticatorDescriptionArray authDescriotionArr = mpAccountMgr->getAuthenticatorTypes();
+
+to get the all plugin type then find out the correct plugin type(plugin) you want to access.
+
+          for (int32_t i = 0; i < pluginsType.size(); i++) {
+               String pluinType = pluginsType[i];
+               for (int32_t j = 0, size = authDescriotionArr.size(); j < size; j++) {
+                    AuthenticatorDescription description = authDescriotionArr[j];
+                    if (!description.type().equals(pluinType)) {
+                        continue;
+                    }
+               }
+           }
+           
+you can get the pluinType that you want.
+the use the 
+             
+             AccountArray accounts = mpAccountMgr->getAccountsByType(type); to get this type(plugin)
+then use 
+             
+             mpCloudRootFile = mpCloudStorageMgr->getRemoteRootDirectory(accounts[0].name(), accounts[0].type());
+Then you can use the CloudStorageFile API to control the mpCloudRootFile to read/write the file.
+
+## Implement a CloudStorage
+  If a developer want to create his's cloudstorage, he need to inherit and implement three class
+  CloudStoragePlugin, CloudStorageFile
+  
+### Implement a CloudStoragePlugin
+  Implement a Cloudstorage need to inherit CloudStoragePlugin and implement below API.
+
+
+         1.1 const char* getServiceName() 
+             ==> you should define your plugin name and return it in this funciton.
+             
+         1.2 CloudStoragePluginVersion_T getCloudStoragePluginVersion()
+             ==> you should define your plugin version and return it in this funciton.
+             
+         1.3 gaia::base::String getLocalCachedPath(const CloudStorageFileInfo& fileInfo)
+             ==> you should define you cache and return it in this function
+             
+         1.4 CloudStorageFileInfo getRemoteRootDirectory(const gaia::base::String& account, const gaia::base::String& accountType)
+             ==> you should define your cloudstorage root directory path and return it in this function
+             
+         1.5 const char *getVendorName()
+             ==> you should define vendor name who developer this plugin storage and return it in this function
+             
+         1.6 void setLocalCachedDirectory(const char *path)
+             ==> you should implement this API for user to create it's own CachedDirectory.
+             
+         1.7 CloudStorageState_E uploadFile(const CloudStorageFileInfo& dest, const gaia::base::String& src)
+             ==> you should implement this API for user to upload file. dest is remote file path, src is local file that 
+                 you want to upload to cloud server
+          
+         1.8 CloudStorageState_E downloadFile(const CloudStorageFileInfo& src, const gaia::base::String& desPath)
+             ==> you should implement this API for user to download file. src is file that you want to down load. desPath is 
+                 the path that download file want to put in.
+                 
+         1.9 gaia::base::Array<CloudStorageFileInfo*> listFile(const CloudStorageFileInfo& target)
+             ==> you should implement this function to list file & directory under target path via target path.
+         
+         1.10 CloudStorageFileInfo refresh(const CloudStorageFileInfo& target)
+             ==> you should implement this function to refresh the file info of the target
+          
+         1.11 CloudStorageState_E mkdir(const CloudStorageFileInfo& fileInfo, const gaia::base::String& name)
+             ==> you shoud implement this function to let developer to creare it's folder. fileInfo directory under which the new 
+                 directory is created name new directory's name
+                 
+         1.12 CloudStorageState_E deleteFile(const CloudStorageFileInfo& file)
+             ==> you shoud implement this function to let developer to delete the file or directory
+                 file is file or dir that you want to delete.
+                 
+         1.13 CloudStorageState_E renameTo(const CloudStorageFileInfo& file, const gaia::base::String& name)
+             ==> you shoud implement this function to let developer to rename the file or dir
+                 file is file or dir that you wnat to be renamed
+                 name is new name for old file or dir
+        
+         1.14 CloudStorageState_E getThumbnails(const CloudStorageFileInfo& fileInfo, const gaia::base::String& desPath)
+             ==> you shoud implement this function to let developer to get thumbnails uri
+          
+         1.15 gaia::base::Vector<gaia::cloudstorage::CloudStorageFileInfo*> findFile(const CloudStorageFileInfo& fileInfo, const gaia::base::String& fileName)
+             ==> you shoud implement this function to let developer to search file in cload storage
+                 fileName which is the searched name
+                 
+         1.16 int64_t getTotalSpace(const CloudStorageFileInfo& fileInfo)
+             ==> you shoud implement this function to let developer to get the total space of cloudstorage
+        
+         1.17 int64_t getUsableSpace(const CloudStorageFileInfo& fileInfo)
+             ==> you shoud implement this function to let developer know the free space of cloudstorage in bytes
+         
+         1.18 gaia::base::String publishURI(const CloudStorageFileInfo& fileInfo)
+             ==> you shoud implement this function to let developer to share link to other app
+             
+         1.19 bool isExists(const CloudStorageFileInfo& fileInfo)
+             ==> you shoud implement this function to let developer to check the cloudstorage file if exists in local or not
+        
+         1.20 void registerPluginObserver(gaia::cloudstorage::CloudStorageObserver*const& observer, gaia::cloudstorage::CloudStorageFile*const& pCloudFile, const gaia::base::String& filePath)
+             ==> you shoud implement this function to let developer to register an observer class that gets callbacks when download/upload file
+        
+         1.21 void unregisterPluginObserver(gaia::cloudstorage::CloudStorageObserver*const& observer, gaia::cloudstorage::CloudStorageFile*const& pCloudFile, const gaia::base::String& filePath) = 0;
+             ==> you shoud implement this function to let developer to unregister a observer.
+        
+         1.22 gaia::base::String getFileMedia(const CloudStorageFileInfo& fileInfo, const gaia::cloudstorage::CloudStorageFileLink_E& type)
+             ==> you shoud implement this function to let developer to get file download url or playback url
+        
+### Implement a CloudStorageFile
+    Developer want to create his cloudstorage he need inherit CloudStorageFile and implement below API.
+    This file will be use in CloudStorageManager.
+
+         2.1 CloudStorageState_E writeFile(const char* localPath)
+            ==> This function is to upload local file to clodestorage via localPath
+            
+         2.2 CloudStorageState_E readFile(const char* destPath = NULL)
+            ==> This function is to download cloud file to local
+    
+         2.3 gaia::base::Array<CloudStorageFile*> listFile()
+            ==> This function is to get list file in cloud folder
+	 
+	 2.4 static void cleanFileArray(base::Array<CloudStorageFile*> filesList)
+            ==> This function is to cleanup the array of file pointers 
+      
+         2.5 gaia::base::Array<CloudStorageFile*> listFile(gaia::base::Vector<gaia::base::String>* mimeTypeVec, bool includeDirectory);
+            ==> This function is to get the designated mimetype filelist in cloud folder
+
+         2.6 int64_t getTotalSpace()
+            ==> This function is to get total space in CloudStorageFile
+         
+         2.7 int64_t getUsableSpace()
+            ==> This function is to get usableSpace in CloudStorageFile
+         
+         2.8 gaia::base::String publishURI()
+            ==> This function is to get share link to other AP
+        
+         2.9 void fresh()
+            ==> This function is to fresh to get latest file from cloudstorage
+     
+         2.10 bool mkdir(const char* folderName)
+            ==> This function is to creat directory
+            
+         2.11 bool deleteFile()
+            ==> This function is to delete file/dir
+       
+         2.12 bool renameTo(const char* newName)
+            ==> This function is to rename file
+         
+         2.13 gaia::base::String getParent()
+            ==> This function is to get parent path
+         
+         2.14 CloudStorageFile* getParentFile()
+            ==> This function is to get parent cloudstorageFile
+        
+         2.15 bool isDirectory()
+            ==> This function is to check if it's directory
+    
+         2.16  bool isFile()
+            ==> This function is to Indicates if this file represents a file on the cloud storage
+     
+         2.17 bool isHidden()
+            ==> This function is to Returns whether or not this file is a hidden file as defined by the
+                cloud storage.
+         2.18  bool exists()
+            ==> This function is to Indicating whether this file can be found on the cloud storage.
+         
+         2.19 int64_t length()
+            ==> This function is to Returns the length of this file in bytes.Returns 0 if the file does not exist.
+                 The result for a directory is not defined.
+         
+         2.20 int64_t lastModified()
+            ==> This function is to Returns the time when this file was last modified, measured in milliseconds since January 1st, 1970, midnight.
+        
+         2.21 gaia::base::String getName()
+            ==> This function is to get cloudstoragefile's Name
+      
+         2.22 gaia::base::String getCloudStoragePath()
+            ==> This function is to get cloudstoragefile's cloudpath
+      
+         2.23 gaia::base::String getLocalCachedPath()
+            ==> This function is to get cloudstoragefile's localpath
+     
+         2.24 gaia::cloudstorage::CloudStorageState_E getThumbnails(const char* destPath = NULL)
+            ==> This function is to get thumbnails uri
+             
+         2.25 gaia::base::Vector<gaia::cloudstorage::CloudStorageFile*> findFile(const gaia::base::String& fileName)
+            ==> This function is to search file in cload storage
+      
+         2.26 bool isRoot()
+            ==> This function is to check if the file is root-path
+     
+         2.27 static const char* join(const char* path, const char* fileName)
+            ==> This function is to join a path and filename to be a new path
+    
+         2.28 void registerPluginObserver(gaia::cloudstorage::CloudStorageObserver*const& observer)
+            ==> This function is to Register an observer class that gets callbacks when download/upload file
+     
+         2.29 void unregisterPluginObserver(gaia::cloudstorage::CloudStorageObserver*const& observer)
+            ==> This function is to Unregisters a observer.
+         
+         2.30 gaia::base::String getFileMedia(const gaia::cloudstorage::CloudStorageFileLink_E& type)
+            ==> This function is to get file download url or playback url

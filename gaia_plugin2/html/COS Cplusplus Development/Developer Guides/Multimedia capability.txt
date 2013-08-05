@@ -1,0 +1,347 @@
+# Multimedia capability
+Device implementations MUST include at least one form of audio output, such as speakers, headphone jack, external speaker connection, etc
+## Media Codecs
+Device implementations MUST support the core media formats specified in the Gaia SDK documentation except where explicitly permitted in this document. Specifically, device implementations MUST support the media formats, encoders, decoders, file types and container formats defined in the tables below.
+
+Note that these tables do not list specific bitrate requirements for most video codecs because current device hardware does not necessarily support bitrates that map exactly to the required bitrates specified by the relevant standards. Instead, device implementations SHOULD support the highest bitrate practical on the hardware, up to the limits defined by the specifications.
+
+<table cellspacing="0" cellpadding="5" border="1">
+
+<tr>
+<th> Type
+</th><th> Format/Codec
+</th><th> Encoder
+</th><th> Decoder
+</th><th> Details
+</th><th> File type(s)/Container Formats
+</th></tr>
+<tr>
+<td rowspan="10"> Audio
+</td><td> AAC LC/LTP<br />
+</td><td> REQUIRED<br />Required for device<br />implementations that include<br />microphone hardware and define<br />gaia.hardware.microphone<br />
+</td><td> REQUIRED<br />
+</td><td rowspan="3"> <br /> Mono/Stereo content in any combination of standard bit rates up to 160 kbps and sampling rates from 8 to 48kHz<br /><br /> <br />
+</td><td rowspan="3">
+<p><br /> -3GPP (.3gp)<br /> 
+</p><p>- MPEG-4 (.mp4, .m4a)<br /> 
+</p><p>- ADTS raw AAC (.aac)<br /> 
+</p><p>- MPEG-TS (.ts)<br /> 
+</p>
+</td></tr>
+<tr>
+<td> HE-AACv1 (AAC+)<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td></tr>
+<tr>
+<td> HE-AACv2 (enhanced AAC+)<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td></tr>
+<tr>
+<td> AMR-NB<br />
+</td><td>
+<p>REQUIRED<br />Required for device<br />implementations that include<br />microphone hardware and define<br />gaia.hardware.microphone 
+</p><p><br /> 
+</p>
+</td><td> REQUIRED<br />
+</td><td> 4.75 to 12.2 kbps sampled @ 8 kHz<br />
+</td><td> 3GPP (.3gp)<br />
+</td></tr>
+<tr>
+<td> AMR-WB<br />
+</td><td>
+<p>REQUIRED<br />Required for device<br />implementations that include<br />microphone hardware and define<br />gaia.hardware.microphone 
+</p><p><br /> 
+</p>
+</td><td> REQUIRED<br />
+</td><td> 9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16kHz<br />
+</td><td> 3GPP (.3gp)<br />
+</td></tr>
+<tr>
+<td> FLAC<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> Mono/Stereo (no multichannel) Sample rate up to 48 kHz (but up to 44.1kHz output, as the 48 to 44.1 kHz down sampler do not include a low pass filter) 16 bit recommended; no dither applied for 24 bits<br />
+</td><td> FLAC (.flac) only<br />
+</td></tr>
+<tr>
+<td> MP3<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> Mono/Stereo 8-320Kbps constant (CBR) or variable bit-rate (VBR)<br />
+</td><td> MP3 (.mp3)<br />
+</td></tr>
+<tr>
+<td> MIDI<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> MIDI Type 0 and 1. DLS Version 1 and 2. XMF and mobile XMF. Support for ringtone format RTTTL/RTX, OTA and iMelody<br />
+</td><td>
+<p>-Type 0 and 1 (/mid, .xmf, .mxmf) 
+</p><p>-RTTTL/RTX (.rtttl, .rtx) 
+</p><p>-OTA (.ota) 
+</p><p>-iMelody (.imy) 
+</p>
+</td></tr>
+<tr>
+<td> Vorbis<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td>
+<p>-Ogg (.ogg) 
+</p><p>-Matroska (.mkv)<br /> 
+</p>
+</td></tr>
+<tr>
+<td> PCM/WAVE<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> 8- and 16-bit linear PCM (rates up to limit of hardware) <br />
+</td><td> WAVE (.wav)<br />
+</td></tr>
+<tr>
+<td rowspan="5"> <br /> <br /> <br /> <br /> <br />Image
+</td><td> JPEG<br />
+</td><td> REQUIRED<br />
+</td><td> REQUIRED<br />
+</td><td> Base+progressive<br />
+</td><td> JPEG (.jpg)<br />
+</td></tr>
+<tr>
+<td> GIF<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td> GIF (.gif)<br />
+</td></tr>
+<tr>
+<td> PNG<br />
+</td><td> REQUIRED<br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td> PNG (.png)<br />
+</td></tr>
+<tr>
+<td> BMP<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td> BMP (.bmp)<br />
+</td></tr>
+<tr>
+<td> WEBP<br />
+</td><td> REQUIRED<br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td> WebP (.webp)<br />
+</td></tr>
+<tr>
+<td rowspan="4"> <br /> <br /> <br /> <br />Video
+</td><td> H.263<br />
+</td><td> REQUIRED<br />Required for device implementations that include camera hardware and define<br />gaia.hardware.camera or<br />gaia.hardware.camera.front.
+</td><td> REQUIRED<br />
+</td><td> Profile 0<br />
+</td><td>
+<p>-3GPP (.3gp) 
+</p><p>-MPEG-4 (.mp4)<br /> 
+</p>
+</td></tr>
+<tr>
+<td> H.264 AVC<br />
+</td><td> REQUIRED<br />Required for device<br />implementations that include<br />camera hardware and define<br />gaia.hardware.camera or<br />gaia.hardware.camera.front.
+</td><td> REQUIRED<br />
+</td><td> Base Profile (BP)<br />
+</td><td>
+<p>- 3GPP (.3gp) 
+</p><p>-MPEG-4 (.mp4) 
+</p><p>-MPEG-TS (.ts) 
+</p>
+</td></tr>
+<tr>
+<td> MPEG-4 SP<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> Simple Profile<br />
+</td><td> 3GPP (.3gp)<br />
+</td></tr>
+<tr>
+<td> VP8<br />
+</td><td> <br />
+</td><td> REQUIRED<br />
+</td><td> <br />
+</td><td> WebM (.webm)<br />
+</td></tr></table>
+
+## Video Encoding
+Gaia device implementations that include a rear-facing camera and declare gaia.hardware.camera SHOULD support the following video encoding profiles.
+<table cellspacing="0" cellpadding="5" border="1">
+
+<tr>
+<th> Type
+</th><th> Format/Codec
+</th><th> Encoder
+</th><th> Decoder
+</th><th> Details
+</th><th> File type(s)/Container Formats
+</th></tr>
+<tr>
+<td rowspan="10"> Audio
+</td><td> AAC LC/LTP<br />
+</td><td> REQUIREDRequired for deviceimplementations that includemicrophone hardware and definegaia.hardware.microphone
+</td><td> REQUIRED
+</td><td rowspan="3">  Mono/Stereo content in any combination of standard bit rates up to 160 kbps and sampling rates from 8 to 48kHz 
+</td><td rowspan="3">
+<p> -3GPP (.3gp) 
+</p><p>- MPEG-4 (.mp4, .m4a) 
+</p><p>- ADTS raw AAC (.aac) 
+</p><p>- MPEG-TS (.ts) 
+</p>
+</td></tr>
+<tr>
+<td> HE-AACv1 (AAC+)
+</td><td> 
+</td><td> REQUIRED
+</td></tr>
+<tr>
+<td> HE-AACv2 (enhanced AAC+)
+</td><td> 
+</td><td> REQUIRED
+</td></tr>
+<tr>
+<td> AMR-NB
+</td><td>
+<p>REQUIREDRequired for deviceimplementations that includemicrophone hardware and definegaia.hardware.microphone 
+</p><p> 
+</p>
+</td><td> REQUIRED
+</td><td> 4.75 to 12.2 kbps sampled @ 8 kHz
+</td><td> 3GPP (.3gp)
+</td></tr>
+<tr>
+<td> AMR-WB
+</td><td>
+<p>REQUIREDRequired for deviceimplementations that includemicrophone hardware and definegaia.hardware.microphone 
+</p><p> 
+</p>
+</td><td> REQUIRED
+</td><td> 9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16kHz
+</td><td> 3GPP (.3gp)
+</td></tr>
+<tr>
+<td> FLAC
+</td><td> 
+</td><td> REQUIRED
+</td><td> Mono/Stereo (no multichannel) Sample rate up to 48 kHz (but up to 44.1kHz output, as the 48 to 44.1 kHz down sampler do not include a low pass filter) 16 bit recommended; no dither applied for 24 bits
+</td><td> FLAC (.flac) only
+</td></tr>
+<tr>
+<td> MP3
+</td><td> 
+</td><td> REQUIRED
+</td><td> Mono/Stereo 8-320Kbps constant (CBR) or variable bit-rate (VBR)
+</td><td> MP3 (.mp3)
+</td></tr>
+<tr>
+<td> MIDI
+</td><td> 
+</td><td> REQUIRED
+</td><td> MIDI Type 0 and 1. DLS Version 1 and 2. XMF and mobile XMF. Support for ringtone format RTTTL/RTX, OTA and iMelody
+</td><td>
+<p>-Type 0 and 1 (/mid, .xmf, .mxmf) 
+</p><p>-RTTTL/RTX (.rtttl, .rtx) 
+</p><p>-OTA (.ota) 
+</p><p>-iMelody (.imy) 
+</p>
+</td></tr>
+<tr>
+<td> Vorbis
+</td><td> 
+</td><td> REQUIRED
+</td><td> 
+</td><td>
+<p>-Ogg (.ogg) 
+</p><p>-Matroska (.mkv) 
+</p>
+</td></tr>
+<tr>
+<td> PCM/WAVE
+</td><td> 
+</td><td> REQUIRED
+</td><td> 8- and 16-bit linear PCM (rates up to limit of hardware) 
+</td><td> WAVE (.wav)
+</td></tr>
+<tr>
+<td rowspan="5">     Image
+</td><td> JPEG
+</td><td> REQUIRED
+</td><td> REQUIRED
+</td><td> Base+progressive
+</td><td> JPEG (.jpg)
+</td></tr>
+<tr>
+<td> GIF
+</td><td> 
+</td><td> REQUIRED
+</td><td> 
+</td><td> GIF (.gif)
+</td></tr>
+<tr>
+<td> PNG
+</td><td> REQUIRED
+</td><td> REQUIRED
+</td><td> 
+</td><td> PNG (.png)
+</td></tr>
+<tr>
+<td> BMP
+</td><td> 
+</td><td> REQUIRED
+</td><td> 
+</td><td> BMP (.bmp)
+</td></tr>
+<tr>
+<td> WEBP
+</td><td> REQUIRED
+</td><td> REQUIRED
+</td><td> 
+</td><td> WebP (.webp)
+</td></tr>
+<tr>
+<td rowspan="4">    Video
+</td><td> H.263
+</td><td> REQUIREDRequired for device implementations that include camera hardware and definegaia.hardware.camera orgaia.hardware.camera.front.
+</td><td> REQUIRED
+</td><td> Profile 0
+</td><td>
+<p>-3GPP (.3gp) 
+</p><p>-MPEG-4 (.mp4) 
+</p>
+</td></tr>
+<tr>
+<td> H.264 AVC
+</td><td> REQUIREDRequired for deviceimplementations that includecamera hardware and definegaia.hardware.camera orgaia.hardware.camera.front.
+</td><td> REQUIRED
+</td><td> Base Profile (BP)
+</td><td>
+<p>- 3GPP (.3gp) 
+</p><p>-MPEG-4 (.mp4) 
+</p><p>-MPEG-TS (.ts) 
+</p>
+</td></tr>
+<tr>
+<td> MPEG-4 SP
+</td><td> 
+</td><td> REQUIRED
+</td><td> Simple Profile
+</td><td> 3GPP (.3gp)
+</td></tr>
+<tr>
+<td> VP8
+</td><td> 
+</td><td> REQUIRED
+</td><td> 
+</td><td> WebM (.webm)
+</td></tr></table>
+
