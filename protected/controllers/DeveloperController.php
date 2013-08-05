@@ -60,10 +60,11 @@ class DeveloperController extends Controller
 	* @param undefined $editMode
 	*
 	*/
-	private function _cosDeveloper($type = 1,$editMode = FALSE)
+	private function _cosDeveloper($type = MCApi::training,$editMode = FALSE)
 	{
 		$mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
+//        print_r($data);exit;
 		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
 
 		$switchUrl = "#";
@@ -80,7 +81,6 @@ class DeveloperController extends Controller
 				$switchUrl = 'developer/editGuide';
 			}
 		}
-
 
 		$viewData = array(
 			'data' => $data,

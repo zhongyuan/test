@@ -15,7 +15,7 @@ class MCApi {
 
 
     public $id;
-    
+
     public static $limit = 0;
 
     function __construct($id = null) {
@@ -106,6 +106,7 @@ class MCApi {
 		if(empty($query)){
 			return FALSE;
 		}
+//        return $query;
 		$idx = 0;
 		$dbRst = array();
 		foreach($query as $row){
