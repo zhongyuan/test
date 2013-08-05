@@ -81,6 +81,8 @@ class DeveloperController extends Controller
 			}
 		}
 		
+		//搜索参数
+		
 		$viewData = array(
 			'data' => $data,
 			'switchUrl'=>$switchUrl
@@ -88,7 +90,12 @@ class DeveloperController extends Controller
 		if(!$editMode){//普通浏览模式下
 			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
 			$viewData['first_id'] = $data[0]['file'];
+			$name = filter_var($_GET['name'],FILTER_SANITIZE_STRING);
+			if(!empty($name)){
+				$viewData['first_id'] = $name;//仅供搜索使用
+			}
 		}
+		
 		$this->render($view,$viewData);
 	}
 
