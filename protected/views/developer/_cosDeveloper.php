@@ -24,7 +24,9 @@ $this->widget('SearchWidget');
 			
 			//控制节点点击链接操作
 			$(".menu a").click(function(){
-				$("#testIframe").attr("src",this.id);
+				$("#testIframe").attr("src",this.name);
+				$(".menu a").removeClass("ht");
+				$("#"+this.id).removeClass("inactive").addClass("ht");
 			});
 		});
 

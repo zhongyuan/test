@@ -108,7 +108,7 @@ class DeveloperController extends Controller
 			}else{
 				$class = "inactive";
 			}
-			$html.="<li><a class=\"".$class."\" id=\"".$item['file']."\" href=\"#\">".$item['name']."</a>";
+			$html.="<li><a class=\"".$class."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
 			if($item['isParent']){
 				$html.=$this->_generateTreeHtml($item['children'],FALSE);//子节点初始化时无需激活
 			}
