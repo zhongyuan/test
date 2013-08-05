@@ -15,6 +15,7 @@ class MCApi {
 
 
     public $id;
+    
     public static $limit = 0;
 
     function __construct($id = null) {
@@ -91,6 +92,50 @@ class MCApi {
         return $cmd?$cmd:0;
     }
 
+
+	/**
+	 * 获取树型数据
+	 * @param undefined $parent_id
+	 * @param undefined $deep
+	 *
+	 */
+	public function getTree($parent_id,$isOpen = TRUE)
+	{
+		$sql = "SELECT id,name,parent_id,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
+		$query = Yii::app()->db->createCommand($sql)->queryAll();
+		if(empty($query)){
+			return FALSE;
+		}
+		$idx = 0;
+		$dbRst = array();
+		foreach($query as $row){
+			$idx++;
+			$subCnt = $this->getSubTreeCnt($row['id']);
+			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia_plugin2/".$row['path']);
+			if($subCnt > 0){
+				$data['isParent'] = true;
+				$data['children'] = $this->getTree($row['id'],FALSE);
+				if($isOpen && $idx ==1){
+					$data['open'] = true;
+				}
+			}
+			$dbRst[] = $data;
+		}
+		return $dbRst;
+	}
+
+	/**
+	 * 获取当前父节点的字节点数量
+	 * @param undefined $parent_id
+	 *
+	 */
+	public function getSubTreeCnt($parent_id = 0)
+	{
+		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND status = 1";
+		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
+		return intval($cnt);
+	}
+
     //获取class list 的子列表
     public function getChildById()
     {
@@ -121,15 +166,125 @@ class MCApi {
         return $cmd?$cmd:array();
     }
 
-    //获取 search结果
-//    public static function getChildByKeyWord($search_key,$type)
-//    {
-//        $sql = "select id,name,path,type from api where type = :type and name like '%".$search_key."%' ";
-//        $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
-//            ':type' => $type,
-//        ));
-//        return $cmd?$cmd:array();
-//    }
+	/**
+	 * 更新节点名称的操作
+	 * @param undefined $nodeName
+	 * @param undefined $nodeId
+	 *
+	 */
+	public function updateNodeName($nodeName,$nodeId = 0)
+	{
+		$sql = "UPDATE api SET name = :nodeName,update_time = :update_time WHERE id = :nodeId";
+		$cmd = Yii::app()->db->createCommand($sql)->execute(array(
+            ':nodeName' => $nodeName,
+			':update_time'=>time(),
+			':nodeId'	=> $nodeId
+        ));
+		return $cmd;
+	}
+
+
+	/**
+	 * 删除树节点操作,只修改状态,不实际删除此记录
+	 * @param undefined $nodeId
+	 *
+	 */
+	public function removeNode($nodeId = 0)
+	{
+		if($nodeId<1){
+			return FALSE;
+		}
+		$sql = "UPDATE api SET status = 0,update_time = :update_time WHERE id = :nodeId";
+		$cmd = Yii::app()->db->createCommand($sql)->execute(array(
+			':nodeId'	=> $nodeId,
+			':update_time'=>time()
+        ));
+		if($cmd){
+			$sql2 = "SELECT id FROM api WHERE parent_id = :parent_id AND status = 1";
+			$query2 = Yii::app()->db->createCommand($sql2)->queryAll(true,array(
+				':parent_id'	=> $nodeId
+	        ));
+			if($query2){
+				foreach($query2 as $r){
+					$this->removeNode($r['id']);
+				}
+			}
+		}
+		return $cmd;
+	}
+
+
+	/**
+	 *
+	 * @param undefined $nodeName
+	 * @param undefined $parent_id
+	 *
+	 */
+	public function addNode($nodeName,$parent_id = 0)
+	{
+		//检查当前父节点下的子节点名称是否已存在
+		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND name = '$nodeName'";
+		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
+		if($cnt > 0){
+			return array(FALSE,"节点文档已存在,不能重复创建");
+		}
+
+		//创建一个新的节点文档
+		$path = $this->_genRandomFile($parent_id);
+		if(!$path){
+			return array(FALSE,"节点文档创建失败,可能没有写入权限");
+		}
+		$sql2 = "INSERT INTO api(name,parent_id,path,status,record_time) VALUES(:name,:parent_id,:path,:status,:record_time)";
+		$cmd2 = Yii::app()->db->createCommand($sql2)->execute(array(
+            ':name' => $nodeName,
+			':parent_id'=>$parent_id,
+			':path'	=> $path,
+			':status'=>1,
+			':record_time'=>time()
+        ));
+		if($cmd2){
+			return array(TRUE,"节点文档创建成功");
+		}
+		return array(FALSE,"节点文档创建失败");
+
+	}
+
+	private function _genRandomFile($parent_id = 0)
+	{
+		$targetFolder = $_SERVER['DOCUMENT_ROOT']."/gaia_plugin2/ext_html";
+		if(!is_dir($targetFolder)){
+			$m = mkdir($targetFolder,0777,TRUE);
+			if(!$m){
+				return FALSE;
+			}
+		}
+		$targetFile = $targetFolder."/".$parent_id."_".uniqid().".html";
+		if(touch($targetFile)){
+			return str_replace($_SERVER['DOCUMENT_ROOT']."/gaia_plugin2","",$targetFile);
+		}
+		return FALSE;
+	}
+
+	/**
+	 * 依据文档ID查找该文档的路径
+	 * @param undefined $id
+	 * @return string
+	 */
+    public function getFilePathById($id)
+    {
+		if(empty($id)){
+			return FALSE;
+		}
+        $sql = "select path from api where id = :id  limit 1";
+        $path = Yii::app()->db->createCommand($sql)->queryScalar(array(
+            ':id' => $id,
+        ));
+
+		if($path){
+			$path = "/gaia_plugin2/".$path;
+		}
+        return $path;
+    }
 
 }
 
