@@ -6,16 +6,18 @@
  */
 class MCApi {
 
-    const training = 1;
+    const training = 1;  //既是类别又是id
     const developer = 2;
     const reference = 3;
     const tools = 4;
-    const classList = 6;
+
+    const lastestVersion = 9; //class list 最大版本
+
 
     public $id;
     public static $limit = 0;
 
-    function __construct($id) {
+    function __construct($id = null) {
         $this->id = $id;
     }
 
@@ -92,12 +94,43 @@ class MCApi {
     //获取class list 的子列表
     public function getChildById()
     {
-        $sql = "select id,name,path from api where parent_id = :parent_id and status = 1";
+        $sql = "select id,name,path, status,version from api where parent_id = :parent_id ";
         $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
             ':parent_id' => $this->id,
         ));
         return $cmd?$cmd:array();
     }
+
+    //获取版本内容
+    public function getVersionList()
+    {
+        $sql = "select version from api where parent_id = :parent_id group by version";
+        $cmd = Yii::app()->db->createCommand($sql)->queryColumn(array(
+            ':parent_id' => self::reference,
+        ));
+        return $cmd?$cmd:array();
+    }
+
+    //获取training guide的内容
+    public static function getChildByType($type)
+    {
+        $sql = "select id,name,path,status from api where type = :type";
+        $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
+            ':type' => $type,
+        ));
+        return $cmd?$cmd:array();
+    }
+
+    //获取 search结果
+//    public static function getChildByKeyWord($search_key,$type)
+//    {
+//        $sql = "select id,name,path,type from api where type = :type and name like '%".$search_key."%' ";
+//        $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
+//            ':type' => $type,
+//        ));
+//        return $cmd?$cmd:array();
+//    }
+
 }
 
 ?>

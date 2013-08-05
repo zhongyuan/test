@@ -59,11 +59,20 @@ class DeveloperController extends Controller
      */
     public function actionReference()
     {
-        //拿数据
-        $class_list = new MCApi(MCApi::classList);
+        $id = $_GET['id']?$_GET['id']:null;
+        if($id){
+            $target = Api::model()->findByPk($id);
+        }
+        $class_list = new MCApi(MCApi::reference);
         $cl_child = $class_list->getChildById();
+
+        $versions  = $class_list->getVersionList();
+        rsort($versions);
+
         $this->render('reference',array(
+            'path' => $target->path,
             'cl_child' => $cl_child,
+            'versions' => $versions,
         ));
     }
 
@@ -76,19 +85,59 @@ class DeveloperController extends Controller
     }
 
     /*
-     * 即时搜索
-     */
-    public function actionApiSearch()
-    {
-
-    }
-
-    /*
      * 表单搜索
      */
-    public function actionFormSearch()
+    public function actionApiFormSearch()
     {
+        $search_api = $_GET['search_api']?$_GET['search_api']:null;
+        $type = $_GET['type']?$_GET['type']:null;
+        if(!$search_api||!$type){
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
 
+        $mcApi = new MCApi();
+        $criteria = new CDbCriteria();
+        $criteria->select = 'id,name,path,status';
+        $criteria->addCondition("type = :type");
+        $criteria->addSearchCondition('name', $search_api);
+        $criteria->params[':type'] = $type;
+        $criteria->order = 't.update_time desc';
+
+        $count = Api::model()->count($criteria);
+
+        $pages = new CPagination($count);
+        $pages->pageSize = 15;
+        $pages->applyLimit($criteria);
+
+        $results = Api::model()->findAll($criteria);
+
+        $type_array = array(
+            1 => 'index',
+            2 => 'guide',
+            3 => 'reference',
+        );
+//        $search_api = strtolower($search_api);
+//        $queryAlnumDot = preg_match('/[\w\:]+/', $search_api);
+//        $queryAlnumDot = $queryAlnumDot[1];
+//        $queryRE = preg_match($pattern, $subject);
+//        $
+
+//        $queryLower = query.toLowerCase();
+//        $queryAlnumDot = (queryLower.match(/[\w\:]+/) || [''])[0];
+//        $queryRE = new RegExp(
+//            '(' + queryAlnumDot.replace(/\:/g, '\\:') + ')', 'ig');
+//        for ($i=0; i<gMatches.length; i++) {
+//            gMatches[i].__hiname = gMatches[i].name.replace(
+//                queryRE, '<span style="color:rgb(255, 173, 47)">$1</span>');
+//        }
+
+        $this->render('apiSearch',array(
+            'search_api' => $search_api,
+            'action' => $type_array[$type],
+            'type' => $type,
+            'results' => $results,
+            'pages'   => $pages,
+        ));
     }
 
     /*
@@ -101,7 +150,7 @@ class DeveloperController extends Controller
 //        include $xml_par; //不能少
 //        echo 'ddd';
 //        $array = XML2Array::createArray($filePath);
-        //第一步 加顶层 4条
+//        第一步 加顶层 4条
 //            $top_level = array(
 //                0 => array('name' => 'Training','path' => 'ddd'),
 //                1 => array('name' => 'Developer Guides','path' => 'ddd'),
@@ -136,19 +185,19 @@ class DeveloperController extends Controller
 ////            echo $suc;
 ////        }
 //
-////      第四步 加class list  1133条
-////        $i = 6;$m = 1;
-////        if($target_array = $array['DocSetNodes']['TOC']['Node']['Subnodes']['Node'][$m]['Subnodes']['Node']){
-////            if(array_key_exists('Name',$target_array)){
-////                $third_level[] = array('name'=>$target_array['Name'],'path'=>$target_array['Path']);
-////            }else{
-////                foreach($target_array as $ar1){
-////                    $third_level[] = array('name'=>$ar1['Name'],'path'=>$ar1['Path']);
-////                }
-////            }
-////            $suc = MCApi::addApiItem($i,$third_level);
-////            echo $suc;
-////        }
+//      第四步 加class list  1133条
+//        $i = MCApi::reference;$m = 1;
+//        if($target_array = $array['DocSetNodes']['TOC']['Node']['Subnodes']['Node'][$m]['Subnodes']['Node']){
+//            if(array_key_exists('Name',$target_array)){
+//                $third_level[] = array('name'=>$target_array['Name'],'path'=>$target_array['Path']);
+//            }else{
+//                foreach($target_array as $ar1){
+//                    $third_level[] = array('name'=>$ar1['Name'],'path'=>$ar1['Path']);
+//                }
+//            }
+//            $suc = MCApi::addApiItem($i,$third_level);
+//            echo $suc;
+//        }
 //
 //        //下面几部都需要修改 MCApi的getParIdByName函数id范围
 //
@@ -214,7 +263,7 @@ class DeveloperController extends Controller
 ////            $str = MCApi::addChildNote($target_level_array);
 ////        }
 //
-//        exit;
+        exit;
 //
     }
 
