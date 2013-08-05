@@ -81,7 +81,6 @@ class DeveloperController extends Controller
 			}
 		}
 		
-		//搜索参数
 		
 		$viewData = array(
 			'data' => $data,
@@ -90,9 +89,12 @@ class DeveloperController extends Controller
 		if(!$editMode){//普通浏览模式下
 			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
 			$viewData['first_id'] = $data[0]['file'];
-			$name = filter_var($_GET['name'],FILTER_SANITIZE_STRING);
-			if(!empty($name)){
-				$viewData['first_id'] = $name;//仅供搜索使用
+			
+			//搜索参数处理
+			$file_id = intval($_GET['id']);
+			$file_path = $mcApi->getFilePathById($file_id);
+			if($file_path && file_exists(dirname(dirname(dirname(__FILE__))).$file_path)){
+				$viewData['first_id'] = $file_path;
 			}
 		}
 		

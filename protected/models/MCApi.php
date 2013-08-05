@@ -230,7 +230,29 @@ class MCApi {
 			return str_replace($_SERVER['DOCUMENT_ROOT']."/gaia_plugin2","",$targetFile);
 		}
 		return FALSE;	
-	}	
+	}
+	
+	
+	/**
+	 * 依据文档ID查找该文档的路径 
+	 * @param undefined $id
+	 * @return string
+	 */
+    public function getFilePathById($id)
+    {
+		if(empty($id)){
+			return FALSE;
+		}
+        $sql = "select path from api where id = :id  limit 1";
+        $path = Yii::app()->db->createCommand($sql)->queryScalar(array(
+            ':id' => $id,
+        ));
+		
+		if($path){
+			$path = "/gaia_plugin2/".$path;
+		}
+        return $path;
+    }	
 	
 }
 
