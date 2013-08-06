@@ -113,7 +113,9 @@
         border: 0;
         padding: 0;
     }
-
+    .control_posi{
+        position: relative;
+    }
     .result_pane{
 		display: none;
 		position: absolute;
@@ -122,7 +124,8 @@
         max-height:800px;
 		background: rgba(252, 252, 252, 1);
         top: 20%;
-        left: 32%;
+        left: 26%;
+        z-index: 200;
         opacity: 0.96;
     }
     .search_item:hover{
@@ -136,17 +139,19 @@
         text-align: left;
         font-family: dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
     }
+
     </style>
 
     <form class="form-wrapper cf" action="<?php echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get">
 	<input id="search_api" name="search_api" type="text" placeholder="Search here..." required>
 	<button type="submit" id="submit">Search</button>
 </form>
-    <div class="result_pane">
-            <ul class="result_cont">
-            </ul>
+    <div class="control_posi">
+        <div class="result_pane">
+                <ul class="result_cont">
+                </ul>
+        </div>
     </div>
-
 <script>
     var demoIframe = $("#testIframe");
     demoIframe.bind("load", loadReady);
