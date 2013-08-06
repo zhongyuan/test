@@ -121,7 +121,7 @@
         height: auto;
         max-height:800px;
 		background: rgba(252, 252, 252, 1);
-        top: 35%;
+        top: 20%;
         left: 32%;
         opacity: 0.96;
     }
