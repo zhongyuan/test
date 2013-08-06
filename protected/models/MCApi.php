@@ -106,7 +106,6 @@ class MCApi {
 		if(empty($query)){
 			return FALSE;
 		}
-//        return $query;
 		$idx = 0;
 		$dbRst = array();
 		foreach($query as $row){
