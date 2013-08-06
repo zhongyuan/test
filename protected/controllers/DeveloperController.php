@@ -64,7 +64,6 @@ class DeveloperController extends Controller
 	{
 		$mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
-//        print_r($data);exit;
 		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
 
 		$switchUrl = "#";
