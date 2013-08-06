@@ -27,7 +27,7 @@ class MCNewsDetail {
         $cmd = Yii::app()->db->createCommand($sql)->queryScalar(array(
             ':news_id' => $this->id,
         ));
-        Yii::app()->cache->set($news_id,$cmd,3000);
+        Yii::app()->cache->set($news_id,$cmd,3600);
         return $cmd?$cmd:0;
     }
 

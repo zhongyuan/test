@@ -139,30 +139,51 @@ class MCApi {
     //获取class list 的子列表
     public function getChildById()
     {
+        if($cl_child = Yii::app()->cache->get('cl_child')){
+            return $cl_child;
+        }
         $sql = "select id,name,path, status,version from api where parent_id = :parent_id ";
         $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
             ':parent_id' => $this->id,
         ));
+        if($cmd){
+            Yii::app()->cache->set('cl_child', $cmd, 3600);
+        }
         return $cmd?$cmd:array();
     }
 
     //获取版本内容
     public function getVersionList()
     {
+        if($vers_list = Yii::app()->cache->get('vers_list')){
+            return $vers_list;
+        }
         $sql = "select version from api where parent_id = :parent_id group by version";
         $cmd = Yii::app()->db->createCommand($sql)->queryColumn(array(
             ':parent_id' => self::reference,
         ));
+        if($cmd){
+            Yii::app()->cache->set('vers_list', $cmd, 3600);
+        }
         return $cmd?$cmd:array();
     }
 
     //获取training guide的内容
     public static function getChildByType($type)
     {
+        $type_child = 'child'.$type;
+        if($trguide_child = Yii::app()->cache->get($type_child)){
+            return $trguide_child;
+        }
+
         $sql = "select id,name,path,status from api where type = :type";
         $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
             ':type' => $type,
         ));
+
+        if($cmd){
+            Yii::app()->cache->set($type_child, $cmd, 3600);
+        }
         return $cmd?$cmd:array();
     }
 
