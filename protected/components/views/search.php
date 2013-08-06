@@ -121,8 +121,8 @@
         height: auto;
         max-height:800px;
 		background: rgba(252, 252, 252, 1);
-        top: 173px;
-        left: 460px;
+        top: 35%;
+        left: 32%;
         opacity: 0.96;
     }
     .search_item:hover{
@@ -150,6 +150,7 @@
 <script>
     var demoIframe = $("#testIframe");
     demoIframe.bind("load", loadReady);
+
     $(function(){
         var data = <?php echo $json_clchild;?>;
         $('#search_api').keyup(function(){
@@ -178,7 +179,7 @@
                 highlight_autocomplete_result_labels(text);
                 var content = '';
                 for (i=0; i<gMatches.length ; i++) {
-                    content += "<a href= '#_self'><li class='search_item' onclick=jump('"+gMatches[i].path+"');>"+gMatches[i].__hiname+"</li></a>";
+                    content += '<a href= "#_self"><li class="search_item" onclick=jump("'+encodeURIComponent(gMatches[i].path)+'");>'+gMatches[i].__hiname+'</li></a>';
                 }
                 $('.result_cont').append(content);
                 $('.result_pane').show(300);
@@ -212,8 +213,8 @@
         return false;
     });
     function jump(path){
-        var server = "<?php echo Yii::app()->request->hostInfo; ?>"+'/gaia_plugin2/';
-        demoIframe.attr("src", server+path);
+        var server = "<?php echo Yii::app()->request->hostInfo;?>"+'/gaia_plugin2/';
+        demoIframe.attr("src", server+decodeURIComponent(path));
         $(".result_cont a").remove(); //先删原有的
         $("#search_api").val('');
     }
