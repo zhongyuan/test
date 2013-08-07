@@ -142,13 +142,30 @@ class DeveloperController extends Controller
 			$content= file_get_contents($filePath);
 			$jsonRst = array(
 				'req' => "ok",
-				'msg' => $content
+				'msg' => $this->_filterContent($content,$_POST['filePath'])
 			);
 		}
 		echo json_encode($jsonRst);
 		exit(0);
 	}
 
+
+	private function _FilterContent($content,$file)
+	{
+		$prefix = str_replace(end(explode("/",$file)),"",$file);
+		if(preg_match_all("/src=\"(.*)\"/",$content,$matches)){
+			$matches = $matches[1];
+			foreach($matches as $m){
+				if(strpos($m,"_plugin2/")){//本地文件
+					continue;
+				}
+				$url = $prefix.$m;
+				$content = str_replace($m,$url,$content);
+			}
+		}
+		return $content;
+	}
+	
 
 	/**
 	 * AJAX更新节点名称
