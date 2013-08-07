@@ -320,20 +320,9 @@ class DeveloperController extends Controller
             2 => 'guide',
             3 => 'reference',
         );
-//        $search_api = strtolower($search_api);
-//        $queryAlnumDot = preg_match('/[\w\:]+/', $search_api);
-//        $queryAlnumDot = $queryAlnumDot[1];
-//        $queryRE = preg_match($pattern, $subject);
-//        $
 
-//        $queryLower = query.toLowerCase();
-//        $queryAlnumDot = (queryLower.match(/[\w\:]+/) || [''])[0];
-//        $queryRE = new RegExp(
-//            '(' + queryAlnumDot.replace(/\:/g, '\\:') + ')', 'ig');
-//        for ($i=0; i<gMatches.length; i++) {
-//            gMatches[i].__hiname = gMatches[i].name.replace(
-//                queryRE, '<span style="color:rgb(255, 173, 47)">$1</span>');
-//        }
+        //替换颜色
+        MCApi::HightLightKeyWord($search_api,$results);
 
         $this->render('apiSearch',array(
             'search_api' => $search_api,

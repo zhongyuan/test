@@ -307,6 +307,21 @@ class MCApi {
         return $path;
     }
 
+    //替换颜色
+    public static function HightLightKeyWord($key,&$results)
+    {
+        if(!$key || !is_array($results) || count($results)<=0){
+            return 0;
+        }
+        $key = strtolower($key);
+        $pattern = "/$key/i";
+        $replacement = "<span style='color:rgb(255, 173, 47);'>$0</span>";
+        foreach ($results as $res) {
+            $res->name = preg_replace($pattern, $replacement, $res->name);
+        }
+        return 1;
+    }
+
 }
 
 ?>
