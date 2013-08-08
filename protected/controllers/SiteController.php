@@ -196,43 +196,55 @@ class SiteController extends Controller
         $model = new RegisterForm();
         if(isset($_POST['RegisterForm'])){
             $model->attributes = $_POST['RegisterForm'];
+			$userModel = new MCUsers($model->attributes['user_name']);
 
-            if($model->validate()){
-                $userModel = new MCUsers($model->attributes['user_name']);
-
-                //检查此Email是否已被注册
-                if($userModel->checkUser()){
-                    echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
-                    return FALSE;
-                }
-
-                //检测用户输入的表单内容
-                $filterRst = $this->_filterUserInput($model->attributes);
-                if(!$filterRst[0]){
-                    echo $filterRst[1];
-                    return FALSE;
-                }
-
-                //添加一个新的用户信息
-                $rst = $userModel->addUser($filterRst[1]);
-
-                if($rst[0]){
-
-                    $session = Yii::app()->session;
-
-                    $session['user_id'] = $rst[1]['user_id'];
-                    $session['user_name'] = $rst[1]['user_name'];
-                    $session['first_name'] = $rst[1]['first_name'];
-                    $session['last_name'] = $rst[1]['last_name'];
-
-                    $session['language'] = $rst[1]['language'];
-                    $session->setTimeout(3600*24);
-					$this->redirect("/");
-
-                }else{
-					$this->redirect('site/register');
-                }
+            //检查此Email是否已被注册
+            if($userModel->checkUser()){
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => "此用户邮箱已被注册，请更换其他邮箱试试吧!"
+				));
+				exit(0);
             }
+
+            //检测用户输入的表单内容
+            $filterRst = $this->_filterUserInput($model->attributes);
+            if(!$filterRst[0]){
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => $filterRst[1]
+				));
+				exit(0);
+            }
+
+            //添加一个新的用户信息
+            $rst = $userModel->addUser($filterRst[1]);
+
+            if($rst[0]){
+
+                $session = Yii::app()->session;
+
+                $session['user_id'] = $rst[1]['user_id'];
+                $session['user_name'] = $rst[1]['user_name'];
+                $session['first_name'] = $rst[1]['first_name'];
+                $session['last_name'] = $rst[1]['last_name'];
+
+                $session['language'] = $rst[1]['language'];
+                $session->setTimeout(3600*24);
+				echo json_encode(array(
+					'req' => "ok",
+					'msg' => "恭喜您注册成功!",
+					'return_url'=>"/"
+				));
+
+            }else{
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => "注册失败,请稍候重试!"
+				));
+				
+            }
+        	exit(0);
 
         }
         $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
