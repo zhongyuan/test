@@ -20,15 +20,16 @@
                 <div class="row">
                         <span style="">COS ID</span>
                         <input type="text" id="cos_id" name="username" />
-                        <?php //echo $form->textField($model,'username',array('id'=>'user_name')); ?>
-                        <span class="remark" >忘记你的COS ID了?</span>
+                        <?php //echo $form->textField($model,'username',array('id'=>'cos_id')); ?>
+                        <span class="remark" ></span>
+						<!--<span class="remark" >忘记你的COS ID了?</span>-->
                 </div>
 
                 <div class="row">
                         <span style="margin-left: 20px;">密码</span>
                         <input type="password" name="password" id='pass_word' />
                         <?php // echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
-                        <span class="remark">忘记你的COS密码了?</span>
+                        <span class="remark"><a href="<?php echo $this->createUrl('site/getPassword');?>">忘记你的COS密码了?</a></span>
                 </div>
                 <div class="login_error"><?php //echo $form->error($model,'username')?$form->error($model,'username'):$form->error($model,'password');?></div>
 
@@ -58,19 +59,25 @@
 
         //点击登录
         $("#submit").click(function(){
-            var user_name = $("#user_name").val();
+            var user_name = $("#cos_id").val();
             var pass_word = $("#pass_word").val();
-//            if(!user_name || !pass_word)
-//            {
-//                $('.login_error').html('用户名或密码不能为空！');
-//                return false;
-//            }
-//            //检查是否是邮件类型
-//            if(!checkEmail(user_name))
-//            {
-//                $('.login_error').html('请输入有效的E_mail！');
-//                return false;
-//            }
+			if(!user_name)
+            {
+				
+                $('.login_error').html('用户名不能为空！');
+                return false;
+            }
+			if(!pass_word)
+            {
+                $('.login_error').html('密码不能为空！');
+                return false;
+            }
+            //检查是否是邮件类型
+            if(!checkEmail(user_name))
+            {
+                $('.login_error').html('请输入有效的E_mail！');
+                return false;
+            }
 
         });
     });

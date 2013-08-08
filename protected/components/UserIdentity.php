@@ -21,25 +21,21 @@ class UserIdentity extends CUserIdentity
 	{
 
         $mcUser = new MCUsers($this->username);
-        $record = $mcUser->checkUser();
+        $record = $mcUser->login($this->username,$this->password);
 
-		if(!isset($record['user_id']) || $record['status']==1){  //status=1表示用户被禁
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-            }elseif($record['passwd']!= md5($this->password)){
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-            }else{
-			$this->errorCode=self::ERROR_NONE;
-                //记录到session
-                $session = Yii::app()->session;
-                $session['user_id'] = $record['user_id'];
-                $session['user_name'] = $this->username;
-                $session['first_name'] = $record['first_name'];
-                $session['last_name'] = $record['last_name'];
-                $session['language'] = $record['language'];
-                $session->setTimeout(3600*24);
-            }
-		return !$this->errorCode;
-
-
+		if(!$record){
+			return FALSE;
+		}
+		 //记录到session
+        $session = Yii::app()->session;
+        $session['user_id'] = $record['user_id'];
+        $session['user_name'] = $this->username;
+        $session['first_name'] = $record['first_name'];
+        $session['last_name'] = $record['last_name'];
+		$session['authority'] = $record['authority'];//当前登录账户的权限
+        //$session['language'] = $record['language'];此项暂时不用
+        $session->setTimeout(3600*24);
+		
+		return TRUE;
 	}
 }

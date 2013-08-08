@@ -83,4 +83,88 @@ class Controller extends CController
         else
             return $current_uri.'?lang='.$lang;
     }
+	
+	/**
+	 * 检测当前账户是否已登录 
+	 * 
+     */
+	protected function checkIsLogin()
+	{
+		$session = Yii::app()->session;
+        if(!$session['user_id']&&!in_array($this->getAction()->getId(),$this->authlessActions()))
+        {
+            $session['referer'] = Yii::app()->request->getHostInfo().Yii::app()->request->getRequestUri();
+			$this->redirect(array('site/login'));
+        } 
+	}
+	
+	public function authlessActions()
+    {
+        return array('login','getPassword');
+    }
+	
+	/**
+	  *  公共的邮件发送接口调用
+	  * @param undefined $config
+	  * $config = array(
+	  *     'Address' => '收件人邮箱' //必填参数，否则邮件无法发送,
+	  *     'Subject' => '邮件主题' //必填参数，否则邮件无法发送,
+	  *     'Body' => '邮件内容' //必填参数，否则邮件无法发送
+	  *		'From' => '发件人邮箱' //可选参数，默认为系统发件人,
+	  *     'FromName'=>'发件人名称' //可选参数，默认为系统发件人,
+	  * 	'FilePath'=>'附件路径' //可选参数
+
+	  * )
+	  */
+	 public function sendmail($config = array())
+	 {
+	 	$mail = Yii::app()->mailer;
+	    $mail->IsSMTP();                                      // set mailer to use SMTP
+	    $mail->Host = Yii::app()->params['emailHost'];  // specify main and backup server
+	    $mail->SMTPAuth = true;     // turn on SMTP authentication
+//        $mail->SMTPSecure = "ssl"; // 安全协议,此处不加，服务器没加，so
+//        $mail->port = '25';
+//        $mail->AuthType = "NTLM";
+	    $mail->Username = Yii::app()->params['emailUser'];  // SMTP username
+	    $mail->Password = Yii::app()->params['emailPass']; // SMTP password
+		$mail->CharSet 	= "utf-8";
+		$mail->IsHTML(TRUE);
+
+	    $mail->From = isset($config['From']) ? $config['From'] : $mail->Username;
+	    $mail->FromName = isset($config['FromName']) ? $config['FromName'] : $mail->Username;
+		$Address = $config['Address'];
+		$Subject = $config['Subject'];
+		$Body    = $config['Body'];
+		$AltBody = isset($config['AltBody']) ? $config['AltBody'] : "This is the body in plain text for non-HTML mail clients";
+
+		//附件处理
+		if(isset($config['FilePath']) && file_exists($config['FilePath'])){
+			$mail->AddAttachment($config['FilePath']);
+		}
+
+		//收件人地址处理
+		if(preg_match("/^[\S]+;/",$Address)){
+			$Addresses = explode(";",$Address);
+			foreach($Addresses as $ads){
+				if(!empty($ads)){
+					$mail->AddAddress($ads,$ads);
+				}
+			}
+		}else{
+			$mail->AddAddress($Address, $Receiver=''); // name is optional
+		}
+
+	    $mail->Subject = $Subject;
+	    $mail->Body    = $Body;
+	    $mail->AltBody = $AltBody;
+
+        if(!$mail->Send()) {
+           $error['flag']=false;
+           $error['msg'] =  'Message could not be sent.'.'Mailer Error: ' . $mail->ErrorInfo;
+
+        }else{
+            $error['flag']=true;
+        }
+		return $error;
+	 }
 }

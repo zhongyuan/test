@@ -1,4 +1,8 @@
+<?php 
 
+$session = Yii::app()->session;
+
+?>
 
 <div style="" id="headernew">
     <div class="logo" >
@@ -15,7 +19,7 @@
     </div>
     <div class ="search">
         <div class="alin_right">
-            <?php if(Yii::app()->user->isGuest){ ?>
+            <?php if(!$session['user_id']){ ?>
             <ul class="header_login">
             <li class="global_f font_2"><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
                 <span class="register_logo" ></span>
@@ -25,7 +29,7 @@
                 <?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
-            <li>你好，<?php echo substr(Yii::app()->user->getName(), 0, 4).'...'; ?></li>
+            <li>你好，<?php echo substr($session['user_name'], 0, 4).'...'; ?></li>
             <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
                 <span class="login_logo" ></span>
                     <?php echo Yii::t('main','logout');?></a></li>
