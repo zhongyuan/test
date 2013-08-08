@@ -55,6 +55,36 @@ class DeveloperController extends Controller
     }
 
 	/**
+	 * 检测当前账户是否有编辑权限 
+	 * 
+	 */
+	private function _checkEditable()
+	{
+		$session = Yii::app()->session;
+		if($session['authority'] && $session['authority'] >= 5 ){//ReleaseManage里的admin-1权限
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+	
+	/**
+	 * 检查执行AJAX请求的编辑权限,防止绕过登录进行非法请求操作 
+	 * 
+	 */
+	private function _checkAjaxEditPermit()
+	{
+		if(!$this->_checkEditable()){
+			echo json_encode(array(
+				'req' => "error",
+				'msg' => "您没有权限执行此操作"
+			));
+			exit(0);
+		}
+	}
+	
+	
+	/**
 	* 编辑模式与浏览模式的总输出方法
 	* @param undefined $type
 	* @param undefined $editMode
@@ -62,12 +92,18 @@ class DeveloperController extends Controller
 	*/
 	private function _cosDeveloper($type = MCApi::training,$editMode = FALSE)
 	{
+		
 		$mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
 		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
 
 		$switchUrl = "#";
+		$editable = $this->_checkEditable();
 		if($editMode){
+			if(!$editable){//无编辑权限的账户无权进行此操作
+				$this->redirect("/");
+				exit(0);
+			}
 			if($type == MCApi::training){
 				$switchUrl = 'developer/index';
 			}elseif($type == MCApi::developer){
@@ -83,7 +119,8 @@ class DeveloperController extends Controller
 
 		$viewData = array(
 			'data' => $data,
-			'switchUrl'=>$switchUrl
+			'switchUrl'=>$switchUrl,
+			'editable' => $editable
 		);
 		if(!$editMode){//普通浏览模式下
 			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
@@ -96,7 +133,7 @@ class DeveloperController extends Controller
 				$viewData['first_id'] = $file_path;
 			}
 		}
-
+		
 		$this->render($view,$viewData);
 	}
 
@@ -132,6 +169,7 @@ class DeveloperController extends Controller
 	 */
 	public function actionGetFileContent()
 	{
+		$this->_checkAjaxEditPermit();
 		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
 		$filePath = dirname(dirname(dirname(__FILE__))).$filePath;
 		$jsonRst = array(
@@ -142,7 +180,7 @@ class DeveloperController extends Controller
 			$content= file_get_contents($filePath);
 			$jsonRst = array(
 				'req' => "ok",
-				'msg' => $content
+				'msg' => $this->_filterContent($content,$_POST['filePath'])
 			);
 		}
 		echo json_encode($jsonRst);
@@ -150,12 +188,30 @@ class DeveloperController extends Controller
 	}
 
 
+	private function _FilterContent($content,$file)
+	{
+		$prefix = str_replace(end(explode("/",$file)),"",$file);
+		if(preg_match_all("/src=\"(.*)\"/",$content,$matches)){
+			$matches = $matches[1];
+			foreach($matches as $m){
+				if(strpos($m,"_plugin2/")){//本地文件
+					continue;
+				}
+				$url = $prefix.$m;
+				$content = str_replace($m,$url,$content);
+			}
+		}
+		return $content;
+	}
+	
+
 	/**
 	 * AJAX更新节点名称
 	 *
 	 */
 	public function actionAjaxUpdateNodeName()
 	{
+		$this->_checkAjaxEditPermit();
 		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
 		$nodeId = intval($_POST['nodeId']);
 
@@ -178,6 +234,7 @@ class DeveloperController extends Controller
 	 */
 	public function actionSaveFile()
 	{
+		$this->_checkAjaxEditPermit();
 		$f_comment = $_POST['f_comment'];
 		$f_path = filter_var($_POST['f_path'],FILTER_SANITIZE_STRING);
 		$f_path = dirname(dirname(dirname(__FILE__))).$f_path;
@@ -210,6 +267,7 @@ class DeveloperController extends Controller
 	 */
 	public function actionAjaxRemoveNode()
 	{
+		$this->_checkAjaxEditPermit();
 		$nodeId = intval($_POST['nodeId']);
 		$mcApi = new MCApi();
 		$flag = $mcApi->removeNode($nodeId);
@@ -229,7 +287,7 @@ class DeveloperController extends Controller
 		exit(0);
 
 	}
-
+	
 
 	/**
 	 * AJAX方式添加树节点
@@ -237,6 +295,7 @@ class DeveloperController extends Controller
 	 */
 	public function actionAjaxAddNode()
 	{
+		$this->_checkAjaxEditPermit();
 		$parentId = intval($_POST['parentId']);
 		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
 		$mcApi = new MCApi();

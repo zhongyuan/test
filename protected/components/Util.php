@@ -57,6 +57,42 @@ class Util {
             return false;
         }
     }
+	
+	/**
+	 * 生成若干位长度的随机字符
+	 * @param undefined $type
+	 * @param undefined $len
+	 * 
+	 */
+	public static function genRandomString($type = 'alnum', $len = 6)
+	{					
+		switch($type)
+		{
+			case 'alnum'	:
+			case 'numeric'	:
+			case 'nozero'	:
+		
+					switch ($type)
+					{
+						case 'alnum'	:	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+							break;
+						case 'numeric'	:	$pool = '0123456789';
+							break;
+						case 'nozero'	:	$pool = '123456789';
+							break;
+					}
+
+					$str = '';
+					for ($i=0; $i < $len; $i++)
+					{
+						$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
+					}
+					return $str;
+			  break;
+			case 'unique' : return md5(uniqid(mt_rand()));
+			  break;
+		}
+	}
 
 }
 ?>

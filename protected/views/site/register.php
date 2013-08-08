@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/siteRegister.css"  />
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/public.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js" type="text/javascript"></script>
 
 <div class="register">
     <div class="register_ti">
@@ -22,11 +23,11 @@
 
 			<!--表单区域开始处-->
 			<?php
-				echo CHtml::beginForm('','post',array('id'=>"registerForm"));
+				//echo CHtml::beginForm('','post',array('id'=>"registerForm"));
 				$form=$this->beginWidget('CActiveForm');
-				echo $form->errorSummary($model);
+				//echo $form->errorSummary($model);
 			?>
-
+			
 			<div class="site_reg">
 				<h2>COS ID</h2>
 				<p class="site_reg_comment">你的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除非经过你的授权，
@@ -156,7 +157,10 @@
 
             <div class="register_button">
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
-                <div ><span class="button1 select" id="submit_btn"><?php echo Yii::t('main','register');?></span></div>
+                <div ><input type="submit" name="register" value="<?php echo Yii::t('main','register');?>" class="button1 select" id="submit_btn"/>
+				<!--<span class="button1 select" id="submit_btn"><?php echo Yii::t('main','register');?></span>-->
+					
+				</div>
             </div>
 
 
@@ -167,7 +171,7 @@
 
 			<?php
 				$this->endWidget();
-				echo CHtml::endForm();
+				//echo CHtml::endForm();
 			?>
 			<!--表单区域结束处-->
         </div>
@@ -274,7 +278,23 @@ $(document).ready(function(){
 
 	$("#submit_btn").bind("click",function(){
 		if(checkUsername() && checkPassword() && checkMatchPasswd() && checkFirstname() && checkLastname() && checkCaptcha()){
-			$("#registerForm").submit();
+			//显示加载信息
+			$('.bg_halfop').css('display','block');
+        	$('.content_loading').css('display','block');//3.显示
+			
+			$("#yw0").ajaxForm({
+				dataType : 'json',
+				success : function(data){
+					alert(data.msg);
+					if(data.req == "ok"){
+						window.location.href = data.return_url;
+					}
+					
+					//隐藏加载信息
+					$('.bg_halfop').css('display','none');
+        			$('.content_loading').css('display','none');//4.隐藏
+				} 
+			});
 			return true;
 		}
 		return false;

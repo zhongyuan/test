@@ -5,7 +5,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-$this->widget('SearchWidget');
+//$this->widget('SearchWidget');
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/cos_developer.css"  />
@@ -41,7 +41,11 @@ $this->widget('SearchWidget');
 	</SCRIPT>
 	
 <div class="content_wrap">
+	
+	<?php if($editable):?>
 	<h3><a href="<?php echo $this->createUrl($switchUrl);?>">→进入编辑模式</a></h3>
+	<?php endif;?>
+	
 	<div class="zTreeDemoBackground left">
 		<div id="leftMenu">
 		<div class="menu">

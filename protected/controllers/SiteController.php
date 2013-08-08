@@ -110,8 +110,8 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-    /*
-	public function actionLogin()
+    
+	/*public function actionLogin()
 	{
 		$model=new LoginForm;
 
@@ -126,15 +126,56 @@ class SiteController extends Controller
 		}
 		$this->render('login',array('model'=>$model));
 
-	}
-    */
+	}*/
+    
 
    public function actionLogin()
    {
-       $this->render('login');
+   	   $this->_doWithoutLogin();	
+       if($_POST){
+	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
+			if($_identify->authenticate()){
+				$this->redirect($this->_getReturnUrl());
+			}else{
+				$returlUrl = $this->createUrl('site/login');
+				header("Content-type:text/html;charset=UTF-8");
+				echo "用户名或密码错误,<a href='$returlUrl'>返回</a>";
+			}
+			exit(0);
+	   }
+	   $this->render('login');
    }
 
 
+    /**
+	 * 获取登录后的跳转页面 
+	 * 
+	 */
+	private function _getReturnUrl()
+	{
+		$session = Yii::app()->session;
+		if(isset($session['referer'])){
+			$returnUrl = $session['referer'];
+			unset($session['referer']);
+			return $returnUrl;
+		}
+		return Yii::app()->user->returnUrl;
+	}
+		
+
+	/**
+	 * 仅在未登录状态下可执行的操作 
+	 * 
+	 */
+	private function _doWithoutLogin()
+	{
+		 $session = Yii::app()->session;
+		 if($session['user_id']){
+		   	$this->redirect('/');
+			exit(0);
+		 }	
+	}
+	
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
@@ -148,49 +189,62 @@ class SiteController extends Controller
 
     public function actionRegister()
     {
+		
+		$this->_doWithoutLogin();
         $extConfig = Util::loadConfig('register');
 
         $model = new RegisterForm();
         if(isset($_POST['RegisterForm'])){
             $model->attributes = $_POST['RegisterForm'];
+			$userModel = new MCUsers($model->attributes['user_name']);
 
-            if($model->validate()){
-                $userModel = new MCUsers($model->attributes['user_name']);
-
-                //检查此Email是否已被注册
-                if($userModel->checkUser()){
-                    echo "此用户邮箱已被注册，请更换其他邮箱试试吧!";
-                    return FALSE;
-                }
-
-                //检测用户输入的表单内容
-                $filterRst = $this->_filterUserInput($model->attributes);
-                if(!$filterRst[0]){
-                    echo $filterRst[1];
-                    return FALSE;
-                }
-
-                //添加一个新的用户信息
-                $rst = $userModel->addUser($filterRst[1]);
-
-                if($rst[0]){
-
-                    $session = Yii::app()->session;
-
-                    $session['user_id'] = $rst[1]['user_id'];
-                    $session['user_name'] = $rst[1]['user_name'];
-                    $session['first_name'] = $rst[1]['first_name'];
-                    $session['last_name'] = $rst[1]['last_name'];
-
-                    $session['language'] = $rst[1]['language'];
-                    $session->setTimeout(3600*24);
-                    $this->forward("site/index");
-
-                }else{
-                    $this->forward('site/register');
-
-                }
+            //检查此Email是否已被注册
+            if($userModel->checkUser()){
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => "此用户邮箱已被注册，请更换其他邮箱试试吧!"
+				));
+				exit(0);
             }
+
+            //检测用户输入的表单内容
+            $filterRst = $this->_filterUserInput($model->attributes);
+            if(!$filterRst[0]){
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => $filterRst[1]
+				));
+				exit(0);
+            }
+
+            //添加一个新的用户信息
+            $rst = $userModel->addUser($filterRst[1]);
+
+            if($rst[0]){
+
+                $session = Yii::app()->session;
+
+                $session['user_id'] = $rst[1]['user_id'];
+                $session['user_name'] = $rst[1]['user_name'];
+                $session['first_name'] = $rst[1]['first_name'];
+                $session['last_name'] = $rst[1]['last_name'];
+
+                $session['language'] = $rst[1]['language'];
+                $session->setTimeout(3600*24);
+				echo json_encode(array(
+					'req' => "ok",
+					'msg' => "恭喜您注册成功!",
+					'return_url'=>"/"
+				));
+
+            }else{
+				echo json_encode(array(
+					'req' => "error",
+					'msg' => "注册失败,请稍候重试!"
+				));
+				
+            }
+        	exit(0);
 
         }
         $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
@@ -282,6 +336,46 @@ class SiteController extends Controller
 
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
+   
+   
+   /**
+	 * 找回密码 
+	 * 
+	 */
+	public function actionGetPassword()
+	{
+		if(isset($_POST['sbt'])){
+			$email = filter_var($_POST['email'],FILTER_VALIDATE_EMAIL);
+			if(!$email){
+				echo json_encode(array('req' => "error",'msg' => '邮箱格式不正确'));
+				exit(0);
+			}
+			
+			$password = Util::genRandomString();
+			$mcUsers = new MCUsers();
+			$flag = $mcUsers->updatePwdByEmail($password,$email);
+			if(!$flag){
+				echo json_encode(array('req'=>'error','msg'=>"密码重置失败,此邮箱账户可能不存在,请稍候重试!"));
+				exit(0);
+			}
+			
+			//邮件通知用户
+			$m_subject = "恭喜您密码重置成功";
+			$m_content = "您的新密码为 : ".$password;
+			$login_url = $this->createAbsoluteUrl('site/login');
+			$m_content.= "<p>请妥善保管您的密码,您可以登录后修改此密码,<a href='$login_url'>点击登录</a></p>";
+			$config = array(
+				'Address' => $email,
+				'Subject' => $m_subject,
+				'Body'	  => $m_content
+			);
+			$this->sendmail($config);
+			
+			echo json_encode(array('req'=>"ok",'msg'=>"恭喜您,重置后的密码已发送至您的邮箱,请注意查收!"));
+			exit(0);
+		}
+		$this->render('getPassword');
+	}
 
 
 }

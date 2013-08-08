@@ -17,6 +17,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
         'application.extensions.xml.*',
+		'application.extensions.mailer.*',
 	),
 
 	'modules'=>array(
@@ -44,7 +45,11 @@ return array(
             ),
         ),
 		// uncomment the following to enable URLs in path-format
-
+		'mailer' => array(
+		      'class' => 'application.extensions.mailer.EMailer',
+		      'pathViews' => 'application.views.email',
+		      'pathLayouts' => 'application.views.email.layouts'
+		),
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
@@ -64,7 +69,16 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 		),
-
+		//连接ReleaseManage数据库
+		'dbrm'=>array(
+			'class'=> 'CDbConnection',
+			'connectionString' => 'mysql:host=localhost;dbname=releasemanage',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => '###',
+			'charset' => 'utf8',
+		),
+		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -95,5 +109,8 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'emailHost' => 'ltexch02.china-liantong.com',
+		'emailUser' => 'cos-devsupport@china-liantong.com',
+		'emailPass' => 'Aa123456',
 	),
 );
