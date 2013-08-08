@@ -295,6 +295,7 @@ class DeveloperController extends Controller
     {
         $search_api = $_GET['search_api']?$_GET['search_api']:null;
         $type = $_GET['type']?$_GET['type']:null;
+
         if(!$search_api||!$type){
             $this->redirect(Yii::app()->user->returnUrl);
         }
