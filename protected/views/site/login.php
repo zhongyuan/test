@@ -51,10 +51,11 @@
     $(function(){
         //点击取消
         $("#reset").click(function(){
-            $('#user_name').attr('value',null);
+			window.location.href = "/";
+            /*$('#user_name').attr('value',null);
             $('#pass_word').attr('value',null);
             $(this).addClass('select');
-            $("#submit").removeClass('select');
+            $("#submit").removeClass('select');*/
         });
 
         //点击登录
@@ -85,9 +86,10 @@
     function checkEmail(user_name)
     {
            //对电子邮件的验证
-           var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+           //var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+		   var myreg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/;
            if(!myreg.test(user_name))
-           {
+           {	
                 return false;
            }else{
                return true;
