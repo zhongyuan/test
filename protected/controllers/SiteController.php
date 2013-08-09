@@ -110,8 +110,8 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-    
-	/*public function actionLogin()
+    /*
+	public function actionLogin()
 	{
 		$model=new LoginForm;
 
