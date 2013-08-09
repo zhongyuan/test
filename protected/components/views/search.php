@@ -128,11 +128,6 @@
         z-index: 200;
         opacity: 0.96;
     }
-/*    .search_item:hover{
-        font-weight: 500;
-        color: #0099cc;
-        background-color: rgba(242, 242, 242, 0.57);
-    }*/
     .item_selected{
         font-weight: 500;
         color: #0099cc;
@@ -147,7 +142,7 @@
 
     </style>
 <!-- action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" -->
-    <form class="form-wrapper cf" onkeydown="if(event.keyCode==13){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
+    <form class="form-wrapper cf" onkeydown="if(event.keyCode==13&&gSelectedIndex>=0){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
         <input id="search_api" name="search_api" type="text" placeholder="Search here..." required>
         <button type="submit" id="submit">Search</button>
     </form>
