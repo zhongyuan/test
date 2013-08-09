@@ -21,6 +21,25 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 
+	public function filters()
+    {
+        return array(
+            'accessControl' ,
+
+        );
+    }
+	
+	
+	public function filterAccessControl($filterChain)
+    {
+        //过滤session
+		//$this->_ajaxSessionCheck();
+		$this->checkIsLogin();
+        $filterChain->run();
+
+    }
+	
+	
     public function staticUrl($path)
     {
         if(!isset($path)){return ;}
@@ -100,7 +119,7 @@ class Controller extends CController
 	
 	public function authlessActions()
     {
-        return array('login','getPassword');
+        return array('login','getPassword','register');
     }
 	
 	/**
