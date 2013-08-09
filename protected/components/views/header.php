@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $session = Yii::app()->session;
 
@@ -78,7 +78,7 @@ $session = Yii::app()->session;
                     <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">Training</a></li>
                     <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">Developer Guides</a></li>
                     <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API Reference</a></li>
-                    <li><a class="<?php echo $action=='too'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/tools'); ?>">Tools</a></li>
+                    <li><a class="<?php echo $action=='dow'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/downloads'); ?>">Downloads</a></li>
 
                 <?php }?>
             </ul>

@@ -55,8 +55,8 @@ class DeveloperController extends Controller
     }
 
 	/**
-	 * 检测当前账户是否有编辑权限 
-	 * 
+	 * 检测当前账户是否有编辑权限
+	 *
 	 */
 	private function _checkEditable()
 	{
@@ -66,11 +66,11 @@ class DeveloperController extends Controller
 		}
 		return FALSE;
 	}
-	
-	
+
+
 	/**
-	 * 检查执行AJAX请求的编辑权限,防止绕过登录进行非法请求操作 
-	 * 
+	 * 检查执行AJAX请求的编辑权限,防止绕过登录进行非法请求操作
+	 *
 	 */
 	private function _checkAjaxEditPermit()
 	{
@@ -82,8 +82,8 @@ class DeveloperController extends Controller
 			exit(0);
 		}
 	}
-	
-	
+
+
 	/**
 	* 编辑模式与浏览模式的总输出方法
 	* @param undefined $type
@@ -92,7 +92,7 @@ class DeveloperController extends Controller
 	*/
 	private function _cosDeveloper($type = MCApi::training,$editMode = FALSE)
 	{
-		
+
 		$mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
 		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
@@ -133,7 +133,7 @@ class DeveloperController extends Controller
 				$viewData['first_id'] = $file_path;
 			}
 		}
-		
+
 		$this->render($view,$viewData);
 	}
 
@@ -203,7 +203,7 @@ class DeveloperController extends Controller
 		}
 		return $content;
 	}
-	
+
 
 	/**
 	 * AJAX更新节点名称
@@ -287,7 +287,7 @@ class DeveloperController extends Controller
 		exit(0);
 
 	}
-	
+
 
 	/**
 	 * AJAX方式添加树节点
@@ -342,7 +342,7 @@ class DeveloperController extends Controller
     /*
      * tools 工具集，该是用来下载的
      */
-    public function actionTools()
+    public function actionDownloads()
     {
         $this->render('tools');
     }
