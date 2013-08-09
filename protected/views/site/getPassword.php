@@ -60,6 +60,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 </style>
 <h1><a href="/">首页</a> / 忘记密码</h1>
 <p>在以下输入框内填写您的邮箱地址,以便我们将重置后的新密码发往此邮箱</p>
+<hr />
 <p>&nbsp;</p>
 
 <div class="form">
