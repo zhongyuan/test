@@ -10,7 +10,6 @@ $this->widget('SearchWidget');
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/cos_developer.css"  />
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/developer_menu.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.nicescroll.min.js"></script>
 
 <SCRIPT type="text/javascript">
 		var demoIframe;
@@ -75,3 +74,5 @@ $this->widget('SearchWidget');
 		<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=450px SRC="/gaia_plugin2/def.html"></IFRAME>
 	</div>
 </div>
+
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.nicescroll.min.js"></script>
