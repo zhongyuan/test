@@ -75,10 +75,10 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=releasemanage',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '###',
+			'password' => '',
 			'charset' => 'utf8',
 		),
-		
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
