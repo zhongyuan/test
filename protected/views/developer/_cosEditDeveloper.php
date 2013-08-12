@@ -26,6 +26,7 @@ $this->widget('SearchWidget');
 		var editor1 = null;
 		KindEditor.ready(function(K) {
 				editor1 = K.create('textarea[name="f_comment"]', {
+				width:'98%',	
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;

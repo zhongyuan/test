@@ -7,15 +7,18 @@
     height:400px; 
 }
 .content_wrap .left{
-	/*border-right: 1px solid #ccc;*/
 	min-height:390px; 
     height:auto !important; 
     height:390px;
+	display: inline-block;
+	width: 28%;
+	
 }
 .content_wrap .right{
-	/*border: 1px solid green;*/
 	padding-left: 10px;
 	overflow: hidden;
+	display: inline-block;
+	width: 70%;
 }
 .content_wrap h3{
 	text-align: right;
