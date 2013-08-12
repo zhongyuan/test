@@ -47,13 +47,14 @@
 #leftMenu a:hover {text-decoration:underline;}
 #leftMenu {
 	width:251px;
-	padding:10px;
-	border:solid 1px #dfdfdf;
+	padding:9px;
+	border:solid 1px #fff;
 	border-radius: 10px;
 	background:#ffffff;
 	font-size:11px;
 	margin:0 auto;
-	overflow:hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 #leftMenu h1 {
 	font-family:Arial, Helvetica, sans-serif;
@@ -121,4 +122,23 @@ outline:none;
 	height:15px;
 	color:#8f9d4c;
 	padding-left:0px; 
+}
+
+#boxscroll {
+	height: 350px;
+	width: 275px;
+	border-radius: 6px;
+	border: 2px solid #dfdfdf;
+	overflow: auto;
+	float: left;
+}
+
+#boxframe {
+  position:absolute;
+  top:8px;
+  left:420px;
+  width:400px;
+  height:300px;
+  overflow:auto;
+	border: 2px solid #0F0;
 }
