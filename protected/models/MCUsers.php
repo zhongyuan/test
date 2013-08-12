@@ -30,9 +30,9 @@ class MCUsers {
     }
 
 	/**
-	 * 检测Cosweb是否存在该账户信息 
+	 * 检测Cosweb是否存在该账户信息
 	 * @param undefined $username
-	 * 
+	 *
 	 */
 	private function _checkUserFromCosweb($username)
 	{
@@ -42,11 +42,11 @@ class MCUsers {
          ));
 		 return $cnt;
 	}
-	
+
 	/**
-	 * 检测ReleaseManage是否存在该账户信息 
+	 * 检测ReleaseManage是否存在该账户信息
 	 * @param undefined $username
-	 * 
+	 *
 	 */
 	private function _checkUserFromReleaseManage($username)
 	{
@@ -58,10 +58,10 @@ class MCUsers {
 	}
 
 	/**
-	 * 用户登录处理 
+	 * 用户登录处理
 	 * @param undefined $username
 	 * @param undefined $password
-	 * 
+	 *
 	 */
 	public function login($username,$password)
 	{
@@ -75,8 +75,8 @@ class MCUsers {
 		}
 		return FALSE;//没有找到登录账户信息
 	}
-	
-	
+
+
 	private function _getInfoFromCosweb($username,$password)
 	{
 		//从cosweb db查找用户信息
@@ -90,7 +90,7 @@ class MCUsers {
 		}
 		return $row;
 	}
-	
+
 	private function _getInfoFromReleaseManage($username,$password)
 	{
 		//从releasemanage db查找用户信息
@@ -108,16 +108,16 @@ class MCUsers {
 		}
 		return $row;
 	}
-	
+
     public function addUser($input=array())
     {
         //保存用户基本信息src_passwd
-		
+
         $data = $input['data'];
 		$src_data = $data;
 		$data['status'] = 1;//默认注册后即激活此用户
 		//$data['passwd'] = md5($data['passwd']);
-		
+
         $affect = $this->_insert("users",$data);
         if(!$affect){
                 return array(FALSE,"数据写入失败,请重试!");
@@ -171,8 +171,8 @@ class MCUsers {
         }
         return TRUE;
     }
-	
-	
+
+
 	/**
 	 * 用户通过邮箱地址找回密码时,修改用户当前登录密码
 	 * @param undefined $pass_word
@@ -186,19 +186,19 @@ class MCUsers {
 	            ':pass_word' => md5($pass_word),
 	            ':email' => $email,
 	        ));
-	        return $cmd;	
+	        return $cmd;
 		}
-		
+
 		if($this->_checkUserFromReleaseManage($email)){
 			$sql = 'update staff set pass_word = :pass_word where email = :email';
 	        $cmd = Yii::app()->dbrm->createCommand($sql)->execute(array(
 	            ':pass_word' => $pass_word,
 	            ':email' => $email,
 	        ));
-	        return $cmd;	
+	        return $cmd;
 		}
 		return FALSE;
-        
+
     }
 
 

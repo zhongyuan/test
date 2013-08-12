@@ -110,7 +110,7 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-    
+
 	/*public function actionLogin()
 	{
 		$model=new LoginForm;
@@ -127,11 +127,11 @@ class SiteController extends Controller
 		$this->render('login',array('model'=>$model));
 
 	}*/
-    
+
 
    public function actionLogin()
    {
-   	   $this->_doWithoutLogin();	
+   	   $this->_doWithoutLogin();
        if($_POST){
 	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
 			if($_identify->authenticate()){
@@ -148,8 +148,8 @@ class SiteController extends Controller
 
 
     /**
-	 * 获取登录后的跳转页面 
-	 * 
+	 * 获取登录后的跳转页面
+	 *
 	 */
 	private function _getReturnUrl()
 	{
@@ -162,11 +162,11 @@ class SiteController extends Controller
 		}
 		return Yii::app()->user->returnUrl;
 	}
-		
+
 
 	/**
-	 * 仅在未登录状态下可执行的操作 
-	 * 
+	 * 仅在未登录状态下可执行的操作
+	 *
 	 */
 	private function _doWithoutLogin()
 	{
@@ -174,9 +174,9 @@ class SiteController extends Controller
 		 if($session['user_id']){
 		   	$this->redirect('/');
 			exit(0);
-		 }	
+		 }
 	}
-	
+
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
@@ -190,7 +190,7 @@ class SiteController extends Controller
 
     public function actionRegister()
     {
-		
+
 		$this->_doWithoutLogin();
         $extConfig = Util::loadConfig('register');
 
@@ -243,7 +243,7 @@ class SiteController extends Controller
 					'req' => "error",
 					'msg' => "注册失败,请稍候重试!"
 				));
-				
+
             }
         	exit(0);
 
@@ -337,11 +337,11 @@ class SiteController extends Controller
 
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
-   
-   
+
+
    /**
-	 * 找回密码 
-	 * 
+	 * 找回密码
+	 *
 	 */
 	public function actionGetPassword()
 	{
@@ -351,7 +351,7 @@ class SiteController extends Controller
 				echo json_encode(array('req' => "error",'msg' => '邮箱格式不正确'));
 				exit(0);
 			}
-			
+
 			$password = Util::genRandomString();
 			$mcUsers = new MCUsers();
 			$flag = $mcUsers->updatePwdByEmail($password,$email);
@@ -359,7 +359,7 @@ class SiteController extends Controller
 				echo json_encode(array('req'=>'error','msg'=>"密码重置失败,此邮箱账户可能不存在,请稍候重试!"));
 				exit(0);
 			}
-			
+
 			//邮件通知用户
 			$m_subject = "恭喜您密码重置成功";
 			$m_content = "您的新密码为 : ".$password;
@@ -371,7 +371,7 @@ class SiteController extends Controller
 				'Body'	  => $m_content
 			);
 			$this->sendmail($config);
-			
+
 			echo json_encode(array('req'=>"ok",'msg'=>"恭喜您,重置后的密码已发送至您的邮箱,请注意查收!"));
 			exit(0);
 		}
