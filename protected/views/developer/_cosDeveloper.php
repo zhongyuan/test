@@ -13,8 +13,20 @@ $this->widget('SearchWidget');
 
 <SCRIPT type="text/javascript">
 		var demoIframe;
-
 		$(document).ready(function(){
+		
+		
+			$("#boxscroll").niceScroll({
+				touchbehavior:false,
+				cursorcolor:"#dfdfdf",
+				cursoropacitymax:0.7,
+				cursorwidth:4,
+				cursorborder:"1px solid gray",
+				cursorborderradius:"4px",
+				background:"#ccc",
+				autohidemode:"scroll"
+				}).cursor.css({"background-image":"url(img/mac6scroll.png)"});
+			
 			demoIframe = $("#testIframe");
 			demoIframe.bind("load", loadReady);
 			$(".menu ul li").menu();
@@ -27,6 +39,8 @@ $this->widget('SearchWidget');
 				$("#testIframe").attr("src",this.name);
 				$(".menu a").removeClass("active");
 				$("#"+this.id).removeClass("inactive").addClass("active");
+				
+				$("#boxscroll").niceScroll().resize();
 			});
 		});
 
@@ -46,14 +60,19 @@ $this->widget('SearchWidget');
 	<h3><a href="<?php echo $this->createUrl($switchUrl);?>">→进入编辑模式</a></h3>
 	<?php endif;?>
 	
-	<div class="zTreeDemoBackground left">
-		<div id="leftMenu">
-		<div class="menu">
-		<?php echo $dataHtml;?>
-		</div>
-		</div>
-	</div>
+	<div id="boxscroll">
+		<div class="zTreeDemoBackground left">
+			<div id="leftMenu">
+				<div class="menu">
+				<?php echo $dataHtml;?>
+				</div>
+			</div>
+		</div>	
+	</div>				
+				
 	<div class="right" id="htmlContent">
 		<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=450px SRC="/gaia_plugin2/def.html"></IFRAME>
 	</div>
 </div>
+
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.nicescroll.min.js"></script>
