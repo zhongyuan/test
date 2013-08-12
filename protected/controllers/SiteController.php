@@ -153,6 +153,7 @@ class SiteController extends Controller
 	 */
 	private function _getReturnUrl()
 	{
+		return "/";//登录后直接跳转至首页
 		$session = Yii::app()->session;
 		if(isset($session['referer'])){
 			$returnUrl = $session['referer'];
