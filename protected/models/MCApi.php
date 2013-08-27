@@ -101,6 +101,13 @@ class MCApi {
 	 */
 	public function getTree($parent_id,$isOpen = TRUE)
 	{
+		//从缓存提取数据
+		$data = Yii::app()->cache->get('tree_'.$parent_id);
+		if($data){
+			return $data;
+		}
+		
+		//从DB提取数据
 		$sql = "SELECT id,name,parent_id,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
 		$query = Yii::app()->db->createCommand($sql)->queryAll();
 		if(empty($query)){
@@ -121,6 +128,12 @@ class MCApi {
 			}
 			$dbRst[] = $data;
 		}
+		
+		//将来自DB的数据写入缓存
+		if($dbRst){
+			Yii::app()->cache->set('tree_'.$parent_id,$dbRst,3600);	
+		}
+		
 		return $dbRst;
 	}
 
