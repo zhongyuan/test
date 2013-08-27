@@ -75,7 +75,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=releasemanage',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '###',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
