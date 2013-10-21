@@ -18,6 +18,7 @@ return array(
 		'application.components.*',
         'application.extensions.xml.*',
 		'application.extensions.mailer.*',
+        'application.extensions.curl.*',
 	),
 
 	'modules'=>array(
@@ -98,7 +99,10 @@ return array(
 				*/
 			),
 		),
-
+        'curl' => array(
+            'class' => 'application.extensions.curl.Curl',
+            'options' => array()
+        ),
 		'coreMessages'=>array(
 			'basePath'=>'protected/messages'
 		)
@@ -112,5 +116,9 @@ return array(
 		'emailHost' => 'ltexch02.china-liantong.com',
 		'emailUser' => 'cos-devsupport@china-liantong.com',
 		'emailPass' => 'Aa123456',
+        'api' => array(//各种公共模块方法调用接口URL
+            'getPassword' => "http://dev.doccms.com/index.php?r=site/getPassword",
+            'ajaxCheckUser' => "http://dev.doccms.com/index.php?r=admin/ajaxCheckUser"
+        )
 	),
 );
