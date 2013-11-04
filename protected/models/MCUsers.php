@@ -23,9 +23,9 @@ class MCUsers {
 		if($this->_checkUserFromCosweb($this->user_name)){
 			return TRUE;
 		}
-		if($this->_checkUserFromReleaseManage($this->user_name)){
+		/*if($this->_checkUserFromReleaseManage($this->user_name)){
 			return TRUE;
-		}
+		}*/
 		return FALSE;
     }
 
@@ -48,14 +48,14 @@ class MCUsers {
 	 * @param undefined $username
 	 *
 	 */
-	private function _checkUserFromReleaseManage($username)
+	/*private function _checkUserFromReleaseManage($username)
 	{
 		$sql_rm = "SELECT COUNT(*) AS CNT FROM staff WHERE login_name = :username OR email = :username";
 		$cnt = Yii::app()->dbrm->createCommand($sql_rm)->queryScalar(array(
             ':username' => $username,
         ));
 		return $cnt;
-	}
+	}*/
 
 	/**
 	 * 用户登录处理
@@ -178,7 +178,7 @@ class MCUsers {
 	 * @param undefined $pass_word
 	 *
 	 */
-	public function updatePwdByEmail($pass_word,$email)
+	/*public function updatePwdByEmail($pass_word,$email)
     {
 		if($this->_checkUserFromCosweb($email)){
 			$sql = 'update users set passwd = :pass_word where user_name = :email';
@@ -198,8 +198,8 @@ class MCUsers {
 	        return $cmd;
 		}
 		return FALSE;
-
-    }
+        
+    }*/
 
 
 }

@@ -95,7 +95,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 				success : function(data){
 					alert(data.msg);
 					if(data.req == "ok"){
-						//window.location.href = "<?php echo $this->createUrl('admin/staffInfo')?>";
+						window.location.href = "<?php echo $this->createUrl('admin/staffInfo')?>";
 					}
 					
 					//隐藏加载信息

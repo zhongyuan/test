@@ -266,7 +266,14 @@ class SiteController extends Controller
             if($result){
                 echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
             }else{
-                echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
+                $req_url = Yii::app()->params['api']['ajaxCheckUser'];  
+                $data = array(
+                    'username' => $str,
+                    'req_from'=> 10
+                );
+                $output = Yii::app()->curl->post($req_url, $data);
+                echo $output;
+                //echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
             }
        }elseif($type==2){ //验证验证码
            $verCode = $this->createAction('captcha')->getVerifyCode();
@@ -338,44 +345,25 @@ class SiteController extends Controller
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
 
-
-   /**
-	 * 找回密码
-	 *
+    /**
+	 * 找回密码 
+	 * 
 	 */
 	public function actionGetPassword()
 	{
-		if(isset($_POST['sbt'])){
-			$email = filter_var($_POST['email'],FILTER_VALIDATE_EMAIL);
-			if(!$email){
-				echo json_encode(array('req' => "error",'msg' => '邮箱格式不正确'));
-				exit(0);
-			}
+            if(isset($_POST['sbt'])){
 
-			$password = Util::genRandomString();
-			$mcUsers = new MCUsers();
-			$flag = $mcUsers->updatePwdByEmail($password,$email);
-			if(!$flag){
-				echo json_encode(array('req'=>'error','msg'=>"密码重置失败,此邮箱账户可能不存在,请稍候重试!"));
-				exit(0);
-			}
-
-			//邮件通知用户
-			$m_subject = "恭喜您密码重置成功";
-			$m_content = "您的新密码为 : ".$password;
-			$login_url = $this->createAbsoluteUrl('site/login');
-			$m_content.= "<p>请妥善保管您的密码,您可以登录后修改此密码,<a href='$login_url'>点击登录</a></p>";
-			$config = array(
-				'Address' => $email,
-				'Subject' => $m_subject,
-				'Body'	  => $m_content
-			);
-			$this->sendmail($config);
-
-			echo json_encode(array('req'=>"ok",'msg'=>"恭喜您,重置后的密码已发送至您的邮箱,请注意查收!"));
-			exit(0);
-		}
-		$this->render('getPassword');
+                $req_url = Yii::app()->params['api']['getPassword'];  
+                $data = array(
+                    'sbt' => TRUE,
+                    'email' => $_POST['email'],
+                    'login_url'=>$this->createAbsoluteUrl('site/login')
+                );
+                $output = Yii::app()->curl->post($req_url, $data);
+                echo $output;
+                exit(0);
+            }
+            $this->render('getPassword');
 	}
 
 
