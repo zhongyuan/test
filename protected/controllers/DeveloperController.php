@@ -328,7 +328,6 @@ class DeveloperController extends Controller
         }
         $class_list = new MCApi(MCApi::reference);
         $cl_child = $class_list->getChildById();
-
         $versions  = $class_list->getVersionList();
         rsort($versions);
 
@@ -372,7 +371,6 @@ class DeveloperController extends Controller
 
             if(file_exists($burl)) //file_exists受权限影响
             {
-//                echo $burl;exit;
                 //yii::app ()->request->sendFile ($doc_name,file_get_contents($url));
                 Yii::app()->request->xSendFile($url,array('forceDownload'=>1,'xHeader'=>'X-Accel-Redirect'));
             }else{
@@ -440,7 +438,7 @@ class DeveloperController extends Controller
             $ver_details['SDK'] = $mcDoc->sortDocByVer($ver_details['SDK']);
             $ver_details['ROM'] = $mcDoc->sortDocByVer($ver_details['ROM']);
             $ver_details['IDE'] = $mcDoc->sortDocByVer($ver_details['IDE']);
-            // $ver_details['mmssm'] = time(); //测试memcache是否有用的。必须开启memcached服务，才有用。
+//             $ver_details['mmssm'] = time(); //测试memcache是否有用的。必须开启memcached服务，才有用。
             Yii::app()->cache->set($key1,$ver_kinds,3600);
             Yii::app()->cache->set($key2,$ver_details,3600); 
         }

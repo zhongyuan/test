@@ -113,8 +113,8 @@ return array(
 	'params'=>array(
         'max_version' => 15,//显示某种类型，最大的版本个数，与releasemanage里面一样。
         'document_root' => $_SERVER['DOCUMENT_ROOT'],
-        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../../media',
-//        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../media', //liang的本地
+//        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../../media',
+        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../media', //liang的本地
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'emailHost' => 'ltexch02.china-liantong.com',
