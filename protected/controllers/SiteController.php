@@ -237,6 +237,7 @@ class SiteController extends Controller
                 $session['user_name'] = $rst[1]['user_name'];
                 $session['first_name'] = $rst[1]['first_name'];
                 $session['last_name'] = $rst[1]['last_name'];
+				$session['authority'] = $rst[1]['authority'];
 
                 $session['language'] = $rst[1]['language'];
                 $session->setTimeout(3600*24);
@@ -274,14 +275,7 @@ class SiteController extends Controller
             if($result){
                 echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
             }else{
-                $req_url = Yii::app()->params['api']['ajaxCheckUser'];  
-                $data = array(
-                    'username' => $str,
-                    'req_from'=> 10
-                );
-                $output = Yii::app()->curl->post($req_url, $data);
-                echo $output;
-                //echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
+                echo json_encode(array('flag' => 1,'msg'=>'恭喜您,该邮箱可以注册!'));
             }
        }elseif($type==2){ //验证验证码
            $verCode = $this->createAction('captcha')->getVerifyCode();

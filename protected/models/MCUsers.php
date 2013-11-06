@@ -89,13 +89,13 @@ class MCUsers {
             ':username' => $username,
 			':passwd' => md5($password)
         ));
-		if($row){
+		/*if($row){
 			$row['authority'] = 3;//等同于ReleaseManage里的SDK用户权限
-		}
+		}*/
 		return $row;
 	}
 
-	private function _getInfoFromReleaseManage($username,$password)
+	/*private function _getInfoFromReleaseManage($username,$password)
 	{
 		//从releasemanage db查找用户信息
 		$sql_rm = "SELECT * FROM staff WHERE (login_name = :username OR email = :username) AND pass_word = :password AND status = 1";
@@ -111,7 +111,7 @@ class MCUsers {
 			$row['last_name'] = "";
 		}
 		return $row;
-	}
+	}*/
 
     public function addUser($input=array())
     {
