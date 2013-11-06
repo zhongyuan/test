@@ -60,10 +60,10 @@ class DeveloperController extends Controller
 	 */
 	private function _checkEditable()
 	{
-		$session = Yii::app()->session;
+		/*$session = Yii::app()->session;
 		if($session['authority'] && $session['authority'] >= 5 ){//ReleaseManage里的admin-1权限
 			return TRUE;
-		}
+		}*/
 		return FALSE;
 	}
 

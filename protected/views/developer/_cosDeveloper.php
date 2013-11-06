@@ -56,10 +56,6 @@ $this->widget('SearchWidget');
 	
 <div class="content_wrap">
 	
-	<?php if($editable):?>
-	<h3><a href="<?php echo $this->createUrl($switchUrl);?>">→进入编辑模式</a></h3>
-	<?php endif;?>
-	
 	<div id="boxscroll">
 		<div class="zTreeDemoBackground left">
 			<div id="leftMenu">
