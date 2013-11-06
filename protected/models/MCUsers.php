@@ -73,10 +73,10 @@ class MCUsers {
 		if($user){
 			return $user;
 		}
-		$user = $this->_getInfoFromReleaseManage($username,$password);
+		/*$user = $this->_getInfoFromReleaseManage($username,$password);
 		if($user){
 			return $user;
-		}
+		}*/
 		return FALSE;//没有找到登录账户信息
 	}
 
@@ -84,10 +84,10 @@ class MCUsers {
 	private function _getInfoFromCosweb($username,$password)
 	{
 		//从cosweb db查找用户信息
-		$sql = "SELECT * FROM users WHERE user_name = :username AND passwd = :password AND status = 1";
+		$sql = "SELECT * FROM users WHERE user_name = :username AND passwd = :passwd AND status = 1";
 		$row = Yii::app()->db->createCommand($sql)->queryRow(true,array(
             ':username' => $username,
-			':password' => md5($password)
+			':passwd' => md5($password)
         ));
 		if($row){
 			$row['authority'] = 3;//等同于ReleaseManage里的SDK用户权限
@@ -182,7 +182,7 @@ class MCUsers {
 	 * @param undefined $pass_word
 	 *
 	 */
-	/*public function updatePwdByEmail($pass_word,$email)
+	public function updatePwdByEmail($pass_word,$email)
     {
 		if($this->_checkUserFromCosweb($email)){
 			$sql = 'update users set passwd = :pass_word where user_name = :email';
@@ -190,20 +190,20 @@ class MCUsers {
 	            ':pass_word' => md5($pass_word),
 	            ':email' => $email,
 	        ));
-	        return $cmd;
+	        return $cmd;	
 		}
-
-		if($this->_checkUserFromReleaseManage($email)){
+		
+		/*if($this->_checkUserFromReleaseManage($email)){
 			$sql = 'update staff set pass_word = :pass_word where email = :email';
 	        $cmd = Yii::app()->dbrm->createCommand($sql)->execute(array(
 	            ':pass_word' => $pass_word,
 	            ':email' => $email,
 	        ));
-	        return $cmd;
-		}
+	        return $cmd;	
+		}*/
 		return FALSE;
         
-    }*/
+    }
 
 
 }

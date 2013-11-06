@@ -318,7 +318,8 @@ class SiteController extends Controller
                    //详细信息
        $data['passwd'] = md5($data['passwd']);
        $data['record_time'] = $data['update_time'] = time();
-       $data['status'] = 0;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+       $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+	   $data['authority'] = 2;//默认为SDK用户权限
        $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
        $data['answer'] = empty($input['answer'])?"":$input['answer'];
        $data['language'] = empty($input['language'])?"zh-cn":$input['language'];
@@ -352,26 +353,49 @@ class SiteController extends Controller
 
        return array(TRUE,array('data'=>$data,'address'=>$address));
    }
-
+   
+   
     /**
 	 * 找回密码 
 	 * 
 	 */
 	public function actionGetPassword()
 	{
-            if(isset($_POST['sbt'])){
+        
+                
+		if(isset($_POST['sbt'])){
+			
+            $email = filter_var($_POST['email'],FILTER_VALIDATE_EMAIL);
+			if(!$email){
+				echo json_encode(array('req' => "error",'msg' => '邮箱格式不正确'));
+				exit(0);
+			}
 
-                $req_url = Yii::app()->params['api']['getPassword'];  
-                $data = array(
-                    'sbt' => TRUE,
-                    'email' => $_POST['email'],
-                    'login_url'=>$this->createAbsoluteUrl('site/login')
-                );
-                $output = Yii::app()->curl->post($req_url, $data);
-                echo $output;
-                exit(0);
-            }
-            $this->render('getPassword');
+
+			$password = Util::genRandomString();
+			$mcUsers = new MCUsers('system');
+			$flag = $mcUsers->updatePwdByEmail($password,$email);
+			if(!$flag){
+				echo json_encode(array('req'=>'error','msg'=>"密码重置失败,此邮箱账户可能不存在,请稍候重试!"));
+				exit(0);
+			}
+
+			//邮件通知用户
+			$m_subject = "恭喜您密码重置成功";
+			$m_content = "您的新密码为 : ".$password;
+			$login_url = isset($_POST['login_url']) ? filter_var($_POST['login_url'],FILTER_VALIDATE_URL) : $this->createAbsoluteUrl('site/login');
+			$m_content.= "<p>请妥善保管您的密码,您可以登录后修改此密码,<a href='$login_url'>点击登录</a></p>";
+			$config = array(
+				'Address' => $email,
+				'Subject' => $m_subject,
+				'Body'	  => $m_content
+			);
+			$this->sendmail($config);
+
+			echo json_encode(array('req'=>"ok",'msg'=>"恭喜您,重置后的密码已发送至您的邮箱,请注意查收!"));
+			exit(0);
+		}
+		$this->render('getPassword');
 	}
 
 

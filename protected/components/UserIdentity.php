@@ -23,16 +23,16 @@ class UserIdentity extends CUserIdentity
         $mcUser = new MCUsers($this->username);
         $record = $mcUser->login($this->username,$this->password);
 
-        if(!$record){
-                return FALSE;
-        }
+		if(!$record){
+			return FALSE;
+		}
 		 //记录到session
         $session = Yii::app()->session;
         $session['user_id'] = $record['user_id'];
         $session['user_name'] = $this->username;
         $session['first_name'] = $record['first_name'];
         $session['last_name'] = $record['last_name'];
-        $session['authority'] = $record['authority'];//当前登录账户的权限
+		$session['authority'] = $record['authority'];//当前登录账户的权限
         //$session['language'] = $record['language'];此项暂时不用
         $session->setTimeout(3600*24);
 		
