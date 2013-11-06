@@ -342,9 +342,118 @@ class DeveloperController extends Controller
     /*
      * tools 工具集，该是用来下载的
      */
-    public function actionDownloads()
+    public function actionDownload()
     {
-        $this->render('tools');
+        //明天修改
+        $session = Yii::app()->session;
+        //获取某个文档id
+        $doc_id = $_GET['id']?$_GET['id']:null;
+        $msg = null;
+        if(!$doc_id){
+            $msg = '参数丢失~';
+        }
+        $mcDoc = new MCDoc($doc_id);
+        $doc_info = $mcDoc->getDocInfoById();
+        if(!$doc_info){
+            $msg = '获取文档信息错误~';
+        }
+
+        if($session['user_id']&&$session['authority']>$doc_info['available']){
+            //跳转到
+            $doc_name = $doc_info['doc_name'];
+            $type = $doc_info['type'];
+            $doc_conf = Util::loadConfig('doc');
+            $type_str = $doc_conf['doc_types'][$type];     //类型文件夹
+            $date = date("Ymd",$doc_info['record_time']); //日期文件夹
+
+            $baseUrl = Yii::app()->params['target_file'];
+            $url = '/uploads/'.$type_str.'/'.$date.'/'.$doc_id.'/'.$doc_name;
+            $burl = $baseUrl.$url;  //只是用来判断目录是否存在，真正获取下载路径的设置在nginx配置中
+
+            if(file_exists($burl)) //file_exists受权限影响
+            {
+//                echo $burl;exit;
+                //yii::app ()->request->sendFile ($doc_name,file_get_contents($url));
+                Yii::app()->request->xSendFile($url,array('forceDownload'=>1,'xHeader'=>'X-Accel-Redirect'));
+            }else{
+                $msg = '文件路径不正确，或者文件已删除~';
+            }
+        }else{
+            $msg = '对不起，你没有权限下载~';
+        }
+
+        if($msg){
+            $this->redirect(array('site/error','msg'=>$msg));
+        }
+       // $this->render('downloads');
+    }
+    
+    /*
+     * 下载流程
+     */
+    public function actionDocVersions()
+    {
+        // cos用户已经分类，权限分为游客、注册后可下载sdk用户、注册后可下载sdk和pdk用户
+        // 是否发布与原来同步，
+        //拿出版本类型
+        $mcDoc = new MCDoc();
+        $session = Yii::app()->session;
+        $release = MCDoc::DOC_RELEASE;
+        $status = MCDoc::DOC_STATUS;
+        $limit = Yii::app()->params['max_version'];
+        
+        $mem_expired = MCDoc::getGlobalChange(MCDoc::global_key); //doc表是否有修改，有则更新memcache
+        if($mem_expired == 1){
+            Yii::app()->cache->set('ver_kinds',false);
+            Yii::app()->cache->set('ver_details',false);
+            Yii::app()->cache->set('ver_kinds_pdk',false);
+            Yii::app()->cache->set('ver_details_pdk',false);
+            MCDoc::updateGlobalRestore(MCDoc::global_key);
+        }
+        
+        $pdk_key = $session['authority']>=  MCUsers::verify2?'_pdk':''; //pdk只有验证2级用户才可下载
+        
+        $key1 = 'ver_kinds'.$pdk_key;
+        $key2 = 'ver_details'.$pdk_key;
+        $ver_kinds = Yii::app()->cache->get($key1);
+        $ver_details = Yii::app()->cache->get($key2);
+
+        if(!$ver_kinds || !$ver_details){
+            //执行并获取数据，存入缓存
+            //版本个数，目前版本类型就写死两种SDK 和 PDK
+            $ver_kinds['SDK'] = $mcDoc->getVersionType(MCDoc::SDK,$release,$status,$limit); //已发布并且状态为1
+            $ver_kinds['ROM'] = $mcDoc->getVersionType(MCDoc::ROM,$release,$status,$limit);
+            $ver_kinds['IDE'] = $mcDoc->getVersionType(MCDoc::IDE,$release,$status,$limit);
+
+            //每个版本，详细文档内容
+            $ver_details['SDK'] = $mcDoc->getDocByVer($ver_kinds['SDK'],MCDoc::SDK,$release,$status);
+            $ver_details['ROM'] = $mcDoc->getDocByVer($ver_kinds['ROM'],MCDoc::ROM,$release,$status);
+            $ver_details['IDE'] = $mcDoc->getDocByVer($ver_kinds['IDE'],MCDoc::IDE,$release,$status);
+
+            if($session['authority']>=MCUsers::verify2){ //pdk只有验证2级用户才可下载
+                $ver_kinds['PDK'] = $mcDoc->getVersionType(MCDoc::PDK,$release,$status,$limit);
+                $ver_details['PDK'] = $mcDoc->getDocByVer($ver_kinds['PDK'],MCDoc::PDK,$release,$status);
+                $ver_details['PDK'] = $mcDoc->sortDocByVer($ver_details['PDK']);
+            }
+
+            //按版本号归类
+            $ver_details['SDK'] = $mcDoc->sortDocByVer($ver_details['SDK']);
+            $ver_details['ROM'] = $mcDoc->sortDocByVer($ver_details['ROM']);
+            $ver_details['IDE'] = $mcDoc->sortDocByVer($ver_details['IDE']);
+            // $ver_details['mmssm'] = time(); //测试memcache是否有用的。必须开启memcached服务，才有用。
+            Yii::app()->cache->set($key1,$ver_kinds,3600);
+            Yii::app()->cache->set($key2,$ver_details,3600); 
+        }
+        
+        $doc_conf = Util::loadConfig('doc');
+        $doc_types = $doc_conf['doc_types'];
+
+
+        $this->render('doc_versions',array(
+            'ver_kinds' => $ver_kinds,
+            'ver_details' => $ver_details,
+            'doc_types'=> $doc_types,
+        ));
     }
 
     /*

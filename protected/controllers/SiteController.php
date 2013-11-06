@@ -70,6 +70,14 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
+        $message = $_GET['msg']?$_GET['msg']:null;
+
+        if($message)
+        {
+            $this->render('error',array(
+                'message' => $message,
+            ));
+        }
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
@@ -132,7 +140,7 @@ class SiteController extends Controller
    public function actionLogin()
    {
    	   $this->_doWithoutLogin();
-       if($_POST){
+           if($_POST){
 	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
 			if($_identify->authenticate()){
 				$this->redirect($this->_getReturnUrl());

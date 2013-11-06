@@ -7,6 +7,10 @@
  */
 class MCUsers {
 
+    const open = 1; //开放用户即游客，将来不注册的用户。
+    const verify = 2; //验证只可下载sdk用户,注册后的用户
+    const verify2 = 3; //验证可下载sdk和pdk用户，将来有可能和cos商店普通会员等级一致
+    
     public $user_name;
     public $user_id;
 
