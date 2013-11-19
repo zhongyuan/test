@@ -1,34 +1,76 @@
-2013/11/06 17:47:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+2013/11/18 15:15:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
 Stack trace:
-#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
 #1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
 #2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
 #3 {main}
-REQUEST_URI=/favicon.ico
+REQUEST_URI=/images/news/newsList/latestNews/type_2_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
 ---
-2013/11/06 17:52:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+2013/11/18 15:15:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
 Stack trace:
-#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
-#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
-#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
-#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
-#5 {main}
-REQUEST_URI=/developer/img/mac6scroll.png
-HTTP_REFERER=http://localcosweb/developer/guide.html
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_3_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
 ---
-2013/11/06 17:57:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+2013/11/18 15:15:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
 Stack trace:
-#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
-#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
-#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
-#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
-#5 {main}
-REQUEST_URI=/developer/img/mac6scroll.png
-HTTP_REFERER=http://localcosweb/developer/guide.html
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_2_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
 ---
-2013/11/06 17:58:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+2013/11/18 15:15:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_3_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/18 15:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_2_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/18 15:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_3_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/18 15:19:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_2_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/18 15:19:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_3_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/18 15:22:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
 Stack trace:
 #0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
 #1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
@@ -39,7 +81,18 @@ Stack trace:
 REQUEST_URI=/developer/img/mac6scroll.png
 HTTP_REFERER=http://localcosweb/developer/index.html
 ---
-2013/11/06 17:58:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+2013/11/18 15:22:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:00:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
 Stack trace:
 #0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
 #1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
@@ -49,4 +102,198 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/developer/img/mac6scroll.png
 HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:01:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:01:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:26:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:26:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:27:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:27:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:29:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:29:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:29:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:29:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:30:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:31:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:32:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:32:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:32:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/guide.html
+---
+2013/11/19 19:33:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://localcosweb/developer/index.html
+---
+2013/11/19 19:33:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_2_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
+---
+2013/11/19 19:33:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/news".' in /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/liangzhongyuan/Sites/cos/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/news')
+#1 /Users/liangzhongyuan/Sites/cos/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/liangzhongyuan/Sites/cos/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/news/newsList/latestNews/type_3_1.jpg
+HTTP_REFERER=http://localcosweb/news/index.html
 ---
