@@ -156,6 +156,28 @@ $this->widget('SearchWidget');
         });
 
     });
+function scrollIntoView(nav) {
+  var $nav = $("#"+nav);
+  var element = $nav.jScrollPane({/* ...settings... */});
+  var api = element.data('jsp');
+
+  if ($nav.is(':visible')) {
+    var $selected = $(".selected", $nav);
+    if ($selected.length == 0) {
+      // If no selected item found, exit
+      return;
+    }
+
+    var selectedOffset = $selected.offset().top; // measure offset from top, relative to entire page
+    if (selectedOffset > $nav.height() * .8) { // multiply nav height by .8 so we move up any
+                                               // items more than 80% down the nav
+      // scroll the item up by an amount 125px less than the window height (account for site header)
+      // and then multiply nav height by .8 to match the 80% threshold used above
+      api.scrollTo(0, selectedOffset - 125 - ($nav.height() * .8), false);
+
+    }
+  }
+}
 
 function changeCss(version)
 {

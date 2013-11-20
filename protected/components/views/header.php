@@ -69,10 +69,10 @@ $session = Yii::app()->session;
                     <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                 <?php }elseif($control=='developer'){?>
                 <ul style="margin-left: 440px;">
-                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">Training</a></li>
-                    <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">Developer Guides</a></li>
-                    <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API Reference</a></li>
-                    <li><a class="<?php echo $action=='dow'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/downloads'); ?>">Downloads</a></li>
+                    <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">培训</a></li>
+                    <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">开发指南</a></li>
+                    <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
+                    <li><a class="<?php echo $action=='doc'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/docVersions'); ?>">下载</a></li>
 
                 <?php }?>
             </ul>

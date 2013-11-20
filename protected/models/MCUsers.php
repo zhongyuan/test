@@ -7,6 +7,10 @@
  */
 class MCUsers {
 
+    const open = 1; //开放用户即游客，将来不注册的用户。
+    const verify = 2; //验证只可下载sdk用户,注册后的用户
+    const verify2 = 3; //验证可下载sdk和pdk用户，将来有可能和cos商店普通会员等级一致
+    
     public $user_name;
     public $user_id;
 
@@ -23,16 +27,16 @@ class MCUsers {
 		if($this->_checkUserFromCosweb($this->user_name)){
 			return TRUE;
 		}
-		if($this->_checkUserFromReleaseManage($this->user_name)){
+		/*if($this->_checkUserFromReleaseManage($this->user_name)){
 			return TRUE;
-		}
+		}*/
 		return FALSE;
     }
 
 	/**
-	 * 检测Cosweb是否存在该账户信息 
+	 * 检测Cosweb是否存在该账户信息
 	 * @param undefined $username
-	 * 
+	 *
 	 */
 	private function _checkUserFromCosweb($username)
 	{
@@ -42,26 +46,26 @@ class MCUsers {
          ));
 		 return $cnt;
 	}
-	
+
 	/**
-	 * 检测ReleaseManage是否存在该账户信息 
+	 * 检测ReleaseManage是否存在该账户信息
 	 * @param undefined $username
-	 * 
+	 *
 	 */
-	private function _checkUserFromReleaseManage($username)
+	/*private function _checkUserFromReleaseManage($username)
 	{
 		$sql_rm = "SELECT COUNT(*) AS CNT FROM staff WHERE login_name = :username OR email = :username";
 		$cnt = Yii::app()->dbrm->createCommand($sql_rm)->queryScalar(array(
             ':username' => $username,
         ));
 		return $cnt;
-	}
+	}*/
 
 	/**
-	 * 用户登录处理 
+	 * 用户登录处理
 	 * @param undefined $username
 	 * @param undefined $password
-	 * 
+	 *
 	 */
 	public function login($username,$password)
 	{
@@ -69,29 +73,29 @@ class MCUsers {
 		if($user){
 			return $user;
 		}
-		$user = $this->_getInfoFromReleaseManage($username,$password);
+		/*$user = $this->_getInfoFromReleaseManage($username,$password);
 		if($user){
 			return $user;
-		}
+		}*/
 		return FALSE;//没有找到登录账户信息
 	}
-	
-	
+
+
 	private function _getInfoFromCosweb($username,$password)
 	{
 		//从cosweb db查找用户信息
-		$sql = "SELECT * FROM users WHERE user_name = :username AND passwd = :password AND status = 1";
+		$sql = "SELECT * FROM users WHERE user_name = :username AND passwd = :passwd AND status = 1";
 		$row = Yii::app()->db->createCommand($sql)->queryRow(true,array(
             ':username' => $username,
-			':password' => md5($password)
+			':passwd' => md5($password)
         ));
-		if($row){
+		/*if($row){
 			$row['authority'] = 3;//等同于ReleaseManage里的SDK用户权限
-		}
+		}*/
 		return $row;
 	}
-	
-	private function _getInfoFromReleaseManage($username,$password)
+
+	/*private function _getInfoFromReleaseManage($username,$password)
 	{
 		//从releasemanage db查找用户信息
 		$sql_rm = "SELECT * FROM staff WHERE (login_name = :username OR email = :username) AND pass_word = :password AND status = 1";
@@ -107,17 +111,17 @@ class MCUsers {
 			$row['last_name'] = "";
 		}
 		return $row;
-	}
-	
+	}*/
+
     public function addUser($input=array())
     {
         //保存用户基本信息src_passwd
-		
+
         $data = $input['data'];
 		$src_data = $data;
 		$data['status'] = 1;//默认注册后即激活此用户
 		//$data['passwd'] = md5($data['passwd']);
-		
+
         $affect = $this->_insert("users",$data);
         if(!$affect){
                 return array(FALSE,"数据写入失败,请重试!");
@@ -171,8 +175,8 @@ class MCUsers {
         }
         return TRUE;
     }
-	
-	
+
+
 	/**
 	 * 用户通过邮箱地址找回密码时,修改用户当前登录密码
 	 * @param undefined $pass_word
@@ -189,14 +193,14 @@ class MCUsers {
 	        return $cmd;	
 		}
 		
-		if($this->_checkUserFromReleaseManage($email)){
+		/*if($this->_checkUserFromReleaseManage($email)){
 			$sql = 'update staff set pass_word = :pass_word where email = :email';
 	        $cmd = Yii::app()->dbrm->createCommand($sql)->execute(array(
 	            ':pass_word' => $pass_word,
 	            ':email' => $email,
 	        ));
 	        return $cmd;	
-		}
+		}*/
 		return FALSE;
         
     }

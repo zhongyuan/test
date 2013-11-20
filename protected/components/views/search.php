@@ -96,7 +96,7 @@
         position: absolute;
         border-width: 8px 8px 8px 0;
         border-style: solid solid solid none;
-        border-color: transparent rgb(255, 173, 47); transparent;
+        border-color: transparent rgb(255, 173, 47) transparent;
         top: 8px;
         left: -6px;
     }
@@ -141,11 +141,11 @@
     }
 
     </style>
-<!-- action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" -->
     <form class="form-wrapper cf" onkeydown="if(event.keyCode==13&&gSelectedIndex>=0){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
         <input id="search_api" name="search_api" type="text" placeholder="Search here..." required>
         <button type="submit" id="submit">Search</button>
     </form>
+    
     <div class="control_posi">
         <div class="result_pane">
                 <ul class="result_cont">

@@ -18,6 +18,7 @@ return array(
 		'application.components.*',
         'application.extensions.xml.*',
 		'application.extensions.mailer.*',
+        'application.extensions.curl.*',
 	),
 
 	'modules'=>array(
@@ -52,7 +53,7 @@ return array(
 		),
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-            'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
+                'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
 			'rules'=>array(
 //				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
@@ -78,7 +79,7 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 		),
-		
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -98,7 +99,10 @@ return array(
 				*/
 			),
 		),
-
+        'curl' => array(
+            'class' => 'application.extensions.curl.Curl',
+            'options' => array()
+        ),
 		'coreMessages'=>array(
 			'basePath'=>'protected/messages'
 		)
@@ -107,10 +111,18 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+        'max_version' => 15,//显示某种类型，最大的版本个数，与releasemanage里面一样。
+        'document_root' => $_SERVER['DOCUMENT_ROOT'],
+//        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../../media',
+        'target_file' => $_SERVER['DOCUMENT_ROOT'].'/../media', //liang的本地
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'emailHost' => 'ltexch02.china-liantong.com',
 		'emailUser' => 'cos-devsupport@china-liantong.com',
 		'emailPass' => 'Aa123456',
+        'api' => array(//各种公共模块方法调用接口URL
+            'getPassword' => "http://dev.doccms.com/index.php?r=site/getPassword",
+            'ajaxCheckUser' => "http://dev.doccms.com/index.php?r=admin/ajaxCheckUser"
+        )
 	),
 );
