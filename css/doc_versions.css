@@ -1,0 +1,153 @@
+/*
+    Document   : allVersion
+    Created on : 2013-9-13, 19:46:50
+    Author     : liangzhongyuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.allVersion_body{
+    width: 100%;
+    margin: 10px 0px 20px 0px;
+}
+.horizen{
+    margin-bottom: 10px;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(187, 178, 178);
+}
+.di_sched{
+    position: relative;
+    height: 45px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+.tools_versi{
+    width: 28px;
+    height: 30px;
+    margin-top: 2px;
+    background: url(/images/tools.png) left top;
+}
+.spanner_posi{
+    vertical-align: top;
+    background-position: -260px -68px;
+}
+.inline_block{
+    display: inline-block;
+}
+.anrow_posi1{
+    background-position: -323px -67px;
+}
+.anrow_posi2{
+    background-position: -290px -62px;
+}
+.relative{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.vertical_line{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 100%;
+    width: 3px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.vertical_bg1{
+    background-color: rgb(255, 173, 47);
+}
+.vertical_bg2{
+    background-color: #FFFFFF;
+}
+
+.category{
+    color: #0095da;
+    font-size: 20px;
+    padding: 10px;
+}
+.date_list{
+    border-radius: 5px;
+    border: 1px solid #D5CECE;
+    margin: 10px auto;
+}
+a{
+    text-decoration: none;
+ }
+.ver_update{
+    border: 1px solid #82F00C;
+    border-radius: 5px;
+    padding: 5px 13px;
+    background: #82F00C;
+    color: #fff;
+    font-weight: bold;
+}
+.ver_del{
+    border: 1px solid #FF7049;
+    border-radius: 5px;
+    padding: 5px 13px;
+    background: #FF7049;
+    color: #fff;
+    font-weight: bold;
+}
+.ver_download{
+    border: 1px solid #00A2EC;
+    border-radius: 5px;
+    padding: 5px 13px;
+    background: #00A2EC;
+    color: #fff;
+    font-weight: bold;
+}
+table {
+margin-bottom: 3px;
+width: 100%;
+border-collapse: separate;
+border-spacing: 0;
+}
+table, th, td {
+vertical-align: middle;
+}
+
+table.hovertable {
+    /*width: 100%;*/
+    font-size:11px;
+}
+table.hovertable tr{
+    height: 45px;
+}
+table.hovertable th{
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+table.hovertable td{
+    padding: 8px;
+    text-align: center;
+}
+table.hovertable tr td{
+    border-top: 1px dotted #e2e2e2;
+}
+table.hovertable tr:hover{
+     background-color: #ECEBEB;
+}
+.odd_bg{
+    background-color: #ffffff;
+}
+.even_bg{
+    background-color: #fafafa;
+}
+.ver_update a{
+    color: white;
+}
+
+.classify{
+    font-size: 24px;
+    margin: 5px;
+}
+.item{
+    width: 150px;
+}
