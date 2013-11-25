@@ -16,22 +16,27 @@
        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-
 <body>
-
+<!--    <style>
+        #content{
+            min-height: 500px;
+        }
+    </style>-->
 <div class="container" id="page">
 
-        <!-- =====header===== -->
-        <div id ="header" style="width: 100%;">
+        <!-- =====header start===== -->
+        <div id ="header" style="width: 100%;background-color: #fbfbfb">
                 <?php $this->widget('HeaderWidget');?>
         </div>
+        <!-- =====header end===== -->
 
-        <!-- =====body===== -->
-       <div style="clear:both"></div> <!--  有必要的-->
+        <!-- =====content start===== -->
+        <div style="clear:both"></div> <!--  有必要的-->
 
 
         <?php echo $content; ?>
-
+        <!-- =====content end===== -->
+        
        <!-- =====footer===== -->
         <div id="footer">
                 <?php $this->widget('FooterWidget');?>
