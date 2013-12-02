@@ -192,7 +192,7 @@ background-color: transparent;
 }
 .currentItem{
     /*color:rgb(255, 173, 47);*/
-    border-bottom:4px solid rgb(255, 173, 47);
+    border-bottom:3px solid rgb(255, 173, 47);
     padding-bottom: 7px;
     text-decoration:none;
 }
