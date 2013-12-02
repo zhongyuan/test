@@ -2,35 +2,44 @@
 
 class IntroduceController extends Controller
 {
+    /*
+     * 多平台支持
+     */
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
+    /*
+     * 多终端&多窗口
+     */
+    public function actionMterminal()
+    {
+        $this->render('mterminal');
+    }
+    
+    /*
+     * 多重云
+     */
+    public function actionMcloud()
+    {
+        $this->render('mcloud');
+    }
+    
+    /*
+     * Martrix 桌面
+     */
+    public function actionMartrix()
+    {
+        $this->render('martrix');
+    }
+    
+    /*
+     * 智能语音
+     */
+    public function actionIvoice()
+    {
+        $this->render('ivoice');
+    }
+    
 }
