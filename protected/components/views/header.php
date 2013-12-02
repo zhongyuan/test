@@ -10,8 +10,8 @@ $session = Yii::app()->session;
     </div>
     <div  class="list">
         <ul >
-            <li class="font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('store/index'); ?>">首页</a></li>
-            <li class="font_1"><a class="<?php echo $control == 'introduce'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">COS介绍</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">首页</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'introduce'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('introduce/index'); ?>">COS介绍</a></li>
             <li class="font_1"><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">COS设备</a></li>
             <li class="font_1"><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
             <li class="font_1"><a class="<?php echo $control == 'developer'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">开发者</a></li>
