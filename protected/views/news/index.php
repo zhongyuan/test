@@ -43,7 +43,7 @@
 
 	        </div>
 
-	        <div style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;"></div>
+	        <div style="overflow:hidden;/*height: 155px;*/width: 1px;background-color: #c2c4c8;"></div>
 
 	        <div class="news_second_2" style="width:352px;" >
 	            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/index/news_second_2.jpg');?>" width="110"/></div>
@@ -61,7 +61,7 @@
 	            </div>
 	        </div>
 
-	        <div  style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;margin-left: -4px;"></div>
+	        <div  style="overflow:hidden;/*height: 155px;*/width: 1px;background-color: #c2c4c8;margin-left: -4px;"></div>
 
 	        <div class="news_second_3" style="width: 282px;">
 

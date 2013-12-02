@@ -1,25 +1,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
-<?php $this->widget('DeviceWidget');?>
+<?php //$this->widget('DeviceWidget');?>
 <div id="device_box" class="stb_box">
 	<div class="dev_center">
 		<ul class="d_phonelist">
 	
-			<li>
-				<div class="img_right">
-					<h1><span class="dark_red"><font color="black">Satellite</font> STB</span></h1>
-					<div class="stb_one">
-						<p>Satellite STB 是我们上海联彤第一款无线数字机顶盒，<br />
-						我们不仅采用了全新的UI和交互程式，更是在接受信<br />
-						号上有高强度的稳定效果，在线商城可在线安装游戏，<br />
-						音乐，电影到您的云端储存中，用机顶盒即可以随时<br />
-						用其中的内容。
-						</p>
-						<p><input type="button"  name="buy_btn" value="购买" class="buy_btn"/></p>	
-					</div>
-					
-				</div>
-				<img  src="<?php echo $this->staticUrl('device/telebox/telebox_1.jpg');?>" width="400"/>
-			</li>
+			
 			
 			
 			
