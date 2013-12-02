@@ -10,11 +10,13 @@ $session = Yii::app()->session;
     </div>
     <div  class="list">
         <ul >
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>"><?php echo Yii::t('main','cos_introduction');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('main','latest_news');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>"><?php echo Yii::t('main','view_cos_device');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>"><?php echo Yii::t('main','cos_developer');?></a></li>
-            <li class="header_nav_1 font_1"><a class="<?php echo $control == 'tt'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('store/index'); ?>"><?php echo Yii::t('main','cos_store');?></a></li>
+            <li class="font_1"><a class="<?php echo $control == 'site'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('store/index'); ?>">首页</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'introduce'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('site/index'); ?>">COS介绍</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">COS设备</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'developer'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">开发者</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'partner'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">合作伙伴</a></li>
+            <li class="font_1"><a class="<?php echo $control == 'about'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于COS</a></li>
         </ul>
     </div>
     <div class ="search">
@@ -22,24 +24,24 @@ $session = Yii::app()->session;
             <?php if(!$session['user_id']){ ?>
             <ul class="header_login">
             <li class="global_f font_2"><a href="<?php echo Yii::app()->createUrl('site/register'); ?>">
-                <span class="register_logo" ></span>
-                <?php echo Yii::t('main','register');?></a></li>
+                <span class="register_logo" ></span><?php echo Yii::t('main','register');?>
+                </a></li>
             <li class="global_f font_2"><a href="<?php echo Yii::app()->createUrl('site/login'); ?>">
-                <span class="login_logo" ></span>
-                <?php echo Yii::t('main','login');?></a></li>
+                <span class="login_logo" ></span><?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
-            <li>你好，<?php echo substr($session['user_name'], 0, 4).'...'; ?></li>
+            <li>你好，<?php echo substr($session['user_name'], 0, 12).'...'; ?></li>
             <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
-                <span class="login_logo" ></span>
-                    <?php echo Yii::t('main','logout');?></a></li>
+                <span class="loginout_logo" ></span>
+                    <?php echo Yii::t('main','logout');?>
+                </a></li>
             <?php }?>
             <!--<li class="global_f"><?php echo Yii::t('main','en_cn');?></li>-->
         </ul>
         </div>
         <div class="search_inform">
             <input class="input_form" type="text"  name="keywords" id="keywords" maxlength=30 />
-            <span id="submit_search" ></span>
+            <a href="#_self"><span id="submit_search" ></span></a>
         </div>
     </div>
 
