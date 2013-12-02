@@ -7,10 +7,9 @@
 */
 
 root {
-    display: block;
+    /*display: block;*/
 }
-
-html {width:1100px;margin:0 auto;padding:0;border:0;}
+html {width:100%;margin:0 auto;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
 code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
 tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header,
@@ -109,47 +108,60 @@ a{text-decoration:none;color: black;}
 
 
 /*============ header ============*/
-#headernew{padding: 10px 70px;height: 57px;background-color: #fbfbfb}
+#headernew{width:980px;height: 86px;margin: 0 auto;}
 .logo{
     float: left;
-    /*background-image: url("/images/index/header.jpg") no-repeat;*/
 }
 .logo_jpg{
 display: block;
 position: relative;
-height: 57px;
-width: 176px;
-background: url("/images/index/header.jpg") no-repeat;
-background-position: -10px -9px;
+height: 86px;
+width: 165px;
+background: url("/images/nav.png") no-repeat;
+background-position: -12px 0px;
 }
 .register_logo{
 display: inline-block;
 position: relative;
-width: 17px;
-height: 14px;
-background: url("/images/index/header.jpg") no-repeat;
-background-position: -235px -13px;
+width: 20px;
+height: 20px;
+background: url("/images/nav.png") no-repeat;
+background-position: -188px -9px;
 }
 .login_logo{
 display: inline-block;
 position: relative;
-width: 12px;
-height: 12px;
-background: url("/images/index/header.jpg") no-repeat;
-background-position: -264px -13px;
+width: 20px;
+height: 20px;
+background: url("/images/nav.png") no-repeat;
+background-position: -247px -9px;
+}
+.loginout_logo{
+display: inline-block;
+position: relative;
+width: 20px;
+height: 20px;
+background: url("/images/nav.png") no-repeat;
+background-position: -247px -8px; 
 }
 .list,.search{float: left}
-.list{width:560px;text-align: center;}
-.header_nav_1{float: left;display: block;line-height: 57px;
-             font-size: 15px;
-             padding: 3px 13px 0 15px;}
-
-.list ul{
-/*    float: left;padding: 0px 28px;*/
-    display: inline-block;
+.list{
+    width:580px;
+    height: 86px;
+    text-align: center;
 }
+
+.list ul li{
+    display: inline-block;
+    line-height: 89px;
+    margin: 0px 12px;
+    
+}
+.search{width: 230px;font-size: 10px;}
 .alin_right{
-    text-align:right;
+text-align: right;
+margin-top: 8px;
+height: 20px;
 }
 .header_login li{
 display: inline-block;
@@ -159,22 +171,24 @@ padding: 0 4px;
     display: inline-block;
     padding: 0 2px;
 }
-.search{width: 224px;font-size: 10px;}
+
 .search_inform{
-     height: 34px;
-     width: 224px;
-background: url("/images/index/header.jpg") no-repeat;
-background-position: -204px -35px;
+height: 34px;
+width: 225px;
+background: url("/images/nav.png") no-repeat;
+background-position: -180px -27px;
+margin-left: 5px;
 }
 .input_form{
-    display: inline-block;
-    position: relative;
-    left: 14px;
-    top: 4px;
-    width: 183px;
-    border: none;
-    outline:medium;
-    background-color: transparent;
+display: inline-block;
+position: relative;
+left: 19px;
+top: 6px;
+width: 183px;
+height: 20px;
+border: none;
+outline: medium;
+background-color: transparent;
 }
 .currentItem{
     /*color:rgb(255, 173, 47);*/
@@ -189,12 +203,12 @@ background-position: -204px -35px;
 #submit_search{
 display: inline-block;
 position: relative;
-left: 10px;
-top: 1px;
-width: 15px;
+left: 15px;
+top: 4px;
+width: 20px;
 height: 15px;
-background: url("/images/index/header.jpg") no-repeat;
-background-position: -286px -11px;
+background: url("/images/nav.png") no-repeat;
+background-position: -368px -9px;
 }
 
 
