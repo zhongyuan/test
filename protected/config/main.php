@@ -53,7 +53,7 @@ return array(
 		),
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-                'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
+            'showScriptName'=>false,    // 这一步是将代码里链接的index.php隐藏掉。
 			'rules'=>array(
 //				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
