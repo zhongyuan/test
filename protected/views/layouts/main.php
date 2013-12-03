@@ -17,11 +17,6 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
-<!--    <style>
-        #content{
-            min-height: 500px;
-        }
-    </style>-->
 <div class="container" id="page">
 
         <!-- =====header start===== -->
@@ -39,6 +34,7 @@
         
        <!-- =====footer===== -->
         <div id="footer">
+            <!--<div>ddddd</div>-->
                 <?php $this->widget('FooterWidget');?>
         </div>
 

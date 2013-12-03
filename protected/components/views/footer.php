@@ -1,6 +1,5 @@
 
-
-    <hr style="background-color: rgb(255, 173, 47);height: 5px;width: 100%;border: none;">
+<div style="background-color: rgb(255, 173, 47);height: 2px;width: 100%;border: 1px;"></div>
 <div class="footer" >
     <div class="left" style="width: 350px;">
         <ul class="cross" style="float:left;">
