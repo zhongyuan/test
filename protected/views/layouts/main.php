@@ -10,10 +10,7 @@
     
 	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />-->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
-        
-        <!-- Jquery -->
-        <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->
-       <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+           
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
@@ -41,5 +38,9 @@
 
 </div><!-- page -->
 
+        <!-- Jquery -->
+        <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->   
+       <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+       
 </body>
 </html>
