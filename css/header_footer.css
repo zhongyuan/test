@@ -215,9 +215,8 @@ background-position: -368px -9px;
 /* ===========footer================ */
 .footer{
     font-size: 12px;
-    float: left;
-    margin-top: 40px;
-    padding: 0 70px;
+    width: 980px;
+    margin: 30px auto 0px auto;
     color: #747474;
 }
 .cross{float: left;}
