@@ -56,7 +56,32 @@ class NewsController extends Controller
         /**
          * 最新消息首页
          */
-        public function actionIndex()
+		 
+		 
+		public function actionIndex()
+		{
+			$this->render('index');
+		}
+		
+		/**
+		 * 最新消息备选列表页 
+		 * 
+	     */
+		public function actionList()
+		{
+			$this->render('list');
+		}
+		
+		/**
+		 * 最新消息详细页 
+		 * 
+	     */
+		public function actionDetail()
+		{
+			$this->render('detail');
+		}
+		 
+        public function actionIndexBakup()
         {
             $criteria = new CDbCriteria(array(
                 'select' => 'id,title,outline,image_name',
