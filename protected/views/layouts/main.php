@@ -11,8 +11,11 @@
 	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />-->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
            
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
+    
 <body>
 <div class="container" id="page">
 
@@ -22,25 +25,27 @@
         </div>
         <!-- =====header end===== -->
 
+        
+        
         <!-- =====content start===== -->
         <div style="clear:both"></div> <!--  有必要的-->
-
-
         <?php echo $content; ?>
         <!-- =====content end===== -->
         
+        
+        
        <!-- =====footer===== -->
+        <div style="clear:both"></div> <!--  有必要的-->
         <div id="footer">
             <!--<div>ddddd</div>-->
                 <?php $this->widget('FooterWidget');?>
         </div>
 
 
-</div><!-- page -->
+</div>
 
         <!-- Jquery -->
         <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->   
-       <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
        
 </body>
 </html>
