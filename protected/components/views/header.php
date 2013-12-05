@@ -55,7 +55,8 @@ $session = Yii::app()->session;
 <?php if(in_array($control, $controls)){ ?>
     <div class ="second_nav" >
         <div class="width_center">
-            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '402px';}elseif($control=='device'){echo '510px';}elseif($control=='developer'){echo '620px';} ?>;">
+            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '402px';}elseif($control=='device'){echo '510px';}
+            elseif($control=='developer'){echo '620px';}elseif($control=='about'){echo '680px';} ?>;">
                     <i></i>
             </div>
             <div id="second_content">
@@ -85,6 +86,10 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
                         <li><a class="<?php echo $action=='doc'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/docVersions'); ?>">下载</a></li>
 
+                    <?php }elseif($control=='about'){?>
+                    <ul style="margin-left: 610px;">
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于联彤</a></li>
+                        <li><a class="<?php echo $action=='con'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/contact'); ?>">联系联彤</a></li>
                     <?php }?>
                 </ul>
             </div>
