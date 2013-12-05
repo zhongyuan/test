@@ -1,10 +1,12 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
-<?php $this->widget('DeviceWidget');?>
+<div class="big_banner">
+	<img src="<?php echo $this->staticUrl('device/pad/device_pad_banner1.jpg');?>"/>
+</div>
 
 <div id="device_box" class="pad_box">
 	<div class="dev_center">
 		<ul class="d_phonelist">
-			<li>
+			<!--<li>
 				<div class="img_right pad_one">
 					<h1><span class="green">HTC <font color="black">One Tim</font></span></h1>
 					<div class="buy_text">
@@ -17,16 +19,15 @@
 					</div>
 				</div>
 				<img  src="<?php echo $this->staticUrl('device/pad/pad_1.jpg');?>" width="300"/>
-			</li>
+			</li>-->
 			
 			
 			
 			<li class="stick_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_2.jpg');?>" width="400"/></div>
 				<div class="pad_two">
-					<h1 class="orange">HTC BoomSound<sup>TM</sup><br />更清晰、更丰富、更响亮</h1>
-					<p>如果是普通的机顶盒，与朋友分享音乐或视频，效果非常令<br />人沮丧。即便是最激昂的乐曲，微型扬声器也会让它变得沉闷<br />乏味。但全新HTC One的BoomSound<sup>TM</sup>改变了一切。双<br />前置立体扬声器　外加内置扩音器，可提供更响亮、更清晰、<br />更丰富的音效。</p>
-					</p>
+					<h1 class="orange"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_title.jpg');?>"/></h1>
+					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_character.jpg');?>"/></p>
 				</div>
 			</li>
 			
@@ -34,8 +35,8 @@
 			<li class="above_bottom">
 				<div class="img_right">
 					<div class="pad_three">
-						<h1 class="green">HTC BinkFeed<sup>TM</sup>您的超炫<br />主屏幕</h1>
-						<p>借助BlinkFeed<sup>TM</sup>，只需挑选出您希望始终保持最新的社交网络、<br />新闻和资讯，它们便可实时更新到您的主屏幕。您的世界，<br />您作主。</p>	
+						<h1 class="green"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner3_title.jpg');?>"/></h1>
+						<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner3_character.jpg');?>"/></p>
 					</div>
 				</div>
 				<img  src="<?php echo $this->staticUrl('device/pad/pad_3.jpg');?>" width="400"/>
@@ -45,11 +46,8 @@
 			<li class="stick_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_4.jpg');?>"/></div>
 				<div class="pad_four">
-					<h1 class="blue">智能平板 更睿智设计</h1>
-					<p>用更创新的方式减少日常磨损？没问题！　HTC One 采用<br />
-						infinity玻璃显示屏，能够有效消除眩光，并且强力抵抗刮擦。<br />
-						无论是现在，还是将来，令人赞叹的外观将会始终光亮如新。
-					</p>
+					<h1 class="blue"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner4_title.jpg');?>"/></h1>
+					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner4_character.jpg');?>"/></p>
 				</div>
 			</li>
 		</ul>
