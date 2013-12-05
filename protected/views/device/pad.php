@@ -6,23 +6,6 @@
 <div id="device_box" class="pad_box">
 	<div class="dev_center">
 		<ul class="d_phonelist">
-			<!--<li>
-				<div class="img_right pad_one">
-					<h1><span class="green">HTC <font color="black">One Tim</font></span></h1>
-					<div class="buy_text">
-						<p>作为使用Windows 8系统的多面手，COS One Tim<br />
-						可以在笔记本模式与平板模式间进行切换。与其习一台<br />
-						不完美的半成品不如多花点钱买一台功易用性更高的<br />
-						产品。大声分享您的最爱。
-						</p>
-						<p><input type="button"  name="buy_btn" value="购买" class="buy_btn"/></p>
-					</div>
-				</div>
-				<img  src="<?php echo $this->staticUrl('device/pad/pad_1.jpg');?>" width="300"/>
-			</li>-->
-			
-			
-			
 			<li class="stick_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_2.jpg');?>" width="400"/></div>
 				<div class="pad_two">

@@ -15,7 +15,7 @@
 					</div>
 					
 				</div>
-				<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>"/>
+				<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>" class="phone_two_img"/>
 			</li>
 			<li class="above_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/phone/phone_3.jpg');?>" width="400"/></div>
