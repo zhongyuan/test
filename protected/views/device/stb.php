@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
 <?php //$this->widget('DeviceWidget');?>
 
-<div class="big_banner">
-	<div class="frm">
-		<div class="content"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner_1.jpg');?>"/></div>
+<div class="dd">
+	<div class="mm">
+		<div class="ff"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner_1.jpg');?>"/></div>
 	</div>
 </div>
 <div id="device_box" class="stb_box">

@@ -9,7 +9,14 @@
 <div>
 
       <!--  Outer wrapper for presentation only, this can be anything you like -->
-      <img src="<?php echo $this->staticUrl('partner/cooperation_banner.jpg');?>"/>
+	  <div class="dd">
+	  	<div class="mm">
+			<div class="ff">
+				<img src="<?php echo $this->staticUrl('partner/cooperation_banner.jpg');?>"/>
+			</div>
+		</div>
+	 </div>
+      
       <!-- End outer wrapper -->
 
 
