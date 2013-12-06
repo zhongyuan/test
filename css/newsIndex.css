@@ -63,8 +63,13 @@
 
 	/*============首页新闻摘要样式===================*/
 	div.big_banner{
-		width: 1920px;
-		margin:0 auto;
+		margin: 0 auto;position:relative; overflow:hidden; height:480px;
+	}
+	div.big_banner .frm{
+		position:absolute;left:50%;width:1920px;
+	}
+	div.big_banner .frm .content{
+		position:absolute;left:-50%; width:1920px;
 	}
 	div.big_banner img{
 		width: 100%;
