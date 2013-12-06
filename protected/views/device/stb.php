@@ -2,7 +2,9 @@
 <?php //$this->widget('DeviceWidget');?>
 
 <div class="big_banner">
-	<img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner_1.jpg');?>"/>
+	<div class="frm">
+		<div class="content"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner_1.jpg');?>"/></div>
+	</div>
 </div>
 <div id="device_box" class="stb_box">
 	<div class="dev_center">
