@@ -9,9 +9,9 @@
 <div>
 
       <!--  Outer wrapper for presentation only, this can be anything you like -->
-	  <div class="dd">
-	  	<div class="mm">
-			<div class="ff">
+	  <div class="big_banner">
+	  	<div class="frm">
+			<div class="content">
 				<img src="<?php echo $this->staticUrl('partner/cooperation_banner.jpg');?>"/>
 			</div>
 		</div>

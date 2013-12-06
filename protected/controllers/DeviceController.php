@@ -29,6 +29,7 @@ class DeviceController extends Controller
          */
         public function actionIndex()
         {
+		
 			$this->actionSmphone();
             //$this->render('index');
 
@@ -39,10 +40,10 @@ class DeviceController extends Controller
 		* 
 		* 
 		*/
-//		public function actionSmphone()
-//		{
-//			$this->render('smphone');
-//		}
+		public function actionSmphone()
+		{
+			$this->render('smphone');
+		}
 		
 		
 		/**
