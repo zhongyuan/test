@@ -1,5 +1,9 @@
 
     <style>
+    .devep_search{
+        width: 980px;
+        margin: 0 auto;
+    }
     .cf:before, .cf:after{
       content:"";
       display:table;
@@ -15,6 +19,8 @@
         width: 550px;
         padding: 7px;
         margin: 10px auto;
+/*        margin-top: 10px;*/
+        margin-left: 240px;
         background: #f2f2f2;
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
@@ -141,6 +147,7 @@
     }
 
     </style>
+<div class="devep_search">
     <form class="form-wrapper cf" onkeydown="if(event.keyCode==13&&gSelectedIndex>=0){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
         <input id="search_api" name="search_api" type="text" placeholder="Search here..." required>
         <button type="submit" id="submit">Search</button>
@@ -152,6 +159,7 @@
                 </ul>
         </div>
     </div>
+</div>
 <script>
     var demoIframe = $("#testIframe");
     demoIframe.bind("load", loadReady);

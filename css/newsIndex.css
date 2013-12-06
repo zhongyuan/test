@@ -1,8 +1,11 @@
- .news_container{
+ .news_container,.plist_container{
 	overflow: hidden;
 	/*width: 90%;*/
 	width: 998px;
 	margin: 0 auto;
+ }
+ .plist_container{
+ 	padding-bottom: 90px;
  }
  .short_news,.short_news div{
         float: left;
@@ -37,9 +40,9 @@
 		margin-top:37px;
 	}
 	img.news_up_robert{
-		margin-left: 20px;
+		/*margin-left: 20px;
 		margin-top: 3px;
-		float: right;
+		float: right;*/
 	}
 	.news_exp{
 		text-align: left;
@@ -59,6 +62,123 @@
 	}
 
 	/*============首页新闻摘要样式===================*/
+	div.big_banner{
+		margin: 0 auto;position:relative; overflow:hidden; height:480px;
+	}
+	div.big_banner .frm{
+		position:absolute;left:50%;width:1920px;
+	}
+	div.big_banner .frm .content{
+		position:absolute;left:-50%; width:1920px;
+	}
+	div.big_banner img{
+		width: 100%;
+	}
+	
+	.nlist{
+		font-size: 12px;
+		line-height: 22px;
+		color: #303030;
+		width: 980px;
+		margin: 0 auto;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 10px;
+		overflow: hidden;
+	}
+	.nlist .pright,.nlist .pleft{
+		display: inline-block;
+		min-height:165px; 
+	    height:auto !important; 
+	    height:165px; 
+	    overflow: hidden;
+		
+	}
+	.nlist .pright{
+		width: 540px;
+	}
+	.nlist .pleft{
+		width: 545px;
+	}
+	.nlist h1{
+		font-size: 20px;
+		font-weight: bold;
+		height: 35px;
+	}
+	.nlist p{
+		margin-bottom: 20px;
+	}
+	.nlist img.lft{
+		margin-right: 31px;
+	}
+	.nlist img.rgt{
+		margin-left: 41px;
+	}
+	
+	
+	
+	.nlist2{
+		font-size: 12px;
+		line-height: 22px;
+		color: #303030;
+		width: 980px;
+		margin: 0 auto;
+		margin-top: 25px;
+		padding-bottom: 10px;
+		overflow: hidden;
+	}
+	.nlist2 .pright{
+		display: inline-block;
+		min-height:165px; 
+	    height:auto !important; 
+	    height:165px; 
+		width: 745px;
+	    overflow: hidden;
+	}
+	.nlist2 img.left{
+		margin-right: 35px;
+	}
+	.nlist2 .split{
+		border-top: 1px solid #ccc;
+	}
+	.nlist2 .pright h1{
+		font-size: 20px;
+		height: 30px;
+		font-weight: bold;
+		color: orange;
+	}
+	.nlist2 a.detail{
+		color:gray;
+	}
+	
+	
+	.n_detail{
+		font-size: 12px;
+		line-height: 22px;
+		color: #303030;
+		width: 980px;
+		margin: 0 auto;
+		margin-top: 25px;
+		padding-bottom: 10px;
+		overflow: hidden;
+	}
+	.n_detail .info{
+		width: 90%;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	.n_detail .info h1{
+		font-size: 18px;
+		font-weight: bold;
+		color: orange;
+		height: 35px;
+		text-align: center;
+	}
+	.n_detail .info p{
+		text-indent: 2em;
+	}
+	
+	
+	
 	.news_box{
 		padding:20px 0px;float: left;
 	}
@@ -73,3 +193,74 @@
 	p.news_outline{
 		font-size:12px;margin-top: 14px; color: gray;
 	}
+	
+	/*------------Partner-----------------*/
+	.plist{
+		font-size: 12px;
+		line-height: 22px;
+		color: #303030;
+	}
+	.plist .pright,.plist .pleft{
+		display: inline-block;
+		min-height:165px; 
+	    height:auto !important; 
+	    height:165px; 
+	    overflow: hidden;
+		margin-top: 57px;
+	}
+	.plist .read_more{
+		text-align: right;
+	}
+	.plist .read_more a{
+		color: #8991a1;
+	}
+	.plist .zky_info{
+		width: 750px;
+	}
+	.plist .htc_info{
+		width: 620px;
+	}
+	.plist .via_info{
+		width: 580px;
+	}
+	.plist .s3_info{
+		width: 625px;
+	}
+	.plist .zky_info p,.plist .htc_info p{
+		text-indent: 2em;
+		margin-bottom: 15px;
+	}
+	
+	.plist img.zky{
+		margin-right: 44px;
+		margin-top: 20px;
+	}
+	.plist img.htc{
+		margin-left: 66px;
+		margin-top: 40px;
+	}
+	.plist img.via{
+		margin-right: 116px;
+	}
+	.plist img.s3{
+		margin-left: 35px;
+		margin-top: 30px;
+	}
+	.split{
+		overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;
+	}
+	
+	ul.plogo{
+		overflow: hidden;
+		width: 86%;
+		margin: 0 auto;
+	}
+	ul.plogo li,ul.plogo li img{
+		display: inline-block;
+		width: 227px;
+		height: 165px;
+		overflow: hidden;
+	}
+	
+	
+	

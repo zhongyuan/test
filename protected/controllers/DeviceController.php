@@ -25,12 +25,13 @@ class DeviceController extends Controller
 
 
         /**
-         * 最新消息首页
+         * 设备首页
          */
         public function actionIndex()
         {
 		
-            $this->render('index');
+			$this->actionSmphone();
+            //$this->render('index');
 
         }
 		

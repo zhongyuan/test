@@ -11,7 +11,9 @@ $this->widget('SearchWidget');
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.mousewheel.js"></script>
 <style>
     .ref_body{
-        width: 100%;
+        width: 980px;
+        margin: 0 auto;
+        overflow: hidden;
     }
     .leftpar{
         display: inline-block;
