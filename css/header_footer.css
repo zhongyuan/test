@@ -126,7 +126,7 @@ position: relative;
 width: 20px;
 height: 20px;
 background: url("/images/nav.png") no-repeat;
-background-position: -188px -9px;
+background-position: -188px -5px;
 }
 .login_logo{
 display: inline-block;
@@ -134,7 +134,7 @@ position: relative;
 width: 20px;
 height: 20px;
 background: url("/images/nav.png") no-repeat;
-background-position: -247px -9px;
+background-position: -247px -5px;
 }
 .loginout_logo{
 display: inline-block;
