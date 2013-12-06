@@ -1,5 +1,7 @@
-	.register{
-        padding: 0px 70px;
+    .register{
+        width: 980px;
+        margin: 0 auto;
+        overflow: hidden;
     }
     .register_ti p{
         font-size: 27px;
@@ -12,7 +14,7 @@
     }
     .register_left{
         width: 250px;
-        height: 1380px;
+        height: 1472px;
         border-radius: 7px;
         display: inline-block;
         background-color: #e7e7e7;
@@ -36,12 +38,12 @@
 		color: #5e75a2;
 	}
     .register_rig{
-        width:700px;
-        margin-left: -3px;
+        width: 728px;
+        /*margin-left: 3px;*/
         border-radius: 7px;
         background-color: #fafafa;
-		overflow: hidden;
-		float: right;
+        overflow: hidden;
+        /*float: right;*/
     }
     /*=============以下样式被注释掉=================
     .register_cos{

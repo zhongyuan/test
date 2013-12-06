@@ -7,7 +7,9 @@
 */
 
     .login_body{
-        padding: 0px 70px;
+        width: 980px;
+        margin: 0 auto;
+        overflow: hidden;
     }
     .login_ti p{
         font-size: 27px;
@@ -26,8 +28,8 @@
         background-color: #e7e7e7;
     }
     .login_rig{
-        width:700px;
-        height:100%;
+        width: 725px;
+        height: 100%;
         margin-left: -3px;
         border-radius: 7px;
         display: inline-block;
