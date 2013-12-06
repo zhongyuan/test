@@ -25,12 +25,13 @@ class DeviceController extends Controller
 
 
         /**
-         * 最新消息首页
+         * COS设备 - 智能手机 
          */
         public function actionIndex()
         {
 		
-            $this->render('index');
+//            $this->render('index');
+            $this->render('smphone');
 
         }
 		
@@ -39,10 +40,10 @@ class DeviceController extends Controller
 		* 
 		* 
 		*/
-		public function actionSmphone()
-		{
-			$this->render('smphone');
-		}
+//		public function actionSmphone()
+//		{
+//			$this->render('smphone');
+//		}
 		
 		
 		/**

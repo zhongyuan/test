@@ -1,7 +1,9 @@
 <style>
-    .pieceCenter img{
-        display: block;
-        margin: 0 auto;
+    .div_height1{
+        height:674px;
+    }
+    .div_height2{
+        height:758px;
     }
     .Icenter{
         width: 980px;
@@ -13,10 +15,12 @@
 </style>
 
 <div class="mterminalbg">
-    <div>
-        <div class="pieceCenter">
-            <img src="<?php echo $this->staticUrl('introduce/mwin1.jpg'); ?>">
-            <img src="<?php echo $this->staticUrl('introduce/mwin2.jpg'); ?>">
+    <div class="dd div_height1">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('introduce/mwin1.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/mwin2.jpg'); ?>">
+            </div>
         </div>
     </div>
     <div class="imgbg">
@@ -24,10 +28,12 @@
             <img src="<?php echo $this->staticUrl('introduce/mwin3.jpg'); ?>">
         </div>
     </div>
-    <div>
-        <div class="pieceCenter">
-            <img src="<?php echo $this->staticUrl('introduce/mwin4.jpg'); ?>">
-            <img src="<?php echo $this->staticUrl('introduce/mwin5.jpg'); ?>">
+    <div class="dd div_height2">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('introduce/mwin4.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/mwin5.jpg'); ?>">
+            </div>
         </div>
     </div>
 </div>

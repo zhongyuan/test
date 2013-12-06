@@ -48,15 +48,13 @@ $session = Yii::app()->session;
 
 
 </div>
-<style>
-    
-</style>
+
 <!--//======二级目录=========== -->
 <?php if(in_array($control, $controls)){ ?>
     <div class ="second_nav" >
         <div class="width_center">
-            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '402px';}elseif($control=='device'){echo '510px';}
-            elseif($control=='developer'){echo '620px';}elseif($control=='about'){echo '680px';} ?>;">
+            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '440px';}elseif($control=='device'){echo '355px';}
+            elseif($control=='developer'){echo '620px';}elseif($control=='partner'){echo '595px';}elseif($control=='about'){echo '680px';} ?>;">
                     <i></i>
             </div>
             <div id="second_content">
@@ -68,15 +66,15 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='mar'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/martrix'); ?>"><?php echo 'Martrix 桌面';?></a></li>
                         <li><a class="<?php echo $action=='ivo'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/ivoice'); ?>"><?php echo '智能语音';?></a></li>
                     <?php }elseif($control=='news'){ ?>
-                    <ul style="margin-left: 235px;">
+                    <ul style="margin-left: 275px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
                         <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><?php echo Yii::t('news','dev_meetings');?></a></li>
                         <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><?php echo Yii::t('news','app_dev_race');?></a></li>
                         <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
                     <?php }elseif($control=='device'){?>
-                    <ul style="margin-left: 358px;">
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">设备首页</a></li>
-                        <li><a class="<?php echo $action=='smp'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/smphone'); ?>">智能手机</a></li>
+                    <ul style="margin-left: 245px;">
+                        <!--<li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">设备首页</a></li>-->
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">智能手机</a></li>
                         <li><a class="<?php echo $action=='pad'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/pad'); ?>">平板电脑</a></li>
                         <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                     <?php }elseif($control=='developer'){?>
@@ -85,7 +83,10 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">开发指南</a></li>
                         <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
                         <li><a class="<?php echo $action=='doc'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/docVersions'); ?>">下载</a></li>
-
+                    <?php }elseif($control=='partner'){?>
+                    <ul style="margin-left: 535px;">
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">产业链</a></li>
+                        <li><a class="<?php echo $action=='eco'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/ecology'); ?>">生态链</a></li>
                     <?php }elseif($control=='about'){?>
                     <ul style="margin-left: 610px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于联彤</a></li>

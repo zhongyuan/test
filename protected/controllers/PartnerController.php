@@ -28,45 +28,9 @@ class PartnerController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->actionIndustry();
+        $this->render('industry');
 	}
-	
-	 
-	public function actionIndustry()
-	{
-		/*$criteria = new CDbCriteria(array(
-            'select' => 'id,title,outline,image_name',
-            'order' => 'update_time desc',
-            'params' => array(
-                ':type' => 0, //第一种类型
-                ':status' => 0, //新闻正常，没有被屏蔽
-            ),
-        ));
-         $count=  NewsList::model()->count($criteria);
-         $pages=new CPagination($count);
 
-         $pages->pageSize=3;
-         $pages->applyLimit($criteria);
-         $models = NewsList::model()->findAll($criteria);
-
-
-         //第一种方法:判断请求
-        if (Yii::app()->request->isAjaxRequest) {
-            $this->renderPartial('_index',array(
-                'models' => $models,
-                'pages' => $pages,
-            ));
-            exit;
-        }
-
-        $this->render('industry', array(
-           'models' => $models,
-           'pages' => $pages,
-
-        ));*/
-		$this->render('industry');
-	}
-	
 	
 	/**
 	 * 合作伙伴 - 生态链 
