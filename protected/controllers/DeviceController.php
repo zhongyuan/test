@@ -25,13 +25,12 @@ class DeviceController extends Controller
 
 
         /**
-         * COS设备 - 智能手机 
+         * 设备首页
          */
         public function actionIndex()
         {
-		
-//            $this->render('index');
-            $this->render('smphone');
+			$this->actionSmphone();
+            //$this->render('index');
 
         }
 		

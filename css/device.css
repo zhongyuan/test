@@ -1,6 +1,11 @@
 div.big_banner{
-	width: 1920px;
-	margin:0 auto;
+	margin: 0 auto;position:relative; overflow:hidden; height:480px;
+}
+div.big_banner .frm{
+	position:absolute;left:50%;width:1920px;
+}
+div.big_banner .frm .content{
+	position:absolute;left:-50%; width:1920px;
 }
 div.big_banner img{
 	width: 100%;
@@ -157,17 +162,21 @@ sup{
 
 .img_right .phone_two{
 	margin-top:35px;
+	margin-right: 20px;
 }
 
 .phone_three{
 	display: inline-block;
-	margin-top: 20px;
+	margin-top: 55px;
 	margin-left: 25px;
 }
 .img_right .phone_four{
 	padding-top: 80px;
 }
 img.phone_four_img{
+	margin-left: 30px;
+}
+img.phone_two_img{
 	margin-left: 30px;
 }
 
@@ -210,7 +219,7 @@ h1 span.black{
 }
 .pad_two{
 	display: inline-block;
-	padding-top: 35px;
+	padding-top: 90px;
 	padding-left: 30px;
 }
 .img_right .pad_three{
@@ -234,6 +243,7 @@ h1 span.black{
 }
 .stb_right .stb_two{
 	padding-top: 82px;
+	margin-left: 15px;
 }
 .img_right .stb_three{
 	padding-top:65px;

@@ -1,6 +1,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
-<div class="big_banner">
-	<img src="<?php echo $this->staticUrl('device/phone/device_phone_banner1.jpg');?>"/>
+<div class="dd">
+	<div class="mm">
+		<div class="ff"><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner1.jpg');?>"/></div>
+	</div>
 </div>
 <div id="device_box" class="phone_box">
 
@@ -15,7 +17,7 @@
 					</div>
 					
 				</div>
-				<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>"/>
+				<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>" class="phone_two_img"/>
 			</li>
 			<li class="above_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/phone/phone_3.jpg');?>" width="400"/></div>

@@ -11,8 +11,11 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
 
 <div>
-	<div class="big_banner"><img src="<?php echo $this->staticUrl('news/index/news_banner.jpg');?>" title="社会化媒体平台的方兴未艾"/></div>
-	
+	<div class="dd">
+		<div class="mm">
+			<div class="ff"><img src="<?php echo $this->staticUrl('news/index/news_banner.jpg');?>" title="社会化媒体平台的方兴未艾"/></div>
+		</div>
+	</div>
 	
 	
 
