@@ -54,7 +54,7 @@ $session = Yii::app()->session;
     <div class ="second_nav" >
         <div class="width_center">
             <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '440px';}elseif($control=='device'){echo '355px';}
-            elseif($control=='developer'){echo '620px';}elseif($control=='partner'){echo '595px';}elseif($control=='about'){echo '680px';} ?>;">
+            elseif($control=='developer'){echo '518px';}elseif($control=='partner'){echo '595px';}elseif($control=='about'){echo '680px';} ?>;">
                     <i></i>
             </div>
             <div id="second_content">
@@ -78,7 +78,7 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='pad'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/pad'); ?>">平板电脑</a></li>
                         <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                     <?php }elseif($control=='developer'){?>
-                    <ul style="margin-left: 440px;">
+                    <ul style="margin-left: 390px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">培训</a></li>
                         <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">开发指南</a></li>
                         <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
@@ -100,18 +100,18 @@ $session = Yii::app()->session;
 
 <!-- 回车绑定的代码 -->
 <script language="javascript" type="text/javascript">
-    $(function(){
-        $('#submit_search').click(function(){
-            search($('#keywords').val());
-        });
-
-        $('#keywords').bind('keypress',function(event){
-            if(event.keyCode == "13")
-            {
-                search($('#keywords').val());
-            }
-        });
-    });
+//    $(function(){
+//        $('#submit_search').click(function(){
+//            search($('#keywords').val());
+//        });
+//
+//        $('#keywords').bind('keypress',function(event){
+//            if(event.keyCode == "13")
+//            {
+//                search($('#keywords').val());
+//            }
+//        });
+//    });
     function search(key)
     {
         if(key.length<=0 || key.length>=30)
