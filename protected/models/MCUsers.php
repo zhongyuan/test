@@ -117,7 +117,7 @@ class MCUsers {
     {
         //保存用户基本信息src_passwd
 
-        $data = $input['data'];
+        /*$data = $input['data'];
 		$src_data = $data;
 		$data['status'] = 1;//默认注册后即激活此用户
 		//$data['passwd'] = md5($data['passwd']);
@@ -137,7 +137,29 @@ class MCUsers {
         $address['user_id'] = $user_id;
         $this->_insert("address",$address);
 
-        return array(TRUE,$src_data);//返回用户注册的详细信息
+        return array(TRUE,$src_data);//返回用户注册的详细信息*/
+		
+		
+		
+		$transaction = Yii::app()->db->beginTransaction();
+		try {
+			$data = $input['data'];
+			$src_data = $data;
+			$data['status'] = 1;//默认注册后即激活此用户
+	        $affect = $this->_insert("users",$data);
+	        $user_id = Yii::app()->db->getLastInsertID("users");
+			
+			//保存用户联系地址相关信息
+			$src_data['user_id'] = $user_id;
+	        $address = $input['address'];
+	        $address['user_id'] = $user_id;
+	        $this->_insert("address",$address);
+		    $transaction->commit(); //提交事务会真正的执行数据库操作
+			return array(TRUE,$src_data);
+		}catch (Exception $e) {
+		    $transaction->rollback(); //如果操作失败, 数据回滚
+			return array(FALSE,"注册失败:当前用户详细信息已存在,不能重复写入");
+		}
     }
 
     public function deleteUser()
