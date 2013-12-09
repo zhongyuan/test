@@ -38,6 +38,29 @@
 	.rec_three img.main{
 		width: 150px;
 	}
+	
+	/*------------------Partner Style-------*/
+	.pn_container{
+	 	width: 980px;
+		margin: 0 auto;
+		overflow: hidden;
+	 }
+	.pn_business,.pn_dev,.pn_info{
+		margin-top: 25px;
+		text-align: right;
+	}
+	.pn_two_split{
+		overflow:hidden;height: 176px;width: 1px;background-color: #ececec;margin-left: -4px;
+	}
+	.pn_business,.pn_dev{
+		margin-right: 15px;
+	}
+	.pn_info{
+		margin-left: 20px;
+	}
+	.pn_one_split{
+		overflow:hidden;height: 0px;width: 1px;background-color: #c2c4c8;
+	}
     .page li{
         float:left;
     }
@@ -295,7 +318,7 @@
 	
 	ul.plogo{
 		overflow: hidden;
-		width: 86%;
+		width: 980px;
 		margin: 0 auto;
 	}
 	ul.plogo li,ul.plogo li img{
