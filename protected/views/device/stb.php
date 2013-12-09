@@ -22,8 +22,7 @@
 				<div class="stb_right">
 					<div class="stb_two">
 						<h1 class="orange"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner2_title.jpg');?>" /></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner2_character.jpg');?>"/></p>
-						</p>
+						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner2_character.jpg');?>" class="dv_detail"/></p>
 					</div>
 					
 				</div>
@@ -34,7 +33,7 @@
 				<div class="img_right">
 					<div class="stb_three">
 						<h1 class="green"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner3_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner3_character.jpg');?>"/></p>	
+						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner3_character.jpg');?>" class="dv_detail"/></p>	
 					</div>
 				</div>
 				<div class="stb_right">
@@ -48,7 +47,7 @@
 				<div class="stb_right">
 					<div class="stb_four">
 						<h1 class="blue"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner4_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner4_character.jpg');?>"/></p>
+						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner4_character.jpg');?>" class="dv_detail"/></p>
 					</div>
 					
 				</div>

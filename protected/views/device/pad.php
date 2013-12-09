@@ -14,7 +14,7 @@
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_2.jpg');?>" width="400"/></div>
 				<div class="pad_two">
 					<h1 class="orange"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_title.jpg');?>"/></h1>
-					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_character.jpg');?>"/></p>
+					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_character.jpg');?>" class="dv_detail"/></p>
 				</div>
 			</li>
 			
@@ -23,7 +23,7 @@
 				<div class="img_right">
 					<div class="pad_three">
 						<h1 class="green"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner3_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner3_character.jpg');?>"/></p>
+						<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner3_character.jpg');?>" class="dv_detail"/></p>
 					</div>
 				</div>
 				<img  src="<?php echo $this->staticUrl('device/pad/pad_3.jpg');?>" width="400"/>
@@ -34,7 +34,7 @@
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_4.jpg');?>"/></div>
 				<div class="pad_four">
 					<h1 class="blue"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner4_title.jpg');?>"/></h1>
-					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner4_character.jpg');?>"/></p>
+					<p><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner4_character.jpg');?>" class="dv_detail"/></p>
 				</div>
 			</li>
 		</ul>
