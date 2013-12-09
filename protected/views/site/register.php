@@ -157,7 +157,7 @@
 
             <div class="register_button">
                 <div ><span class="button1" id="cancel_btn">取消</span></div>
-                <div ><input type="submit" name="register" value="<?php echo Yii::t('main','register');?>" class="button1 select" id="submit_btn"/>
+                <div ><input type="submit" name="register" value="<?php echo Yii::t('main','register');?>" class="button1 select btn_reg" id="submit_btn"/>
 				<!--<span class="button1 select" id="submit_btn"><?php echo Yii::t('main','register');?></span>-->
 					
 				</div>
@@ -277,7 +277,7 @@ $(document).ready(function(){
 
 
 	$("#submit_btn").bind("click",function(){
-		if(checkUsername() && checkPassword() && checkMatchPasswd() && checkFirstname() && checkLastname() && checkCaptcha()){
+		if(checkUsername(1) && checkPassword(1) && checkMatchPasswd(1) && checkFirstname(1) && checkLastname(1) && checkCaptcha(1)){
 			//显示加载信息
 			$('.bg_halfop').css('display','block');
         	$('.content_loading').css('display','block');//3.显示
@@ -317,26 +317,29 @@ function showFocusMessage(id,msg)
 	}
 }
 
-function checkUsername()
+function checkUsername(flag)
 {
 	if($("#user_name_flag").val()== "error"){
-		_doFocus('user_name');
+		_doFocus('user_name',flag);
 		return false;
 	}
 	return true;
 }
 
-function _doFocus(id)
+function _doFocus(id,flag)
 {
-	$("#RegisterForm_"+id).focus();
+	if(flag == 1){
+		$("#RegisterForm_"+id).focus();	
+	}	
 }
-function checkPassword()
+
+function checkPassword(flag)
 {
 	var regPassword=/^[\S]{6,15}/;
 	var strPassword=$("#RegisterForm_passwd").val();
 	AuthPasswd(strPassword);//验证密码强度
 	if(!regPassword.test(strPassword)){
-		_doFocus('passwd');
+		_doFocus('passwd',flag);
 		$("#passwd_tips").html("密码长度为6-18个字符！");
 		return false;
 	}else{
@@ -345,7 +348,7 @@ function checkPassword()
 	}
 }
 
-function checkMatchPasswd()
+function checkMatchPasswd(flag)
 {
 	var strPassword=$("#RegisterForm_passwd").val();
 	var strPassword2=$("#RegisterForm_passwd2").val();
@@ -353,18 +356,18 @@ function checkMatchPasswd()
 		$("#passwd2_tips").html("√");
 		return true;
 	}else{
-		_doFocus('passwd2');
+		_doFocus('passwd2',flag);
 		$("#passwd2_tips").html("两次密码不一致!");
 		return false;
 	}
 }
 
-function checkFirstname()
+function checkFirstname(flag)
 {
 	var regFirstname=/^[\S]{1,10}/;
 	var strFirstname=$("#RegisterForm_first_name").val();
 	if(!regFirstname.test(strFirstname)){
-		_doFocus('first_name');
+		_doFocus('first_name',flag);
 		$("#first_name_tips").html("请输入合法的姓氏！");
 		return false;
 	}else{
@@ -373,12 +376,12 @@ function checkFirstname()
 	}
 }
 
-function checkLastname()
+function checkLastname(flag)
 {
 	var regLastname=/^[\S]{1,10}/;
 	var strLastname=$("#RegisterForm_last_name").val();
 	if(!regLastname.test(strLastname)){
-		_doFocus('last_name');
+		_doFocus('last_name',flag);
 		$("#last_name_tips").html("请输入合法的名字！");
 		return false;
 	}else{
@@ -388,10 +391,10 @@ function checkLastname()
 	}
 }
 
-function checkCaptcha()
+function checkCaptcha(flag)
 {
 	if($("#verifyCode_flag").val()=="error"){
-		_doFocus('verifyCode');
+		_doFocus('verifyCode',flag);
 		return false;
 	}
 	return true;
