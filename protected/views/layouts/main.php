@@ -11,7 +11,8 @@
 	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />-->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>  
+    <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
     
 </head>
     
@@ -19,7 +20,7 @@
 <div class="container" id="page">
 
         <!-- =====header start===== -->
-        <div id ="header" style="width: 100%;background-color: #fbfbfb">
+        <div id ="header" >
                 <?php $this->widget('HeaderWidget');?>
         </div>
         <!-- =====header end===== -->
@@ -42,7 +43,9 @@
 
 
 </div>
-        <!-- Jquery google加载失败，调用本地-->   
-        <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"><\/script>')</script>
+
+        <!-- Jquery -->
+        <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->   
+       
 </body>
 </html>

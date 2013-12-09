@@ -100,18 +100,18 @@ $session = Yii::app()->session;
 
 <!-- 回车绑定的代码 -->
 <script language="javascript" type="text/javascript">
-//    $(function(){
-//        $('#submit_search').click(function(){
-//            search($('#keywords').val());
-//        });
-//
-//        $('#keywords').bind('keypress',function(event){
-//            if(event.keyCode == "13")
-//            {
-//                search($('#keywords').val());
-//            }
-//        });
-//    });
+    $(function(){
+        $('#submit_search').click(function(){
+            search($('#keywords').val());
+        });
+
+        $('#keywords').bind('keypress',function(event){
+            if(event.keyCode == "13")
+            {
+                search($('#keywords').val());
+            }
+        });
+    });
     function search(key)
     {
         if(key.length<=0 || key.length>=30)
