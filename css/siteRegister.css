@@ -221,7 +221,10 @@ ul.site_reg_items li.inputbox input{
         border-radius: 7px;
 
     }
-
+	.btn_reg{
+		top: -2px;
+		left: -2px;
+	}	
     .select{
         color:white;
         background-color: #eb8313;
