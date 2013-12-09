@@ -7,30 +7,34 @@
 */
 
     .search_dform{
-        margin: 20px 90px;
+        width: 980px;
+        margin: 25px auto 30px auto;
     }
     #key_words{
-        width: 450px;
-        height: 26px;
+        width: 500px;
+        height: 28px;
         border-radius: 6px;
+        margin: 5px 0px;
+        outline: none;
+        border: 2px solid #E4E4E4;
     }
     .button1{
-    position: relative;
-    top: -2px;
-    left: -2px;
-    padding: 3px 42px;
-    font-size: 20px;
-    background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
-    border: 1px solid rgba(230, 221, 221, 0.9);
-    border-radius: 7px;
+        position: relative;
+        top: -2px;
+        left: -2px;
+        padding: 3px 42px;
+        font-size: 20px;
+        background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
+        border: 1px solid rgba(230, 221, 221, 0.9);
+        border-radius: 7px;
     }
     .input_border{
         display: inline-block;
-        margin: 5px 35px;
+        margin: 0px 35px;
         width: 126px;
         height: 30px;
         border-radius: 10px;
-        border:5px solid #f2f2f2;
+        border: 5px solid #f2f2f2;
     }
     .result_null{
         display: block;
@@ -67,7 +71,8 @@
         font-size: 14px;
     }
     .search_result{
-        margin: 40px 90px 20px 90px;
+        width: 980px;
+        margin: 0 auto;
     }
     .news_date{
         display: block;

@@ -105,7 +105,11 @@ a{text-decoration:none;color: black;}
 }
 
 
-
+#header{
+    width: 100%;
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #f9f8f8;
+}
 
 /*============ header ============*/
 #headernew{width:980px;height: 86px;margin: 0 auto;}
@@ -117,7 +121,7 @@ display: block;
 position: relative;
 height: 86px;
 width: 165px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -12px 0px;
 }
 .register_logo{
@@ -125,7 +129,7 @@ display: inline-block;
 position: relative;
 width: 20px;
 height: 20px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -188px -5px;
 }
 .login_logo{
@@ -133,7 +137,7 @@ display: inline-block;
 position: relative;
 width: 20px;
 height: 20px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -247px -5px;
 }
 .loginout_logo{
@@ -141,7 +145,7 @@ display: inline-block;
 position: relative;
 width: 20px;
 height: 20px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -247px -8px; 
 }
 .list,.search{float: left}
@@ -175,7 +179,7 @@ padding: 0 4px;
 .search_inform{
 height: 34px;
 width: 225px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -180px -27px;
 margin-left: 5px;
 }
@@ -207,7 +211,7 @@ left: 15px;
 top: 10px;
 width: 20px;
 height: 15px;
-background: url("/images/nav.png") no-repeat;
+background: url("/images/index/nav.png") no-repeat;
 background-position: -368px -9px;
 }
 
@@ -279,8 +283,8 @@ border-bottom: 9px solid #E0E0E0;
     height: 27px;
     width: 100%;
     background-color: #fdfdfd;
-    border-bottom: 1px solid #f9f8f8;
-    border-top: 2px solid #E0E0E0;
+    /*border-bottom: 1px solid #f9f8f8;*/
+    border-top: 2px solid #E9E9E9;
 }
 .width_center{
     width: 980px;

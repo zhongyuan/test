@@ -1,8 +1,12 @@
+
  .news_container,.plist_container{
 	overflow: hidden;
 	/*width: 90%;*/
 	width: 998px;
 	margin: 0 auto;
+ }
+ .news_container{
+ 	width: 1062px;
  }
  .plist_container{
  	padding-bottom: 90px;
@@ -10,12 +14,59 @@
  .short_news,.short_news div{
         float: left;
     }
+	.short_news{
+		margin-top: 15px;overflow: hidden;
+	}
+	.news_split{
+		background: url(/images/div_split.jpg);
+	}
+	.rec_one{
+		
+	}
+	.rec_one img.main{
+		width: 190px;
+	}
+	.rec_two{
+		margin-left: 45px;
+	}
+	.rec_two img.main{
+		width: 150px;
+	}
+	.rec_three{
+		margin-left: 15px;
+	}
+	.rec_three img.main{
+		width: 150px;
+	}
+	
+	/*------------------Partner Style-------*/
+	.pn_container{
+	 	width: 980px;
+		margin: 0 auto;
+		overflow: hidden;
+	 }
+	.pn_business,.pn_dev,.pn_info{
+		margin-top: 25px;
+		text-align: right;
+	}
+	.pn_two_split{
+		overflow:hidden;height: 176px;width: 1px;background-color: #ececec;margin-left: -4px;
+	}
+	.pn_business,.pn_dev{
+		margin-right: 15px;
+	}
+	.pn_info{
+		margin-left: 20px;
+	}
+	.pn_one_split{
+		overflow:hidden;height: 0px;width: 1px;background-color: #c2c4c8;
+	}
     .page li{
         float:left;
     }
 	.news_pub{
 		text-align: right;
-		width: 135px;
+		width: 170px;
 		margin-top: 10px;
 	}
 	img.news_pub_more{
@@ -34,10 +85,14 @@
 		text-align: left;
 		margin-top: 10px;
 		margin-left: 20px;
-		width: 196px;
+		width: 145px;
+	}
+	.news_up img{
+		float: right;
 	}
 	img.news_up_more{
 		margin-top:37px;
+		margin-right: 5px;
 	}
 	img.news_up_robert{
 		/*margin-left: 20px;
@@ -48,6 +103,8 @@
 		text-align: left;
 		margin-top: 10px;
 		margin-left: 15px;
+		width: 115px;
+		text-align: right;
 
 	}
 	.news_exp .news_exp_desc{
@@ -81,8 +138,8 @@
 		color: #303030;
 		width: 980px;
 		margin: 0 auto;
-		border-bottom: 1px solid #ccc;
-		padding-bottom: 10px;
+		/*border-bottom: 1px solid #ccc;
+		padding-bottom: 10px;*/
 		overflow: hidden;
 	}
 	.nlist .pright,.nlist .pleft{
@@ -90,6 +147,7 @@
 		min-height:165px; 
 	    height:auto !important; 
 	    height:165px; 
+		margin-top: 30px;
 	    overflow: hidden;
 		
 	}
@@ -109,9 +167,11 @@
 	}
 	.nlist img.lft{
 		margin-right: 31px;
+		margin-top: 15px;
 	}
 	.nlist img.rgt{
 		margin-left: 41px;
+		margin-top: 15px;
 	}
 	
 	
@@ -138,7 +198,7 @@
 		margin-right: 35px;
 	}
 	.nlist2 .split{
-		border-top: 1px solid #ccc;
+		/*border-top: 1px solid #ccc;*/
 	}
 	.nlist2 .pright h1{
 		font-size: 20px;
@@ -175,6 +235,12 @@
 	}
 	.n_detail .info p{
 		text-indent: 2em;
+	}
+	.n_detail .info .detail_img{
+		width: 90%;
+		text-align: center;
+		margin: 0 auto;
+		padding: 25px;
 	}
 	
 	
@@ -252,7 +318,7 @@
 	
 	ul.plogo{
 		overflow: hidden;
-		width: 86%;
+		width: 980px;
 		margin: 0 auto;
 	}
 	ul.plogo li,ul.plogo li img{

@@ -249,7 +249,7 @@ class SiteController extends Controller
             }else{
 				echo json_encode(array(
 					'req' => "error",
-					'msg' => "注册失败,请稍候重试!"
+					'msg' => $rst[1]
 				));
 
             }
