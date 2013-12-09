@@ -105,7 +105,11 @@ a{text-decoration:none;color: black;}
 }
 
 
-
+#header{
+    width: 100%;
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #f9f8f8;
+}
 
 /*============ header ============*/
 #headernew{width:980px;height: 86px;margin: 0 auto;}
@@ -279,8 +283,8 @@ border-bottom: 9px solid #E0E0E0;
     height: 27px;
     width: 100%;
     background-color: #fdfdfd;
-    border-bottom: 1px solid #f9f8f8;
-    border-top: 2px solid #E0E0E0;
+    /*border-bottom: 1px solid #f9f8f8;*/
+    border-top: 2px solid #E9E9E9;
 }
 .width_center{
     width: 980px;
