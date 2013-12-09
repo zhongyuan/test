@@ -20,12 +20,11 @@
       <!-- End outer wrapper -->
 
 
-	<div class="news_container">
-		<div class="short_news" style="margin-top: 15px;float: left;overflow: hidden;">
-	        <div class="news_second_1" style="width:350px;" >
-	            <div><img src="<?php echo $this->staticUrl('news/index/news_second_1.jpg');?>"  width="160" style="margin-left: 45px;"/></div>
-
-	            <div class="news_pub">
+	<div class="pn_container">
+		<div class="short_news">
+	        <div class="pn_one">
+	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_1.jpg');?>"/></div>
+	            <div class="pn_business">
 	                <p class="font_4 news_sub_title">商务合作</p>
 	                <p class="news_sub_detail">
 						2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
@@ -36,12 +35,12 @@
 
 	        </div>
 
-	        <div style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;"></div>
+	        <div class="pn_one_split"></div>
 
-	        <div class="news_second_2" style="width:352px;" >
-	            <div style="margin-left:20px"><img src="<?php echo $this->staticUrl('news/index/news_second_2.jpg');?>" width="115"/></div>
+	        <div class="pn_two">
+	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_2.jpg');?>"/></div>
 
-	            <div class="news_up">
+	            <div class="pn_dev">
 	                <p class="font_4 news_sub_title">开发合作</p>
 	                <p class="news_sub_detail">
 						最新系统支持平板电脑2.0<br />以上系统升级，并且免费。
@@ -53,32 +52,22 @@
 	            </div>
 	        </div>
 
-	        <div  style="overflow:hidden;height: 155px;width: 1px;background-color: #c2c4c8;margin-left: -4px;"></div>
+	        <div class="pn_two_split"></div>
 
-	        <div class="news_second_3" style="width: 282px;">
+	        <div class="pn_three">
+				<div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_3.jpg');?>"/></div>
+	            <div class="pn_info">
+					
+					
+						<p class="font_4 news_sub_title">商务信息</p>
+						<p class="news_sub_detail">
+						五月天的美国<br />可以重游旧地。<br />旅游心情真好。
+						</p>
 
-
-	            <div class="news_exp">
-	                <p class="font_4 news_sub_title">商务信息</p>
-
-					<div>
-
-						<div class="news_exp_desc">
-							<p class="news_sub_detail">
-							五月天的美国<br />可以重游旧地。<br />旅游心情真好。
-							</p>
-
-							<a href="#">
-			                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
-							</a>
-						</div>
-						<img class="news_exp_pic" src="<?php echo $this->staticUrl('news/index/news_second_3.jpg');?>" width="175"/>
-
-
-
-					</div>
+						<a href="#">
+		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
+						</a>
 	            </div>
-
 	        </div>
 
 	        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
