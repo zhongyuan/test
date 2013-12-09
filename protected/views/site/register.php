@@ -320,17 +320,23 @@ function showFocusMessage(id,msg)
 function checkUsername()
 {
 	if($("#user_name_flag").val()== "error"){
+		_doFocus('user_name');
 		return false;
 	}
 	return true;
 }
 
+function _doFocus(id)
+{
+	$("#RegisterForm_"+id).focus();
+}
 function checkPassword()
 {
 	var regPassword=/^[\S]{6,15}/;
 	var strPassword=$("#RegisterForm_passwd").val();
 	AuthPasswd(strPassword);//验证密码强度
 	if(!regPassword.test(strPassword)){
+		_doFocus('passwd');
 		$("#passwd_tips").html("密码长度为6-18个字符！");
 		return false;
 	}else{
@@ -347,6 +353,7 @@ function checkMatchPasswd()
 		$("#passwd2_tips").html("√");
 		return true;
 	}else{
+		_doFocus('passwd2');
 		$("#passwd2_tips").html("两次密码不一致!");
 		return false;
 	}
@@ -357,6 +364,7 @@ function checkFirstname()
 	var regFirstname=/^[\S]{1,10}/;
 	var strFirstname=$("#RegisterForm_first_name").val();
 	if(!regFirstname.test(strFirstname)){
+		_doFocus('first_name');
 		$("#first_name_tips").html("请输入合法的姓氏！");
 		return false;
 	}else{
@@ -370,6 +378,7 @@ function checkLastname()
 	var regLastname=/^[\S]{1,10}/;
 	var strLastname=$("#RegisterForm_last_name").val();
 	if(!regLastname.test(strLastname)){
+		_doFocus('last_name');
 		$("#last_name_tips").html("请输入合法的名字！");
 		return false;
 	}else{
@@ -382,6 +391,7 @@ function checkLastname()
 function checkCaptcha()
 {
 	if($("#verifyCode_flag").val()=="error"){
+		_doFocus('verifyCode');
 		return false;
 	}
 	return true;
