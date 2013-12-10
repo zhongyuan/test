@@ -342,7 +342,7 @@ class SiteController extends Controller
        }
 
        if($type==1){//验证cos_id
-            $userModel = new MCUsers($str);
+            $userModel = new MCUsers(trim($str));
             $result = $userModel->checkUser();
             if($result){
                 echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
@@ -377,7 +377,7 @@ class SiteController extends Controller
                        return array(FALSE,"注册信息不完整!");
                        break;
                }else{
-                       $data[$ef] = $input[$ef];
+                       $data[$ef] = trim($input[$ef]);
                }
        }
 
