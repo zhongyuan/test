@@ -113,8 +113,32 @@ class MCUsers {
 		return $row;
 	}*/
 
+	/**
+	 * 邮件激活账户 
+	 * @param undefined $email
+	 * @param undefined $token
+	 * 
+	 */
+	public function activeUser($email,$token)
+	{
+		$sql = "UPDATE `users` SET status = 1 WHERE user_name = :user_name AND token = :token AND status = :status";	
+		$cmd = Yii::app()->db->createCommand($sql)->execute(array(
+            ':user_name' => $email,
+            ':token' => $token,
+			':status' => 0
+        ));
+		return $cmd;
+	}
+	
+	/**
+	 * 添加一个新的账户 
+	 * @param undefined $input
+	 * 
+	 */
     public function addUser($input=array())
     {
+		$input['data']['token'] = Util::genRandomString('alnum',15);
+		$input['data']['status'] = 0;//默认未激活
         //保存用户基本信息src_passwd
 
         /*$data = $input['data'];
@@ -145,7 +169,6 @@ class MCUsers {
 		try {
 			$data = $input['data'];
 			$src_data = $data;
-			$data['status'] = 1;//默认注册后即激活此用户
 	        $affect = $this->_insert("users",$data);
 	        $user_id = Yii::app()->db->getLastInsertID("users");
 			

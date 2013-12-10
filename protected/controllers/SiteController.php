@@ -230,9 +230,16 @@ class SiteController extends Controller
             $rst = $userModel->addUser($filterRst[1]);
 
             if($rst[0]){
-
-                $session = Yii::app()->session;
-
+				
+				//发送邮箱通知
+				$this->sendmail(array(
+					'Address' => $rst[1]['user_name'],
+					'Subject' => "COS帐号-帐号激活",
+					'Body' => $this->_getMailBody($rst[1]['user_name'],$rst[1]['token'])
+				));
+				
+				//保存注册信息并登录
+                /*$session = Yii::app()->session;
                 $session['user_id'] = $rst[1]['user_id'];
                 $session['user_name'] = $rst[1]['user_name'];
                 $session['first_name'] = $rst[1]['first_name'];
@@ -240,10 +247,10 @@ class SiteController extends Controller
 				$session['authority'] = $rst[1]['authority'];
 
                 $session['language'] = $rst[1]['language'];
-                $session->setTimeout(3600*24);
+                $session->setTimeout(3600*24);*/
 				echo json_encode(array(
 					'req' => "ok",
-					'msg' => "恭喜您注册成功!",
+					'msg' => "我们已经向您的邮箱".$rst[1]['user_name']."发送了一封激活邮件，请点击邮件中的链接完成注册！",
 					'return_url'=>"/"
 				));
 
@@ -260,6 +267,70 @@ class SiteController extends Controller
         $this->render('register',array('model'=>$model,'extConfig'=>$extConfig));
     }
 
+	private function _getMailBody($email,$token)
+	{
+		$body = "<html>
+		 <head>
+		  <meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">
+		  <title>COS账户激活</title>
+			<style type=\"text/css\">
+				div.mail_div{
+					width: 810px;
+					overflow: hidden;
+					font-size: 12px;
+				}
+			</style>
+			<body>
+			<div class=\"mail_div\">
+				<h3>亲爱的用户：</h3>
+
+				您好！
+
+				<br />您于 ".date('Y')."年".date('m')."月".date('d')."日".date('H').":".date('i')." 注册COS帐号 {$email} ，点击以下链接，即可激活该帐号：
+
+				<br />".$this->createAbsoluteUrl('site/verify',array('email'=>$email,'token'=>$token))."
+
+				<br />(如果您无法点击此链接，请将它复制到浏览器地址栏后访问)
+
+				<br />1、为了保障您帐号的安全性，请尽快完成激活，此链接将在您激活过一次后失效！
+				
+				<p>&nbsp;</p>
+				<p>COS帐号团队<br />".date('Y')."年".date('m')."月".date('d')."日</p>
+
+				<hr />
+				若您没有注册过COS帐号，请忽略此邮件，此帐号将不会被激活，由此给您带来的不便请谅解。	
+			</div>
+		 </body>
+		</html>";
+		return $body;
+	}
+	
+	
+	public function actionVerify()
+	{
+		header("content-type:text/html;charset=utf-8");
+		$email = $this->_checkLTEmail($_GET['email']);
+		$token = filter_var($_GET['token'],FILTER_SANITIZE_STRING);
+		if(!$email || !$token){
+			exit("无效的激活链接,<a href='/'>返回COS首页</a>");
+		}
+		
+		$mcUsers = new MCUsers('system');
+		if($flag = $mcUsers->activeUser($email,$token)){
+			exit("恭喜您成功激活,<a href='".$this->createUrl('site/login')."'>点击此处登录</a>");
+		}else{
+			exit("此激活链接已过期,<a href='/'>返回COS首页</a>");
+		}
+	}
+	
+	private function _checkLTEmail($str = "")
+	{
+		if(preg_match("/[\w\d]+\@china-liantong.com$/",$str)){
+			return trim($str);
+		}
+		return FALSE;
+	}
+	
     public function actionAjaxCheckRegister()
     {
        $type = $_POST['type']?$_POST['type']:NULL;
@@ -270,7 +341,7 @@ class SiteController extends Controller
        }
 
        if($type==1){//验证cos_id
-            $userModel = new MCUsers($str);
+            $userModel = new MCUsers(trim($str));
             $result = $userModel->checkUser();
             if($result){
                 echo json_encode(array('flag' => 0,'msg'=>'很抱歉,此邮箱已被注册!'));
@@ -305,14 +376,14 @@ class SiteController extends Controller
                        return array(FALSE,"注册信息不完整!");
                        break;
                }else{
-                       $data[$ef] = $input[$ef];
+                       $data[$ef] = trim($input[$ef]);
                }
        }
 
                    //详细信息
        $data['passwd'] = md5($data['passwd']);
        $data['record_time'] = $data['update_time'] = time();
-       $data['status'] = 1;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
+       $data['status'] = 0;//默认是注册后即激活用户(###后期可考虑只有通过邮件或手机验证后才激活用户###)
 	   $data['authority'] = 2;//默认为SDK用户权限
        $data['question_id']=empty($input['question_id'])?0:$input['question_id'];
        $data['answer'] = empty($input['answer'])?"":$input['answer'];
