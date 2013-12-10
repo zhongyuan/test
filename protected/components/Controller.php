@@ -119,7 +119,7 @@ class Controller extends CController
 	
 	public function authlessActions()
     {
-        return array('login','getPassword','register','captcha','ajaxCheckRegister');
+        return array('login','getPassword','register','captcha','ajaxCheckRegister','verify');
     }
 	
 	/**
