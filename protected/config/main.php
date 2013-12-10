@@ -18,7 +18,6 @@ return array(
 		'application.components.*',
         'application.extensions.xml.*',
 		'application.extensions.mailer.*',
-        'application.extensions.curl.*',
 	),
 
 	'modules'=>array(
@@ -99,13 +98,9 @@ return array(
 				*/
 			),
 		),
-        'curl' => array(
-            'class' => 'application.extensions.curl.Curl',
-            'options' => array()
-        ),
 		'coreMessages'=>array(
 			'basePath'=>'protected/messages'
-		)
+		),
 	),
 
 	// application-level parameters that can be accessed
