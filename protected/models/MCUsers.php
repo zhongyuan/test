@@ -176,7 +176,17 @@ class MCUsers {
 			$src_data['user_id'] = $user_id;
 	        $address = $input['address'];
 	        $address['user_id'] = $user_id;
-	        $this->_insert("address",$address);
+			
+			//Update OR Insert address info
+			$chk_sql = "SELECT user_id FROM `address` WHERE user_id = :user_id";
+			$existed_user_id = Yii::app()->db->createCommand($chk_sql)->queryScalar(array(
+	            ':user_id' => $user_id,
+	        ));
+			if($existed_user_id){
+				$this->_update('address',$address,array('user_id'=>$user_id));
+			}else{
+				 $this->_insert("address",$address);		
+			}
 		    $transaction->commit(); //提交事务会真正的执行数据库操作
 			return array(TRUE,$src_data);
 		}catch (Exception $e) {
@@ -184,15 +194,34 @@ class MCUsers {
 			return array(FALSE,"注册失败:当前用户详细信息已存在,不能重复写入");
 		}
     }
-
+	
     public function deleteUser()
     {
 
     }
 
-    public function updateUser()
+    public function _update($tbl,$data,$where)
     {
+		if(empty($data)){
+                return FALSE;
+        }
 
+        $sql = "UPDATE `$tbl` SET ";
+		foreach($data as $dk => $dv){
+			$sql.="{$dk} = '".addslashes($dv)."',";
+		}
+		$sql = substr($sql,0,-1);
+		$sql.=" WHERE ";
+		foreach($where as $wk => $wv){
+			$sql.=" `{$wk}` = '".addslashes($wv)."' AND";
+		}
+		$sql=substr($sql,0,-4);
+        $command = Yii::app()->db->createCommand($sql);
+        $affetct = $command->execute();
+        if(!$affetct){
+            return FALSE;
+        }
+        return TRUE;
     }
 
     private function _insert($tbl,$data = array())
