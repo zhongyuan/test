@@ -43,9 +43,7 @@
 
 
 </div>
-
-        <!-- Jquery -->
-        <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->   
-       
+        <!-- Jquery google加载失败，调用本地-->   
+        <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"><\/script>')</script>
 </body>
 </html>
