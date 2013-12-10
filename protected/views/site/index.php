@@ -21,6 +21,9 @@
     }
     .mar 
 </style>
+<!--Loading Fancybox files-->
+
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.css"  />
 
 <div class="indexbg">
     <div class="dd div_height1">
@@ -57,20 +60,30 @@
     <div class="index_rowbg">
         <div class="index_row">
             <div class="index_pic">
-                <img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" />
+                <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" /></a>
             </div>
             <div class="index_pic">
                 <img src="<?php echo $this->staticUrl('index/index_divide_line.jpg'); ?>" />
             </div>
             <div class="index_pic ">
-                <img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" />
+                <a id="vedio2" href="http://static.video.qq.com/TPout.swf?vid=j0013fx6nie&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
             </div>
             <div class="index_pic">
                 <img src="<?php echo $this->staticUrl('index/index_divide_line.jpg'); ?>" />
             </div>
             <div class="index_pic">
-                <img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" />
+                <a id="vedio3" href="http://static.video.qq.com/TPout.swf?vid=l0013b08vyx&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
             </div>
         </div>
     </div>
 </div>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.pack.js"></script> 
+<script>
+$(document).ready(function() {
+	
+	$("a#vedio1").fancybox();
+    $("a#vedio2").fancybox();
+    $("a#vedio3").fancybox();
+
+});
+</script>
