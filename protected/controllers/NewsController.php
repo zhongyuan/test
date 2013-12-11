@@ -98,18 +98,6 @@ class NewsController extends Controller
              $pages->applyLimit($criteria);
              $models = NewsList::model()->findAll($criteria);
 
-
-//            $dataProvider = new CActiveDataProvider('NewsList', array(
-//                'criteria'=>$criteria,
-//                'pagination'=>array(
-//                    'pageSize'=>3,
-//                    'itemCount'=>$count,
-//                ),
-//            ));
-//            $this->render('index',array(
-//                'dataProvider' => $dataProvider,
-//            ));
-
              //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
                 $this->renderPartial('_index',array(
@@ -190,7 +178,6 @@ class NewsController extends Controller
                 $mcND = new MCNewsDetail($news_id);
 
                 $cmd  = $mcND->getNDById();
-               // echo Yii::app()->cache->get('news_detail_9');exit; //有用了
                 $str = '<hr style="page-break-after:always;" class="ke-pagebreak" />';
 
                 $news_detail = explode($str,$cmd);

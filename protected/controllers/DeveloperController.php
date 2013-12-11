@@ -60,10 +60,6 @@ class DeveloperController extends Controller
 	 */
 	private function _checkEditable()
 	{
-		/*$session = Yii::app()->session;
-		if($session['authority'] && $session['authority'] >= 5 ){//ReleaseManage里的admin-1权限
-			return TRUE;
-		}*/
 		return FALSE;
 	}
 
@@ -371,7 +367,6 @@ class DeveloperController extends Controller
 
             if(file_exists($burl)) //file_exists受权限影响
             {
-                //yii::app ()->request->sendFile ($doc_name,file_get_contents($url));
                 Yii::app()->request->xSendFile($url,array('forceDownload'=>1,'xHeader'=>'X-Accel-Redirect'));
             }else{
                 $msg = '文件路径不正确，或者文件已删除~';

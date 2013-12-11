@@ -1,7 +1,6 @@
 
  .news_container,.plist_container{
 	overflow: hidden;
-	/*width: 90%;*/
 	width: 998px;
 	margin: 0 auto;
  }
@@ -50,7 +49,7 @@
 		text-align: right;
 	}
 	.pn_two_split{
-		overflow:hidden;height: 176px;width: 1px;background-color: #ececec;margin-left: -4px;
+		overflow:hidden;height: 176px;width: 0px;background-color: #ececec;margin-left: -4px;
 	}
 	.pn_business,.pn_dev{
 		margin-right: 15px;
@@ -73,7 +72,6 @@
 		margin-top: 20px;
 	}
 	.news_sub_title{
-		/*font-size: 18px;*/
 		font-weight: bold;
 	}
 	.news_sub_detail{
@@ -93,11 +91,6 @@
 	img.news_up_more{
 		margin-top:37px;
 		margin-right: 5px;
-	}
-	img.news_up_robert{
-		/*margin-left: 20px;
-		margin-top: 3px;
-		float: right;*/
 	}
 	.news_exp{
 		text-align: left;
@@ -138,8 +131,6 @@
 		color: #303030;
 		width: 980px;
 		margin: 0 auto;
-		/*border-bottom: 1px solid #ccc;
-		padding-bottom: 10px;*/
 		overflow: hidden;
 	}
 	.nlist .pright,.nlist .pleft{
@@ -157,10 +148,11 @@
 	.nlist .pleft{
 		width: 545px;
 	}
-	.nlist h1{
+	.nlist h1,.nlist h1 a,.nlist2 h1,.nlist2 h1 a{
 		font-size: 20px;
 		font-weight: bold;
 		height: 35px;
+		color: #178173;
 	}
 	.nlist p{
 		margin-bottom: 20px;
@@ -197,14 +189,11 @@
 	.nlist2 img.left{
 		margin-right: 35px;
 	}
-	.nlist2 .split{
-		/*border-top: 1px solid #ccc;*/
-	}
-	.nlist2 .pright h1{
+	.nlist2 .pright h1,.nlist2 .pright h1 a{
 		font-size: 20px;
 		height: 30px;
 		font-weight: bold;
-		color: orange;
+		color: #178173;
 	}
 	.nlist2 a.detail{
 		color:gray;
@@ -229,7 +218,7 @@
 	.n_detail .info h1{
 		font-size: 18px;
 		font-weight: bold;
-		color: orange;
+		color: #178173;
 		height: 35px;
 		text-align: center;
 	}

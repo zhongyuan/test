@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
-<?php //$this->widget('DeviceWidget');?>
 
 <div class="big_banner">
 	<div class="frm">
