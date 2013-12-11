@@ -14,8 +14,7 @@
 	<div class="big_banner">
 		<div class="frm">
 			<div class="content">
-			<img src="<?php echo $this->staticUrl('news/index/new1.jpg');?>" title="社会化媒体平台的方兴未艾"/>
-			<img src="<?php echo $this->staticUrl('news/index/new2.jpg');?>" title="社会化媒体平台的方兴未艾"/>
+			<img src="<?php echo $this->staticUrl('news/index/new_banner.jpg');?>" title="COS智能操作系统正式发布"/>
 			</div>
 		</div>
 	</div>
