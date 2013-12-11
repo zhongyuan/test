@@ -44,11 +44,11 @@
         background-position: 0px 12px;
     }
     .abrow2_imgposi2{
-       background-position: -245px 12px;
+       background-position: -280px 12px;
        width: 130px;
     }
     .abrow2_imgposi3{
-        background-position: -392px 12px;
+        background-position: -476px 12px;
     }
     .about_rowblock1{
         width: 250px;

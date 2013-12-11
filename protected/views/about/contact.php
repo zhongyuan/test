@@ -3,8 +3,11 @@
         font-size: 14px;
         margin-bottom: 60px;
     }
-    .mapimg{
+/*    .mapimg{
         background-color: #fdfdfd;
+    }*/
+    .div_height1{
+        height:440px; 
     }
     .Icenter{
         width: 980px;
@@ -48,10 +51,10 @@
         background-position: 0px 0px;
     }
     .crowimg_posi2{
-        background-position: -205px 0px;
+        background-position: -226px 0px;
     }
     .crowimg_posi3{
-        background-position: -408px 0px;
+        background-position: -450px 0px;
     }
     .black_icon{
         display: inline-block;
@@ -59,7 +62,7 @@
         height: 20px;
         background: url(/images/about/contact3.png) no-repeat;
         overflow: hidden;
-        background-position: -582px 6px;
+        background-position: -632px 6px;
     }
     .commerce_title{
         font-size: 17px;
@@ -72,14 +75,15 @@
 
 
 <div class="contactbg">
-    
-    <div class="mapimg">
-        <div class="Icenter">
-            <img src="<?php echo $this->staticUrl('about/contact1.jpg');?>"  />
-            <img src="<?php echo $this->staticUrl('about/contact2.jpg');?>"  />
+
+    <div class="dd div_height1">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('about/contact1.jpg');?>"  />
+            </div>
         </div>
     </div>
-    
+
     <div class="hor_line"></div>
     
     <div class="contact_row">
