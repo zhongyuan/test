@@ -28,7 +28,34 @@ class PartnerController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $this->render('industry');
+		$criteria = new CDbCriteria(array(
+            'select' => 'id,title,outline,image_name',
+            'order' => 'update_time desc',
+            'params' => array(
+                ':type' => 1, //第二种类型
+                ':status' => 0, //新闻正常，没有被屏蔽
+            ),
+        ));
+         $count=  NewsList::model()->count($criteria);
+         $pages=new CPagination($count);
+
+         $pages->pageSize=4;
+         $pages->applyLimit($criteria);
+         $models = NewsList::model()->findAll($criteria);
+
+         //第一种方法:判断请求
+        if (Yii::app()->request->isAjaxRequest) {
+            $this->renderPartial('_industry',array(
+                'models' => $models,
+                'pages' => $pages,
+            ));
+            exit;
+        }
+
+        $this->render('industry', array(
+           'models' => $models,
+           'pages' => $pages,
+        ));
 	}
 
 	
@@ -39,5 +66,24 @@ class PartnerController extends Controller
 	public function actionEcology()
 	{
 		$this->render('ecology');
+	}
+	
+	
+	/**
+	 * 合伙伙伴 - 产业链详细页 
+	 * 
+     */
+	public function actionDetail()
+	{
+		$news_id = $_GET['news_id']?$_GET['news_id']:null;
+        if($news_id)
+        {
+            $mcNews = new MCNewsList($news_id);
+
+            $news_info  = $mcNews->getNewsById();
+			$this->render('detail',array(
+                'news_info' => $news_info
+            )); 
+        }
 	}
 }

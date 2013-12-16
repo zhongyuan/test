@@ -1,39 +1,29 @@
-<div class="news_container" style="margin-top:20px">
-    <?php $i = 1;foreach($models as $model):
-		$i++;
-		if($i%2==1):
-	?>
-<!--    // 显示一个模型-->
-        <div class="news_box">
-                <div class="words" style="width:530px;float: left;line-height: 25px;">
-                        <p class="news_title font_4"><?php echo $model->title; ?></p>
-                        <p class="news_outline"><?php echo $model->outline; ?> </p>
-
-                </div>
-                <div class="photo" style="float: left;margin-left: 150px;">
-                    <img src="<?php echo $this->staticUrl('news/newsList/latestNews/'.$model->image_name);?>" />
-                </div>
+<?php 
+	 $idx = 0;
+	 foreach($models as $m):
+		$idx++;
+		if($idx%2 == 0):?>
+		<div class="nlist">
+			<img src="<?php echo $m->image_name;?>" class="lft"/>
+			<div class="pright">
+				<h1><a href="<?php echo $this->createUrl('news/detail',array('news_id'=>$m->id));?>" target="_blank"><?php echo $m->title;?></a></h1>
+				<p><?php echo $m->outline;?></p>
+			</div>
+			<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
         </div>
-
-
-   		<?php else:?>
-
-        <div class="news_box">
-                <div class="photo" style="float: left;">
-                    <img src="<?php echo $this->staticUrl('news/newsList/latestNews/'.$model->image_name);?>" />
-                </div>
-                <div class="words" style="width:530px;float: left;margin-left: 150px;line-height: 25px;">
-                        <p class="news_title font_4"><?php echo $model->title?></p>
-                        <p class="news_outline"><?php echo $model->outline;?></p>
-
-                </div>
-
+<?php	else:?>
+		<div class="nlist">
+			<div class="pleft c_left">
+				<h1><a href="<?php echo $this->createUrl('news/detail',array('news_id'=>$m->id));?>" target="_blank"><?php echo $m->title;?></a></h1>
+				<p><?php echo $m->outline;?></p>
+			</div>
+			<img src="<?php echo $m->image_name;?>" class="rgt"/>
+			<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
         </div>
-		<?php endif;?>
-        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
-    <?php endforeach;?>
+<?php	endif;?>
+<?php endforeach;?>
+		
 
-</div>
 
 <!-- ===========================翻页====================== -->
 

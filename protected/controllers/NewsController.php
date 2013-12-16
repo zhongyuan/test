@@ -60,7 +60,8 @@ class NewsController extends Controller
 		 
 		public function actionIndex()
 		{
-			$this->render('index');
+			//$this->render('index');
+			$this->actionIndexBakup();
 		}
 		
 		/**
@@ -78,7 +79,16 @@ class NewsController extends Controller
 	     */
 		public function actionDetail()
 		{
-			$this->render('detail');
+			$news_id = $_GET['news_id']?$_GET['news_id']:null;
+            if($news_id)
+            {
+                $mcNews = new MCNewsList($news_id);
+
+                $news_info  = $mcNews->getNewsById();
+				$this->render('detail',array(
+                    'news_info' => $news_info
+                )); 
+            }
 		}
 		 
         public function actionIndexBakup()
