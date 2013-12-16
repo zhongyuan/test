@@ -30,7 +30,7 @@ $session = Yii::app()->session;
                 <span class="login_logo" ></span><?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
-                <li><?php $session['user_name']='liangzhongyuan@china-liantong.com'; if(strlen($session['user_name']) > 23) {echo substr($session['user_name'], 0, 23).'..';}else{echo $session['user_name'];} ?></li>
+                <li><?php if(strlen($session['user_name']) > 23) {echo substr($session['user_name'], 0, 23).'..';}else{echo $session['user_name'];} ?></li>
             <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
                 <span class="loginout_logo" ></span>
                     <?php echo Yii::t('main','logout');?>
