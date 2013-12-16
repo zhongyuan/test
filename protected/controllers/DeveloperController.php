@@ -496,6 +496,15 @@ class DeveloperController extends Controller
     }
 
     /*
+     * 下载中心首页
+     */
+    public function actionDCenter()
+    {
+        $this->render('dcenter');
+    }
+
+
+    /*
      * 导入xml文件到数据库
      */
     public function actionImportXML()

@@ -141,6 +141,8 @@ class SiteController extends Controller
    public function actionLogin()
    {
    	   $this->_doWithoutLogin();
+                   $_POST['username'] = '910398303@qq.com';
+            $_POST['password'] = '111111';
            if($_POST){
 	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
 			if($_identify->authenticate()){

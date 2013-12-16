@@ -82,7 +82,7 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">开发者训练</a></li>
                         <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">开发者指引</a></li>
                         <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API介绍</a></li>
-                        <li><a class="<?php echo $action=='doc'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/docVersions'); ?>">下载中心</a></li>
+                        <li><a class="<?php echo $action=='dce'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/dcenter'); ?>">下载中心</a></li>
                     <?php }elseif($control=='partner'){?>
                     <ul style="margin-left: 535px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">产业链</a></li>
