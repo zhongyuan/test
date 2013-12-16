@@ -165,7 +165,10 @@
 		margin-left: 41px;
 		margin-top: 15px;
 	}
-	
+	.nlist img.lft,.nlist img.rgt{
+		width: 265px;
+		height: 157px;
+	}
 	
 	
 	.nlist2{
