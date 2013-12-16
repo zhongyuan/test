@@ -91,11 +91,14 @@ $this->widget('SearchWidget');
         float: right;
         height: 25px;
         width: 25px;
-        background: url('/images/developer/fullscreen.png') no-repeat 0px 0px; 
+        background: url('/images/developer/fullscreen.png') no-repeat -24px 0px; 
     }
     .fullscr_pos1{
-        background-position: -24px 0px;
+        background-position: 0px 0px;
     }
+/*    .fullscr_pos2{
+        background-position: -24px 0px;
+    }*/
 </style>
 <script>
     var demoIframe;
@@ -158,11 +161,49 @@ $this->widget('SearchWidget');
 </div>
 
 <script>
+    $(document).ready(function(){
+        // init fullscreen based on user pref
+        var fullscreen = readCookie("fullscreen");
+        alert(fullscreen);
+        if (fullscreen != 0) {
+          if (fullscreen == "false") {
+//            toggleFullscreen(false);
+          } else {
+//            toggleFullscreen(true);
+          }
+        }
+        // init nav version for mobile
+        if (isMobile) {
+          swapNav(); // tree view should be used on mobile
+          $('#nav-swap').hide();
+        } else {
+          chooseDefaultNav();
+          if ($("#nav-tree").is(':visible')) {
+            init_default_navtree("/");
+          }
+        }
+      
+        scrollIntoView("ddd");
+        
+    });
     $(function(){
-
+//        $('.full_button').click(function(){
+////            $('#ref_body_id').toggleClass('ref_body2');
+////            $('#fullscreen').toggleClass('fullscr_pos1');
+//            $('#ref_body_id').removeClass('ref_body2');
+//            $('#ref_body_id').add('ref_body');
+//        });
       // scroll the selected page into view
-        var element = $('.left_content').jScrollPane('');
-        var api = element.data('jsp');
+
+        var settings = {
+//            showArrows: true,
+//            verticalDragMinHeight: 20,
+//            verticalDragMaxHeight: 20,
+//            horizontalDragMinWidth: 100,
+//            horizontalDragMaxWidth: 100,
+        };
+//        $('.left_content').jScrollPane(settings);
+
         //option 功能添加
         var version = $('.select').val();//获取select到的值
         changeCss(version);
@@ -170,24 +211,29 @@ $this->widget('SearchWidget');
             var version = $(this).val();//获取select到的值
             changeCss(version);
         });
-        
-        $('.full_button').click(function(){
-            var ref_body = $('#ref_body_id');
-            var current_class = ref_body.attr('class');
-            if(current_class == "ref_body"){
-                ref_body.removeClass('ref_body');
-                ref_body.addClass('ref_body2');
-//                updateSidenavFullscreenWidth();
-            }else{
-                ref_body.removeClass('ref_body2');
-                ref_body.addClass('ref_body');
-//                updateSidenavFullscreenWidth();
-            }
-            $('#fullscreen').toggleClass('fullscr_pos1');
-            api.reinitialise();
-        });
-        
     });
+function scrollIntoView(nav) {
+  var nav = $("#"+nav);
+  var element = nav.jScrollPane({/* ...settings... */});
+  var api = element.data('jsp');
+  
+//  if ($nav.is(':visible')) {
+//    var $selected = $(".selected", $nav);
+//    if ($selected.length == 0) {
+//      // If no selected item found, exit
+//      return;
+//    }
+//
+//    var selectedOffset = $selected.offset().top; // measure offset from top, relative to entire page
+//    if (selectedOffset > $nav.height() * .8) { // multiply nav height by .8 so we move up any
+//                                               // items more than 80% down the nav
+//      // scroll the item up by an amount 125px less than the window height (account for site header)
+//      // and then multiply nav height by .8 to match the 80% threshold used above
+//      api.scrollTo(0, selectedOffset - 125 - ($nav.height() * .8), false);
+//
+//    }
+//  }
+}
 
 function changeCss(version)
 {
@@ -216,16 +262,77 @@ function changeCss(version)
         }
     });
 }
+/* #########    COOKIES!     ########## */
 
-//function updateSidenavFullscreenWidth() {
-////  if (!navBarIsFixed) return;
-//  $('#ddd').css({
-//    'width' : $('#leftpar-header').css('width'),
-//    'margin' : $('#leftpar-header').css('margin')
-//  });
-//  $('#devdoc-nav .totop').css({'left': 'inherit'});
+function readCookie(cookie) {
+  var myCookie = cookie_namespace+"_"+cookie+"=";
+  alert(myCookie);
+  if (document.cookie) {
+    var index = document.cookie.indexOf(myCookie);
+    if (index != -1) {
+      var valStart = index + myCookie.length;
+      var valEnd = document.cookie.indexOf(";", valStart);
+      if (valEnd == -1) {
+        valEnd = document.cookie.length;
+      }
+      var val = document.cookie.substring(valStart, valEnd);
+      return val;
+    }
+  }
+  return 0;
+}
+
+function writeCookie(cookie, val, section, expiration) {
+  if (val==undefined) return;
+  section = section == null ? "_" : "_"+section+"_";
+  if (expiration == null) {
+    var date = new Date();
+    date.setTime(date.getTime()+(10*365*24*60*60*1000)); // default expiration is one week
+    expiration = date.toGMTString();
+  }
+  var cookieValue = cookie_namespace + section + cookie + "=" + val
+                    + "; expires=" + expiration+"; path=/";
+  document.cookie = cookieValue;
+}
+
+/* #########     END COOKIES!     ########## */
+
+    
+function toggleFullscreen(enable) {
+  var delay = 20;
+  var enabled = true;
+  var stylesheet = $('link[rel="stylesheet"][class="fullscreen"]');
+  if (enable) {
+    // Currently NOT USING fullscreen; enable fullscreen
+    stylesheet.removeAttr('disabled');
+    $('#nav-swap .fullscreen').removeClass('disabled');
+    $('#devdoc-nav').css({left:''});
+    setTimeout(updateSidenavFullscreenWidth,delay); // need to wait a moment for css to switch
+    enabled = true;
+  } else {
+    // Currently USING fullscreen; disable fullscreen
+    stylesheet.attr('disabled', 'disabled');
+    $('#nav-swap .fullscreen').addClass('disabled');
+    setTimeout(updateSidenavFixedWidth,delay); // need to wait a moment for css to switch
+    enabled = false;
+  }
+  writeCookie("fullscreen", enabled, null, null);
+  setNavBarLeftPos();
+  resizeNav(delay);
+  updateSideNavPosition();
+  setTimeout(initSidenavHeightResize,delay);
+}
+
+
+
+//待会测试一下
+//  var _gaq = _gaq || [];
+//  _gaq.push(['_setAccount', 'UA-5831155-1']);
+//  _gaq.push(['_trackPageview']);
 //
-////  initSidenavHeightResize();
-//}
-
+//  (function() { //匿名函数
+//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//  })();
 </script>

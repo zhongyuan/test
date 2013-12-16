@@ -30,7 +30,7 @@ $session = Yii::app()->session;
                 <span class="login_logo" ></span><?php echo Yii::t('main','login');?></a></li>
             <?php }else{?>
             <ul class="header_logout">
-                <li><?php if(strlen($session['user_name']) > 20) {echo substr($session['user_name'], 0, 20).'...';}else{echo $session['user_name'];} ?></li>
+                <li><?php $session['user_name']='liangzhongyuan@china-liantong.com'; if(strlen($session['user_name']) > 23) {echo substr($session['user_name'], 0, 23).'..';}else{echo $session['user_name'];} ?></li>
             <li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
                 <span class="loginout_logo" ></span>
                     <?php echo Yii::t('main','logout');?>
@@ -79,10 +79,10 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">电视机顶盒</a></li>
                     <?php }elseif($control=='developer'){?>
                     <ul style="margin-left: 338px;">
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">开发者训练</a></li>
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/index'); ?>">培训</a></li>
                         <li><a class="<?php echo $action=='gui'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/guide'); ?>">开发者指引</a></li>
-                        <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API介绍</a></li>
-                        <li><a class="<?php echo $action=='doc'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/docVersions'); ?>">下载中心</a></li>
+                        <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
+                        <li><a class="<?php echo $action=='dce'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/dcenter'); ?>">下载中心</a></li>
                     <?php }elseif($control=='partner'){?>
                     <ul style="margin-left: 535px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">产业链</a></li>
