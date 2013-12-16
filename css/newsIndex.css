@@ -1,12 +1,11 @@
 
  .news_container,.plist_container{
 	overflow: hidden;
-	/*width: 90%;*/
 	width: 998px;
 	margin: 0 auto;
  }
  .news_container{
- 	width: 1062px;
+ 	width: 980px;
  }
  .plist_container{
  	padding-bottom: 90px;
@@ -24,19 +23,20 @@
 		
 	}
 	.rec_one img.main{
-		width: 190px;
+		width: 160px;
 	}
 	.rec_two{
 		margin-left: 45px;
 	}
 	.rec_two img.main{
-		width: 150px;
+		width: 130px;
 	}
 	.rec_three{
 		margin-left: 15px;
 	}
 	.rec_three img.main{
-		width: 150px;
+		width: 130px;
+		margin-top: 10px;
 	}
 	
 	/*------------------Partner Style-------*/
@@ -50,7 +50,7 @@
 		text-align: right;
 	}
 	.pn_two_split{
-		overflow:hidden;height: 176px;width: 1px;background-color: #ececec;margin-left: -4px;
+		overflow:hidden;height: 176px;width: 0px;background-color: #ececec;margin-left: -4px;
 	}
 	.pn_business,.pn_dev{
 		margin-right: 15px;
@@ -73,7 +73,6 @@
 		margin-top: 20px;
 	}
 	.news_sub_title{
-		/*font-size: 18px;*/
 		font-weight: bold;
 	}
 	.news_sub_detail{
@@ -93,11 +92,6 @@
 	img.news_up_more{
 		margin-top:37px;
 		margin-right: 5px;
-	}
-	img.news_up_robert{
-		/*margin-left: 20px;
-		margin-top: 3px;
-		float: right;*/
 	}
 	.news_exp{
 		text-align: left;
@@ -120,7 +114,7 @@
 
 	/*============首页新闻摘要样式===================*/
 	div.big_banner{
-		margin: 0 auto;position:relative; overflow:hidden; height:480px;
+		margin: 0 auto;position:relative; overflow:hidden; height:320px;
 	}
 	div.big_banner .frm{
 		position:absolute;left:50%;width:1920px;
@@ -138,8 +132,6 @@
 		color: #303030;
 		width: 980px;
 		margin: 0 auto;
-		/*border-bottom: 1px solid #ccc;
-		padding-bottom: 10px;*/
 		overflow: hidden;
 	}
 	.nlist .pright,.nlist .pleft{
@@ -157,10 +149,11 @@
 	.nlist .pleft{
 		width: 545px;
 	}
-	.nlist h1{
+	.nlist h1,.nlist h1 a,.nlist2 h1,.nlist2 h1 a{
 		font-size: 20px;
 		font-weight: bold;
 		height: 35px;
+		color: #178173;
 	}
 	.nlist p{
 		margin-bottom: 20px;
@@ -173,7 +166,10 @@
 		margin-left: 41px;
 		margin-top: 15px;
 	}
-	
+	.nlist img.lft,.nlist img.rgt{
+		width: 265px;
+		height: 157px;
+	}
 	
 	
 	.nlist2{
@@ -197,14 +193,11 @@
 	.nlist2 img.left{
 		margin-right: 35px;
 	}
-	.nlist2 .split{
-		/*border-top: 1px solid #ccc;*/
-	}
-	.nlist2 .pright h1{
+	.nlist2 .pright h1,.nlist2 .pright h1 a{
 		font-size: 20px;
 		height: 30px;
 		font-weight: bold;
-		color: orange;
+		color: #178173;
 	}
 	.nlist2 a.detail{
 		color:gray;
@@ -212,9 +205,9 @@
 	
 	
 	.n_detail{
-		font-size: 12px;
-		line-height: 22px;
-		color: #303030;
+		font-size: 14px;
+		line-height: 26px;
+		color: #666;
 		width: 980px;
 		margin: 0 auto;
 		margin-top: 25px;
@@ -227,11 +220,12 @@
 		margin: 0 auto;
 	}
 	.n_detail .info h1{
-		font-size: 18px;
+		font-size: 21px;
 		font-weight: bold;
-		color: orange;
+		color: #178173;
 		height: 35px;
 		text-align: center;
+		margin-bottom: 5px;
 	}
 	.n_detail .info p{
 		text-indent: 2em;
@@ -287,7 +281,7 @@
 		width: 620px;
 	}
 	.plist .via_info{
-		width: 580px;
+		width: 615px;
 	}
 	.plist .s3_info{
 		width: 625px;
@@ -306,7 +300,12 @@
 		margin-top: 40px;
 	}
 	.plist img.via{
-		margin-right: 116px;
+		margin-right: 70px;
+		margin-top: 40px;
+	}
+	.plist img.via,.plist img.htc{
+		width: 265px;
+		height: 159px;
 	}
 	.plist img.s3{
 		margin-left: 35px;

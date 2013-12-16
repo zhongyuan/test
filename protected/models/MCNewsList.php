@@ -42,6 +42,19 @@ class MCNewsList {
 
         return $cmd?$cmd:0;
     }
+	
+	/**
+	 * 获取新闻信息
+	 * 
+	 */
+	public function getNewsById()
+	{
+		$sql = "SELECT t1.*,t2.news_detail FROM `newslist` AS t1 LEFT JOIN `newsdetail` AS t2 ON t1.id = t2.news_id WHERE t1.id = :news_id";
+		$row = Yii::app()->db->createCommand($sql)->queryRow(TRUE,array(
+			':news_id' => $this->id
+		));
+		return $row;
+	}
 
 
 }

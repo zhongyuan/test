@@ -14,8 +14,7 @@
 	<div class="big_banner">
 		<div class="frm">
 			<div class="content">
-			<img src="<?php echo $this->staticUrl('news/index/new1.jpg');?>" title="社会化媒体平台的方兴未艾"/>
-			<img src="<?php echo $this->staticUrl('news/index/new2.jpg');?>" title="社会化媒体平台的方兴未艾"/>
+			<img src="<?php echo $this->staticUrl('news/index/new_banner.jpg');?>" title="COS智能操作系统正式发布"/>
 			</div>
 		</div>
 	</div>
@@ -27,24 +26,19 @@
     <div id ="replace">
         <div class="n_detail">
 			<div class="info">
-				<h1>贵州电信天翼联欢辞旧岁 HTC one max成团直降2100元</h1>
-				<p>在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。</p>
-				<p>在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。</p>
-				<p>在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。</p>
-				<div class="detail_img"><img src="<?php echo $this->staticUrl('news/index/banner5_picture.jpg');?>"/></div>
-				
-				<p>在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。在年底促销旺季即将来临之际，贵州电信网上营业厅天翼卖场(http://shop.gz.189.cn)也即将在12月1日启动历时12天的“天翼联欢会”。在这12天的优惠活动里HTC one参团预售，iPhone5降至3988元，299元购即可购TCL J210C。天翼卖场的工作人员表示，卖场希望通过本次活动开启辞旧迎新活动的序幕，同时也为提高电信营业厅的人流量，从而扩大天翼卖场的知名度和影响力。</p>
+				<h1><?php echo $news_info['title'];?></h1>
+				<?php echo $news_info['news_detail'];?>
 			</div>
 		</div>
 <!-- ===========================翻页====================== -->
 
-        <div class="green-black">
+        <!--<div class="green-black">
             <?php
                 $this->widget('MyLinkPager',array(
                     'pages'=>$pages,
                 ));
             ?>
-        </div>
+        </div>-->
 
     </div>
 </div>
@@ -52,7 +46,7 @@
 
 
 <script>
-    $(function(){
+    /*$(function(){
           $('#banner-slide').bjqs({
             animtype      : 'slide',
             height        : 350,
@@ -64,17 +58,19 @@
             usecaptions   :false,
           });
 
-
-
-        $('.yiiPager a').click(function(){
-            $.ajax({
-                url:$(this).attr('href'),
-                success:function(res){
-                    $('#replace').html(res);
-                }
+		$(function(){
+            $('.yiiPager a').click(function(){
+                $.ajax({
+                    url:$(this).attr('href'),
+                    success:function(res){
+                        $('#devDetail_replace').html(res);
+                    }
+                });
+                return false;
             });
-            return false;
-        });
-    });
+        });	
+
+       
+    });*/
 </script>
 

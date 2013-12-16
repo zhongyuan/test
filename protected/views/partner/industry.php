@@ -30,7 +30,7 @@
 						2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
 					</p>
 
-	                <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" /></a>
+	               <!-- <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" /></a>-->
 	            </div>
 
 	        </div>
@@ -46,9 +46,9 @@
 						最新系统支持平板电脑2.0<br />以上系统升级，并且免费。
 					</p>
 
-	                <a href="#">
+	               <!-- <a href="#">
 						<img class="news_up_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
-					</a>
+					</a>-->
 	            </div>
 	        </div>
 
@@ -64,9 +64,9 @@
 						五月天的美国<br />可以重游旧地。<br />旅游心情真好。
 						</p>
 
-						<a href="#">
+						<!--<a href="#">
 		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
-						</a>
+						</a>-->
 	            </div>
 	        </div>
 
@@ -78,9 +78,53 @@
 
     <div style="clear:both"></div>
 
-    <div id ="replace">
-        <div class="plist_container">
-			<div class="plist">
+    <div>
+        <div class="plist_container" id ="replace">
+		
+			<?php 
+				 $idx = 0;
+				 foreach($models as $m):
+					$idx++;
+					if($idx%2 == 0):?>
+					<!--<div class="nlist">
+						<div class="pleft c_left">
+							<h1><a href="<?php echo $this->createUrl('partner/detail',array('news_id'=>$m->id));?>" target="_blank"><?php echo $m->title;?></a></h1>
+							<p><?php echo $m->outline;?></p>
+						</div>
+						<img src="<?php echo $m->image_name;?>" class="rgt"/>
+						<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
+			        </div>-->
+					
+					<div class="plist">
+							<div class="pleft htc_info">
+		                            <p>
+									<?php echo $m->outline;?>
+									</p>
+									<div class="read_more"><a href="<?php echo $this->createUrl('partner/detail',array('news_id'=>$m->id));?>" target="_blank">[阅读更多]</a></div>
+
+		                    </div>
+							<img src="<?php echo $m->image_name;?>"  class="htc"/>   
+		            </div>
+					<div class="split"></div>
+			
+			
+			<?php	else:?>
+					<div class="plist">
+		                    <img src="<?php echo $m->image_name;?>"  class="via"/>
+		                    <div class="pright via_info">
+		                            <p>
+									<?php echo $m->outline;?>
+									</p>
+									<div class="read_more"><a href="<?php echo $this->createUrl('partner/detail',array('news_id'=>$m->id));?>" target="_blank">[阅读更多]</a></div>
+		                    </div>
+
+		            </div>
+					<div class="split"></div>
+			
+					
+			<?php	endif;?>
+			<?php endforeach;?>
+			<!--<div class="plist">
                     <img src="<?php echo $this->staticUrl('partner/cooperation_company_zky.jpg');?>" class="zky"/>
                     <div class="pright zky_info">
 							<p>
@@ -132,12 +176,34 @@
 							<div class="read_more"><a href="#">[阅读更多]</a></div>
                     </div>
 					<img src="<?php echo $this->staticUrl('partner/cooperation_company_s3.jpg');?>"  class="s3"/>
-            </div>
-
+            </div>-->
+			 <div class="green-black">
+		            <?php
+		                $this->widget('MyLinkPager',array(
+		                    'pages'=>$pages,
+		                ));
+		            ?>
+		      </div>
         </div>
 
 <!-- ===========================翻页====================== -->
 
+	  
     </div>
 </div>
+
+<script>
+    $(function(){
+		
+        $('.yiiPager a').click(function(){
+            $.ajax({
+                url:$(this).attr('href'),
+                success:function(res){
+                    $('#replace').html(res);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 

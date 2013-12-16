@@ -325,7 +325,7 @@ class SiteController extends Controller
 	
 	private function _checkLTEmail($str = "")
 	{
-		if(preg_match("/[\w\d]+\@china-liantong.com$/",$str)){
+		if(preg_match("/[\w\d]+\@(china-liantong.com)|(htc.com)$/i",$str)){
 			return trim($str);
 		}
 		return FALSE;

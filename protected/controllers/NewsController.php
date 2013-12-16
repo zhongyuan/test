@@ -60,7 +60,8 @@ class NewsController extends Controller
 		 
 		public function actionIndex()
 		{
-			$this->render('index');
+			//$this->render('index');
+			$this->actionIndexBakup();
 		}
 		
 		/**
@@ -78,7 +79,16 @@ class NewsController extends Controller
 	     */
 		public function actionDetail()
 		{
-			$this->render('detail');
+			$news_id = $_GET['news_id']?$_GET['news_id']:null;
+            if($news_id)
+            {
+                $mcNews = new MCNewsList($news_id);
+
+                $news_info  = $mcNews->getNewsById();
+				$this->render('detail',array(
+                    'news_info' => $news_info
+                )); 
+            }
 		}
 		 
         public function actionIndexBakup()
@@ -97,18 +107,6 @@ class NewsController extends Controller
              $pages->pageSize=3;
              $pages->applyLimit($criteria);
              $models = NewsList::model()->findAll($criteria);
-
-
-//            $dataProvider = new CActiveDataProvider('NewsList', array(
-//                'criteria'=>$criteria,
-//                'pagination'=>array(
-//                    'pageSize'=>3,
-//                    'itemCount'=>$count,
-//                ),
-//            ));
-//            $this->render('index',array(
-//                'dataProvider' => $dataProvider,
-//            ));
 
              //第一种方法:判断请求
             if (Yii::app()->request->isAjaxRequest) {
@@ -190,7 +188,6 @@ class NewsController extends Controller
                 $mcND = new MCNewsDetail($news_id);
 
                 $cmd  = $mcND->getNDById();
-               // echo Yii::app()->cache->get('news_detail_9');exit; //有用了
                 $str = '<hr style="page-break-after:always;" class="ke-pagebreak" />';
 
                 $news_detail = explode($str,$cmd);
