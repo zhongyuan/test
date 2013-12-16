@@ -278,6 +278,11 @@ $(document).ready(function(){
 
 
 	$("#submit_btn").bind("click",function(){
+		if(document.getElementById('RegisterForm_isRead').checked == false){
+			alert("您需要同意COS服务条款与COS客户隐私政策才能注册");
+			return false;
+		}
+		
 		if(checkUsername(1) && checkPassword(1) && checkMatchPasswd(1) && checkFirstname(1) && checkLastname(1) && checkCaptcha(1)){
 			//显示加载信息
 			$('.bg_halfop').css('display','block');
