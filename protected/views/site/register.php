@@ -194,7 +194,7 @@
             var type = 1; //Email ajax
             //var regUsername=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             //var regUsername=/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
-			var regUsername=/[\w\d]+\@china-liantong.com$/;
+			var regUsername=/[\w\d]+\@(china-liantong.com)|(htc.com)$/i;
 			var strUsername=$("#RegisterForm_user_name").val();
             if(!regUsername.test(strUsername)){
                     $("#user_name_tips").html("Email格式不正确!");
