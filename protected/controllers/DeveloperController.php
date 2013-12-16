@@ -30,14 +30,7 @@ class DeveloperController extends Controller
 		$this->_cosDeveloper(MCApi::training);
 	}
 
-    /*
-     * training的编辑模式
-     */
-    public function actionEditIndex()
-    {
-		$this->_cosDeveloper(MCApi::training,TRUE);
-    }
-
+    
     /*
      * developer guide
      */
@@ -46,13 +39,7 @@ class DeveloperController extends Controller
 		$this->_cosDeveloper(MCApi::developer);
     }
 
-	/*
-     * developer guide的编辑模式
-     */
-    public function actionEditGuide()
-    {
-        $this->_cosDeveloper(MCApi::developer,TRUE);
-    }
+	
 
 	/**
 	 * 检测当前账户是否有编辑权限
@@ -200,118 +187,6 @@ class DeveloperController extends Controller
 		return $content;
 	}
 
-
-	/**
-	 * AJAX更新节点名称
-	 *
-	 */
-	public function actionAjaxUpdateNodeName()
-	{
-		$this->_checkAjaxEditPermit();
-		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
-		$nodeId = intval($_POST['nodeId']);
-
-		$mcApi = new MCApi();
-		$flag = $mcApi->updateNodeName($nodeName,$nodeId);
-		if($flag){
-			$jsonRst = array('req'=>"ok",'msg'=>"节点名称更新成功");
-		}else{
-			$jsonRst = array('req'=>"error",'msg'=>"节点名称未作更新");
-		}
-		echo json_encode($jsonRst);
-		exit(0);
-
-	}
-
-
-	/**
-	 * 保存修改后的文档信息
-	 *
-	 */
-	public function actionSaveFile()
-	{
-		$this->_checkAjaxEditPermit();
-		$f_comment = $_POST['f_comment'];
-		$f_path = filter_var($_POST['f_path'],FILTER_SANITIZE_STRING);
-		$f_path = dirname(dirname(dirname(__FILE__))).$f_path;
-		$jsonRst = array(
-			'req' => "error",
-			'msg' => "文件不存在，无法修改!"
-		);
-		if(file_exists($f_path)){
-			if(file_put_contents($f_path,$f_comment)){
-				$jsonRst = array(
-					'req'=>"ok",
-					'msg'=>"文档修改成功!"
-				);
-			}else{
-				$jsonRst = array(
-					'req'=>"error",
-					'msg'=>"文档修改失败,可能您没有权限修改此文档!"
-				);
-			}
-		}
-		echo json_encode($jsonRst);
-		exit(0);
-
-	}
-
-
-	/**
-	 * AJAX删除树节点
-	 *
-	 */
-	public function actionAjaxRemoveNode()
-	{
-		$this->_checkAjaxEditPermit();
-		$nodeId = intval($_POST['nodeId']);
-		$mcApi = new MCApi();
-		$flag = $mcApi->removeNode($nodeId);
-		if($flag){
-			$jsonRst = array(
-				'req'=>"ok",
-				'msg'=>"节点删除成功"
-			);
-		}else{
-			$jsonRst = array(
-				'req'=>"error",
-				'msg'=>"节点删除失败"
-			);
-		}
-
-		echo json_encode($jsonRst);
-		exit(0);
-
-	}
-
-
-	/**
-	 * AJAX方式添加树节点
-	 *
-	 */
-	public function actionAjaxAddNode()
-	{
-		$this->_checkAjaxEditPermit();
-		$parentId = intval($_POST['parentId']);
-		$nodeName = filter_var($_POST['nodeName'],FILTER_SANITIZE_STRING);
-		$mcApi = new MCApi();
-		$dbRst = $mcApi->addNode($nodeName,$parentId);
-		if(!$dbRst[0]){
-			$jsonRst = array(
-				'req'=>"error",
-				'msg'=>$dbRst[1]
-			);
-		}else{
-			$jsonRst = array(
-				'req'=>"ok",
-				'msg'=>$dbRst[1]
-			);
-		}
-
-		echo json_encode($jsonRst);
-		exit(0);
-
-	}
 
     /*
      * reference
