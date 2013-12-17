@@ -123,10 +123,13 @@ display:block;
 padding-top:2px;
 margin-bottom:5px;
 /*background: url(/images/developer/zakladka.png) top left no-repeat;*/
-background-color: #F2F3F3;
-border-radius: 7px;
+
 list-style:none;
 overflow:visible;
+}
+.top{
+    background-color: #F2F3F3;
+    border-radius: 7px;
 }
 #leftMenu .menu ul  li ul li {
 display:block;
