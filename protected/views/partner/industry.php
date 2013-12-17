@@ -69,8 +69,7 @@
 						</a>-->
 	            </div>
 	        </div>
-
-	        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
+			<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 
 	    </div>
 	</div>
@@ -105,7 +104,7 @@
 		                    </div>
 							<img src="<?php echo $m->image_name;?>"  class="htc"/>   
 		            </div>
-					<div class="split"></div>
+					<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 			
 			
 			<?php	else:?>
@@ -119,7 +118,7 @@
 		                    </div>
 
 		            </div>
-					<div class="split"></div>
+					<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 			
 					
 			<?php	endif;?>
