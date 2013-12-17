@@ -159,7 +159,6 @@ $this->widget('SearchWidget');
 
 <script>
     $(function(){
-
       // scroll the selected page into view
         var element = $('.left_content').jScrollPane('');
         var api = element.data('jsp');
@@ -177,55 +176,41 @@ $this->widget('SearchWidget');
             if(current_class == "ref_body"){
                 ref_body.removeClass('ref_body');
                 ref_body.addClass('ref_body2');
-//                updateSidenavFullscreenWidth();
             }else{
                 ref_body.removeClass('ref_body2');
                 ref_body.addClass('ref_body');
-//                updateSidenavFullscreenWidth();
             }
             $('#fullscreen').toggleClass('fullscr_pos1');
             api.reinitialise();
         });
-        
     });
 
-function changeCss(version)
-{
-    //添加各种样式
-    $('.child_node').each(function(){
-        //删掉原有样式
-        $(this).removeClass('hightlight');
-        $(this).removeClass('gray');
-        $(this).removeClass('del');
-        $(this).removeClass('hidde');
+    function changeCss(version)
+    {
+        //添加各种样式
+        $('.child_node').each(function(){
+            //删掉原有样式
+            $(this).removeClass('hightlight');
+            $(this).removeClass('gray');
+            $(this).removeClass('del');
+            $(this).removeClass('hidde');
 
-        var belong_version = $(this).attr('version');
-        var status = $(this).attr('status');
-        var before_version = version - 1;
+            var belong_version = $(this).attr('version');
+            var status = $(this).attr('status');
+            var before_version = version - 1;
 
-        if(belong_version == version){ //新加版本
-            $(this).addClass('hightlight');
-        }else if(belong_version <= version && status == 1){ //可用的
-            //不处理
-        }else if(status == 0 && belong_version == before_version){ //新版本删除的
-            $(this).addClass('del');
-        }else if(belong_version > version){ //高级的
-            $(this).addClass('gray');
-        }else if(status == 0 && belong_version != before_version && belong_version != version){ //以前版本已删除的，不显示
-            $(this).addClass('hidde');
-        }
-    });
-}
-
-//function updateSidenavFullscreenWidth() {
-////  if (!navBarIsFixed) return;
-//  $('#ddd').css({
-//    'width' : $('#leftpar-header').css('width'),
-//    'margin' : $('#leftpar-header').css('margin')
-//  });
-//  $('#devdoc-nav .totop').css({'left': 'inherit'});
-//
-////  initSidenavHeightResize();
-//}
+            if(belong_version == version){ //新加版本
+                $(this).addClass('hightlight');
+            }else if(belong_version <= version && status == 1){ //可用的
+                //不处理
+            }else if(status == 0 && belong_version == before_version){ //新版本删除的
+                $(this).addClass('del');
+            }else if(belong_version > version){ //高级的
+                $(this).addClass('gray');
+            }else if(status == 0 && belong_version != before_version && belong_version != version){ //以前版本已删除的，不显示
+                $(this).addClass('hidde');
+            }
+        });
+    }
 
 </script>
