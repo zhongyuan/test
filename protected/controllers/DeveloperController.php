@@ -132,9 +132,9 @@ class DeveloperController extends Controller
 		foreach($data as $index=>$item){
 			$idx++;
 			if($idx == 1 && $active){
-				$class = "active";
+//				$class = "active";
 			}else{
-				$class = "inactive";
+//				$class = "inactive";
 			}
 			$html.="<li><a class=\"".$class."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
 			if($item['isParent']){
