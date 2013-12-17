@@ -14,7 +14,7 @@
                 </div>
 				<img src="<?php echo $m->image_name;?>"  class="htc"/>   
         </div>
-		<div class="split"></div>
+		<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 
 
 <?php	else:?>
@@ -27,7 +27,7 @@
 						<div class="read_more"><a href="<?php echo $this->createUrl('partner/detail',array('news_id'=>$m->id));?>" target="_blank">[阅读更多]</a></div>
                 </div>
         </div>
-		<div class="split"></div>
+		<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 <?php	endif;?>
 <?php endforeach;?>
 		

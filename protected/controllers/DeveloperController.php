@@ -125,8 +125,9 @@ class DeveloperController extends Controller
 	 * @param undefined $data
 	 *
 	 */
-	private function _generateTreeHtml($data,$active=TRUE)
+	private function _generateTreeHtml($data,$active=TRUE,$level = 0)
 	{
+		$level++;
 		$idx = 0;
 		$html = "<ul>";
 		foreach($data as $index=>$item){
@@ -136,9 +137,10 @@ class DeveloperController extends Controller
 			}else{
 				$class = "inactive";
 			}
-			$html.="<li><a class=\"".$class."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
+			$topclass = $level == 1 ? "class='top'" : "";
+			$html.="<li {$topclass}><a class=\"".$class."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
 			if($item['isParent']){
-				$html.=$this->_generateTreeHtml($item['children'],FALSE);//子节点初始化时无需激活
+				$html.=$this->_generateTreeHtml($item['children'],FALSE,$level);//子节点初始化时无需激活
 			}
 			$html.="</li>";
 		}

@@ -23,10 +23,11 @@
 		
 	}
 	.rec_one img.main{
-		width: 160px;
+		width: 140px;
+		
 	}
 	.rec_two{
-		margin-left: 45px;
+		margin-left: 25px;
 	}
 	.rec_two img.main{
 		width: 130px;
@@ -50,7 +51,7 @@
 		text-align: right;
 	}
 	.pn_two_split{
-		overflow:hidden;height: 176px;width: 0px;background-color: #ececec;margin-left: -4px;
+		overflow:hidden;height: 146px;width: 0px;background-color: #ececec;margin-left: -4px;
 	}
 	.pn_business,.pn_dev{
 		margin-right: 15px;
@@ -266,7 +267,7 @@
 	    height:auto !important; 
 	    height:165px; 
 	    overflow: hidden;
-		margin-top: 57px;
+		margin-top: 27px;
 	}
 	.plist .read_more{
 		text-align: right;
@@ -281,7 +282,7 @@
 		width: 620px;
 	}
 	.plist .via_info{
-		width: 615px;
+		width: 630px;
 	}
 	.plist .s3_info{
 		width: 625px;
@@ -296,12 +297,12 @@
 		margin-top: 20px;
 	}
 	.plist img.htc{
-		margin-left: 66px;
-		margin-top: 40px;
+		margin-left: 56px;
+		margin-top: 30px;
 	}
 	.plist img.via{
-		margin-right: 70px;
-		margin-top: 40px;
+		margin-right: 50px;
+		margin-top: 25px;
 	}
 	.plist img.via,.plist img.htc{
 		width: 265px;
@@ -312,7 +313,8 @@
 		margin-top: 30px;
 	}
 	.split{
-		overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;
+		background: url(/images/div_split.jpg);
+		/*overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;*/
 	}
 	
 	ul.plogo{
