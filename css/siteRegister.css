@@ -87,7 +87,9 @@ ul.site_reg_items li.inputbox select{
 	border:1px solid #ECDEC6;
 	border-radius:5px;
 	height:26px;
-	line-height: 26px;
+	/*line-height: 26px;*/
+	padding-top: 3px;
+	padding-bottom: 2px;
 	font-size: 12px;
 	background:#FCF3E4;
 	color:gray;
