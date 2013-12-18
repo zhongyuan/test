@@ -150,7 +150,7 @@
 		
 	}
 	.nlist .pright{
-		width: 540px;
+		width: 555px;
 	}
 	.nlist .pleft{
 		width: 545px;
@@ -165,11 +165,11 @@
 		margin-bottom: 20px;
 	}
 	.nlist img.lft{
-		margin-right: 31px;
+		margin-right: 81px;
 		margin-top: 15px;
 	}
 	.nlist img.rgt{
-		margin-left: 41px;
+		margin-left: 95px;
 		margin-top: 15px;
 	}
 	.nlist img.lft,.nlist img.rgt{
