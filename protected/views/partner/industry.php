@@ -21,7 +21,7 @@
 
 
 	<div class="pn_container">
-		<div class="short_news">
+		<div class="short_news pn_adv">
 	        <div class="pn_one">
 	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_1.jpg');?>"/></div>
 	            <div class="pn_business">
@@ -69,7 +69,6 @@
 						</a>-->
 	            </div>
 	        </div>
-			<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 
 	    </div>
 	</div>
