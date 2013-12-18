@@ -47,7 +47,7 @@ $this->widget('SearchWidget');
 		function loadReady() {
 			demoIframe.contents().find("body").css({
 				'font-size':"14px",
-				'font-family':'sans-serif,Roboto,monospace',
+				'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace',
 				'color':'#535353',
 				'width':'99%',
 				'overflow':'hidden',
