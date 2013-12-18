@@ -56,7 +56,8 @@ $this->widget('SearchWidget');
 			});
 			demoIframe.contents().find("a").css({'color':'#8f9d4c','margin':'0px 3px'});
 			demoIframe.contents().find("h1").css({'font-size':'20px'});
-			demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden'});
+			demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+			demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
 			 
 			var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
 			htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
