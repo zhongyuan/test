@@ -46,6 +46,15 @@
 		margin: 0 auto;
 		overflow: hidden;
 	 }
+	 .pn_one{
+		width: 285px;
+	 }
+	 .pn_two{
+	 	width: 340px;
+	 }
+	 .pn_three{
+		width: 290px;
+	 }
 	 .pn_adv{
 	 	background:url(/images/div_split.jpg) no-repeat left bottom;
 		width: 100%;
