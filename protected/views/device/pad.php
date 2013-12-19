@@ -10,7 +10,7 @@
 <div id="device_box" class="pad_box">
 	<div class="dev_center">
 		<ul class="d_phonelist">
-			<li class="stick_bottom">
+			<li class="stick_bottom stick_bottom_first">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/pad/pad_2.jpg');?>" width="400"/></div>
 				<div class="pad_two">
 					<h1 class="orange"><img src="<?php echo $this->staticUrl('device/pad/device_pad_banner2_title.jpg');?>"/></h1>

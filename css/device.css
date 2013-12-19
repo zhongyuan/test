@@ -13,7 +13,6 @@ div.big_banner img{
 #device_box{
 font-size: 14px;
 margin-top: 25px;
-margin-bottom: 45px;
 }
 
 .device_nav{
@@ -130,9 +129,18 @@ sup{
 	border-bottom: 1px solid #E5E5E5;
 	margin-top: 45px;
 }
-
+.stick_bottom_first{
+	margin-top: 10px;
+	padding-bottom: 30px;
+}
+.stick_bottom_last{
+	border-bottom: 0px;
+}
 .above_bottom{
 	border-bottom: 1px solid #E5E5E5;
+	padding:45px 0px;
+}
+.above_none_bottom{
 	padding:45px 0px;
 }
 /*==================智能手机样式==================*/
@@ -257,6 +265,6 @@ h1 span.black{
 	margin-left: 40px;
 }
 .stb_right .stb_four{
-	margin-top: 110px;
+	margin-top: 75px;
 	margin-left: 30px;
 }
