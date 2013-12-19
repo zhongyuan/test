@@ -13,7 +13,7 @@
 				<p>
 					您的COS ID可以让你轻松使用COS的所有服务，包括COS Store、COS Online Store、C-Life等。除非经过你的授权，我们不会将你的资料分享给他人。
 				</p>
-	            <p class="rleft_privacy"><a href="#"> 阅读COS 客户隐私权政策 ◆</a></p>
+	            <p class="rleft_privacy"><a href="#" class="show_privacy"> 阅读COS 客户隐私权政策 ◆</a></p>
 			</div>
 
         </div>
@@ -149,7 +149,7 @@
                         <span id="ajaxCode2" style="display:none;"></span>
                     </div>
 
-					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意COS服务条款与COS客户隐私政策</p>
+					<p><?php echo $form->checkBox($model,'isRead',array('checked'=>'checked')); ?> 我已阅读并同意<a href="#" class="show_privacy" title="点击查看详情">COS服务条款与COS客户隐私政策</a></p>
 				</div>
 
 			</div>
@@ -251,7 +251,13 @@ function checkAjaxRegister(type,strVerifyCode)
 
 //=======表单验证放在此处=======
 $(document).ready(function(){
-
+	
+	//弹出注册条款页面
+	$(".show_privacy").click(function(){
+		openwindow("<?php echo $this->createUrl('site/privacy');?>","_blank",800,500);	
+	});
+	
+	
 	$("#RegisterForm_passwd").bind("focus",function(){
 		showFocusMessage("passwd","请输入用户密码！");
 	}).bind("blur",function(){
@@ -459,4 +465,16 @@ function noticeAssign(num) {
 		$('#strength').css({backgroundColor:''});
 	}
 }
+
+function openwindow(url,name,iWidth,iHeight)
+{
+  var url;                                 //转向网页的地址;
+  var name;                           //网页名称，可为空;
+  var iWidth;                          //弹出窗口的宽度;
+  var iHeight;                        //弹出窗口的高度;
+  var iTop = (window.screen.availHeight-30-iHeight)/2;       //获得窗口的垂直位置;
+  var iLeft = (window.screen.availWidth-10-iWidth)/2;           //获得窗口的水平位置;
+  window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+}
+
 </script>

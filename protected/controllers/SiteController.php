@@ -463,6 +463,15 @@ class SiteController extends Controller
 		}
 		$this->render('getPassword');
 	}
+	
+	/**
+	 *用户服务与隐私条款 
+	 * 
+	 */
+	public function actionPrivacy()
+	{
+		$this->renderPartial('privacy');
+	}
 
 
 }
