@@ -10,12 +10,21 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 ?>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js" type="text/javascript"></script>
 <style type="text/css">
+	.gp{
+		width: 940px;
+		margin:10px auto;
+		font-family: lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace;
+		font-size: 12px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		padding: 15px;
+	}
 	h1{
-		font-size: 22px;
+		font-size: 16px;
 		margin: 30px 0px;
 	}
 	#stf_form{
-		height: 350px;
+		height: 300px;
 		padding-top: 50px;
 	}
 	input.midle{
@@ -58,6 +67,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		left: 50%;
 	}
 </style>
+<div class="gp">
 <h1><a href="/">首页</a> / 忘记密码</h1>
 <p>在以下输入框内填写您的邮箱地址,以便我们将重置后的新密码发往此邮箱</p>
 <hr />
@@ -75,6 +85,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <div class='bg_halfop' style="display:none;"></div>
 <div class='content_loading' style="display:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/css/loading.gif"/></div>
 
+</div>
 <script language="javascript">
 	$(document).ready(function(){
 		
