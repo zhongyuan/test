@@ -19,7 +19,7 @@ function ajaxJson(url,data,callfun)
     });
 }
 
-//好东西，加载iframe时，预判断iframe长度，避免滑动条
+//好东西，加载iframe时，预判断iframe长度，避免滑动条 , 此处不需要加载，已经在search widget里面添加了
 //	function loadReady()
 //	{
 //		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
@@ -46,3 +46,19 @@ function ajaxJson(url,data,callfun)
 //                queryRE, '<span style="color:rgb(255, 173, 47)">$1</span>');
 //        }
 //    }
+
+
+//            $('.search_item').hover(
+//                function(){
+//                    $(this).addClass('item_selected');
+//                },function(){
+//                    $(this).removeClass('item_selected');
+//                }
+//            );
+
+//            $('.result_cont li').mouseover(function() {
+//                $('.result_cont li').removeClass('item_selected');
+//                $(this).addClass('item_selected');
+//                gSelectedColumn = $(".result_cont:visible").index($(this).closest('.result_cont'));
+//                gSelectedIndex = $("li", $(".result_cont:visible")[gSelectedColumn]).index(this);
+//            });
