@@ -146,9 +146,7 @@ class SiteController extends Controller
 			if($_identify->authenticate()){
 				$this->redirect($this->_getReturnUrl());
 			}else{
-				$returlUrl = $this->createUrl('site/login');
-				header("Content-type:text/html;charset=UTF-8");
-				echo "用户名或密码错误,<a href='$returlUrl'>返回</a>";
+				$this->renderPartial('_loginError');
 			}
 			exit(0);
 	   }
