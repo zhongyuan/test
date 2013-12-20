@@ -29,6 +29,9 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		line-height: 30px;
 		padding: 3px;
 	}
+	.gp hr{
+		border:1px solid #ccc;
+	}
 	#stf_form{
 		height: 300px;
 		padding-top: 50px;
