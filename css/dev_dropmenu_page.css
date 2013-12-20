@@ -1,0 +1,117 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2013-12-20, 15:25:58
+    Author     : liangzhongyuan
+*/
+
+/* 开发者左边 DropmenuWidget的样式 */
+#leftMenu ul, #leftMenu li{ margin: 0; padding: 0; }
+
+#leftMenu{font-family:georgia, verdana, tahoma, arial, sans-serif; font-size: 0.625em/1.5em; 
+          /*background:#E4E4E4;*/ 
+}
+
+#leftMenu a {
+    text-decoration:none; 
+    font-size:1.1em;
+}
+
+#leftMenu a:hover {text-decoration:underline;}
+
+#leftMenu {
+    margin:0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#leftMenu .menu ul  li { /*第一级设置*/
+    display:block;
+    padding-top:2px;
+    padding-bottom: 1px;
+    list-style:none;
+    overflow:visible;
+}
+/*#leftMenu .menu ul li ul { 进来就让所有第二级第三级等等都隐藏隐藏,与下面的top ul功能一样
+	display:none; 
+}*/
+#leftMenu .menu .top ul{  
+    background-color: #F5F5F5;
+    margin-top: 1px;
+    padding-bottom: 5px;
+}
+#leftMenu .menu .top ul{               /* 进来就让所有第二级第三级等等都隐藏隐藏 ,需要放下面，因为最近作用域*/ 
+    display: none;
+}
+#leftMenu .menu ul li a {  /*所有a标签的设置*/
+    display:block;
+    height:34px; 
+    margin-top:0px;
+    padding-top:10px;
+    padding-left:15px;
+    font-size:14px;
+    color:#333333;
+    font-weight: 500;
+    outline:none;
+}
+#leftMenu .menu ul  li ul li { /*第二级第三级等等所有字体为12px*/
+    display:block;
+    color:#8f9d4c;
+    font-size:12px;
+    padding-left:16px;
+    list-style:none;
+    overflow:visible;
+    /*background-color: #F5F5F5;*/
+}
+
+#leftMenu .menu ul li ul li a { /* 所有第二层文字 大小和高度*/
+    background:none;
+    height:15px;
+    padding-left:0px; 
+}
+
+#leftMenu .menu  .up_icon{
+    background:url(/images/developer/on.png) top right no-repeat;
+}
+#leftMenu .menu  .down_icon {
+    background:url(/images/developer/off.png) top right no-repeat;
+    color: #0099cc;
+    
+}
+#leftMenu .menu ul li a.green_color{
+    color: #0099cc;
+}
+.huadong{
+    height: 600px;
+    max-height: 700px;
+    /*border: 1px solid black;*/
+    outline: none;
+}
+
+
+    /*================ 开发者模块的 guide index 页面样式 ======================*/
+    
+div{
+    vertical-align: top;
+}
+.content_wrap{
+    width: 980px;
+	overflow: hidden;
+	margin: 10px auto;
+	min-height:700px; 
+}
+.devguide_left{
+    display: inline-block;
+    width: 24%;
+}
+.devguide_right{
+    display: inline-block;
+    width: 75%;
+}
+.drop_list{
+    margin-bottom: 20px;
+}
+    
