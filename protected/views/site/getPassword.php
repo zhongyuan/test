@@ -18,10 +18,16 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		border: 1px solid #ccc;
 		border-radius: 5px;
 		padding: 15px;
+		padding-top: 0px;
+		color: #747474;
+		height: 350px;
 	}
 	h1{
 		font-size: 16px;
 		margin: 30px 0px;
+		background: #ececec;
+		line-height: 30px;
+		padding: 3px;
 	}
 	#stf_form{
 		height: 300px;
@@ -40,10 +46,11 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		height: 32px;
 		line-height: 10px;
 		border-radius: 4px;
-		border: 1px solid #ccc;
+		border: 1px solid #eb8313;
 		outline: none;
 		font-size: 16px;
-		background:#ccc;
+		background:#eb8313;
+		color: #fff;
 	}
 	
 	/**********遮罩效果CSS及JS样例***************/
@@ -66,9 +73,12 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		z-index: 201;
 		left: 50%;
 	}
+	div#error{
+		color:#e95016;
+	}
 </style>
 <div class="gp">
-<h1><a href="/">首页</a> / 忘记密码</h1>
+<h1>通过邮箱找回密码</h1>
 <p>在以下输入框内填写您的邮箱地址,以便我们将重置后的新密码发往此邮箱</p>
 <hr />
 <p>&nbsp;</p>
@@ -77,6 +87,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <form name="form1" method="POST" action="<?php echo $this->createUrl('site/getPassword');?>" id="stf_form">
 	<input type="text" name="email" value="" class="midle"/>
 	<input type="submit" name="sbt" value="找回密码" id="sbt" class="sbt"/>
+	<div id="error"></div>
 </form>
 </div><!-- form -->
 
@@ -93,9 +104,10 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 			var regEmail = /^[0-9a-zA-Z_\-\.]+@[0-9a-zA-Z_\-]+(\.[0-9a-zA-Z_\-]+)*$/;
 			var email = $("input[name=email]").val();
 			if(!regEmail.test(email)){
-				alert("邮箱格式不正确!");
+				$("#error").html("请输入一个有效的Email");
 				return false;
 			}
+			$("#error").html("");
 			
 			//显示加载信息
 			$('.bg_halfop').css('display','block');
