@@ -138,7 +138,7 @@ class MCApi {
 	}
 
 	/**
-	 * 获取当前父节点的字节点数量
+	 * 获取当前父节点的子节点数量
 	 * @param undefined $parent_id
 	 *
 	 */

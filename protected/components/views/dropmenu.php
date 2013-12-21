@@ -11,9 +11,8 @@
 </div>
 <script>
 $(function(){
-    
-    var demoIframe;
-    demoIframe = $("#testIframe");
+
+    var demoIframe = $("#testIframe");
     demoIframe.bind("load", loadReady);
     //设置初始化iframe
     $("#testIframe").attr("src","<?php echo $first_id;?>");
@@ -34,8 +33,8 @@ $(function(){
     $('.menu a').click(function(){
         var a = $(this); //被点击的a标签
         
-        $("#testIframe").attr("src",$(this).attr("name")); //换iframe内容
-        
+        demoIframe.attr("src",$(this).attr("name")); //换iframe内容
+
         //点击某个标签时，他的兄弟标签要隐藏。
         var parent_siblings = a.parent().siblings();
         parent_siblings.each(function(){
@@ -73,6 +72,8 @@ $(function(){
     });
 
 	function loadReady() {
+        
+        demoIframe.height('');  //先将height置空
 		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight;
 		var htmlH = demoIframe.contents().find("html").get(0).scrollHeight;
 		var maxH = Math.max(bodyH, htmlH);
@@ -80,6 +81,16 @@ $(function(){
 		var h = demoIframe.height() >= maxH ? minH:maxH;
 		if (h < 530) h = 530;
 		demoIframe.height(h);
+
+        //设置页面里面的样式
+        demoIframe.contents().find("body").css({
+            'font-size':"14px",'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace','color':'#535353','width':'99%','overflow':'hidden','word-wrap':'break-word',
+        });
+        demoIframe.contents().find("a").css({'color':'#258aaf','margin':'0px 3px'});
+        demoIframe.contents().find("h1").css({'font-size':'20px'});
+        demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+        demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+
 	}
 
 });

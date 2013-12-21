@@ -1,6 +1,6 @@
 
 
-<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dev_search_jscrollpane.css" type="text/css">
+<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dev_search_jscrollpane_reference.css" type="text/css">
 
 <div class="devep_search">
     <form class="form-wrapper cf" onkeydown="if(event.keyCode==13&&gSelectedIndex>=0){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
@@ -104,6 +104,7 @@
                 $('.result_pane').hide(300);
             }
         });
+        
     });
 
     /* Add emphasis to part of string that matches query */
@@ -124,19 +125,33 @@
     }
 
     function jump(path){
+        var dd = $("#testIframe");
+        dd.bind("load", loadReady);
         var server = "<?php echo Yii::app()->request->hostInfo;?>"+'/gaia_plugin2/';
-        demoIframe.attr("src", server+decodeURIComponent(path));
+        dd.attr("src", server+decodeURIComponent(path));
         $(".result_cont a").remove(); //先删原有的
         $("#search_api").val('');
     }
 	function loadReady() {
-		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight;
-		var htmlH = demoIframe.contents().find("html").get(0).scrollHeight;
+        
+        demoIframe.height('');  //先将height置空
+		var bodyH = demoIframe.contents().find("body").scrollHeight;
+		var htmlH = demoIframe.contents().find("html").scrollHeight;
 		var maxH = Math.max(bodyH, htmlH);
         var minH = Math.min(bodyH, htmlH);
 		var h = demoIframe.height() >= maxH ? minH:maxH;
 		if (h < 530) h = 530;
 		demoIframe.height(h);
+
+        //设置页面里面的样式
+        demoIframe.contents().find("body").css({
+            'font-size':"14px",'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace','color':'#535353','width':'99%','overflow':'hidden','word-wrap':'break-word',
+        });
+        demoIframe.contents().find("a").css({'color':'#8f9d4c','margin':'0px 3px'});
+        demoIframe.contents().find("h1").css({'font-size':'20px'});
+        demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+        demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+
 	}
 </script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.jscrollpane.min.js"></script>

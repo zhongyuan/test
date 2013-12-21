@@ -6,160 +6,66 @@
  */
 $this->widget('SearchWidget');
 ?>
-<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.jscrollpane.css" type="text/css">
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.mousewheel.js"></script>
-<style>
-    .ref_body{
-        width: 98%;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-    .ref_body2{
-        width: 980px;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-    .leftpar{
-        display: inline-block;
-        width: 24%;
-        vertical-align: top;
-    }
-    .rightpar{
-        display: inline-block;
-        width: 75%;
-    }
-    #leftpar-header {
-        height: 19px;
-        font-size: 14px;
-        padding: 8px 0;
-        margin: 0;
-        border-bottom: 1px solid #CCC;
-        background: rgba(242, 242, 242, 0.57)
-    }
-    .left_content{
-        width: 100%;
-        min-height:400px;
-        max-height: 500px;
-        font:14px 'lucida sans', 'trebuchet MS', 'Tahoma';
-        outline: none;
-        background-color: rgba(221, 221, 221, 0.04);
-        overflow: hidden;
-    }
-    .title{
-        padding: 0 5px;
-    }
-    .sdk_version{
-        float: right;
-        padding: 0 5px;
-    }
-    .api_version {
-        display: inline-block;
-        overflow: hidden;
-    }
-    .select{
-        outline: none;
-    }
-    .active{
-        font-weight: 500;
-        color: rgb(255, 173, 47);
-        background-color: rgba(242, 242, 242, 0.57);
-    }
-    .hightlight{
-        font-weight: bold;
-    }
-    .black{
-        color:black;
-    }
-    .gray{
-        color:rgb(216, 215, 215);
-    }
-    .del{
-        color:rgb(175, 165, 165);
-        text-decoration: line-through;
-    }
-    .hidde{
-        display: none;
-    }
-    .child_node:hover{
-        font-weight: 500;
-        color: #0099cc;
-        background-color: rgba(242, 242, 242, 0.57);
-    }
-    .fullscreen{
-        margin: 10px 0px;
-        float: right;
-        height: 25px;
-        width: 25px;
-        background: url('/images/developer/fullscreen.png') no-repeat 0px 0px; 
-    }
-    .fullscr_pos1{
-        background-position: -24px 0px;
-    }
-</style>
-<script>
-    var demoIframe;
-    $(function(){
-        demoIframe = $("#testIframe");
-        demoIframe.bind("load", loadReady);
-        $('.child_node:first').addClass('active');
-
-        $('.child_node').click(function(){
-            var server = "<?php echo Yii::app()->request->hostInfo; ?>"+'/gaia_plugin2/';
-            var link = $(this).attr('val');
-            $('.child_node').removeClass('active');
-            $(this).addClass('active');
-            demoIframe.attr("src", server+link);
-            return false;
-        });
-        return false;
-    });
-
-</script>
 
 <div id="ref_body_id" class="ref_body2">
     <div class="leftpar">
-        <div id ="leftpar-header">
-            <div class="sdk_version">
-                <div class="api_version">version:</div>
-                <div class="api_version">
-                    <select class="select">
-                        <?php foreach($versions as $version):?>
-                        <option lock="<?php echo 2;?>"><?php echo $version ?></option>
-                        <?php endforeach;?>
-                    </select>
-                </div>
+        <div class="huadong_ref">
+            <div id ="leftpar-header">
+                    <div class="title ">COS APIs</div>
+
+                    <div class="sdk_version">
+                        <div class="api_version">version:</div>
+                        <div class="api_version">
+                            <select class="select">
+                                <?php foreach($versions as $version):?>
+                                <option lock="<?php echo 2;?>"><?php echo $version ?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
             </div>
-            <div class="title">COS APIs</div>
-        </div>
 
-        <div id="ddd" class="left_content">
-            <ul >
-                <?php foreach($cl_child as $child): ?>
-                <a href="#_self"><li class="child_node" version=<?php echo $child['version']; ?>
-                                     status=<?php echo $child['status']; ?>
-                                     val="<?php echo $child['path']; ?>"><?php echo $child['name']; ?>
-                                </li>
-                </a>
-                <?php endforeach;?>
-            </ul>
-        </div>
+            <div  class="left_content">
+                <ul >
+                    <?php foreach($cl_child as $child): ?>
+                    <a href="#_self"><li class="child_node" version=<?php echo $child['version']; ?>
+                                         status=<?php echo $child['status']; ?>
+                                         val="<?php echo $child['path']; ?>"><?php echo $child['name']; ?>
+                                    </li>
+                    </a>
+                    <?php endforeach;?>
+                </ul>
+            </div>
 
-        <div>
-            <a href="#_self" class="full_button"><div id="fullscreen" class="fullscreen"></div></a>
+            <div>
+                <a href="#_self" class="full_button"><div id="fullscreen" class="fullscreen"></div></a>
+            </div>
         </div>
 
     </div>
 
-    <div class="rightpar">
-        <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=600px SRC="<?php echo Yii::app()->request->hostInfo.'/gaia_plugin2/'; ?><?php echo $path?$path:'d5/d86/class_____gaia_call_log____.html'; ?>">
+    <div class="rightpar" >
+        <IFRAME id="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=100% SRC="<?php echo Yii::app()->request->hostInfo.'/gaia_plugin2/'; ?><?php echo $path?$path:'d5/d86/class_____gaia_call_log____.html'; ?>">
         </IFRAME>
     </div>
 </div>
 
 <script>
+    
+//    $(function(){
+//        
+////        用ajax加载页面，有点差劲
+////        $.get("http://localcosweb/",function(data){ //初始將a.html include div#iframe
+////            $("#testIframe").html(data);
+////        });
+////        $( "#testIframe" ).load( "http://localcosweb/",function(){
+////                    $('.rightpar .container').css({'width':'700px'}); //无效，因为一般宽度至少980，如果强制改小，必须要overflow hide，但又会破坏页面。
+////        });
+//    });
+
+    var demoIframe;
     $(function(){
-      // scroll the selected page into view
+        //滚动代码
         var element = $('.left_content').jScrollPane('');
         var api = element.data('jsp');
         //option 功能添加
@@ -170,6 +76,7 @@ $this->widget('SearchWidget');
             changeCss(version);
         });
         
+        // 全屏按钮代码
         $('.full_button').click(function(){
             var ref_body = $('#ref_body_id');
             var current_class = ref_body.attr('class');
@@ -183,6 +90,45 @@ $this->widget('SearchWidget');
             $('#fullscreen').toggleClass('fullscr_pos1');
             api.reinitialise();
         });
+        
+        demoIframe = $("#testIframe");
+        demoIframe.bind("load", loadReady);
+        
+        $('.child_node:first').addClass('active');
+
+        $('.child_node').click(function(){
+            var server = "<?php echo Yii::app()->request->hostInfo; ?>"+'/gaia_plugin2/';
+            var link = $(this).attr('val');
+            $('.child_node').removeClass('active');
+            $(this).addClass('active');         
+            demoIframe.attr("src", server+link);
+        });
+        
+        //自己写的  页面元素固定位置
+        var box = $('.huadong_ref');
+        var btop = box.position().top; //获取对象，相对页定的高度
+        var pos = box.css("position");
+
+        $(window).scroll(function() {
+            var scrolls = $(this).scrollTop();//获取窗口已经滚上去多少
+            if (scrolls > btop) { //如果滚动到页面超出了当前元素box的相对页面顶部的高度
+                if (window.XMLHttpRequest) { //如果不是ie6
+                    box.css({
+                        position: "fixed",
+                        top: 10
+                    })
+                } else { //如果是ie6
+                    box.css({
+                        top: scrolls
+                    });	
+                }
+            }else {
+                box.css({
+                    position: pos,
+                    top: top
+                })
+            }
+        });  
     });
 
     function changeCss(version)
@@ -212,5 +158,26 @@ $this->widget('SearchWidget');
             }
         });
     }
+	function loadReady() {
+        
+        demoIframe.height('');  //先将height置空
+		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight;
+		var htmlH = demoIframe.contents().find("html").get(0).scrollHeight;
+		var maxH = Math.max(bodyH, htmlH);
+        var minH = Math.min(bodyH, htmlH);
+		var h = demoIframe.height() >= maxH ? minH:maxH;
+		if (h < 600) h = 600;
+		demoIframe.height(h);
 
+        //设置页面里面的样式
+        demoIframe.contents().find("body").css({
+            'font-size':"14px",'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace','color':'#535353',
+            'width':'99%','overflow':'hidden','word-wrap':'break-word',
+        });
+        demoIframe.contents().find("a").css({'color':'#258aaf','margin':'0px 3px'});
+        demoIframe.contents().find("h1").css({'font-size':'20px'});
+        demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+        demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+
+	}
 </script>
