@@ -59,7 +59,7 @@ and open the template in the editor.
 }
 #leftMenu .menu ul  li ul li { /*第二级第三级等等所有字体为12px*/
     display:block;
-    color:#8f9d4c;
+/*    color:#8f9d4c;*/
     font-size:12px;
     padding-left:16px;
     list-style:none;

@@ -271,6 +271,108 @@ and open the template in the editor.
 }
 
 
+/* ===========================开发者模块  reference 页面样式 =====================*/
+
+
+div {
+vertical-align: top;
+}
+.ref_body{
+    width: 98%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.ref_body2{
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.leftpar{
+    display: inline-block;
+    width: 24%;
+    vertical-align: top;
+}
+.rightpar{
+    display: inline-block;
+    width: 75%;
+}
+#leftpar-header {
+    height: 19px;
+    font-size: 14px;
+    padding: 8px 0;
+    margin: 0;
+    border-bottom: 1px solid #CCC;
+    background: rgba(242, 242, 242, 0.57)
+}
+.left_content{
+    width: 100%;
+    min-height:400px;
+    max-height: 500px;
+    font:14px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    outline: none;
+    background-color: rgba(221, 221, 221, 0.04);
+    overflow: hidden;
+}
+.left_content ul li{
+    padding: 2px 0px;
+}
+.title{
+    display: inline-block;
+    padding: 0 5px;
+}
+.sdk_version{
+    display: inline-block;
+    padding: 0 5px;
+    text-align: right;
+    margin-left: 40px;
+}
+.huadong_ref{
+    margin-bottom: 20px;
+}
+.api_version {
+    display: inline-block;
+    overflow: hidden;
+}
+.select{
+    outline: none;
+}
+.active{
+    font-weight: 500;
+    color: #0099cc;
+    background-color: rgba(242, 242, 242, 0.57);
+}
+.hightlight{
+    font-weight: bold;
+}
+.black{
+    color:black;
+}
+.gray{
+    color:rgb(216, 215, 215);
+}
+.del{
+    color:rgb(175, 165, 165);
+    text-decoration: line-through;
+}
+.hidde{
+    display: none;
+}
+.child_node:hover{
+    font-weight: 500;
+    color: #0099cc;
+    background-color: rgba(242, 242, 242, 0.57);
+}
+.fullscreen{
+    margin: 10px 0px;
+    float: right;
+    height: 25px;
+    width: 25px;
+    background: url('/images/developer/fullscreen.png') no-repeat 0px 0px; 
+}
+.fullscr_pos1{
+    background-position: -24px 0px;
+}
+
 
 
     
