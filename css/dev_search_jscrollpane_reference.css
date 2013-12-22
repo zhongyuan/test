@@ -1,0 +1,378 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2013-12-20, 15:18:30
+    Author     : liangzhongyuan
+*/
+/* 开发者模块下  search 的css */
+.devep_search{
+    width: 980px;
+    margin: 0 auto;
+}
+.cf:before, .cf:after{
+  content:"";
+  display:table;
+}
+.cf:after{
+  clear:both;
+}
+.cf{
+  zoom:1;
+}
+
+.form-wrapper {
+    width: 550px;
+    padding: 5px;
+    margin: 10px auto;
+/*        margin-top: 10px;*/
+    margin-left: 240px;
+    background: #f2f2f2;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+
+.form-wrapper input {
+    width: 430px;
+    height: 10px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: rgba(255, 255, 255, 0.86);
+    -moz-border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+   color: #999;
+   font-weight: normal;
+   font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper button {
+            overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 110px;
+    font: bold 15px/30px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: rgb(255, 173, 47);;
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    border-radius: 0 5px 5px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}
+
+.form-wrapper button:hover{
+    background: rgb(255, 167, 31);
+}
+
+.form-wrapper button:active,
+.form-wrapper button:focus{
+    background: rgb(255, 167, 31);
+}
+
+.form-wrapper button:before {
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent rgb(255, 173, 47) transparent;
+    top: 8px;
+    left: -6px;
+}
+
+.form-wrapper button:hover:before{
+    border-right-color: rgb(255, 167, 31);
+}
+
+.form-wrapper button:focus:before{
+    border-right-color: rgb(255, 167, 31);
+}
+
+.form-wrapper button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+.control_posi{
+    position: relative;
+}
+.result_pane{
+    display: none;
+    position: absolute;
+    width: 400px;
+    height: auto;
+    max-height:800px;
+    background: rgba(252, 252, 252, 1);
+    top: 20%;
+    left: 26%;
+    z-index: 200;
+    opacity: 0.96;
+}
+.item_selected{
+    font-weight: 500;
+    color: #0099cc;
+    background-color: rgba(242, 242, 242, 0.57);
+}
+.result_cont{
+    font-size: 14px;
+    color: black;
+    text-align: left;
+    font-family: dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+}
+    
+/* ========================开发者左边 jscrollpane 的样式 =======================*/
+
+.jspContainer
+{
+    overflow: hidden;
+    position: relative;
+}
+
+.jspPane
+{
+    position: absolute;
+}
+
+.jspVerticalBar
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: red;
+}
+
+.jspHorizontalBar
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: red;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+    margin: 0;
+    padding: 0;
+}
+
+.jspCap
+{
+    display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+    float: left;
+}
+
+.jspTrack
+{
+    background: #fbfbfb;
+    position: relative;
+}
+
+.jspDrag
+{
+    background: #bbb;
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+    float: left;
+    height: 100%;
+}
+
+.jspArrow
+{
+    background: #50506d;
+    text-indent: -20000px;
+    display: block;
+    cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+    cursor: default;
+    background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+    height: 3px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+    width: 3px;
+    float: left;
+    height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+    outline: none;
+}
+
+.jspCorner
+{
+    background: #eeeef4;
+    float: left;
+    height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+    margin: 0 -3px 0 0;
+}
+
+
+/* ===========================开发者模块  reference 页面样式 =====================*/
+
+
+div {
+vertical-align: top;
+}
+.ref_body{
+    width: 98%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.ref_body2{
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.leftpar{
+    display: inline-block;
+    width: 24%;
+    vertical-align: top;
+}
+.rightpar{
+    display: inline-block;
+    width: 75%;
+}
+#leftpar-header {
+    height: 19px;
+    font-size: 14px;
+    padding: 8px 0;
+    margin: 0;
+    border-bottom: 1px solid #CCC;
+    background: rgba(242, 242, 242, 0.57)
+}
+.left_content{
+    width: 100%;
+    min-height:400px;
+    max-height: 500px;
+    font:14px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    outline: none;
+    background-color: rgba(221, 221, 221, 0.04);
+    overflow: hidden;
+}
+.left_content ul li{
+    padding: 2px 0px;
+}
+.title{
+    display: inline-block;
+    padding: 0 5px;
+}
+.sdk_version{
+    display: inline-block;
+    padding: 0 5px;
+    text-align: right;
+    margin-left: 40px;
+}
+.huadong_ref{
+    margin-bottom: 20px;
+}
+.api_version {
+    display: inline-block;
+    overflow: hidden;
+}
+.select{
+    outline: none;
+}
+.active{
+    font-weight: 500;
+    color: #0099cc;
+    background-color: rgba(242, 242, 242, 0.57);
+}
+.hightlight{
+    font-weight: bold;
+}
+.black{
+    color:black;
+}
+.gray{
+    color:rgb(216, 215, 215);
+}
+.del{
+    color:rgb(175, 165, 165);
+    text-decoration: line-through;
+}
+.hidde{
+    display: none;
+}
+.child_node:hover{
+    font-weight: 500;
+    color: #0099cc;
+    background-color: rgba(242, 242, 242, 0.57);
+}
+.fullscreen{
+    margin: 10px 0px;
+    float: right;
+    height: 25px;
+    width: 25px;
+    background: url('/images/developer/fullscreen.png') no-repeat 0px 0px; 
+}
+.fullscr_pos1{
+    background-position: -24px 0px;
+}
+
+
+
+    

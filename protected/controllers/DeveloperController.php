@@ -27,7 +27,10 @@ class DeveloperController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->_cosDeveloper(MCApi::training);
+		$view_data = $this->_cosDeveloper(MCApi::training);
+        $this->render('index',array(
+            'view_data' => $view_data,
+        ));
 	}
 
     
@@ -36,7 +39,12 @@ class DeveloperController extends Controller
      */
     public function actionGuide()
     {
-		$this->_cosDeveloper(MCApi::developer);
+        $view_data = $this->_cosDeveloper(MCApi::developer);
+        $this->render('guide',array(
+            'view_data' => $view_data,
+        ));
+        
+//		$this->_cosDeveloper(MCApi::developer);
     }
 
 	
@@ -45,26 +53,26 @@ class DeveloperController extends Controller
 	 * 检测当前账户是否有编辑权限
 	 *
 	 */
-	private function _checkEditable()
-	{
-		return FALSE;
-	}
+//	private function _checkEditable()
+//	{
+//		return FALSE;
+//	}
 
 
 	/**
 	 * 检查执行AJAX请求的编辑权限,防止绕过登录进行非法请求操作
 	 *
 	 */
-	private function _checkAjaxEditPermit()
-	{
-		if(!$this->_checkEditable()){
-			echo json_encode(array(
-				'req' => "error",
-				'msg' => "您没有权限执行此操作"
-			));
-			exit(0);
-		}
-	}
+//	private function _checkAjaxEditPermit()
+//	{
+//		if(!$this->_checkEditable()){
+//			echo json_encode(array(
+//				'req' => "error",
+//				'msg' => "您没有权限执行此操作"
+//			));
+//			exit(0);
+//		}
+//	}
 
 
 	/**
@@ -76,48 +84,60 @@ class DeveloperController extends Controller
 	private function _cosDeveloper($type = MCApi::training,$editMode = FALSE)
 	{
 
-		$mcApi = new MCApi();
+        $mcApi = new MCApi();
+//        $type = $this->type ? $this->type:1;
 		$data = $mcApi->getTree($type);
-		$view = $editMode ? "_cosEditDeveloper" : "_cosDeveloper";
-
-		$switchUrl = "#";
-		$editable = $this->_checkEditable();
-		if($editMode){
-			if(!$editable){//无编辑权限的账户无权进行此操作
-				$this->redirect("/");
-				exit(0);
-			}
-			if($type == MCApi::training){
-				$switchUrl = 'developer/index';
-			}elseif($type == MCApi::developer){
-				$switchUrl = 'developer/guide';
-			}
-		}else{
-			if($type == MCApi::training){
-				$switchUrl = 'developer/editIndex';
-			}elseif($type == MCApi::developer){
-				$switchUrl = 'developer/editGuide';
-			}
-		}
-
 		$viewData = array(
 			'data' => $data,
-			'switchUrl'=>$switchUrl,
-			'editable' => $editable
+//			'switchUrl'=>$switchUrl,
+//			'editable' => 0,
 		);
-		if(!$editMode){//普通浏览模式下
-			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
-			$viewData['first_id'] = $data[0]['file'];
+        
+        $viewData['dataHtml'] = $this->_generateTreeHtml($data);
+        $viewData['first_id'] = $data[0]['file'];
+        return $viewData;
+//		$mcApi = new MCApi();
+//		$data = $mcApi->getTree($type);
+//		$view =  "_cosDeveloper";
+//
+//		$switchUrl = "#";
+//		$editable = $this->_checkEditable();
+//		if($editMode){
+//			if(!$editable){//无编辑权限的账户无权进行此操作
+//				$this->redirect("/");
+//				exit(0);
+//			}
+//			if($type == MCApi::training){
+//				$switchUrl = 'developer/index';
+//			}elseif($type == MCApi::developer){
+//				$switchUrl = 'developer/guide';
+//			}
+//		}else{
+//			if($type == MCApi::training){
+//				$switchUrl = 'developer/editIndex';
+//			}elseif($type == MCApi::developer){
+//				$switchUrl = 'developer/editGuide';
+//			}
+//		}
 
-			//搜索参数处理
-			$file_id = intval($_GET['id']);
-			$file_path = $mcApi->getFilePathById($file_id);
-			if($file_path && file_exists(dirname(dirname(dirname(__FILE__))).$file_path)){
-				$viewData['first_id'] = $file_path;
-			}
-		}
+//		$viewData = array(
+//			'data' => $data,
+//			'switchUrl'=>$switchUrl,
+//			'editable' => $editable
+//		);
+//		if(!$editMode){//普通浏览模式下
+//			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
+//			$viewData['first_id'] = $data[0]['file'];
+//
+//			//搜索参数处理
+//			$file_id = intval($_GET['id']);
+//			$file_path = $mcApi->getFilePathById($file_id);
+//			if($file_path && file_exists(dirname(dirname(dirname(__FILE__))).$file_path)){
+//				$viewData['first_id'] = $file_path;
+//			}
+//		}
 
-		$this->render($view,$viewData);
+//		$this->render('_cosDeveloper',$viewData);
 	}
 
 	/**
@@ -125,20 +145,23 @@ class DeveloperController extends Controller
 	 * @param undefined $data
 	 *
 	 */
-	private function _generateTreeHtml($data,$active=TRUE)
+	private function _generateTreeHtml($data,$active=TRUE,$level = 0)
 	{
-		$idx = 0;
+		$level++;
+//		$idx = 0;
 		$html = "<ul>";
 		foreach($data as $index=>$item){
-			$idx++;
-			if($idx == 1 && $active){
-				$class = "active";
-			}else{
-				$class = "inactive";
-			}
-			$html.="<li><a class=\"".$class."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
+//			$idx++;
+//			if($idx == 1 && $active){
+//				$class = "active";
+//			}else{
+//				$class = "inactive";
+//			}
+			$topclass = $level == 1 ? "class='top'" : "";
+            $bg_color = $level == 1 ? 'top_bg' : "";
+			$html.="<li {$topclass}><a class=\"".$class."\" bg_color=\"".$bg_color."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
 			if($item['isParent']){
-				$html.=$this->_generateTreeHtml($item['children'],FALSE);//子节点初始化时无需激活
+				$html.=$this->_generateTreeHtml($item['children'],FALSE,$level);//子节点初始化时无需激活
 			}
 			$html.="</li>";
 		}
@@ -146,46 +169,46 @@ class DeveloperController extends Controller
 		return $html;
 	}
 
-	/**
-	 * AJAX获取文档详细内容
-	 *
-	 */
-	public function actionGetFileContent()
-	{
-		$this->_checkAjaxEditPermit();
-		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
-		$filePath = dirname(dirname(dirname(__FILE__))).$filePath;
-		$jsonRst = array(
-			'req' => "error",
-			'msg' => "您要查看的文件未找到,可能已被删除!"
-		);
-		if(file_exists($filePath)){
-			$content= file_get_contents($filePath);
-			$jsonRst = array(
-				'req' => "ok",
-				'msg' => $this->_filterContent($content,$_POST['filePath'])
-			);
-		}
-		echo json_encode($jsonRst);
-		exit(0);
-	}
+//	/**
+//	 * AJAX获取文档详细内容
+//	 *
+//	 */
+//	public function actionGetFileContent()
+//	{
+//		$this->_checkAjaxEditPermit();
+//		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
+//		$filePath = dirname(dirname(dirname(__FILE__))).$filePath;
+//		$jsonRst = array(
+//			'req' => "error",
+//			'msg' => "您要查看的文件未找到,可能已被删除!"
+//		);
+//		if(file_exists($filePath)){
+//			$content= file_get_contents($filePath);
+//			$jsonRst = array(
+//				'req' => "ok",
+//				'msg' => $this->_filterContent($content,$_POST['filePath'])
+//			);
+//		}
+//		echo json_encode($jsonRst);
+//		exit(0);
+//	}
 
 
-	private function _FilterContent($content,$file)
-	{
-		$prefix = str_replace(end(explode("/",$file)),"",$file);
-		if(preg_match_all("/src=\"(.*)\"/",$content,$matches)){
-			$matches = $matches[1];
-			foreach($matches as $m){
-				if(strpos($m,"_plugin2/")){//本地文件
-					continue;
-				}
-				$url = $prefix.$m;
-				$content = str_replace($m,$url,$content);
-			}
-		}
-		return $content;
-	}
+//	private function _FilterContent($content,$file)
+//	{
+//		$prefix = str_replace(end(explode("/",$file)),"",$file);
+//		if(preg_match_all("/src=\"(.*)\"/",$content,$matches)){
+//			$matches = $matches[1];
+//			foreach($matches as $m){
+//				if(strpos($m,"_plugin2/")){//本地文件
+//					continue;
+//				}
+//				$url = $prefix.$m;
+//				$content = str_replace($m,$url,$content);
+//			}
+//		}
+//		return $content;
+//	}
 
 
     /*

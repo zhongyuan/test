@@ -41,7 +41,7 @@
 			</li>
 			
 			
-			<li class="above_bottom">
+			<li class="above_none_bottom">
 				<div class="img_left"><img src="<?php echo $this->staticUrl('device/telebox/telebox_4.jpg');?>"/></div>
 				<div class="stb_right">
 					<div class="stb_four">

@@ -1,152 +1,7 @@
 
-    <style>
-    .devep_search{
-        width: 980px;
-        margin: 0 auto;
-    }
-    .cf:before, .cf:after{
-      content:"";
-      display:table;
-    }
-    .cf:after{
-      clear:both;
-    }
-    .cf{
-      zoom:1;
-    }
 
-    .form-wrapper {
-        width: 550px;
-        padding: 7px;
-        margin: 10px auto;
-/*        margin-top: 10px;*/
-        margin-left: 240px;
-        background: #f2f2f2;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
-        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
-        box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
-    }
+<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dev_search_jscrollpane_reference.css" type="text/css">
 
-    .form-wrapper input {
-        width: 430px;
-        height: 10px;
-        padding: 10px 5px;
-        float: left;
-        font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
-        border: 0;
-        background: rgba(255, 255, 255, 0.86);
-        -moz-border-radius: 3px 0 0 3px;
-        -webkit-border-radius: 3px 0 0 3px;
-        border-radius: 3px 0 0 3px;
-    }
-
-    .form-wrapper input:focus {
-        outline: 0;
-        background: #fff;
-        -moz-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
-        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
-        box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
-    }
-
-    .form-wrapper input::-webkit-input-placeholder {
-       color: #999;
-       font-weight: normal;
-       font-style: italic;
-    }
-
-    .form-wrapper input:-moz-placeholder {
-        color: #999;
-        font-weight: normal;
-        font-style: italic;
-    }
-
-    .form-wrapper input:-ms-input-placeholder {
-        color: #999;
-        font-weight: normal;
-        font-style: italic;
-    }
-
-    .form-wrapper button {
-		overflow: visible;
-        position: relative;
-        float: right;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        height: 30px;
-        width: 110px;
-        font: bold 15px/30px 'lucida sans', 'trebuchet MS', 'Tahoma';
-        color: #fff;
-        text-transform: uppercase;
-        background: rgb(255, 173, 47);;
-        -moz-border-radius: 0 3px 3px 0;
-        -webkit-border-radius: 0 3px 3px 0;
-        border-radius: 0 5px 5px 0;
-        text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
-    }
-
-    .form-wrapper button:hover{
-        background: rgb(255, 167, 31);
-    }
-
-    .form-wrapper button:active,
-    .form-wrapper button:focus{
-        background: rgb(255, 167, 31);
-    }
-
-    .form-wrapper button:before {
-        content: '';
-        position: absolute;
-        border-width: 8px 8px 8px 0;
-        border-style: solid solid solid none;
-        border-color: transparent rgb(255, 173, 47) transparent;
-        top: 8px;
-        left: -6px;
-    }
-
-    .form-wrapper button:hover:before{
-        border-right-color: rgb(255, 167, 31);
-    }
-
-    .form-wrapper button:focus:before{
-        border-right-color: rgb(255, 167, 31);
-    }
-
-    .form-wrapper button::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-    }
-    .control_posi{
-        position: relative;
-    }
-    .result_pane{
-		display: none;
-		position: absolute;
-		width: 400px;
-        height: auto;
-        max-height:800px;
-		background: rgba(252, 252, 252, 1);
-        top: 20%;
-        left: 26%;
-        z-index: 200;
-        opacity: 0.96;
-    }
-    .item_selected{
-        font-weight: 500;
-        color: #0099cc;
-        background-color: rgba(242, 242, 242, 0.57);
-    }
-    .result_cont{
-        font-size: 14px;
-        color: black;
-        text-align: left;
-        font-family: dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
-    }
-
-    </style>
 <div class="devep_search">
     <form class="form-wrapper cf" onkeydown="if(event.keyCode==13&&gSelectedIndex>=0){return false;}" action="<?php  echo Yii::app()->createUrl('developer/apiFormSearch',array('type'=>$type));?>" method="get" >
         <input id="search_api" name="search_api" type="text" placeholder="Search here..." required>
@@ -249,6 +104,7 @@
                 $('.result_pane').hide(300);
             }
         });
+        
     });
 
     /* Add emphasis to part of string that matches query */
@@ -269,18 +125,34 @@
     }
 
     function jump(path){
+        var dd = $("#testIframe");
+        dd.bind("load", loadReady);
         var server = "<?php echo Yii::app()->request->hostInfo;?>"+'/gaia_plugin2/';
-        demoIframe.attr("src", server+decodeURIComponent(path));
+        dd.attr("src", server+decodeURIComponent(path));
         $(".result_cont a").remove(); //先删原有的
         $("#search_api").val('');
     }
 	function loadReady() {
-		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
-		htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
-		maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
-		h = demoIframe.height() >= maxH ? minH:maxH ;
+        
+        demoIframe.height('');  //先将height置空
+		var bodyH = demoIframe.contents().find("body").scrollHeight;
+		var htmlH = demoIframe.contents().find("html").scrollHeight;
+		var maxH = Math.max(bodyH, htmlH);
+        var minH = Math.min(bodyH, htmlH);
+		var h = demoIframe.height() >= maxH ? minH:maxH;
 		if (h < 530) h = 530;
 		demoIframe.height(h);
+
+        //设置页面里面的样式
+        demoIframe.contents().find("body").css({
+            'font-size':"14px",'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace','color':'#535353','width':'99%','overflow':'hidden','word-wrap':'break-word',
+        });
+        demoIframe.contents().find("a").css({'color':'#258aaf','margin':'0px 3px'});
+        demoIframe.contents().find("h1").css({'font-size':'20px'});
+        demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+        demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+
 	}
 </script>
-
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.mousewheel.js"></script>

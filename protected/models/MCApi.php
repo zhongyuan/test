@@ -108,26 +108,7 @@ class MCApi {
 		}
 		
 		//从DB提取数据
-		$sql = "SELECT id,name,parent_id,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
-		$query = Yii::app()->db->createCommand($sql)->queryAll();
-		if(empty($query)){
-			return FALSE;
-		}
-		$idx = 0;
-		$dbRst = array();
-		foreach($query as $row){
-			$idx++;
-			$subCnt = $this->getSubTreeCnt($row['id']);
-			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia_plugin2/".$row['path']);
-			if($subCnt > 0){
-				$data['isParent'] = true;
-				$data['children'] = $this->getTree($row['id'],FALSE);
-				if($isOpen && $idx ==1){
-					$data['open'] = true;
-				}
-			}
-			$dbRst[] = $data;
-		}
+		$dbRst = $this->_getTree($parent_id,$isOpen);
 		
 		//将来自DB的数据写入缓存
 		if($dbRst){
@@ -136,9 +117,40 @@ class MCApi {
 		
 		return $dbRst;
 	}
+	
+	/**
+	 * 递归调用获取节点树 
+	 * @param undefined $parent_id
+	 * @param undefined $isOpen
+	 * 
+	 */
+	private function _getTree($parent_id,$isOpen = TRUE)
+	{
+		$sql = "SELECT id,name,parent_id,has_child,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
+		$query = Yii::app()->db->createCommand($sql)->queryAll();
+		if(empty($query)){
+			return FALSE;
+		}
+		$idx = 0;
+		$dbRst = array();
+		foreach($query as $row){
+			$idx++;
+			//$subCnt = $this->getSubTreeCnt($row['id']);
+			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia_plugin2/".$row['path']);
+			if($row['has_child'] == 1){//有子节点
+				$data['isParent'] = true;
+				$data['children'] = $this->_getTree($row['id'],FALSE);
+				if($isOpen && $idx ==1){
+					$data['open'] = true;
+				}
+			}
+			$dbRst[] = $data;
+		}
+		return $dbRst;
+	}
 
 	/**
-	 * 获取当前父节点的字节点数量
+	 * 获取当前父节点的子节点数量
 	 * @param undefined $parent_id
 	 *
 	 */

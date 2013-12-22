@@ -140,14 +140,14 @@ class SiteController extends Controller
    public function actionLogin()
    {
    	   $this->_doWithoutLogin();
+            $_POST['username'] = '910398303@qq.com';
+            $_POST['password'] = '111111';
            if($_POST){
 	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
 			if($_identify->authenticate()){
 				$this->redirect($this->_getReturnUrl());
 			}else{
-				$returlUrl = $this->createUrl('site/login');
-				header("Content-type:text/html;charset=UTF-8");
-				echo "用户名或密码错误,<a href='$returlUrl'>返回</a>";
+				$this->renderPartial('_loginError');
 			}
 			exit(0);
 	   }
@@ -292,7 +292,7 @@ class SiteController extends Controller
 
 				<br />(如果您无法点击此链接，请将它复制到浏览器地址栏后访问)
 
-				<br />1、为了保障您帐号的安全性，请尽快完成激活，此链接将在您激活过一次后失效！
+				<br />友情提醒: 为了保障您帐号的安全性，请尽快完成激活，此链接将在您激活过一次后失效！
 				
 				<p>&nbsp;</p>
 				<p>COS帐号团队<br />".date('Y')."年".date('m')."月".date('d')."日</p>
@@ -461,6 +461,15 @@ class SiteController extends Controller
 			exit(0);
 		}
 		$this->render('getPassword');
+	}
+	
+	/**
+	 *用户服务与隐私条款 
+	 * 
+	 */
+	public function actionPrivacy()
+	{
+		$this->renderPartial('privacy');
 	}
 
 

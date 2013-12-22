@@ -21,7 +21,7 @@
 
 
 	<div class="pn_container">
-		<div class="short_news">
+		<div class="short_news pn_adv">
 	        <div class="pn_one">
 	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_1.jpg');?>"/></div>
 	            <div class="pn_business">
@@ -70,8 +70,6 @@
 	            </div>
 	        </div>
 
-	        <div  style="overflow:hidden;height: 1px;width: 1000px;background-color: #e5e5e5;clear: both;"></div>
-
 	    </div>
 	</div>
 
@@ -105,7 +103,7 @@
 		                    </div>
 							<img src="<?php echo $m->image_name;?>"  class="htc"/>   
 		            </div>
-					<div class="split"></div>
+					<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 			
 			
 			<?php	else:?>
@@ -119,7 +117,7 @@
 		                    </div>
 
 		            </div>
-					<div class="split"></div>
+					<div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 			
 					
 			<?php	endif;?>

@@ -1,0 +1,571 @@
+2013/12/11 14:45:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/16 19:53:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/liang/php/cosweb/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /collections/CAttributeCollection.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/12/16 19:53:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/liang/php/cosweb/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /collections/CAttributeCollection.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/12/16 19:54:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/liang/php/cosweb/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /collections/CAttributeCollection.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/12/16 19:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/liang/php/cosweb/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /collections/CAttributeCollection.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/12/16 19:58:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/16 19:58:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/16 19:58:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/16 19:58:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/16 19:58:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/16 19:59:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_2_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_2_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/16 19:59:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_3_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_3_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/16 19:59:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_7.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_7.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_7.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_7.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/16 19:59:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_8.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 14:39:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 14:39:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 14:39:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 14:39:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 14:39:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 14:39:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 14:45:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 14:45:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 14:59:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 14:59:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 15:18:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 16:33:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 16:33:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 16:37:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/guide.html
+---
+2013/12/17 19:52:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_7.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_7.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_7.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_7.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_2_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_2_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_8.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_3_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_3_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_8.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_2_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_2_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_3_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_3_1.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_7.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_7.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_7.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('partner/type_1_...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/partner/type_1_7.jpg
+HTTP_REFERER=http://cosweb/partner/index.html
+---
+2013/12/17 19:52:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_3_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_3_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_3_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_3_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_3_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_2_1.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_2_1.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_2_1.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_2_1.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_2_1.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "type_1_8.jpg".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('type_1_8.jpg')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('type_1_8.jpg')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('news/type_1_8.j...')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/news/type_1_8.jpg
+HTTP_REFERER=http://cosweb/news/index.html
+---
+2013/12/17 19:52:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /home/liang/php/cosweb/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/liang/php/cosweb/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /home/liang/php/cosweb/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('developer/img')
+#3 /home/liang/php/cosweb/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /collections/CAttributeCollection.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/developer/img/mac6scroll.png
+HTTP_REFERER=http://cosweb/developer/index.html
+---
