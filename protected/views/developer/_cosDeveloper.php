@@ -37,6 +37,28 @@ $this->widget('SearchWidget');
 ////            });
 //		});
 
+		function loadReady() {
+			demoIframe.contents().find("body").css({
+				'font-size':"14px",
+				'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace',
+				'color':'#535353',
+				'width':'99%',
+				'overflow':'hidden',
+				'word-wrap':'break-word',
+				
+			});
+			demoIframe.contents().find("a").css({'color':'#8f9d4c','margin':'0px 3px'});
+			demoIframe.contents().find("h1").css({'font-size':'20px'});
+			demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
+			demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+			 
+			var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
+			htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
+			maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
+			h = demoIframe.height() >= maxH ? minH:maxH ;
+			if (h < 530) h = 530;
+			demoIframe.height(h);
+		}
 	</SCRIPT>
     
 <style>
