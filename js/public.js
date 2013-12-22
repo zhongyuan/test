@@ -18,7 +18,20 @@ function ajaxJson(url,data,callfun)
         },
     });
 }
-
+////写个ajax去拿页面
+//function ajaxJson(url,data,callfun)
+//{
+//    $.ajax({
+//        type:"GET",
+//        url:url,
+//        data:data,
+//        dataType:html,
+//        success:callfun,
+//        error:function(){
+//            alert('ajax fail~');
+//        },
+//    });
+//}
 //好东西，加载iframe时，预判断iframe长度，避免滑动条 , 此处不需要加载，已经在search widget里面添加了
 //	function loadReady()
 //	{
