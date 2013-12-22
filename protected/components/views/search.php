@@ -147,7 +147,7 @@
         demoIframe.contents().find("body").css({
             'font-size':"14px",'font-family':'lucida sans,trebuchet MS,Tahoma,sans-serif,Roboto,monospace','color':'#535353','width':'99%','overflow':'hidden','word-wrap':'break-word',
         });
-        demoIframe.contents().find("a").css({'color':'#8f9d4c','margin':'0px 3px'});
+        demoIframe.contents().find("a").css({'color':'#258aaf','margin':'0px 3px'});
         demoIframe.contents().find("h1").css({'font-size':'20px'});
         demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
         demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
