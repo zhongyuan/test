@@ -8,18 +8,20 @@
         background: url(/images/index/index_pic_bg.jpg) repeat left top;
     }
     .img_width{
-        width: 313px;
+        width: 310px;
     }
     .index_row{
         width: 980px;
         margin: 0px auto;
         overflow: hidden;
-        
+        text-align: center;
+        /*float: left;*/
     }
     .index_pic{
-        display: inline-block;
+        /*display: inline-block;*/
+        float:left;
     }
-    .mar 
+    
 </style>
 <!--Loading Fancybox files-->
 
