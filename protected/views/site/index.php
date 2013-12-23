@@ -8,7 +8,7 @@
         background: url(/images/index/index_pic_bg.jpg) repeat left top;
     }
     .img_width{
-        width: 310px;
+        width: 312px;
     }
     .index_row{
         width: 980px;
