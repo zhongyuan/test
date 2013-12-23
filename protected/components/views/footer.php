@@ -15,15 +15,16 @@
     <div>
         <div class="footer_info text_center">
             <ul>
-                <li><?php echo Yii::t('main','map');?></li>
-                <li><?php echo Yii::t('main','hot_news');?></li>
-                <li><?php echo Yii::t('main','media_center');?></li>
-                <li><?php echo Yii::t('main','work_chance');?></li>
-                <li><?php echo Yii::t('main','contact_us');?></li>
+                <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><li>关于我们</li></a>
+                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>联系我们</li></a>
+                <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><li>最新动态</li></a>
+                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>开发者注册</li></a>
+                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>开发者管理</li></a>
+                <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><li>服务条款</li></a>
             </ul>
         </div>
 
-        <div class="font_11 text_center"><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></div>
+        <!--<div class="font_11 text_center"><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></div>-->
         
     </div>
 
