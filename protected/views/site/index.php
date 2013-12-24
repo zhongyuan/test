@@ -40,19 +40,21 @@
                     <param name="expressinstall" value="Scripts/expressInstall.swf" />
                     <!-- 下一个对象标签用于非 IE 浏览器。所以使用 IECC 将其从 IE 隐藏。 -->
                     <!--[if !IE] 比如google safari-->
-                    <object type="application/x-shockwave-flash" data="<?php echo $this->staticUrl('index/index_banner.swf');?>" width="1920" height="470">
-                    <!--<![endif]-->
-                    <param name="quality" value="high" />
-                    <param name="wmode" value="opaque" />
-                    <param name="swfversion" value="15.0.0.0" />
-                    <param name="expressinstall" value="Scripts/expressInstall.swf" />
-                    <!-- 浏览器将以下替代内容显示给使用 Flash Player 6.0 和更低版本的用户。 -->
-                    <div>
-                        <h4>此页面上的内容需要较新版本的 Adobe Flash Player。</h4>
-                        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="获取 Adobe Flash Player" width="112" height="33" /></a></p>
-                    </div>
-                    <!--[if !IE]>-->
-                    </object>
+                    <?php $agent = $_SERVER["HTTP_USER_AGENT"]; if(!strpos($agent,"MSIE")){?>
+                        <object type="application/x-shockwave-flash" data="<?php echo $this->staticUrl('index/index_banner.swf');?>" width="1920" height="470">
+                        <!--<![endif]-->
+                        <param name="quality" value="high" />
+                        <param name="wmode" value="opaque" />
+                        <param name="swfversion" value="15.0.0.0" />
+                        <param name="expressinstall" value="Scripts/expressInstall.swf" />
+                        <!-- 浏览器将以下替代内容显示给使用 Flash Player 6.0 和更低版本的用户。 -->
+                        <div>
+                            <h4>此页面上的内容需要较新版本的 Adobe Flash Player。</h4>
+                            <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="获取 Adobe Flash Player" width="112" height="33" /></a></p>
+                        </div>
+                        <!--[if !IE]>-->
+                        </object>
+                    <?php }?>
                     <!--<![endif]-->
                 </object>
             </div>
