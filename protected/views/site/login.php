@@ -18,7 +18,7 @@
                 <p class="login_cos"><span>登陆COS</span>请输入您的账号和密码，如果忘记了请点击下方提示性文字。</p>
 
                 <div class="row">
-                        <span style="">COS ID</span>
+                        <span class="username_label">COS ID</span>
                         <input type="text" id="cos_id" name="username" />
                         <?php //echo $form->textField($model,'username',array('id'=>'cos_id')); ?>
                         <span class="remark" ></span>
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="row">
-                        <span style="margin-left: 20px;">密码</span>
+                        <span class="pwd_label">密码</span>
                         <input type="password" name="password" id='pass_word' />
                         <?php // echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
                         <span class="remark"><a href="<?php echo $this->createUrl('site/getPassword');?>">忘记你的COS密码了?</a></span>
