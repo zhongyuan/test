@@ -35,6 +35,8 @@ $(function(){
         
         demoIframe.attr("src",$(this).attr("name")); //换iframe内容
 
+        $('.menu a').removeClass('green_color'); //清理所有green_color，因为有可能点击叶子节点后，再点击非叶子节点
+
         //点击某个标签时，他的兄弟标签要隐藏。
         var parent_siblings = a.parent().siblings();
         parent_siblings.each(function(){
@@ -45,6 +47,7 @@ $(function(){
                     $(this).children('a').css('background-color','#ffffff');
                 }
             }
+            
         });
         
         if(a.attr('class') == 'up_icon'){ //当前是否有子标签，即是否有up_icon 
@@ -65,7 +68,7 @@ $(function(){
         }
         
         if(a.attr('class') == ''){  //没有子标签的a标签
-            $('.menu a').removeClass('green_color');
+//            $('.menu a').removeClass('green_color'); //remove 所有的class,上面删除了，这边不做处理
             a.addClass('green_color');
         }
 
