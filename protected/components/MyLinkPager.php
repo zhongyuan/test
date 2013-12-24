@@ -9,9 +9,9 @@ class MyLinkPager extends CLinkPager{
 	public function init()
 	{
 		if($this->nextPageLabel===null)
-			$this->nextPageLabel=Yii::t('yii','Next &gt;');
+			$this->nextPageLabel=Yii::t('yii','Next →');
 		if($this->prevPageLabel===null)
-			$this->prevPageLabel=Yii::t('yii','&lt Previous');
+			$this->prevPageLabel=Yii::t('yii','← Previous');
 		if($this->firstPageLabel===null)
 			$this->firstPageLabel=Yii::t('yii','&lt;&lt; First');
 		if($this->lastPageLabel===null)
