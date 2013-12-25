@@ -1,0 +1,44 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Path Permission</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;path-permission gaia:path="string"
+                     gaia:pathPrefix="string"
+                     gaia:pathPattern="string"
+                     gaia:permission="string"
+                     gaia:readPermission="string"
+                     gaia:writePermission="string" /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Provider.html">Provider</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Defines the path and required permissions for a specific subset of data within a content provider. This element can be specified multiple times to supply multiple paths.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:path</em></strong><br>
+A complete URI path for a subset of content provider data. Permission can be granted only to the particular data identified by this path. When used to provide search suggestion content, it must be appended with "/search_suggest_query".</p>
+<p><strong><em>gaia:pathPrefix</em></strong><br>
+The initial part of a URI path for a subset of content provider data. Permission can be granted to all data subsets with paths that share this initial part.</p>
+<p><strong><em>gaia:pathPattern</em></strong><br>
+A complete URI path for a subset of content provider data, but one that can use the following wildcards:</p>
+<ul>
+<li>An asterisk ('*'). This matches a sequence of 0 to many occurrences of the immediately preceding character.</li>
+<li>A period followed by an asterisk (".*"). This matches any sequence of 0 or more characters.</li>
+</ul>
+<p>Because '\' is used as an escape character when the string is read from XML (before it is parsed as a pattern), you will need to double-escape. For example, a literal '*' would be written as "\*" and a literal '\' would be written as "\\". This is basically the same as what you would need to write if constructing the string in Java code.</p>
+<p>For more information on these types of patterns, see the descriptions of PATTERN_LITERAL, PATTERN_PREFIX, and PATTERN_SIMPLE_GLOB in the PatternMatcher class.</p>
+<p><strong><em>gaia:permission</em></strong><br>
+The name of a permission that clients must have in order to read or write the content provider's data. This attribute is a convenient way of setting a single permission for both reading and writing. However, the readPermission and writePermission attributes take precedence over this one.</p>
+<p><strong><em>gaia:readPermission</em></strong><br>
+A permission that clients must have in order to query the content provider.</p>
+<p><strong><em>gaia:writePermission</em></strong><br>
+A permission that clients must have in order to make changes to the data controlled by the content provider.</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<pre><code>    SearchManager
+    manifest.permission
+    Security and Permissions
+</code></pre>

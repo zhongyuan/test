@@ -1,0 +1,92 @@
+#Data#
+
+***syntax:***
+
+        <data gaia:host="string"
+              gaia:mimeType="string"
+              gaia:path="string"
+              gaia:pathPattern="string"
+              gaia:pathPrefix="string"
+              gaia:port="string"
+              gaia:scheme="string" />
+
+##Contained in:##
+
+>    [Demand Filter](Manifest/Demand Filter.html)
+
+##Description:##
+
+Adds a data specification to a demand filter. The specification can be just a data type (the mimeType attribute), just a URI, or both a data type and a URI. A URI is specified by separate attributes for each of its parts:
+
+        scheme://host:port/path or pathPrefix or pathPattern
+
+These attributes are optional, but also mutually dependent: If a scheme is not specified for the demand filter, all the other URI attributes are ignored. If a host is not specified for the filter, the port attribute and all the path attributes are ignored.
+
+All the [Data](Manifest/Data.html) elements contained within the same [Demand Filter](Manifest/Demand Filter.html) element contribute to the same filter. So, for example, the following filter specification,
+
+        <demand-filter ... >
+            <data gaia:scheme="something" gaia:host="project.example.com" />
+            ...
+        </demand-filter>
+
+is equivalent to this one:
+
+        <demand-filter ... >
+            <data gaia:scheme="something" />
+            <data gaia:host="project.example.com" />
+            ...
+        </demand-filter>
+
+You can place any number of [Data](Manifest/Data.html) elements inside a [Demand Filter](Manifest/Demand Filter.html) to give it multiple data options. None of its attributes have default values.
+
+Information on how demand filters work, including the rules for how demand objects are matched against filters, can be found in another document, demands and demand Filters. See also the demand Filters section in the introduction.
+
+##Attributes:##
+
+***gaia:host***<br>
+The host part of a URI authority. This attribute is meaningless unless a scheme attribute is also specified for the filter.
+
+**Note:** host name matching in the Gaia framework is case-sensitive, unlike the formal RFC. As a result, you should always specify host names using lowercase letters.
+
+***gaia:mimeType***<br>
+A MIME media type, such as image/jpeg or audio/mpeg4-generic. The subtype can be the asterisk wildcard (*) to indicate that any subtype matches.
+
+It's common for a demand filter to declare a <data> that includes only the gaia:mimeType attribute.
+
+**Note:** MIME type matching in the Gaia framework is case-sensitive, unlike formal RFC MIME types. As a result, you should always specify MIME types using lowercase letters.
+
+***gaia:path***<br>
+***gaia:pathPrefix***<br>
+***gaia:pathPattern***<br>
+
+The path part of a URI. The path attribute specifies a complete path that is matched against the complete path in an demand object. The pathPrefix attribute specifies a partial path that is matched against only the initial part of the path in the demand object. The pathPattern attribute specifies a complete path that is matched against the complete path in the demand object, but it can contain the following wildcards:
+
+* An asterisk ('*') matches a sequence of 0 to many occurrences of the immediately preceding character.
+* A period followed by an asterisk (".*") matches any sequence of 0 to many characters.
+
+Because '\\' is used as an escape character when the string is read from XML (before it is parsed as a pattern), you will need to double-escape: For example, a literal '\*' would be written as "\\\*" and a literal '\\' would be written as "\\\\". This is basically the same as what you would need to write if constructing the string in Java code.
+
+For more information on these three types of patterns, see the descriptions of PATTERN_LITERAL, PATTERN_PREFIX, and PATTERN_SIMPLE_GLOB in the PatternMatcher class.
+
+These attributes are meaningful only if the scheme and host attributes are also specified for the filter.
+
+***gaia:port***<br>
+The port part of a URI authority. This attribute is meaningful only if the scheme and host attributes are also specified for the filter.
+
+***gaia:scheme***<br>
+The scheme part of a URI. This is the minimal essential attribute for specifying a URI; at least one scheme attribute must be set for the filter, or none of the other URI attributes are meaningful.
+
+A scheme is specified without the trailing colon (for example, http, rather than http:).
+
+If the filter has a data type set (the mimeType attribute) but no scheme, the content: and file: schemes are assumed.
+
+**Note:** scheme matching in the Gaia framework is case-sensitive, unlike the RFC. As a result, you should always specify schemes using lowercase letters.
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+>    [Action](Manifest/Action.html)<br>
+>    [Category](Manifest/Catagory.html)

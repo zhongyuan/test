@@ -1,0 +1,9 @@
+#Requirement#
+
+###The Requirement for GAIA SDK installation:
+
+1. Operating System: Linux
+
+2. Make version: 3.8.1 and above
+
+

@@ -1,0 +1,35 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Permission Tree</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;permission-tree gaia:icon="drawable resource"
+                     gaia:label="string resource" ]
+                     gaia:name="string" /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Config.html">Config</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Declares the base name for a tree of permissions. The application takes ownership of all names within the tree. It can dynamically add new permissions to the tree by calling PackageManager.addPermission(). Names within the tree are separated by periods ('.'). For example, if the base name is com.example.project.taxes, permissions like the following might be added:</p>
+<pre><code>    com.example.project.taxes.CALCULATE
+    com.example.project.taxes.deductions.MAKE_SOME_UP
+    com.example.project.taxes.deductions.EXAGGERATE
+</code></pre>
+<p>Note that this element does not declare a permission itself, only a namespace in which further permissions can be placed. See the <a href="Manifest/Permission.html">Permission</a> element for information on declaring permissions.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:icon</em></strong><br>
+An icon representing all the permissions in the tree. This attribute must be set as a reference to a drawable resource containing the image definition.</p>
+<p><strong><em>gaia:label</em></strong><br>
+A user-readable name for the group. As a convenience, the label can be directly set as a raw string for quick and dirty programming. However, when the application is ready to be published, it should be set as a reference to a string resource, so that it can be localized like other strings in the user interface.</p>
+<p><strong><em>gaia:name</em></strong><br>
+The name that's at the base of the permission tree. It serves as a prefix to all permission names in the tree. Java-style scoping should be used to ensure that the name is unique. The name must have more than two period-separated segments in its path - for example, com.example.base is OK, but com.example is not.</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<blockquote>
+<p><a href="Manifest/Permission.html">Permission</a><br>
+   <a href="Manifest/Permission Group.html">Permission Group</a><br>
+   <a href="Manifest/Uses Permission.html">Uses Permission</a></p>
+</blockquote>

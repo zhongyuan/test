@@ -1,0 +1,627 @@
+#Uses Feature#
+
+***syntax:***
+
+        <uses-feature gaia:name="string"
+                      gaia:required=["true" | "false"]
+                      gaia:glEsVersion="integer" />
+
+##Contained in:##
+
+>    [Config](Manifest/Config.html)
+
+##Description:##
+
+Declares a single hardware or software feature that is used by the application.
+
+The purpose of a <uses-feature> declaration is to inform any external entity of the set of hardware and software features on which your application depends. The element offers a required attribute that lets you specify whether your application requires and cannot function without the declared feature, or whether it prefers to have the feature but can function without it. Because feature support can vary across Gaia devices, the <uses-feature> element serves an important role in letting an application describe the device-variable features that it uses.
+
+The set of available features that your application declares corresponds to the set of feature constants made available by the Gaia PackageManager, which are listed for convenience in the Features Reference tables at the bottom of this document.
+
+You must specify each feature in a separate <uses-feature> element, so if your application requires multiple features, it would declare multiple <uses-feature> elements. For example, an application that requires both Bluetooth and camera features in the device would declare these two elements:
+
+        <uses-feature gaia:name="android.hardware.bluetooth" />
+        <uses-feature gaia:name="android.hardware.camera" />
+
+In general, you should always make sure to declare <uses-feature> elements for all of the features that your application requires.
+
+Declared <uses-feature> elements are informational only, meaning that the Gaia system itself does not check for matching feature support on the device before installing an application. However, other services (such as Google Play) or applications may check your application's <uses-feature> declarations as part of handling or interacting with your application. For this reason, it's very important that you declare all of the features (from the list below) that your application uses.
+
+For some features, there may exist a specific attribute that allows you to define a version of the feature, such as the version of Open GL used (declared with glEsVersion). Other features that either do or do not exist for a device, such as a camera, are declared using the name attribute.
+
+Although the <uses-feature> element is only activated for devices running API Level 1 or higher, it is recommended to include these elements for all applications, even if the minSdkVersion is "3" or lower. Devices running older versions of the platform will simply ignore the element.
+
+**Note:** When declaring a feature, remember that you must also request permissions as appropriate. For example, you must still request the CAMERA permission before your application can access the camera API. Requesting the permission grants your application access to the appropriate hardware and software, while declaring the features used by your application ensures proper device compatibility.
+
+##Attributes:##
+
+***gaia:name***<br>
+Specifies a single hardware or software feature used by the application, as a descriptor string. Valid descriptor values are listed in the Hardware features and Software features tables, below.
+
+***gaia:required***<br>
+Boolean value that indicates whether the application requires the feature specified in gaia:name.
+
+* When you declare "gaia:required="true" for a feature, you are specifying that the application cannot function, or is not designed to function, when the specified feature is not present on the device.
+
+* When you declare "gaia:required="false" for a feature, it means that the application prefers to use the feature if present on the device, but that it is designed to function without the specified feature, if necessary.
+
+The default value for gaia:required if not declared is "true".
+
+***gaia:glEsVersion***<br>
+The OpenGL ES version required by the application. The higher 16 bits represent the major number and the lower 16 bits represent the minor number. For example, to specify OpenGL ES version 2.0, you would set the value as "0x00020000". To specify OpenGL ES 2.1, if/when such a version were made available, you would set the value as "0x00020001".
+
+An application should specify at most one gaia:glEsVersion attribute in its manifest. If it specifies more than one, the gaia:glEsVersion with the numerically highest value is used and any other values are ignored.
+
+If an application does not specify a gaia:glEsVersion attribute, then it is assumed that the application requires only OpenGL ES 1.0, which is supported by all gaia-powered devices.
+
+An application can assume that if a platform supports a given OpenGL ES version, it also supports all numerically lower OpenGL ES versions. Therefore, an application that requires both OpenGL ES 1.0 and OpenGL ES 2.0 must specify that it requires OpenGL ES 2.0.
+
+An application that can work with any of several OpenGL ES versions should only specify the numerically lowest version of OpenGL ES that it requires. (It can check at run-time whether a higher level of OpenGL ES is available.)
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+* PackageManager
+* FeatureInfo
+* ConfigurationInfo
+* [Uses Permission](Manifest/Uses Permission.html)
+* Filters on Google Play
+
+##Google Play and Feature-Based Filtering##
+
+Google Play filters the applications that are visible to users, so that users can see and download only those applications that are compatible with their devices. One of the ways it filters applications is by feature compatibility.
+
+To determine an application's feature compatibility with a given user's device, Google Play compares:
+
+* Features required by the application - an application declares features in <uses-feature> elements in its manifest.
+
+* Features available on the device, in hardware or software - a device reports the features it supports as read-only system properties.
+
+To ensure an accurate comparison of features, the Gaia Package Manager provides a shared set of feature constants that both applications and devices use to declare feature requirements and support. The available feature constants are listed in the Features Reference tables at the bottom of this document, and in the class documentation for PackageManager.
+
+When the user launches Google Play, the application queries the Package Manager for the list of features available on the device by calling getSystemAvailableFeatures(). The Store application then passes the features list up to Google Play when establishing the session for the user.
+
+Each time you upload an application to the Google Play Developer Console, Google Play scans the application's manifest file. It looks for <uses-feature> elements and evaluates them in combination with other elements, in some cases, such as <uses-sdk> and <uses-permission> elements. After establishing the application's set of required features, it stores that list internally as metadata associated with the application .apk and the application version.
+
+When a user searches or browses for applications using the Google Play application, the service compares the features needed by each application with the features available on the user's device. If all of an application's required features are present on the device, Google Play allows the user to see the application and potentially download it. If any required feature is not supported by the device, Google Play filters the application so that it is not visible to the user and not available for download.
+
+Because the features you declare in <uses-feature> elements directly affect how Google Play filters your application, it's important to understand how Google Play evaluates the application's manifest and establishes the set of required features. The sections below provide more information.
+
+###Filtering based on explicitly declared features###
+
+An explicitly declared feature is one that your application declares in a <uses-feature> element. The feature declaration can include a gaia:required=["true" | "false"] attribute (if you are compiling against API level 1 or higher), which lets you specify whether the application absolutely requires the feature and cannot function properly without it ("true"), or whether the application prefers to use the feature if available, but is designed to run without it ("false").
+
+Google Play handles explicitly declared features in this way:
+
+* If a feature is explicitly declared as being required, Google Play adds the feature to the list of required features for the application. It then filters the application from users on devices that do not provide that feature. For example:
+
+        <uses-feature gaia:name="android.hardware.camera" gaia:required="true" />
+
+* If a feature is explicitly declared as not being required, Google Play does not add the feature to the list of required features. For that reason, an explicitly declared non-required feature is never considered when filtering the application. Even if the device does not provide the declared feature, Google Play will still consider the application compatible with the device and will show it to the user, unless other filtering rules apply. For example:
+
+        <uses-feature gaia:name="android.hardware.camera" gaia:required="false" />
+
+* If a feature is explicitly declared, but without a gaia:required attribute, Google Play assumes that the feature is required and sets up filtering on it.
+
+In general, if your application is designed to run on Gaia and earlier versions, the gaia:required attribute is not available in the API and Google Play assumes that any and all <uses-feature> declarations are required.
+
+**Note:** By declaring a feature explicitly and including a gaia:required="false" attribute, you can effectively disable all filtering on Google Play for the specified feature.
+
+###Filtering based on implicit features###
+
+An implicit feature is one that an application requires in order to function properly, but which is not declared in a <uses-feature> element in the manifest file. Strictly speaking, every application should always declare all features that it uses or requires, so the absence of a declaration for a feature used by an application should be considered an error. However, as a safeguard for users and developers, Google Play looks for implicit features in each application and sets up filters for those features, just as it would do for an explicitly declared feature.
+
+An application might require a feature but not declare it because:
+
+* The application was compiled against an older version of the Gaia library and the <uses-feature> element was not available.
+* The developer incorrectly assumed that the feature would be present on all devices and a declaration was unnecessary.
+* The developer omitted the feature declaration accidentally.
+* The developer declared the feature explicitly, but the declaration was not valid. For example, a spelling error in the <uses-feature> element name or an unrecognized string value for the gaia:name attribute would invalidate the feature declaration.
+
+To account for the cases above, Google Play attempts to discover an application's implied feature requirements by examining other elements declared in the manifest file, specifically, <uses-permission> elements.
+
+If an application requests hardware-related permissions, Google Play assumes that the application uses the underlying hardware features and therefore requires those features, even though there might be no corresponding to <uses-feature> declarations. For such permissions, Google Play adds the underlying hardware features to the metadata that it stores for the application and sets up filters for them.
+
+For example, if an application requests the CAMERA permission but does not declare a <uses-feature> element for android.hardware.camera, Google Play considers that the application requires a camera and should not be shown to users whose devices do not offer a camera.
+
+If you don't want Google Play to filter based on a specific implied feature, you can disable that behavior. To do so, declare the feature explicitly in a <uses-feature> element and include a gaia:required="false" attribute. For example, to disable filtering derived from the CAMERA permission, you would declare the feature as shown below.
+
+        <uses-feature gaia:name="android.hardware.camera" gaia:required="false" />
+
+It's important to understand that the permissions that you request in <uses-permission> elements can directly affect how Google Play filters your application. The reference section Permissions that Imply Feature Requirements, below, lists the full set of permissions that imply feature requirements and therefore trigger filtering.
+
+##Special handling for Bluetooth feature##
+
+Google Play applies slightly different rules than described above, when determining filtering for Bluetooth.
+
+If an application declares a Bluetooth permission in a <uses-permission> element, but does not explicitly declare the Bluetooth feature in a <uses-feature> element, Google Play checks the version(s) of the Gaia platform on which the application is designed to run, as specified in the <uses-sdk> element.
+
+As shown in the table below, Google Play enables filtering for the Bluetooth feature only if the application declares its lowest or targeted platform as Gaia. However, note that Google Play applies the normal rules for filtering when the application explicitly declares the Bluetooth feature in a <uses-feature> element.
+
+**Table 1.** How Google Play determines the Bluetooth feature requirement for an application that requests a Bluetooth permission but does not declare the Bluetooth feature in a <uses-feature> element.
+
+<table border="1" width="1000">
+<tr><th>If minSdkVersion is ...</th><th>or targetSdkVersion is</th><th>Result</th></tr>
+<tr>
+  <td><=4 (or uses-sdk is not declared)</td>
+  <td><=4</td>
+  <td>Google Play will not filter the application from any devices based on their reported support for the android.hardware.bluetooth feature.</td>
+</tr>
+<tr>
+  <td><=4</td>
+  <td>>=5</td>
+  <td>Google Play filters the application from any devices that do not support the android.hardware.bluetooth feature (including older releases).</td>
+</tr>
+<tr>
+  <td>>=5</td>
+  <td>>=5</td>
+  <td>Google Play filters the application from any devices that do not support the android.hardware.bluetooth feature (including older releases).</td>
+</tr>
+</table>
+
+The examples below illustrate the different filtering effects, based on how Google Play handles the Bluetooth feature.
+
+In first example, an application that is designed to run on older API levels declares a Bluetooth permission, but does not declare the Bluetooth feature in a <uses-feature> element.
+Result: Google Play does not filter the application from any device.
+
+        <manifest ...>
+            <uses-permission gaia:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-sdk gaia:minSdkVersion="3" />
+            ...
+        </manifest>
+
+In the second example, below, the same application also declares a target API level of "1".
+Result: Google Play now assumes that the feature is required and will filter the application from all devices that do not report Bluetooth support, including devices running older versions of the platform.
+
+        <manifest ...>
+            <uses-permission gaia:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-sdk gaia:minSdkVersion="3" gaia:targetSdkVersion="5" />
+            ...
+        </manifest>
+
+Here the same application now specifically declares the Bluetooth feature.
+Result: Identical to the previous example (filtering is applied).
+
+        <manifest ...>
+            <uses-feature gaia:name="android.hardware.bluetooth" />
+            <uses-permission gaia:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-sdk gaia:minSdkVersion="3" gaia:targetSdkVersion="5" />
+            ...
+        </manifest>
+
+Finally, in the case below, the same application adds a gaia:required="false" attribute.
+Result: Google Play disables filtering based on Bluetooth feature support, for all devices.
+
+        <manifest ...>
+            <uses-feature gaia:name="android.hardware.bluetooth" gaia:required="false" />
+            <uses-permission gaia:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-sdk gaia:minSdkVersion="3" gaia:targetSdkVersion="5" />
+            ...
+        </manifest>
+
+##Testing the features required by your application##
+
+You can use the aapt tool, included in the Gaia SDK, to determine how Google Play will filter your application, based on its declared features and permissions. To do so, run aapt with the dump badging command. This causes aapt to parse your application's manifest and apply the same rules as used by Google Play to determine the features that your application requires.
+
+To use the tool, follow these steps:
+
+1、First, build and export your application as an unsigned .apk. If you are developing in Eclipse with ADT, right-click the project and select Gaia Tools > Export Unsigned Application Package. Select a destination filename and path and click OK.
+
+2、Next, locate the aapt tool, if it is not already in your PATH. If you are using SDK Tools r8 or higher, you can find aapt in the <SDK>/platform-tools/ directory.
+
+**Note:** You must use the version of aapt that is provided for the latest Platform-Tools component available.
+
+3、Run aapt using this syntax:
+
+$ aapt dump badging <path_to_exported_.apk>
+
+Here's an example of the command output for the second Bluetooth example, above:
+
+$ ./aapt dump badging BTExample.apk
+package: name='com.example.android.btexample' versionCode='' versionName=''
+uses-permission:'android.permission.BLUETOOTH_ADMIN'
+uses-feature:'android.hardware.bluetooth'
+sdkVersion:'3'
+targetSdkVersion:'5'
+application: label='BT Example' icon='res/drawable/app_bt_ex.png'
+launchable activity name='com.example.android.btexample.MyActivity'label='' icon=''
+uses-feature:'android.hardware.touchscreen'
+main
+supports-screens: 'small' 'normal' 'large'
+locales: '--_--'
+densities: '160'
+
+##Features Reference##
+
+The tables below provide reference information about hardware and software features and the permissions that can imply them on Google Play.
+
+###Hardware features###
+
+The table below describes the hardware feature descriptors supported by the most current platform release. To signal that your application uses or requires a hardware feature, declare each value in a gaia:name attribute in a separate <uses-feature> element.
+
+<table border="1" width="1000">
+<tr><th>Feature Type</th><th>Feature Descriptor</th><th>Description</th><th>Comments</th></tr>
+<tr>
+  <td>Audio</td>
+  <td>android.hardware.audio.low_latency</td>
+  <td>The application uses a low-latency audio pipeline on the device and is sensitive to delays or lag in sound input or output.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Bluetooth</td>
+  <td>android.hardware.bluetooth</td>
+  <td>The application uses Bluetooth radio features in the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Camera</td>
+  <td>android.hardware.camera</td>
+  <td>The application uses the device's camera. If the device supports multiple cameras, the application uses the camera that facing away from the screen.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.camera.autofocus</td>
+  <td>Subfeature. The application uses the device camera's autofocus capability.</td>
+  <td>These subfeatures implicitly declare the android.hardware.camera parent feature, unless declared with gaia:required="false".</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.camera.flash</td>
+  <td>Subfeature. The application uses the device camera's flash.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.camera.front</td>
+  <td>Subfeature. The application uses a front-facing camera on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.camera.any</td>
+  <td>The application uses at least one camera facing in any direction. Use this in preference to android.hardware.camera if a back-facing camera is not required.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Location</td>
+  <td>android.hardware.location</td>
+  <td>The application uses one or more features on the device for determining location, such as GPS location, network location, or cell location.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.location.network</td>
+  <td>Subfeature. The application uses coarse location coordinates obtained from a network-based geolocation system supported on the device.</td>
+  <td>These subfeatures implicitly declare the android.hardware.location parent feature, unless declared with gaia:required="false".</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.location.gps</td>
+  <td>Subfeature. The application uses precise location coordinates obtained from a Global Positioning System receiver on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Microphone</td>
+  <td>android.hardware.microphone</td>
+  <td>The application uses a microphone on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>NFC</td>
+  <td>android.hardware.nfc</td>
+  <td>The application uses Near Field Communications radio features in the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Sensors</td>
+  <td>android.hardware.sensor.accelerometer</td>
+  <td>The application uses motion readings from an accelerometer on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.sensor.barometer</td>
+  <td>The application uses the device's barometer.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.sensor.compass</td>
+  <td>The application uses directional readings from a magnetometer (compass) on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.sensor.gyroscope</td>
+  <td>The application uses the device's gyroscope sensor.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.sensor.light</td>
+  <td>The application uses the device's light sensor.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.sensor.proximity</td>
+  <td>The application uses the device's proximity sensor.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Screen</td>
+  <td>android.hardware.screen.landscape</td>
+  <td>The application requires landscape orientation.</td>
+  <td>For example, if your app requires portrait orientation, you should declare <uses-feature gaia:name="android.hardware.screen.portrait"/> so that only devices that support portrait orientation (whether always or by user choice) can install your app. If your application supports both orientations, then you don't need to declare either.
+
+Both orientations are assumed not required, by default, so your app may be installed on devices that support one or both orientations. However, if any of your activities request that they run in a specific orientation, using the gaia:screenOrientation attribute, then this also declares that the application requires that orientation. For example, if you declare gaia:screenOrientation with either "landscape", "reverseLandscape", or "sensorLandscape", then your application will be available only to devices that support landscape orientation. As a best practice, you should still declare your requirement for this orientation using a <uses-feature> element. If you declare an orientation for your activity using gaia:screenOrientation, but don't actually require it, you can disable the requirement by declaring the orientation with a <uses-feature> element and include gaia:required="false".
+
+For backwards compatibility, any device running a platform version that supports only API level 1 or lower is assumed to support both landscape and portrait.</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.screen.portrait</td>
+  <td>The application requires portrait orientation.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Telephony</td>
+  <td>android.hardware.telephony</td>
+  <td>The application uses telephony features on the device, such as telephony radio with data communication services.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.telephony.cdma</td>
+  <td>Subfeature. The application uses CDMA telephony radio features on the device.</td>
+  <td>These subfeatures implicitly declare the android.hardware.telephony parent feature, unless declared with gaia:required="false".</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.telephony.gsm</td>
+  <td>Subfeature. The application uses GSM telephony radio features on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Television</td>
+  <td>android.hardware.type.television</td>
+  <td>The application is designed for a television user experience.</td>
+  <td>This feature defines "television" to be a typical living room television experience: displayed on a big screen, where the user is sitting far away and the dominant form of input is something like a d-pad, and generally not through touch or a mouse/pointer-device.</td>
+</tr>
+<tr>
+  <td>Touchscreen</td>
+  <td>android.hardware.faketouch</td>
+  <td>The application uses basic touch interaction events, such as "click down", "click up", and drag.</td>
+  <td>When declared as required, this indicates that the application is compatible with a device only if it offers an emulated touchscreen ("fake touch" interface), or better. A device that offers a fake touch interface provides a user input system that emulates a subset of touchscreen capabilities. For example, a mouse or remote control that drives an on-screen cursor provides a fake touch interface. If your application requires basic point and click interaction (in other words, it won't work with only a d-pad controller), you should declare this feature. Because this is the minimum level of touch interaction, your app will also be compatible with devices that offer more complex touch interfaces.
+
+**Note:** Because applications require the android.hardware.touchscreen feature by default, if you want your application to be available to devices that provide a fake touch interface, you must also explicitly declare that a touch screen is not required by declaring <uses-feature gaia:name="android.hardware.touchscreen" gaia:required="false" /></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.faketouch.multitouch.distinct</td>
+  <td>The application performs distinct tracking of two or more "fingers" on a fake touch interface. This is a superset of the faketouch feature.</td>
+  <td>When declared as required, this indicates that the application is compatible with a device only if it supports touch emulation for events that supports distinct tracking of two or more fingers, or better.
+
+Unlike the distinct multitouch defined by android.hardware.touchscreen.multitouch.distinct, input devices that support distinct multi-touch with a fake touch interface will not support all two-finger gestures, because the input is being transformed to cursor movement on the screen. That is, single finger gestures on such a device move a cursor; two-finger swipes will result in single-finger touch events; other two-finger gestures will result in the corresponding two-finger touch event. An example device that supports distinct multi-touch with a fake touch interface is one that provides a trackpad for cursor movement which also supports two or more fingers.</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.faketouch.multitouch.jazzhand</td>
+  <td>The application performs distinct tracking of five or more "fingers" on a fake touch interface. This is a superset of the faketouch feature. </td>
+  <td>When declared as required, this indicates that the application is compatible with a device only if it supports touch emulation for events that supports distinct tracking of five or more fingers.
+
+Unlike the distinct multitouch defined by android.hardware.touchscreen.multitouch.jazzhand, input devices that support jazzhand multi-touch with a fake touch interface will not support all five-finger gestures, because the input is being transformed to cursor movement on the screen. That is, single finger gestures on such a device move a cursor; multi-finger gestures will result in single-finger touch events; other multi-finger gestures will result in the corresponding multi-finger touch event. An example device that supports distinct multi-touch with a fake touch interface is one that provides a trackpad for cursor movement which also supports five or more fingers.</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.touchscreen </td>
+  <td>The application uses touchscreen capabilities for gestures that are more interactive than basic touch events, such as a fling. This is a superset of the basic faketouch feature.</td>
+  <td>By default, your application requires this. As such, your application is not available to devices that provide only an emulated touch interface ("fake touch"), by default. If you want your application available to devices that provide a fake touch interface (or even devices that provide only a d-pad controller), you must explicitly declare that a touch screen is not required, by declaring android.hardware.touchscreen with gaia:required="false". You should do so even if your application uses-but does not require-a real touch screen interface.
+
+If your application does require a touch interface (in order to perform touch gestures such as a fling), then you don't need to do anything, because this is required by default. However, it's best if you explicitly declare all features used by your application, so you should still declare this if your app uses it.
+
+If you require more complex touch interaction, such as multi-finger gestures, you should declare the advanced touch screen features below.</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.touchscreen.multitouch</td>
+  <td>The application uses basic two-point multitouch capabilities on the device screen, such as for pinch gestures, but does not need to track touches independently. This is a superset of touchscreen feature.</td>
+  <td>This implicitly declares the android.hardware.touchscreen parent feature, unless declared with gaia:required="false".</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.touchscreen.multitouch.distinct</td>
+  <td>Subfeature. The application uses advanced multipoint multitouch capabilities on the device screen, such as for tracking two or more points fully independently. This is a superset of multitouch feature.</td>
+  <td>This implicitly declares the android.hardware.touchscreen.multitouch parent feature, unless declared with gaia:required="false".</td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.touchscreen.multitouch.jazzhand</td>
+  <td>The application uses advanced multipoint multitouch capabilities on the device screen, for tracking up to five points fully independently. This is a superset of distinct multitouch feature.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>USB</td>
+  <td>android.hardware.usb.host</td>
+  <td>The application uses USB host mode features (behaves as the host and connects to USB devices).</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.hardware.usb.accessory</td>
+  <td>The application uses USB accessory features (behaves as the USB device and connects to USB hosts).</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Wifi</td>
+  <td>android.hardware.wifi</td>
+  <td>The application uses 802.11 networking (wifi) features on the device.</td>
+  <td></td>
+</tr>
+</table>
+	 	 	
+###Software features###
+
+The table below describes the software feature descriptors supported by the most current platform release. To signal that your application uses or requires a software feature, declare each value in a gaia:name attribute in a separate <uses-feature> element.
+
+<table border="1" width="1000">
+<tr><th>Feature</th><th>Attribute Value </th><th>Description</th><th>Comments</th></tr>
+<tr>
+  <td>Live Wallpaper</td>
+  <td>android.software.live_wallpaper</td>
+  <td>The application uses or provides Live Wallpapers.</td>
+  <td></td>
+</tr>
+<tr>
+  <td>SIP/VOIP</td>
+  <td>android.software.sip</td>
+  <td>The application uses SIP service on the device.</td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>android.software.sip.voip</td>
+  <td>Subfeature. The application uses SIP-based VOIP service on the device.</td>
+  <td>This subfeature implicitly declares the android.software.sip parent feature, unless declared with gaia:required="false".</td>
+
+</tr>
+</table>
+ 		 		 	
+##Permissions that Imply Feature Requirements##
+
+Some feature constants listed in the tables above were made available to applications after the corresponding API; for example, the android.hardware.bluetooth feature was added in Gaia (API level 1), Because of this, some apps were able to use the API before they had the ability to declare that they require the API via the <uses-feature> system.
+
+To prevent those apps from being made available unintentionally, Google Play assumes that certain hardware-related permissions indicate that the underlying hardware features are required by default. For instance, applications that use Bluetooth must request the BLUETOOTH permission in a <uses-permission> element - for legacy apps, Google Play assumes that the permission declaration means that the underlying android.hardware.bluetooth feature is required by the application and sets up filtering based on that feature.
+
+The table below lists permissions that imply feature requirements equivalent to those declared in <uses-feature> elements. Note that <uses-feature> declarations, including any declared gaia:required attribute, always take precedence over features implied by the permissions below.
+
+For any of the permissions below, you can disable filtering based on the implied feature by explicitly declaring the implied feature explicitly, in a <uses-feature> element, with a gaia:required="false" attribute. For example, to disable any filtering based on the CAMERA permission, you would add this <uses-feature> declaration to the manifest file:
+
+<uses-feature gaia:name="android.hardware.camera" gaia:required="false" />
+
+<table border="1" width="1000">
+<tr><th>Category</th><th>This Permission...</th><th>Implies This Feature Requirement</th></tr>
+<tr>
+  <td>Bluetooth</td>
+  <td>BLUETOOTH</td>
+  <td>android.hardware.bluetooth
+(See Special handling for Bluetooth feature for details.)</td>
+</tr>
+<tr>
+  <td></td>
+  <td>BLUETOOTH_ADMIN</td>
+  <td>android.hardware.bluetooth</td>
+</tr>
+<tr>
+  <td>Camera</td>
+  <td>CAMERA</td>
+  <td>android.hardware.camera and
+android.hardware.camera.autofocus</td>
+</tr>
+<tr>
+  <td>Location</td>
+  <td>ACCESS_MOCK_LOCATION</td>
+  <td>android.hardware.location</td>
+</tr>
+<tr>
+  <td></td>
+  <td>ACCESS_LOCATION_EXTRA_COMMANDS</td>
+  <td>android.hardware.location</td>
+</tr>
+<tr>
+  <td></td>
+  <td>INSTALL_LOCATION_PROVIDER</td>
+  <td>android.hardware.location</td>
+</tr>
+<tr>
+  <td></td>
+  <td>ACCESS_COARSE_LOCATION</td>
+  <td>android.hardware.location.network and
+android.hardware.location</td>
+</tr>
+<tr>
+  <td></td>
+  <td>ACCESS_FINE_LOCATION</td>
+  <td>android.hardware.location.gps and
+android.hardware.location</td>
+</tr>
+<tr>
+  <td>Microphone</td>
+  <td>RECORD_AUDIO</td>
+  <td>android.hardware.microphone</td>
+</tr>
+<tr>
+  <td>Telephony</td>
+  <td>CALL_PHONE</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>CALL_PRIVILEGED</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>MODIFY_PHONE_STATE</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>PROCESS_OUTGOING_CALLS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>READ_SMS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>RECEIVE_SMS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>RECEIVE_MMS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>RECEIVE_WAP_PUSH</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>SEND_SMS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>WRITE_APN_SETTINGS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td></td>
+  <td>WRITE_SMS</td>
+  <td>android.hardware.telephony</td>
+</tr>
+<tr>
+  <td>Wifi</td>
+  <td>ACCESS_WIFI_STATE </td>
+  <td>android.hardware.wifi</td>
+</tr>
+<tr>
+  <td></td>
+  <td>ACCESS_WIFI_STATE </td>
+  <td>android.hardware.wifi</td>
+</tr>
+<tr>
+  <td></td>
+  <td>CHANGE_WIFI_MULTICAST_STATE</td>
+  <td>android.hardware.wifi</td>
+</tr>
+</table>

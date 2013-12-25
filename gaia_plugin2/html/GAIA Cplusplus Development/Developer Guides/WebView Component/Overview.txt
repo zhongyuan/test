@@ -1,0 +1,9 @@
+#Overview#
+
+When a GAIA application wants to display webpages and interact with them, it needs to use WebView API. GAIA WebView API is based on WebKit rendering engine GAIA port.
+
+WebView class is the major entrance for WebView API. It is a UI component that displays webpages. As a basic component for GAIA Browser, WebView can also be integrated into an application. It can either display a remote/local webpage or load static HTML data. 
+
+WebSettings helps WebView app for managing settings state for a WebView.
+
+GAIA WebView applications also need to handle WebView API callbacks by implementing WebViewClient and WebChromeClient.

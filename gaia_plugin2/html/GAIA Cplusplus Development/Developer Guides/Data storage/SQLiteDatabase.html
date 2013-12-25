@@ -1,0 +1,95 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Data storage.html">Data storage</a>&gt;
+</div>
+<h1>Saving Data in SQL Databases</h1>
+<p>Saving data to a database is ideal for repeating or structured data, such as contact information. This class assumes that you are familiar with SQL databases in general and helps you get started with SQLite databases on GAIA. The APIs you'll need to use a database on GAIA are available in the gaia/content/storage/SQLiteDatabase class.</p>
+<h2>Create a Database Using a SQL Helper</h2>
+<p>Just like files that you save on the device's internal storage, GAIA stores your database in private disk space that's associated application. Your data is secure, because by default this area is not accessible to other applications.</p>
+<p>A useful set of APIs is available in the SQLiteOpenHelper class. When you use this class to obtain references to your database, the system performs the potentially long-running operations of creating and updating the database only when needed and not during app startup. All you need to do is call getWritableDatabase() or getReadableDatabase().</p>
+<p>To use SQLiteOpenHelper, create a subclass that overrides the onCreate(), onUpgrade() and onOpen() callback methods.</p>
+<p>For example, here's an implementation of SQLiteOpenHelper</p>
+<pre><code>class SubSQLiteOpenHelper : public SQLiteOpenHelper
+{
+  public:
+    SubSQLiteOpenHelper(Page* page,const String&amp; name, int32_t version) : SQLiteOpenHelper(page, name, version){}
+    ~SubSQLiteOpenHelper(){}
+    void onCreate(const SQLiteDatabase&amp; db)
+    {
+        String* sql = new Sting("CREATE TABLE IF NOT EXISTS db_name (_id INTEGER  PRIMARY KEY , name TEXT , email TEXT)");
+        db.execSQL(*sql);
+    }
+    void onUpgrade(const SQLiteDatabase&amp; db, int32_t oldVersion, int32_t newVersion)
+    {
+        db.execSQL("DROP TABLE IF EXISTS db_name");
+        onCreate(db);
+    }
+};
+</code></pre>
+<h4>Get Readable Database</h4>
+<p>To access your database, instantiate your subclass of SQLiteOpenHelper:</p>
+<pre><code>String* dbName = new String("DatabaseTest.db");
+int32_t version = 1;
+SQLiteDatabase* readableDatabase;
+SubSQLiteOpenHelper*  helper = new SubSQLiteOpenHelper(this, *dbName, version);
+if(helper != NULL){
+    readableDatabase = helper-&gt;getWritableDatabase();
+}
+</code></pre>
+<h4>Get Writable Database</h4>
+<p>Create or open a database than will be used for reading and writing.</p>
+<pre><code>String* dbName = new String("DatabaseTest.db");
+int32_t version = 1;
+SQLiteDatabase* writableDatabase;
+SubSQLiteOpenHelper*  helper = new SubSQLiteOpenHelper(this, *dbName, version);
+if(helper != NULL){
+    writableDatabase = helper-&gt;getWritableDatabase();
+}
+</code></pre>
+<h2>Create Database</h2>
+<p>SQLiteDatabase has methods to create, delete, execute SQL commands, and perform other common database management tasks.
+The other way, you can then get an instance of your SQLiteOpenHelper implementation using the constructor you've defined. To write to and read from the database, call getWritableDatabase() and getReadableDatabase(), respectively. These both return a SQLiteDatabase object that represents the database and provides methods for SQLite operations.</p>
+<pre><code>String* path = new String("/data/data/DatabaseTest/DatabaseTest.db");
+SQLiteDatabase* database = SQLiteDatabase::openOrCreateDatabaseN(*path);
+</code></pre>
+<h2>Put Information into a Database</h2>
+<p>Add data into the database by passing a ContentValues object to the add() method:</p>
+<pre><code>ContentValues* cv = new ContentValues();
+String* key1 = new String("name");
+String* key2 = new String("email");
+String* val1 = new String("example_name");
+String* val2 = new String("example_mail@mail.com");
+cv-&gt;addValue(*key1, *val1);
+cv-&gt;addValue(*key2, *val2);
+database-&gt;insert("table_name", NULL, *cv);
+</code></pre>
+<p>The first argument for insert() is simply the table name. The second argument provides the name of a column in which the framework can insert NULL in the event that the ContentValues is empty (if you instead set this to "null", then the framework will not insert a row when there are no values).</p>
+<h2>Read Information from a Database</h2>
+<p>To read from a database, use the query() method, passing it your selection criteria and desired columns. The method combines elements of insert() and update(), except the column list defines the data you want to fetch, rather than the data to insert. The results of the query are returned to you in a Cursor object.</p>
+<p>Query the given table, returning a Cursor over the result set.</p>
+<pre><code>String* tableName = new String("database_test");
+Cursor* cursor = database-&gt;query(*tableName);
+StringArray* columnName(2);
+columnName[0]= "column_name_1";
+columnName[1]= "column_name_2";
+Cursor* cursor = database-&gt;queryN(*tableName, columnName, NULL, NULL, NULL, NULL, NULL);
+
+int32_t columnNamePosition  = 0;
+int32_t columnValuePosition = 0;
+cursor-&gt;moveToFirst();
+while(cursor-&gt;moveToNext()){
+   String columnName  = cursor-&gt;getColumnName(columnNamePosition);
+   String columnValue = cursor-&gt;getString(columnValuePostion); 
+}
+</code></pre>
+<h2>Delete Information from a Database</h2>
+<p>To delete rows from a table, you need to provide selection criteria that identify the rows. The database API provides a mechanism for creating selection criteria that protects against SQL injection. The mechanism divides the selection specification into a selection clause and selection arguments. The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause. Because the result isn't handled the same as a regular SQL statement, it is immune to SQL injection.</p>
+<pre><code>database-&gt;deleteRows("table_name", new String("_id=1"), NULL);
+</code></pre>
+<h2>Update a Database</h2>
+<p>Convenience method for updating rows in the database.</p>
+<pre><code>ContentValues* cv = new ContentValues();
+String* key = new String("email");
+String* val = new String("example_mail@mail.com");
+cv-&gt;addValue(key,val);
+database-&gt;update("table_name", *cv2, new String("_id=1"), NULL);
+</code></pre>

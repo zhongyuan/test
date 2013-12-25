@@ -1,0 +1,53 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Page Alias</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;page-alias gaia:enabled=["true" | "false"]
+                gaia:exported=["true" | "false"]
+                gaia:icon="drawable resource"
+                gaia:label="string resource"
+                gaia:name="string"
+                gaia:permission="string"
+                gaia:targetPage="string" &gt;
+        ...
+    &lt;/page-alias&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Application.html">Application</a></p>
+</blockquote>
+<h2>Can contain:</h2>
+<blockquote>
+<p><a href="Manifest/Demand Filter.html">Demand Filter</a><br>
+   <a href="Manifest/Meta Data.html">Meta Data</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>An alias for a Page, named by the targetPage attribute. The target must be in the same application as the alias and it must be declared before the alias in the manifest.</p>
+<p>The alias presents the target Page as a independent entity. It can have its own set of demand filters, and they, rather than the demand filters on the target Page itself, determine which demands can activate the target through the alias and how the system treats the alias. For example, the demand filters on the alias may specify the "android.intent.action.MAIN" and "android.intent.category.LAUNCHER" flags, causing it to be represented in the application launcher, even though none of the filters on the target Page itself set these flags.</p>
+<p>With the exception of targetPage, <page-alias> attributes are a subset of <a href="Manifest/Page.html">Page</a> attributes. For attributes in the subset, none of the values set for the target carry over to the alias. However, for attributes not in the subset, the values set for the target page also apply to the alias.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:enabled</em></strong><br>
+Whether or not the target Page can be instantiated by the system through this alias - "true" if it can be, and "false" if not. The default value is "true".</p>
+<p>The <a href="Manifest/Application.html">Application</a> element has its own enabled attribute that applies to all application components, including Page aliases. The <a href="Manifest/Application.html">Application</a> and <a href="Manifest/Page Alias.html">Page Alias</a> attributes must both be "true" for the system to be able to instantiate the target Page through the alias. If either is "false", the alias does not work.</p>
+<p><strong><em>gaia:exported</em></strong><br>
+Whether or not components of other applications can launch the target Page through this alias - "true" if they can, and "false" if not. If "false", the target Page can be launched through the alias only by components of the same application as the alias or applications with the same user ID.</p>
+<p>The default value depends on whether the alias contains demand filters. The absence of any filters means that the Page can be invoked through the alias only by specifying the exact name of the alias. This implies that the alias is intended only for application-internal use (since others would not know its name) - so the default value is "false". On the other hand, the presence of at least one filter implies that the alias is intended for external use - so the default value is "true".</p>
+<p><strong><em>gaia:icon</em></strong><br>
+An icon for the target Page when presented to users through the alias. See the <a href="Manifest/Page.html">Page</a> element's icon attribute for more information.</p>
+<p><strong><em>gaia:label</em></strong><br>
+A user-readable label for the alias when presented to users through the alias. See the <page> element's label attribute for more information.</p>
+<p><strong><em>gaia:name</em></strong><br>
+A unique name for the alias. The name should resemble a fully qualified class name. But, unlike the name of the target Page, the alias name is arbitrary; it does not refer to an actual class.</p>
+<p><strong><em>gaia:permission</em></strong><br>
+The name of a permission that clients must have to launch the target Page or get it to do something via the alias. If a caller of startPage() or startPageForResult() has not been granted the specified permission, the target Page will not be activated.</p>
+<p>This attribute supplants any permission set for the target Page itself. If it is not set, a permission is not needed to activate the target through the alias.</p>
+<p>For more information on permissions, see the Permissions section in the introduction.</p>
+<p><strong><em>gaia:targetPage</em></strong><br>
+The name of the Page that can be activated through the alias. This name must match the name attribute of a <a href="Manifest/Page.html">Page</a> element that precedes the alias in the manifest.</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<blockquote>
+<p><a href="Manifest/Page.html">Page</a></p>
+</blockquote>

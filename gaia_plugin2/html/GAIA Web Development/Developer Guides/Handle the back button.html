@@ -1,0 +1,15 @@
+<div>
+<a href = "../../GAIA Web Development.html">GAIA Web Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Handle the back button</h1>
+<p>By default, GAIA Web Runtime will process the back button event automatically: go back through the web pages history; and if the history stack is empty, hide the application and go to somewhere else depends on how you application is launched. So you can customize the back button behavior by taking the history stack into account. You may resort to the HTML5 history API for explicitly maintaing history.</p>
+<p>Overriding the default back button handler is also possible. Pressing the back button triggers a normal keypress event with keyCode equals 27. You can listen to the event and stop the default behavior. Here is an example:</p>
+<pre><code>window.addEventListener("keypress",
+    function callback(e) {
+        if (e.keyCode == 27) {
+            // Add code here to process for the back button
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, false);
+</code></pre>

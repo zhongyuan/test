@@ -1,8 +1,0 @@
-#COS SDK Install#
-
-The document for COS SDK installation 
-
-[Requirement](SDK installation/Requirement.html#Requirement)
-
-
-

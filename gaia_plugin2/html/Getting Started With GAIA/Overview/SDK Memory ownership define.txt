@@ -1,0 +1,57 @@
+﻿# SDK memory ownership define #
+
+To try to unify the **new** / **delete** and instance passing, we wrote a high-level concept for reference while you define your SDK APIs. You should think about it and try to follow this concept. If you have any questions, feel free to discuss with your leaders / archs.
+>
+**The instance new by user should be deleted by user**
+>
+**The instance new by framework should be deleted by framework.**
+>
+**If we (sdk wrapper or framework) new an instance and pass to the user (AP), we can’t auto free it. We need to clearly tell the user about ownership transfer - > use prefix new or postfix N in function name**
+> 
+**If users new an instance and pass to sdk api, sdk / framework will hold this and auto delete later. So we need let user the know he can't delete it. -> user postfix N in parameter name**
+> 
+**If users new an instance and pass to sdk api, sdk / framework will hold this a while so user must delete it in a certain stage. -> Write comment to let user know when to delete it.**
+> 
+**Avoid complex relations like wrap new an instance to user and user may pass to framework. Then who should free this instance without dangling pointer?**
+
+## Some sample ##
+If your SDK class has Singleton character, you should provide class static member function ***getInstance()*** to get this instance. The life-cycle of it will continue to process dead or till no one reference it .
+
+Some class don’t have public constructor and need use factory function to help new the instance
+ex: 
+ >
+	class Scene {
+	public:
+		static Scene* SceneFactory(const Page& page);
+	}
+
+Scene is not Singleton, but everyone Page only have one Scene. We use SceneFactory to get page instance, use mScene->SceneDestroy() to free it. Try naming such function as XxxxFactory, XxxxDestory or other familiar names.
+
+The class member function will return an new instance (any type) to caller
+
+**case 1**
+
+If the class type of the instance doesn’t have or don’t need polymorphism (or we say dynamic dispatch), you can reference how String do it.
+ex: 
+>
+	class String {
+		String concat(const String& string) const;
+	}
+
+In concat function, it generate a temporary object and directly return to caller (throw RVO or copy constructor). This temporary object will live in the stack of caller function and auto recycling after stack pop. If user want to pass this temporary object from it function stack to heap or other stack, it may use copy constructor to generate another instance.
+
+**case 2**
+
+If need polymorphism (or we say dynamic dispatch) or NULL return, that means you need return pointer instead of reference. In this case please name your function lead with “new” keyword or postfix N. The new keyword has ownership transfer meaning.
+ex:
+>
+	class Resource{
+		TypedArray* newTypedArray(int id);
+		TypeArray* popTypedArrayN(int id);
+	}
+
+**case 3**
+
+like case 2, but this instance maybe pass to framework: One solution is, since we have proxy / stub between SDK and framework, we can let framework hold the internal implementation. Then use can delete the SDK instance at anytime, and if user or SDK layer want to get this object again, we can return a new SDK instance but point to same framework implementation instance.
+
+However if you condition too complex, no simple solution, then you need write clearly comments to tell user and other developer when or how is safe to free the instance. Like tell user to delete it on ***::onTear*** or tell him call some function to inform framework while deleting etc.

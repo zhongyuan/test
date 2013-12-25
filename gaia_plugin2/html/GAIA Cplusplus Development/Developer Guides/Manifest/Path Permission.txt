@@ -1,0 +1,55 @@
+#Path Permission#
+
+***syntax:***
+
+        <path-permission gaia:path="string"
+                         gaia:pathPrefix="string"
+                         gaia:pathPattern="string"
+                         gaia:permission="string"
+                         gaia:readPermission="string"
+                         gaia:writePermission="string" />
+
+##Contained in:##
+
+>    [Provider](Manifest/Provider.html)
+
+##Description:##
+
+Defines the path and required permissions for a specific subset of data within a content provider. This element can be specified multiple times to supply multiple paths.
+
+##Attributes:##
+
+***gaia:path***<br>
+A complete URI path for a subset of content provider data. Permission can be granted only to the particular data identified by this path. When used to provide search suggestion content, it must be appended with "/search_suggest_query".
+
+***gaia:pathPrefix***<br>
+The initial part of a URI path for a subset of content provider data. Permission can be granted to all data subsets with paths that share this initial part.
+
+***gaia:pathPattern***<br>
+A complete URI path for a subset of content provider data, but one that can use the following wildcards:
+
+* An asterisk ('*'). This matches a sequence of 0 to many occurrences of the immediately preceding character.
+* A period followed by an asterisk (".*"). This matches any sequence of 0 or more characters.
+
+Because '\\' is used as an escape character when the string is read from XML (before it is parsed as a pattern), you will need to double-escape. For example, a literal '\*' would be written as "\\\*" and a literal '\\' would be written as "\\\\". This is basically the same as what you would need to write if constructing the string in Java code.
+
+For more information on these types of patterns, see the descriptions of PATTERN_LITERAL, PATTERN_PREFIX, and PATTERN_SIMPLE_GLOB in the PatternMatcher class.
+
+***gaia:permission***<br>
+The name of a permission that clients must have in order to read or write the content provider's data. This attribute is a convenient way of setting a single permission for both reading and writing. However, the readPermission and writePermission attributes take precedence over this one.
+
+***gaia:readPermission***<br>
+A permission that clients must have in order to query the content provider.
+
+***gaia:writePermission***<br>
+A permission that clients must have in order to make changes to the data controlled by the content provider.
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+        SearchManager
+        manifest.permission
+        Security and Permissions

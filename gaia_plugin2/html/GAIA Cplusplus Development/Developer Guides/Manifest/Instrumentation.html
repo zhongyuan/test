@@ -1,0 +1,34 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Instrumentation</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;instrumentation gaia:functionalTest=["true" | "false"]
+                     gaia:handleProfiling=["true" | "false"]
+                     gaia:icon="drawable resource"
+                     gaia:label="string resource"
+                     gaia:name="string"
+                     gaia:targetPackage="string" /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Config.html">Config</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Declares an Instrumentation class that enables you to monitor an application's interaction with the system. The Instrumentation object is instantiated before any of the application's components.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:functionalTest</em></strong><br>
+Whether or not the Instrumentation class should run as a functional test - "true" if it should, and "false" if not. The default value is "false".</p>
+<p><strong><em>gaia:handleProfiling</em></strong><br>
+Whether or not the Instrumentation object will turn profiling on and off - "true" if it determines when profiling starts and stops, and "false" if profiling continues the entire time it is running. A value of "true" enables the object to target profiling at a specific set of operations. The default value is "false".</p>
+<p><strong><em>gaia:icon</em></strong><br>
+An icon that represents the Instrumentation class. This attribute must be set as a reference to a drawable resource.</p>
+<p><strong><em>gaia:label</em></strong><br>
+A user-readable label for the Instrumentation class. The label can be set as a raw string or a reference to a string resource.</p>
+<p><strong><em>gaia:name</em></strong><br>
+The name of the Instrumentation subclass. This should be a fully qualified class name (such as, "com.example.project.StringInstrumentation"). However, as a shorthand, if the first character of the name is a period, it is appended to the package name specified in the <manifest> element.</p>
+<p>There is no default. The name must be specified.</p>
+<p><strong><em>gaia:targetPackage</em></strong><br>
+The application that the Instrumentation object will run against. An application is identified by the package name assigned in its manifest file by the <a href="Manifest/Config.html">Config</a> element.</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>

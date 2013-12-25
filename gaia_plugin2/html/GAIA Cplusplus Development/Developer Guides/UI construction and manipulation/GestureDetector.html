@@ -1,0 +1,117 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>Gesture Detector</h1>
+<p>Application can use gesture detector component to implement simple gesture behavior.<br />
+Gestures allow users to interact with your app by manipulating the screen objects you provide. The following table shows the core gesture set that is supported in Gaia</p>
+<table border="1">
+    <tr>
+        <td><b>Behavior</b></td>
+        <td><b>Action</b></td>
+    <tr>
+    <tr>
+        <td><i>Touch</i><br>Triggers the default functionality for a given item.</td>
+        <td>Press, lift</td>
+    <tr>
+    <tr>
+        <td><i>Long Press</i><br>Enters data selection mode. Allows you to select one or more items in a view and act upon the data using a contextual action bar.<br>Avoid using long press for showing contextual menus.</td>
+        <td>Press, lift</td>
+    <tr>
+    <tr>
+        <td><i>Swipe</i><br>Scrolls overflowing content, or navigates between views in the same hierarchy.</td>
+        <td>Press, move, lift</td>
+    <tr>
+    <tr>
+        <td><i>Double touch</i><br>Zooms into content. Also used as a secondary gesture for text selection.</td>
+        <td>Two touches in quick succession</td>
+    <tr>
+    <tr>
+        <td><i>Pinch open</i><br>Zooms into content.</td>
+        <td>2-finger press, move outwards, lift</td>
+    <tr>
+    <tr>
+        <td><i>Pinch close</i><br>Zooms out of content.</td>
+        <td>2-finger press, move inwards, lift</td>
+    <tr>
+</table>
+
+<hr />
+<h2>Basic Usage</h2>
+<p>Before you start to handle the gesture, you should add <em>GestureDetector</em> or <em>ScaleGestureDetecor_to your _Page</em> first. <em>GestureDetector</em> detects various gestures and events using the supplied <em>MotionEvents</em>.<br />
+To use <em>GestureDetector</em>, you need to create a listener inheritd <em>OnControllGestureListener</em> first.</p>
+<pre><code>// Assume you already have the listener named mpListener, assign mpListener and your gaia::core::Page to your own GestureDetector(named mpDetector):
+GestureDetector* mpDetector = new GestureDetector(static_cast&lt;Page*&gt;(this), static_cast&lt;OnControllGestureListener*&gt;(mpListener));
+// If you want to customize a GestureDetector(here called MyGestureDetector) and override onTouchEvent, add 'true' as the third parameter when calling constructor:
+MyGestureDetector* mpDetector = new MyGestureDetector(static_cast&lt;Page*&gt;(this), static_cast&lt;OnControllGestureListener*&gt;(mpListener), true);
+
+// Please be awared, GestureDetector::onTouchEvent will not block and handle the event automatically.
+// You NEED to call it in the callback funciton Page::onTouchEvent of your Page(here called MyGestureTest).
+bool MyGestureTest::onTouchEvent(MotionEvent* event) {
+    return mpDetector-&gt;onTouchEvent(*event); // here we call GestureDetector to handle the event, and pass the event to the registered listener.
+}
+</code></pre>
+<p><em>ScaleGestureDetector</em> detects transformation gestures involving more than one pointer ("multitouch") using the supplied <i>MotionEvent</i>s.<br />
+To use ScaleGestureDetector, you need to create a listener inheritd OnScaleGestureListener first.</p>
+<pre><code>// Assume you already have the listener named mpListener, assign mpListener and your gaia::core::Page to your ScaleGestureDetector(named mpDetector):
+mpDetector = new ScaleGestureDetector(static_cast&lt;Page*&gt;(this), static_cast&lt;OnScaleGestureListener*&gt;(mpListener));
+// If you want to customize a ScaleGestureDetector(here called MyScaleGestureDetector) and override onTouchEvent, add 'true' as the third parameter when calling the constructor:
+MyScaleGestureDetector* mpDetector = new MyScaleGestureDetector(static_cast&lt;Page*&gt;(this), static_cast&lt;OnScaleGestureListener*&gt;(mpListener), true);
+
+// Please be awared, ScaleGestureDetector::onTouchEvent will not block and handle the event automatically.
+// You NEED to call it in the callback funciton Page::onTouchEvent of your Page(here called MyGestureTest).
+bool MyGestureTest::onTouchEvent(MotionEvent* event) {
+    return mpDetector-&gt;onTouchEvent(*event); // here we call ScaleGestureDetector to handle the event, and pass the event to the registered listener.
+}
+</code></pre>
+<hr />
+<h2>Gesture Event Handler</h2>
+<p>Below paragraph shows the listeners with their unique callback functions to handle gestures:</p>
+<table border="1">
+    <tr>
+        <td><b>Listener</b></td>
+        <td><b>Action</b></td>
+        <td><b>Callback</b></td>
+        <td><b>Description</b></td>
+    <tr>
+        <td rowspan=6>OnControllGestureListener</td>
+            <td rowspan=3>Touch</td>
+                <td>onDown</td>
+                <td>Notified when a tap occurs with the down <i>MotionEvent</i> that triggered it.</td>
+            <tr>
+                <td>onShowPress</td>
+                <td>The user has performed a down <i>MotionEvent</i> and not performed a move or up yet.</td>
+            <tr>
+                <td>onSingleTapUp</td>
+                <td>Notified when a tap occurs with the up <i>MotionEvent</i> that triggered it.</td>
+        <tr>
+            <td rowspan=1>Long Press</td>
+                <td>onLongPress</td>
+                <td>Notified when a long press occurs with the initial on down <i>MotionEvent</i> that trigged it.</td>
+        <tr>
+            <td rowspan=2>Swipe</td>
+                <td>onScroll</td>
+                <td>Notified when a scroll occurs with the initial on down <i>MotionEvent</i> and the current move <i>MotionEvent</i>.</td>
+            <tr>
+                <td>onFling</td>
+                <td>Notified of a fling event when it occurs with the initial on down <i>MotionEvent</i> and the matching up <i>MotionEvent</i>.</td>
+    <tr>
+        <td rowspan=2>OnLDoubleTapistener</td>
+            <td rowspan=2>Double Touch</td>
+                <td>onDoubleTap</td>
+                <td>Notified when a double-tap occurs.</td>
+            <tr>
+                <td>onDoubleTapEvent</td>
+                <td>Notified when an event within a double-tap gesture occurs, including the down, move, and up events.</td>
+    <tr>
+        <td rowspan=3>OnScaleGestureListener</td>
+            <td rowspan=3>Pinch Open<br>&<br>Pinch Close</td>
+                <td>onScaleBegin</td>
+                <td>Responds to the beginning of a scaling gesture.</td>
+            <tr>
+                <td>onScale</td>
+                <td>Responds to scaling events for a gesture in progress.</td>
+            <tr>
+                <td>onScaleEnd</td>
+                <td>Responds to the end of a scale gesture.</td>
+    <tr>
+</table>

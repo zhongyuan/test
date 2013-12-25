@@ -1,0 +1,34 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Application Component.html">Application Component</a>&gt;
+</div>
+<h1>Gaia Application Fundamentals</h1>
+<p>Gaia Applications are written in the C++ programming language. The GAIA sdk compile the code--along with any data and resource file--into GAIA package, an archive file with an .apk suffix.</p>
+<p>Once installed on a device, each GAIA application lives in its own security sandbox:<br />
+</p>
+<ul>
+<li>The GAIA operating system is a multi-user Linux system in which each application is a different user.</li>
+<li>By default, the system assigns each application a unique Linux user ID (the ID is used only by the system and is unknown to the application). The system sets permissions for all the files in an application so that only the user ID assigned to that application can access them. </li>
+<li>By default, every application runs in its own Linux process. GAIA starts the process when any of the application's components need to be executed, then shuts down the process when it's no longer needed or when the system must recover memory for other applications.</li>
+</ul>
+<p>In this way, the GAIA system implements the <em>principle of least privilege</em>. That is, each application, by default, has access only to the components that it requires to do its work and no more. This creates a very secure environment in which an application cannot access parts of the system for which it is not given permission.</p>
+<h1>Application Components</h1>
+<hr />
+<p>Application components are the essential building blocks of an GAIA application. Each component is a different point through which the system can enter your application. Not all components are actual entry points for the user and some depend on each other, but each one exists as its own entity and plays a specific role—each one is a unique building block that helps define your application's overall behavior.</p>
+<p>There are four different types of application components. Each type serves a distinct purpose and has a distinct lifecycle that defines how the component is created and destroyed.</p>
+<p>Here are the four types of application components:</p>
+<ul>
+<li>Pages</li>
+</ul>
+<p>Please refer to <a href="Page.html">Page</a> for more information.</p>
+<ul>
+<li>Delegate</li>
+</ul>
+<p>Please refer to <a href="Delegate.html">Delegate</a> for more information.</p>
+<ul>
+<li>ContentProviders</li>
+</ul>
+<p>Please refer to <a href="Content Provider.html">ContentProviders</a> for more information.</p>
+<ul>
+<li>ProcessCommunication</li>
+</ul>
+<p>Please refer to <a href="Process Communication.html">ProcessCommunication</a> for more information.</p>

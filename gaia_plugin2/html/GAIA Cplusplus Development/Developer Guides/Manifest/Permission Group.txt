@@ -1,0 +1,42 @@
+#Permission Group#
+
+***syntax:***
+
+        <permission-group gaia:description="string resource"
+                          gaia:icon="drawable resource"
+                          gaia:label="string resource"
+                          gaia:name="string" />
+
+##Contained in:##
+
+>    [Config](Manifest/Config.html)
+
+##Description:##
+
+Declares a name for a logical grouping of related permissions. Individual permission join the group through the permissionGroup attribute of the <permission> element. Members of a group are presented together in the user interface.
+
+Note that this element does not declare a permission itself, only a category in which permissions can be placed. See the <permission> element for element for information on declaring permissions and assigning them to groups.
+
+##Attributes:##
+
+***gaia:description***<br>
+User-readable text that describes the group. The text should be longer and more explanatory than the label. This attribute must be set as a reference to a string resource. Unlike the label attribute, it cannot be a raw string.
+
+***gaia:icon***<br>
+An icon representing the permission. This attribute must be set as a reference to a drawable resource containing the image definition.
+
+***gaia:label***<br>
+A user-readable name for the group. As a convenience, the label can be directly set as a raw string while you're developing the application. However, when the application is ready to be published, it should be set as a reference to a string resource, so that it can be localized like other strings in the user interface.
+
+***gaia:name***<br>
+The name of the group. This is the name that can be assigned to a [Permission](Manifest/Permission.html) element's <permissionGroup> attribute.
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+>    [Permission](Manifest/Permission.html)<br>
+>    [Permission Tree](Manifest/Permission Tree.html)<br>
+>    [Uses Permission](Manifest/Uses Permission.html)

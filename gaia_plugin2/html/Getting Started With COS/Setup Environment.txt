@@ -1,9 +1,0 @@
-#Setup Enviroment#
-
-Following is about the overview of the COS SDK and COS IDE and how to install them.
-
-[Architecture](Setup Environment/Architecture.html)
-
-[IDE installation](Setup Environment/IDE installation.html)
-
-[SDK installation](Setup Environment/SDK installation.html)

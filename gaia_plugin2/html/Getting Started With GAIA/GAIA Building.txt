@@ -1,0 +1,3 @@
+#GAIA Buildingp#The following is about building the GAIA ROM.
+
+[Building GAIA step by step](GAIA Building/Building GAIA step by step.html)

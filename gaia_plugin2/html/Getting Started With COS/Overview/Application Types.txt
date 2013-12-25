@@ -1,9 +1,0 @@
-#Application Types#
-
-The COS platform provides various application types to protect the primary resource of your application from security threats. Select your application type carefully, depending on the following description:
-
-##C++ Application##
-The C++ application type is the default COS application type, for which COS provides many APIs and which allows you to create various kinds of applications to meet diverse needs.
-
-##Web Application##
-COS supports standalone web applications developed with HTML, CSS and JavaScript. Web applications are powered by COS's Web Runtime, which supports advanced HTML5 features and a variety of standard web APIs. COS enables you create rich web applications with great user experiences, and by taking advantage of open web technologies, you can also make your applications run across multiple platforms.

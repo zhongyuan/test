@@ -1,0 +1,29 @@
+#Category#
+
+***syntax:***
+
+        <category gaia:name="string" />
+
+##Contained in:##
+
+>    [Demand Filter](Manifest/Demand Filter.html)
+
+##Description:##
+
+Adds a category name to a demand filter. See Intents and demand Filters for details on intent filters and the role of category specifications within a filter.
+
+##Attributes:##
+
+***gaia:name***<br>
+The name of the category. Standard categories are defined in the Intent class as CATEGORY_name constants. The name assigned here can be derived from those constants by prefixing "android.intent.category." to the name that follows CATEGORY_. For example, the string value for CATEGORY_LAUNCHER is "android.intent.category.LAUNCHER".
+
+Custom categories should use the package name as a prefix, to ensure that they are unique.
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+>    [Action](Manifest/Action.html)<br>
+>    [Data](Manifest/Data.html)

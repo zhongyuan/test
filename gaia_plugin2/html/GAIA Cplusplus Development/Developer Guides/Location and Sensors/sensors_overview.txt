@@ -1,0 +1,415 @@
+<h1 itemprop="name" >Sensors Overview</h1>
+
+Most Gaia-powered devices have built-in sensors that measure motion, orientation, and various environmental conditions. These sensors are capable of providing raw data with high precision and accuracy, and are useful if you want to monitor three-dimensional device movement or positioning, or you want to monitor changes in the ambient environment near a device. For example, a game might track readings from a device's gravity sensor to infer complex user gestures and motions, such as tilt, shake, rotation, or swing. Likewise, a weather application might use a device's temperature sensor and humidity sensor to calculate and report the dewpoint, or a travel application might use the geomagnetic field sensor and accelerometer to report a compass bearing.
+
+The Gaia platform supports three broad categories of sensors:
+
+*   Motion sensors
+
+    These sensors measure acceleration forces and rotational forces along three axes. This category includes accelerometers, gravity sensors, gyroscopes, and rotational vector sensors.
+
+*   Environmental sensors
+
+    These sensors measure various environmental parameters, such as ambient air temperature and pressure, illumination, and humidity. This category includes barometers, photometers, and thermometers.
+
+*   Position sensors
+
+    These sensors measure the physical position of a device. This category includes orientation sensors and magnetometers.
+
+
+You can access sensors available on the device and acquire raw sensor data by using the Gaia sensor framework. The sensor framework provides several classes and interfaces that help you perform a wide variety of sensor-related tasks. For example, you can use the sensor framework to do the following:
+
+*   Determine which sensors are available on a device.
+*   Determine an individual sensor's capabilities, such as its maximum range, manufacturer, power requirements, and resolution.
+*   Acquire raw sensor data and define the minimum rate at which you acquire sensor data.
+*   Register and unregister sensor event listeners that monitor sensor changes.
+
+This topic provides an overview of the sensors that are available on the Gaia platform. It also provides an introduction to the sensor framework.
+
+<h2 id="sensors-intro">Introduction to Sensors</h2>
+
+The Gaia sensor framework lets you access many types of sensors. Some of these sensors are hardware-based and some are software-based. Hardware-based sensors are physical components built into a handset or tablet device. They derive their data by directly measuring specific environmental properties, such as acceleration, geomagnetic field strength, or angular change. Software-based sensors are not physical devices, although they mimic hardware-based sensors. Software-based sensors derive their data from one or more of the hardware-based sensors and are sometimes called virtual sensors or synthetic sensors. The linear acceleration sensor and the gravity sensor are examples of software-based sensors. Table 1 summarizes the sensors that are supported by the Gaia platform.
+
+Few Gaia-powered devices have every type of sensor. For example, most handset devices and tablets have an accelerometer and a magnetometer, but fewer devices have barometers or thermometers. Also, a device can have more than one sensor of a given type. For example, a device can have two gravity sensors, each one having a different range.
+
+<p class="table-caption" id="table1">
+  <strong>Table 1.</strong> Sensor types supported by the Gaia platform.
+<table>
+  <tr>
+    <th scope="col" style="white-space:nowrap">Sensor</th>
+    <th scope="col" style="white-space:nowrap">Type</th>
+    <th scope="col" style="white-space:nowrap">Description</th>
+    <th scope="col" style="white-space:nowrap">Common Uses</th>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aa029f573a00f6356374292ae4d2eba83">TYPE_ACCELEROMETER</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the acceleration force in m/s<sup>2</sup> that is applied to a device on all three physical axes (x, y, and z), including the force of gravity.</td>
+    <td>Motion detection (shake, tilt, etc.).</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a1d10b8a3b3b009ecab84042b84131b11">TYPE_AMBIENT_TEMPERATURE</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the ambient room temperature in degrees Celsius (&deg;C). See note below.</td>
+    <td>Monitoring air temperatures.</td>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aac3e04b0d451f8e91f3cfff3457a75a4">TYPE_GRAVITY</a></code></td>
+    <td>Software or Hardware</td>
+    <td>Measures the force of gravity in m/s<sup>2</sup> that is applied to a device on all
+      three physical axes (x, y, z).</td>
+    <td>Motion detection (shake, tilt, etc.).</td>
+   </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a26fad073ac83c615596789318babadeb">TYPE_GYROSCOPE</a></code></td>
+    <td>Hardware</td>
+    <td>Measures a device's rate of rotation in rad/s around each of the three physical axes (x, y, and z).</td>
+    <td>Rotation detection (spin, turn, etc.).</td>
+   </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a473c7366e2d04d7ee12f551ccd2aeca8">TYPE_LIGHT</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the ambient light level (illumination) in lx.</td>
+    <td>Controlling screen brightness.</td>
+   </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a6346532a133bec5122905342264b9873">TYPE_LINEAR_ACCELERATION</a></code></td>
+    <td>Software or Hardware</td>
+     <td>Measures the acceleration force in m/s<sup>2</sup> that is applied to a device on all three physical axes (x, y, and z), excluding the force of gravity.</td>
+    <td>Monitoring acceleration along a single axis.</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aa98182bc673dc00f20a2ed1261045f16">TYPE_MAGNETIC_FIELD</a></code></td>
+    <td>Hardware</td>
+      <td>Measures the ambient geomagnetic field for all three physical axes (x, y, z) in &mu;T.</td>
+    <td>Creating a compass.</td>
+  </tr>
+  <tr>
+    <td><code><a href="/gaia/hardware/Sensor.html#TYPE_ORIENTATION">TYPE_ORIENTATION</a></code></td>
+    <td>Software</td>
+     <td>Measures degrees of rotation that a device makes around all three physical axes (x, y, z). As of API level 3 you can obtain the inclination matrix and rotation matrix for a device by using the gravity sensor and the geomagnetic field sensor in conjunction with the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#ac503bfbf3bd3ccb4b5ef1c5f2e63b0a8">getRotationMatrix()</a></code> method.</td>
+    <td>Determining device position.</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a5a7f2028a61c009eecbc0d83f56c2743">TYPE_PRESSURE</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the ambient air pressure in hPa or mbar.</td>
+    <td>Monitoring air pressure changes.</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092af942823ee5fe89e88c9cee66260346c6">TYPE_PROXIMITY</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the proximity of an object in cm relative to the view screen of a device. This sensor is typically used to determine whether a handset is being held up to a person's ear.</td>
+    <td>Phone position during a call.</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a992002bb494e87ad4ac4a006a8b94108">TYPE_RELATIVE_HUMIDITY</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the relative ambient humidity in percent (%).</td>
+    <td>Monitoring dewpoint, absolute, and relative humidity.</td>
+  </tr>
+  <tr>
+    <td><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a8aa0eeeaeeab87625280625dcbe823bd">TYPE_ROTATION_VECTOR</a></code></td>
+    <td>Software or Hardware</td>
+    <td>Measures the orientation of a device by providing the three elements of the device's rotation vector.</td>
+    <td>Motion detection and rotation detection.</td>
+  </tr>
+  <tr>
+    <td><code><a href="/gaia/hardware/Sensor.html#TYPE_TEMPERATURE">TYPE_TEMPERATURE</a></code></td>
+    <td>Hardware</td>
+    <td>Measures the temperature of the device in degrees Celsius (&deg;C). This sensor implementation varies across devices and this sensor was replaced with the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a1d10b8a3b3b009ecab84042b84131b11">TYPE_AMBIENT_TEMPERATURE</a></code> sensor in API Level 14</td>
+    <td>Monitoring temperatures.</td>
+  </tr>
+</table>
+</p>
+
+<h3>Sensor Framework</h3>
+
+You can access these sensors and acquire raw sensor data by using the Gaia sensor framework.
+The sensor framework is part of the <code><a href="/gaia/hardware/package-summary.html">Gaia.hardware</a></code> package and includes the following
+classes and interfaces:
+
+<dl>
+<dt><code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html">SensorManager</a></code></dt>
+<dd>You can use this class to create an instance of the sensor service. This class provides various methods for accessing and listing sensors, registering and unregistering sensor event listeners, and acquiring orientation information. This class also provides several sensor constants that are used to report sensor accuracy, set data acquisition rates, and calibrate sensors.</dd>
+<dt><code><a href="../../../../da/dbb/_sensor_8h.html">Sensor</a></code></dt>
+<dd>You can use this class to create an instance of a specific sensor. This class provides various methods that let you determine a sensor's capabilities.</dd>
+<dt><code><a href="/gaia/hardware/SensorEvent.html">SensorEvent</a></code></dt>
+<dd>The system uses this class to create a sensor event object, which provides information about a sensor event. A sensor event object includes the following information: the raw sensor data, the type of sensor that generated the event, the accuracy of the data, and the timestamp for the event.</dd>
+<dt><code><a href="../../../../d2/dae/classgaia_1_1system_1_1_sensor_event_listener.html">SensorEventListener</a></code></dt>
+<dd>You can use this interface to create two callback methods that receive notifications (sensor events) when sensor values change or when sensor accuracy changes.</dd>
+</dl>
+
+In a typical application you use these sensor-related APIs to perform two basic tasks:
+
+*   <strong>Identifying sensors and sensor capabilities</strong>
+
+    Identifying sensors and sensor capabilities at runtime is useful if your application has features that rely on specific sensor types or capabilities. For example, you may want to identify all of the sensors that are present on a device and disable any application features that rely on sensors that are not present. Likewise, you may want to identify all of the sensors of a given type so you can choose the sensor implementation that has the optimum performance for your application.
+
+*   <strong>Monitor sensor events</strong>
+
+    Monitoring sensor events is how you acquire raw sensor data. A sensor event occurs every time a sensor detects a change in the parameters it is measuring. A sensor event provides you with four pieces of information: the name of the sensor that triggered the event, the timestamp for the event, the accuracy of the event, and the raw sensor data that triggered the event.
+
+<h2 id="sensors-identify">Identifying Sensors and Sensor Capabilities</h2>
+
+The Gaia sensor framework provides several methods that make it easy for you to determine at runtime which sensors are on a device. The API also provides methods that let you determine the capabilities of each sensor, such as its maximum range, its resolution, and its power requirements.
+
+To identify the sensors that are on a device you first need to get a reference to the sensor service. To do this, you create an instance of the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html">SensorManager</a></code> class by calling the <code><a href="/gaia/content/Context.html#getSystemService(java.lang.String)">getSystemService()</a></code> method and passing in the <code><a href="/gaia/content/Context.html#SENSOR_SERVICE">SENSOR_SERVICE</a></code> argument. For example:
+
+	private SensorManager mSensorManager;
+	...
+	mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+Next, you can get a listing of every sensor on a device by calling the
+<code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a98b05241b2fe6f5084838e41ce33b224">getSensorList()</a></code> method and using the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aeb883c255bef1ccd440e7d63280b3cf8">TYPE_ALL</a></code> constant. For example:
+
+	List<Sensor> deviceSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
+
+If you want to list all of the sensors of a given type, you could use another constant instead of
+<code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aeb883c255bef1ccd440e7d63280b3cf8">TYPE_ALL</a></code> such as <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a26fad073ac83c615596789318babadeb">TYPE_GYROSCOPE</a></code>,
+<code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a6346532a133bec5122905342264b9873">TYPE_LINEAR_ACCELERATION</a></code>, or
+<code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aac3e04b0d451f8e91f3cfff3457a75a4">TYPE_GRAVITY</a></code>.
+
+
+You can also determine whether a specific type of sensor exists on a device by using the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#aa0e72f4f1886fe3e072e340a444f113e">getDefaultSensor()</a></code> method and passing in the type constant for a specific sensor. If a device has more than one sensor of a given type, one of the sensors must be designated as the default sensor. If a default sensor does not exist for a given type of sensor, the method call returns null, which means the device does not have that type of sensor. For example, the following code checks whether there's a magnetometer on a device:
+
+	private SensorManager mSensorManager;
+	...
+	mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	if (mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null){
+		// Success! There's a magnetometer.
+	}
+	else {
+		// Failure! No magnetometer.
+	}
+
+> <strong>Note:</strong> Gaia does not require device manufacturers to build any
+particular types of sensors into their Gaia-powered devices, so devices can have a wide range of
+sensor configurations.
+
+In addition to listing the sensors that are on a device, you can use the public methods of the
+<code><a href="../../../../da/dbb/_sensor_8h.html">Sensor</a></code> class to determine the capabilities and attributes of individual
+sensors. This is useful if you want your application to behave differently based on which sensors or
+sensor capabilities are available on a device. For example, you can use the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a0e572ddf329395c103b76fb816c62c16">getResolution()</a></code> and <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a2911813e905f042cb4dce143ab01c124">getMaximumRange()</a></code>
+methods to obtain a sensor's resolution and maximum range of measurement. You can also use the
+<code><a href="/gaia/hardware/Sensor.html#getPower()">getPower()</a></code> method to obtain a sensor's power requirements.
+
+Two of the public methods are particularly useful if you want to optimize your application for
+different manufacturer's sensors or different versions of a sensor. For example, if your application
+needs to monitor user gestures such as tilt and shake, you could create one set of data filtering
+rules and optimizations for newer devices that have a specific vendor's gravity sensor, and another
+set of data filtering rules and optimizations for devices that do not have a gravity sensor and have
+only an accelerometer. The following code sample shows you how you can use the <code><a href="/gaia/hardware/Sensor.html#getVendor()">getVendor()</a></code> and <code><a href="/gaia/hardware/Sensor.html#getVersion()">getVersion()</a></code> methods to do
+this. In this sample, we're looking for a gravity sensor that lists GAIA Inc. as the vendor and
+has a version number of 3. If that particular sensor is not present on the device, we try to use the
+accelerometer.
+
+	private SensorManager mSensorManager;
+	private Sensor mSensor;
+
+	...
+
+	mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+	if (mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY) != NULL) {
+		List<Sensor> gravSensors = mSensorManager.getSensorList(Sensor.TYPE_GRAVITY);
+		for (int i=0; i<gravSensors.size(); i++) {
+			if ((gravSensors.get(i).getVendor().contains("GAIA Inc.")) &&
+				(gravSensors.get(i).getVersion() == 3)){
+				// Use the version 3 gravity sensor.
+				mSensor = gravSensors.get(i);
+			}
+		}
+	} else {
+		// Use the accelerometer.
+		if (mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != NULL) {
+			mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		} else {
+			// Sorry, there are no accelerometers on your device.
+			// You can't play this game.
+		}
+	}
+
+Another useful method is the <code><a href="/gaia/hardware/Sensor.html#getMinDelay()">getMinDelay()</a></code> method, which returns the minimum time interval (in microseconds) a sensor can use to sense data. Any sensor that returns a non-zero value for the <code><a href="/gaia/hardware/Sensor.html#getMinDelay()">getMinDelay()</a></code> method is a streaming sensor. Streaming sensors sense data at regular intervals and were introduced in Gaia 2.3 (API Level 9). If a sensor returns zero when you call the <code><a href="/gaia/hardware/Sensor.html#getMinDelay()">getMinDelay()</a></code> method, it means the sensor is not a streaming sensor because it reports data only when there is a change in the parameters it is sensing.
+
+The <code><a href="/gaia/hardware/Sensor.html#getMinDelay()">getMinDelay()</a></code> method is useful because it lets you determine the maximum rate at which a sensor can acquire data. If certain features in your application require high data acquisition rates or a streaming sensor, you can use this method to determine whether a sensor meets those requirements and then enable or disable the relevant features in your application accordingly.
+
+> <strong>Caution:</strong> A sensor's maximum data acquisition rate is not necessarily the rate at which the sensor framework delivers sensor data to your application. The sensor framework reports data through sensor events, and several factors influence the rate at which your application receives sensor events. For more information, see <a href="#sensors-monitor">Monitoring Sensor Events</a>.
+
+<h2 id="sensors-monitor">Monitoring Sensor Events</h2>
+
+To monitor raw sensor data you need to implement two callback methods that are exposed through the <code><a href="../../../../d2/dae/classgaia_1_1system_1_1_sensor_event_listener.html">SensorEventListener</a></code> interface: <code><a href="/gaia/hardware/SensorEventListener.html#onAccuracyChanged(android.hardware.Sensor, int)">onAccuracyChanged()</a></code> and <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged()</a></code>. The Gaia system calls these methods whenever the following occurs:
+
+*   <strong>A sensor's accuracy changes.</strong>
+
+    In this case the system invokes the <code><a href="/gaia/hardware/SensorEventListener.html#onAccuracyChanged(android.hardware.Sensor, int)">onAccuracyChanged()</a></code> method, providing
+    you with a reference to the <code><a href="../../../../da/dbb/_sensor_8h.html">Sensor</a></code> object that changed and the
+    new accuracy of the sensor. Accuracy is represented by one of four status constants:
+    <code><a href="/gaia/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_LOW">SENSOR_STATUS_ACCURACY_LOW</a></code>,
+    <code><a href="/gaia/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_MEDIUM">SENSOR_STATUS_ACCURACY_MEDIUM</a></code>,
+    <code><a href="/gaia/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH">SENSOR_STATUS_ACCURACY_HIGH</a></code>,
+    or <code><a href="/gaia/hardware/SensorManager.html#SENSOR_STATUS_UNRELIABLE">SENSOR_STATUS_UNRELIABLE</a></code>.
+
+*   <strong>A sensor reports a new value.</strong>
+
+    In this case the system invokes the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged()</a></code> method, providing you with a <code><a href="/gaia/hardware/SensorEvent.html">SensorEvent</a></code> object. A <code><a href="/gaia/hardware/SensorEvent.html">SensorEvent</a></code> object contains information about the new sensor data, including: the accuracy of the data, the sensor that generated the data, the timestamp at which the data was generated, and the new data that the sensor recorded.
+
+The following code shows how to use the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged()</a></code> method to monitor data from the light sensor. This example displays the raw sensor data in a <code><a href="../../../../d9/d0f/classgaia_1_1ui_1_1_text_widget.html">TextView</a></code> that is defined in the main.xml file as <code>sensor_data</code>.
+
+	public class SensorActivity extends Activity implements SensorEventListener {
+		private SensorManager mSensorManager;
+		private Sensor mLight;
+
+		@Override
+		public final void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.main);
+
+			mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+			mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+		}
+
+		@Override
+		public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+			// Do something here if sensor accuracy changes.
+		}
+
+		@Override
+		public final void onSensorChanged(SensorEvent event) {
+			// The light sensor returns a single value.
+			// Many sensors return 3 values, one for each axis.
+			float lux = event.values[0];
+			// Do something with this sensor value.
+		}
+
+		@Override
+		protected void onResume() {
+			super.onResume();
+			mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
+		}
+
+		@Override
+		protected void onPause() {
+			super.onPause();
+			mSensorManager.unregisterListener(this);
+		}
+	}
+
+In this example, the default data delay (<code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#aeba17548a2e461bbed361f6bf961ac53a9c2cdc6301177cc82a31941979e3e2b9">SENSOR_DELAY_NORMAL</a></code>) is specified when the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a0a3e9a304a3a2bfd6db8fd4a783b7bed">registerListener()</a></code> method is invoked. The data delay (or sampling rate) controls the interval at which sensor events are sent to your application via the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged()</a></code> callback method. The default data delay is suitable for monitoring typical screen orientation changes and uses a delay of 200,000 microseconds. You can specify other data delays, such as <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#aeba17548a2e461bbed361f6bf961ac53a60f7aa2313bad76b28077392c8ceba9b">SENSOR_DELAY_GAME</a></code> (20,000 microsecond delay), <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#aeba17548a2e461bbed361f6bf961ac53aded92b0a55ac5880a60f70a957b37a85">SENSOR_DELAY_UI</a></code> (60,000 microsecond delay), or <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#aeba17548a2e461bbed361f6bf961ac53a155807b2779032940c9e75e0aefc4d9c">SENSOR_DELAY_FASTEST</a></code> (0 microsecond delay). As of Gaia 3.0 (API Level 11) you can also specify the delay as an absolute value (in microseconds).
+
+The delay that you specify is only a suggested delay. The Gaia system and other applications can alter this delay. As a best practice, you should specify the largest delay that you can because the system typically uses a smaller delay than the one you specify (that is, you should choose the slowest sampling rate that still meets the needs of your application). Using a larger delay imposes a lower load on the processor and therefore uses less power.
+
+There is no public method for determining the rate at which the sensor framework is sending sensor events to your application; however, you can use the timestamps that are associated with each sensor event to calculate the sampling rate over several events. You should not have to change the sampling rate (delay) once you set it. If for some reason you do need to change the delay, you will have to unregister and reregister the sensor listener.
+
+It's also important to note that this example uses the <code><a href="../../../../db/d3f/classgaia_1_1core_1_1_page.html#a0b47e3c55dc288fbe839d45e02e93a8c">onResume()</a></code> and <code><a href="../../../../db/d3f/classgaia_1_1core_1_1_page.html#a5c729b3d3c8022fde662431647830eab">onPause()</a></code> callback methods to register and unregister the sensor event listener. As a best practice you should always disable sensors you don't need, especially when your activity is paused. Failing to do so can drain the battery in just a few hours because some sensors have substantial power requirements and can use up battery power quickly. The system will not disable sensors automatically when the screen turns off.
+
+<h2 id="sensors-configs">Handling Different Sensor Configurations</h2>
+
+Gaia does not specify a standard sensor configuration for devices, which means device manufacturers can incorporate any sensor configuration that they want into their Gaia-powered devices. As a result, devices can include a variety of sensors in a wide range of configurations. For example, the Motorola Xoom has a pressure sensor, but the Samsung Nexus S does not. Likewise, the Xoom and Nexus S have gyroscopes, but the HTC Nexus One does not. If your application relies on a specific type of sensor, you have to ensure that the sensor is present on a device so your app can run successfully. You have two options for ensuring that a given sensor is present on a device:
+
+*   Detect sensors at runtime and enable or disable application features as appropriate.
+*   Use GAIA Play filters to target devices with specific sensor configurations.
+
+Each option is discussed in the following sections.
+
+<h4><strong>Detecting sensors at runtime</strong></h4>
+
+If your application uses a specific type of sensor, but doesn't rely on it, you can use the sensor framework to detect the sensor at runtime and then disable or enable application features as appropriate. For example, a navigation application might use the temperature sensor, pressure sensor, GPS sensor, and geomagnetic field sensor to display the temperature, barometric pressure, location, and compass bearing. If a device doesn't have a pressure sensor, you can use the sensor framework to detect the absence of the pressure sensor at runtime and then disable the portion of your application's UI that displays pressure. For example, the following code checks whether there's a pressure sensor on a device:
+
+	private SensorManager mSensorManager;
+	...
+	mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	if (mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE) != null){
+		// Success! There's a pressure sensor.
+	}
+	else {
+		// Failure! No pressure sensor.
+	}
+
+<h4>Using GAIA Play filters to target specific sensor configurations</h4>
+
+If you are publishing your application on GAIA Play you can use the <a href="/guide/topics/manifest/uses-feature-element.html"><code><uses-feature> </code></a> element in your manifest file to filter your application from devices that do not have the appropriate sensor configuration for your application. The <code><uses-feature></code> element has several hardware descriptors that let you filter applications based on the presence of specific sensors. The sensors you can list include: accelerometer, barometer, compass (geomagnetic field), gyroscope, light, and proximity. The following is an example manifest entry that filters apps that do not have an accelerometer:
+
+	<uses-feature android:name="android.hardware.sensor.accelerometer"
+		          android:required="true" />
+
+If you add this element and descriptor to your application's manifest, users will see your application on GAIA Play only if their device has an accelerometer.
+
+You should set the descriptor to <code>android:required="true"</code> only if your application relies entirely on a specific sensor. If your application uses a sensor for some functionality, but still runs without the sensor, you should list the sensor in the <code>&lt;uses-feature&gt;</code> element, but set the descriptor to <code>android:required="false"</code>. This helps ensure that devices can install your app even if they do not have that particular sensor. This is also a project management best practice that helps you keep track of the features your application uses. Keep in mind, if your application uses a particular sensor, but still runs without the sensor, then you should detect the sensor at runtime and disable or enable application features as appropriate.
+
+<h2 id="sensors-coords">Sensor Coordinate System</h2>
+
+In general, the sensor framework uses a standard 3-axis coordinate system to express data values. For most sensors, the coordinate system is defined relative to the device's screen when the device is held in its default orientation (see figure 1). When a device is held in its default orientation, the X axis is horizontal and points to the right, the Y axis is vertical and points up, and the Z axis points toward the outside of the screen face. In this system, coordinates behind the screen have negative Z values. This coordinate system is used by the following sensors:
+
+*   <a href="
+../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aa029f573a00f6356374292ae4d2eba83">Acceleration sensor</a>
+*   <a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aac3e04b0d451f8e91f3cfff3457a75a4">Gravity sensor</a>
+*   <a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a26fad073ac83c615596789318babadeb">Gyroscope</a>
+*   <a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a6346532a133bec5122905342264b9873">Linear acceleration sensor</a>
+*   <a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092aa98182bc673dc00f20a2ed1261045f16">Geomagnetic field sensor</a>
+
+<div class="figure" style="width: 269px;">
+<img src="images/axis_device.png" alt="" height="225" />
+<p class="img-caption">
+<strong>Figure 1.</strong> Coordinate system (relative to a device) that's used by the Sensor API.
+</p>
+</div>
+
+The most important point to understand about this coordinate system is that the axes are not swapped when the device's screen orientation changes&mdash;that is, the sensor's coordinate system never changes as the device moves. This behavior is the same as the behavior of the OpenGL coordinate system.
+
+Another point to understand is that your application must not assume that a device's natural (default) orientation is portrait. The natural orientation for many tablet devices is landscape. And the sensor coordinate system is always based on the natural orientation of a device.
+
+Finally, if your application matches sensor data to the on-screen display, you need to use the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#ac503bfbf3bd3ccb4b5ef1c5f2e63b0a8">getRotation()</a></code> method to determine screen rotation, and then use the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#aa1d1ac9ad458bd6754d3426552197dc0">remapCoordinateSystem()</a></code> method to map sensor coordinates to screen coordinates. You need to do this even if your manifest specifies portrait-only display.
+
+For more information about the sensor coordinate system, including information about how to handle screen rotations, see <a href="http://android-developers.blogspot.com/2010/09/one-screen-turn-deserves-another.html">One Screen Turn Deserves Another</a>.
+
+> <strong>Note:</strong> Some sensors and methods use a coordinate system that is relative to the world's frame of reference (as opposed to the device's frame of reference). These sensors and methods return data that represent device motion or device position relative to the earth. For more information, see the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#a6d1f396404335c01922e0d07edfc1888">getOrientation()</a></code> method, the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#ac503bfbf3bd3ccb4b5ef1c5f2e63b0a8">getRotationMatrix()</a></code> method, <a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#a6d1f396404335c01922e0d07edfc1888">Orientation Sensor</a>, and <a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#a02e1ac5fc1a8719ba21150acb9562397">Rotation Vector Sensor</a>.
+
+<h2 id="sensors-practices">Best Practices for Accessing and Using Sensors</h2>
+
+As you design your sensor implementation, be sure to follow the guidelines that are discussed in this section. These guidelines are recommended best practices for anyone who is using the sensor framework to access sensors and acquire sensor data.
+
+<h4>Unregister sensor listeners</h4>
+
+Be sure to unregister a sensor's listener when you are done using the sensor or when the sensor activity pauses. If a sensor listener is registered and its activity is paused, the sensor will continue to acquire data and use battery resources unless you unregister the sensor. The following code shows how to use the <code><a href="../../../../db/d3f/classgaia_1_1core_1_1_page.html#a5c729b3d3c8022fde662431647830eab">onPause()</a></code> method to unregister a listener:
+
+	private SensorManager mSensorManager;
+	...
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mSensorManager.unregisterListener(this);
+	}
+
+For more information, see <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a74d4648fa5bd2f881c02423a75cc2127">unregisterListener(SensorEventListener)</a></code>.
+
+<h4>Don't test your code on the emulator</h4>
+
+You currently can't test sensor code on the emulator because the emulator cannot emulate sensors. You must test your sensor code on a physical device. There are, however, sensor simulators that you can use to simulate sensor output.
+
+<h4>Don't block the onSensorChanged() method</h4>
+
+Sensor data can change at a high rate, which means the system may call the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged(SensorEvent)</a></code> method quite often. As a best practice, you should do as little as possible within the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged(SensorEvent)</a></code> method so you don't block it. If your application requires you to do any data filtering or reduction of sensor data, you should perform that work outside of the <code><a href="/gaia/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)">onSensorChanged(SensorEvent)</a></code> method.
+
+<h4>Avoid using deprecated methods or sensor types</h4>
+
+Several methods and constants have been deprecated. In particular, the <code><a href="/gaia/hardware/Sensor.html#TYPE_ORIENTATION">TYPE_ORIENTATION</a></code> sensor type has been deprecated. To get orientation data you should use the <code><a href="../../../../da/d4e/classgaia_1_1system_1_1_sensor_utility.html#a6d1f396404335c01922e0d07edfc1888">getOrientation()</a></code> method instead. Likewise, the <code><a href="/gaia/hardware/Sensor.html#TYPE_TEMPERATURE">TYPE_TEMPERATURE</a></code> sensor type has been deprecated. You should use the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#af69c3f2b70149e6d1c3ee88234d7b092a1d10b8a3b3b009ecab84042b84131b11">TYPE_AMBIENT_TEMPERATURE</a></code> sensor type instead on devices that are running Gaia 4.0.
+
+<h4>Verify sensors before you use them</h4>
+
+Always verify that a sensor exists on a device before you attempt to acquire data from it. Don't assume that a sensor exists simply because it's a frequently-used sensor. Device manufacturers are not required to provide any particular sensors in their devices.
+
+<h4>Choose sensor delays carefully</h4>
+
+When you register a sensor with the <code><a href="../../../../d8/d36/classgaia_1_1system_1_1_sensor_manager.html#a0a3e9a304a3a2bfd6db8fd4a783b7bed">registerListener()</a></code> method, be sure you choose a delivery rate that is suitable for your application or use-case. Sensors can provide data at very high rates. Allowing the system to send extra data that you don't need wastes system resources and uses battery power.
+
+<p style="margin-left:20px;font-style:italic">
+ Portions of this page are modifications based on work created and <a href="http://code.google.com/policies.html">shared by the Android Open
+ Source Project</a> and used according to terms described in the <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons
+ 2.5 Attribution License</a>.
+</p>
+
+<p style="margin-left:20px;font-style:italic">
+ Portions of this page are modifications based on work created and <a href="http://code.google.com/policies.html">shared by the Android Open
+ Source Project</a> and used according to terms described in the <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons
+ 2.5 Attribution License</a>.
+</p>

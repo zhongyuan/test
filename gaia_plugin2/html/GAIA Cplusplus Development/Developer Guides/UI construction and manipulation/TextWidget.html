@@ -1,0 +1,275 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>TextWidet and EditWidget</h1>
+<ul>
+<li>Overview</li>
+<li>Basic Usage</li>
+<li><a href="#TextWidget">TextWidget</a><ul>
+<li>Style<ul>
+<li>Style Whole Paragraph of text</li>
+<li>Style individual spans of text</li>
+</ul>
+</li>
+<li>Linkfy</li>
+</ul>
+</li>
+<li><a href="#EditWidget">EditWidget</a><ul>
+<li>Retrive Displaying Text</li>
+<li>KeyListener</li>
+<li>InputFilter</li>
+<li>TextWatcher</li>
+<li>TransformationMethod</li>
+</ul>
+</li>
+</ul>
+<h2>Overview</h2>
+<p>In a Gaia application, you can use <a href="#TextWidget">TextWidget</a> to display text to the
+user, and you can use <a href="#EditWidget">EditWidget</a> to display text which
+is editable. Actually, <a href="#TextWidget">TextWidget</a> itself is a complete
+text editor but pre-configured to not allow editing, and
+<a href="#EditWidget">EditWidget</a> is pre-configured to allow editing by default.</p>
+<h2>Basic Usage</h2>
+<p>Here comes a basic usage of TextWidget and EditWidget, which
+demonstrated two of the fundamental functions: setText() and setHint().</p>
+<pre><code>void TextWidgetTest::onInit(Persistence* const savedInstanceState) {
+  // ask gaia framework to create a Scene for us
+  Scene* pScene = Scene::SceneFactory(static_cast&lt;Page*&gt;(this));
+
+  // construct a TextWidget and set it's text to "Hello, World"
+  TextWidget* pTextWidget = new TextWidget(static_cast&lt;Page*&gt;(this));
+  pTextWidget-&gt;setText("Hello, World");
+
+  // construct a EditWidget and set it's hint text to "Please
+  // enter something here:"
+  EditWidget* pEditWidget = new EditWidget(static_cast&lt;Page*&gt;(this));
+  pEditWidget-&gt;setHint("Please enter something here:");
+
+  // construct LinearController to contain/control our widgets
+  LinearController* pCtrl = new LinearController(static_cast&lt;Page*&gt;(this));
+  pCtrl-&gt;setOrientation(LinearController::VERTICAL);
+  pCtrl-&gt;addWidget(pTextWidget);
+  pCtrl-&gt;addWidget(pEditWidget);
+
+  // attach the LinearController and install the content on the Scene
+  pScene-&gt;attachAndSetupSceneLayout(pCtrl);
+}
+
+void TextWidgetTest::onTear() {
+  // get the Scene created by gaia framework
+  Scene* pScene = getSceneSingleton();
+
+  // ask gaia framework to delete itself and the WidgetController
+  // attached to it, and WidgetController will delete all it's
+  // child Widgets and WidgetController
+  pScene-&gt;SceneDestroy();
+}
+</code></pre>
+<p><img src="TextWidget_Basic_Usage.png" alt="TextWidget_Basic_Usage"
+height="50%" />
+<img src="TextWidget_Basic_Usage_Touch.png" alt="TextWidget_Basic_Usage_Touch"
+height="50%" /></p>
+<p>In this example, we provide basic usages of Scene and
+WidgetController(LinearController) as well so that you can see a more
+completed example, but in the following examples, we will focus on
+TextWidget and EditWidget themselves instead.</p>
+<h2 id="TextWidget">TextWidget</h2>
+
+<ul>
+<li>append()</li>
+<li>setText()</li>
+</ul>
+<p>Example:</p>
+<pre><code>TextWidget* pTextWidgetF = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetF-&gt;setText("Hello, World");
+pTextWidgetF-&gt;append(" text appended");
+
+TextWidget* pTextWidgetG = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetG-&gt;setText("Hello, World");
+pTextWidgetG-&gt;append(" text appended", 5, 14); // only last 9
+                                               // chars are appended ("appended")
+</code></pre>
+<p>Result:</p>
+<p><img src="TextWidget_Append.png" alt="TextWidget_Append"
+height="50%" /></p>
+<h3>Style</h3>
+<p>You can use functions TextWidget itself provides to style whole
+paragraph of text you set using setText(), but if you would like to
+style individual spans of text, you can pass SpannedString,
+SpannableString, or SpannableStringBuilder to setText().</p>
+<h4>Style Whole Paragraph of text</h4>
+<ul>
+<li>setTextSize()</li>
+<li>setTextColor()</li>
+<li>setTextScaleX()</li>
+<li>setSingleLine()</li>
+<li>setEllipsize()</li>
+<li>setTypeface()</li>
+</ul>
+<p>Example:</p>
+<pre><code>TextWidget* pTextWidgetA = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetA-&gt;setText("Hello, World");
+
+TextWidget* pTextWidgetB = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetB-&gt;setText(R::string::hello_world);
+
+TextWidget* pTextWidgetC = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetC-&gt;setText("Hello, World (in Color::GREEN)");
+pTextWidgetC-&gt;setTextColor(Color::GREEN);
+
+TextWidget* pTextWidgetD = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetD-&gt;setText("Hello, World (in 1.5x scale)");
+pTextWidgetD-&gt;setTextScaleX(1.5);
+
+TextWidget* pTextWidgetE = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetE-&gt;setText("Hello, World (in 20.5 scaled pixel)");
+pTextWidgetE-&gt;setTextSize(20.5);
+
+TextWidget* pTextWidgetH = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetH-&gt;setText("=1=abcdefghijklmnopqrstuvwxyz=2=abcdefghijklmnopqrstuvwxyz=3=abcdefghijklmnopqrstuvwxyz=4=abcdefghijklmnopqrstuvwxyz");
+pTextWidgetH-&gt;setSingleLine(true);
+pTextWidgetH-&gt;setEllipsize(TextWidget::END);
+
+TextWidget* pTextWidgetI = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetI-&gt;setText("=1=abcdefghijklmnopqrstuvwxyz=2=abcdefghijklmnopqrstuvwxyz=3=abcdefghijklmnopqrstuvwxyz=4=abcdefghijklmnopqrstuvwxyz");
+pTextWidgetI-&gt;setSingleLine(true);
+pTextWidgetI-&gt;setEllipsize(TextWidget::MARQUEE);
+
+TextWidget* pTextWidgetJ = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetJ-&gt;setText("=1=abcdefghijklmnopqrstuvwxyz=2=abcdefghijklmnopqrstuvwxyz=3=abcdefghijklmnopqrstuvwxyz=4=abcdefghijklmnopqrstuvwxyz");
+pTextWidgetJ-&gt;setSingleLine(true);
+pTextWidgetJ-&gt;setEllipsize(TextWidget::MIDDLE);
+
+TextWidget* pTextWidgetK = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetK-&gt;setText("=1=abcdefghijklmnopqrstuvwxyz=2=abcdefghijklmnopqrstuvwxyz=3=abcdefghijklmnopqrstuvwxyz=4=abcdefghijklmnopqrstuvwxyz");
+pTextWidgetK-&gt;setSingleLine(true);
+pTextWidgetK-&gt;setEllipsize(TextWidget::START);
+
+TextWidget* pTextWidgetL = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetL-&gt;setTypeface(*Typeface::MONOSPACE());
+pTextWidgetL-&gt;setText("Hi, my typeface should be set to monospace");
+
+TextWidget* pTextWidgetM = new TextWidget(static_cast&lt;Page*&gt;(this));
+pTextWidgetM-&gt;setTypeface(*Typeface::SERIF(), Typeface::ITALIC);
+pTextWidgetM-&gt;setText("Hi, my typeface should be set to italic serif");
+</code></pre>
+<p>Result:</p>
+<p><img src="TextWidget_Style_Whole.png" alt="TextWidget_Style_Whole"
+height="50%" /></p>
+<h4>Style individual spans of text</h4>
+<ul>
+<li>SpannedString</li>
+<li>SpannableString</li>
+<li>SpannableStringBuilder</li>
+</ul>
+<h3>Linkfy</h3>
+<ul>
+<li>setAutoLinkMask()</li>
+</ul>
+<h2 id="EditWidget">EditWidget</h2>
+
+<ul>
+<li>setHint()</li>
+<li>setHintTextColor()</li>
+<li>setCursorVisible()</li>
+</ul>
+<p>Example:</p>
+<pre><code>EditWidget* pEditWidget = new EditWidget(static_cast&lt;Page*&gt;(this));
+pEditWidget-&gt;setHint("You will not see cursor inside this EditWidget");
+pEditWidget-&gt;setHintTextColor(Color::BLUE);
+pEditWidget-&gt;setCursorVisible(false);
+</code></pre>
+<p><img src="TextWidget_EditWidget.png" alt="TextWidget_EditWidget"
+height="50%" />
+<img src="TextWidget_EditWidget_Touch.png" alt="TextWidget_EditWidget_Touch"
+height="50%" /></p>
+<h3>Retrive Displaying Text</h3>
+<ul>
+<li>getText()</li>
+</ul>
+<h3>KeyListener</h3>
+<ul>
+<li>setKeyListener()<ul>
+<li>DialerKeyListener</li>
+<li>DigitsKeyListener</li>
+<li>NumberKeyListener</li>
+<li>TextKeyListener</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>EditWidget* pEditWidgetDKL = new EditWidget(static_cast&lt;Page*&gt;(this));
+DigitsKeyListener* pDKListener = DigitsKeyListener::getInstance();
+// pEditWidgetDKL will accept digits input only
+pEditWidgetDKL-&gt;setKeyListener(*pDKListener);
+pEditWidgetDKL-&gt;setHint("DigitsKeyListener");
+</code></pre>
+<p>Result:</p>
+<p><img src="TextWidget_DigitsKeyListener.png" alt="TextWidget_DigitsKeyListener"
+height="50%" />
+<img src="TextWidget_DigitsKeyListener_Touch.png" alt="TextWidget_DigitsKeyListener_Touch"
+height="50%" /></p>
+<h3>InputFilter</h3>
+<ul>
+<li>addInputFilter()</li>
+<li>removeInputFilter()</li>
+</ul>
+<p>Example:</p>
+<pre><code>EditWidget* pEditWidgetIF = new EditWidget(static_cast&lt;Page*&gt;(this));
+InputFilter* pLFilter = new LengthFilter(10);
+InputFilter* pACFilter = new AllCaps();
+pEditWidgetIF-&gt;addInputFilter(*pLFilter);
+pEditWidgetIF-&gt;addInputFilter(*pACFilter);
+pEditWidgetIF-&gt;setHint("length &lt;= 10, AllCaps");
+// delete pLFilter and pACFilter somewhere
+</code></pre>
+<p>Result:</p>
+<p><img src="TextWidget_InputFilter.png" alt="TextWidget_InputFilter"
+height="50%" />
+<img src="TextWidget_InputFilter_Touch.png" alt="TextWidget_InputFilter_Touch"
+height="50%" /></p>
+<h3>TextWatcher</h3>
+<ul>
+<li>addTextChangedListener()</li>
+<li>removeTextChangedListener()</li>
+</ul>
+<h3>MovementMethod</h3>
+<ul>
+<li>setMovementMethod()<ul>
+<li>ArrowKeyMovementMethod</li>
+<li>LinkMovementMethod</li>
+<li>ScrollingMovementMethod</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>EditWidget* pEditWidgetAKMM = new EditWidget(this);
+MovementMethod* pAKMMethod = ArrowKeyMovementMethod::getInstance();
+pEditWidgetAKMM-&gt;setMovementMethod(*pAKMMethod);
+pEditWidgetAKMM-&gt;setHint("ArrowKeyMovementMethod");
+</code></pre>
+<h3>TransformationMethod</h3>
+<ul>
+<li>setTransformationMethod()<ul>
+<li>PasswordTransformationMethod</li>
+<li>ReplacementTransformationMethod</li>
+<li>SingleLineTransformationMethod</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>EditWidget* pEditWidgetPTM = new EditWidget(static_cast&lt;Page*&gt;(this));
+TransformationMethod* pPTMethod = PasswordTransformationMethod::getInstance();
+pEditWidgetPTM-&gt;setTransformationMethod(*pPTMethod);
+pEditWidgetPTM-&gt;setHint("PasswordTransformationMethod");
+
+EditWidget* pEditWidgetSLTM = new EditWidget(static_cast&lt;Page*&gt;(this));
+TransformationMethod* pSLTMethod = SingleLineTransformationMethod::getInstance();
+pEditWidgetSLTM-&gt;setTransformationMethod(*pSLTMethod);
+pEditWidgetSLTM-&gt;setHint("SingleLineTransformationMethod");
+</code></pre>
+<p>Result:</p>
+<p><img src="TextWidget_TransformationMethod.png" alt="TextWidget_TransformationMethod"
+height="50%" />
+<img src="TextWidget_PasswordTransformationMethod.png" alt="TextWidget_PasswordTransformationMethod" height="50%" />
+<img src="TextWidget_SingleLineTransformationMethod.png" alt="TextWidget_SingleLineTransformationMethod" height="50%" /></p>

@@ -1,0 +1,108 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Uses Configuration</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;uses-configuration gaia:reqFiveWayNav=["true" | "false"]
+                        gaia:reqHardKeyboard=["true" | "false"]
+                        gaia:reqKeyboardType=["undefined" | "nokeys" | "qwerty" | "twelvekey"]
+                        gaia:reqNavigation=["undefined" | "nonav" | "dpad" | "trackball" | "wheel"]
+                        gaia:reqTouchScreen=["undefined" | "notouch" | "stylus" | "finger"] /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Config.html">Config</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Indicates what hardware and software features the application requires. For example, an application might specify that it requires a physical keyboard or a particular navigation device, like a trackball. The specification is used to avoid installing the application on devices where it will not work.</p>
+<p>If an application can work with different device configurations, it should include separate <uses-configuration> declarations for each one. Each declaration must be complete. For example, if an application requires a five-way navigation control, a touch screen that can be operated with a finger, and either a standard QWERTY keyboard or a numeric 12-key keypad like those found on most phones, it would specify these requirements with two <uses-configuration> elements as follows:</p>
+<pre><code>    &lt;uses-configuration gaia:reqFiveWayNav="true" gaia:reqTouchScreen="finger"
+                        gaia:reqKeyboardType="qwerty" /&gt;
+    &lt;uses-configuration gaia:reqFiveWayNav="true" gaia:reqTouchScreen="finger"
+                        gaia:reqKeyboardType="twelvekey" /&gt;
+</code></pre>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:reqFiveWayNav</em></strong><br>
+Whether or not the application requires a five-way navigation control - "true" if it does, and "false" if not. A five-way control is one that can move the selection up, down, right, or left, and also provides a way of invoking the current selection. It could be a D-pad (directional pad), trackball, or other device.</p>
+<p>If an application requires a directional control, but not a control of a particular type, it can set this attribute to "true" and ignore the reqNavigation attribute. However, if it requires a particular type of directional control, it can ignore this attribute and set reqNavigation instead.</p>
+<p><strong><em>gaia:reqHardKeyboard</em></strong><br>
+Whether or not the application requires a hardware keyboard - "true" if it does, and "false" if not.</p>
+<p><strong><em>gaia:reqKeyboardType</em></strong><br>
+The type of keyboard the application requires, if any at all. This attribute does not distinguish between hardware and software keyboards. If a hardware keyboard of a certain type is required, specify the type here and also set the reqHardKeyboard attribute to "true".</p>
+<p>The value must be one of the following strings:</p>
+<table border="1" width="1000">
+<tr><th>Value</th><th>Description</th></tr>
+<tr>
+  <td>undefined</td>
+  <td>The application does not require a keyboard. (A keyboard requirement is not defined.) This is the default value.</td>
+</tr>
+<tr>
+  <td>nokeys</td>
+  <td>The application does not require a keyboard.</td>
+</tr>
+<tr>
+  <td>qwerty</td>
+  <td>The application requires a standard QWERTY keyboard.</td>
+</tr>
+<tr>
+  <td>twelvekey</td>
+  <td>The application requires a twelve-key keypad, like those on most phones - with keys for the digits from 0 through 9 plus star (*) and pound (#) keys.</td>
+</tr>
+</table>
+
+<p><strong><em>gaia:reqNavigation</em></strong><br>
+The navigation device required by the application, if any. The value must be one of the following strings:</p>
+<table border="1" width="1000">
+<tr><th>Value</th><th>Description</th></tr>
+<tr>
+  <td>undefined</td>
+  <td>The application does not require any type of navigation control. (The navigation requirement is not defined.) This is the default value.</td>
+</tr>
+<tr>
+  <td>nonav</td>
+  <td>The application does not require a navigation control.</td>
+</tr>
+<tr>
+  <td>dpad</td>
+  <td>The application requires a D-pad (directional pad) for navigation.</td>
+</tr>
+<tr>
+  <td>trackball</td>
+  <td>The application requires a trackball for navigation.</td>
+</tr>
+<tr>
+  <td>wheel</td>
+  <td>The application requires a navigation wheel.</td>
+</tr>
+</table>
+
+<p>If an application requires a navigational control, but the exact type of control doesn't matter, it can set the reqFiveWayNav attribute to "true" rather than set this one.</p>
+<p><strong><em>gaia:reqTouchScreen</em></strong><br>
+The type of touch screen the application requires, if any at all. The value must be one of the following strings:</p>
+<table border="1" width="1000">
+<tr><th>Value</th><th>Description</th></tr>
+<tr>
+  <td>undefined</td>
+  <td>The application doesn't require a touch screen. (The touch screen requirement is undefined.) This is the default value.</td>
+</tr>
+<tr>
+  <td>notouch</td>
+  <td>The application doesn't require a touch screen.</td>
+</tr>
+<tr>
+  <td>stylus</td>
+  <td>The application requires a touch screen that's operated with a stylus.</td>
+</tr>
+<tr>
+  <td>finger</td>
+  <td>The application requires a touch screen that can be operated with a finger.</td>
+</tr>
+</table>
+
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<ul>
+<li>configChanges attribute of the <a href="Manifest/Page.html">Page</a> element</li>
+<li>ConfigurationInfo</li>
+</ul>

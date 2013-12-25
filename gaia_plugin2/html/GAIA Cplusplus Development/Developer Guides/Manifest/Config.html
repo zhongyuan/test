@@ -1,0 +1,91 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Config</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;manifest xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+              package="string"
+              gaia:sharedUserId="string"
+              gaia:sharedUserLabel="string resource"
+              gaia:versionCode="integer"
+              gaia:versionName="string"
+              gaia:installLocation=["auto" | "internalOnly" | "preferExternal"] &gt;
+        ...
+    &lt;/manifest&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<p>None.</p>
+<h2>Must contain:</h2>
+<blockquote>
+<p><a href="Manifest/Application.html">Application</a></p>
+</blockquote>
+<h2>Can contain:</h2>
+<blockquote>
+<p><a href="Manifest/Instrumentation.html">Instrumentation</a><br>
+   <a href="Manifest/Permission.html">Permission</a><br>
+   <a href="Manifest/Permission Group.html">Permission Group</a><br>
+   <a href="Manifest/Permission Tree.html">Permission Tree</a><br>
+   <a href="Manifest/Uses Configuration">Uses Configuration</a><br>
+   <a href="Manifest/Uses Permission.html">Uses Permission</a><br>
+   <a href="Manifest/Uses Sdk.html">Uses Sdk</a><br></p>
+</blockquote>
+<h2>Description:</h2>
+<p>The root element of the Gaia.xml file. It must contain an <a href="Manifest/Application.html">Application</a> element and specify xmlns:gaia and package attributes.</p>
+<h2>Attributes:</h2>
+<p><strong><em>xmlns:gaia</em></strong><br>
+Defines the Gaia namespace. This attribute should always be set to "http://schemas.gaia.com/pkg/res/gaia".</p>
+<p><strong><em>package</em></strong><br>
+A full Java-language-style package name for the application. The name should be unique. The name may contain uppercase or lowercase letters ('A' through 'Z'), numbers, and underscores ('_'). However, individual package name parts may only start with letters.</p>
+<p>To avoid conflicts with other developers, you should use Internet domain ownership as the basis for your package names (in reverse). For example, applications published by Google start with com.google. You should also never use the com.example namespace when publishing your applications.</p>
+<p>The package name serves as a unique identifier for the application. It's also the default name for the application process (see the <a href="Manifest/Application.html">Application</a> element's process process attribute) and the default task affinity of a page (see the <a href="Manifest/Page.html">Page</a> element's taskAffinity attribute).</p>
+<p><strong>Caution:</strong> Once you publish your application, you cannot change the package name. The package name defines your application's identity, so if you change it, then it is considered to be a different application and users of the previous version cannot update to the new version.</p>
+<p><strong><em>gaia:sharedUserId</em></strong><br>
+The name of a Linux user ID that will be shared with other applications. By default, Gaia assigns each application its own unique user ID. However, if this attribute is set to the same value for two or more applications, they will all share the same ID - provided that they are also signed by the same certificate. Application with the same user ID can access each other's data and, if desired, run in the same process.</p>
+<p><strong><em>gaia:sharedUserLabel</em></strong><br>
+A user-readable label for the shared user ID. The label must be set as a reference to a string resource; it cannot be a raw string.</p>
+<p>This attribute was introduced in API Level 3. It is meaningful only if the sharedUserId attribute is also set.</p>
+<p><strong><em>gaia:versionCode</em></strong><br>
+An internal version number. This number is used only to determine whether one version is more recent than another, with higher numbers indicating more recent versions. This is not the version number shown to users; that number is set by the versionName attribute.</p>
+<p>The value must be set as an integer, such as "100". You can define it however you want, as long as each successive version has a higher number. For example, it could be a build number. Or you could translate a version number in "x.y" format to an integer by encoding the "x" and "y" separately in the lower and upper 16 bits. Or you could simply increase the number by one each time a new version is released.</p>
+<p><strong><em>gaia:versionName</em></strong><br>
+The version number shown to users. This attribute can be set as a raw string or as a reference to a string resource. The string has no other purpose than to be displayed to users. The versionCode attribute holds the significant version number used internally.</p>
+<p><strong><em>gaia:installLocation</em></strong><br>
+The default install location for the application.</p>
+<p>The following keyword strings are accepted:</p>
+<table border="1" width="1000">
+<tr><th>Value</th><th>Description</th></tr>
+<tr>
+  <td>internalOnly</td>
+  <td>The application must be installed on the internal device storage only. If this is set, the application will never be installed on the external storage. If the internal storage is full, then the system will not install the application. This is also the default behavior if you do not define gaia:installLocation.</td>
+</tr>
+<tr>
+  <td>auto</td>
+  <td>The application may be installed on the external storage, but the system will install the application on the internal storage by default. If the internal storage is full, then the system will install it on the external storage. Once installed, the user can move the application to either internal or external storage through the system settings.</td>
+</tr>
+<tr>
+  <td>preferExternal</td>
+  <td>The application prefers to be installed on the external storage (SD card). There is no guarantee that the system will honor this request. The application might be installed on internal storage if the external media is unavailable or full. Once installed, the user can move the application to either internal or external storage through the system settings.</td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> By default, your application will be installed on the internal storage and cannot be installed on the external storage unless you define this attribute to be either "auto" or "preferExternal".</p>
+<p>When an application is installed on the external storage:</p>
+<ul>
+<li>
+<p>The .apk file is saved to the external storage, but any application data (such as databases) is still saved on the internal device memory.</p>
+</li>
+<li>
+<p>The container in which the .apk file is saved is encrypted with a key that allows the application to operate only on the device that installed it. (A user cannot transfer the SD card to another device and use applications installed on the card.) Though, multiple SD cards can be used with the same device.</p>
+</li>
+<li>
+<p>At the user's request, the application can be moved to the internal storage.</p>
+</li>
+</ul>
+<p>The user may also request to move an application from the internal storage to the external storage. However, the system will not allow the user to move the application to external storage if this attribute is set to internalOnly, which is the default setting.</p>
+<p>Read App Install Location for more information about using this attribute (including how to maintain backward compatibility).</p>
+<h2>Introduced in:</h2>
+<p>API Level 1 for all attributes, unless noted otherwise in the attribute description.</p>
+<h2>See also:</h2>
+<blockquote>
+<p><a href="Manifest/Application.html">Application</a></p>
+</blockquote>

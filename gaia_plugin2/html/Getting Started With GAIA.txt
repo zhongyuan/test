@@ -1,0 +1,9 @@
+#Getting Started With GAIA#The following proves an overview on how to get started with GAIA development.
+
+You can click the links to access relevant pages.
+
+[Overview](Getting Started With GAIA/Overview.html)
+
+[Setup Environment](Getting Started With GAIA/Setup Environment.html)
+
+[GAIA Building](Getting Started With GAIA/GAIA Building.html)

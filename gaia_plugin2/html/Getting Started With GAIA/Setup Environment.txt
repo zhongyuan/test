@@ -1,0 +1,9 @@
+#Setup Enviroment#
+
+ The following are steps on installing and setting up your GAIA SDK and GAIA IDE.
+
+[Architecture](Setup Environment/Architecture.html)
+
+[IDE installation](Setup Environment/IDE installation.html)
+
+[SDK installation](Setup Environment/SDK installation.html)

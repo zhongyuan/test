@@ -1,0 +1,179 @@
+<div>
+<a href = "../../Getting Started With GAIA.html">Getting Started With GAIA</a>&gt;<a href = "../Building your first app.html">Building your first app</a>&gt;
+</div>
+<h1>App Folder Layout</h1>
+<p><img alt="" src="APP_FOLDER_LAYOUT_LINUX.png" /></p>
+<h1>HelloWorld/Makefile</h1>
+<pre>
+# This file is only used to build apps under GAIA SDK
+SDK_ROOT := /home/username/GAIASDK
+PROJECT_ROOT := /home/username/example/HelloWorld
+SDK_VERSION := 6
+DEFAULT_APP_TARGET_SDK := 16
+SHELL := /bin/bash
+SDK_INCLUDE := $(SDK_ROOT)/include/
+include $(SDK_ROOT)/build/core/main.mk
+include $(PROJECT_ROOT)/Gaia.mk
+</pre>
+
+<p><strong>SDK_ROOT</strong> is the first var you should set in Makefile. Its value represents the location of the GAIA SDK.(Currently, our SDK is provided in a zip package. You should unzip it). <strong>SDK_ROOT</strong> tells you where to find the build-scripts needed to help build your Gaia app. <strong>PROJECT_ROOT</strong> stores the root path of your app project.  <strong>SDK_VERSION</strong> stores the version number of your SDK. You should not change the value of <strong>DEFAULT_APP_TARGET_SDK</strong>, <strong>SHELL</strong> and <strong>SDK_INCLUDE</strong>.</p>
+<p><strong>include $(SDK_ROOT)/build/core/main.mk</strong></p>
+<p>This is the entry point of SDK build scripts. DO NOT CHANGE THIS LINE.</p>
+<p><strong>include $(PROJECT_ROOT)/Gaia.mk</strong></p>
+<p>Include the root Gaia.mk in your project</p>
+<h1>HelloWorld/Gaia.mk</h1>
+<p><pre>
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_PACKAGE_NAME := HelloWorld
+LOCAL_GAIA_SHARED_LIBRARIES := libHelloWorld
+LOCAL_CERTIFICATE := platform
+include $(BUILD_GAIA_PACKAGE)
+include $(LOCAL_PATH)/src/Gaia.mk
+</pre></p>
+<p><strong>LOCAL_PACKAGE_NAME := HelloWorld</strong></p>
+<p>LOCAL_PACKAGE_NAME will be used for the final apk name. This is called HelloWorld, so the final apk will be "HelloWorld.apk" in $(PROJECT_ROOT)/out/release/bin/</p>
+<p><strong>LOCAL_GAIA_SHARED_LIBRARIES := libHelloWorld</strong></p>
+<p>This is used as the final so file name. For this app, the so name is "libHelloWorld.so"</p>
+<p><strong>LOCAL_CERTIFICATE := platform</strong></p>
+<p>This is used as the final so file name. For this app, the so name is "libHelloWorld.so"</p>
+<p><strong>include $(BUILD_GAIA_PACKAGE)</strong></p>
+<p>You always need this line to build the final apk.YOU SHOULD NOT CHANGE THIS LINE.</p>
+<p><strong>include $(LOCAL_PATH)/src/Gaia.mk</strong></p>
+<p>Include Gaia.mk, which in turn builds the so file</p>
+<h1>HelloWorld/Gaia.xml</h1>
+<p><pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;</p>
+<p>&lt;manifest xmlns:gaia="http://schemas.gaia.com/pkg/res/gaia"
+   package="helloworld"
+   gaia:isGaiaPackage="true"
+   gaia:isGaiaPackage="true"
+   gaia:gaiaApiVersion="1"
+   gaia:versionCode="1"
+   gaia:versionName="1.0"&gt;</p>
+<p>&lt;skip-erased /&gt;
+      &lt;application gaia:icon="@drawable/icon" gaia:label="@string/app_name" gaia:debuggable="true"&gt;
+      &lt;page gaia:name=".HelloWorld" gaia:label="@string/app_name"&gt;
+          &lt;demand-filter&gt;
+              &lt;action gaia:name="android.intent.action.MAIN" /&gt;
+              &lt;category gaia:name="android.intent.category.LAUNCHER" /&gt;
+          &lt;/demand-filter&gt;
+      &lt;/page&gt;
+  &lt;/application&gt;
+  &lt;uses-sdk gaia:minSdkVersion="7" /&gt;
+&lt;/manifest&gt;
+</pre>
+Every application must have a Gaia.xml file (with precisely that name) in its root directory. The manifest presents essential information about the application to the GAIA system -- information the system must have before it can run any of the application's code. For details, refer to <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest</a>.</p>
+<h1>HelloWorld/res</h1>
+<p>You should place each type of resource in a specific subdirectory of your project's res/ directory. For details, refer to <a href="http://developer.android.com/guide/topics/resources/index.html">RESOURCES</a></p>
+<h1>HelloWorld/src/HelloWorld.h</h1>
+<p><pre>
+#pragma once
+#include &lt;gaia/core/Page.h&gt;</p>
+<p>namespace gaia {
+    namespace core {
+        class Persistence;
+    }
+    namespace ui {
+        class LinearController;
+        class TextWidget;
+    }
+}</p>
+<p>class HelloWorld: public gaia::core::Page {
+  public:
+    HelloWorld();
+    ~HelloWorld();
+  protected:
+    virtual void onInit(gaia::core::Persistence* const p);
+    virtual void onTear();
+  private:
+    gaia::ui::LinearController* mpCtrl;
+    gaia::ui::TextWidget* mpText;
+};
+</pre></p>
+<h1>HelloWorld/src/HelloWorld.cpp</h1>
+<p><pre>
+#define DEBUG_LEVEL 0
+#define LOG_TAG "HelloWorldSample"</p>
+<p>#include &lt;gaia/core/Context.h&gt;
+#include &lt;gaia/core/Persistence.h&gt;
+#include &lt;gaia/core/vision/Scene.h&gt;
+#include &lt;gaia/ui/LinearController.h&gt;
+#include &lt;gaia/ui/TextWidget.h&gt;
+#include &lt;gaia/base/String.h&gt;
+#include "HelloWorld.h"
+#include "helloworld/R.h"</p>
+<p>using namespace gaia::core;
+using namespace gaia::ui;
+using namespace gaia::base;</p>
+<p>HelloWorld::HelloWorld() :
+    mpCtrl(NULL),
+    mpText(NULL) {
+}</p>
+<p>HelloWorld::~HelloWorld() {
+}</p>
+<p>void HelloWorld::onInit(Persistence* const p) {
+    Scene* pScene = Scene::SceneFactory(this);</p>
+<pre><code>mpText = new TextWidget(this);
+mpText-&gt;setText(helloworld::R::string::app_name);
+mpText-&gt;setTextSize(30);
+
+mpCtrl = new LinearController(this);
+mpCtrl-&gt;addWidget(mpText);
+
+pScene-&gt;attachController(mpCtrl);
+pScene-&gt;setupSceneLayout();
+</code></pre>
+<p>}</p>
+<p>void HelloWorld::onTear() {
+    delete mpCtrl;
+    delete mpText;
+    getSceneSingleton()-&gt;SceneDestroy();
+}</p>
+<p>template class Export&lt;HelloWorld, Page&gt;;
+</pre></p>
+<h1>HelloWorld/src/Gaia.mk</h1>
+<p><pre>
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_MODULE := libHelloWorld
+LOCAL_GAIA_R_PACKAGES :=  HelloWorld
+LOCAL__PACKAGE_NAME := HelloWorld
+LOCAL_MODULE_TAGS := optional
+LOCAL_PRELINK_MODULE := false
+LOCAL_SRC_FILES :=  HelloWorld.cpp
+LOCAL_SHARED_LIBRARIES := libapi.$(strip $(SDK_VERSION))
+include $(BUILD_SHARED_LIBRARY)
+</pre>
+<strong>Top three lines must be set and in front of all other lines.</strong></p>
+<p><strong>LOCAL_GAIA_R_PACKAGES :=  HelloWorld</strong></p>
+<p>This is very important.  If you want to use the resource HelloWorld here(your resource, THIS NAME SHOULD BE THE SAME AS THE $(LOCAL_PACKAGE_NAME) YOU SET IN Makefile for var LOCAL_GAIA_R_PACKAGES.</p>
+<p><strong>LOCAL_SRC_FILES :=    HelloWorld.cpp</strong></p>
+<p>You should pull all source files needed to compile into so in LOCAL_SRC_FILES</p>
+<p><strong>LOCAL_PRELINK_MODULE := false</strong></p>
+<p>YOU SHOULD NOT CHANGE THIS.</p>
+<p><strong>LOCAL_SHARED_LIBRARIES := libapi.$(strip $(SDK_VERSION))</strong></p>
+<p>Put all the dependent so in LOCAL_SHARD_LIBRARIES. All SDK provided libs are located in $(SDK_ROOT)lib. DO NOT ADD A SUFFIX .SO is in here.</p>
+<p><strong>include $(BUILD_SHARED_LIBRARY)</strong></p>
+<p>This includes the real script required to build the so file. DO NOT CHANGE THIS</p>
+<h1>Build HelloWorld</h1>
+<p><strong>Build steps</strong></p>
+<p><strong>1. open shell, then cd $(PROJECT_ROOT)</strong></p>
+<p>Switch project folder of helloworld into shell. $(PROJECT_ROOT) is the root folder of helloworld</p>
+<p><strong>2. Create gen/R</strong></p>
+<p>Create gen/R folder, which will be used to put R.h, R.cpp</p>
+<p><strong>3. Use the following command to generate the needed resource code</strong></p>
+<p>$(SDK_ROOT)/prebuilt/linux-x86/bin/aapt package -z -m -J $(PROJECT_ROOT)/gen/R -A $(PROJECT_ROOT)/assets -M $(PROJECT_ROOT)/Gaia.xml -S $(PROJECT_ROOT)/res -I $(SDK_ROOT)/data/res/gaia-framework-res-common.pkg -I $(SDK_ROOT)/data/res/gaia-framework-res.pkg</p>
+<p><strong>Please use the real path and substitute the $(SDK_ROOT) and $(PROJECT_ROOT) </strong></p>
+<p><strong>4. Type "make" and hit ENTER in the shell</strong></p>
+<p>make command: make -f $(PROJECT_ROOT)/out/release/obj/Makefile</p>
+<p>After these steps, you can find the final apk under $(PROJECT_ROOT)/out/release/bin</p>
+<h1>Install HelloWorld</h1>
+<p>Follow these steps to install apk in devices:</p>
+<ol>
+<li>$(SDK_ROOT)/prebuilt/linux-x86/bin/adb devices</li>
+</ol>
+<p>By using this command, we can check if the device connected to the pc correctly</p>
+<ol>
+<li>$(SDK_ROOT)/prebuilt/linux-x86/bin/adb install $(PROJECT_ROOT)/out/release/bin/HelloWorld.pkg</li>
+</ol>

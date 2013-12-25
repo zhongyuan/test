@@ -1,9 +1,0 @@
-#Overview#
-
-When a COS application wants to display webpages and interact with them, it needs to use WebView API. COS WebView API is based on WebKit rendering engine COS port.
-
-WebView class is the major entrance for WebView API. It is a UI component that displays webpages. As a basic component for COS Browser, WebView can also be integrated into an application. It can either display a remote/local webpage or load static HTML data. 
-
-WebSettings helps WebView app for managing settings state for a WebView.
-
-COS WebView applications also need to handle WebView API callbacks by implementing WebViewClient and WebChromeClient.
