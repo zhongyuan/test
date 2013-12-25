@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d4/d54/classgaia_1_1media_1_1_bass_boost.html" title="Bass boost is an audio effect to boost or amplify low frequencies of the sound." alt="" coords="251,5,411,35"/>
+<area shape="rect" id="node5" href="$d0/dc3/classgaia_1_1media_1_1_environmental_reverb.html" title="A sound generated within a room travels in many directions." alt="" coords="220,59,441,88"/>
+<area shape="rect" id="node7" href="$d8/dec/classgaia_1_1media_1_1_equalizer.html" title="An Equalizer is used to alter the frequency response of a particular music source or of the main outp..." alt="" coords="256,112,405,141"/>
+<area shape="rect" id="node9" href="$d2/dd7/classgaia_1_1media_1_1_noise_suppressor.html" title="Noise Suppressor (NS)." alt="" coords="232,165,429,195"/>
+<area shape="rect" id="node11" href="$d6/d4d/classgaia_1_1media_1_1_preset_reverb.html" title="A sound generated within a room travels in many directions." alt="" coords="243,219,419,248"/>
+<area shape="rect" id="node13" href="$df/daf/classgaia_1_1media_1_1_virtualizer.html" title="An audio virtualizer is a general name for an effect to spatialize audio channels." alt="" coords="253,272,408,301"/>
+</map>

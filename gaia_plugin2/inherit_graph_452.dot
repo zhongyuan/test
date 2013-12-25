@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::graphics::Movie",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d45/classgaia_1_1graphics_1_1_movie.html",tooltip="Developers can manipulate framed stream data like Gif animation by Movie class."];
-}

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::graphics::Bitmap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/dea/classgaia_1_1graphics_1_1_bitmap.html",tooltip="This class encapsulates a bitmap which consists of the pixel data for a graphics image and its attrib..."];
-}

@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::ui::IPagerProviderF",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d60/classgaia_1_1ui_1_1_i_pager_provider_f.html",tooltip="Base class providing the provider to populate pages inside of a WidgetPager, the page content should ..."];
-  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="gaia::core::FragmentStatePagerProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d07/classgaia_1_1core_1_1_fragment_state_pager_provider.html"];
-}

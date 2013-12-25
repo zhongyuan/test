@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/daa/_button_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/Button.h" alt="" coords="948,83,1255,112"/>
+<area shape="rect" id="node17" href="$d2/d98/_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/EditWidget.h" alt="" coords="1313,83,1647,112"/>
+<area shape="rect" id="node24" href="$d2/d47/_footer_button_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/FooterButton.h" alt="" coords="1671,83,2015,112"/>
+<area shape="rect" id="node26" href="$db/daf/_simple_cursor_list_item_provider_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/SimpleCursorListItemProvider.h" alt="" coords="2039,83,2481,112"/>
+<area shape="rect" id="node5" href="$d8/db4/_compound_button_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/CompoundButton.h" alt="" coords="520,160,891,189"/>
+<area shape="rect" id="node15" href="$d5/db8/_search_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/SearchEditWidget.h" alt="" coords="915,160,1288,189"/>
+<area shape="rect" id="node7" href="$d3/d23/_check_box_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/CheckBox.h" alt="" coords="5,237,336,267"/>
+<area shape="rect" id="node9" href="$d0/d74/_radio_button_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/RadioButton.h" alt="" coords="360,237,701,267"/>
+<area shape="rect" id="node11" href="$d0/d26/_switch_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/Switch.h" alt="" coords="725,237,1035,267"/>
+<area shape="rect" id="node13" href="$de/dd2/_toggle_button_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/ToggleButton.h" alt="" coords="1059,237,1405,267"/>
+<area shape="rect" id="node19" href="$da/d1a/_extract_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/service/ExtractEditWidget.h" alt="" coords="1312,160,1717,189"/>
+<area shape="rect" id="node21" href="$d4/da1/_auto_complete_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/AutoCompleteEditWidget.h" alt="" coords="1741,160,2157,189"/>
+</map>

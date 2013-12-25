@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; PluginMetaDataInfo * \&gt;" alt="" coords="836,23,1111,53"/>
+<area shape="rect" id="node4" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="15,14,167,43"/>
+<area shape="rect" id="node6" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="249,25,436,54"/>
+<area shape="rect" id="node9" href="$d3/d57/classgaia_1_1base_1_1_hash_map.html" title="gaia::base::HashMap\&lt; gaia::base::String, PluginMetaDataInfo * \&gt;" alt="" coords="772,77,1175,106"/>
+<area shape="rect" id="node11" href="$d3/d6e/classgaia_1_1base_1_1_hash_map_impl.html" title="gaia::base::HashMapImpl" alt="" coords="5,87,176,117"/>
+<area shape="rect" id="node13" href="$d3/d57/classgaia_1_1base_1_1_hash_map.html" title="Implements hashmap data structure and operation functions." alt="" coords="228,129,457,158"/>
+<area shape="rect" id="node17" href="$d0/d05/classgaia_1_1core_1_1_context.html" title="Interface to global information about an application environment." alt="" coords="907,130,1040,159"/>
+</map>

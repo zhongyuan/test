@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/d47/_media_image_item_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/MediaImageItem.h" alt="" coords="5,160,464,189"/>
+<area shape="rect" id="node5" href="$de/d50/_media_item_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/MediaItem.h" alt="" coords="272,83,693,112"/>
+<area shape="rect" id="node8" href="$d2/dcf/_media_video_item_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/MediaVideoItem.h" alt="" coords="488,160,941,189"/>
+<area shape="rect" id="node11" href="$d5/d80/_transition_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/Transition.h" alt="" coords="1469,83,1888,112"/>
+<area shape="rect" id="node13" href="$de/d7c/_transition_alpha_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/TransitionAlpha.h" alt="" coords="965,160,1416,189"/>
+<area shape="rect" id="node15" href="$d7/d5d/_transition_crossfade_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/TransitionCrossfade.h" alt="" coords="1440,160,1917,189"/>
+<area shape="rect" id="node17" href="$d0/d68/_transition_fade_black_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/TransitionFadeBlack.h" alt="" coords="1941,160,2421,189"/>
+<area shape="rect" id="node19" href="$d4/d21/_transition_sliding_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/media/videoeditor/TransitionSliding.h" alt="" coords="2445,160,2901,189"/>
+</map>

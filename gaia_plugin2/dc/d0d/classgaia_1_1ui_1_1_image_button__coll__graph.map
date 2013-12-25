@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$df/d77/classgaia_1_1ui_1_1_image_widget.html" title="Displays an arbitrary image, such as an icon." alt="" coords="747,245,896,275"/>
+<area shape="rect" id="node4" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="331,148,459,177"/>
+<area shape="rect" id="node10" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="729,184,913,213"/>
+<area shape="rect" id="node6" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="7,132,207,161"/>
+<area shape="rect" id="node8" href="$d5/dfb/classgaia_1_1core_1_1_scene.html" title="A Scene is used to build a visual interface." alt="" coords="1103,115,1225,144"/>
+<area shape="rect" id="node25" href="$db/d3f/classgaia_1_1core_1_1_page.html" title="An page is a single, focused thing that the user can do." alt="" coords="1347,115,1464,144"/>
+<area shape="rect" id="node13" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="313,232,476,261"/>
+<area shape="rect" id="node16" href="$de/dad/classgaia_1_1content_1_1_resources.html" title="Class for accessing an application&#39;s resources." alt="" coords="737,5,905,35"/>
+<area shape="rect" id="node18" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; gaia::ui::DialogBox * \&gt;" alt="" coords="687,59,956,88"/>
+<area shape="rect" id="node20" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="31,49,183,79"/>
+<area shape="rect" id="node22" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="301,19,488,48"/>
+<area shape="rect" id="node28" href="$db/d88/classgaia_1_1core_1_1_widget_tag.html" title="gaia::core::WidgetTag" alt="" coords="32,185,181,215"/>
+</map>

@@ -1,0 +1,31 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d9/dfd/_delegate_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/Delegate.h" alt="" coords="1835,83,2171,112"/>
+<area shape="rect" id="node9" href="$d9/d05/_demand_delegate_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/DemandDelegate.h" alt="" coords="5,160,389,189"/>
+<area shape="rect" id="node19" href="$d7/d9b/_delegate_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/DelegateTestCase.h" alt="" coords="3221,160,3627,189"/>
+<area shape="rect" id="node24" href="$dc/ddc/_fragment_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/Fragment.h" alt="" coords="4359,83,4697,112"/>
+<area shape="rect" id="node26" href="$de/d85/_list_fragment_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/ListFragment.h" alt="" coords="3651,160,4011,189"/>
+<area shape="rect" id="node33" href="$db/ded/_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/Page.h" alt="" coords="6181,83,6496,112"/>
+<area shape="rect" id="node41" href="$d2/d74/_page_instrumentation_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageInstrumentationTestCase.h" alt="" coords="7875,315,8349,344"/>
+<area shape="rect" id="node43" href="$db/deb/_page_unit_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageUnitTestCase.h" alt="" coords="4801,315,5209,344"/>
+<area shape="rect" id="node45" href="$d2/dc6/_single_launch_page_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/SingleLaunchPageTestCase.h" alt="" coords="5043,237,5504,267"/>
+<area shape="rect" id="node63" href="$dc/d85/_persistent_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/PersistentPage.h" alt="" coords="8200,83,8573,112"/>
+<area shape="rect" id="node68" href="$d6/d29/_provider_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/ProviderTestCase.h" alt="" coords="8597,83,9000,112"/>
+<area shape="rect" id="node5" href="$d7/d00/_bluetooth_headset_service_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/connectivity/bluetooth/BluetoothHeadsetService.h" alt="" coords="2664,160,3197,189"/>
+<area shape="rect" id="node7" href="$df/d24/_bluetooth_pbap_service_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/connectivity/bluetooth/BluetoothPbapService.h" alt="" coords="413,160,928,189"/>
+<area shape="rect" id="node11" href="$d0/d0a/_i_m_e_service_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/service/IMEService.h" alt="" coords="952,160,1320,189"/>
+<area shape="rect" id="node13" href="$d0/d01/_spell_checker_delegate_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/service/SpellCheckerDelegate.h" alt="" coords="1344,160,1773,189"/>
+<area shape="rect" id="node15" href="$db/d42/_wallpaper_delegate_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/service/WallpaperDelegate.h" alt="" coords="1797,160,2208,189"/>
+<area shape="rect" id="node21" href="$da/dbc/_remote_widget_delegate_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/RemoteWidgetDelegate.h" alt="" coords="2232,160,2640,189"/>
+<area shape="rect" id="node17" href="$d3/d26/_g_l_wallpaper_engine_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/service/GLWallpaperEngine.h" alt="" coords="1795,237,2211,267"/>
+<area shape="rect" id="node28" href="$d7/d54/_preference_fragment_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferenceFragment.h" alt="" coords="4467,160,4917,189"/>
+<area shape="rect" id="node30" href="$d1/db3/_web_view_fragment_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/webkit/WebViewFragment.h" alt="" coords="4035,160,4443,189"/>
+<area shape="rect" id="node35" href="$d9/d48/_account_authenticator_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/accounts/AccountAuthenticatorPage.h" alt="" coords="7608,160,8075,189"/>
+<area shape="rect" id="node37" href="$d0/d54/_instrumentation_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/InstrumentationTestCase.h" alt="" coords="5144,160,5589,189"/>
+<area shape="rect" id="node50" href="$d3/d9b/_combo_picker_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/ComboPicker.h" alt="" coords="5613,160,5960,189"/>
+<area shape="rect" id="node52" href="$d4/d1e/_hint_box_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/HintBox.h" alt="" coords="5984,160,6299,189"/>
+<area shape="rect" id="node54" href="$d3/dc6/_preference_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferencePage.h" alt="" coords="6323,160,6749,189"/>
+<area shape="rect" id="node56" href="$d5/db8/_search_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/SearchEditWidget.h" alt="" coords="6773,160,7147,189"/>
+<area shape="rect" id="node58" href="$d5/d80/_widget_animator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/WidgetAnimator.h" alt="" coords="7221,160,7584,189"/>
+<area shape="rect" id="node60" href="$dd/de8/_widget_switcher_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/WidgetSwitcher.h" alt="" coords="7113,237,7473,267"/>
+<area shape="rect" id="node39" href="$d5/db9/_page_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageTestCase.h" alt="" coords="5528,237,5912,267"/>
+</map>

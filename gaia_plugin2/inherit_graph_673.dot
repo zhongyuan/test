@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::system::SensorData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/da6/classgaia_1_1system_1_1_sensor_data.html",tooltip="This class stores information such as the sensor&#39;s type, the time-stamp, accuracy and of course the s..."];
-}

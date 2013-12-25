@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::core::RunningTaskInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d79/classgaia_1_1core_1_1_running_task_info.html",tooltip="Information you can retrieve about tasks that the user has most recently started or visited..."];
-}

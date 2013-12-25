@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d4/d9a/classgaia_1_1ui_1_1_widget_animator.html" title="Base class for a FrameController container that will perform animations when switching between its vi..." alt="" coords="107,315,272,344"/>
+<area shape="rect" id="node4" href="$d6/d8d/classgaia_1_1ui_1_1_frame_controller.html" title="FrameController is designed to block out an area on the screen to display a single item..." alt="" coords="107,237,272,267"/>
+<area shape="rect" id="node6" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="97,160,281,189"/>
+<area shape="rect" id="node8" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="41,83,169,112"/>
+<area shape="rect" id="node10" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="5,5,205,35"/>
+<area shape="rect" id="node12" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="193,83,356,112"/>
+</map>

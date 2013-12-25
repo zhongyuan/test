@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::connectivity::GpsStatus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dac/classgaia_1_1connectivity_1_1_gps_status.html",tooltip="This class represents the current state of the GPS engine."];
-}

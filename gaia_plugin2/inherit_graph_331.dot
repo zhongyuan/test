@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::core::Keyframe",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/db4/classgaia_1_1core_1_1_keyframe.html",tooltip="This class holds a time/value pair for an animation."];
-}

@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$df/d07/classgaia_1_1ui_1_1_two_state_preference.html" title="Common base class for preferences that have two selectable states, persist a bool value in Applicatio..." alt="" coords="8,83,197,112"/>
+<area shape="rect" id="node4" href="$dd/d14/classgaia_1_1ui_1_1_preference.html" title="Interface definition for a callback to be invoked when the value of this Preference has been changed ..." alt="" coords="36,5,169,35"/>
+</map>

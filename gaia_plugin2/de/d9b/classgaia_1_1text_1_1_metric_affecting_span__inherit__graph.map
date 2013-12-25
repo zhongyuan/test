@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node7" href="$d8/dd1/classgaia_1_1text_1_1_absolute_size_span.html" title="Describes a style in a span." alt="" coords="676,5,865,35"/>
+<area shape="rect" id="node9" href="$dc/d37/classgaia_1_1text_1_1_relative_size_span.html" title="Describes a style in a span." alt="" coords="677,59,864,88"/>
+<area shape="rect" id="node11" href="$da/d2b/classgaia_1_1text_1_1_replacement_span.html" title="gaia::text::ReplacementSpan" alt="" coords="676,112,865,141"/>
+<area shape="rect" id="node17" href="$d7/d38/classgaia_1_1text_1_1_style_span.html" title="Describes a style in a span." alt="" coords="699,165,843,195"/>
+<area shape="rect" id="node19" href="$d8/da6/classgaia_1_1text_1_1_subscript_span.html" title="Describes a subscript style in a span." alt="" coords="687,219,855,248"/>
+<area shape="rect" id="node21" href="$d4/d36/classgaia_1_1text_1_1_superscript_span.html" title="Describes a superscript style in a span." alt="" coords="681,272,860,301"/>
+<area shape="rect" id="node23" href="$de/d21/classgaia_1_1text_1_1_typeface_span.html" title="Describes a typeface in a span." alt="" coords="687,325,855,355"/>
+<area shape="rect" id="node2" href="$d9/d29/classgaia_1_1text_1_1_character_style.html" title="The classes that affect character&#45;level text formatting extend this class." alt="" coords="205,165,376,195"/>
+<area shape="rect" id="node4" href="$d7/d55/classgaia_1_1text_1_1_object_style.html" title="ObjectStyle is interface for spannable class." alt="" coords="5,165,157,195"/>
+<area shape="rect" id="node13" href="$de/d02/classgaia_1_1text_1_1_dynamic_drawer_span.html" title="gaia::text::DynamicDrawerSpan" alt="" coords="915,112,1123,141"/>
+<area shape="rect" id="node15" href="$d2/d21/classgaia_1_1text_1_1_image_span.html" title="gaia::text::ImageSpan" alt="" coords="1172,112,1321,141"/>
+</map>

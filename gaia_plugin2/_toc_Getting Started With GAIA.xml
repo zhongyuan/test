@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<toc label="Getting Started With GAIA" topic="html/Getting Started With GAIA.html">
+  <topic href="html/Getting Started With GAIA/Building your first app.html" label="Building your first app">
+    <topic href="html/Getting Started With GAIA/Building your first app/Create a GAIA project in Linux.html" label="Create a GAIA project in Linux"/>
+    <topic href="html/Getting Started With GAIA/Building your first app/Create a GAIA project in Windows.html" label="Create a GAIA project in Windows"/>
+    <topic href="html/Getting Started With GAIA/Building your first app/Variables usage in Gaia.mk.html" label="Variables usage in Gaia.mk"/>
+  </topic>
+  <topic href="html/Getting Started With GAIA/GAIA Building.html" label="GAIA Building">
+    <topic href="html/Getting Started With GAIA/GAIA Building/Building GAIA step by step.html" label="Building GAIA step by step"/>
+  </topic>
+  <topic href="html/Getting Started With GAIA/Overview.html" label="Overview">
+    <topic href="html/Getting Started With GAIA/Overview/Application Types.html" label="Application Types"/>
+    <topic href="html/Getting Started With GAIA/Overview/Architecture.html" label="Architecture"/>
+    <topic href="html/Getting Started With GAIA/Overview/Core data type.html" label="Core data type"/>
+    <topic href="html/Getting Started With GAIA/Overview/SDK Memory ownership define.html" label="SDK Memory ownership define"/>
+    <topic href="html/Getting Started With GAIA/Overview/Your First GAIA Application.html" label="Your First GAIA Application"/>
+  </topic>
+  <topic href="html/Getting Started With GAIA/Setup Environment.html" label="Setup Environment">
+    <topic href="html/Getting Started With GAIA/Setup Environment/Architecture.html" label="Architecture"/>
+    <topic href="html/Getting Started With GAIA/Setup Environment/IDE installation.html" label="IDE installation">
+      <topic href="html/Getting Started With GAIA/Setup Environment/IDE installation/Install step by step.html" label="Install step by step"/>
+      <topic href="html/Getting Started With GAIA/Setup Environment/IDE installation/Requirement.html" label="Requirement"/>
+    </topic>
+    <topic href="html/Getting Started With GAIA/Setup Environment/SDK installation.html" label="SDK installation">
+      <topic href="html/Getting Started With GAIA/Setup Environment/SDK installation/Requirement.html" label="Requirement"/>
+    </topic>
+  </topic>
+</toc>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$da/d8a/classgaia_1_1text_1_1_number_key_listener.html" title="For numeric text entry." alt="" coords="105,83,303,112"/>
+<area shape="rect" id="node9" href="$df/d3f/classgaia_1_1text_1_1_text_key_listener.html" title="This is the key listener for typing normal text." alt="" coords="327,83,505,112"/>
+<area shape="rect" id="node5" href="$d3/dec/classgaia_1_1text_1_1_dialer_key_listener.html" title="For dialing&#45;only text entry." alt="" coords="5,160,192,189"/>
+<area shape="rect" id="node7" href="$d6/de9/classgaia_1_1text_1_1_digits_key_listener.html" title="For digits&#45;only text entry." alt="" coords="216,160,403,189"/>
+</map>

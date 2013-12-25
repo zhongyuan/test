@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$dd/d55/classgaia_1_1ui_1_1_resource_cursor_list_item_provider.html" title="An easy ListItemProvider that creates widgets defined in an XML file." alt="" coords="5,597,267,627"/>
+<area shape="rect" id="node4" href="$dc/dbe/classgaia_1_1ui_1_1_cursor_list_item_provider.html" title="ListItemProvider that exposes data from a Cursor &#160;to a ListWidget &#160;widget." alt="" coords="33,517,239,547"/>
+<area shape="rect" id="node6" href="$d3/dad/classgaia_1_1ui_1_1_i_filterable_list_item_provider.html" title="Defines a filterable listitem provider." alt="" coords="24,437,248,467"/>
+<area shape="rect" id="node8" href="$da/d2d/classgaia_1_1ui_1_1_i_list_item_provider.html" title="Extended Adapter that is the bridge between a ListView and the data that backs the list..." alt="" coords="51,357,221,387"/>
+<area shape="rect" id="node10" href="$d3/df2/classgaia_1_1ui_1_1_i_item_provider.html" title="An IItemProvider object acts as a bridge between an ListWidget and the underlying data for that widge..." alt="" coords="61,277,211,307"/>
+<area shape="rect" id="node12" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; RemovedObject * \&gt;" alt="" coords="9,181,263,211"/>
+<area shape="rect" id="node14" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="79,5,231,35"/>
+<area shape="rect" id="node16" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="152,85,339,115"/>
+</map>

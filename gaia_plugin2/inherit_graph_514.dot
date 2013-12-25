@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::media::MediaArtistNativeHelper::ClipSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d18/classgaia_1_1media_1_1_media_artist_native_helper_1_1_clip_settings.html",tooltip="Defines the settings of a single clip."];
-}

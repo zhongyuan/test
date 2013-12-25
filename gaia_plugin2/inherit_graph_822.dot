@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::webkit::CookieSyncManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d4e/classgaia_1_1webkit_1_1_cookie_sync_manager.html",tooltip="The CookieSyncManager is used to synchronize the browser cookie store between RAM and permanent stora..."];
-}

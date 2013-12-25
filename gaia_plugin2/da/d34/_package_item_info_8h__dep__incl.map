@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d0/d27/_application_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/ApplicationInfo.h" alt="" coords="5,83,397,112"/>
+<area shape="rect" id="node5" href="$d5/d6f/_component_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/ComponentInfo.h" alt="" coords="421,83,816,112"/>
+<area shape="rect" id="node15" href="$d1/dfc/_permission_group_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/PermissionGroupInfo.h" alt="" coords="840,83,1267,112"/>
+<area shape="rect" id="node17" href="$d4/dd5/_permission_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/PermissionInfo.h" alt="" coords="1291,83,1683,112"/>
+<area shape="rect" id="node7" href="$db/d07/_delegate_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/DelegateInfo.h" alt="" coords="37,160,416,189"/>
+<area shape="rect" id="node9" href="$d7/dbc/_page_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/PageInfo.h" alt="" coords="440,160,797,189"/>
+<area shape="rect" id="node13" href="$d0/d00/_provider_info_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/pm/ProviderInfo.h" alt="" coords="821,160,1197,189"/>
+<area shape="rect" id="node11" href="$db/deb/_page_unit_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageUnitTestCase.h" alt="" coords="415,237,823,267"/>
+</map>

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::content::MmsSmsInfos",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d60/classgaia_1_1content_1_1_mms_sms_infos.html",tooltip="This class provides the ability to query the MMS and SMS databases at the same time, mixing messages from both in a single thread."];
-}

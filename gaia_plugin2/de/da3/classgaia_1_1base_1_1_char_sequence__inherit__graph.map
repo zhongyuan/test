@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/ddb/classgaia_1_1base_1_1_string.html" title="A String is represented by array of UTF&#45;16 values, such that Unicode supplementary characters (code p..." alt="" coords="81,83,204,112"/>
+<area shape="rect" id="node5" href="$d3/d76/classgaia_1_1text_1_1_spanned.html" title="This is the interface for text that has markup objects attached to ranges of it." alt="" coords="228,83,361,112"/>
+<area shape="rect" id="node7" href="$dc/d83/classgaia_1_1text_1_1_spannable.html" title="This is the interface for text to which markup objects can be attached and detached." alt="" coords="132,160,276,189"/>
+<area shape="rect" id="node15" href="$d0/dd8/classgaia_1_1text_1_1_spanned_string.html" title="This is the class for text whose content and markup are immutable." alt="" coords="300,160,468,189"/>
+<area shape="rect" id="node9" href="$d6/d89/classgaia_1_1text_1_1_editable.html" title="This is the interface for text whose content and markup can be changed (as opposed to immutable text ..." alt="" coords="49,237,180,267"/>
+<area shape="rect" id="node13" href="$d0/de6/classgaia_1_1text_1_1_spannable_string.html" title="This is the class for text whose content is immutable but to which markup objects can be attached and..." alt="" coords="204,237,383,267"/>
+<area shape="rect" id="node11" href="$da/dfe/classgaia_1_1text_1_1_spannable_string_builder.html" title="This is the class for text whose content and markup can both be changed." alt="" coords="5,315,224,344"/>
+</map>

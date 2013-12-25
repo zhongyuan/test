@@ -1,0 +1,31 @@
+<map id="G" name="G">
+<area shape="rect" id="node9" href="$d2/dc3/classgaia_1_1core_1_1_app_widget_host_widget.html" title="Provides the glue to show AppWidget widgets." alt="" coords="700,5,919,35"/>
+<area shape="rect" id="node11" href="$db/d13/classgaia_1_1core_1_1_gesture_controller.html" title="A transparent overlay for gesture input that can be placed on top of other widgets or contain other w..." alt="" coords="715,59,904,88"/>
+<area shape="rect" id="node13" href="$d9/d1a/classgaia_1_1ui_1_1_abs_list_widget.html" title="This is an abstract class for List/Grid ui components." alt="" coords="731,112,888,141"/>
+<area shape="rect" id="node17" href="$df/d55/classgaia_1_1ui_1_1_absolute_controller.html" title="A layout that lets you specify exact locations (x/y coordinates) of its children." alt="" coords="720,165,899,195"/>
+<area shape="rect" id="node21" href="$d1/d9e/classgaia_1_1ui_1_1_date_picker.html" title="This class is a widget for selecting a date." alt="" coords="741,219,877,248"/>
+<area shape="rect" id="node23" href="$d5/d48/classgaia_1_1ui_1_1_footer.html" title="From your page, you can retrieve an instance of Footer by calling ActionBar.getFooter()." alt="" coords="755,272,864,301"/>
+<area shape="rect" id="node25" href="$d6/d8d/classgaia_1_1ui_1_1_frame_controller.html" title="FrameController is designed to block out an area on the screen to display a single item..." alt="" coords="727,325,892,355"/>
+<area shape="rect" id="node33" href="$d1/dfa/classgaia_1_1ui_1_1_gallery.html" title="A class that shows items in a center&#45;locked, horizontally scrolling list." alt="" coords="753,379,865,408"/>
+<area shape="rect" id="node35" href="$d1/d7c/classgaia_1_1ui_1_1_grid_controller.html" title="A layout that places its children in a rectangular grid." alt="" coords="733,432,885,461"/>
+<area shape="rect" id="node37" href="$da/d1d/classgaia_1_1ui_1_1_linear_controller.html" title="A Layout that arranges its children in a single column or a single row." alt="" coords="728,485,891,515"/>
+<area shape="rect" id="node45" href="$da/d3a/classgaia_1_1ui_1_1_number_picker.html" title="A widget that enables the user to select a number form a predefined range." alt="" coords="732,539,887,568"/>
+<area shape="rect" id="node47" href="$d7/d42/classgaia_1_1ui_1_1_pager_tab_strip.html" title="PagerTabStrip is an interactive indicator of the current, next, and previous pages of a WidgetPager..." alt="" coords="732,592,887,621"/>
+<area shape="rect" id="node49" href="$d8/d8a/classgaia_1_1ui_1_1_relative_controller.html" title="A Layout where the positions of the children can be described in relation to each other or to the par..." alt="" coords="721,645,897,675"/>
+<area shape="rect" id="node53" href="$da/d88/classgaia_1_1ui_1_1_scroll_widget.html" title="Layout container for a view hierarchy that can be scrolled by the user, allowing it to be larger than..." alt="" coords="736,699,883,728"/>
+<area shape="rect" id="node55" href="$d3/d8a/classgaia_1_1ui_1_1_tab_page_controller.html" title="A layout that associates with fragments." alt="" coords="720,752,899,781"/>
+<area shape="rect" id="node57" href="$db/d31/classgaia_1_1ui_1_1_time_picker.html" title="A view for selecting the time of day, in either 24 hour or AM/PM mode." alt="" coords="740,805,879,835"/>
+<area shape="rect" id="node59" href="$d5/d3c/classgaia_1_1ui_1_1_widget_pager.html" title="WidgetPager that allows the user to flip left and right through pages of data." alt="" coords="736,859,883,888"/>
+<area shape="rect" id="node2" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="273,405,401,435"/>
+<area shape="rect" id="node4" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="7,405,207,435"/>
+<area shape="rect" id="node6" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="256,459,419,488"/>
+<area shape="rect" id="node15" href="$d7/df3/classgaia_1_1ui_1_1_grid_widget.html" title="It has implements the drawing of a special list item separator for Rosie style list view..." alt="" coords="1088,112,1224,141"/>
+<area shape="rect" id="node19" href="$d7/d73/classgaia_1_1webkit_1_1_web_view.html" title="gaia::webkit::WebView" alt="" coords="1079,165,1233,195"/>
+<area shape="rect" id="node27" href="$df/d4c/classgaia_1_1ui_1_1_media_control.html" title="A view containing controls for a MediaPlayer." alt="" coords="1081,299,1231,328"/>
+<area shape="rect" id="node29" href="$d4/d9a/classgaia_1_1ui_1_1_widget_animator.html" title="Base class for a FrameController container that will perform animations when switching between its vi..." alt="" coords="1073,352,1239,381"/>
+<area shape="rect" id="node31" href="$d8/d67/classgaia_1_1ui_1_1_widget_switcher.html" title="WidgetSwitcher that switches between two views, and has a factory from which these widgets are create..." alt="" coords="1393,352,1556,381"/>
+<area shape="rect" id="node39" href="$de/d48/classgaia_1_1ui_1_1_action_drop_down_widget.html" title="The ActionDropDownWidget includes a title, a subtitle, an arrow and contents." alt="" coords="1051,432,1261,461"/>
+<area shape="rect" id="node41" href="$d1/d6d/classgaia_1_1ui_1_1_list_item.html" title="gaia::ui::ListItem\&lt; Panel1, Panel2, Panel3, Panel4, Panel5 \&gt;" alt="" coords="969,485,1343,515"/>
+<area shape="rect" id="node43" href="$d1/d87/classgaia_1_1ui_1_1_radio_group.html" title="This class is used to create a multiple&#45;exclusion scope for a set of radio buttons." alt="" coords="1085,539,1227,568"/>
+<area shape="rect" id="node51" href="$d5/d21/classgaia_1_1ui_1_1_search_edit_widget.html" title="A special EditWidget&#45;like widget with a clear button on its right side." alt="" coords="1068,645,1244,675"/>
+</map>

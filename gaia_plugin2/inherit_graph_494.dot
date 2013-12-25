@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::media::CameraArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d6c/classgaia_1_1media_1_1_camera_area.html",tooltip="The Area class is used for choosing specific metering and focus areas for the camera to use when calc..."];
-}

@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node6" href="$d5/dfb/classgaia_1_1core_1_1_scene.html" title="A Scene is used to build a visual interface." alt="" coords="1040,145,1163,174"/>
+<area shape="rect" id="node2" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="1312,43,1440,73"/>
+<area shape="rect" id="node4" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="1001,25,1201,54"/>
+<area shape="rect" id="node18" href="$db/d3f/classgaia_1_1core_1_1_page.html" title="An page is a single, focused thing that the user can do." alt="" coords="1317,182,1435,211"/>
+<area shape="rect" id="node9" href="$de/dad/classgaia_1_1content_1_1_resources.html" title="Class for accessing an application&#39;s resources." alt="" coords="647,145,815,174"/>
+<area shape="rect" id="node11" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; gaia::ui::DialogBox * \&gt;" alt="" coords="596,198,865,227"/>
+<area shape="rect" id="node13" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="7,197,159,226"/>
+<area shape="rect" id="node15" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="211,227,397,257"/>
+<area shape="rect" id="node21" href="$db/d88/classgaia_1_1core_1_1_widget_tag.html" title="gaia::core::WidgetTag" alt="" coords="1027,78,1176,107"/>
+<area shape="rect" id="node23" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="223,49,385,78"/>
+</map>

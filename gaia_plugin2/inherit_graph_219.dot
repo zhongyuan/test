@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::content::SyncAdapterTypeArray",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/db7/classgaia_1_1content_1_1_sync_adapter_type_array.html",tooltip="Array of SyncAdapterType."];
-}

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::storage::FileObserver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dde/classgaia_1_1storage_1_1_file_observer.html",tooltip="Monitors files to fire an event after files are accessed or changed by by any process on the device (..."];
-}

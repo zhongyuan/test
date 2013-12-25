@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::system::SensorEventListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/dae/classgaia_1_1system_1_1_sensor_event_listener.html",tooltip="This interface is an event listener used to receive sensor data asynchronously."];
-}

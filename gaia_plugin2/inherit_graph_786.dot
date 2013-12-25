@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::ui::PopupArrowPanel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d4d/classgaia_1_1ui_1_1_popup_arrow_panel.html",tooltip="A popup arrowpanel that can be used to display ListWidget and ExpandableListWidget for content..."];
-}

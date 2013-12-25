@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$df/d55/classgaia_1_1ui_1_1_absolute_controller.html" title="A layout that lets you specify exact locations (x/y coordinates) of its children." alt="" coords="100,237,279,267"/>
+<area shape="rect" id="node4" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="97,160,281,189"/>
+<area shape="rect" id="node6" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="41,83,169,112"/>
+<area shape="rect" id="node8" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="5,5,205,35"/>
+<area shape="rect" id="node10" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="193,83,356,112"/>
+<area shape="rect" id="node12" href="$d2/d5f/classgaia_1_1core_1_1_i_focus_change_listener.html" title="Interface definition for a callback to be invoked when the focus state of a widget changed..." alt="" coords="303,237,521,267"/>
+</map>

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::core::Display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/df5/classgaia_1_1core_1_1_display.html",tooltip="Provides information about the size and density of a logical display."];
-}

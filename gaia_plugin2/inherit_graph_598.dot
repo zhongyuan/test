@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::security::CertificatePath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d83/classgaia_1_1security_1_1_certificate_path.html",tooltip="The class describes a certificatePath , it is a abstract base class, we can not use it constractor a ..."];
-  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="gaia::security::X509CertificatePath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d56/classgaia_1_1security_1_1_x509_certificate_path.html",tooltip="The class describes a X509CertificatePath , it inherit the base class CeritificatePath, we can use it constractor a object."];
-}

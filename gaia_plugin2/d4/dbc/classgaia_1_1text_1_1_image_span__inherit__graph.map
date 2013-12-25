@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$de/d02/classgaia_1_1text_1_1_dynamic_drawer_span.html" title="gaia::text::DynamicDrawerSpan" alt="" coords="5,315,213,344"/>
+<area shape="rect" id="node4" href="$da/d2b/classgaia_1_1text_1_1_replacement_span.html" title="gaia::text::ReplacementSpan" alt="" coords="15,237,204,267"/>
+<area shape="rect" id="node6" href="$d2/dff/classgaia_1_1text_1_1_metric_affecting_span.html" title="The classes that affect character&#45;level text formatting in a way that changes the width or height of ..." alt="" coords="8,160,211,189"/>
+<area shape="rect" id="node8" href="$d9/d29/classgaia_1_1text_1_1_character_style.html" title="The classes that affect character&#45;level text formatting extend this class." alt="" coords="24,83,195,112"/>
+<area shape="rect" id="node10" href="$d7/d55/classgaia_1_1text_1_1_object_style.html" title="ObjectStyle is interface for spannable class." alt="" coords="33,5,185,35"/>
+</map>

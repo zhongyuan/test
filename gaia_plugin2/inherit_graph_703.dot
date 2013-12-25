@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::testing::SingleLaunchPageTestCase\< TestPage, TestFixture \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d02/classgaia_1_1testing_1_1_single_launch_page_test_case.html",tooltip="If you would like to test a single page with an gaia::testing::InstrumentationTestCase, this provides some of the boiler plate to launch and finish the page in SetUp and TearDown."];
-}

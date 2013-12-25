@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::ui::IOnPreferenceClickListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/dbc/classgaia_1_1ui_1_1_i_on_preference_click_listener.html",tooltip="Interface definition for a callback to be invoked when a Preference is clicked."];
-}
