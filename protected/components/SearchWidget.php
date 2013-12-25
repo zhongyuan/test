@@ -18,7 +18,7 @@ class SearchWidget extends CWidget{
             $cl_child = MCApi::getChildByType($type);
         }elseif($action == 'reference'){
             $type = MCApi::reference;
-            $class_list = new MCApi(MCApi::reference);
+            $class_list = new MCApi($type);
             $cl_child = $class_list->getChildById();
         }
 
