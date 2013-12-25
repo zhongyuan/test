@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::connectivity::Location",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d62/classgaia_1_1connectivity_1_1_location.html",tooltip="A class representing a geographic location sensed at a particular time (a &quot;fix&quot;)."];
-}

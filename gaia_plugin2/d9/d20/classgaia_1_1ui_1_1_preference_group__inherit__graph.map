@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$d7/d01/classgaia_1_1ui_1_1_preference_category.html" title="Used to group Preference objects and provide a disabled title above the group." alt="" coords="5,160,192,189"/>
+<area shape="rect" id="node7" href="$d3/d53/classgaia_1_1ui_1_1_preference_screen.html" title="Used to group Preference objects and provide a disabled title above the group." alt="" coords="216,160,392,189"/>
+<area shape="rect" id="node2" href="$dd/d14/classgaia_1_1ui_1_1_preference.html" title="Interface definition for a callback to be invoked when the value of this Preference has been changed ..." alt="" coords="135,5,268,35"/>
+</map>

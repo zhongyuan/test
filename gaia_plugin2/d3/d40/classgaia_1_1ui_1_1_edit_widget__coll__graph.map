@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d9/d0f/classgaia_1_1ui_1_1_text_widget.html" title="Displays text to the user and optionally allows them to edit it." alt="" coords="1245,264,1384,293"/>
+<area shape="rect" id="node4" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="756,164,884,193"/>
+<area shape="rect" id="node10" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="1223,203,1407,232"/>
+<area shape="rect" id="node6" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="204,117,404,147"/>
+<area shape="rect" id="node8" href="$d5/dfb/classgaia_1_1core_1_1_scene.html" title="A Scene is used to build a visual interface." alt="" coords="1591,131,1713,160"/>
+<area shape="rect" id="node25" href="$db/d3f/classgaia_1_1core_1_1_page.html" title="An page is a single, focused thing that the user can do." alt="" coords="1829,131,1947,160"/>
+<area shape="rect" id="node13" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="739,239,901,268"/>
+<area shape="rect" id="node16" href="$de/dad/classgaia_1_1content_1_1_resources.html" title="Class for accessing an application&#39;s resources." alt="" coords="1231,75,1399,104"/>
+<area shape="rect" id="node18" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; gaia::ui::DialogBox * \&gt;" alt="" coords="1180,21,1449,51"/>
+<area shape="rect" id="node20" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="228,52,380,81"/>
+<area shape="rect" id="node22" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="727,5,913,35"/>
+<area shape="rect" id="node28" href="$db/d88/classgaia_1_1core_1_1_widget_tag.html" title="gaia::core::WidgetTag" alt="" coords="229,171,379,200"/>
+<area shape="rect" id="node31" href="$d2/db0/classgaia_1_1base_1_1_array.html" title="gaia::base::Array\&lt; const gaia::graphics::Drawer * \&gt;" alt="" coords="660,301,980,331"/>
+<area shape="rect" id="node33" href="$d2/d80/classgaia_1_1base_1_1_array_impl.html" title="Implements array data structure and its operation methods." alt="" coords="5,300,152,329"/>
+<area shape="rect" id="node35" href="$d2/db0/classgaia_1_1base_1_1_array.html" title="Implements array to replace C&#45;style array." alt="" coords="215,331,393,360"/>
+</map>

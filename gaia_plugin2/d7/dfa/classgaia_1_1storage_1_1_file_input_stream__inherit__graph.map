@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$d6/d28/classgaia_1_1storage_1_1_parcel_file_descriptor_1_1_auto_close_input_stream.html" title="An InputStream you can create on a ParcelFileDescriptor, which will take care of calling ParcelFileDe..." alt="" coords="5,160,368,189"/>
+<area shape="rect" id="node2" href="$db/d26/classgaia_1_1storage_1_1_input_stream.html" title="gaia::storage::InputStream" alt="" coords="99,5,275,35"/>
+</map>

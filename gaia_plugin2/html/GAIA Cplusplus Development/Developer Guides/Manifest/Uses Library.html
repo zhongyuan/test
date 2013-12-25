@@ -1,0 +1,41 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Uses Library</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;uses-library
+      gaia:name="string"
+      gaia:required=["true" | "false"] /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Application.html">Application</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Specifies a shared library that the application must be linked against. This element tells the system to include the library's code in the class loader for the package.</p>
+<p>All of the Gaia packages are in the default library that all applications are automatically linked against. However, some packages (such as maps) are in separate libraries that are not automatically linked. Consult the documentation for the packages you're using to determine which library contains the package code.</p>
+<p>This element also affects the installation of the application on a particular device and the availability of the application on Google Play:</p>
+<h2>Installation:</h2>
+<p>If this element is present and its gaia:required attribute is set to true, the PackageManager framework won't let the user install the application unless the library is present on the user's device.</p>
+<p>The gaia:required attribute is described in detail in the following section.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:name</em></strong><br>
+The name of the library. The name is provided by the documentation for the package you are using.</p>
+<p><strong><em>gaia:required</em></strong><br>
+Boolean value that indicates whether the application requires the library specified by gaia:name:</p>
+<ul>
+<li>
+<p>"true": The application does not function without this library. The system will not allow the application on a device that does not have the library.</p>
+</li>
+<li>
+<p>"false": The application can use the library if present, but is designed to function without it if necessary. The system will allow the application to be installed, even if the library is not present. If you use "false", you are responsible for checking at runtime that the library is available.</p>
+</li>
+</ul>
+<p>To check for a library, you can use reflection to determine if a particular class is available.</p>
+<p>The default is "true".</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<ul>
+<li>PackageManager</li>
+</ul>

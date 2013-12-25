@@ -1,0 +1,106 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>Combo Picker</h1>
+<hr />
+<h2>Description</h2>
+<p><em>ComboPicker</em> provides a more compact way to present a list of choices. 
+The list is hidden until the users click the drop-down arrow. 
+The system will trigger an event to tell the running application what item was selected by users. 
+Creating a <em>ComboClickListener</em> and combining with <em>ComboPicker</em>, if the event needs to be handled.</p>
+<p><img src="combopicker_1.png" alt="ComboPicker_1" height="350" width="225" /></p>
+<h2>Setup Selecting List</h2>
+<p><em>ComboPicker</em> displays a list of choices and the list was anchored to <em>ComboPicker</em> by calling <em>setItemList()</em>. 
+The list content can be prepared by developers previously or be generated during the running time dynamically. </p>
+<pre><code>gaia::base::StringArray instringArray(12);
+instringArray.replaceAt("January", 0);
+instringArray.replaceAt("February", 1);
+instringArray.replaceAt("March", 2);
+instringArray.replaceAt("April", 3);
+instringArray.replaceAt("May", 4);
+instringArray.replaceAt("June", 5);
+instringArray.replaceAt("July", 6);
+instringArray.replaceAt("August", 7);
+instringArray.replaceAt("September", 8);
+instringArray.replaceAt("October", 9);
+instringArray.replaceAt("November", 10);
+instringArray.replaceAt("December", 11);
+
+mpComboTest-&gt;setItemList(instringArray);
+</code></pre>
+<p><img src="combopicker_2.png" alt="ComboPicker_2" height="350" width="225" /></p>
+<h2>Setup the Event Listener</h2>
+<p>If developers want to handle users selection, to design a class inherited from <em>ComboClickListener</em> and then combine the listener with <em>ComboPicker</em>. 
+Since <em>onClick()</em> is a virtual function of <em>ComboClickListener</em>, developers are able to implement their own procedure there.</p>
+<pre><code>class MyComboClickListener : public gaia::ui::ComboClickListener
+{
+    public:
+        Scene* mScene;
+        gaia::core::Page* mPage;
+        MyComboClickListener(Scene* pScene) { GLOGENTRY(); mScene = pScene; };
+        MyComboClickListener(EmptyPageTest* pPage) { GLOGENTRY(); mPage = pPage; };
+        ~MyComboClickListener() { GLOGENTRY(); };
+        void onClick(int position, long long id, const gaia::base::String&amp; str){
+            printf("Position=%d ID=%lld, str=[%s]", position, id, str.string());
+        };
+};
+</code></pre>
+<p>Combining the listener with <em>ComboPicker</em></p>
+<pre><code>gaia::ui::ComboClickListener *mpListener = new MyComboClickListener(static_cast&lt;Page*&gt;(this));
+mpComboTest-&gt;setListener(mpListener);
+</code></pre>
+<h2>Example Code</h2>
+<pre><code>class MyComboClickListener : public gaia::ui::ComboClickListener
+{
+    public:
+        Scene* mScene;
+        gaia::core::Page* mPage;
+        MyComboClickListener(Scene* pScene) { GLOGENTRY(); mScene = pScene; };
+        MyComboClickListener(EmptyPageTest* pPage) { GLOGENTRY(); mPage = pPage; };
+        ~MyComboClickListener() { GLOGENTRY(); };
+        void onClick(int position, long long id, const gaia::base::String&amp; str){
+            printf("Position=%d ID=%lld, str=[%s]", position, id, str.string());
+        };
+};
+
+void EmptyPageTest::onInit(Persistence* const p)
+{
+    gaia::ui::LinearController* ll = new gaia::ui::LinearController(static_cast&lt;Page*&gt;(this));
+    ll-&gt;setOrientation(gaia::ui::LinearController::VERTICAL);
+
+    gaia::base::StringArray instringArray(12);
+    instringArray.replaceAt("January", 0);
+    instringArray.replaceAt("February", 1);
+    instringArray.replaceAt("March", 2);
+    instringArray.replaceAt("April", 3);
+    instringArray.replaceAt("May", 4);
+    instringArray.replaceAt("June", 5);
+    instringArray.replaceAt("July", 6);
+    instringArray.replaceAt("August", 7);
+    instringArray.replaceAt("September", 8);
+    instringArray.replaceAt("October", 9);
+    instringArray.replaceAt("November", 10);
+    instringArray.replaceAt("December", 11);
+
+    mpComboTest = new gaia::ui::ComboPicker(static_cast&lt;Page*&gt;(this));
+
+    gaia::ui::ComboClickListener *mpListener = new MyComboClickListener(static_cast&lt;Page*&gt;(this));
+    mpComboTest-&gt;setListener(mpListener);
+
+    gaia::base::String str("Test:ComboPicker Title");
+    mpComboTest-&gt;setTitle(str);
+    printf("Title=%s", mpComboTest-&gt;getTitle().string());
+    mpComboTest-&gt;setItemList(instringArray);
+    ll-&gt;addWidget(mpComboTest);
+    mScene-&gt;attachController(ll);
+    mScene-&gt;setupSceneLayout();
+}
+</code></pre>
+<h2>Note</h2>
+<ul>
+<li>Header: gaia/ui/ComboPicker.h and gaia/ui/ComboClickListener.h</li>
+</ul>
+<h2>Reference</h2>
+<ul>
+<li>ComboPicker</li>
+</ul>

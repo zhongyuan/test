@@ -1,0 +1,390 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Animation.html">Animation</a>&gt;
+</div>
+<h1>Property Animation</h1>
+<p>The property animation system is a robust framework that allows you to animate almost anything. You can define an animation to change any object property over time, regardless of whether it draws to the screen or not. A property animation changes a property's (a field in an object) value over a specified length of time. To animate something, you specify the object property that you want to animate, such as an object's position on the screen, how long you want to animate it for, and what values you want to animate between.</p>
+<p>The property animation system lets you define the following characteristics of an animation:</p>
+<ul>
+<li><strong>Duration:</strong> You can specify the duration of an animation. The default length is 300 ms.</li>
+<li><strong>Time interpolation:</strong> You can specify how the values for the property are calculated as a function of the animation's current elapsed time.</li>
+<li><strong>Repeat count and behavior:</strong> You can specify whether or not to have an animation repeat when it reaches the end of a duration and how many times to repeat the animation. You can also specify whether you want the animation to play back in reverse. Setting it to reverse plays the animation forwards then backwards repeatedly, until the number of repeats is reached.</li>
+<li><strong>Animator sets:</strong> You can group animations into logical sets that play together or sequentially or after specified delays.</li>
+<li><strong>Frame refresh delay:</strong> You can specify how often to refresh frames of your animation. The default is set to refresh every 10 ms, but the speed in which your application can refresh frames is ultimately dependent on how busy the system is overall and how fast the system can service the underlying timer.</li>
+</ul>
+<h2>How Property Animation Works</h2>
+<hr />
+<p>First, let's go over how an animation works with a simple example. Figure 1 depicts a hypothetical object that is animated with its x property, which represents its horizontal location on a screen. The duration of the animation is set to 40 ms and the distance to travel is 40 pixels. Every 10 ms, which is the default frame refresh rate, the object moves horizontally by 10 pixels. At the end of 40ms, the animation stops, and the object ends at horizontal position 40. This is an example of an animation with linear interpolation, meaning the object moves at a constant speed.</p>
+<p><img src="animation-linear.png" />
+Figure 1. Example of a linear animation</p>
+<p>You can also specify animations to have a non-linear interpolation. Figure 2 illustrates a hypothetical object that accelerates at the beginning of the animation, and decelerates at the end of the animation. The object still moves 40 pixels in 40 ms, but non-linearly. In the beginning, this animation accelerates up to the halfway point then decelerates from the halfway point until the end of the animation. As Figure 2 shows, the distance traveled at the beginning and end of the animation is less than in the middle.</p>
+<p><img src="animation-nonlinear.png" />
+Figure 2. Example of a non-linear animation</p>
+<p>Let's take a detailed look at how the important components of the property animation system would calculate animations like the ones illustrated above. Figure 3 depicts how the main classes work with one another.</p>
+<p><img src="valueanimator.png" />
+Figure 3. How animations are calculated</p>
+<p>The <strong>ValueAnimator</strong> object keeps track of your animation's timing, such as how long the animation has been running, and the current value of the property that it is animating.</p>
+<p>The <strong>ValueAnimator</strong> encapsulates a TimeInterpolator, which defines animation interpolation, and a <strong>TypeEvaluator</strong>, which defines how to calculate values for the property being animated. For example, in Figure 2, the <strong>ITimeInterpolator</strong> used would be <strong>AccelerateDecelerateInterpolator</strong> and the <strong>TypeEvaluator</strong> would be <strong>IntEvaluator</strong>.</p>
+<p>To start an animation, create a <strong>ValueAnimator</strong> and give it the starting and ending values for the property that you want to animate, along with the duration of the animation. When you call <strong>start()</strong> the animation begins. During the whole animation, the ValueAnimator calculates an elapsed fraction between 0 and 1, based on the duration of the animation and how much time has elapsed. The elapsed fraction represents the percentage of time that the animation has completed, 0 meaning 0% and 1 meaning 100%. For example, in Figure 1, the elapsed fraction at t = 10 ms would be .25 because the total duration is t = 40 ms.</p>
+<p>When the <strong>ValueAnimator</strong> is done calculating an elapsed fraction, it calls the <strong>ITimeInterpolator</strong> that is currently set, to calculate an interpolated fraction. An interpolated fraction maps the elapsed fraction to a new fraction that takes into account the time interpolation that is set. For example, in Figure 2, because the animation slowly accelerates, the interpolated fraction, about .15, is less than the elapsed fraction, .25, at t = 10 ms. In Figure 1, the interpolated fraction is always the same as the elapsed fraction.</p>
+<p>When the interpolated fraction is calculated, <strong>ValueAnimator</strong> calls the appropriate <strong>TypeEvaluator</strong>, to calculate the value of the property that you are animating, based on the interpolated fraction, the starting value, and the ending value of the animation. For example, in Figure 2, the interpolated fraction was .15 at t = 10 ms, so the value for the property at that time would be .15 X (40 - 0), or 6.</p>
+<p>The <strong>sdk/example/core/AnimatorTest</strong> sample project provides many examples on how to use the property animation system.</p>
+<h2>How Property Animation Differs from Widget Animation</h2>
+<hr />
+<p>The widget animation system provides the capability to only animate <strong>Widget</strong> objects, so if you wanted to animate <strong>non-Widget</strong> objects, you have to implement your own code to do so. The widget animation system is also constrained in the fact that it only exposes a few aspects of a Widget object to animate, such as the scaling and rotation of a Widget but not the background color, for instance.</p>
+<p>Another disadvantage of the widget animation system is that it only modified where the Widget was drawn, and not the actual Widget itself. For instance, if you animated a button to move across the screen, the button draws correctly, but the actual location where you can click the button does not change, so you have to implement your own logic to handle this.</p>
+<p>With the property animation system, these constraints are completely removed, and you can animate any property of any object (Widgets and non-Widgets) and the object itself is actually modified. The property animation system is also more robust in the way it carries out animation. At a high level, you assign animators to the properties that you want to animate, such as color, position, or size and can define aspects of the animation such as interpolation and synchronization of multiple animators.</p>
+<p>The widget animation system, however, takes less time to setup and requires less code to write. If widget animation accomplishes everything that you need to do, or if your existing code already works the way you want, there is no need to use the property animation system. It also might make sense to use both animation systems for different situations if the use case arises.</p>
+<h2>API Overview</h2>
+<hr />
+<p>You can find most of the property animation system's APIs in <strong>gaia/core/animator</strong>. Because the widget animation system already defines many interpolators in <strong>gaia/core/animation</strong>, you can use those interpolators in the property animation system as well. The following tables describe the main components of the property animation system.</p>
+<h3>Animators</h3>
+<p>The Animator class provides the basic structure for creating animations. You normally do not use this class directly as it only provides minimal functionality that must be extended to fully support animating values. The following subclasses extend Animator:</p>
+<blockquote>
+<p><strong>ValueAnimator</strong></p>
+<blockquote>
+<p>The main timing engine for property animation that also computes the values for the property to be animated. It has all of the core functionality that calculates animation values and contains the timing details of each animation, information about whether an animation repeats, listeners that receive update events, and the ability to set custom types to evaluate. There are two pieces to animating properties: calculating the animated values and setting those values on the object and property that is being animated. <strong>ValueAnimator</strong> does not carry out the second piece, so you must listen for updates to values calculated by the <strong>ValueAnimator</strong> and modify the objects that you want to animate with your own logic. See the section about <strong>Animating with ValueAnimator</strong> for more information.</p>
+</blockquote>
+<p><strong>ObjectAnimator</strong></p>
+<blockquote>
+<p>A subclass of <strong>ValueAnimator</strong> that allows you to set a target object and object property to animate. This class updates the property accordingly when it computes a new value for the animation. You want to use <strong>ObjectAnimator</strong> most of the time, because it makes the process of animating values on target objects much easier. However, you sometimes want to use <strong>ValueAnimator</strong> directly because <strong>ObjectAnimator</strong> has a few more restrictions, such as requiring specific acessor methods to be present on the target object.</p>
+</blockquote>
+<p><strong>AnimatorSet</strong></p>
+<blockquote>
+<p>Provides a mechanism to group animations together so that they run in relation to one another. You can set animations to play together, sequentially, or after a specified delay. See the section about <strong>Choreographing multiple animations with Animator Sets</strong> for more information.</p>
+</blockquote>
+</blockquote>
+<h3>Interpolators</h3>
+<p>A time interpolator defines how specific values in an animation are calculated as a function of time. For example, you can specify animations to happen linearly across the whole animation, meaning the animation moves evenly the entire time, or you can specify animations to use non-linear time, for example, accelerating at the beginning and decelerating at the end of the animation. Table 3 describes the interpolators that are contained in <strong>gaia/core/animation</strong>. If none of the provided interpolators suits your needs, implement the <strong>ITimeInterpolator</strong> interface and create your own. See <strong>Using interpolators</strong> for more information on how to write a custom interpolator.</p>
+<blockquote>
+<p><strong>AccelerateDecelerateInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose rate of change starts and ends slowly but accelerates through the middle.</p>
+</blockquote>
+<p><strong>AccelerateInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose rate of change starts out slowly and then accelerates.</p>
+</blockquote>
+<p><strong>AnticipateInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose change starts backward then flings forward.</p>
+</blockquote>
+<p><strong>AnticipateOvershootInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose change starts backward, flings forward and overshoots the target value, then finally goes back to the final value.</p>
+</blockquote>
+<p><strong>BounceInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose change bounces at the end.</p>
+</blockquote>
+<p><strong>CycleInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose animation repeats for a specified number of cycles.</p>
+</blockquote>
+<p><strong>DecelerateInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose rate of change starts out quickly and and then decelerates.</p>
+</blockquote>
+<p><strong>LinearInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose rate of change is constant.</p>
+</blockquote>
+<p><strong>OvershootInterpolator</strong></p>
+<blockquote>
+<p>An interpolator whose change flings forward and overshoots the last value then comes back.</p>
+</blockquote>
+<p><strong>TimeInterpolator</strong></p>
+<blockquote>
+<p>An interface that allows you to implement your own interpolator.</p>
+</blockquote>
+</blockquote>
+<h2>Animating with ValueAnimator</h2>
+<hr />
+<p>The ValueAnimator class lets you animate values of some type for the duration of an animation by specifying a set of int, float, or color values to animate through. You obtain a ValueAnimator by calling one of its factory methods: ofInt(), ofFloat(), or ofObject(). For example:</p>
+<pre><code>ValueAnimator* animation = ValueAnimator::ofFloatN(2, 0f, 1f);
+animation-&gt;setDuration(1000);
+animation-&gt;start();
+</code></pre>
+<p>In this code, the ValueAnimator starts calculating the values of the animation, between 0 and 1, for a duration of 1000 ms, when the start() method runs.</p>
+<p>The previous code snippets, however, has no real effect on an object, because the <strong>ValueAnimator</strong> does not operate on objects or properties directly. The most likely thing that you want to do is modify the objects that you want to animate with these calculated values. You do this by defining listeners in the <strong>ValueAnimator</strong> to appropriately handle important events during the animation's lifespan, such as frame updates. When implementing the listeners, you can obtain the calculated value for that specific frame refresh by calling <strong>getIntAnimatedValue()</strong> or <strong>getFloatAnimatedValue()</strong>. For more information on listeners, see the section about <strong>Animation Listeners</strong>.</p>
+<h2>Animating with ObjectAnimator</h2>
+<hr />
+<p>The <strong>ObjectAnimator</strong> is a subclass of the <strong>ValueAnimator</strong> (discussed in the previous section) and combines the timing engine and value computation of <strong>ValueAnimator</strong> with the ability to animate a named property of a target object. This makes animating any object much easier, as you no longer need to implement the <strong>IAnimatorUpdateListener</strong>, because the animated property updates automatically.</p>
+<p>Instantiating an <strong>ObjectAnimator</strong> is similar to a <strong>ValueAnimator</strong>, but you also specify the object and the name of that object's property (as a String) along with the values to animate between:</p>
+<pre><code>ObjectAnimator* anim = ObjectAnimator::ofFloatN(foo, "alpha", 2, 0.0f, 1.0f);
+anim-&gt;setDuration(1000);
+anim-&gt;start();
+</code></pre>
+<p>To have the <strong>ObjectAnimator</strong> update properties correctly, you must do the following:</p>
+<ul>
+<li>
+<p>Any property animation object need to implement <strong>PropertyAnimatable</strong> because of setting value. The property animation system will set the property value of the object over time. For example:
+<pre>
+    class targetObject : public PropertyAnimatable {
+      private:
+        float mPropName;
+      public:
+        void setPropName(float f) {
+            mPropName = f;
+        }
+        void setFloat(String&amp; name, float value) {
+            if (name.equals("setPropName")) {
+                setPropName(float);
+            }
+        }
+    };
+</pre></p>
+</li>
+<li>
+<p>The object property that you are animating must have a setter function (in camel case) in the form of <strong>set&lt;propertyName&gt;()</strong>. Because the <strong>ObjectAnimator</strong> automatically updates the property during animation, it must be able to access the property with this setter method. For example, if the property name is <strong>foo</strong>, you need to have a <strong>setFoo()</strong> method. If this setter method does not exist, you have three options:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>Add the setter method to the class if you have the rights to do so.</li>
+<li>Use a wrapper class that you have rights to change and have that wrapper receive the value with a valid setter method and forward it to the original object.</li>
+<li>Use <strong>ValueAnimator</strong> instead.</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>If you specify only one value for the values... parameter in one of the <strong>ObjectAnimator</strong> factory methods, it is assumed to be the ending value of the animation. Therefore, the object property that you are animating must have a getter function that is used to obtain the starting value of the animation. The getter function must be in the form of <strong>get&lt;propertyName&gt;()</strong>. For example, if the property name is <strong>foo</strong>, you need to have a <strong>getFoo()</strong> method.</p>
+</li>
+<li>
+<p>The getter (if needed) and setter methods of the property that you are animating must operate on the same type as the starting and ending values that you specify to <strong>ObjectAnimator</strong>. For example, you must have <strong>targetObject-&gt;setPropName(float)</strong> and <strong>targetObject-&gt;getPropName(float)</strong> if you construct the following <strong>ObjectAnimator</strong>:</p>
+<p>ObjectAnimator::ofFloatN(targetObject, "propName", 1, 1.0f)</p>
+</li>
+<li>
+<p>Depending on what property or object you are animating, you might need to call the <strong>invalidate()</strong> method on a widget force the screen to redraw itself with the updated animated values. You do this in the <strong>onAnimationUpdate()</strong> callback. For example, animating the color property of a Drawable object only cause updates to the screen when that object redraws itself. All of the property setters on Widget, such as 
+<strong>setAlpha()</strong> and <strong>setTranslationX()</strong> invalidate the Widget properly, so you do not need to invalidate the Widget when calling these methods with new values. For more information on listeners, see the section about <strong>Animation Listeners</strong>.</p>
+</li>
+</ul>
+<h2>Choreographing Multiple Animations with AnimatorSet</h2>
+<hr />
+<p>In many cases, you want to play an animation that depends on when another animation starts or finishes. The Gaia system lets you bundle animations together into an <strong>AnimatorSet</strong>, so that you can specify whether to start animations simultaneously, sequentially, or after a specified delay. You can also nest <strong>AnimatorSet</strong> objects within each other.</p>
+<p>The following sample code taken from the Bouncing Balls sample (modified for simplicity) plays the following Animator objects in the following manner:</p>
+<p>1.Plays bounceAnim.</p>
+<p>2.Plays squashAnim1, squashAnim2, stretchAnim1, and stretchAnim2 at the same time.</p>
+<p>3.Plays bounceBackAnim.</p>
+<p>4.Plays fadeAnim.</p>
+<pre><code>AnimatorSet* bouncer = new AnimatorSet();
+bouncer-&gt;play(bounceAnim)-&gt;before(squashAnim1);
+bouncer-&gt;play(squashAnim1)-&gt;with(squashAnim2);
+bouncer-&gt;play(squashAnim1)-&gt;with(stretchAnim1);
+bouncer-&gt;play(squashAnim1)-&gt;with(stretchAnim2);
+bouncer-&gt;play(bounceBackAnim)-&gt;after(stretchAnim2);
+ValueAnimator* fadeAnim = ObjectAnimator::ofFloatN(newBall, "alpha", 2, 1.0f, 0.0f);
+fadeAnim-&gt;setDuration(250);
+AnimatorSet* animatorSet = new AnimatorSet();
+animatorSet-&gt;play(bouncer)-&gt;before(fadeAnim);
+animatorSet-&gt;start();
+</code></pre>
+<p>For a more complete example on how to use animator sets, see the <strong>AnimatorSetTest</strong> sample in <strong>sdk/core/AnimatorTest</strong>.</p>
+<h2>Animation Listeners</h2>
+<hr />
+<p>You can listen for important events during an animation's duration with the listeners described below.</p>
+<ul>
+<li>
+<p><strong>IAnimatorListener</strong></p>
+<blockquote>
+<ul>
+<li><strong>onAnimationStart()</strong> - Called when the animation starts.</li>
+<li><strong>onAnimationEnd()</strong> - Called when the animation ends.</li>
+<li><strong>onAnimationRepeat()</strong> - Called when the animation repeats itself.</li>
+<li><strong>onAnimationCancel()</strong> - Called when the animation is canceled. A cancelled animation also calls <strong>onAnimationEnd()</strong>, regardless of how they were ended.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><strong>IValueAnimatorUpdateListener</strong></p>
+<blockquote>
+<ul>
+<li><strong>onAnimationUpdate()</strong> - called on every frame of the animation. Listen to this event to use the calculated values generated by <strong>ValueAnimator</strong> during an animation. To use the value, query the <strong>ValueAnimator</strong> object passed into the event to get the current animated value with the <strong>getIntAnimatedValue()</strong> or <strong>getFloatAnimatedValue()</strong> method. Implementing this listener is required if you use <strong>ValueAnimator</strong>.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Depending on what property or object you are animating, you might need to call <strong>invalidate()</strong> on a Widget to force that area of the screen to redraw itself with the new animated values. For example, animating the color property of a Drawable object only cause updates to the screen when that object redraws itself. All of the property setters on Widget, such as <strong>setAlpha()</strong> and <strong>setTranslationX()</strong> invalidate the Widget properly, so you do not need to invalidate the Widget when calling these methods with new values.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>You can extend the AnimatorListenerAdapter class instead of implementing the Animator.AnimatorListener interface, if you do not want to implement all of the methods of the Animator.AnimatorListener interface. The AnimatorListenerAdapter class provides empty implementations of the methods that you can choose to override.</p>
+<p>For example, the Bouncing Balls sample in the API demos creates an AnimatorListenerAdapter for just the onAnimationEnd() callback:</p>
+<pre><code>class MyListener : public AnimatorListenerAdapter {
+  public:
+    void onAnimationEnd(Animator* animation) {
+        balls-&gt;remove((static_cast&lt;ObjectAnimator*&gt;(animation))-&gt;getTarget());
+    }
+};
+
+ValueAnimatorAnimator* fadeAnim = ObjectAnimator::ofFloatN(newBall, "alpha", 2, 1.0f, 0.0f);
+fadeAnim-&gt;setDuration(250);
+fadeAnim-&gt;addListener(new MyListener());
+</code></pre>
+<h2>Animating Layout Changes to WidgetControllers</h2>
+<hr />
+<p>The property animation system provides the capability to animate changes to WidgetController objects as well as provide an easy way to animate Widget objects themselves.</p>
+<p>You can animate layout changes within a WidgetController with the <strong>ControllerTransition</strong> class. Widgets inside a WidgetController can go through an appearing and disappearing animation when you add them to or remove them from a WidgetController or when you call a Widget's <strong>setVisibility()</strong> method with <strong>VISIBLE</strong>, <strong>INVISIBLE</strong>, or <strong>GONE</strong>. The remaining Widgets in the WidgetController can also animate into their new positions when you add or remove Widgets. You can define the following animations in a <strong>ControllerTransition</strong> object by calling <strong>setAnimator()</strong> and passing in an <strong>Animator</strong> object with one of the following <strong>ControllerTransition</strong> constants:</p>
+<ul>
+<li>
+<p><strong>APPEARING</strong> - A flag indicating the animation that runs on items that are appearing in the container.</p>
+</li>
+<li>
+<p><strong>CHANGE_APPEARING</strong> - A flag indicating the animation that runs on items that are changing due to a new item appearing in the container.</p>
+</li>
+<li>
+<p><strong>DISAPPEARING</strong> - A flag indicating the animation that runs on items that are disappearing from the container.</p>
+</li>
+<li>
+<p><strong>CHANGE_DISAPPEARING</strong> - A flag indicating the animation that runs on items that are changing due to an item disappearing from the container.</p>
+</li>
+</ul>
+<p>You can define your own custom animations for these four types of events to customize the look of your layout transitions or just tell the animation system to use the default animations.</p>
+<p>The <strong>ControllerTransitionTest</strong> sample in <strong>sdk/example/core/AnimatorTest</strong> shows you how to define animations for layout transitions and then set the animations on the Widget objects that you want to animate.</p>
+<p>The LayoutAnimationsByDefault and its corresponding <strong>layout_animations_by_default.xml</strong> layout resource file show you how to enable the default layout transitions for WidgetController in XML. The only thing that you need to do is to set the <strong>gaia:animateLayoutchanges</strong> attribute to true for the WidgetController. For example:</p>
+<pre><code>&lt;LinearController
+    gaia:orientation="vertical"
+    gaia:layout_width="wrap_content"
+    gaia:layout_height="match_parent"
+    gaia:id="@+id/verticalContainer"
+    gaia:animateLayoutChanges="true" /&gt;
+</code></pre>
+<p>Setting this attribute to true automatically animates Widgets that are added or removed from the WidgetController as well as the remaining Widgets in the WidgetController.</p>
+<h2>Using Interpolators</h2>
+<hr />
+<p>An interpolator define how specific values in an animation are calculated as a function of time. For example, you can specify animations to happen linearly across the whole animation, meaning the animation moves evenly the entire time, or you can specify animations to use non-linear time, for example, using acceleration or deceleration at the beginning or end of the animation.</p>
+<p>Interpolators in the animation system receive a fraction from Animators that represent the elapsed time of the animation. Interpolators modify this fraction to coincide with the type of animation that it aims to provide. The Gaia system provides a set of common interpolators in the <strong>gaia/core/animation</strong>. If none of these suit your needs, you can implement the <strong>ITimeInterpolator</strong> interface and create your own.</p>
+<p>As an example, how the default interpolator <strong>AccelerateDecelerateInterpolator</strong> and the <strong>LinearInterpolator</strong> calculate interpolated fractions are compared below. The LinearInterpolator has no effect on the elapsed fraction. The <strong>AccelerateDecelerateInterpolator</strong> accelerates into the animation and decelerates out of it. The following methods define the logic for these interpolators:</p>
+<p><strong>AccelerateDecelerateInterpolator</strong></p>
+<pre><code>public float getInterpolation(float input) {
+    return static_cast&lt;float&gt;(gaia((input + 1) * Math.PI) / 2.0f) + 0.5f;
+}
+</code></pre>
+<p><strong>LinearInterpolator</strong></p>
+<pre><code>public float getInterpolation(float input) {
+    return input;
+}
+</code></pre>
+<p>The following table represents the approximate values that are calculated by these interpolators for an animation that lasts 1000ms:
+  <table>
+    <tr>
+      <th>ms elapsed</th>
+      <th>Elapsed fraction/Interpolated fraction (Linear)</th>
+      <th>Interpolated fraction (Accelerate/Decelerate)</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>.2</td>
+      <td>.1</td>
+    </tr>
+    <tr>
+      <td>400</td>
+      <td>.4</td>
+      <td>.345</td>
+    </tr>
+    <tr>
+      <td>600</td>
+      <td>.6</td>
+      <td>.8</td>
+    </tr>
+    <tr>
+      <td>800</td>
+      <td>.8</td>
+      <td>.9</td>
+    </tr>
+    <tr>
+      <td>1000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </table></p>
+<p>As the table shows, the <strong>LinearInterpolator</strong> changes the values at the same speed, .2 for every 200ms that passes. The <strong>AccelerateDecelerateInterpolator</strong> changes the values faster than <strong>LinearInterpolator</strong> between 200ms and 600ms and slower between 600ms and 1000ms.</p>
+<h2>Specifying Keyframes</h2>
+<hr />
+<p>A <strong>Keyframe</strong> object consists of a time/value pair that lets you define a specific state at a specific time of an animation. Each keyframe can also have its own interpolator to control the behavior of the animation in the interval between the previous keyframe's time and the time of this keyframe.</p>
+<p>To instantiate a <strong>Keyframe</strong> object, you must use one of the factory methods, <strong>ofInt()</strong> or <strong>ofFloat()</strong> to obtain the appropriate type of <strong>Keyframe</strong>. You then call the <strong>ofKeyframe()</strong> factory method to obtain a <strong>PropertyValuesHolder</strong> object. Once you have the object, you can obtain an animator by passing in the <strong>PropertyValuesHolder</strong> object and the object to animate. The following code snippet demonstrates how to do this:</p>
+<pre><code>Keyframe* kf0 = Keyframe::ofFloatN(0.0f, 0.0f);
+Keyframe* kf1 = Keyframe::ofFloatN(0.5f, 360.0f);
+Keyframe* kf2 = Keyframe::ofFloatN(1.0f, 0.0f);
+PropertyValuesHolder* pvhRotation = PropertyValuesHolder::ofKeyframeN("rotation", 3, kf0, kf1, kf2);
+ObjectAnimator* rotationAnim = ObjectAnimator::ofPropertyValuesHolderN(target, pvhRotation)
+rotationAnim-&gt;setDuration(5000ms);
+</code></pre>
+<p>For a more complete example on how to use keyframes, see the ControllerTransitionTest sample in sdk/example/core/AnimatorTest.</p>
+<h2>Animating Widgets</h2>
+<hr />
+<p>The property animation system allow streamlined animation of Widget objects and offerse a few advantages over the widget animation system. The widget animation system transformed Widget objects by changing the way that they were drawn. This was handled in the container of each Widget, because the Widget itself had no properties to manipulate. This resulted in the Widget being animated, but caused no change in the Widget object itself. This led to behavior such as an object still existing in its original location, even though it was drawn on a different location on the screen. In Gaia, new properties and the corresponding getter and setter methods were added to eliminate this drawback.</p>
+<p>The property animation system can animate Widgets on the screen by changing the actual properties in the Widget objects. In addition, Widgets also automatically call the <strong>invalidate()</strong> method to refresh the screen whenever its properties are changed. The new properties in the Widget class that facilitate property animations are:</p>
+<ul>
+<li><strong>translationX</strong> and <strong>translationY</strong>:<blockquote>
+<p>These properties control where the Widget is located as a delta from its left and top coordinates which are set by its layout container.</p>
+</blockquote>
+</li>
+<li><strong>rotation</strong>, <strong>rotationX</strong>, and <strong>rotationY</strong>:<blockquote>
+<p>These properties control the rotation in 2D (rotation property) and 3D around the pivot point.</p>
+</blockquote>
+</li>
+<li><strong>scaleX</strong> and <strong>scaleY</strong>:<blockquote>
+<p>These properties control the 2D scaling of a Widget around its pivot point.</p>
+</blockquote>
+</li>
+<li><strong>pivotX</strong> and <strong>pivotY</strong>:<blockquote>
+<p>These properties control the location of the pivot point, around which the rotation and scaling transforms occur. By default, the pivot point is located at the center of the object.</p>
+</blockquote>
+</li>
+<li><strong>x</strong> and <strong>y</strong>:<blockquote>
+<p>These are simple utility properties to describe the final location of the Widget in its container, as a sum of the left and top values and translationX and translationY values.</p>
+</blockquote>
+</li>
+<li><strong>alpha</strong>:<blockquote>
+<p>Represents the alpha transparency on the Widget. This value is 1 (opaque) by default, with a value of 0 representing full transparency (not visible).</p>
+</blockquote>
+</li>
+</ul>
+<p>To animate a property of a Widget object, such as its color or rotation value, all you need to do is create a property animator and specify the Widget property that you want to animate. For example:</p>
+<pre><code>ObjectAnimator::ofFloatN(myWidget, "rotation", 2, 0.0f, 360.0f);
+</code></pre>
+<p>For more information on creating animators, see the sections on animating with ValueAnimator and ObjectAnimator.</p>
+<h2>Declaring Animations in XML</h2>
+<hr />
+<p>The property animation system lets you declare property animations with XML instead of doing it programmatically. By defining your animations in XML, you can easily reuse your animations in multiple activities and more easily edit the animation sequence.</p>
+<p>To distinguish animation files that use the new property animation APIs from those that use the legacy <strong>widget animation</strong> framework, starting with Gaia, you should save the XML files for property animations in the <strong>res/animator/</strong> directory (instead of <strong>res/anim/</strong>). Using the animator directory name is optional, but necessary if you want to use the layout editor tools in the Eclipse CDT plugin, because CDT only searches the <strong>res/animator/</strong> directory for property animation resources.</p>
+<p>The following property animation classes have XML declaration support with the following XML tags:</p>
+<ul>
+<li>ValueAnimator - &lt;animator&gt;</li>
+<li>ObjectAnimator - &lt;objectAnimator&gt;</li>
+<li>AnimatorSet - &lt;set&gt;</li>
+</ul>
+<p>The following example plays the two sets of object animations sequentially, with the first nested set playing two object animations together:</p>
+<pre><code>&lt;set gaia:ordering="sequentially"&gt;
+    &lt;set&gt;
+        &lt;objectAnimator
+            gaia:propertyName="x"
+            gaia:duration="500"
+            gaia:valueTo="400"
+            gaia:valueType="intType"/&gt;
+        &lt;objectAnimator
+            gaia:propertyName="y"
+            gaia:duration="500"
+            gaia:valueTo="300"
+            gaia:valueType="intType"/&gt;
+    &lt;/set&gt;
+    &lt;objectAnimator
+        gaia:propertyName="alpha"
+        gaia:duration="500"
+        gaia:valueTo="1f"/&gt;
+&lt;/set&gt;
+</code></pre>
+<p>In order to run this animation, you must inflate the XML resources in your code to an <strong>AnimatorSet</strong> object, and then set the target objects for all of the animations before starting the animation set. Calling <strong>setTarget()</strong> sets a single target object for all children of the <strong>AnimatorSet</strong> as a convenience. The following code shows how to do this:</p>
+<pre><code>AnimatorSet* set = static_cast&lt;AnimatorSet*&gt;(AnimatorInflater::loadAnimatorN(myContext, R::anim::property_animator));
+set-&gt;setTarget(myObject);
+set-&gt;start();
+</code></pre>
+<p>For information about the XML syntax for defining property animations, see Animation Resources. </p>

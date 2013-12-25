@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$d7/d3c/classgaia_1_1graphics_1_1_shader.html" title="Shader is the based class for objects that return horizontal spans of colors during drawing..." alt="" coords="5,59,157,88"/>
+<area shape="rect" id="node3" href="$d4/d2f/classgaia_1_1graphics_1_1_linear_gradient.html" title="Create a shader that draws a linear gradient along a line." alt="" coords="208,5,403,35"/>
+<area shape="rect" id="node5" href="$d0/d2f/classgaia_1_1graphics_1_1_radial_gradient.html" title="Create a shader that draws a radial gradient given the center and radius." alt="" coords="207,59,404,88"/>
+<area shape="rect" id="node7" href="$de/de1/classgaia_1_1graphics_1_1_sweep_gradient.html" title="A subclass of Shader that draws a sweep gradient around a center point." alt="" coords="205,112,405,141"/>
+</map>

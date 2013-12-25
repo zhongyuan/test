@@ -1,0 +1,72 @@
+#Demand Filter#
+
+***syntax:***
+
+        <demand-filter gaia:icon="drawable resource"
+                       gaia:label="string resource"
+                       gaia:priority="integer" >
+            ...
+        </demand-filter>
+
+##Contained in:##
+
+>    [Page](Manifest/Page.html)<br>
+>    [Page Alias](Manifest/Page Alias.html)<br>
+>    [Delegate](Manifest/Delegate.html)<br>
+>    [Receiver](Manifest/Receiver.html)<br>
+
+##Must contain:##
+
+>    [Action](Manifest/Action.html)
+
+##Can contain:##
+
+>    [Category](Manifest/Category.html)<br>
+>    [Data](Manifest/Data.html)<br>
+
+##Description:##
+
+Specifies the types of demands that a page, delegate, or broadcast receiver can respond to. A demand filter declares the capabilities of its parent component - what a page or delegate can do and what types of broadcasts a receiver can handle. It opens the component to receiving demands of the advertised type, while filtering out those that are not meaningful for the component.
+
+Most of the contents of the filter are described by its [Action](Manifest/Action.html), [Category](Manifest/Category.html), and [Data](Manifest/Data.html) subelements.
+
+For a more detailed discussion of filters, see the separate demands and demand Filters document, as well as the demands Filters section in the introduction.
+
+***gaia:icon***<br>
+An icon that represents the parent page, delegate, or broadcast receiver when that component is presented to the user as having the capability described by the filter.
+
+This attribute must be set as a reference to a drawable resource containing the image definition. The default value is the icon set by the parent component's icon attribute. If the parent does not specify an icon, the default is the icon set by the [Application](Manifest/Application.html) element.
+
+For more on demand filter icons, see Icons and Labels in the introduction.
+
+***gaia:label***<br>
+A user-readable label for the parent component. This label, rather than the one set by the parent component, is used when the component is presented to the user as having the capability described by the filter.
+
+The label should be set as a reference to a string resource, so that it can be localized like other strings in the user interface. However, as a convenience while you're developing the application, it can also be set as a raw string.
+
+The default value is the label set by the parent component. If the parent does not specify a label, the default is the label set by the [Application](Manifest/Application.html) element's label attribute.
+
+For more on demand filter labels, see Icons and Labels in the introduction.
+
+***gaia:priority***<br>
+The priority that should be given to the parent component with regard to handling demands of the type described by the filter. This attribute has meaning for both activities and broadcast receivers:
+
+* It provides information about how able a page is to respond to a demand that matches the filter, relative to other activities that could also respond to the demand. When a demand could be handled by multiple activities with different priorities, Gaia will consider only those with higher priority values as potential targets for the demand.
+
+* It controls the order in which broadcast receivers are executed to receive broadcast messages. Those with higher priority values are called before those with lower values. (The order applies only to synchronous messages; it's ignored for asynchronous messages.)
+
+Use this attribute only if you really need to impose a specific order in which the broadcasts are received, or want to force Gaia to prefer one page over others.
+
+The value must be an integer, such as "100". Higher numbers have a higher priority. The default value is 0. The value must be greater than -1000 and less than 1000.
+
+Also see setPriority().
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+>    [Action](Manifest/Action.html)<br>
+>    [Category](Manifest/Category.html)<br>
+>    [Data](Manifest/Data.html)

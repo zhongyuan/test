@@ -1,0 +1,169 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Application Component.html">Application Component</a>&gt;
+</div>
+<h1>Content Providers</h1>
+<p>Content Providers manage access to a structured set of data. They encapsulate 
+the data, and provide mechanisms for IPC communication in GAIA. </p>
+<ul>
+<li>Content Provider Concepts<br />
+  How to access data in a content provider when the data is orgnized in tables.</li>
+</ul>
+<h1>Content Provider Concepts</h1>
+<p>A content provider manages access to a central repository of data. Different applications can 
+access the same data with content provider. Content providers are primarily intended to be used 
+by other applications, which access the provider using a provider client object. 
+Together, providers and provider clients offer a consistent, standard interface to data 
+that also handles inter-process communication and secure data access.<br />
+</p>
+<p>This topic describes the basics of the following: </p>
+<ol>
+<li>How content providers work.</li>
+<li>The API you use retrieve data from a content provider.</li>
+<li>The API you use to insert, update, or delete data in a content provider.</li>
+<li>Other API features that facilitate working with providers.</li>
+</ol>
+<h2>How content providers work.</h2>
+<h3>OverView</h3>
+<p>A content provider presents data to external applications as one or more tables that are similar to the tables found in a relational database. A row represents an instance of some type of data the provider collects, and each row in the column represents an individual piece of data collected for an instance. </p>
+<p>For example, refer to example provider - NotesProvider. Table 1 illustrates what the data might look like in this provider's table: </p>
+<table>
+<tr><th>_id</th><th>_count</th><th>notes_id</th><th>title</th><th>text</th></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>note1</td><td>my note</td></tr>
+<tr><td>1</td><td>2</td><td>1</td><td>note2</td><td>example note</td></tr>
+</table>
+
+<h3>Accessing a provider</h3>
+<p>An application accesses the data from a content provider with a ContentResolver client object. This object has methods that call identically-named methods in the provider object, an instance of one of the concrete subclasses of ContentProvider. The ContentResolver methods provide the basic "CRUD" (create, retrieve, update, and delete) functions of persistent storage. </p>
+<p>The ContentResolver object in the client application's process and the ContentProvider object in the application that owns the provider automatically handle inter-process communication. ContentProvider also acts as an abstraction layer between its repository of data and the external appearance of data as tables. </p>
+<p>For example, to get a list of the words and their locales from the User Dictionary Provider, you call ContentResolver.query(). The query() method calls the ContentProvider.query() method defined by the User Dictionary Provider. The following lines of code show a ContentResolver.query() call: </p>
+<pre><code>// Queries the user dictionary and returns results
+Context* context_t = new Context(this); // this means page pointer
+ContentResolver* cr = context_t-&gt;getContentResolver();
+mCursor = cr-&gt;query(
+        notes.CONTENT_URI,                  // The content URI of the notes table
+        mProjection,                        // The columns to return for each row
+        mSelectionClause                    // Selection criteria
+        mSelectionArgs,                     // Selection criteria
+        mSortOrder);                        // The sort order for the returned rows
+</code></pre>
+<p>The parameters in query function represent SQL statement. The following table gives the corresponding meanings.</p>
+<table>
+<tr><th>query() argument</th><th>SELECT keyword/parameter</th><th>Notes<th></tr>
+<tr><td>Uri</td><td>FROM table_name</td><td>Uri maps to the table in the provider named table_name.</td></tr>
+<tr><td>projection</td><td>selected columns for the table</td><td>projection is an array of columns that should be included for each row retrieved.</td></tr>
+<tr><td>selection</td><td>WHERE col = value</td><td>selection specifies the criteria for selecting rows.</td></tr>
+<tr><td>selectionArgs</td><td>(No exact equivalent. Selection arguments replace ? placeholders in the selection clause.)</td><td> </td></tr>
+<tr><td>sortOrder</td><td>ORDER BY selected column</td><td>sortOrder specifies the order in which rows appear in the returned Cursor.</td></tr>
+</table>
+
+<h3>Content URIs Concepts</h3>
+<p>A content URI is a URI that identifies data in a provider. Content URIs include the symbolic name of the entire provider (its authority) and a name that points to a table (a path). When you call a client method to access a table in a provider, the content URI for the table is one of the arguments. </p>
+<p>In the preceding lines of code, the constant CONTENT_URI contains the content URI of the user dictionary's "words" table. The ContentResolver object parses out the URI's authority, and uses it to "resolve" the provider by comparing the authority to a system table of known providers. The ContentResolver can then dispatch the query arguments to the correct provider.</p>
+<p>The ContentProvider uses the path part of the content URI to choose the table to access. A provider usually has a path for each table it exposes.</p>
+<p>In the previous lines of code, the full URI for the "words" table is: </p>
+<pre><code>content://notes
+</code></pre>
+<p>where the user_dictionary string is the provider's authority, and words string is the table's path. The string content:// (the scheme) is always present, and identifies this as a content URI.</p>
+<p>Many providers allow you to access a single row in a table by appending an ID value to the end of the URI. For example, to retrieve a row whose _ID is 4 from user dictionary, you can use this content URI: </p>
+<pre><code>Uri singleUri = ContentUri::withAppendedId(Notes::CONTENT_URI,4);
+</code></pre>
+<p>You often use id values when you've retrieved a set of rows and then want to update or delete one of them. </p>
+<h2>The API you use retrieve data from a content provider.</h2>
+<p>This section describes how to retrieve data from a provider, using the Notes Provider as an example.
+To retrieve data from a provider, follow these basic steps:</p>
+<ol>
+<li>Request the read access permission for the provider.</li>
+<li>Define the code that sends a query to the provider.</li>
+</ol>
+<h3>Request the read access permission for the provider.</h3>
+<p>TBD in GAIA.</p>
+<h3>Constructing the query</h3>
+<p>The next step in retrieving data a provider is to construct a query. This first snippet defines some variables for accessing the Notes Provider: </p>
+<pre><code>// A "projection" defines the columns that will be returned for each row, this should be a subset for a provider's column collections.
+StringArray mNotesProjection = new StringArray(3);
+mNotesProjection-&gt;replaceAt(Notes._ID, 0);
+mNotesProjection-&gt;replaceAt(Notes.TITLE, 1);
+mNotesProjection-&gt;replaceAt(Notes.TEXT, 2);
+
+// Defines a string to contain the selection clause
+String* mSelectionClause = NULL;
+
+// Initializes an array to contain selection arguments
+StringArray* mSelectionArgs = NULL;
+
+// Does a query against the table and returns a Cursor object
+mCursor = getContentResolver()-&gt;query(
+        Notes::CONTENT_URI,                // The content URI of the notes table
+        mNotesProjection,                  // The columns to return for each row, this collection should be a subset of all columns in notes table.
+        mSelectionClause                   // Either null, or the word the user entered
+        mSelectionArgs,                    // Either empty, or the string the user entered
+        mSortOrder);                       // The sort order for the returned rows
+
+// Some providers return null if an error occurs, others error occurs
+if (NULL == mCursor) {
+    /*
+     * Insert code here to handle the error. Be sure not to use the cursor! 
+     *
+     */
+// If the Cursor is empty, the provider found no matches
+} else if (mCursor-&gt;getCount() &lt; 1) {
+
+    /*
+     * Insert code here to notify the user that the search was unsuccessful. This isn't necessarily
+     * an error. You may want to offer the user the option to insert a new row, or re-type the
+     * search term.
+     */
+
+} else {
+    // Insert code here to do something with the results
+}
+</code></pre>
+<p>Please notice once the query fucntion is called, cursor object will be created. Once you finish using the object, you have the responsibilty to delete the object. </p>
+<h3>Displaying query results</h3>
+<p>The ContentResolver.query() client method always returns a Cursor containing the columns specified by the query's projection for the rows that match the query's selection criteria. A Cursor object provides random read access to the rows and columns it contains. Using Cursor methods, you can iterate over the rows in the results, determine the data type of each column, get the data out of a column, and examine other properties of the results. Some Cursor implementations automatically update the object when the provider's data changes, or trigger methods in an observer object when the Cursor changes, or both. </p>
+<p>If no rows match the selection criteria, the provider returns a Cursor object for which Cursor.getCount() is 0 (an empty cursor).
+If an internal error occurs, the results of the query depend on the particular provider. It may choose to return null, or it may have error messages.</p>
+<pre><code>// Does a query against the table and returns a Cursor object
+mCursor = getContentResolver()-&gt;query(
+        Notes::CONTENT_URI,                // The content URI of the notes table
+        mNotesProjection,                  // The columns to return for each row, this collection should be a subset of all columns in notes table.
+        mSelectionClause                   // Either null, or the word the user entered
+        mSelectionArgs,                    // Either empty, or the string the user entered
+        mSortOrder);                       // The sort order for the returned rows
+
+// Some providers return null if an error occurs, others error occurs
+if (NULL == mCursor) {
+    /*
+     * Insert code here to handle the error. Be sure not to use the cursor! 
+     *
+     */
+// If the Cursor is empty, the provider found no matches
+} else if (mCursor-&gt;getCount() &lt; 1) {
+
+    /*
+     * Insert code here to notify the user that the search was unsuccessful. This isn't necessarily
+     * an error. You may want to offer the user the option to insert a new row, or re-type the
+     * search term.
+     */
+
+} else {
+    // Insert code here to do something with the results
+    // Once the cusor returns and getCount &gt; 1, we can get the return data form queried cursor
+}
+</code></pre>
+<h2>The API you use to insert, update, or delete data in a content provider.</h2>
+<h3>insert data</h3>
+<pre><code>content::ContentValues* values = new content::ContentValues();
+values-&gt;addValue(base::String("TITLE"), base::String("NotesProvider Test"));
+values-&gt;addValue(base::String("TEXT"), base::String("This is NotesProvider Test 1"));
+cr-&gt;insert(Uri::parse(base::String("content://notes/notes")), *values);
+</code></pre>
+<h3>update data</h3>
+<pre><code>content::ContentValues* values = new content::ContentValues();
+values-&gt;addValue(base::String("TITLE"), base::String("NotesProvider Test 2 - updated"));
+values-&gt;addValue(base::String("TEXT"), base::String("This is NotesProvider Test 2, We updated it!!"));
+cr-&gt;update(Uri::parse(base::String("content://notes/notes")), *values, base::String("_ID=2"), NULL);
+</code></pre>
+<h3>delete data</h3>
+<pre><code>cr-&gt;deleteData(Uri::parse(base::String("content://notes/notes")), base::String("_ID=1"), NULL);
+</code></pre>

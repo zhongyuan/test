@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::content::CallLog::Uri",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/dc0/structgaia_1_1content_1_1_call_log_1_1_uri.html",tooltip="The common URI."];
-}

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::service::SystemUIManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d7e/classgaia_1_1service_1_1_system_u_i_manager.html"];
-}

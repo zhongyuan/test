@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dd/df0/classgaia_1_1text_1_1_dynamic_layout.html" title="DynamicLayout is a text layout that updates itself as the text is edited." alt="" coords="5,83,179,112"/>
+<area shape="rect" id="node5" href="$d8/d43/classgaia_1_1text_1_1_static_layout.html" title="StaticLayout is a Layout for text that will not be edited after it is laid out." alt="" coords="203,83,360,112"/>
+</map>

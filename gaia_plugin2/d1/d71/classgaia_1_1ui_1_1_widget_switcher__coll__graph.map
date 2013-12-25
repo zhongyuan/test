@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d4/d9a/classgaia_1_1ui_1_1_widget_animator.html" title="Base class for a FrameController container that will perform animations when switching between its vi..." alt="" coords="1312,5,1477,35"/>
+<area shape="rect" id="node4" href="$d6/d8d/classgaia_1_1ui_1_1_frame_controller.html" title="FrameController is designed to block out an area on the screen to display a single item..." alt="" coords="1019,5,1184,35"/>
+<area shape="rect" id="node6" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="639,79,823,108"/>
+<area shape="rect" id="node12" href="$d5/dfb/classgaia_1_1core_1_1_scene.html" title="A Scene is used to build a visual interface." alt="" coords="1040,216,1163,245"/>
+<area shape="rect" id="node8" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="1331,128,1459,157"/>
+<area shape="rect" id="node10" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="1001,109,1201,139"/>
+<area shape="rect" id="node24" href="$db/d3f/classgaia_1_1core_1_1_page.html" title="An page is a single, focused thing that the user can do." alt="" coords="1336,267,1453,296"/>
+<area shape="rect" id="node15" href="$de/dad/classgaia_1_1content_1_1_resources.html" title="Class for accessing an application&#39;s resources." alt="" coords="647,212,815,241"/>
+<area shape="rect" id="node17" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; gaia::ui::DialogBox * \&gt;" alt="" coords="596,265,865,295"/>
+<area shape="rect" id="node19" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="7,264,159,293"/>
+<area shape="rect" id="node21" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="211,295,397,324"/>
+<area shape="rect" id="node27" href="$db/d88/classgaia_1_1core_1_1_widget_tag.html" title="gaia::core::WidgetTag" alt="" coords="1027,163,1176,192"/>
+<area shape="rect" id="node29" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="223,79,385,108"/>
+</map>

@@ -1,0 +1,167 @@
+# Core Data Type 
+
+## Primitive Data Type
+
+Gaia has redefined types to keep system portability.
+Please include **sys/types.h** while using these types.
+
+In order to maintain portability, programmers should avoid using low-level memory operations.
+For example, bitwise left shifts might cause unexpected results when porting to different machines.
+
+<center>
+<table border="1">
+    <tr>
+	<td>Types</td>
+	<td>Condition</td>
+	<td>Comments</td>
+    </tr>
+    <tr>
+	<td>bool</td>
+	<td>ture/false</td>
+	<td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>char</td>
+        <td>8-bit character</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>char16_t</td>
+        <td>16-bit character</td>
+        <td>Temporarily defined in <b>String.h</b></td>
+    </tr>
+    <tr>
+        <td>char32_t</td>
+        <td>32-bit character</td>
+        <td>Temporarily defined in <b>String.h</b></td>
+    </tr>
+    <tr>
+        <td>byte_t</td>
+        <td>Byte data</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>int8_t</td>
+        <td>Singed 8-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>uint8_t</td>
+        <td>Unsigned 16-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>int16_t</td>
+        <td>Signed 16-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>uint16_t</td>
+        <td>Unsigned 16-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>int32_t</td>
+        <td>Signed 32-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>uint32_t</td>
+        <td>Unsigned 32-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>int64_t</td>
+        <td>Signed 64-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>uint64_t</td>
+        <td>Unsigned 64-bit integer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>size_t</td>
+        <td>Size</td>
+        <td>Changing with system</td>
+    </tr>
+    <tr>
+        <td>float</td>
+        <td>Single precision floating number</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>double</td>
+        <td>Double precision floating number</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>long double</td>
+        <td>Extended precision floating number</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>intptr_t</td>
+        <td>Signed pointer</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>uintptr_t</td>
+        <td>Unsigned pointer</td>
+        <td>Changing with system</td>
+    </tr>
+</table>
+</center>
+<br/><br/>
+---
+## Collection
+
+In SDK, Gaia provides 5 basic collections including Array, Vector, List, HashMap and HashSet.
+These collections have different properties.
+The following gives detailed illustrations.
+
+### 1. Array
+* Single shared buffer: One of the copied instances modifies the content of the array. The content of other instances will also be modified.  
+
+        Array<int32_t> array(10);  
+        for (int32_t i = 0; i < 10; i++) {  
+            array[i] = i;  
+        }  
+        Array<int32_t> array2(array);   // Using copy constructor  
+        array2[5] = 100;  
+        if (array[5] == array[5]) {     // Should be equal  
+            // Do something...  
+        }
+
+* Non-thread safe: Users should protect array access by himself/herself while reading/writing data concurrently in a different thread.
+
+### 2. Vector
+* Copy-on-write: Copy when one of the callers is trying to modify.  
+
+        Vector<int32_t> vec;  
+        for (int32_t i = 0; i < 10; i++) {  
+            vec.append(i);  
+        }  
+        Vector<int32_t> vec2(vec);      // Still only one instance  
+        vec2.insertAt(0, 1);            // Trying to modify content, copy right now!!
+
+* Non-thread safe: User should protect array access by himself/herself while reading/writing data concurrently in a different thread.
+
+### 3. List
+* Non-copy-on-write: Create copied instance right away.
+* Non-thread safe: User should protect array access by himself/herself while reading/writing data concurrently in a different thread.
+
+### 4. HashMap
+* Copy-on-write: Copy when one of the callers is trying to modify.
+* Non-thread safe: User should protect array access by himself/herself while reading/writing data concurrently in a different thread.
+
+### 5. HashSet
+* Copy-on-write: Copy when one of thecallers is trying to modify.
+* Non-thread safe: User should protect array access by himself/herself while reading/writing data concurrently in a different thread.
+
+###Rule of thumb:
+* Array has a special copy mechanism which maintains only one instance. If that answers your needs, give it a try.
+* Vectors are usually efficient with data access using copy-on-write and ordered data arrangement. If there are no other requests, vector is the recommended choice. (random access visit)
+* If datum is frequently inserted/removed, then list is the right choice. (traversal visit)
+* If you demand fast data searching and don't care about how data is ordered, choose HashMap and HashSet.
+

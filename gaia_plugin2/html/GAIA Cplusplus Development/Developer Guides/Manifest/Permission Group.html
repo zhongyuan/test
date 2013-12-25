@@ -1,0 +1,34 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Permission Group</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;permission-group gaia:description="string resource"
+                      gaia:icon="drawable resource"
+                      gaia:label="string resource"
+                      gaia:name="string" /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Config.html">Config</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Declares a name for a logical grouping of related permissions. Individual permission join the group through the permissionGroup attribute of the <permission> element. Members of a group are presented together in the user interface.</p>
+<p>Note that this element does not declare a permission itself, only a category in which permissions can be placed. See the <permission> element for element for information on declaring permissions and assigning them to groups.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:description</em></strong><br>
+User-readable text that describes the group. The text should be longer and more explanatory than the label. This attribute must be set as a reference to a string resource. Unlike the label attribute, it cannot be a raw string.</p>
+<p><strong><em>gaia:icon</em></strong><br>
+An icon representing the permission. This attribute must be set as a reference to a drawable resource containing the image definition.</p>
+<p><strong><em>gaia:label</em></strong><br>
+A user-readable name for the group. As a convenience, the label can be directly set as a raw string while you're developing the application. However, when the application is ready to be published, it should be set as a reference to a string resource, so that it can be localized like other strings in the user interface.</p>
+<p><strong><em>gaia:name</em></strong><br>
+The name of the group. This is the name that can be assigned to a <a href="Manifest/Permission.html">Permission</a> element's <permissionGroup> attribute.</p>
+<h2>Introduced in:</h2>
+<p>API Level 1</p>
+<h2>See also:</h2>
+<blockquote>
+<p><a href="Manifest/Permission.html">Permission</a><br>
+   <a href="Manifest/Permission Tree.html">Permission Tree</a><br>
+   <a href="Manifest/Uses Permission.html">Uses Permission</a></p>
+</blockquote>

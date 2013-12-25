@@ -1,0 +1,77 @@
+#!/usr/bin/python
+#
+# This script called by "git commit" with no arguments.
+# Main to check the *.h and *.cpp code style.
+# It will call gaia/sdk/tools/cpplint_forgaia/cpplint_forcommit.py to do it.
+# If you don't want to pass the cpplint, just remove the 'pre-commit' file.
+#
+
+import os
+import sys
+import re
+
+git_commad="git diff --cached --name-only"
+
+def get_cpplint_path():
+    local_path = os.getcwd()
+    root_path = ""
+    sub = local_path
+    while(len(sub) > 0):
+        local_path, sub = os.path.split(local_path)
+        entries = os.listdir(local_path)
+        for entry in entries:
+            if ".repo" == entry:
+                root_path = local_path
+                break
+    if len(root_path) == 0:
+        return ""
+    sub_cpplint = "sdk/tools/cpplint_forgaia/cpplint_forcommit.py"
+    cpplint_full_name = os.path.join(root_path, sub_cpplint)
+    return cpplint_full_name
+
+def get_filenames(changes):
+    filenames = ''
+    for filename in changes:
+        filenames += filename.strip() + ' '
+    return filenames
+
+# Call sdk/tools/cpplint_forgaia/cpplint_forcommit.py
+# 0: no changes
+# -1: not pass cpplint
+# 1: pass cpplint
+def exec_cpplint(filenames):
+	cpplint_path = get_cpplint_path()
+	if cpplint_path == "":
+		return -2
+	else:
+		str_command = "python " + cpplint_path + " " + filenames
+		flag = os.popen(str_command).readlines()
+		return int(flag[0].strip())
+
+def pre_commit():
+    changes = os.popen(git_commad).readlines()
+
+    if len(changes)==0:
+        sys.exit(0)
+
+    filenames = get_filenames(changes)
+    result = exec_cpplint(filenames)
+
+    if 1 == result:
+        print "All *.h and *.cpp files passed the cpplint."
+        sys.exit(0)
+    elif -1 == result:
+        print "Your code style don't pass the cpplint."
+        print "You can get the error information in [sdk/tools/cpplint_forgaia/logs] folder."
+        print "You must fix these errors and commit again:"
+        print "   (use 'git add <file>...' to update what will be committed)"
+        print "   (use 'git commit' to commit updates)"
+        sys.exit(1)
+    elif -2 == result:
+        print "You don't need to exec cpplint."
+        sys.exit(0)
+    else:
+        print "Don't update any files."
+        sys.exit(0)
+
+pre_commit()

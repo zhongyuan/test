@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$df/d09/classgaia_1_1text_1_1_arrow_key_movement_method.html" title="A movement method that provides cursor movement and selection." alt="" coords="5,83,251,112"/>
+<area shape="rect" id="node5" href="$d8/da4/classgaia_1_1text_1_1_scrolling_movement_method.html" title="A movement method that interprets movement keys by scrolling the text buffer." alt="" coords="275,83,512,112"/>
+<area shape="rect" id="node7" href="$df/db7/classgaia_1_1text_1_1_link_movement_method.html" title="A movement method that traverses links in the text buffer and scrolls if necessary." alt="" coords="288,160,499,189"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node11" href="$dd/dc7/classgaia_1_1ui_1_1_simple_cursor_list_item_provider.html" title="An easy adapter to map columns from a cursor to TextWidgets or ImageWidgets defined in an XML file..." alt="" coords="13,392,259,421"/>
+<area shape="rect" id="node2" href="$dc/dbe/classgaia_1_1ui_1_1_cursor_list_item_provider.html" title="ListItemProvider that exposes data from a Cursor &#160;to a ListWidget &#160;widget." alt="" coords="33,237,239,267"/>
+<area shape="rect" id="node4" href="$d3/dad/classgaia_1_1ui_1_1_i_filterable_list_item_provider.html" title="Defines a filterable listitem provider." alt="" coords="24,160,248,189"/>
+<area shape="rect" id="node6" href="$da/d2d/classgaia_1_1ui_1_1_i_list_item_provider.html" title="Extended Adapter that is the bridge between a ListView and the data that backs the list..." alt="" coords="51,83,221,112"/>
+<area shape="rect" id="node8" href="$d3/df2/classgaia_1_1ui_1_1_i_item_provider.html" title="An IItemProvider object acts as a bridge between an ListWidget and the underlying data for that widge..." alt="" coords="61,5,211,35"/>
+</map>

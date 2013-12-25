@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::text::InputType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d8e/classgaia_1_1text_1_1_input_type.html",tooltip="Bit definitions for an integer defining the basic content type of text held in an Editable object..."];
-  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="gaia::service::EditorInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d92/classgaia_1_1service_1_1_editor_info.html",tooltip="This class is used to specify meta information of an input method."];
-}

@@ -145,7 +145,7 @@ $this->widget('SearchWidget');
             var status = $(this).attr('status');
             var before_version = version - 1;
 
-            if(belong_version == version){ //新加版本
+            if(belong_version == version && version != 1){ //新加版本
                 $(this).addClass('hightlight');
             }else if(belong_version <= version && status == 1){ //可用的
                 //不处理

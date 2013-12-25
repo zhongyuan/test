@@ -1,0 +1,645 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>ExpandableListWidget</h1>
+<hr />
+<h1>Description</h1>
+<pre><code>A [ExpandableListWidget](#ExpandableListWidget) that shows items in a vertically scrolling two-level list. This
+</code></pre>
+<p>differs from the ListWidget by allowing two levels: groups which can individually be expanded to show its children. 
+ The items come from the IExpandableListProvider associated with this Widget.</p>
+<pre><code>Expandable lists are able to show an indicator beside each item to display
+</code></pre>
+<p>the item's current state (the states are usually one of expanded group,
+ collapsed group, child, or last child). Use setChildIndicator(Drawer) or setGroupIndicator(Drawer)
+ (or the corresponding XML attributes) to set these indicators (see the docs
+ for each method to see additional state that each Drawer can have). The
+ default style for an ExpandableListWidget provides indicators which
+ will be shown next to Widgets given to the {@link ExpandableListWidget}. The
+ layouts android.R.layout.simple_expandable_list_item_1 and
+ android.R.layout.simple_expandable_list_item_2 (which should be used with
+ android.widget.SimpleCursorTreeProvider) contain the preferred position information
+ for indicators.</p>
+<p>The context menu information set by an ExpandableListWidget will be a
+ ExpandableListContextMenuInfo object with ExpandableListContextMenuInfo being a packed position
+ that can be used with getPackedPositionType and the other
+ similar methods.</p>
+<h2><a name="ExpandableListWidget">ExpandableListWidget</a></h2>
+<p><img src="ExpandableListWidget.png" width="268" height="86"/>
+<br></p>
+<p>In this section, you can know how to use the ExpandableListWidget.</p>
+<h3>Using TabPageController</h3>
+<p><pre><code></p>
+<p>// Developer write this listener is to inform developer that user click the expandable ListItem to collapse sublistitems.
+class MyOnGroupItemCollapseListener:
+    public gaia::ui::ExpandableListWidget::OnGroupItemCollapseListener {
+  public:
+    explicit MyOnGroupItemCollapseListener() {
+    }</p>
+<pre><code>virtual ~MyOnGroupItemCollapseListener() {
+}
+
+virtual void onGroupCollapse(int32_t groupPosition) {
+}
+</code></pre>
+<p>};</p>
+<p>// Developer write this listener is to inform developer that user click the expandable ListItem to expand sublistitems.
+class MyOnGroupItemExpandListener:
+    public gaia::ui::ExpandableListWidget::OnGroupItemExpandListener {
+  public:
+    explicit MyOnGroupItemExpandListener() {
+    }</p>
+<pre><code>virtual ~MyOnGroupItemExpandListener() {
+}
+
+virtual void onGroupExpand(int32_t groupPosition) {
+}
+</code></pre>
+<p>};</p>
+<p>// Developer write this listener is to inform developer that user click which parent expandable ListItem
+class MyOnGroupItemClickListener: public
+         gaia::ui::ExpandableListWidget::OnGroupItemClickListener {
+  public:
+    explicit MyOnGroupItemClickListener() {
+    }</p>
+<pre><code>virtual ~MyOnGroupItemClickListener() {
+}
+
+virtual bool onGroupClick(ExpandableListWidget *parent,
+        gaia::core::Widget *pWidget, int32_t groupPosition, int64_t id) {
+    return true;
+}
+</code></pre>
+<p>};</p>
+<p>// Developer write this listener is to inform developer that user click which Child expandable ListItem
+class MyOnChildItemClickListener: public
+         gaia::ui::ExpandableListWidget::OnChildItemClickListener {
+  public:
+    explicit MyOnChildItemClickListener() {
+    }
+    virtual ~MyOnChildItemClickListener() {
+    }</p>
+<pre><code>virtual bool onChildClick(ExpandableListWidget *parent,
+        gaia::core::Widget *pWidget, int32_t groupPosition,
+        int32_t childPosition, int64_t id) {
+    return true;
+}
+</code></pre>
+<p>};</p>
+<p>class MyExpandableProvider: public IExpandableListProvider {
+  public:
+    ListItemLite <em>mpItem;
+    explicit MyExpandableProvider(Page </em>pPage)
+        : mpPage(pPage) {
+        Scene<em> pScene = pPage-&gt;getSceneSingleton();
+        if (pScene != NULL) {
+            Resources</em> pRes = pScene-&gt;getResources();
+            if (pRes != NULL) {
+                m1 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::margin_l);
+                m2 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::margin_m);
+                m3 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::margin_s);
+                m4 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::margin_xs);
+                m5 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::spacing);
+                m6 = pRes-&gt;getDimensionPixelOffset(com::gaia::internal::R::dimen::leading);
+                mExpandColor = pRes-&gt;getColor(com::gaia::internal::R::color::light_expand_list_color);
+                mColorWidth = pRes-&gt;getDimensionPixelSize(
+                        com::gaia::internal::R::dimen::listitem_colorbar_width);
+            } else {
+                GLOG(LOG_TAG, LOGER, "Invalid Resources<em>");
+            }
+        } else {
+            GLOG(LOG_TAG, LOGER, "Invalid Scene</em>");
+        }
+    }</p>
+<pre><code>virtual ~MyExpandableProvider() {
+    Widget *pDeleted = NULL;
+    for (size_t i = 0; i &lt; mWidgetPool.size(); i++) {
+        pDeleted = const_cast&lt;Widget *&gt;(mWidgetPool.itemAt(i));
+        delete pDeleted;
+    }
+
+    ControllerParams *pParams = NULL;
+    for (size_t i = 0; i &lt; mParamsPool.size(); i++) {
+        pParams = const_cast&lt;ControllerParams *&gt;(mParamsPool.itemAt(i));
+        delete pParams;
+    }
+    delete mpItem;
+}
+
+virtual void onGroupExpanded(int32_t groupPosition) {
+}
+
+virtual void onGroupCollapsed(int32_t groupPosition) {
+}
+
+virtual int32_t getGroupCount() {
+    return 5;
+}
+
+virtual int32_t getChildrenCount(int32_t groupPosition) {
+    if (groupPosition == 3) {
+        return 0;
+    }
+    return 5;
+}
+
+virtual bool hasStableIds() {
+    return true;
+}
+
+virtual bool isChildSelectable(int32_t groupPosition,
+        int32_t childPosition) {
+    return true;
+}
+
+virtual bool areAllItemsEnabled() {
+    return true;
+}
+
+virtual bool isEmpty() {
+    return false;
+}
+
+virtual int64_t getGroupId(int32_t groupPosition) {
+    return groupPosition;
+}
+
+virtual int64_t getChildId(int32_t groupPosition,
+        int32_t childPosition) {
+    return childPosition;
+}
+
+virtual int64_t
+getCombinedChildId(int64_t groupId, int64_t childId) {
+    return 0;
+}
+
+virtual int64_t getCombinedGroupId(int64_t longgroupId) {
+    return 0;
+}
+</code></pre>
+<p>// Create the Parent Expandablelistwidget item.
+    virtual gaia::core::Widget *createGroupItemWidget(
+            int32_t groupPosition) {
+         mpItem = new ListItemLite(mpPage, ListItemLite::COLORPANEL, ListItemLite::CUSTOMIZEPANEL, ListItemLite::END);
+        // mParamsPool.append(pItem);
+        // The whole layout looks like:
+        // -----------------------------------------------
+        // | CB  | Title Text          Img1 Img2 Img3 Img4 |
+        // | Img | Sub Title Text                    Stamp |
+        // |     | Messages                          V (X) |
+        // -----------------------------------------------</p>
+<pre><code>    Context *c = new Context(mpPage);
+    ItemContainer *pContainer = new ItemContainer(mpPage);
+    mWidgetPool.append(pContainer);
+    ListItemControllerParams *pItemParams =
+        new ListItemControllerParams(ControllerParams::FILL_PARENT,
+                ControllerParams::WRAP_CONTENT);
+    mParamsPool.append(pItemParams);
+    pContainer-&gt;setControllerParams(pItemParams);
+    pContainer-&gt;setOrientation(LinearController::HORIZONTAL);
+
+    RelativeController *pRootCtrl = new RelativeController(mpPage);
+    mWidgetPool.append(pRootCtrl);
+    pRootCtrl-&gt;setId(ST_CONTAINER_ID);
+    pRootCtrl-&gt;setPadding(m2, m4, m2, m3);
+    LinearControllerParams *pParams =
+        new LinearControllerParams(ControllerParams::FILL_PARENT,
+                ControllerParams::WRAP_CONTENT);
+    mParamsPool.append(pParams);
+    pRootCtrl-&gt;setControllerParams(pParams);
+
+    {
+        CheckBox *pCheckBox = new CheckBox(mpPage);
+        mWidgetPool.append(pCheckBox);
+        pCheckBox-&gt;setId(ST_CHECKBOX_ID);
+        pCheckBox-&gt;setFocusable(false);
+        pCheckBox-&gt;setClickable(true);
+        RelativeControllerParams *pParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pParams);
+        pParams-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_LEFT);
+        pParams-&gt;setRelation(RelativeControllerParams::ALIGN_TOP,
+                ST_TITLE_TEXT_ID);
+        pRootCtrl-&gt;addWidget(pCheckBox, pParams);
+
+        FrameController *pFc = new FrameController(mpPage);
+        mWidgetPool.append(pFc);
+        pFc-&gt;setId(ST_COLORBAR_CONTAINER_ID);
+        RelativeControllerParams *pFcParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::FILL_PARENT);
+        mParamsPool.append(pFcParams);
+        pFcParams-&gt;setRelation(RelativeControllerParams::RIGHT_OF,
+                ST_CHECKBOX_ID);
+        pFcParams-&gt;setMargins(0, 0, m4, 0);
+        pRootCtrl-&gt;addWidget(pFc, pFcParams);
+        FrameControllerParams *pColorParams = new FrameControllerParams(15,
+                    ControllerParams::FILL_PARENT);
+        mParamsPool.append(pColorParams);
+        ImageWidget *pColor = new ImageWidget(mpPage);
+        mWidgetPool.append(pColor);
+        pColor-&gt;setId(ST_COLORBAR_ID);
+        pFc-&gt;addWidget(pColor, pColorParams);
+
+        TextWidget *pTitleText = new TextWidget(c, NULL,
+                com::gaia::internal::R::attr::list_primary_m_bold);
+        mWidgetPool.append(pTitleText);
+        pTitleText-&gt;setId(ST_TITLE_TEXT_ID);
+        pTitleText-&gt;setMaxWidth(600);
+        pTitleText-&gt;setMaxLines(1);
+
+        RelativeControllerParams *pTitleParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pTitleParams);
+        pTitleParams-&gt;setRelation(RelativeControllerParams::RIGHT_OF,
+                ST_COLORBAR_CONTAINER_ID);
+        pTitleParams-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_TOP);
+        pRootCtrl-&gt;addWidget(pTitleText, pTitleParams);
+
+        ImageWidget *pImg1 = new ImageWidget(mpPage);
+        mWidgetPool.append(pImg1);
+        ImageWidget *pImg2 = new ImageWidget(mpPage);
+        mWidgetPool.append(pImg2);
+        ImageWidget *pImg3 = new ImageWidget(mpPage);
+        mWidgetPool.append(pImg3);
+        ImageWidget *pImg4 = new ImageWidget(mpPage);
+        mWidgetPool.append(pImg4);
+
+        pImg1-&gt;setId(ST_IMAGE1_ID);
+        pImg2-&gt;setId(ST_IMAGE2_ID);
+        pImg3-&gt;setId(ST_IMAGE3_ID);
+        pImg4-&gt;setId(ST_IMAGE4_ID);
+
+        LinearController *pImagesContainer = new LinearController(mpPage);
+        mWidgetPool.append(pImagesContainer);
+        pImagesContainer-&gt;setId(ST_IMAGES_CONTAINER_ID);
+        pImagesContainer-&gt;setOrientation(LinearController::HORIZONTAL);
+        pImagesContainer-&gt;addWidget(pImg1);
+        pImagesContainer-&gt;addWidget(pImg2);
+        pImagesContainer-&gt;addWidget(pImg3);
+        pImagesContainer-&gt;addWidget(pImg4);
+
+        RelativeControllerParams *pImgParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pImgParams);
+        pImgParams-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_RIGHT);
+        pImgParams-&gt;setRelation(RelativeControllerParams::ALIGN_TOP,
+                ST_CHECKBOX_ID);
+        pRootCtrl-&gt;addWidget(pImagesContainer, pImgParams);
+    }
+
+    {
+        TextWidget *pSubTitleText = new TextWidget(c, NULL,
+                com::gaia::internal::R::attr::info_primary_m);
+        mWidgetPool.append(pSubTitleText);
+        pSubTitleText-&gt;setId(ST_SUBTITLE_TEXT_ID);
+        pSubTitleText-&gt;setMaxWidth(700);
+        pSubTitleText-&gt;setMaxLines(1);
+
+        RelativeControllerParams *pTitleParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pTitleParams);
+        pTitleParams-&gt;setRelation(RelativeControllerParams::BELOW,
+                ST_TITLE_TEXT_ID);
+        pTitleParams-&gt;setRelation(RelativeControllerParams::ALIGN_LEFT,
+                ST_TITLE_TEXT_ID);
+        pRootCtrl-&gt;addWidget(pSubTitleText, pTitleParams);
+
+        ImageWidget *pImage2 = new ImageWidget(mpPage);
+        mWidgetPool.append(pImage2);
+        pImage2-&gt;setId(ST_IMAGELEFT_ID);
+        RelativeControllerParams *pParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pParams);
+        pParams-&gt;setRelation(RelativeControllerParams::ALIGN_BOTTOM,
+                ST_SUBTITLE_TEXT_ID);
+        pParams-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_LEFT);
+        pRootCtrl-&gt;addWidget(pImage2, pParams);
+
+        TextWidget *pStampText = new TextWidget(c, NULL,
+                com::gaia::internal::R::attr::time_stamp_m);
+        mWidgetPool.append(pStampText);
+        pStampText-&gt;setId(ST_STAMP_TEXT_ID);
+        pStampText-&gt;setMaxWidth(ListItemMargins::msStampWidth);
+        pStampText-&gt;setMaxLines(1);
+        RelativeControllerParams *pRcp = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pRcp);
+        pRcp-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_RIGHT);
+        pRcp-&gt;setRelation(RelativeControllerParams::ALIGN_BOTTOM,
+                ST_SUBTITLE_TEXT_ID);
+        pRootCtrl-&gt;addWidget(pStampText, pRcp);
+    }
+
+    {
+        TextWidget *pMessages = new TextWidget(c, NULL,
+                com::gaia::internal::R::attr::list_secondary_m);
+        mWidgetPool.append(pMessages);
+        pMessages-&gt;setId(ST_MESSAGES_ID);
+        pMessages-&gt;setMaxWidth(700);
+        pMessages-&gt;setMaxLines(2);
+        RelativeControllerParams *pTextParams = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pTextParams);
+        pTextParams-&gt;setRelation(RelativeControllerParams::BELOW,
+                ST_SUBTITLE_TEXT_ID);
+        pTextParams-&gt;setRelation(RelativeControllerParams::ALIGN_LEFT,
+                ST_SUBTITLE_TEXT_ID);
+        pRootCtrl-&gt;addWidget(pMessages, pTextParams);
+
+        TextWidget *pUnreadText = new TextWidget(c, NULL,
+                com::gaia::internal::R::attr::unread_number_m);
+        mWidgetPool.append(pUnreadText);
+        pUnreadText-&gt;setId(ST_UNREAD_TEXT_ID);
+        pUnreadText-&gt;setMaxWidth(ListItemMargins::msStampWidth);
+        pUnreadText-&gt;setMaxLines(1);
+        RelativeControllerParams *pRcp = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pRcp);
+        pRcp-&gt;setRelation(RelativeControllerParams::ALIGN_PARENT_RIGHT);
+        pRcp-&gt;setRelation(RelativeControllerParams::BELOW, ST_STAMP_TEXT_ID);
+        // NOTE: set top margin to m4 ~ m2
+        pRcp-&gt;setMargins(m4, m3, 0, 0);
+        pRootCtrl-&gt;addWidget(pUnreadText, pRcp);
+
+        ImageWidget *pArrow = new ImageWidget(mpPage);
+        mWidgetPool.append(pArrow);
+
+        AnimationController *pAnimCtrl = new AnimationController(pArrow);
+        pContainer-&gt;setAnimationController(pAnimCtrl);
+        pArrow-&gt;setOnClickListener(pAnimCtrl);
+        pArrow-&gt;setOnTouchListener(pAnimCtrl);
+        pArrow-&gt;setId(ST_IMAGEARROW_ID);
+        pArrow-&gt;setImageResource(com::gaia::internal::R::drawable::common_expand_indicator);
+        pArrow-&gt;setFocusable(false);
+        pArrow-&gt;setClickable(true);
+        pArrow-&gt;setPivotX(37);
+        pArrow-&gt;setPivotY(32);
+
+        RelativeControllerParams *pRcp2 = new RelativeControllerParams(
+                ControllerParams::WRAP_CONTENT, ControllerParams::WRAP_CONTENT);
+        mParamsPool.append(pRcp2);
+        pRcp2-&gt;setRelation(RelativeControllerParams::LEFT_OF, ST_UNREAD_TEXT_ID);
+        pRcp2-&gt;setRelation(RelativeControllerParams::ALIGN_TOP,
+                ST_UNREAD_TEXT_ID);
+        pRootCtrl-&gt;addWidget(pArrow, pRcp2);
+        mpItem-&gt;addWidget(pRootCtrl);
+        pContainer-&gt;addWidget(mpItem);
+    }
+
+    delete c;
+    return pContainer;
+}
+
+// set the Parent Expandablelistwidget item content.
+virtual gaia::core::Widget *getGroupItemWidget(int32_t groupPosition,
+        bool isExpanded,
+        gaia::core::Widget *convertView,
+        gaia::core::Widget *parent) {
+    char msg[255];
+    snprintf(msg, sizeof(msg), "Group %d", groupPosition);
+
+    setText&lt;TextWidget&gt;(msg, ST_TITLE_TEXT_ID, convertView);
+    setText&lt;TextWidget&gt;("Stamp", ST_STAMP_TEXT_ID, convertView);
+    setImage&lt;ImageWidget&gt;(com::gaia::internal::R::drawable::common_flag_on,
+            ST_IMAGE1_ID, convertView);
+    setImage&lt;ImageWidget&gt;(com::gaia::internal::R::drawable::common_flag_on,
+            ST_IMAGE2_ID, convertView);
+    setImage&lt;ImageWidget&gt;(com::gaia::internal::R::drawable::common_flag_on,
+            ST_IMAGE3_ID, convertView);
+    setImage&lt;ImageWidget&gt;(com::gaia::internal::R::drawable::common_flag_on,
+            ST_IMAGE4_ID, convertView);
+
+    snprintf(msg, sizeof(msg), "(%d)", 3);
+    setText&lt;TextWidget&gt;(msg, ST_UNREAD_TEXT_ID, convertView);
+    ColorPanel::Handler *pHandler =   static_cast&lt;ColorPanel::Handler *&gt;(mpItem-&gt;getHandler(0));
+    if (pHandler != NULL) {
+        pHandler-&gt;setColor(Color::RED);
+    } 
+    if (ItemContainer *pContainer =
+            dynamic_cast&lt;ItemContainer *&gt;(convertView)) {
+        AnimationController *pAnimCtrl =
+            pContainer-&gt;getAnimationController();
+        if (pAnimCtrl) {
+            pAnimCtrl-&gt;setExpansion(isExpanded);
+        }
+    }
+    return convertView;
+}
+
+// Create the Child Expandablelistwidget item.
+virtual gaia::core::Widget *createChildItemWidget(int32_t groupPosition,
+        int32_t childPosition) {
+    TextWidget *pWidget = new TextWidget(mpPage);
+    mWidgetPool.append(pWidget);
+    pWidget-&gt;setPadding(40, 0, 0, 0);
+    pWidget-&gt;setTextSize(30);
+    ListItemControllerParams param(ControllerParams::MATCH_PARENT,
+            200);
+    pWidget-&gt;setControllerParams(&amp;param);
+    pWidget-&gt;setBackgroundColor(mExpandColor);
+    return pWidget;
+}
+
+// Set the Child Expandablelistwidget item content.
+virtual gaia::core::Widget *getChildItemWidget(int32_t groupPosition,
+        int32_t childPosition, bool isLastChild,
+        gaia::core::Widget *convertWidget,
+        gaia::core::Widget *parent) {
+    TextWidget *pWidget = static_cast&lt;TextWidget *&gt;(convertWidget);
+    if (pWidget != NULL) {
+        char str[255];
+        snprintf(str, sizeof(str), "Child %d", childPosition);
+        pWidget-&gt;setText(str);
+        pWidget-&gt;setTextSize(30);
+    }
+    return pWidget;
+}
+</code></pre>
+<p>private:</p>
+<pre><code>template &lt;class WidgetType&gt;
+void setText(const char *str, int32_t id, Widget *pWidget) {
+    if (WidgetType *pConverted = dynamic_cast&lt;WidgetType *&gt;(
+            pWidget-&gt;findWidgetById(id))) {
+        pConverted-&gt;setText(str);
+    }
+}
+
+template &lt;class WidgetType&gt;
+void setImage(int32_t resId, int32_t id, Widget *pWidget) {
+    if (WidgetType *pConverted = dynamic_cast&lt;WidgetType *&gt;(
+            pWidget-&gt;findWidgetById(id))) {
+        pConverted-&gt;setImageResource(resId);
+    }
+}
+
+template &lt;class WidgetType&gt;
+void setColor(int32_t color, int32_t id, Widget *pWidget) {
+    if (WidgetType *pConverted = dynamic_cast&lt;WidgetType *&gt;(
+            pWidget-&gt;findWidgetById(id))) {
+        pConverted-&gt;setBackgroundColor(color);
+    }
+}
+
+enum {
+    ST_CHECKBOX_ID = 1,
+    ST_IMAGELEFT_ID,
+    ST_COLORBAR_ID,
+    ST_COLORBAR_CONTAINER_ID,
+    ST_IMAGE1_ID,
+    ST_IMAGE2_ID,
+    ST_IMAGE3_ID,
+    ST_IMAGE4_ID,
+    ST_IMAGEARROW_ID,
+    ST_STAMP_TEXT_ID,
+    ST_TITLE_TEXT_ID,
+    ST_SUBTITLE_TEXT_ID,
+    ST_MESSAGES_ID,
+    ST_UNREAD_TEXT_ID,
+    ST_IMAGES_CONTAINER_ID,
+    ST_CONTAINER_ID,
+    ST_COLORPANEL_ID
+};
+
+gaia::base::Vector&lt;gaia::core::Widget *&gt; mWidgetPool;
+gaia::base::Vector&lt;gaia::ui::ControllerParams *&gt; mParamsPool;
+Page *mpPage;
+int32_t m1, m2, m3, m4, m5, m6, mColorWidth;
+int32_t mExpandColor;
+</code></pre>
+<p>};</p>
+<p>void ExpandableListWidgetTest::onInit(
+        gaia::core::Persistence<em> const savedInstanceState) {
+    mpScene = Scene::SceneFactory(static_cast<Page*>(this));
+    ExpandableListWidget</em> mpListWidget = new ExpandableListWidget(this);
+    mpListWidget-&gt;setGroupIndicator(NULL);
+    MyExpandableProvider<em> mpProvider = new MyExpandableProvider(this);
+    mpListWidget-&gt;setProvider(mpProvider);
+    LinearController</em> mpLC = new LinearController(this);
+    mpLC-&gt;setOrientation(LinearController::VERTICAL);
+    mpLC-&gt;addWidget(mpListWidget);
+    mpScene-&gt;attachController(mpLC);
+    mpScene-&gt;setupSceneLayout();  <br />
+}
+</code></pre></p>
+<h3>TabPageController API</h3>
+<p>Add fragment to TabPageController.</p>
+<pre><code> //Sets the Drawer that will be drawn adjacent to every child in the list. This will
+ // be drawn using the same height as the normal divider ({@link #setDivider(Drawer)}) or
+ // if it does not have an intrinsic height, the height set by {@link #setDividerHeight(int32_t)}.
+ virtual void setChildDivider(gaia::graphics::Drawer *childDivider);
+
+ // This overloaded method should not be used, instead use
+ // setProvider(IExpandableListProvider)
+ virtual void setProvider(gaia::ui::IListItemProvider *pProvider);
+
+ //Sets the Provider that provides data to this Widget.
+ virtual void setProvider(gaia::ui::IExpandableListProvider *pProvider);
+
+ virtual void setOnGroupCollapseListener(
+        OnGroupCollapseListener *onGroupCollapseListener);
+
+ virtual void setOnGroupExpandListener(
+        OnGroupExpandListener *onGroupExpandListener);
+
+ virtual void setOnGroupClickListener(
+        OnGroupClickListener *onGroupClickListener);
+
+ virtual void setOnChildClickListener(
+        OnChildClickListener *onChildClickListener);
+
+// Sets the indicator to be drawn next to a child.
+// childIndicator The Drawer to be used as an indicator. If the
+// child is the last child for a group.
+virtual void setChildIndicator(gaia::graphics::Drawer *childIndicator);
+
+// Sets the drawing bounds for the child indicator. For either, you can
+// specify to use inherit from the general indicator's bounds.
+virtual void setChildIndicatorBounds(int32_t left, int32_t right);
+
+void setGroupIndicatorSize(int32_t width, int32_t height);
+void setChildIndicatorSize(int32_t width, int32_t height);
+void setGroupIndicatorPositionRatio(float xRatio, float yRatio);
+void setChildIndicatorPositionRatio(float xRatio, float yRatio);
+
+//Sets the indicator to be drawn next to a group.
+virtual void setGroupIndicator(gaia::graphics::Drawer *groupIndicator);
+
+// Sets the drawing bounds for the indicators (at minimum, the group indicator
+// is affected by this; the child indicator is affected by this if the
+// child indicator bounds are set to inherit).
+virtual void setIndicatorBounds(int32_t left, int32_t right);
+
+// Sets the selection to the specified group.
+virtual void setSelectedGroup(int32_t groupPosition);
+
+// Converts a group and/or child position to a flat list position. This is
+// useful in situations where the caller needs to use the underlying
+// ListWidget's methods.
+virtual int32_t getFlatListPosition(int64_t packedPosition);
+
+// Expand a group in the grouped list Widget
+virtual bool expandGroup(int32_t groupPos);
+
+// Expand a group in the grouped list Widget
+virtual bool expandGroup(int32_t groupPos, bool animate);
+
+// Collapse a group in the grouped list Widget
+virtual bool collapseGroup(int32_t groupPos);
+
+// Sets the selection to the specified child. If the child is in a collapsed
+// group, the group will only be expanded and child subsequently selected if
+// shouldExpandGroup is set to true, otherwise the method will return false.
+virtual bool setSelectedChild(int32_t groupPosition, int32_t childPosition,
+        bool shouldExpandGroup);
+
+// Whether the given group is currently expanded.
+virtual bool isGroupExpanded(int32_t groupPosition);
+
+// Converts a flat list position (the raw position of an item (child or group)
+// in the list) to an group and/or child position (represented in a
+// packed position). This is useful in situations where the caller needs to
+// use the underlying ListWidgets methods.
+virtual int64_t getExpandableListPosition(int32_t flatListPosition);
+
+// Gets the position of the currently selected group or child (along with
+// its type). Can return {@link #PACKED_POSITION_VALUE_NULL} if no selection.
+virtual int64_t getSelectedPosition();
+
+// Gets the ID of the currently selected group or child. Can return -1 if no
+// selection.
+virtual int64_t getSelectedId();
+
+// Gets the Provider that provides data to this Widget.
+virtual IExpandableListProvider *getExpandableListProvider();
+
+// Gets the type of a packed position. 
+static int32_t getPackedPositionType(int64_t packedPosition);
+
+// Gets the group position from a packed position. See
+static int32_t getPackedPositionGroup(int64_t packedPosition);
+
+// Gets the child position from a packed position that is of
+// PACKED_POSITION_TYPE_CHILD type use getPackedPositionType(long)
+// To get the group that this child belongs to.
+static int32_t getPackedPositionChild(int64_t packedPosition);
+
+// Returns the packed position representation of a child's position.
+// In general, a packed position should be used in
+// situations where the position given to/returned from an
+// IExpandableListProvider or ExpandableListWidget method can
+// either be a child or group. The two positions are packed into a single
+// long which can be unpacked
+static int64_t getPackedPositionForChild(int32_t groupPosition,
+        int32_t childPosition);
+
+// Returns the packed position representation of a group's position. 
+static int64_t getPackedPositionForGroup(int32_t groupPosition);
+</code></pre>
+<h2>References</h2>
+<ol>
+<li>ListWidget</li>
+<li>IExpandableListProvider</li>
+<li>ListItemLite</li>
+<li>ListItemPanel</li>
+</ol>

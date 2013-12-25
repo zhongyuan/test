@@ -1,0 +1,134 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Connectivity Component.html">Connectivity Component</a>&gt;
+</div>
+<h1>Near Field Communication</h1>
+<p>Near Field Communication (NFC) is a set of short-range wireless technologies, typically requiring a distance of 4cm or less to initiate a connection. NFC
+allows you to share small payloads of data between an NFC tag and an Gaia-powered device, or between two Gaia-powered devices.</p>
+<p>Tags can range in complexity. Simple tags offer just read and write semantics, sometimes with one-time-programmable areas to make the card read-only. More
+complex tags offer math operations, and have cryptographic hardware to authenticate access to a sector. The most sophisticated tags contain operating
+environments, allowing complex interactions with code executing on the tag.
+The data stored in the tag can also be written in a variety of formats, but many of the Gaia framework APIs are based around a NFC Forum standard called NDEF (NFC Data Exchange Format).</p>
+<h1>NFC Basics</h1>
+<p>This document describes the basic NFC tasks you perform in Gaia. It explains how to send and receive NFC data in the form of NDEF messages and describes the Gaia framework APIs that support these features. For more advanced topics, including a discussion of working with non-NDEF data, see Advanced NFC.</p>
+<p>There are two major uses cases when working with NDEF data and Gaia:
+    Reading NDEF data from an NFC tag
+    Beaming NDEF messages from one device to another with Gaia Beam</p>
+<p>Reading NDEF data from an NFC tag is handled with the tag dispatch system, which analyzes discovered NFC tags, appropriately categorizes the data, and starts an application that is interested in the categorized data. An application that wants to handle the scanned NFC tag can declare an demand filter and request to handle the data.</p>
+<p>The Gaia Beam feature allows a device to push an NDEF message onto another device by physically tapping the devices together. This interaction provides an easier way to send data than other wireless technologies like Bluetooth, because with NFC, no manual device discovery or pairing is required. The connection is automatically started when two devices come into range. Gaia Beam is available through a set of NFC APIs, so any application can transmit information between devices. For example, the Contacts, Browser, and YouTube applications use Gaia Beam to share contacts, web pages, and videos with other devices. </p>
+<h1>The Tag Dispatch System</h1>
+<p>Gaia-powered devices are usually looking for NFC tags when the screen is unlocked, unless NFC is disabled in the device's Settings menu. When an Gaia-powered device discovers an NFC tag, the desired behavior is to have the most appropriate page handle the demand without asking the user what application to use. Because devices scan NFC tags at a very short range, it is likely that making users manually select a page would force them to move the device away from the tag and break the connection. You should develop your page to only handle the NFC tags that your page cares about to prevent the Page Chooser from appearing.</p>
+<p>To help you with this goal, Gaia provides a special tag dispatch system that analyzes scanned NFC tags, parses them, and tries to locate applications that are interested in the scanned data. It does this by:</p>
+<pre><code>Parsing the NFC tag and figuring out the MIME type or a URI that identifies the data payload in the tag.
+Encapsulating the MIME type or URI and the payload into an demand. These first two steps are described in How NFC tags are mapped to MIME types and URIs.
+Starts a page based on the demand. This is described in How NFC Tags are Dispatched to Applications.
+</code></pre>
+<h1>How NFC tags are mapped to MIME types and URIs</h1>
+<p>Before you begin writing your NFC applications, it is important to understand the different types of NFC tags, how the tag dispatch system parses NFC tags, and the special work that the tag dispatch system does when it detects an NDEF message. NFC tags come in a wide array of technologies and can also have data written to them in many different ways. Gaia has the most support for the NDEF standard, which is defined by the NFC Forum.</p>
+<p>NDEF data is encapsulated inside a message (NdefMessage) that contains one or more records (NdefRecord). Each NDEF record must be well-formed according to the specification of the type of record that you want to create. Gaia also supports other types of tags that do not contain NDEF data. To learn more about these technologies, see the Advanced NFC topic. Working with these other types of tags involves writing your own protocol stack to communicate with the tags, so we recommend using NDEF when possible for ease of development and maximum support for Gaia-powered devices.</p>
+<p>Now that you have some background in NFC tags, the following sections describe in more detail how Gaia handles NDEF formatted tags. When an Gaia-powered device scans an NFC tag containing NDEF formatted data, it parses the message and tries to figure out the data's MIME type or identifying URI. To do this, the system reads the first NdefRecord inside the NdefMessage to determine how to interpret the entire NDEF message (an NDEF message can have multiple NDEF records). In a well-formed NDEF message, the first NdefRecord contains the following fields:</p>
+<p>3-bit TNF (Type Name Format)
+    Indicates how to interpret the variable length type field. Valid values are described in described in Table 1.
+Variable length type
+    Describes the type of the record. If using TNF_WELL_KNOWN, use this field to specify the Record Type Definition (RTD). Valid RTD values are described in Table 2.</p>
+<p>Variable length ID
+    A unique identifier for the record. This field is not used often, but if you need to uniquely identify a tag, you can create an ID for it.
+Variable length payload
+    The actual data payload that you want to read or write. An NDEF message can contain multiple NDEF records, so don't assume the full payload is in the first NDEF record of the NDEF message.</p>
+<p>The tag dispatch system uses the TNF and type fields to try to map a MIME type or URI to the NDEF message. If successful, it encapsulates that information inside of a ACTION_NDEF_DISCOVERED demand along with the actual payload. However, there are cases when the tag dispatch system cannot determine the type of data based on the first NDEF record. This happens when the NDEF data cannot be mapped to a MIME type or URI, or when the NFC tag does not contain NDEF data to begin with. In such cases, a Tag object that has information about the tag's technologies and the payload are encapsulated inside of a ACTION_TECH_DISCOVERED demand instead.</p>
+<p>Table 1. describes how the tag dispatch system maps TNF and type fields to MIME types or URIs. It also describes which TNFs cannot be mapped to a MIME type or URI. In these cases, the tag dispatch system falls back to ACTION_TECH_DISCOVERED.</p>
+<p>For example, if the tag dispatch system encounters a record of type TNF_ABSOLUTE_URI, it maps the variable length type field of that record into a URI. The tag dispatch system encapsulates that URI in the data field of an ACTION_NDEF_DISCOVERED demand along with other information about the tag, such as the payload. On the other hand, if it encounters a record of type TNF_UNKNOWN, it creates an demand that encapsulates the tag's technologies instead.</p>
+<h1>Table 1. Supported TNFs and their mappings</h1>
+<hr />
+<h2>Type Name Format (TNF)  | Mapping</h2>
+<p>TNF_ABSOLUTE_URI        | URI based on the type field.
+TNF_EMPTY               | Falls back to ACTION_TECH_DISCOVERED.
+TNF_EXTERNAL_TYPE       | URI based on the URN in the type field. The URN is encoded into the NDEF type field in a shortened form: <domain_name>:<service_name>. Gaia maps this to a URI in the form: vnd.gaia.nfc://ext/<domain_name>:<service_name>.
+TNF_MIME_MEDIA          | MIME type based on the type field.
+TNF_UNCHANGED           | Invalid in the first record, so falls back to ACTION_TECH_DISCOVERED.
+TNF_UNKNOWN             | Falls back to ACTION_TECH_DISCOVERED.
+TNF_WELL_KNOWN          | MIME type or URI depending on the Record Type Definition (RTD), which you set in the type field. See Table 2. for more information on available RTDs and their mappings.</p>
+<hr />
+<h1>Table 2. Supported RTDs for TNF_WELL_KNOWN and their mappings</h1>
+<hr />
+<h2>Record Type Definition (RTD)    | Mapping</h2>
+<p>RTD_ALTERNATIVE_CARRIER         | Falls back to ACTION_TECH_DISCOVERED.
+RTD_HANDOVER_CARRIER            | Falls back to ACTION_TECH_DISCOVERED.
+RTD_HANDOVER_REQUEST            | Falls back to ACTION_TECH_DISCOVERED.
+RTD_HANDOVER_SELECT             | Falls back to ACTION_TECH_DISCOVERED.
+RTD_SMART_POSTER                | URI based on parsing the payload.
+RTD_TEXT                        | MIME type of text/plain.
+RTD_URI                         | URI based on payload.</p>
+<hr />
+<h1>How NFC Tags are Dispatched to Applications</h1>
+<p>When the tag dispatch system is done creating an demand that encapsulates the NFC tag and its identifying information, it sends the demand to an interested application that filters for the demand. If more than one application can handle the demand, the Page Chooser is presented so the user can select the Page. The tag dispatch system defines three demands, which are listed in order of highest to lowest priority:
+    ACTION_NDEF_DISCOVERED: This demand is used to start an Page when a tag that contains an NDEF payload is scanned and is of a recognized type. This is the highest priority demand, and the tag dispatch system tries to start an Page with this demand before any other demand, whenever possible.
+    ACTION_TECH_DISCOVERED: If no activities register to handle the ACTION_NDEF_DISCOVERED demand, the tag dispatch system tries to start an application with this demand. This demand is also directly started (without starting ACTION_NDEF_DISCOVERED first) if the tag that is scanned contains NDEF data that cannot be mapped to a MIME type or URI, or if the tag does not contain NDEF data but is of a known tag technology.
+    ACTION_TAG_DISCOVERED: This demand is started if no activities handle the ACTION_NDEF_DISCOVERED or ACTION_TECH_DISCOVERED demands.</p>
+<p>The basic way the tag dispatch system works is as follows:
+    Try to start an Page with the demand that was created by the tag dispatch system when parsing the NFC tag (either ACTION_NDEF_DISCOVERED or ACTION_TECH_DISCOVERED).
+    If no activities filter for that demand, try to start an Page with the next lowest priority demand (either ACTION_TECH_DISCOVERED or ACTION_TAG_DISCOVERED) until an application filters for the demand or until the tag dispatch system tries all possible demands.
+    If no applications filter for any of the demands, do nothing.
+Whenever possible, work with NDEF messages and the ACTION_NDEF_DISCOVERED demand, because it is the most specific out of the three. This demand allows you to start your application at a more appropriate time than the other two demands, giving the user a better experience.</p>
+<h1>Filtering for NFC Demand</h1>
+<p>To start your application when an NFC tag that you want to handle is scanned, your application can filter for one, two, or all three of the NFC demands in the Gaia manifest. However, you usually want to filter for the ACTION_NDEF_DISCOVERED demand for the most control of when your application starts. The ACTION_TECH_DISCOVERED demand is a fallback for ACTION_NDEF_DISCOVERED when no applications filter for ACTION_NDEF_DISCOVERED or for when the payload is not NDEF. Filtering for ACTION_TAG_DISCOVERED is usually too general of a category to filter on. Many applications will filter for ACTION_NDEF_DISCOVERED or ACTION_TECH_DISCOVERED before ACTION_TAG_DISCOVERED, so your application has a low probability of starting. ACTION_TAG_DISCOVERED is only available as a last resort for applications to filter for in the cases where no other applications are installed to handle the ACTION_NDEF_DISCOVERED or ACTION_TECH_DISCOVERED demand.</p>
+<p>Because NFC tag deployments vary and are many times not under your control, this is not always possible, which is why you can fallback to the other two demands when necessary. When you have control over the types of tags and data written, it is recommended that you use NDEF to format your tags.</p>
+<h1>Creating Common Types of NDEF Record</h1>
+<p>This section describes how to create common types of NDEF records to help you when writing to NFC tags or sending data with Gaia Beam. Starting with Gaia , the createUri() method is available to help you create URI records automatically, createExternal() and createMime() are available to help you create MIME and external type NDEF records. Use these helper methods whenever possible to avoid mistakes when manually creating NDEF records.</p>
+<h1>Gaia Application Record</h1>
+<p>A Gaia Application Record (CAR) provides a stronger certainty that your application is started when an NFC tag is scanned. A CAR has the package name of an application embedded inside an NDEF record. You can add an CAR to any NDEF record of your NDEF message, because Gaia searches the entire NDEF message for CARs. If it finds a CAR, it starts the application based on the package name inside the CAR. If the application is not present on the device, Google Play is launched to download the application.</p>
+<p>CARs are useful if you want to prevent other applications from filtering for the same demand and potentially handling specific tags that you have deployed. CARs are only supported at the application level, because of the package name constraint, and not at the Page level as with demand filtering. If you want to handle an demand at the Page level, use demand filters.</p>
+<p>If a tag contains a CAR, the tag dispatch system dispatches in the following manner:</p>
+<pre><code>Try to start a Page using an demand filter as normal. If the Page that matches the demand also matches the CAR, start the Page.
+If the Page that filters for the demand does not match the CAR, if multiple Activities can handle the demand, or if no Page handles the demand, start the application specified by the CAR.
+If no application can start with the CAR, go to Google Play to download the application based on the CAR.
+</code></pre>
+<p>Note: You can override CARs and the demand dispatch system with the foreground dispatch system, which allows a foreground page to have priority when an NFC tag is discovered. With this method, the page must be in the foreground to override CARs and the demand dispatch system.</p>
+<p>If you still want to filter for scanned tags that do not contain a CAR, you can declare demand filters as normal. This is useful if your application is interested in other tags that do not contain  CAR. For example, maybe you want to guarantee that your application handles proprietary tags that you deploy as well as general tags deployed by third parties. Keep in mind that CARs are specific to Gaia devices or later, so when deploying tags, you most likely want to use a combination of CARs and MIME types/URIs to support the widest range of devices. In addition, when you deploy NFC tags, think about how you want to write your NFC tags to enable support for the most devices (Gaia-powered and other devices). You can do this by defining a relatively unique MIME type or URI to make it easier for applications to distinguish.</p>
+<p>Gaia provides a simple API to create a CAR, createApplicationRecord(). All you need to do is embed the CAR anywhere in your NdefMessage. You do not want to use the first record of your NdefMessage, unless the CAR is the only record in the NdefMessage. This is because the Gaia system checks the first record of an NdefMessage to determine the MIME type or URI of the tag, which is used to create an demand for applications to filter.</p>
+<h1>Beaming NDEF Message to Other Devices</h1>
+<p>Gaia Beam allows simple peer-to-peer data exchange between two Gaia-powered devices. The application that wants to beam data to another device must be in the foreground and the device receiving the data must not be locked. When the beaming device comes in close enough contact with a receiving device, the beaming device displays the "Touch to Beam" UI. The user can then choose whether or not to beam the message to the receiving device.</p>
+<p>You can enable Gaia Beam for your application by calling one of the two methods:
+    setNdefPushMessage(): Accepts an NdefMessage to set as the message to beam. Automatically beams the message when two devices are in close enough proximity.
+    setNdefPushMessageCallback(): Accepts a callback that contains a createNdefMessage() which is called when a device is in range to beam data to. The callback lets you create the NDEF message only when necessary.</p>
+<p>A page can only push one NDEF message at a time, so setNdefPushMessageCallback() takes precedence over setNdefPushMessage() if both are set. To use Gaia Beam, the following general guidelines must be met:</p>
+<pre><code>The page that is beaming the data must be in the foreground. Both devices must have their screens unlocked.
+You must encapsulate the data that you are beaming in an NdefMessage object.
+The NFC device that is receiving the beamed data must support the com.android.npp NDEF push protocol or NFC Forum's SNEP (Simple NDEF Exchange Protocol).
+</code></pre>
+<p>Note: If your page enables Gaia Beam and is in the foreground, the standard demand dispatch system is disabled. However, if your page also enables foreground dispatching, then it can still scan tags that match the demand filters set in the foreground dispatching.</p>
+<p>To enable Gaia Beam:
+    Create an NdefMessage that contains the NdefRecords that you want to push onto the other device.
+    Call setNdefPushMessage() with a NdefMessage or call setNdefPushMessageCallback passing in a NfcAdapter.CreateNdefMessageCallback object in the onCreate() method of your page . These methods require at least one page that you want to enable with Gaia Beam, along with an optional list of other activities to activate.</p>
+<pre><code>In general, you normally use setNdefPushMessage() if your Page only needs to push the same NDEF message at all times, when two devices are in range to communicate. You use setNdefPushMessageCallback when your application cares about the current context of the application and wants to push an NDEF message depending on what the user is doing in your application.
+</code></pre>
+<p>With this demand filter, the com.example.gaia.beam application now can be started when it scans an NFC tag or receives an Gaia Beam with a CAR of type com.example.gaia.beam, or when an NDEF formatted message contains a MIME record of type application/vnd.com.example.gaia.beam.</p>
+<p>Even though CARs guarantee an application is started or downloaded, demand filters are recommended, because they let you start a Page of your choice in your application instead of always starting the main Page within the package specified by a CAR. CARs do not have Page level granularity. Also, because some Gaia-powered devices do not support CARs, you should also embed identifying information in the first NDEF record of your NDEF messages and filter for that as well, just in case. See Creating Common Types of NDEF records for more information on how to create records. </p>
+<h1>Advance NFC</h1>
+<p>This document describes advanced NFC topics, such as working with various tag technologies, writing to NFC tags, and foreground dispatching, which allows an application in the foreground to handle demands even when other applications filter for the same ones.</p>
+<h1>Working with Supported Tag Technologies</h1>
+<p>When working with NFC tags and Gaia-powered devices, the main format you use to read and write data on tags is NDEF. When a device scans a tag with NDEF data, Gaia provides support in parsing the message and delivering it in an NdefMessage when possible. There are cases, however, when you scan a tag that does not contain NDEF data or when the NDEF data could not be mapped to a MIME type or URI. In these cases, you need to open communication directly with the tag and read and write to it with your own protocol (in raw bytes). Gaia provides generic support for these use cases with the android.nfc.tech package, which is described in Table 1. You can use the getTechList() method to determine the technologies supported by the tag and create the corresponding TagTechnology object with one of classes provided by android.nfc.tech</p>
+<h1>Table 1. Supported tag technologies</h1>
+<hr />
+<h2>Class           | Description</h2>
+<p>TagTechnology   | The interface that all tag technology classes must implement.
+NfcA            | Provides access to NFC-A (ISO 14443-3A) properties and I/O operations.
+NfcB            | Provides access to NFC-B (ISO 14443-3B) properties and I/O operations.
+NfcF            | Provides access to NFC-F (JIS 6319-4) properties and I/O operations.
+NfcV            | Provides access to NFC-V (ISO 15693) properties and I/O operations.
+IsoDep          | Provides access to ISO-DEP (ISO 14443-4) properties and I/O operations.
+Ndef            | Provides access to NDEF data and operations on NFC tags that have been formatted as NDEF.
+NdefFormatable  | Provides a format operations for tags that may be NDEF formattable.</p>
+<hr />
+<p>The following tag technlogies are not required to be supported by Gaia-powered devices.</p>
+<h1>Table 2. Optional supported tag technologies</h1>
+<hr />
+<h2>Class             | Description</h2>
+<p>MifareClassic     | Provides access to MIFARE Classic properties and I/O operations, if this Gaia device supports MIFARE.
+MifareUltralight  | Provides access to MIFARE Ultralight properties and I/O operations, if this Gaia device supports MIFARE.</p>
+<hr />
+<h1>Working with Tag Technologies and the ACTION_TECH_DISCOVERED demand</h1>
+<p>When a device scans a tag that has NDEF data on it, but could not be mapped to a MIME or URI, the tag dispatch system tries to start a page with the ACTION_TECH_DISCOVERED demand. The ACTION_TECH_DISCOVERED is also used when a tag with non-NDEF data is scanned. Having this fallback allows you to work with the data on the tag directly if the tag dispatch system could not parse it for you. The basic steps when working with tag technologies are as follows:</p>
+<pre><code>Filter for an ACTION_TECH_DISCOVERED demand specifying the tag technologies that you want to handle. See Filtering for NFC demands for more information. In general, the tag dispatch system tries to start a ACTION_TECH_DISCOVERED demand when an NDEF message cannot be mapped to a MIME type or URI, or if the tag scanned did not contain NDEF data. For more information on how this is determined, see The Tag Dispatch System.
+
+Obtain an instance of a TagTechnology, by calling one of the get factory methods of the classes in the android.nfc.tech package. You can enumerate the supported technologies of the tag by calling getTechList() before calling a get factory method.
+</code></pre>

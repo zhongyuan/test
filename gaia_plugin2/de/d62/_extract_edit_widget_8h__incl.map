@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d98/_edit_widget_8h.html" title="gaia/ui/EditWidget.h" alt="" coords="501,83,640,112"/>
+<area shape="rect" id="node5" href="$d8/d13/_text_widget_8h.html" title="gaia/ui/TextWidget.h" alt="" coords="307,160,448,189"/>
+<area shape="rect" id="node7" href="$d3/dd0/_event_control_8h.html" title="gaia/core/event/EventControl.h" alt="" coords="5,237,208,267"/>
+<area shape="rect" id="node11" href="$d4/d75/_widget_8h.html" title="gaia/core/vision/Widget.h" alt="" coords="293,237,461,267"/>
+<area shape="rect" id="node13" href="$d1/dd0/gmacros_8h.html" title="gaia/base/gmacros.h" alt="" coords="83,315,224,344"/>
+<area shape="rect" id="node15" href="$d0/d92/_property_animatable_8h.html" title="gaia/core/animator/PropertyAnimatable.h" alt="" coords="248,315,507,344"/>
+<area shape="rect" id="node18" href="$d8/d50/_widget_core_8h.html" title="gaia/core/vision/WidgetCore.h" alt="" coords="531,315,728,344"/>
+</map>

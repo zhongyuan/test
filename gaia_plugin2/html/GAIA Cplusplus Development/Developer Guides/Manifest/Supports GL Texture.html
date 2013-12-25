@@ -1,0 +1,80 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Manifest.html">Manifest</a>&gt;
+</div>
+<h1>Supports GL Texture</h1>
+<p><strong><em>syntax:</em></strong></p>
+<pre><code>    &lt;supports-gl-texture gaia:name="string" /&gt;
+</code></pre>
+<h2>Contained in:</h2>
+<blockquote>
+<p><a href="Manifest/Config.html">Config</a></p>
+</blockquote>
+<h2>Description:</h2>
+<p>Declares a single GL texture compression format that is supported by the application.</p>
+<p>An application "supports" a GL texture compression format if it is capable of providing texture assets that are compressed in that format, once the application is installed on a device. The application can provide the compressed assets locally, from inside the .apk, or it can download them from a server at runtime.</p>
+<p>Each <supports-gl-texture> element declares exactly one supported texture compression format, specified as the value of a gaia:name attribute. If your application supports multiple texture compression formats, you can declare multiple <supports-gl-texture> elements. For example:</p>
+<pre><code>    &lt;supports-gl-texture gaia:name="GL_OES_compressed_ETC1_RGB8_texture" /&gt;
+    &lt;supports-gl-texture gaia:name="GL_OES_compressed_paletted_texture" /&gt;
+</code></pre>
+<p>Declared <supports-gl-texture> elements are informational, meaning that the Gaia system itself does not examine the elements at install time to ensure matching support on the device. However, other services (such as Google Play) or applications can check your application's <supports-gl-texture> declarations as part of handling or interacting with your application. For this reason, it's very important that you declare all of the texture compression formats (from the list below) that your application is capable of supporting.</p>
+<p>Applications and devices typically declare their supported GL texture compression formats using the same set of well-known strings, as listed below. The set of format strings may grow over time, as needed, and since the values are strings, applications are free to declare other formats as needed.</p>
+<p>Assuming that the application is built with SDK Platform Tools r3 or higher, filtering based on the <supports-gl-texture> element is activated for all API levels.</p>
+<h2>Attributes:</h2>
+<p><strong><em>gaia:name</em></strong><br>
+Specifies a single GL texture compression format supported by the application, as a descriptor string. Common descriptor values are listed in the table below.</p>
+<table border="1" width="1000">
+<tr><th>Texture Compression Format Descriptor</th><th>Comments</th></tr>
+<tr>
+  <td>GL_OES_compressed_ETC1_RGB8_texture</td>
+  <td>Ericsson texture compression. Specified in OpenGL ES 2.0 and available in all gaia-powered devices that support OpenGL ES 2.0.</td>
+</tr>
+<tr>
+  <td>GL_OES_compressed_paletted_texture</td>
+  <td>Generic paletted texture compression.</td>
+</tr>
+<tr>
+  <td>GL_AMD_compressed_3DC_texture</td>
+  <td>ATI 3Dc texture compression.</td>
+</tr>
+<tr>
+  <td>GL_AMD_compressed_ATC_texture</td>
+  <td>ATI texture compression. Available on devices running Adreno GPU, including HTC Nexus One, Droid Incredible, EVO, and others. For widest compatibility, devices may also declare a <supports-gl-texture> element with the descriptor GL_ATI_texture_compression_atitc.</td>
+</tr>
+<tr>
+  <td>GL_EXT_texture_compression_latc</td>
+  <td>Luminance alpha texture compression.</td>
+</tr>
+<tr>
+  <td>GL_EXT_texture_compression_dxt1</td>
+  <td>S3 DXT1 texture compression. Supported on devices running Nvidia Tegra2 platform, including Motorala Xoom, Motorola Atrix, Droid Bionic, and others.</td>
+</tr>
+<tr>
+  <td>GL_EXT_texture_compression_s3tc</td>
+  <td>S3 texture compression, nonspecific to DXT variant. Supported on devices running Nvidia Tegra2 platform, including Motorala Xoom, Motorola Atrix, Droid Bionic, and others. If your application requires a specific DXT variant, declare that descriptor instead of this one.</td>
+</tr>
+<tr>
+  <td>GL_IMG_texture_compression_pvrtc</td>
+  <td>PowerVR texture compression. Available in devices running PowerVR SGX530/540 GPU, such as Motorola DROID series; Samsung Galaxy S, Nexus S, and Galaxy Tab; and others.</td>
+</tr>
+</table>
+
+<h2>See also:</h2>
+<ul>
+<li>Filters on Google Play</li>
+</ul>
+<h2>Google Play and Texture Compression Filtering</h2>
+<p>Google Play filters the applications that are visible to users, so that users can see and download only those applications that are compatible with their devices. One of the ways it filters applications is by texture compression compatibility, giving you control over the availability of your application to various devices, based on the capabilities of their GPUs.</p>
+<p>To determine an application's texture compression compatibility with a given user's device, Google Play compares:</p>
+<ul>
+<li>
+<p>Texture compression formats that are supported by the application - an application declares its supported texture compression formats in <supports-gl-texture> elements in its manifest
+with...</p>
+</li>
+<li>
+<p>Texture compression formats that are supported by the GPU on the device - a device reports the formats it supports as read-only system properties.</p>
+</li>
+</ul>
+<p>Each time you upload an application to the Google Play Developer Console, Google Play scans the application's manifest file and looks for any <supports-gl-texture> elements. It extracts the format descriptors from the elements and stores them internally as metadata associated with the application .apk and the application version.</p>
+<p>When a user searches or browses for applications on Google Play, the service compares the texture compression formats supported by the application with those supported by the user's device. The comparison is based on the format descriptor strings and a match must be exact.</p>
+<p>If any of an application's supported texture compression formats is also supported by the device, Google Play allows the user to see the application and potentially download it. Otherwise, if none of the application's formats is supported by the device, Google Play filters the application so that it is not available for download.</p>
+<p>If an application does not declare any <supports-gl-texture> elements, Google Play does not apply any filtering based on GL texture compression format.</p>

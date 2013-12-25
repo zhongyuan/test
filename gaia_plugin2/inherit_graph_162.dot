@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::content::ContentProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d6b/classgaia_1_1content_1_1_content_provider.html",tooltip="Content providers are one of the primary building blocks of COS applications, providing content to ap..."];
-}

@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::telephony::GsmAlphabet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d20/classgaia_1_1telephony_1_1_gsm_alphabet.html",tooltip="This class implements the character set mapping between the GSM SMS 7-bit alphabet specified in TS 23..."];
-}

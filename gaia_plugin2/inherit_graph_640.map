@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$dd/d17/classgaia_1_1service_1_1_input_connection.html" title="The InputConnection is the abstact communication interface from an InputMethod back to the applicatio..." alt="" coords="7,5,204,35"/>
+<area shape="rect" id="node3" href="$df/da2/classgaia_1_1service_1_1_input_method_connection.html" title="The InputMethodConnection is the communication channel from an InputMethod back to the application th..." alt="" coords="253,5,496,35"/>
+</map>

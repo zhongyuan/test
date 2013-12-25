@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d2/dff/classgaia_1_1text_1_1_metric_affecting_span.html" title="The classes that affect character&#45;level text formatting in a way that changes the width or height of ..." alt="" coords="5,160,208,189"/>
+<area shape="rect" id="node4" href="$d9/d29/classgaia_1_1text_1_1_character_style.html" title="The classes that affect character&#45;level text formatting extend this class." alt="" coords="21,83,192,112"/>
+<area shape="rect" id="node6" href="$d7/d55/classgaia_1_1text_1_1_object_style.html" title="ObjectStyle is interface for spannable class." alt="" coords="31,5,183,35"/>
+</map>

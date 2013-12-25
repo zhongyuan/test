@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d2/ddb/classgaia_1_1base_1_1_string.html" title="A String is represented by array of UTF&#45;16 values, such that Unicode supplementary characters (code p..." alt="" coords="256,77,379,107"/>
+<area shape="rect" id="node6" href="$d3/d34/classgaia_1_1net_1_1_http_context.html" title="A context for executing a request." alt="" coords="585,41,735,71"/>
+<area shape="rect" id="node4" href="$d1/d0f/classgaia_1_1base_1_1_char_sequence.html" title="This interface represents an ordered set of characters and defines the methods to probe them..." alt="" coords="5,77,181,107"/>
+<area shape="rect" id="node9" href="$da/dac/classgaia_1_1net_1_1_cookie_manager.html" title="The class CacheManager often use to store cookies." alt="" coords="232,5,403,35"/>
+<area shape="rect" id="node11" href="$d5/dbd/classgaia_1_1net_1_1_i_http_client_listener.html" title="IHttpClientListener handles callback functions in each stage of HttpClient." alt="" coords="565,160,755,189"/>
+<area shape="rect" id="node13" href="$d2/d98/classgaia_1_1net_1_1_url.html" title="A Uniform Resource Locator that identifies the location of an Internet resource." alt="" coords="612,213,708,243"/>
+</map>

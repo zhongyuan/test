@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::net::HttpContext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d34/classgaia_1_1net_1_1_http_context.html",tooltip="A context for executing a request."];
-}

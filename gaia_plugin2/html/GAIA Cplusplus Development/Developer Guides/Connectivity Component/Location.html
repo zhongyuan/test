@@ -1,0 +1,92 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Connectivity Component.html">Connectivity Component</a>&gt;
+</div>
+<h1>Location Services</h1>
+<p>Gaia gives your applications access to the location services supported by the device through classes in the gaia package. The central component of the location framework is the LocationManager system service, which provides APIs to determine location and bearing of the underlying device (if available).</p>
+<p>As with other system services, you can instantiate a LocationManager directly.</p>
+<p>Once your application has a LocationManager, your application is able to do three things:</p>
+<p>Query for the list of all LocationProviders for the last known user location.
+Register/unregister for periodic updates of the user's current location from a location provider (specified either by criteria or name).
+Register/unregister for a given Demand to be fired if the device comes within a given proximity (specified by radius in meters) of a given lat/long.</p>
+<h1>Location Strategies</h1>
+<p>Knowing where the user is allows your application to be smarter and deliver better information to the user. When developing a location-aware application for Gaia, you can utilize GPS and Gaia Network Location Provider to acquire the user location. Although GPS is most accurate, it only works outdoors, it quickly consumes battery power, and does not return the location as quickly as users want. Gaia Network Location Provider determines user location using cell tower and Wi-Fi signals, providing location information in a way that works indoors and outdoors, responds faster, and uses less battery power. To obtain the user location in your application, you can use both GPS and the Network Location Provider, or just one.</p>
+<h1>Challenges in Determining User Location</h1>
+<p>Obtaining user location from a mobile device can be complicated. There are several reasons why a location reading (regardless of the source) can contain errors and be inaccurate. Some sources of error in the user location include:</p>
+<pre><code>Multitude of location sources:
+    GPS, Cell-ID, and Wi-Fi can each provide a clue to users location. Determining which to use and trust is a matter of trade-offs in accuracy, speed, and battery-efficiency.
+User movement:
+    Because the user location changes, you must account for movement by re-estimating user location every so often.
+Varying accuracy:
+    Location estimates coming from each location source are not consistent in their accuracy. A location obtained 10 seconds ago from one source might be more accurate than the newest location from another or same source.
+</code></pre>
+<p>These problems can make it difficult to obtain a reliable user location reading. This document provides information to help you meet these challenges to obtain a reliable location reading. It also provides ideas that you can use in your application to provide the user with an accurate and responsive geo-location experience.</p>
+<h1>Requesting Location Updates</h1>
+<p>Here is an introduction to how you can obtain user location on Gaia.</p>
+<p>Getting user location in Gaia works by means of callback. You indicate that you'd like to receive location updates from the LocationManager by calling requestLocationUpdates(), passing it a LocationListener. Your LocationListener must implement several callback methods that the Location Manager calls when the user location changes or when the status of the service changes.</p>
+<p>For example, the following code shows how to define a LocationListener and request location updates:</p>
+<h1>Acquire a reference to the system Location Manager</h1>
+<p>gaia::connectivity::LocationManager* mpLocationManager = new LocationManager();</p>
+<h1>Define a listener that responds to location updates</h1>
+<p>gaia::connectivity::LocationListener* mpLocationListener = new GpsLocationListener();</p>
+<p>class GpsLocationListener: public LocationListener {
+    public:
+        explicit GpsLocationListener()
+            : LocationListener() {
+        }</p>
+<pre><code>    virtual ~GpsLocationListener() {
+    }
+
+    void onLocationChanged(const gaia::connectivity::Location&amp; location) {
+    }
+
+    onStatusChanged(const gaia::base::String&amp; provider, int32_t status, const gaia::core::Persistence&amp; extras) {
+    }
+
+    void onProviderEnabled(const gaia::base::String&amp; provider) {
+    }
+
+    void onProviderDisabled(const gaia::base::String&amp; provider) {
+    }
+</code></pre>
+<p>};</p>
+<h1>Register the listener with the Location Manager to receive location updates</h1>
+<p>mpLocationManager-&gt;requestLocationUpdates(mpLocationManager-&gt;NETWORK_PROVIDER(), static_cast<int64_t>(0), static_cast<float>(0), *mpLocationListener);</p>
+<p>The first parameter in requestLocationUpdates() is the type of location provider to use (in this case, the Network Location Provider for cell tower and Wi-Fi based location). You can control the frequency at which your listener receives updates with the second and third parameter—the second is the minimum time interval between notifications and the third is the minimum change in distance between notifications—setting both to zero requests location notifications as frequently as possible. The last parameter is your LocationListener, which receives callbacks for location updates.</p>
+<p>To request location updates from the GPS provider, substitute GPS_PROVIDER for NETWORK_PROVIDER. You can also request location updates from both the GPS and the Network Location Provider by calling requestLocationUpdates() twice—once for NETWORK_PROVIDER and once for GPS_PROVIDER.</p>
+<h1>Requesting User Permissions</h1>
+<p>In order to receive location updates from NETWORK_PROVIDER or GPS_PROVIDER, you must request user permission by declaring either the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission, respectively, in your Android manifest file.
+Without these permissions, your application will fail at runtime when requesting location updates.</p>
+<h1>Defining a Model for the Best Performance</h1>
+<p>Location-based applications are now commonplace, but due to the less than optimal accuracy, user movement, the multitude of methods to obtain the location, and the desire to conserve battery, getting user location is complicated. To overcome the obstacles of obtaining a good user location while preserving battery power, you must define a consistent model that specifies how your application obtains the user location. This model includes when you start and stop listening for updates and when to use cached location data.</p>
+<h1>Flow for obtaining user location</h1>
+<p>Here's the typical flow of procedures for obtaining the user location:
+    1. Start application.
+    2. Sometime later, start listening for updates from desired location providers.
+    3. Maintain a current best estimate of location by filtering out new, but less accurate fixes.
+    4. Stop listening for location updates.
+    5. Take advantage of the last best location estimate.</p>
+<h1>Deciding when to start listening for updates</h1>
+<p>You might want to start listening for location updates as soon as your application starts, or only after users activate a certain feature. Be aware that long windows of listening for location fixes can consume a lot of battery power, but short periods might not allow for sufficient accuracy.</p>
+<p>As demonstrated above, you can begin listening for updates by calling requestLocationUpdates():</p>
+<p>String locationProvider = mpLocationManager-&gt;NETWORK_PROVIDER();
+Or, use GPS location data:
+String locationProvider = mpLocationManager-&gt;GPS_PROVIDER();
+mpLocationManager-&gt;requestLocationUpdates(, static_cast<int64_t>(0), static_cast<float>(0), *mpLocationListener);</p>
+<h1>Getting a fast fix with the last known location</h1>
+<p>The time it takes for your location listener to receive the first location fix is often too long for users wait. Until a more accurate location is provided to your location listener, you should utilize a cached location by calling getLastKnownLocation(String):</p>
+<p>String locationProvider = mpLocationManager-&gt;NETWORK_PROVIDER();
+Or use GPS location data:
+String locationProvider = mpLocationManager-&gt;GPS_PROVIDER();
+Location lastKnownLocation = mpLocationManager-&gt;getLastKnownLocation(locationProvider);</p>
+<h1>Deciding when to stop listening for updates</h1>
+<p>The logic of deciding when new fixes are no longer necessary might range from very simple to very complex depending on your application. A short gap between when the location is acquired and when the location is used, improves the accuracy of the estimate. Always beware that listening for a long time consumes a lot of battery power, so as soon as you have the information you need, you should stop listening for updates by calling removeUpdates(const LocationListener&amp; listener):</p>
+<h1>Remove the listener you previously added</h1>
+<p>mpLocationManager-&gt;removeUpdates(*mpLocationListener);</p>
+<h1>Adjusting the model to save battery and data exchange</h1>
+<p>As you test your application, you might find that your model for providing good location and good performance needs some adjustment. Here are some things you might change to find a good balance between the two.</p>
+<h1>Reduce the size of the window</h1>
+<p>A smaller window in which you listen for location updates means less interaction with GPS and network location services, thus, preserving battery life. But it also allows for fewer locations from which to choose a best estimate.</p>
+<h1>Set the location providers to return updates less frequently</h1>
+<p>Reducing the rate at which new updates appear during the window can also improve battery efficiency, but at the cost of accuracy. The value of the trade-off depends on how your application is used. You can reduce the rate of updates by increasing the parameters in requestLocationUpdates() that specify the interval time and minimum distance change.</p>
+<h1>Restrict a set of providers</h1>
+<p>Depending on the environment where your application is used or the desired level of accuracy, you might choose to use only the Network Location Provider or only GPS, instead of both. Interacting with only one of the services reduces battery usage at a potential cost of accuracy.</p>

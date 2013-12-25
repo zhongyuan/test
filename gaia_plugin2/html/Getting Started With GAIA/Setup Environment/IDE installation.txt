@@ -1,0 +1,9 @@
+#GAIA IDE Installaction#
+
+The document for GAIA IDE installation 
+
+[Requirement](IDE installation/Requirement.html#Requirement)
+
+[Insatll step by step](IDE installation/Install step by step.html#Insatll step by step)
+
+

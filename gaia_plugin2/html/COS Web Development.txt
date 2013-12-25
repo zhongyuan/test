@@ -1,5 +1,0 @@
-#COS Web Development#
-
-The document for Web Development.
-
-[Developer Guides](COS Web Development/Developer Guides.html)

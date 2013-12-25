@@ -1,0 +1,140 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../UI construction and manipulation.html">UI construction and manipulation</a>&gt;
+</div>
+<h1>Sliders</h1>
+<hr />
+<h1>Description</h1>
+<p>There are three types of Sliders:</p>
+<ul>
+<li>
+<p><a href="#ProgressBar">ProgressBar</a><br />
+A progress bar displays a bar to the user representing how far the operation has progressed.
+In the indeterminate mode, a progress bar shows a cyclic animation without an indication of progress.
+The indeterminate progress bar can be either a spinning wheel or a horizontal bar.
+Default progress bar is a spinning wheel in the indeterminate mode.</p>
+</li>
+<li>
+<p><a href="#SeekBar">SeekBar</a><br />
+A SeekBar is an extension of ProgressBar that adds a draggable thumb.
+The user can touch the thumb and drag left or right to set the current progress level.</p>
+</li>
+<li>
+<p><a href="#RatingBar">RatingBar</a><br />
+A RatingBar is an extension of SeekBar and ProgressBar that shows a rating in stars.
+The user can touch or drag it to set its rating.</p>
+</li>
+</ul>
+<h2><a name="ProgressBar">ProgressBar</a></h2>
+<p><img src="Slider_ProgressBar.png" width="65" height="65"/>
+<br>
+In this section, you will create a ProgressBar, using the ProgressBar widget.</p>
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene, Context and LinearController
+    mpScene = Scene::SceneFactory(this);
+    mpContext = new gaia::core::Context(this);
+    gaia::ui::LinearController\* mpLayout = new gaia::ui::LinearController(this); <br>
+    // create the ProgressBar
+    gaia::ui::ProgressBar\* mpProgressBar = new gaia::ui::ProgressBar(mpContext); <br>
+    // add thet ProgressBar to the LinearController
+    mpLayout->addWidget(mpProgressBar);
+    mpScene->attachController(mpLayout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+
+<p><img src="Slider_HProgressBar.png" width="333" height="50"/>
+<br>
+In this section, you will create a Horizontal ProgressBar, using the ProgressBar widget.</p>
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene, Context and LinearController
+    mpScene = Scene::SceneFactory(this);
+    mpContext = new gaia::core::Context(this);
+    gaia::core::AttributeSet\* mpAttr = NULL;
+    gaia::ui::LinearController\* mpLayout = new gaia::ui::LinearController(this); <br>
+    // create the ProgressBar
+    gaia::ui::ProgressBar\* mpProgressBar = new gaia::ui::ProgressBar(
+        mpContext, mpAttr, com::gaia::common::R::attr::progressBarStyleHorizontal); <br>
+    mpProgressBar->setProgress(50);
+    mpProgressBar->setSecondaryProgress(75); <br>
+    // add thet ProgressBar to the LinearController
+    mpLayout->addWidget(mpProgressBar);
+    mpScene->attachController(mpLayout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+
+<h2><a name="SeekBar">SeekBar</a></h2>
+<p><img src="Slider_SeekBar.png" width="654" height="59"/>
+<br>
+In this section, you will create a SeekBar, using the SeekBar widget. </p>
+<pre><code>void MyPage::onInit(Persistence\* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController\* mpLayout = new gaia::ui::LinearController(this);<br>
+    // create the SeekBar
+    gaia::ui::SeekBar\* mpSeekBar = new gaia::ui::SeekBar(this);<br>
+    // set the SeekBar's ControllerParams
+    gaia::ui::LinearControllerParams\* mpParams = new gaia::ui::LinearControllerParams(
+        800, gaia::ui::ControllerParams::WRAP_CONTENT);
+    mpSeekBar->setControllerParams(mpParams);<br>
+    // set the SeekBar's progress
+    mpSeekBar->setProgress(50);<br>
+    // add the SeekBar to the LinearController
+    mpLayout->addWidget(mpSeekBar);
+    mpScene->attachController(mpLayout);
+    mpScene->setupSceneLayout();
+}
+</code></pre>
+
+<h2><a name="RatingBar">RatingBar</a></h2>
+<p><img src="Slider_RatingBar.png" width="433" height="79"/>
+<br>
+In this section, you will create RatingBar, using the RatingBar widgets.</p>
+<ol>
+<li>create the RatingBar widget
+<pre><code>void MyPage::onInit(Persistence* const p) {
+    // create Scene and LinearController
+    mpScene = Scene::SceneFactory(this);
+    gaia::ui::LinearController* mpLayout = new gaia::ui::LinearController(this); <br>
+    // create the RatingBar
+    gaia::ui::RatingBar* mpRatingBar = new gaia::ui::RatingBar(this);<br>
+    // set RatingBar's ControllerParams
+    gaia::ui::LinearControllerParams* mpParams = new gaia::ui::LinearControllerParams(
+       gaia::ui::ControllerParams::WRAP_CONTENT, gaia::ui::ControllerParams::WRAP_CONTENT);
+    mpRatingBar-&gt;setControllerParams(mpParams);<br>
+    // set the number of stars to show.
+    mpRatingBar-&gt;setNumStars(5);<br>
+    // set the rating (the number of stars filled).
+    mpRatingBar-&gt;setRating(3.0f);<br>
+    // set the step size (granularity) of this rating bar.
+    mpRatingBar-&gt;setStepSize(1.0f);<br>
+    // add the RatingBar to the LinearController
+    mpLayout-&gt;addWidget(mpRatingBar);
+    mpScene-&gt;attachController(mpLayout);
+    mpScene-&gt;setupSceneLayout();
+}
+</code></pre></li>
+<li>set up the IRatingBarChangeListener of the RatingBar widget<ol>
+<li>create the MyRatingBarChangeListener which extends the IRatingBarChangeListener
+<pre><code>class MyRatingBarChangeListener: public gaia::ui::IRatingBarChangeListener {
+public:
+    MyRatingBarChangeListener(gaia::core::Page* page){};
+    virtual ~MyRatingBarChangeListener(){};
+    virtual void onRatingChanged(gaia::ui::RatingBar* ratingBar, float rating, bool fromUser){};
+};
+</code></pre></li>
+<li>add the MyRatingBarChangeListener to the RatingBar widget
+<pre><code>gaia::ui::IRatingBarChangeListener* listener = new MyRatingBarChangeListener(this);
+mpRatingBar-&gt;setOnRatingBarChangeListener(listener);
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<h2>References</h2>
+<ol>
+<li>ProgressBar</li>
+<li>AbsSeekBar</li>
+<li>SeekBar</li>
+<li>RatingBar</li>
+<li>IRatingBarChangeListener</li>
+</ol>

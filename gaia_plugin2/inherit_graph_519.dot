@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::media::MediaArtistNativeHelper::TransitionSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d2b/classgaia_1_1media_1_1_media_artist_native_helper_1_1_transition_settings.html",tooltip="Defines settings for a transition."];
-}

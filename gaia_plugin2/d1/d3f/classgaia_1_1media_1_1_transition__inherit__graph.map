@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$da/d36/classgaia_1_1media_1_1_transition_alpha.html" title="This class allows to render an &quot;alpha blending&quot; transition according to a bitmap mask." alt="" coords="223,5,409,35"/>
+<area shape="rect" id="node5" href="$d2/dd8/classgaia_1_1media_1_1_transition_crossfade.html" title="This class allows to render a crossfade (dissolve) effect transition between two videos {}..." alt="" coords="209,59,423,88"/>
+<area shape="rect" id="node7" href="$df/dbb/classgaia_1_1media_1_1_transition_fade_black.html" title="This class is used to render a fade to black and fade from black transition between two media items..." alt="" coords="208,112,424,141"/>
+<area shape="rect" id="node9" href="$d9/dfc/classgaia_1_1media_1_1_transition_sliding.html" title="This class allows to create sliding transitions {}." alt="" coords="220,165,412,195"/>
+</map>

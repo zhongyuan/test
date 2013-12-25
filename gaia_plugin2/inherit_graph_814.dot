@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::vcard::VCardEntryHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d1c/classgaia_1_1vcard_1_1_v_card_entry_handler.html",tooltip="This class is used to handle vCard."];
-}

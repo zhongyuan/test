@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d3/d94/_acknowledge_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/AcknowledgeInd.h" alt="" coords="5,83,448,112"/>
+<area shape="rect" id="node5" href="$d4/dfc/_delivery_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/DeliveryInd.h" alt="" coords="472,83,885,112"/>
+<area shape="rect" id="node7" href="$d7/d9b/_multimedia_message_pdu_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/MultimediaMessagePdu.h" alt="" coords="909,83,1395,112"/>
+<area shape="rect" id="node13" href="$d7/db4/_notification_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/NotificationInd.h" alt="" coords="1419,83,1851,112"/>
+<area shape="rect" id="node15" href="$d1/dc8/_notify_resp_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/NotifyRespInd.h" alt="" coords="1875,83,2307,112"/>
+<area shape="rect" id="node17" href="$d8/d5f/_read_orig_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/ReadOrigInd.h" alt="" coords="2331,83,2752,112"/>
+<area shape="rect" id="node19" href="$d2/d14/_read_rec_ind_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/ReadRecInd.h" alt="" coords="2776,83,3197,112"/>
+<area shape="rect" id="node21" href="$d7/df8/_send_conf_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/SendConf.h" alt="" coords="3221,83,3627,112"/>
+<area shape="rect" id="node9" href="$d7/d97/_retrieve_conf_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/RetrieveConf.h" alt="" coords="721,160,1145,189"/>
+<area shape="rect" id="node11" href="$d7/dbb/_send_req_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/telephony/mms/SendReq.h" alt="" coords="1169,160,1572,189"/>
+</map>

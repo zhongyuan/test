@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::utility::ZipEntry",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d68/classgaia_1_1utility_1_1_zip_entry.html",tooltip="This class provides access to the entries of a zip archive."];
-}

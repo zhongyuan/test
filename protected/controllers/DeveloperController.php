@@ -85,7 +85,6 @@ class DeveloperController extends Controller
 	{
 
         $mcApi = new MCApi();
-//        $type = $this->type ? $this->type:1;
 		$data = $mcApi->getTree($type);
 		$viewData = array(
 			'data' => $data,
@@ -96,48 +95,7 @@ class DeveloperController extends Controller
         $viewData['dataHtml'] = $this->_generateTreeHtml($data);
         $viewData['first_id'] = $data[0]['file'];
         return $viewData;
-//		$mcApi = new MCApi();
-//		$data = $mcApi->getTree($type);
-//		$view =  "_cosDeveloper";
-//
-//		$switchUrl = "#";
-//		$editable = $this->_checkEditable();
-//		if($editMode){
-//			if(!$editable){//无编辑权限的账户无权进行此操作
-//				$this->redirect("/");
-//				exit(0);
-//			}
-//			if($type == MCApi::training){
-//				$switchUrl = 'developer/index';
-//			}elseif($type == MCApi::developer){
-//				$switchUrl = 'developer/guide';
-//			}
-//		}else{
-//			if($type == MCApi::training){
-//				$switchUrl = 'developer/editIndex';
-//			}elseif($type == MCApi::developer){
-//				$switchUrl = 'developer/editGuide';
-//			}
-//		}
 
-//		$viewData = array(
-//			'data' => $data,
-//			'switchUrl'=>$switchUrl,
-//			'editable' => $editable
-//		);
-//		if(!$editMode){//普通浏览模式下
-//			$viewData['dataHtml'] = $this->_generateTreeHtml($data);
-//			$viewData['first_id'] = $data[0]['file'];
-//
-//			//搜索参数处理
-//			$file_id = intval($_GET['id']);
-//			$file_path = $mcApi->getFilePathById($file_id);
-//			if($file_path && file_exists(dirname(dirname(dirname(__FILE__))).$file_path)){
-//				$viewData['first_id'] = $file_path;
-//			}
-//		}
-
-//		$this->render('_cosDeveloper',$viewData);
 	}
 
 	/**
@@ -168,48 +126,6 @@ class DeveloperController extends Controller
 		$html.="</ul>";
 		return $html;
 	}
-
-//	/**
-//	 * AJAX获取文档详细内容
-//	 *
-//	 */
-//	public function actionGetFileContent()
-//	{
-//		$this->_checkAjaxEditPermit();
-//		$filePath = filter_var($_POST['filePath'],FILTER_SANITIZE_STRING);
-//		$filePath = dirname(dirname(dirname(__FILE__))).$filePath;
-//		$jsonRst = array(
-//			'req' => "error",
-//			'msg' => "您要查看的文件未找到,可能已被删除!"
-//		);
-//		if(file_exists($filePath)){
-//			$content= file_get_contents($filePath);
-//			$jsonRst = array(
-//				'req' => "ok",
-//				'msg' => $this->_filterContent($content,$_POST['filePath'])
-//			);
-//		}
-//		echo json_encode($jsonRst);
-//		exit(0);
-//	}
-
-
-//	private function _FilterContent($content,$file)
-//	{
-//		$prefix = str_replace(end(explode("/",$file)),"",$file);
-//		if(preg_match_all("/src=\"(.*)\"/",$content,$matches)){
-//			$matches = $matches[1];
-//			foreach($matches as $m){
-//				if(strpos($m,"_plugin2/")){//本地文件
-//					continue;
-//				}
-//				$url = $prefix.$m;
-//				$content = str_replace($m,$url,$content);
-//			}
-//		}
-//		return $content;
-//	}
-
 
     /*
      * reference
@@ -401,23 +317,54 @@ class DeveloperController extends Controller
         $this->render('dcenter');
     }
 
+    
+    /*
+     * API reference 新旧版本设置
+     */
+//    public function actionCompare()
+//    {
+//        
+//        $array = MCApi::VersionCompare();
+//        font-family: georgia, verdana, tahoma, arial, sans-serif;
+            //font-size: 0.625em/1.5em;
+//        print_r($array);exit; 
+//    }
 
     /*
      * 导入xml文件到数据库
      */
     public function actionImportXML()
     {
-//        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes.bak.xml';
+////        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes.bak.xml';
+//        $filePath = dirname(__FILE__).'/../../gaia_plugin2/Nodes_modify.xml';
 //        $xml_par = dirname(__FILE__).'/../extensions/xml/xml2Array.class.php';
 //        include $xml_par; //不能少
-//        echo 'ddd';
+////        echo 'ddd';
 //        $array = XML2Array::createArray($filePath);
-//        第一步 加顶层 4条
+////        print_r($array);
+////新版本的gaia添加数据，$top_level已经添加，只要插入class list即可
+//        if($array['DocSetNodes']['TOC']['Node']){
+//            $array_nodes = $array['DocSetNodes']['TOC']['Node'];
+//            $i = 0;
+//            $third_level = array();
+//            foreach($array_nodes as $ar1){
+//                if($ar1['Name']&&$ar1['Path']){
+//                    $third_level[] = array('name'=>$ar1['Name'],'path'=>$ar1['Path']);
+//                }
+//            }
+//            $suc = MCApi::addApiItem(MCApi::reference,$third_level);
+//            echo $suc;
+//        }
+        
+        
+        
+//老版本的添加数据        
+////        第一步 加顶层 4条
 //            $top_level = array(
 //                0 => array('name' => 'Training','path' => 'ddd'),
 //                1 => array('name' => 'Developer Guides','path' => 'ddd'),
 //                2 => array('name' => 'API Reference','path' => 'ddd'),
-//                3 => array('name' => 'Tools','path' => 'ddd'),
+////                3 => array('name' => 'Tools','path' => 'ddd'),
 //            );
 //
 //            $suc = MCApi::addApiItem(0,$top_level);

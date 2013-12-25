@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d9/d19/classgaia_1_1net_1_1_http_byte_buffer_entity.html" title="A base class of all byte stream based entity." alt="" coords="5,83,205,112"/>
+<area shape="rect" id="node7" href="$d3/d2b/classgaia_1_1net_1_1_http_file_entity.html" title="Supply a data contained in a file to an HttpRequest." alt="" coords="229,83,389,112"/>
+<area shape="rect" id="node5" href="$db/dba/classgaia_1_1net_1_1_http_post_entity.html" title="HttpPostEntity transforms post key/value pair to byte stream." alt="" coords="23,160,188,189"/>
+</map>

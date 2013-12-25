@@ -1,0 +1,11 @@
+#Requirement#
+
+###The Requirements for GAIA IDE installation:
+
+1. Operating System : Linux
+
+2. Java version : 1.6.* and above
+
+3. Eclipse version : Eclipse 3.7(Indigo) and above
+
+4. CDT version : CDT 8.0.1 and above

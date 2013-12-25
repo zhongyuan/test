@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$de/dc3/_delegate_connection_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/DelegateConnection.h" alt="" coords="1080,83,1483,112"/>
+<area shape="rect" id="node5" href="$db/ded/_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/Page.h" alt="" coords="1507,83,1821,112"/>
+<area shape="rect" id="node7" href="$d9/d48/_account_authenticator_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/accounts/AccountAuthenticatorPage.h" alt="" coords="5,160,472,189"/>
+<area shape="rect" id="node9" href="$d0/d54/_instrumentation_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/InstrumentationTestCase.h" alt="" coords="971,160,1416,189"/>
+<area shape="rect" id="node13" href="$d2/d74/_page_instrumentation_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageInstrumentationTestCase.h" alt="" coords="512,315,987,344"/>
+<area shape="rect" id="node15" href="$db/deb/_page_unit_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageUnitTestCase.h" alt="" coords="1135,315,1543,344"/>
+<area shape="rect" id="node17" href="$d2/dc6/_single_launch_page_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/SingleLaunchPageTestCase.h" alt="" coords="547,237,1008,267"/>
+<area shape="rect" id="node22" href="$d3/d9b/_combo_picker_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/ComboPicker.h" alt="" coords="1491,160,1837,189"/>
+<area shape="rect" id="node24" href="$d4/d1e/_hint_box_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/HintBox.h" alt="" coords="1861,160,2176,189"/>
+<area shape="rect" id="node26" href="$d3/dc6/_preference_page_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferencePage.h" alt="" coords="2200,160,2627,189"/>
+<area shape="rect" id="node28" href="$d5/db8/_search_edit_widget_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/SearchEditWidget.h" alt="" coords="2651,160,3024,189"/>
+<area shape="rect" id="node30" href="$d5/d80/_widget_animator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/WidgetAnimator.h" alt="" coords="3099,160,3461,189"/>
+<area shape="rect" id="node32" href="$dd/de8/_widget_switcher_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/WidgetSwitcher.h" alt="" coords="2991,237,3351,267"/>
+<area shape="rect" id="node11" href="$d5/db9/_page_test_case_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/testing/PageTestCase.h" alt="" coords="1032,237,1416,267"/>
+</map>

@@ -1,0 +1,236 @@
+#Manifest#
+
+Every application must have an Gaia.xml file (with precisely that name) in its root directory. The manifest presents essential information about the application to the Gaia system, information the system must have before it can run any of the application's code. Among other things, the manifest does the following:
+
+  * It names the Gaia package for the application. The package name serves as a unique identifier for the application.
+  * It describes the components of the application-the activities, delegates, broadcast receivers, and content providers that the application is composed of. It names the classes that implement each of the components and publishes their capabilities (for example, which demand messages they can handle). These declarations let the Gaia system know what the components are and under what conditions they can be launched.
+  * It determines which processes will host application components.
+  * It declares which permissions the application must have in order to access protected parts of the API and interact with other applications.
+  * It also declares the permissions that others are required to have in order to interact with the application's components.
+  * It lists the Instrumentation classes that provide profiling and other information as the application is running. These declarations are present in the manifest only while the application is being developed and tested; they're removed before the application is published.
+  * It declares the minimum level of the Gaia API that the application requires.
+  * It lists the libraries that the application must be linked against.
+
+##Structure of the manifest File##
+
+The diagram below shows the general structure of the manifest file and every element that it can contain. Each element, along with all of its attributes, is documented in full in a separate file. To view detailed information about any element, click on the element name in the diagram, in the alphabetical list of elements that follows the diagram, or on any other mention of the element name.
+
+> `<?xml version="1.0" encoding="utf-8"?>`<br>
+
+> `<manifest>`<br>
+
+>    `<uses-permission />`<br>
+>    `<permission />`<br>
+>    `<permission-tree />`<br>
+>    `<permission-group />`<br>
+>    `<instrumentation />`<br>
+>    `<uses-sdk />`<br>
+>    `<uses-configuration />`<br>
+>    `<uses-feature />`<br>
+>    `<supports-screens />`<br>
+>    `<compatible-screens />`<br>
+>    `<supports-gl-texture />`<br>
+
+>    `<application>`<br>
+
+>        <page>
+>            <demand-filter>>
+>                <action />
+>                <category />
+>                <data />
+>            </demand-filter>
+>            <meta-data />
+>        </page>
+
+>        <page-alias>
+>            <demand-filter> ... </demand-filter>
+>            <meta-data />
+>        </page-alias>
+
+>        <delegate>
+>            <demand-filter> ... </demand-filter>
+>            <meta-data/>
+>        </delegate>
+
+>        <receiver>
+>            <demand-filter> ... </demand-filter>
+>            <meta-data />
+>        </receiver>
+
+>        <provider>
+>            <grant-uri-permission />
+>            <meta-data />
+>            <path-permission />
+>        </provider>
+
+>        <uses-library />
+
+>    </application>
+
+> `</manifest>`<br>
+
+All the elements that can appear in the manifest file are listed below in alphabetical order. These are the only legal elements; you cannot add your own elements or attributes.
+
+>  [Action](Manifest/Action.html)<br>
+>  [Page](Manifest/Page.html)<br>
+>  [Page Alias](Manifest/Page Alias.html)<br>
+>  [Application](Manifest/Application.html)<br>
+>  [Category](Manifest/Category.html)<br>
+>  [Data](Manifest/Data.html)<br>
+>  [Grant Uri Permission](Manifest/Grant Uri Permission.html)<br>
+>  [Instrumentation](Manifest/Instrumentation.html)<br>
+>  [Demand Filter](Manifest/Demand Filter.html)<br>
+>  [Config](Manifest/Config.html)<br>
+>  [Meta Data](Manifest/Meta Data.html)<br>
+>  [Permission](Manifest/Permission.html)<br>
+>  [Permission Group](Manifest/Permission Group.html)<br>
+>  [Permission Tree](Manifest/Permission Tree.html)<br>
+>  [Provider](Manifest/Provider.html)<br>
+>  [Receiver](Manifest/Receiver.html)<br>
+>  [Delegate](Manifest/Delegate.html)<br>
+>  [Supports Screens](Manifest/Supports Screens.html)<br>
+>  [Uses Configuration](Manifest/Uses Configuration.html)<br>
+>  [Uses Feature](Manifest/Uses Feature.html)<br>
+>  [Uses Library](Manifest/Uses Library.html)<br>
+>  [Uses Permission](Manifest/Uses Permission.html)<br>
+>  [Uses Sdk](Manifest/Uses Sdk.html)<br>
+>  [Compatible Screens](Manifest/Compatible Screens.html)<br>
+>  [Path Permission](Manifest/Path Permission.html)<br>
+>  [Supports GL Texture](Manifest/Supports GL Texture.html)<br>
+
+##File Conventions##
+
+Some conventions and rules apply generally to all elements and attributes in the manifest:
+
+##Elements##
+
+Only the [Config](Manifest/Config.html) and [Application](Manifest/Application.html) elements are required, they each must be present and can occur only once. Most of the others can occur many times or not at all-although at least some of them must be present for the manifest to accomplish anything meaningful.
+
+If an element contains anything at all, it contains other elements. All values are set through attributes, not as character data within an element.
+
+Elements at the same level are generally not ordered. For example, [Page](Manifest/Page.html), [Provider](Manifest/Provider.html), and [Delegate](Manifest/Delegate.html) elements can be intermixed in any sequence. (A [Page Alias](Manifest/Page Alias.html) element is the exception to this rule: It must follow the [Page](Manifest/Page.html) it is an alias for.)
+
+##Attributes##
+
+In a formal sense, all attributes are optional. However, there are some that must be specified for an element to accomplish its purpose. Use the documentation as a guide. For truly optional attributes, it mentions a default value or states what happens in the absence of a specification.
+
+Except for some attributes of the root [Config](Manifest/Config.html) element, all attribute names begin with an gaia: prefix-for example, gaia:alwaysRetainTaskState. Because the prefix is universal, the documentation generally omits it when referring to attributes by name.
+Declaring class names
+Many elements correspond to Java objects, including elements for the application itself (the <application> element) and its principal components - activities ([Page](Manifest/Page.html)), delegates ([Delegate](Manifest/Delegate.html)), broadcast receivers ([Receiver](Manifest/Receiver.html)), and content providers ([Provider](Manifest/Provider.html)).
+
+If you define a subclass, as you almost always would for the component classes (page, delegate, BroadcastReceiver, and ContentProvider), the subclass is declared through a name attribute. The name must include the full package designation. For example, an delegate subclass might be declared as follows:
+
+>    `<manifest ... >`<br>
+>        `<application ... >`<br>
+>            `<delegate gaia:name="com.example.project.SecretDelegate" ... >`<br>
+>                `...`<br>
+>            `</delegate>`<br>
+>            `...`<br>
+>        `</application>`<br>
+>    `</manifest>`
+
+However, as a shorthand, if the first character of the string is a period, the string is appended to the application's package name (as specified by the <manifest> element's package attribute). The following assignment is the same as the one above:
+
+>    `<manifest package="com.example.project" ... >`<br>
+>        `<application ... >`<br>
+>            `<delegate gaia:name=".SecretDelegate" ... >`<br>
+>                `...`<br>
+>            `</delegate>`<br>
+>            `...`<br>
+>        `</application>`<br>
+>    `</manifest>`<br>
+
+When starting a component, Gaia creates an instance of the named subclass. If a subclass isn't specified, it creates an instance of the base class.
+
+##Multiple values##
+
+If more than one value can be specified, the element is almost always repeated, rather than listing multiple values within a single element. For example, an demand filter can list several actions:
+
+>    `<demand-filter ... >`<br>
+>        `<action gaia:name="android.intent.action.EDIT" />`<br>
+>        `<action gaia:name="android.intent.action.INSERT" />`<br>
+>        `<action gaia:name="android.intent.action.DELETE" />`<br>
+>        `...`<br>
+>    `</demand-filter>`<br>
+
+##Resource values##
+
+Some attributes have values that can be displayed to users-for example, a label and an icon for an page. The values of these attributes should be localized and therefore set from a resource or theme. Resource values are expressed in the following format,
+
+>    `@[package:]type:name`<br>
+
+where the package name can be omitted if the resource is in the same package as the application, type is a type of resource - such as "string" or "drawable"-and name is the name that identifies the specific resource. For example:
+
+>    `<page gaia:icon="@drawable/smallPic" ... >`<br>
+
+Values from a theme are expressed in a similar manner, but with an initial '?' rather than '@':
+
+>    `?[package:]type:name`<br>
+
+##String values##
+
+Where an attribute value is a string, double backslashes ('\\') must be used to escape characters-for example, '\\n' for a newline or '\\uxxxx' for a Unicode character.
+
+##File Features##
+
+The following sections describe how some Gaia features are reflected in the manifest file.
+
+###Demand Filters###
+
+The core components of an application (its activities, delegate, and broadcast receivers) are activated by demands. A demand is a bundle of information (an demand object) describing a desired action-including the data to be acted upon, the category of component that should perform the action, and other pertinent instructions. Gaia locates an appropriate component to respond to the demand, launches a new instance of the component if one is needed, and passes it the demand object.
+
+Components advertise their capabilities - the kinds of demands they can respond to - through demand filters. Since the Gaia system must learn which demands a component can handle before it launches the component, demand filters are specified in the manifest as [Demand Filter](Manifest/Demand Filter.html) elements. A component may have any number of filters, each one describing a different capability.
+
+A demand that explicitly names a target component will activate that component; the filter doesn't play a role. But an demand that doesn't specify a target by name can activate a component only if it can pass through one of the component's filters.
+
+For information on how demand objects are tested against demand filters, see a separate document, demands and demand Filters.
+
+###Icons and Labels###
+
+A number of elements have icon and label attributes for a small icon and a text label that can be displayed to users. Some also have a description attribute for longer explanatory text that can also be shown on-screen. For example, the <permission> element has all three of these attributes, so that when the user is asked whether to grant the permission to an application that has requested it, an icon representing the permission, the name of the permission, and a description of what it entails can all be presented to the user.
+
+In every case, the icon and label set in a containing element become the default icon and label settings for all of the container's subelements. Thus, the icon and label set in the <application> element are the default icon and label for each of the application's components. Similarly, the icon and label set for a component - for example, an [Page](Manifest/Page.html) element - are the default settings for each of the component's [Demand Filter](Manifest/Demand Filter.html) elements. If an [Application](Manifest/Application.html) element sets a label, but an page and its demand filter do not, the application label is treated as the label for both the page and the demand filter.
+
+The icon and label set for an demand filter are used to represent a component whenever the component is presented to the user as fulfilling the function advertised by the filter. For example, a filter with "android.intent.action.MAIN" and "android.intent.category.LAUNCHER" settings advertises an page as one that initiates an application - that is, as one that should be displayed in the application launcher. The icon and label set in the filter are therefore the ones displayed in the launcher.
+
+###Permissions###
+
+A permission is a restriction limiting access to a part of the code or to data on the device. The limitation is imposed to protect critical data and code that could be misused to distort or damage the user experience.
+
+Each permission is identified by a unique label. Often the label indicates the action that's restricted. For example, here are some permissions defined by Gaia:
+
+> `android.permission.CALL_EMERGENCY_NUMBERS`<br>
+> `android.permission.READ_OWNER_DATA`<br>
+> `android.permission.SET_WALLPAPER`<br>
+> `android.permission.DEVICE_POWER`<br>
+
+A feature can be protected by at most one permission.
+
+If an application needs access to a feature protected by a permission, it must declare that it requires that permission with a [Uses Permission](Manifest/Uses Permission.html) element in the manifest. Then, when the application is installed on the device, the installer determines whether or not to grant the requested permission by checking the authorities that signed the application's certificates and, in some cases, asking the user. If the permission is granted, the application is able to use the protected features. If not, its attempts to access those features will simply fail without any notification to the user.
+
+An application can also protect its own components (activities, delegate, broadcast receivers, and content providers) with permissions. It can employ any of the permissions defined by Gaia (listed in android.manifest.permission) or declared by other applications. Or it can define its own. A new permission is declared with the [Permission](Manifest/Permission.html) element. For example, an page could be protected as follows:
+
+> `<manifest ... >`<br>
+>    `<permission gaia:name="com.example.project.DEBIT_ACCT" ... />`<br>
+>    `<uses-permission gaia:name="com.example.project.DEBIT_ACCT" />`<br>
+>    `...`<br>
+>    `<application ...>`<br>
+>        `<page gaia:name="com.example.project.FreneticPage"`<br>
+>                  `gaia:permission="com.example.project.DEBIT_ACCT"`<br>
+>                  `... >`<br>
+>            `...`<br>
+>        `</page>`<br>
+>    `</application>`<br>
+> `</manifest>`<br>
+
+Note that, in this example, the DEBIT_ACCT permission is not only declared with the [Permission](Manifest/Permission.html) element, its use is also requested with the [Uses Permission](Manifest/Uses Permission.html) element. Its use must be requested in order for other components of the application to launch the protected page, even though the protection is imposed by the application itself.
+
+If, in the same example, the permission attribute was set to a permission declared elsewhere (such as android.permission.CALL_EMERGENCY_NUMBERS, it would not have been necessary to declare it again with a <permission> element. However, it would still have been necessary to request its use with [Uses Permission](Manifest/Uses Permission.html).
+
+The [Permission Tree](Manifest/Permission Tree.html) element declares a namespace for a group of permissions that will be defined in code. And <permission-group> defines a label for a set of permissions (both those declared in the manifest with <permission> elements and those declared elsewhere). It affects only how the permissions are grouped when presented to the user. The [Permission Group](Manifest/Permission Group.html) element does not specify which permissions belong to the group; it just gives the group a name. A permission is placed in the group by assigning the group name to the [Permission](Manifest/Permission.html) element's permissionGroup attribute.
+
+###Libraries###
+
+Every application is linked against the default Gaia library, which includes the basic packages for building applications (with common classes such as page, delegate, demand, View, Button, Application, ContentProvider, and so on).
+
+However, some packages reside in their own libraries. If your application uses code from any of these packages, it must explicitly asked to be linked against them. The manifest must contain a separate [Uses Library](Manifest/Uses Library.html) element to name each of the libraries. (The library name can be found in the documentation for the package.)

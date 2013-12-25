@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d6/d89/classgaia_1_1text_1_1_editable.html" title="This is the interface for text whose content and markup can be changed (as opposed to immutable text ..." alt="" coords="49,237,180,267"/>
+<area shape="rect" id="node4" href="$dc/d83/classgaia_1_1text_1_1_spannable.html" title="This is the interface for text to which markup objects can be attached and detached." alt="" coords="43,160,187,189"/>
+<area shape="rect" id="node6" href="$d3/d76/classgaia_1_1text_1_1_spanned.html" title="This is the interface for text that has markup objects attached to ranges of it." alt="" coords="48,83,181,112"/>
+<area shape="rect" id="node8" href="$d1/d0f/classgaia_1_1base_1_1_char_sequence.html" title="This interface represents an ordered set of characters and defines the methods to probe them..." alt="" coords="27,5,203,35"/>
+</map>

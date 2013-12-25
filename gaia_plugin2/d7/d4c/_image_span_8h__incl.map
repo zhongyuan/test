@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dd/d32/_dynamic_drawer_span_8h.html" title="gaia/text/style/DynamicDrawerSpan.h" alt="" coords="645,83,888,112"/>
+<area shape="rect" id="node5" href="$d5/d17/_canvas_8h.html" title="gaia/graphics/Canvas.h" alt="" coords="503,237,660,267"/>
+<area shape="rect" id="node24" href="$d9/df8/_color_8h.html" title="gaia/graphics/Color.h" alt="" coords="151,160,295,189"/>
+<area shape="rect" id="node27" href="$db/d7d/_paint_8h.html" title="gaia/graphics/Paint.h" alt="" coords="928,469,1072,499"/>
+<area shape="rect" id="node29" href="$d7/d97/_char_sequence_8h.html" title="gaia/base/CharSequence.h" alt="" coords="928,547,1107,576"/>
+<area shape="rect" id="node33" href="$d7/dc0/_drawer_8h.html" title="gaia/graphics/Drawer.h" alt="" coords="237,237,392,267"/>
+<area shape="rect" id="node39" href="$d7/d25/_replacement_span_8h.html" title="gaia/text/style/ReplacementSpan.h" alt="" coords="767,160,993,189"/>
+<area shape="rect" id="node9" href="$d1/dd0/gmacros_8h.html" title="gaia/base/gmacros.h" alt="" coords="656,469,797,499"/>
+<area shape="rect" id="node11" href="$d0/db4/_region_8h.html" title="gaia/graphics/Region.h" alt="" coords="339,315,493,344"/>
+<area shape="rect" id="node14" href="$d1/df6/_porter_duff_8h.html" title="gaia/graphics/PorterDuff.h" alt="" coords="141,315,315,344"/>
+<area shape="rect" id="node16" href="$dd/d0b/_hash_map_8h.html" title="gaia/base/HashMap.h" alt="" coords="153,392,303,421"/>
+<area shape="rect" id="node18" href="$d6/d83/_hash_func_8h.html" title="gaia/base/HashFunc.h" alt="" coords="291,469,443,499"/>
+<area shape="rect" id="node21" href="$dc/d11/_hash_map_impl_8h.html" title="gaia/base/HashMapImpl.h" alt="" coords="93,469,267,499"/>
+<area shape="rect" id="node44" href="$d5/d4f/_text_paint_8h.html" title="gaia/text/TextPaint.h" alt="" coords="880,392,1021,421"/>
+<area shape="rect" id="node48" href="$d6/d5c/_metric_affecting_span_8h.html" title="gaia/text/style/MetricAffectingSpan.h" alt="" coords="684,237,921,267"/>
+<area shape="rect" id="node50" href="$d5/dc5/_character_style_8h.html" title="gaia/text/style/CharacterStyle.h" alt="" coords="700,315,905,344"/>
+<area shape="rect" id="node52" href="$d1/d81/_object_style_8h.html" title="gaia/text/style/ObjectStyle.h" alt="" coords="669,392,856,421"/>
+</map>

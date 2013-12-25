@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/dc1/_dialog_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/DialogPreference.h" alt="" coords="467,83,901,112"/>
+<area shape="rect" id="node11" href="$d5/dee/_i_on_preference_change_listener_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/IOnPreferenceChangeListener.h" alt="" coords="925,83,1435,112"/>
+<area shape="rect" id="node13" href="$d9/dd9/_preference_group_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferenceGroup.h" alt="" coords="1459,83,1891,112"/>
+<area shape="rect" id="node19" href="$d4/d10/_seek_bar_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/SeekBarPreference.h" alt="" coords="1915,83,2360,112"/>
+<area shape="rect" id="node21" href="$d2/d81/_two_state_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/TwoStatePreference.h" alt="" coords="2384,83,2837,112"/>
+<area shape="rect" id="node5" href="$db/da0/_edit_text_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/EditTextPreference.h" alt="" coords="5,160,451,189"/>
+<area shape="rect" id="node7" href="$d6/dc3/_list_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/ListPreference.h" alt="" coords="475,160,893,189"/>
+<area shape="rect" id="node9" href="$d0/d18/_multi_select_list_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/MultiSelectListPreference.h" alt="" coords="917,160,1400,189"/>
+<area shape="rect" id="node15" href="$d5/dc4/_preference_category_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferenceCategory.h" alt="" coords="1429,160,1880,189"/>
+<area shape="rect" id="node17" href="$de/d22/_preference_screen_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/PreferenceScreen.h" alt="" coords="1904,160,2341,189"/>
+<area shape="rect" id="node23" href="$d5/d07/_check_box_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/CheckBoxPreference.h" alt="" coords="2376,160,2835,189"/>
+<area shape="rect" id="node25" href="$d6/d67/_toggle_preference_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/ui/preference/TogglePreference.h" alt="" coords="2859,160,3293,189"/>
+</map>

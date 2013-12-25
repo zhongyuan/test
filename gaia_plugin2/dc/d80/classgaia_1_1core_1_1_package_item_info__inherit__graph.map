@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d0/d33/classgaia_1_1core_1_1_application_info.html" title="Information you can retrieve about a particular application." alt="" coords="259,5,432,35"/>
+<area shape="rect" id="node5" href="$d1/dc3/classgaia_1_1core_1_1_component_info.html" title="Base class containing information common to all application components (PageInfo, DelegateInfo)..." alt="" coords="257,59,433,88"/>
+<area shape="rect" id="node13" href="$df/d73/classgaia_1_1core_1_1_permission_group_info.html" title="Information you can retrieve about a permission&#45;group." alt="" coords="241,112,449,141"/>
+<area shape="rect" id="node15" href="$df/d1d/classgaia_1_1core_1_1_permission_info.html" title="Information you can retrieve about a particular security permission known to the system." alt="" coords="259,165,432,195"/>
+<area shape="rect" id="node7" href="$d8/d12/classgaia_1_1core_1_1_delegate_info.html" title="Information you can retrieve about a particular application delegate." alt="" coords="500,5,660,35"/>
+<area shape="rect" id="node9" href="$d3/d16/classgaia_1_1core_1_1_page_info.html" title="Information you can retrieve about a particular application page or receiver." alt="" coords="511,59,649,88"/>
+<area shape="rect" id="node11" href="$da/da5/classgaia_1_1core_1_1_provider_info.html" title="Holds information about a specific content provider." alt="" coords="501,112,659,141"/>
+</map>

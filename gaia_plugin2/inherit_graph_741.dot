@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::ui::IDialogOnKeyListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/dda/classgaia_1_1ui_1_1_i_dialog_on_key_listener.html",tooltip="Interface definition for a callback to be invoked when a key event is dispatched to this dialog..."];
-}

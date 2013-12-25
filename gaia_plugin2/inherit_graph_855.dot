@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="IClipboardOnPrimaryClipChangedListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dd7/class_i_clipboard_on_primary_clip_changed_listener.html",tooltip="Defines a listener callback that is invoked when the primary clip on the clipboard changes..."];
-}

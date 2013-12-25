@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::net::ServerSocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/dda/classgaia_1_1net_1_1_server_socket.html",tooltip="Listens request and accept connection from client."];
-}

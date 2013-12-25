@@ -1,0 +1,65 @@
+<div>
+<a href = "../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Debug macro</h1>
+<p>SDK provides several options for you to log arbitrary information that you can check later. </p>
+<p>
+There are two log macros as following:
+</p>
+
+<h2>GLOG(TAG, level, format, args...)</h2>
+<p>Print log with user tag, depending on level compared to system debug level.</p>
+<h2>TRY(TAG, condition, label, statements, format, args...)</h2>
+<p>Test condition, print log or not.</p>
+<p>Sample Code for Hello World:</p>
+<pre><code>
+#include <gaia/base/gerrcode.h>
+#include <gaia/base/gerrhandler.h>
+#include <gaia/base/gloger.h>
+#include <stdint.h>
+#include <sys/types.h>
+// Import namespace
+using namespace gaia::base;
+
+#define TAG "MYTEST"
+
+uint8_t connect() {
+    int32_t ret = NO_ERROR;
+    uint8_t a = 10;
+    // set value by some function, here set E_TIMEOUT for test.
+    ret = BAD_TYPE;
+    // Test TRY
+    TRY(TAG, ret == NO_ERROR, LABEL, a = 11, "Test try macro,  %d, %d, %s, %f.", 1, 2, "3" , 4.0)
+    return ret;
+     // catch error and SetLastError
+  LABEL:
+    // Test SetLastError
+    GLOG(TAG, LOGER, "Go into LABEL, valud of a changed to %d.", a);
+    SetLastError(ret);
+    return ret;
+}
+
+void func() {
+    int32_t ret = NO_ERROR;
+    ret = connect();
+    if (ret != NO_ERROR) {
+        // Test LOG
+        // Test GetLastError
+        GLOG(TAG, LOGER, "Test GestLastError, last error is, %d.", GetLastError());
+    }
+}
+
+int main() {
+    uint8_t a = 1;
+    uint16_t b = 2;
+    uint8_t c[5] = {'t', 'e', 's', 't'};
+    float d = 123.45;
+    func();
+    GLOG(TAG, LOGVER, "Test LOG Macro, LOGVER, a = %d, b = %d, c = %s, d = %f.", a, b, c, d);
+    GLOG(TAG, LOGDBG, "Test LOG Macro, LOGDBG, a = %d, b = %d, c = %s, d = %f.", a, b, c, d);
+    GLOG(TAG, LOGINFO, "Test LOG Macro, LOGIFO, a = %d, b = %d, c = %s, d = %f.", a, b, c, d);
+    GLOG(TAG, LOGWARN, "Test LOG Macro, LOGWARN, a = %d, b = %d, c = %s, d = %f.", a, b, c, d);
+    GLOG(TAG, LOGER, "Test LOG Macro, LOGER, a = %d, b = %d, c = %s, d = %f.", a, b, c, d);
+}
+
+</code></pre>

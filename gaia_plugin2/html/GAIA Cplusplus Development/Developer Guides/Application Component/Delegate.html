@@ -1,0 +1,60 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Application Component.html">Application Component</a>&gt;
+</div>
+<h1>Delegate</h1>
+<p>The Delegate is for creating an extenal thread, in a process differs from a
+ Page process, to process the long-term task.</p>
+<p>There are two methods almost all subclasses of Delegate will implement:</p>
+<ul>
+<li>
+<p>onInvoke is where you want your delegate to excercise
+   the authority. Here you will not be asked to return as soon as possible
+   , but to do any task until time is up.</p>
+</li>
+<li>
+<p>onTimedout is where you deal with the time-out. Most
+   importantly, any changes made by the user should at this point be
+   committed (usually to the {android.content.ContentProvider}
+   holding the data).</p>
+</li>
+</ul>
+<p><p>The GAIA system will allow the delegate doing its work at proper time.
+ Any task, within the time slice, will not be asked to give up its ownership of
+ thread. Once the time is up, the hook onTimedout will be called to notice.</p>
+<p><p>The GAIA system will attempt to keep the process hosting a delegate
+ around as long as the delegate invoked or has principal alive.
+ When running low on memory and needing to kill existing processes, the
+ priority of a process hosting the delegate will be the higher of the
+ following possibilities:</p>
+<ul>
+<li><p>If the delegate is currently executing code in its
+ onLoad(), onInvoke(), or onTimedout() methods, then the hosting process will
+ be a foreground process to ensure this code can execute without being killed.</li>
+<li><p>If the delegate has been started, then its hosting process is considered
+ to be less important than any processes that are currently visible to the
+ user on-screen, but more important than any process not visible.  Because
+ only a few processes are generally visible to the user, this means that
+ the delegate should not be killed except in extreme low memory conditions.</li>
+<li><p>The delegate's hosting process is never less important than the page which
+ dispatches the delegate at meanwhile. That is, if its principal is visible to
+ the user, then the delegate itself is considered to be visible.</li>
+<li><p>An invoked delegate can use the renewPeriod or reignPeriod
+ API to put the delegate in a foreground state, where the system considers
+ it to be something the user is actively aware of and thus not a candidate
+ for killing when low on memory.  (It is still theoretically possible for
+ the delegate to be dismissed under extreme memory or performance pressure from the
+ current foreground application, but in practice this should not be a concern.)</li>
+</ul>
+<p><p>Note this means that most of the time your delegate is running, it may
+ be killed by the system if it is under heavy memory or performance pressure.
+ If this happens, the system will later try to redispatch the delegate. An important
+ consequence of this is that if you implement onInvoke()
+ to schedule work to be done asynchronously or in another thread, then you
+ may want to implement onTimedout() to finish the asynchronous
+ tasks, so that it does not get lost if your delegate is killed while processing it.</p>
+<p><p>Consider that there will not be any other application components running in the
+ same process as the delegate. It means, of course, there will not be any UI thread or
+ response-sensitive issues of the process itself.</p>
+<p><p>You can use cidl for bindDelegate. For example, in sdk/example/core/DelegateTest.
+ You can use below command.
+ cidl -I./ ITestRemoteDelegate.cidl</p>

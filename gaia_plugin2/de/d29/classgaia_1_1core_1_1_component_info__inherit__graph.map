@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$d8/d12/classgaia_1_1core_1_1_delegate_info.html" title="Information you can retrieve about a particular application delegate." alt="" coords="5,160,165,189"/>
+<area shape="rect" id="node7" href="$d3/d16/classgaia_1_1core_1_1_page_info.html" title="Information you can retrieve about a particular application page or receiver." alt="" coords="189,160,328,189"/>
+<area shape="rect" id="node9" href="$da/da5/classgaia_1_1core_1_1_provider_info.html" title="Holds information about a specific content provider." alt="" coords="352,160,509,189"/>
+<area shape="rect" id="node2" href="$da/d5c/classgaia_1_1core_1_1_package_item_info.html" title="Base class containing information common to all package items held by the package manager..." alt="" coords="165,5,352,35"/>
+</map>

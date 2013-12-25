@@ -1,0 +1,24 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dd/d32/_dynamic_drawer_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/DynamicDrawerSpan.h" alt="" coords="1767,392,2204,421"/>
+<area shape="rect" id="node7" href="$d7/d25/_replacement_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/ReplacementSpan.h" alt="" coords="5,315,424,344"/>
+<area shape="rect" id="node10" href="$d5/d4f/_text_paint_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/TextPaint.h" alt="" coords="699,83,1035,112"/>
+<area shape="rect" id="node5" href="$da/d07/_image_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/ImageSpan.h" alt="" coords="1796,469,2175,499"/>
+<area shape="rect" id="node12" href="$d1/dc1/_dynamic_layout_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/DynamicLayout.h" alt="" coords="681,237,1052,267"/>
+<area shape="rect" id="node14" href="$d6/d48/_layout_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/Layout.h" alt="" coords="356,160,676,189"/>
+<area shape="rect" id="node17" href="$df/d0d/_static_layout_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/StaticLayout.h" alt="" coords="303,237,657,267"/>
+<area shape="rect" id="node20" href="$d5/dc5/_character_style_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/CharacterStyle.h" alt="" coords="2015,160,2415,189"/>
+<area shape="rect" id="node45" href="$dd/df5/_strikethrough_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/StrikethroughSpan.h" alt="" coords="3300,237,3719,267"/>
+<area shape="rect" id="node51" href="$d5/d6d/_text_utils_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/TextUtils.h" alt="" coords="700,160,1033,189"/>
+<area shape="rect" id="node22" href="$d6/da2/_background_color_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/BackgroundColorSpan.h" alt="" coords="1529,237,1972,267"/>
+<area shape="rect" id="node24" href="$d9/d43/_clickable_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/ClickableSpan.h" alt="" coords="2879,237,3276,267"/>
+<area shape="rect" id="node28" href="$d0/dbb/_foreground_color_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/ForegroundColorSpan.h" alt="" coords="1996,237,2433,267"/>
+<area shape="rect" id="node30" href="$d6/d5c/_metric_affecting_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/MetricAffectingSpan.h" alt="" coords="1076,237,1505,267"/>
+<area shape="rect" id="node47" href="$d9/d28/_underline_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/UnderlineSpan.h" alt="" coords="2457,237,2855,267"/>
+<area shape="rect" id="node26" href="$d3/d8d/_u_r_l_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/URLSpan.h" alt="" coords="3003,315,3373,344"/>
+<area shape="rect" id="node32" href="$dc/dd0/_absolute_size_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/AbsoluteSizeSpan.h" alt="" coords="2560,315,2979,344"/>
+<area shape="rect" id="node34" href="$d5/de5/_relative_size_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/RelativeSizeSpan.h" alt="" coords="448,315,864,344"/>
+<area shape="rect" id="node37" href="$d2/def/_style_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/StyleSpan.h" alt="" coords="888,315,1261,344"/>
+<area shape="rect" id="node39" href="$d2/d7b/_subscript_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/SubscriptSpan.h" alt="" coords="1285,315,1683,344"/>
+<area shape="rect" id="node41" href="$d4/dbd/_superscript_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/SuperscriptSpan.h" alt="" coords="1707,315,2115,344"/>
+<area shape="rect" id="node43" href="$da/d19/_typeface_span_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/text/style/TypefaceSpan.h" alt="" coords="2139,315,2536,344"/>
+</map>

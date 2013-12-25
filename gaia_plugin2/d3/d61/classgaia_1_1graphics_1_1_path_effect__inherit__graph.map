@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$da/d84/classgaia_1_1graphics_1_1_compose_path_effect.html" title="Construct a PathEffect whose effect is to apply first the inner effect and the the outer pathEffect (..." alt="" coords="228,5,457,35"/>
+<area shape="rect" id="node5" href="$d7/d0f/classgaia_1_1graphics_1_1_corner_path_effect.html" title="Transforms geometries that are drawn (either STROKE or FILL styles) by replacing any sharp angles bet..." alt="" coords="237,59,448,88"/>
+<area shape="rect" id="node7" href="$d1/d0a/classgaia_1_1graphics_1_1_dash_path_effect.html" title="The intervals array must contain an even number of entries (&gt;=2), with the even indices specifying th..." alt="" coords="241,112,444,141"/>
+<area shape="rect" id="node9" href="$df/d15/classgaia_1_1graphics_1_1_discrete_path_effect.html" title="Chop the path into lines of segmentLength, randomly deviating from the original path by deviation..." alt="" coords="232,165,453,195"/>
+<area shape="rect" id="node11" href="$d7/dcb/classgaia_1_1graphics_1_1_path_dash_path_effect.html" title="Dash the drawn path by stamping it with the specified shape." alt="" coords="228,219,457,248"/>
+<area shape="rect" id="node13" href="$d3/d91/classgaia_1_1graphics_1_1_sum_path_effect.html" title="Construct a PathEffect whose effect is to apply two effects, in sequence." alt="" coords="243,272,443,301"/>
+</map>

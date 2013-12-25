@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d50/classgaia_1_1core_1_1_demand_delegate.html" title="gaia::core::DemandDelegate" alt="" coords="216,5,403,35"/>
+<area shape="rect" id="node5" href="$d4/d35/classgaia_1_1service_1_1_i_m_e_service.html" title="IMEService provides a standard implementation of an InputMethod, which final implementations can deri..." alt="" coords="224,59,395,88"/>
+<area shape="rect" id="node7" href="$d2/d63/classgaia_1_1service_1_1_spell_checker_delegate.html" title="SpellCheckerDelegate provides an abstract base class for a spell checker." alt="" coords="192,112,427,141"/>
+<area shape="rect" id="node9" href="$db/dc1/classgaia_1_1service_1_1_wallpaper_delegate.html" title="A WallpaperDelegate is responsible for showing a live wallpaper behind applications that would like t..." alt="" coords="203,165,416,195"/>
+<area shape="rect" id="node11" href="$d2/dd9/classgaia_1_1ui_1_1_remote_widget_delegate.html" title="The delegate to be connected to for a remote adapter to request RemoteWidget." alt="" coords="204,219,415,248"/>
+</map>

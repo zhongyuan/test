@@ -1,0 +1,196 @@
+<div>
+<a href = "../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../Developer Guides.html">Developer Guides</a>&gt;
+</div>
+<h1>Data Storage</h1>
+<p>SDK provides several options for you to save persistent application data. 
+The solution you choose depends on your specific needs, such as whether the data should be private to
+your application or accessible to other applications (and the user) and how much space your data requires.</p>
+<p>Your data storage options are the following:</p>
+<dl>
+  <dt><a href="#pref">Shared Preferences</a></dt>
+    <dd>Store private primitive data in key-value pairs.</dd>
+  <dt><a href="#filesInternal">Internal Storage</a></dt>
+    <dd>Store private data on the device memory.</dd>
+  <dt><a href="#filesExternal">External Storage</a></dt>
+    <dd>Store public data on the shared external storage.</dd>
+  <dt><a href="#db">SQLite Databases</a></dt>
+    <dd>Store structured data in a private database.</dd>
+  <dt><a href="#netw">Network Connection</a></dt>
+    <dd>Store data on the web with your own network server.</dd>
+</dl>
+
+<p>GAIA provides a way for you to expose even your private data to other applications - with a <a href="">content provider</a>. A content provider is an optional component that exposes read/write access to
+your application data, subject to whatever restrictions you want to impose. For more information
+about using content providers, see the
+<a href="">Content Providers</a>
+documentation.</p>
+<h2 id="filesInternal">Using the Internal Storage</h2>
+
+<p>You can save files directly on the device's internal storage. By default, files saved
+to the internal storage are private to your application and other applications cannot access
+them (nor can the user). When the user uninstalls your application, these files are removed.</p>
+
+<p>To create and write a private file to the internal storage:</p>
+
+<ol>
+  <li>Call <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a9179c0b398f6b91b0a2d12d00595958c">openFileOutput()</a></code> with the
+name of the file and the operating mode. This returns a <code><a href="../../../d8/d54/classgaia_1_1storage_1_1_file_output_stream.html">FileOutputStream</a></code>.</li>
+  <li>Write to the file with <code><a href="../../../d1/dd0/classgaia_1_1storage_1_1_output_stream.html#a3c03cd4f95ace5a05b0685a3381b1f4c">write()</a></code>.</li>
+  <li>Close the stream with <code><a href="../../../d8/d54/classgaia_1_1storage_1_1_file_output_stream.html#ab6c9f20f232169e9d8600925f11325e7">close()</a></code>.</li>
+</ol>
+
+<p>For example:</p>
+<pre><code>String FILENAME = String("hello_file");
+String string = String("hello world!");
+
+FileOutputStream* fos = openFileOutput(FILENAME, Context::MODE_PRIVATE());
+fos-&gt;write(string-&gt;getBytes());
+fos-&gt;close();
+</code></pre>
+<p><code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab250daf62f9f18a9e41436b28494ef9dabf9b87c5ab4922738cbaf3f8479d59ad">MODE_PRIVATE</a></code> will create the file (or replace a file of
+the same name) and make it private to your application. Other modes available are: <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab250daf62f9f18a9e41436b28494ef9da9f8afd17c7082c504a7fab467b9be2f3">MODE_APPEND</a></code>, <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab250daf62f9f18a9e41436b28494ef9da33df406afeb76cdfdaa31ab3fc53214e">MODE_WORLD_READABLE</a></code>, and <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab250daf62f9f18a9e41436b28494ef9da1adf52247b2b148c9b5a57d7e5e2255c">MODE_WORLD_WRITEABLE</a></code>.</p>
+
+<p>To read a file from internal storage:</p>
+
+<ol>
+  <li>Call <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ace98052401acf44c1ca0d633d339237d">openFileInput()</a></code> and pass it the
+name of the file to read. This returns a <code><a href="../../../da/da8/classgaia_1_1storage_1_1_file_input_stream.html">FileInputStream</a></code>.</li>
+  <li>Read bytes from the file with <code><a href="../../../db/d26/classgaia_1_1storage_1_1_input_stream.html#a8096f5959545ebe6f9e649cec3b6ba0e">read()</a></code>.</li>
+  <li>Then close the stream with  <code><a href="../../../db/d26/classgaia_1_1storage_1_1_input_stream.html#a122ea321d1d0a01196bb4add2e292b53">close()</a></code>.</li>
+</ol>
+
+<p class="note"><strong>Tip:</strong> If you want to save a static file in your application at
+compile time, save the file in your project <code>res/raw/</code> directory. You can open it with
+<code><a href="../../../de/dad/classgaia_1_1content_1_1_resources.html#a46315024f4d96abe1dd8a11fb30e6aa9">openRawResource()</a></code>, passing the <code>R::raw::<em>&lt;filename&gt;</em></code> resource ID. This method returns an <code><a href="../../../db/d26/classgaia_1_1storage_1_1_input_stream.html">InputStream</a></code>
+that you can use to read the file (but you cannot write to the original file).
+</p>
+
+<h3 id="InternalCache">Saving cache files</h3>
+
+<p>If you'd like to cache some data, rather than store it persistently, you should use <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a4c86f2a16bc32a759f40d561f10942bb">getCacheDir()</a></code> to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> that represents the internal directory where your application should save
+temporary cache files.</p>
+
+<p>When the device is
+low on internal storage space, GAIA may delete these cache files to recover space. However, you
+should not rely on the system to clean up these files for you. You should always maintain the cache
+files yourself and stay within a reasonable limit of space consumed, such as 1MB. When the user
+uninstalls your application, these files are removed.</p>
+
+<h3 id="InternalMethods">Other useful methods</h3>
+
+<dl>
+  <dt><code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a0b141aa765cc6a8ac884254c3dd14915">getFilesDir()</a></code></dt>
+    <dd>Gets the absolute path to the filesystem directory where your internal files are saved.</dd>
+  <dt><code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a06e1edc5aca260ebe99004c4ddc63484">getDir()</a></code></dt>
+    <dd>Creates (or opens an existing) directory within your internal storage space.</dd>
+  <dt><code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a03f7e515e6807ce28767dc5e5372a92c">deleteFile()</a></code></dt>
+    <dd>Deletes a file saved on the internal storage.</dd>
+  <dt><code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab4bd31b22ef9045b510a6a9fa6863540">fileList()</a></code></dt>
+    <dd>Returns an array of files currently saved by your application.</dd>
+</dl>
+
+<h2 id="filesExternal">Using the External Storage</h2>
+
+<p>Every GAIA-compatible device supports a shared "external storage" that you can use to
+save files. This can be a removable storage media (such as an SD card) or an internal
+(non-removable) storage. Files saved to the external storage are world-readable and can
+be modified by the user when they enable USB mass storage to transfer files on a computer.</p>
+<p>It's possible that a device using a partition of the
+internal storage for the external storage may also offer an SD card slot. In this case,
+the SD card is <em>not</em> part of the external storage and your app cannot access it (the extra
+storage is intended only for user-provided media that the system scans).</p>
+<p><strong>Caution:</strong> External storage can become unavailable if the user mounts the
+external storage on a computer or removes the media, and there's no security enforced upon files you
+save to the external storage. All applications can read and write files placed on the external
+storage and the user can remove them.</p>
+<h3 id="MediaAvail">Checking media availability</h3>
+
+<p>Before you do any work with the external storage, you should always call <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a937abc82233217c53e1e37ab40589c9c">getExternalStorageState()</a></code> to check whether the media is available. The
+media might be mounted to a computer, missing, read-only, or in some other state. For example,
+here's how you can check the availability:</p>
+<pre><code>bool mExternalStorageAvailable = false;
+bool mExternalStorageWriteable = false;
+String state = FileDirectory::getExternalStorageState().ConvertToString();
+
+if (FileDirectory::MEDIA_MOUNTED()-&gt;equals(state)) {
+    // We can read and write the media
+    mExternalStorageAvailable = mExternalStorageWriteable = true;
+} else if (FileDirectory::MEDIA_MOUNTED_READ_ONLY()-&gt;equals(state)) {
+    // We can only read the media
+    mExternalStorageAvailable = true;
+    mExternalStorageWriteable = false;
+} else {
+    // Something else is wrong. It may be one of many other states, but all we need
+    //  to know is we can neither read nor write
+    mExternalStorageAvailable = mExternalStorageWriteable = false;
+}
+</code></pre>
+<p>This example checks whether the external storage is available to read and write. The
+<code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a937abc82233217c53e1e37ab40589c9c">getExternalStorageState()</a></code> method returns other states that you
+might want to check, such as whether the media is being shared (connected to a computer), is missing
+entirely, has been removed badly, etc. You can use these to notify the user with more information
+when your application needs to access the media.</p>
+
+<h3 id="AccessingExtFiles">Accessing files on external storage</h3>
+
+<p>If you're using API Level 8 or greater, use <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#a657d8dd3b0f33f73cc56f8a1d20abc57">getExternalFilesDir()</a></code> to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> that represents the external storage directory where you should save your
+files. This method takes a <code>type</code> parameter that specifies the type of subdirectory you
+want, such as <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a65eb49403e134492d4b0045d71b33763">DIRECTORY_MUSIC</a></code> and
+<code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a17b0f6180a60d56b4483181e257fb19b">DIRECTORY_RINGTONES</a></code> (pass <code>null</code> to receive
+the root of your application's file directory). This method will create the
+appropriate directory if necessary. By specifying the type of directory, you
+ensure that the GAIA's media scanner will properly categorize your files in the system (for
+example, ringtones are identified as ringtones and not music). If the user uninstalls your
+application, this directory and all its contents will be deleted.</p>
+
+<p>If you're using API Level 7 or lower, use <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a0fa99b3aa6ba0f1d788d7309a37e8e0c">getExternalStorageDirectory()</a></code>, to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> representing the root of the external storage. You should then write your data in the
+following directory:</p>
+
+<pre class="no-pretty-print classic">
+/GAIA/data/<em>&lt;package_name&gt;</em>/files/
+</pre>
+
+<p>The <code><em>&lt;package_name&gt;</em></code> is your Java-style package name, such as "<code>com.example.gaia.app</code>". If the user's device is running API Level 8 or greater and they
+uninstall your application, this directory and all its contents will be deleted.</p>
+
+<h4>Hiding your files from the Media Scanner</h4>
+
+<p>Include an empty file named <code>.nomedia</code> in your external files directory (note the dot
+prefix in the filename). This will prevent GAIA's media scanner from reading your media
+files and including them in apps like Gallery or Music.</p>
+<h3 id="SavingSharedFiles">Saving files that should be shared</h3>
+
+<p>If you want to save files that are not specific to your application and that should <em>not</em>
+be deleted when your application is uninstalled, save them to one of the public directories on the
+external storage. These directories lay at the root of the external storage, such as <code>Music/</code>, <code>Pictures/</code>, <code>Ringtones/</code>, and others.</p>
+<p>In API Level 8 or greater, use <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a2fc3bf9e8a7c9accd2ed6cd0a3417a5f">getExternalStoragePublicDirectory()</a></code>, passing it the type of public directory you want, such as
+<code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a65eb49403e134492d4b0045d71b33763">DIRECTORY_MUSIC</a></code>, <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a5cc749f08c9208e82aade4494030bfef">DIRECTORY_PICTURES</a></code>,
+<code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a17b0f6180a60d56b4483181e257fb19b">DIRECTORY_RINGTONES</a></code>, or others. This method will create the
+appropriate directory if necessary.</p>
+<p>If you're using API Level 7 or lower, use <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a0fa99b3aa6ba0f1d788d7309a37e8e0c">getExternalStorageDirectory()</a></code> to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> that represents
+the root of the external storage, then save your shared files in one of the following
+directories:</p>
+<ul>
+<li><code>Music/</code> - Media scanner classifies all media found here as user music.</li>
+<li><code>Podcasts/</code> - Media scanner classifies all media found here as a podcast.</li>
+<li><code>Ringtones/ </code> - Media scanner classifies all media found here as a ringtone.</li>
+<li><code>Alarms/</code> - Media scanner classifies all media found here as an alarm sound.</li>
+<li><code>Notifications/</code> - Media scanner classifies all media found here as a notification
+sound.</li>
+<li><code>Pictures/</code> - All photos (excluding those taken with the camera).</li>
+<li><code>Movies/</code> - All movies (excluding those taken with the camcorder).</li>
+<li><code>Download/</code> - Miscellaneous downloads.</li>
+</ul>
+<h3 id="ExternalCache">Saving cache files</h3>
+
+<p>If you're using API Level 8 or greater, use <code><a href="../../../d0/d05/classgaia_1_1core_1_1_context.html#ab9b7d18b5c1c5f6ede1d26151fcf36b7">getExternalCacheDir()</a></code> to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> that represents the
+external storage directory where you should save cache files. If the user uninstalls your
+application, these files will be automatically deleted. However, during the life of your
+application, you should manage these cache files and remove those that aren't needed in order to
+preserve file space.</p>
+<p>If you're using API Level 7 or lower, use <code><a href="../../../d3/db3/classgaia_1_1storage_1_1_file_directory.html#a0fa99b3aa6ba0f1d788d7309a37e8e0c">getExternalStorageDirectory()</a></code> to open a <code><a href="../../../d4/d31/classgaia_1_1storage_1_1_file.html">File</a></code> that represents
+the root of the external storage, then write your cache data in the following directory:</p>
+<pre class="no-pretty-print classic">
+/GAIA/data/<em>&lt;package_name&gt;</em>/cache/
+</pre>
+<p>The <code><em>&lt;package_name&gt;</em></code> is your Java-style package name, such as "<code>com.example.gaia.app</code>".</p>

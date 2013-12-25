@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$df/d26/classgaia_1_1media_1_1_effect.html" title="This is the super class for all effects." alt="" coords="7,32,137,61"/>
+<area shape="rect" id="node3" href="$d5/d6e/classgaia_1_1media_1_1_effect_color.html" title="This class allows to apply color effect on a media item." alt="" coords="200,5,363,35"/>
+<area shape="rect" id="node5" href="$dd/d51/classgaia_1_1media_1_1_effect_ken_burns.html" title="This class represents a Ken Burns effect." alt="" coords="187,59,376,88"/>
+</map>

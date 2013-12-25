@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$d2/d03/classgaia_1_1core_1_1_animation.html" title="Abstraction for an Animation that can be applied to Widget, Surfaces, or other objects." alt="" coords="7,112,151,141"/>
+<area shape="rect" id="node3" href="$d0/d6d/classgaia_1_1core_1_1_alpha_animation.html" title="An animation that controls the alpha level of an object." alt="" coords="211,5,389,35"/>
+<area shape="rect" id="node5" href="$d3/d23/classgaia_1_1core_1_1_animation_set.html" title="Represents a group of Animations that should be played together." alt="" coords="217,59,383,88"/>
+<area shape="rect" id="node7" href="$d7/deb/classgaia_1_1core_1_1_rotate_animation.html" title="An animation that controls the rotation of an object." alt="" coords="208,112,392,141"/>
+<area shape="rect" id="node9" href="$df/dab/classgaia_1_1core_1_1_scale_animation.html" title="An animation that controls the scale of an object." alt="" coords="211,165,389,195"/>
+<area shape="rect" id="node11" href="$d1/d92/classgaia_1_1core_1_1_translate_animation.html" title="An animation that controls the position of an object." alt="" coords="201,219,399,248"/>
+</map>

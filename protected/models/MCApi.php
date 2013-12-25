@@ -9,7 +9,9 @@ class MCApi {
     const training = 1;  //既是类别又是id
     const developer = 2;
     const reference = 3;
-    const tools = 4;
+    
+    
+//    const tools = 4;  //取消了
 
     const lastestVersion = 9; //class list 最大版本
 
@@ -22,75 +24,76 @@ class MCApi {
         $this->id = $id;
     }
 
-    public static function addApiItem($parent_id,$apis=array())
-    {
-        if(!$apis||count($apis)<=0){
-            return 0;
-        }
-        $time = time();
-        foreach ($apis as $api) {
-            $value[] = "(null,'".$api['name']."',".$parent_id.",'".$api['path']."',1,0,".$time.','.$time.')';
-        }
-        $val = implode(',', $value);
-        $sql = "insert into api values {$val}";
-        $cmd = Yii::app()->db->createCommand($sql)->execute();
+    //为插入api表数据用的
+//    public static function addApiItem($parent_id,$apis=array())
+//    {
+//        if(!$apis||count($apis)<=0){
+//            return 0;
+//        }
+//        $time = time();
+//        foreach ($apis as $api) {
+//            $value[] = "(null,'".$api['name']."',".$parent_id.",0".",'".$api['path']."',3,1,0,1,0,".$time.','.$time.')';
+//        }
+//        $val = implode(',', $value);
+//        $sql = "insert into api values {$val}";
+//        $cmd = Yii::app()->db->createCommand($sql)->execute();
+//
+//        return $cmd?$cmd:0;
+//    }
 
-        return $cmd?$cmd:0;
-    }
-
-    //递推函数，插入数据库
-    public static function addChildNote($target_level_array)
-    {
-        if($target_level_array){ //子一层
-            $target_more_array = array();
-            foreach ($target_level_array as $val) {
-                $third_level = array();
-                $target_third_level = array();
-
-
-                $parent_id = self::getParIdByName($val['parent_name']);
-                $target_third_level = $val['Sub_note'];
-
-                if(array_key_exists('Name',$target_third_level)){
-                    $third_level[] = array('name'=>$target_third_level['Name'],'path'=>$target_third_level['Path']);
-                    if($target_third_level['Subnodes']){
-                        $target_more_array[] = array('parent_name'=>$target_third_level['Name'],'Sub_note'=>$target_third_level['Subnodes']['Node']);
-                    }
-                }else{
-                    foreach($target_third_level as $val2){
-                        $third_level[] = array('name'=>$val2['Name'],'path'=>$val2['Path']);
-                        if($val2['Subnodes']){
-                            $target_more_array[] = array('parent_name'=>$val2['Name'],'Sub_note'=>$val2['Subnodes']['Node']);
-                        }
-                    }
-                }
-
-                $suc = self::addApiItem($parent_id,$third_level);
-            }
-                //调用嵌套
-                if(count($target_more_array)>0){
-                        $m = self::addChildNote($target_more_array);
-                        echo $str .= $m;
-                }
-            return $str;
-        }
-        return 0;
-    }
+//    //递推函数，插入数据库
+//    public static function addChildNote($target_level_array)
+//    {
+//        if($target_level_array){ //子一层
+//            $target_more_array = array();
+//            foreach ($target_level_array as $val) {
+//                $third_level = array();
+//                $target_third_level = array();
+//
+//
+//                $parent_id = self::getParIdByName($val['parent_name']);
+//                $target_third_level = $val['Sub_note'];
+//
+//                if(array_key_exists('Name',$target_third_level)){
+//                    $third_level[] = array('name'=>$target_third_level['Name'],'path'=>$target_third_level['Path']);
+//                    if($target_third_level['Subnodes']){
+//                        $target_more_array[] = array('parent_name'=>$target_third_level['Name'],'Sub_note'=>$target_third_level['Subnodes']['Node']);
+//                    }
+//                }else{
+//                    foreach($target_third_level as $val2){
+//                        $third_level[] = array('name'=>$val2['Name'],'path'=>$val2['Path']);
+//                        if($val2['Subnodes']){
+//                            $target_more_array[] = array('parent_name'=>$val2['Name'],'Sub_note'=>$val2['Subnodes']['Node']);
+//                        }
+//                    }
+//                }
+//
+//                $suc = self::addApiItem($parent_id,$third_level);
+//            }
+//                //调用嵌套
+//                if(count($target_more_array)>0){
+//                        $m = self::addChildNote($target_more_array);
+//                        echo $str .= $m;
+//                }
+//            return $str;
+//        }
+//        return 0;
+//    }
 
     //获取id
-    public static function getParIdByName($name)
-    {
-//        if(self::$limit > 0){
-//            $str = 'id > '.self::$limit .' and ';
-//        }else{
-//            $str = '';
-//        }
-        $sql = "select id from api where {$str} name = :name  limit 1"; //随时修改  id > 1151 and  大于1151保证不会跟到class list
-        $cmd = Yii::app()->db->createCommand($sql)->queryScalar(array(
-            ':name' => $name,
-        ));
-        return $cmd?$cmd:0;
-    }
+//    public static function getParIdByName($name)
+//    {
+////        if(self::$limit > 0){
+////            $str = 'id > '.self::$limit .' and ';
+////        }else{
+////            $str = '';
+////        }
+//        $sql = "select id from api where {$str} name = :name  limit 1"; //随时修改  id > 1151 and  大于1151保证不会跟到class list
+//        $cmd = Yii::app()->db->createCommand($sql)->queryScalar(array(
+//            ':name' => $name,
+//        ));
+//        return $cmd?$cmd:0;
+//    }
 
 
 	/**
@@ -126,7 +129,7 @@ class MCApi {
 	 */
 	private function _getTree($parent_id,$isOpen = TRUE)
 	{
-		$sql = "SELECT id,name,parent_id,has_child,path FROM api WHERE status = 1 AND parent_id = '$parent_id'";
+		$sql = "SELECT id,name,parent_id,has_child,path FROM api WHERE parent_id = '$parent_id'  AND status = 1";
 		$query = Yii::app()->db->createCommand($sql)->queryAll();
 		if(empty($query)){
 			return FALSE;
@@ -135,7 +138,7 @@ class MCApi {
 		$dbRst = array();
 		foreach($query as $row){
 			$idx++;
-			//$subCnt = $this->getSubTreeCnt($row['id']);
+//			$subCnt = $this->getSubTreeCnt($row['id']);
 			$data = array('name' => $row['name'],'id'=>$row['id'],'pId'=>$row['parent_id'],'file'=>"/gaia_plugin2/".$row['path']);
 			if($row['has_child'] == 1){//有子节点
 				$data['isParent'] = true;
@@ -154,12 +157,12 @@ class MCApi {
 	 * @param undefined $parent_id
 	 *
 	 */
-	public function getSubTreeCnt($parent_id = 0)
-	{
-		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND status = 1";
-		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
-		return intval($cnt);
-	}
+//	public function getSubTreeCnt($parent_id = 0)
+//	{
+//		$sql = "SELECT COUNT(*) AS CNT FROM api WHERE parent_id = '$parent_id' AND status = 1";
+//		$cnt = Yii::app()->db->createCommand($sql)->queryScalar();
+//		return intval($cnt);
+//	}
 
     //获取class list 的子列表
     public function getChildById()
@@ -183,7 +186,7 @@ class MCApi {
         if($vers_list = Yii::app()->cache->get('vers_list')){
             return $vers_list;
         }
-        $sql = "select version from api where parent_id = :parent_id group by version";
+        $sql = "select distinct(version) from api where parent_id = :parent_id and status = 1";
         $cmd = Yii::app()->db->createCommand($sql)->queryColumn(array(
             ':parent_id' => self::reference,
         ));
@@ -193,7 +196,7 @@ class MCApi {
         return $cmd?$cmd:array();
     }
 
-    //获取training guide的内容
+    //获取training guide的name列表
     public static function getChildByType($type)
     {
         $type_child = 'child'.$type;
@@ -201,7 +204,7 @@ class MCApi {
             return $trguide_child;
         }
 
-        $sql = "select id,name,path,status from api where type = :type";
+        $sql = "select id,name,path,status from api where type = :type and status = 1";
         $cmd = Yii::app()->db->createCommand($sql)->queryAll(true,array(
             ':type' => $type,
         ));
@@ -347,6 +350,17 @@ class MCApi {
         return 1;
     }
 
+    
+    //api reference版本变化
+    public static function VersionCompare()
+    {
+        //拿出api中有的，但api_old中没有的  b.name is null  greate
+        $sql = "SELECT a.id FROM api a LEFT JOIN api_old b ON a.name = b.name AND a.type = b.type WHERE a.type =3 AND b.name IS NULL ";
+
+        $cmd = Yii::app()->db->createCommand($sql)->queryScalar();
+        
+        return $cmd?$cmd:0;
+    }
 }
 
 ?>

@@ -7,8 +7,12 @@
  * @property integer $id
  * @property string $name
  * @property integer $parent_id
+ * @property integer $has_child
  * @property string $path
+ * @property integer $type
  * @property integer $status
+ * @property integer $is_locked
+ * @property integer $version
  * @property integer $staff_id
  * @property integer $update_time
  * @property integer $record_time
@@ -41,12 +45,12 @@ class Api extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('parent_id, status, staff_id, update_time, record_time', 'numerical', 'integerOnly'=>true),
+			array('parent_id, has_child, type, status, is_locked, version, staff_id, update_time, record_time', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
 			array('path', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, parent_id, path, status, staff_id, update_time, record_time', 'safe', 'on'=>'search'),
+			array('id, name, parent_id, has_child, path, type, status, is_locked, version, staff_id, update_time, record_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,8 +74,12 @@ class Api extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'parent_id' => 'Parent',
+			'has_child' => 'Has Child',
 			'path' => 'Path',
+			'type' => 'Type',
 			'status' => 'Status',
+			'is_locked' => 'Is Locked',
+			'version' => 'Version',
 			'staff_id' => 'Staff',
 			'update_time' => 'Update Time',
 			'record_time' => 'Record Time',
@@ -92,8 +100,12 @@ class Api extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('parent_id',$this->parent_id);
+		$criteria->compare('has_child',$this->has_child);
 		$criteria->compare('path',$this->path,true);
+		$criteria->compare('type',$this->type);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('is_locked',$this->is_locked);
+		$criteria->compare('version',$this->version);
 		$criteria->compare('staff_id',$this->staff_id);
 		$criteria->compare('update_time',$this->update_time);
 		$criteria->compare('record_time',$this->record_time);

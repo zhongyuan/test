@@ -1,0 +1,299 @@
+<div>
+<a href = "../../../GAIA Cplusplus Development.html">GAIA Cplusplus Development</a>&gt;<a href = "../../Developer Guides.html">Developer Guides</a>&gt;<a href = "../Connectivity Component.html">Connectivity Component</a>&gt;
+</div>
+<h1>Wi-Fi Direct</h1>
+<p>Wi-Fi Direct allows devices with the appropriate hardware to connect directly to each other via Wi-Fi without an intermediate access point. Using these APIs, you can discover and connect to other devices when each device supports Wi-Fi Direct, then communicate over a speedy connection across distances much longer than a Bluetooth connection. This is useful for applications that share data among users, such as a multiplayer game or a photo sharing application.</p>
+<p>The Wi-Fi Direct APIs consist of the following main parts:</p>
+<ul>
+<li>Methods that allow you to discover, request, and connect to peers are defined in the WifiP2pManager class.</li>
+<li>Listeners that allow you to be notified of the success or failure of WifiP2pManager method calls. When calling WifiP2pManager methods, each method can receive a specific listener passed in as a parameter.</li>
+<li>Intents that notify you of specific events detected by the Wi-Fi Direct framework, such as a dropped connection or a newly discovered peer.</li>
+</ul>
+
+<p>You often use these three main components of the APIs together. For example, you can provide a WifiP2pManager::ActionListener to a call to discoverPeers(), so that you can be notified with the ActionListener::onSuccess() and ActionListener::onFailure() methods. A WIFI_P2P_PEERS_CHANGED_ACTION intent is also broadcast if the discoverPeers() method discovers that the peers list has changed.</p>
+<h2>API Overview</h2>
+<p>The WifiP2pManager class provides methods to allow you to interact with the Wi-Fi hardware on your device to do things like discover and connect to peers. The following actions are available:</p>
+<p><strong>Table 1.</strong>Wi-Fi Direct Methods</p>
+
+<p><table>
+        <tbody><tr>
+          <th>Method</th>
+          <th>Description</th>
+        </tr></p>
+<pre><code>&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;initialize()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Registers the application with the Wi-Fi framework. This must be called before calling any other Wi-Fi Direct method.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;connect()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Starts a peer-to-peer connection with a device with the specified configuration.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;cancelConnect()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Cancels any ongoing peer-to-peer group negotiation.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;requestConnectInfo()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Requests a device's connection information.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;createGroup()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Creates a peer-to-peer group with the current device as the group owner.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;removeGroup()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Removes the current peer-to-peer group.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;requestGroupInfo()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Requests peer-to-peer group information.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;discoverPeers()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Initiates peer discovery &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;requestPeers()&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;Requests the current list of discovered peers.&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+<p></tbody></table></p>
+<p>WifiP2pManager methods let you pass in a listener, so that the Wi-Fi Direct framework can notify your activity of the status of a call. The available listener interfaces and the corresponding WifiP2pManager method calls that use the listeners are described in the following table:</p>
+<p><p><strong>Table 2.</strong> Wi-Fi Direct Listeners</p></p>
+<p><table>
+    <tbody><tr>
+      <th>Listener interface</th>
+      <th>Associated actions</th>
+    </tr></p>
+<pre><code>&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;WifiP2pManager::ActionListener&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;connect()&lt;/code&gt;, &lt;code&gt;cancelConnect()&lt;/code&gt;, &lt;code&gt;createGroup()&lt;/code&gt;, &lt;code&gt;removeGroup()&lt;/code&gt;, and &lt;code&gt;discoverPeers()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;WifiP2pManager::ChannelListener&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;code&gt;initialize()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;WifiP2pManager::ConnectionInfoListener&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;code&gt;requestConnectInfo()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;WifiP2pManager::GroupInfoListener&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;code&gt;requestGroupInfo()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td&gt;&lt;code&gt;WifiP2pManager::PeerListListener&lt;/code&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;code&gt;requestPeers()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+<p></tbody></table></p>
+<p>The Wi-Fi Direct APIs define intents that are broadcast when certain Wi-Fi Direct events happen, such as when a new peer is discovered or when a device's Wi-Fi state changes. You can register to receive these intents in your application by creating a broadcast receiver that handles these intents:</p>
+<p><strong>Table 3.</strong> Wi-Fi Direct Intents</p>
+
+<pre><code>&lt;table&gt;
+&lt;tbody&gt;&lt;tr&gt;
+  &lt;th&gt;Intent&lt;/th&gt;
+  &lt;th&gt;Description&lt;/th&gt;
+
+&lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;WIFI_P2P_CONNECTION_CHANGED_ACTION&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;Broadcast when the state of the device's Wi-Fi connection changes.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;WIFI_P2P_PEERS_CHANGED_ACTION&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;Broadcast when you call &lt;code&gt;discoverPeers()&lt;/code&gt;. You usually want to call &lt;code&gt;requestPeers()&lt;/code&gt; to get an updated list of peers if you handle this intent in your application.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;WIFI_P2P_STATE_CHANGED_ACTION&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;Broadcast when Wi-Fi Direct is enabled or disabled on the device.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;WIFI_P2P_THIS_DEVICE_CHANGED_ACTION&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;Broadcast when a device's details have changed, such as the device's name.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+</code></pre>
+<h2>Creating a Broadcast Receiver for Wi-Fi Direct Intents</h2>
+<p>A broadcast receiver allows you to receive intents broadcast by the Android system, so that your application can respond to events that you are interested in. The basic steps for creating a broadcast receiver to handle Wi-Fi Direct intents are as follows:</p>
+<ol>
+<li>Create a class that extends the BroadcastReceiver class. For the class' constructor, you most likely want to have parameters for the WifiP2pManager, WifiP2pManager::Channel, and the activity that this broadcast receiver will be registered in. This allows the broadcast receiver to send updates to the activity as well as have access to the Wi-Fi hardware and a communication channel if needed.</li>
+<li>In the broadcast receiver, check for the intents that you are interested in onReceive(). Carry out any necessary actions depending on the intent that is received. For example, if the broadcast receiver receives a WIFI_P2P_PEERS_CHANGED_ACTION intent, you can call the requestPeers() method to get a list of the currently discovered peers.</li>
+</ol>
+
+<p>The following code shows you how to create a typical broadcast receiver. The broadcast receiver takes a WifiP2pManager object and an activity as arguments and uses these two classes to appropriately carry out the needed actions when the broadcast receiver receives an intent:</p>
+<pre><code>/**
+ * A BroadcastReceiver that notifies of important Wi-Fi p2p events.
+ */
+void onReceive(Context* context, const Demand& demand) {
+    String action = demand.getAction();
+
+    if (action.equals(WifiP2pManager::WIFI_P2P_STATE_CHANGED_ACTION())) {
+        // Check to see if Wi-Fi is enabled and notify appropriate activity
+    } else if (action.equals(WifiP2pManager::WIFI_P2P_PEERS_CHANGED_ACTION())) {
+        // Call WifiP2pManager::requestPeers() to get a list of current peers
+    } else if (action.equals(WifiP2pManager::WIFI_P2P_CONNECTION_CHANGED_ACTION())) {
+        // Respond to new connection or disconnections
+    } else if (action.equals(WifiP2pManager::WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action))) {
+        // Respond to this device's wifi state changing
+    }
+}</code></pre>
+
+<h2>Creating a Wi-Fi Direct Application</h2>
+<p>Creating a Wi-Fi Direct application involves creating and registering a broadcast receiver for your application, discovering peers, connecting to a peer, and transferring data to a peer. The following sections describe how to do this.</p>
+<h3>Initial setup</h3>
+<p>Before using the Wi-Fi Direct APIs, you must ensure that your application can access the hardware and that the device supports the Wi-Fi Direct protocol. If Wi-Fi Direct is supported, you can obtain an instance of WifiP2pManager, create and register your broadcast receiver, and begin using the Wi-Fi Direct APIs.</p>
+<ol>
+<li>Request permission to use the Wi-Fi hardware on the device and also declare your application to have the correct minimum SDK version in the Android manifest:
+<pre><code><uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+</code></pre>
+</li>
+
+<li>Check to see if Wi-Fi Direct is on and supported. A good place to check this is in your broadcast receiver when it receives the WIFI_P2P_STATE_CHANGED_ACTION intent. Notify your activity of the Wi-Fi Direct state and react accordingly:
+<pre><code>void onReceive(Context* context, const Demand& demand) {
+    ...
+    String action = demand.getAction();
+    if (action.equals(WifiP2pManager::WIFI_P2P_STATE_CHANGED_ACTION())) {
+        int32_t state = demand.getIntExtra(WifiP2pManager::EXTRA_WIFI_STATE(), -1);
+        if (state == WifiP2pManager::WIFI_P2P_STATE_ENABLED) {
+            // Wifi Direct is enabled
+        } else {
+            // Wi-Fi Direct is not enabled
+        }
+    }
+    ...
+}
+</code></pre>
+</li>
+
+<li>In your activity's onInit() method, obtain an instance of WifiP2pManager and register your application with the Wi-Fi Direct framework by calling initialize(). This method returns a WifiP2pManager::Channel, which is used to connect your application to the Wi-Fi Direct framework. You should also create an instance of your broadcast receiver with the WifiP2pManager and WifiP2pManager::Channel objects along with a reference to your activity. This allows your broadcast receiver to notify your activity of interesting events and update it accordingly. It also lets you manipulate the device's Wi-Fi state if necessary:
+<pre><code>gaia::connectivity::WifiP2pManager* mpWifiP2pManager;
+gaia::connectivity::WifiP2pManager::Channel mpChannel;
+...
+
+void onInit(Persistence* const p){
+    ...
+    mpWifiP2pManager = new WifiP2pManager();
+    mpChannel = mpWifiP2pManager->initialize(mpContext, this, NULL);
+    mpDemandFilter = new DemandFilter();
+    ...
+}
+</code></pre>
+</li>
+
+<li>Create an intent filter and add the same intents that your broadcast receiver checks for:
+<pre><code>gaia::core::DemandFilter *mpDemandFilter;
+...
+void onInit(Persistence* const p){
+    ...
+    mpDemandFilter = new DemandFilter();
+    mpDemandFilter->addAction(WifiP2pManager::WIFI_P2P_STATE_CHANGED_ACTION());
+    mpDemandFilter->addAction(WifiP2pManager::WIFI_P2P_PEERS_CHANGED_ACTION());
+    mpDemandFilter->addAction(WifiP2pManager::WIFI_P2P_CONNECTION_CHANGED_ACTION());
+    mpDemandFilter->addAction(WifiP2pManager::WIFI_P2P_THIS_DEVICE_CHANGED_ACTION());
+    ...
+}
+</code></pre>
+</li>
+
+<li>Register the broadcast receiver in the onResume() method of your activity and unregister it in the onPause() method of your activity:
+<pre><code>/* register the broadcast receiver with the intent values to be matched */
+void onResume() {
+    mpContext->registerSubscriber(*this, *mpDemandFilter);
+}
+/* unregister the broadcast receiver */
+void onPause() {
+    mpContext->unregisterSubscriber(*this);
+}
+</code></pre>
+When you have obtained a WifiP2pManager::Channel and set up a broadcast receiver, your application can make Wi-Fi Direct method calls and receive Wi-Fi Direct intents.
+
+You can now implement your application and use the Wi-Fi Direct features by calling the methods in WifiP2pManager. The next sections describe how to do common actions such as discovering and connecting to peers.
+</li>
+</ol>
+
+<h3>Discovering peers</h3>
+<p>To discover peers that are available to connect to, call discoverPeers() to detect available peers that are in range. The call to this function is asynchronous and a success or failure is communicated to your application with onSuccess() and onFailure() if you created a WifiP2pManager::ActionListener. The onSuccess() method only notifies you that the discovery process succeeded and does not provide any information about the actual peers that it discovered, if any:</p>
+<pre><code>gaia::connectivity::WifiP2pManager::ActionListener* mpDiscoverPeersActionListener;
+
+class WifiP2pDiscoverPeersActionListener: public WifiP2pManager::ActionListener {
+    public:
+        explicit WifiP2pDiscoverPeersActionListener()
+            : WifiP2pManager::ActionListener() {
+        }
+
+        void onSuccess() {
+            // success logic
+        }
+
+        void onFailure(int32_t reason) {
+            // failure logic
+        }
+};
+
+mpDiscoverPeersActionListener = new WifiP2pDiscoverPeersActionListener();
+mpWifiP2pManager->discoverPeers(mpChannel, *mpDiscoverPeersActionListener);
+</code></pre>
+
+<p>If the discovery process succeeds and detects peers, the system broadcasts the WIFI_P2P_PEERS_CHANGED_ACTION intent, which you can listen for in a broadcast receiver to obtain a list of peers. When your application receives the WIFI_P2P_PEERS_CHANGED_ACTION intent, you can request a list of the discovered peers with requestPeers(). The following code shows how to set this up:</p>
+<pre><code>gaia::connectivity::WifiP2pManager::PeerListListener* mpPeerListListener;
+...
+if (action.equals(WifiP2pManager::WIFI_P2P_PEERS_CHANGED_ACTION())) {
+
+    // request available peers from the wifi p2p manager. This is an
+    // asynchronous call and the calling activity is notified with a
+    // callback on PeerListListener.onPeersAvailable()
+    if (mpWifiP2pManager != NULL) {
+        mpWifiP2pManager->requestPeers(mpChannel, *mpPeerListListener);
+    }
+}
+</code></pre>
+
+<p>The requestPeers() method is also asynchronous and can notify your activity when a list of peers is available with onPeersAvailable(), which is defined in the the WifiP2pManager::PeerListListener interface. The onPeersAvailable() method provides you with an WifiP2pDeviceList, which you can iterate through to find the peer that you want to connect to.</p>
+<h3>Connecting to peers</h3>
+<p>When you have figured out the device that you want to connect to after obtaining a list of possible peers, call the connect() method to connect to the device. This method call requires a WifiP2pConfig object that contains the information of the device to connect to. You can be notified of a connection success or failure through the WifiP2pManager::ActionListener. The following code shows you how to create a connection to a desired device:</p>
+<pre><code>//obtain a peer from the WifiP2pDeviceList
+gaia::connectivity::WifiP2pDevice* mpThisDevice;
+gaia::connectivity::WifiP2pConfig config;
+config.setDeviceAddress(mpThisDevice->getDeviceAddress());
+
+class WifiP2pDiscoverPeersActionListener: public WifiP2pManager::ActionListener {
+    public:
+        explicit WifiP2pDiscoverPeersActionListener()
+            : WifiP2pManager::ActionListener() {
+        }
+
+        void onSuccess() {
+            // success logic
+        }
+
+        void onFailure(int32_t reason) {
+            // failure logic
+        }
+};
+</code></pre>
+
+<h3>Transferring data</h3>
+<p>Once a connection is established, you can transfer data between the devices with sockets. The basic steps of transferring data are as follows:
+<ol>
+<li>Create a ServerSocket. This socket waits for a connection from a client on a specified port and blocks until it happens, so do this in a background thread.</li>
+<li>Create a client Socket. The client uses the IP address and port of the server socket to connect to the server device.</li>
+<li>Send data from the client to the server. When the client socket successfully connects to the server socket, you can send data from the client to the server with byte streams.</li>
+<li>The server socket waits for a client connection (with the accept() method). This call blocks until a client connects, so call this is another thread. When a connection happens, the server device can receive the data from the client. Carry out any actions with this data, such as saving it to a file or presenting it to the user.</li>
+</ol></p>

@@ -1,0 +1,401 @@
+# Picker#
+***
+# Description #
+A [Picker](#Picker) Picker can let developer to set default number seeting UI.
+GAIA provider three kinds Picker, NumberPicker, TimePicker and DatePicker.
+
+
+## <a name="NumberPicker">NumberPicker</a> ##
+<img src="NumberPicker.png" width="150" height="296"/>
+<br>
+
+## Number Picker##
+A widget that enables the user to select a number form a predefined range.
+In this section, you can know how to use the NumberPicker.
+
+###Using NumberPicker ###
+<pre><code>
+void  PickerTest::onInit(Persistence* const p) {
+    GLOGENTRY(LOG_TAG);
+    mpScene = Scene::SceneFactory(this);
+    mpcRight = new LinearController(this);
+    mpcRight->setOrientation(LinearController::VERTICAL);
+    mplcp2 = new LinearControllerParams(ControllerParams::FILL_PARENT,
+                 ControllerParams::WRAP_CONTENT, 1);
+    mplc->addWidget(mpcRight, mplcp2);
+
+    mpnumbertext = new TextWidget(this);
+    mpnumbertext->setText("NumberPicker Test");
+    mpcRight->addWidget(mpnumbertext);
+
+    // set the Button to triggle numberPicker
+    mpenablenumber = new Button(this);
+    mpenablenumber->setId(99);
+    mpenablenumber->setText("Enable NumberPicker");
+    mpenablenumber->setOnClickListener(this);	
+    mpcRight->addWidget(mpenablenumber);
+
+    mpnp = new NumberPicker(this);
+    // set the Number Picker to LinearController and set it in-invisible as default
+    mpcRight->addWidget(mpnp);
+    mpnp->setVisibility(Widget::GONE);
+
+    // new the Text
+    mpnumbertext = new TextWidget(this);
+    mpnumbertext->setText("NumberPicker Test");
+    mpcRight->addWidget(mpnumbertext);
+
+    mpScene->attachController(mpcouter);
+    mpScene->setupSceneLayout();
+}
+
+void PickerTest::onClick(Widget* widget) {
+    GLOGENTRY(LOG_TAG);
+    int32_t id = widget->getId();
+    if (id == 99)
+        r = id;
+    switch (r) {
+        case 99: {  // Enable NumberPicker
+            // click listen is enable set the NumberPicker visible.
+            mpnp->setVisibility(Widget::VISIBLE);
+            mpenablenumber->setVisibility(Widget::GONE);
+            // set the number range 1 ~ 99 can let user to scroller
+            mpnp->setRange(1, 99);
+            // set the default value as 98
+            mpnp->setCenterView(98);
+            // set the  callback listener if number picker scrolled by user it will call onDataSet.
+            mpnp->setIOnScrollIdleStateListener(this);
+            mpnumbertext->setText("Enable NumberPicker");
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+// call after user scorll the picker
+void PickerTest::onDataSet(NumberPicker* target, int32_t data) {
+    GLOGENTRY(LOG_TAG);
+    if (target != NULL) {
+        // set Text to tell user which number he/she select
+        String number = String("NumberPicker : ")
+            + String::valueOf(mpnp->getCenterView());
+        mpnumbertext->setText(number);
+
+    }
+}
+</code></pre>
+### NumberPicker API ###
+        //Set listener to be notified for scroll state idle.
+        void setIOnScrollIdleStateListener(IOnScrollIdleStateListener* target);
+
+        // Set the content's range of the picker.
+        void setRange(int32_t start, int32_t end);
+
+        // Set the content's range of the picker.
+        void setRange(int32_t start, int32_t end,
+                const gaia::base::StringArray& candidates);
+
+        // Set the number that want to show on the picker.
+        void setShowNumberDigits(int32_t digit);
+
+        // Return the center number of the picker.
+        int32_t getCenterView();
+
+        // Set the center number of the picker.
+        void setCenterView(int32_t pos);
+
+        // Set picker enable or not.
+        void setEnabled(bool enabled);
+
+        // Slide with offset, set offset with DEFAULTFRAMEOFFSET for slide one frame.
+        void slideWithOffset(int32_t offset);
+
+        // Set picker repeat enable or not.
+        void setRepeatEnable(bool enable);
+
+        // Set count down mode enable or not.
+        void setCountDownMode(bool enable);
+
+        // get slide offset for slideWithOffset.
+        int32_t getDefaultSlideOffset();
+
+
+## <a name="TimePicker">TimePicker</a> ##
+<img src="TimePicker.png" width="549" height="370"/>
+<br>
+
+## TimePicker ##
+A widget that enables the user to Time let developer know user set.
+This widget for selecting the time of day, in either 24 hour or AM/PM mode
+In this section, you can know how to use the TimePicker.
+
+###Using TimePicker ###
+<pre><code>
+void  PickerTest::onInit(Persistence* const p) {
+    GLOGENTRY(LOG_TAG);
+    mpScene = Scene::SceneFactory(this);
+    mpcRight = new LinearController(this);
+    mpcRight->setOrientation(LinearController::VERTICAL);
+    mplcp2 = new LinearControllerParams(ControllerParams::FILL_PARENT,
+                 ControllerParams::WRAP_CONTENT, 1);
+    mplc->addWidget(mpcRight, mplcp2);
+
+    // TimePicker test
+    mptimetext = new TextWidget(this);
+    mptimetext->setText("TimePicker Test");
+    mpcRight->addWidget(mptimetext);
+
+    mpenabletime = new Button(this);
+    // set the Button to triggle TimePicker
+    mpenabletime->setId(88);
+    mpenabletime->setText("Enable TimePicker");
+    mpenabletime->setOnClickListener(this);
+    mpcRight->addWidget(mpenabletime);
+
+    mptp = new TimePicker(this);
+    // set the Time Picker to LinearController and set it in-invisible as default
+    mpcRight->addWidget(mptp);
+    mptp->setVisibility(Widget::GONE);
+    mpScene->attachController(mpcouter);
+    mpScene->setupSceneLayout();
+}
+
+void PickerTest::onClick(Widget* widget) {
+    GLOGENTRY(LOG_TAG);
+    int32_t id = widget->getId();
+    if (id == 88)
+        r = id;
+    switch (r) {
+        case 88: {  // Enable TimePicker
+            mptp->setVisibility(Widget::VISIBLE);
+            mpenabletime->setVisibility(Widget::GONE);
+            mptp->dispatchIOnScrollIdleStateListener(this);
+            // Set Default Time
+            mptp->setCurrentHour(10);
+            mptp->setCurrentMinute(10);
+            mptp->setCurrentSecond(10);
+            mpnumbertext->setText("Enable TimePicker");
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+// call after user scorll the picker
+void PickerTest::onDataSet(NumberPicker* target, int32_t data) {
+    GLOGENTRY(LOG_TAG);
+     // set the time to let user know what they set
+     if (mptp->getVisibility() == Widget::VISIBLE) {
+            String time = String("TimePicker : ")
+                    + String::valueOf(mptp->getCurrentHour()) + String(" - ")
+                    + String::valueOf(mptp->getCurrentMinute()) + String(" - ")
+                    + String::valueOf(mptp->getCurrentSecond()) + String(" - ")
+                    + String::valueOf(mptp->getCurrentAmPm());
+            mptimetext->setText(time);
+      }
+}
+</code></pre>
+### TimePicker API ###
+
+        //Dispatch listener to be notified for scroll state idle.
+        void dispatchIOnScrollIdleStateListener(
+            IOnScrollIdleStateListener* target);
+
+        // Set second picker enable or not.
+        void setSecondPickerEnable(bool enabled);
+
+        // Return Second picker enable or not.
+        bool isSecondPickerEndabled();
+
+        // Set hour as current Hour.
+        void setCurrentHour(int32_t hour);
+
+        // Set minute as current Minute.
+        void setCurrentMinute(int32_t minute);
+
+        // Set second as current Second.
+        void setCurrentSecond(int32_t second);
+
+        // Set the current time is before afternoon or after.
+        void setCurrentAmPm(int32_t ampm);
+
+        // Return current Hour.
+        int32_t getCurrentHour();
+
+        // Return current Minute.
+        int32_t getCurrentMinute();
+
+        // Return current Second.
+        int32_t getCurrentSecond();
+
+        // Get the current time is before afternoon or after.
+        int32_t getCurrentAmPm();
+
+        // Set hour's range.
+        void setHourRange(int32_t min, int32_t max);
+
+        // Set minute's range.
+        void setMinuteRange(int32_t min, int32_t max);
+
+        // Set second's range.
+        void setSecondRange(int32_t min, int32_t max);
+
+        // Set the AmPm range.
+        void setAmPmRange(int32_t min, int32_t max,
+                const gaia::base::StringArray& candidates);
+
+        // Slide second picker with offset, set offset with
+                 NumberPicker::DEFAULTFRAMEOFFSET for slide one frame.
+        void slideSecondWithOffset(int32_t offset);
+
+        // Slide minute picker with offset, set offset with
+           NumberPicker::DEFAULTFRAMEOFFSET for slide one frame.
+        void slideMinuteWithOffset(int32_t offset);
+
+        // Slide hour picker with offset, set offset with
+                 NumberPicker::DEFAULTFRAMEOFFSET for slide one frame.
+        void slideHourWithOffset(int32_t offset);
+
+        // Set day picker's title. 
+        void setHourPickerTitle(const gaia::base::String& title);
+
+        // Set month picker's title.
+        void setMinutePickerTitle(const gaia::base::String& title);
+
+        // Set year picker's title.
+        void setSecondPickerTitle(const gaia::base::String& title);
+
+        // Disable all picker's title.
+           If user call disableTitle(), title won't enable again.
+        void disableTitle();
+
+        // Set count down mode enable or not.
+        void setCountDownMode(bool enable);
+
+        // Set picker repeat enable or not.
+        void setRepeatEnable(bool enable);
+
+## <a name="DatePicker">DatePicker</a> ##
+<img src="DatePicker.png" width="550" height="371"/>
+<br>
+
+## DatePicker##
+A widget that enables the user to Date let developer know user set.
+This widget for selecting the Date.
+In this section, you can know how to use the DatePicker.
+
+###Using DatePicker ###
+<pre><code>
+void  PickerTest::onInit(Persistence* const p) {
+    GLOGENTRY(LOG_TAG);
+    mpScene = Scene::SceneFactory(this);
+    mpcRight = new LinearController(this);
+    mpcRight->setOrientation(LinearController::VERTICAL);
+    mplcp2 = new LinearControllerParams(ControllerParams::FILL_PARENT,
+                 ControllerParams::WRAP_CONTENT, 1);
+    mplc->addWidget(mpcRight, mplcp2);
+
+    mpnumbertext = new TextWidget(this);
+    mpnumbertext->setText("NumberPicker Test");
+    mpcRight->addWidget(mpnumbertext);
+
+    // set the Button to triggle DatePicker
+     mpenabledate = new Button(this);
+    mpenabledate->setId(77);
+    mpenabledate->setText("Enable DatePicker");
+    mpenabledate->setOnClickListener(this);
+    mpcRight->addWidget(mpenabledate);
+
+    mpdp = new DatePicker(this);
+  // set the Date Picker to LinearController and set it in-invisible as default
+    mpcRight->addWidget(mpdp);
+    mpdp->setVisibility(Widget::GONE);
+
+  
+
+    // new the Text
+    mpnumbertext = new TextWidget(this);
+    mpnumbertext->setText("DatePicker Test");
+    mpcRight->addWidget(mpnumbertext);
+
+    mpScene->attachController(mpcouter);
+    mpScene->setupSceneLayout();
+}
+
+void PickerTest::onClick(Widget* widget) {
+    GLOGENTRY(LOG_TAG);
+    int32_t id = widget->getId();
+    if (id == 77)
+        r = id;
+    switch (r) {
+        case 77: {  // Enable DatePicker
+            mpdp->setVisibility(Widget::VISIBLE);
+            mpenabledate->setVisibility(Widget::GONE);
+            mpdp->dispatchIOnScrollIdleStateListener(this);
+            // set default date picker
+            mpdp->setCurrentYear(2012);
+            mpdp->setCurrentMonth(5);
+            mpdp->setCurrentDay(9);
+            mpnumbertext->setText("Enable DatePicker");
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+// call after user scorll the Datepicker
+void PickerTest::onDataSet(NumberPicker* target, int32_t data) {
+    GLOGENTRY(LOG_TAG);
+    if (mpdp->getVisibility() == Widget::VISIBLE) {
+            String date = String("DatePicker : ")
+                    + String::valueOf(mpdp->getCurrentMonth()) + String(" - ")
+                    + String::valueOf(mpdp->getCurrentDay()) + String(" - ")
+                    + String::valueOf(mpdp->getCurrentYear());
+            mpdatetext->setText(date);
+    }
+}
+</code></pre>
+### DatePicker API ###
+
+        // Dispatch listener to be notified for scroll state idle.
+        void dispatchIOnScrollIdleStateListener(
+            IOnScrollIdleStateListener* target);
+
+        // Set month as current month.
+        void setCurrentMonth(int32_t month);
+
+        // Set day as current Day.
+        void setCurrentDay(int32_t day);
+
+        // Set year as current Year.
+        void setCurrentYear(int32_t year);
+
+        // Return current Month.
+        int32_t getCurrentMonth();
+
+        // Return current Day.
+        int32_t getCurrentDay();
+
+        // Return current Year.
+        int32_t getCurrentYear();
+
+        // Set month's range.
+        void setMonthRange(int32_t min, int32_t max);
+
+        // Set day's range.
+        void setDayRange(int32_t min, int32_t max);
+
+        // Set year's range.
+        void setYearRange(int32_t min, int32_t max);
+
+## References##
+1. NumberPicker
+2. TimePicker
+3. Datepicker
+
+

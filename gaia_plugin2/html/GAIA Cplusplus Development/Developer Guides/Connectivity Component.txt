@@ -1,0 +1,16 @@
+#Connectivity Component#
+
+The Document for Connectivity Component
+
+[Wi-Fi](Connectivity Component/Wi-Fi.html)
+
+[Wi-Fi Direct](Connectivity Component/Wi-Fi Direct.html)
+
+[Bluetooth](Connectivity Component/Bluetooth.html)
+
+[Location](Connectivity Component/Location.html)
+
+[Nfc](Connectivity Component/Nfc.html)
+
+[USB](Connectivity Component/USB/USB Host.html)
+

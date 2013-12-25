@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/dd3/classgaia_1_1ui_1_1_dialog_preference.html" title="A base class for Preference objects that are dialog&#45;based." alt="" coords="200,85,371,115"/>
+<area shape="rect" id="node11" href="$dd/d52/classgaia_1_1ui_1_1_preference_group.html" title="Interface definition for a callback to be invoked when the value of this Preference has been changed ..." alt="" coords="200,165,371,195"/>
+<area shape="rect" id="node17" href="$d7/dc2/classgaia_1_1ui_1_1_seek_bar_preference.html" title="Common base class for preferences that have two selectable states, persist a bool value in Applicatio..." alt="" coords="193,219,377,248"/>
+<area shape="rect" id="node19" href="$df/d07/classgaia_1_1ui_1_1_two_state_preference.html" title="Common base class for preferences that have two selectable states, persist a bool value in Applicatio..." alt="" coords="191,272,380,301"/>
+<area shape="rect" id="node5" href="$df/d6d/classgaia_1_1ui_1_1_edit_text_preference.html" title="A Preference that allows for string input." alt="" coords="448,5,632,35"/>
+<area shape="rect" id="node7" href="$d4/df3/classgaia_1_1ui_1_1_list_preference.html" title="A Preference that displays a list of entries as a dialog." alt="" coords="463,59,617,88"/>
+<area shape="rect" id="node9" href="$d7/dc7/classgaia_1_1ui_1_1_multi_select_list_preference.html" title="A Preference that displays a list of entries as a dialog." alt="" coords="429,112,651,141"/>
+<area shape="rect" id="node13" href="$d7/d01/classgaia_1_1ui_1_1_preference_category.html" title="Used to group Preference objects and provide a disabled title above the group." alt="" coords="447,165,633,195"/>
+<area shape="rect" id="node15" href="$d3/d53/classgaia_1_1ui_1_1_preference_screen.html" title="Used to group Preference objects and provide a disabled title above the group." alt="" coords="452,219,628,248"/>
+<area shape="rect" id="node21" href="$da/db2/classgaia_1_1ui_1_1_check_box_preference.html" title="A Preference that provides checkbox widget functionality." alt="" coords="443,272,637,301"/>
+<area shape="rect" id="node23" href="$dc/dc7/classgaia_1_1ui_1_1_toggle_preference.html" title="A Preference that provides checkbox widget functionality." alt="" coords="453,325,627,355"/>
+</map>

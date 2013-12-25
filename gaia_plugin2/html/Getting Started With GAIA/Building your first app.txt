@@ -1,0 +1,12 @@
+#Building your first app#
+
+There are two ways to create a Gaia app. The first is to use GDT(Gaia developement tools, an Eclipse plugin provided for Gaia app creation), and the second is to build scripts provided in the GAIA SDK. In this tutorial, we will introduce how to use build scripts in the SDK to build our Gaia app from scratch. For instructions on creating a Gaia app using GDT, please refer to (GDT in Eclipse).
+
+The main purpose of these scripts is to help develop and build GAIA apps easily and smoothly. It composes of several mk files, with each file having its own resposibility. The build scripts generate APK packages instead of executable binary programs. 
+We'll demonstrate using the SDK by taking HelloWorld as an example. The following instructions explain how to build your first app with IDE and SDK in Linux or Windows System.
+
+[Create a GAIA project in Linux(IDE/COMMAND)](Building your first app/Create a GAIA project in Linux.html)
+
+[Create a GAIA project in Windows(IDE/COMMAND)](Building your first app/Create a GAIA project in Windows.html)
+
+[Variables usage in Gaia.mk](Building your first app/Variables usage in Gaia.mk.html)

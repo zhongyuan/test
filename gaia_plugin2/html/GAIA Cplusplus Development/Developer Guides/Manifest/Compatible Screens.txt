@@ -1,0 +1,88 @@
+#Compatible Screens#
+
+***syntax:***
+
+        <compatible-screens>
+            <screen gaia:screenSize=["small" | "normal" | "large" | "xlarge"]
+                    gaia:screenDensity=["ldpi" | "mdpi" | "hdpi" | "xhdpi"] />
+            ...
+        </compatible-screens>
+
+##Contained in:##
+
+>    [Config](Manifest/Config.html)
+
+##Description:##
+
+Specifies each screen configuration with which the application is compatible. Only one instance of the <compatible-screens> element is allowed in the manifest, but it can contain multiple <screen> elements. Each <screen> element specifies a specific screen size-density combination with which the application is compatible.
+
+The Gaia system does not read the <compatible-screens> manifest element (neither at install-time nor at runtime). This element is informational only and may be used by external services (such as Google Play) to better understand the application's compatibility with specific screen configurations and enable filtering for users. Any screen configuration that is not declared in this element is a screen with which the application is not compatible. Thus, external services (such as Google Play) should not provide the application to devices with such screens.
+
+**Caution:** Normally, you should not use this manifest element. Using this element can dramatically reduce the potential user base for your application, by not allowing users to install your application if they have a device with a screen configuration that you have not listed. You should use it only as a last resort, when the application absolutely does not work with all screen configurations. Instead of using this element, you should follow the guide to Supporting Multiple Screens, in order to provide complete support for multiple screens, by adding alternative resources for different screen sizes and densities.
+
+If you want to set only a minimum screen size for your your application, then you should use the [Supports Screens](Manifest/Supports Screens.html) element. For example, if you want your application to be available only for large and xlarge screen devices, the [Supports Screens](Manifest/Supports Screens.html) element allows you to declare that your application does not support small and normal screen sizes. External services (such as Google Play) will filter your application accordingly. You can also use the [Supports Screens](Manifest/Supports Screens.html) element to declare whether the system should resize your application for different screen sizes.
+
+Also see the Filters on Google Play document for more information about how Google Play filters applications using this and other manifest elements.
+
+##Child elements:##
+
+***screen***<br>
+Specifies a single screen configuration with which the application is compatible.
+
+At least one instance of this element must be placed inside the <compatible-screens> element. This element must include both the gaia:screenSize and gaia:screenDensity attributes (if you do not declare both attributes, then the element is ignored).
+
+***gaia:screenSize***<br>
+Required. Specifies the screen size for this screen configuration.
+
+Accepted values:
+
+* small
+* normal
+* large
+* xlarge
+
+For information about the different screen sizes, see Supporting Multiple Screens.
+
+***gaia:screenDensity***<br>
+Required. Specifies the screen density for this screen configuration.
+
+Accepted values:
+
+* ldpi
+* mdpi
+* hdpi
+* xhdpi
+
+For information about the different screen densities, see Supporting Multiple Screens.
+
+##Example##
+
+If your application is compatible with only small and normal screens, regardless of screen density, then you must specify eight different <screen> elements, because each screen size has four different density configurations. You must declare each one of these; any combination of size and density that you do not specify is considered a screen configuration with which your application is not compatible. Here's what the manifest entry looks like if your application is compatible with only small and normal screens:
+
+        <manifest ... >
+            ...
+            <compatible-screens>
+                <!-- all small size screens -->
+                <screen gaia:screenSize="small" gaia:screenDensity="ldpi" />
+                <screen gaia:screenSize="small" gaia:screenDensity="mdpi" />
+                <screen gaia:screenSize="small" gaia:screenDensity="hdpi" />
+                <screen gaia:screenSize="small" gaia:screenDensity="xhdpi" />
+                <!-- all normal size screens -->
+                <screen gaia:screenSize="normal" gaia:screenDensity="ldpi" />
+                <screen gaia:screenSize="normal" gaia:screenDensity="mdpi" />
+                <screen gaia:screenSize="normal" gaia:screenDensity="hdpi" />
+                <screen gaia:screenSize="normal" gaia:screenDensity="xhdpi" />
+            </compatible-screens>
+            <application ... >
+                ...
+            <application>
+        </manifest>
+
+##Introduced in:##
+
+API Level 1
+
+##See also:##
+
+        Supporting Multiple Screens
+        Filters on Google Play

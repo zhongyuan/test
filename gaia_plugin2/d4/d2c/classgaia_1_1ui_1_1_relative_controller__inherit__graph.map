@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node11" href="$d5/d21/classgaia_1_1ui_1_1_search_edit_widget.html" title="A special EditWidget&#45;like widget with a clear button on its right side." alt="" coords="101,315,277,344"/>
+<area shape="rect" id="node2" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="97,160,281,189"/>
+<area shape="rect" id="node4" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="41,83,169,112"/>
+<area shape="rect" id="node6" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="5,5,205,35"/>
+<area shape="rect" id="node8" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="193,83,356,112"/>
+</map>

@@ -127,7 +127,7 @@ class CCaptchaAction extends CAction
 			));
 		}
 		else
-			$this->renderImage($this->getVerifyCode(true));
+			$this->renderImage($this->getVerifyCode(true)); //设置为true，使得刷新即重新生成代码
 		Yii::app()->end();
 	}
 

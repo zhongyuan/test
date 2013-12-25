@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$de/d4b/_accelerate_decelerate_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/AccelerateDecelerateInterpolator.h" alt="" coords="5,83,539,112"/>
+<area shape="rect" id="node5" href="$d1/dc6/_accelerate_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/AccelerateInterpolator.h" alt="" coords="563,83,1032,112"/>
+<area shape="rect" id="node7" href="$d4/dd8/_anticipate_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/AnticipateInterpolator.h" alt="" coords="1056,83,1523,112"/>
+<area shape="rect" id="node9" href="$d6/d1d/_anticipate_overshoot_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/AnticipateOvershootInterpolator.h" alt="" coords="1547,83,2072,112"/>
+<area shape="rect" id="node11" href="$d1/de0/_bounce_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/BounceInterpolator.h" alt="" coords="2096,83,2549,112"/>
+<area shape="rect" id="node13" href="$d7/d52/_cycle_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/CycleInterpolator.h" alt="" coords="2573,83,3016,112"/>
+<area shape="rect" id="node15" href="$dd/dea/_decelerate_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/DecelerateInterpolator.h" alt="" coords="3040,83,3512,112"/>
+<area shape="rect" id="node17" href="$db/d64/_linear_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/LinearInterpolator.h" alt="" coords="3536,83,3979,112"/>
+<area shape="rect" id="node19" href="$d9/d7b/_overshoot_interpolator_8h.html" title="/home/vilon_tao/gaia/sdk/include/gaia/core/animation/OvershootInterpolator.h" alt="" coords="4003,83,4472,112"/>
+</map>

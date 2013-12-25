@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d7/dc0/classgaia_1_1core_1_1_fragment.html" title="A Fragment is a piece of an application&#39;s user interface or behavior that can be placed in an Page..." alt="" coords="1432,32,1573,61"/>
+<area shape="rect" id="node4" href="$d7/d73/classgaia_1_1webkit_1_1_web_view.html" title="gaia::webkit::WebView" alt="" coords="1425,85,1580,115"/>
+<area shape="rect" id="node6" href="$df/d55/classgaia_1_1ui_1_1_absolute_controller.html" title="A layout that lets you specify exact locations (x/y coordinates) of its children." alt="" coords="1024,5,1203,35"/>
+<area shape="rect" id="node8" href="$db/d6c/classgaia_1_1core_1_1_widget_controller.html" title="Define the default widget layout to put sets of layout in it." alt="" coords="639,237,823,267"/>
+<area shape="rect" id="node14" href="$d5/dfb/classgaia_1_1core_1_1_scene.html" title="A Scene is used to build a visual interface." alt="" coords="1052,376,1175,405"/>
+<area shape="rect" id="node10" href="$d8/dac/classgaia_1_1core_1_1_widget.html" title="The Widget class is the base class of all user interface component." alt="" coords="1439,288,1567,317"/>
+<area shape="rect" id="node12" href="$d0/db2/classgaia_1_1core_1_1_property_animatable.html" title="Any animation object need to implement PropertyAnimatable because of setting value." alt="" coords="1013,269,1213,299"/>
+<area shape="rect" id="node26" href="$db/d3f/classgaia_1_1core_1_1_page.html" title="An page is a single, focused thing that the user can do." alt="" coords="1444,427,1561,456"/>
+<area shape="rect" id="node17" href="$de/dad/classgaia_1_1content_1_1_resources.html" title="Class for accessing an application&#39;s resources." alt="" coords="647,372,815,401"/>
+<area shape="rect" id="node19" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="gaia::base::Vector\&lt; gaia::ui::DialogBox * \&gt;" alt="" coords="596,425,865,455"/>
+<area shape="rect" id="node21" href="$d0/d21/classgaia_1_1base_1_1_vector_impl.html" title="Implements vector data structure equipped with copy&#45;on&#45;write mechanism." alt="" coords="7,427,159,456"/>
+<area shape="rect" id="node23" href="$df/d5d/classgaia_1_1base_1_1_vector.html" title="This class implements the vector data structure." alt="" coords="211,457,397,487"/>
+<area shape="rect" id="node29" href="$db/d88/classgaia_1_1core_1_1_widget_tag.html" title="gaia::core::WidgetTag" alt="" coords="1039,323,1188,352"/>
+<area shape="rect" id="node31" href="$dd/de0/classgaia_1_1core_1_1_event_control.html" title="EventControl is used to dispatch event and register listener." alt="" coords="223,237,385,267"/>
+<area shape="rect" id="node34" href="$d2/d5f/classgaia_1_1core_1_1_i_focus_change_listener.html" title="Interface definition for a callback to be invoked when the focus state of a widget changed..." alt="" coords="1004,59,1223,88"/>
+<area shape="rect" id="node36" href="$dc/d77/classgaia_1_1webkit_1_1_web_back_forward_list.html" title="This class contains the back/forward list for a WebView." alt="" coords="1001,112,1225,141"/>
+<area shape="rect" id="node38" href="$d8/dac/classgaia_1_1webkit_1_1_web_settings.html" title="Manages settings state for a WebView." alt="" coords="1027,165,1200,195"/>
+</map>

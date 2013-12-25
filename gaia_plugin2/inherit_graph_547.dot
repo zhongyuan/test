@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::media::VideoEditorProfile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d2e/classgaia_1_1media_1_1_video_editor_profile.html",tooltip="The VideoEditorProfile class is used to retrieve the predefined videoeditor profile settings for vide..."];
-}

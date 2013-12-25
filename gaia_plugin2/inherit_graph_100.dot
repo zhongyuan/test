@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir=LR;
-  Node1 [label="gaia::connectivity::NetworkInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/ddd/classgaia_1_1connectivity_1_1_network_info.html",tooltip="* Describes the status of a network interface."];
-}
