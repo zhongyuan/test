@@ -350,6 +350,17 @@ class MCApi {
         return 1;
     }
 
+    
+    //api reference版本变化
+    public static function VersionCompare()
+    {
+        //拿出api中有的，但api_old中没有的  b.name is null  greate
+        $sql = "SELECT a.id FROM api a LEFT JOIN api_old b ON a.name = b.name AND a.type = b.type WHERE a.type =3 AND b.name IS NULL ";
+
+        $cmd = Yii::app()->db->createCommand($sql)->queryScalar();
+        
+        return $cmd?$cmd:0;
+    }
 }
 
 ?>

@@ -317,6 +317,18 @@ class DeveloperController extends Controller
         $this->render('dcenter');
     }
 
+    
+    /*
+     * API reference 新旧版本设置
+     */
+//    public function actionCompare()
+//    {
+//        
+//        $array = MCApi::VersionCompare();
+//        font-family: georgia, verdana, tahoma, arial, sans-serif;
+            //font-size: 0.625em/1.5em;
+//        print_r($array);exit; 
+//    }
 
     /*
      * 导入xml文件到数据库

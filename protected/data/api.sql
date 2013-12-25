@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 25, 2013 at 09:48 AM
+-- Generation Time: Dec 25, 2013 at 11:33 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.5.5
 
@@ -52,8 +52,8 @@ INSERT INTO `api` (`id`, `name`, `parent_id`, `has_child`, `path`, `type`, `stat
 (1, 'Traning', 0, 1, 'html/Getting Started With COS.html', 0, 0, 0, 1, 0, 1387959554, 1365991680),
 (2, 'Develop Guides', 0, 1, '/', 0, 0, 0, 1, 0, 1387959554, 1387958259),
 (3, 'API Reference', 0, 1, '/', 0, 0, 0, 1, 0, 1387959554, 1387958259),
-(4, 'COS Cplusplus Development', 2, 1, 'html/COS Cplusplus Development.html', 2, 1, 0, 1, 0, 1387959554, 1387958259),
-(5, 'COS Web Development', 2, 1, 'html/COS Web Development.html', 2, 1, 0, 1, 0, 1387959554, 1387958259),
+(4, 'COS Cplusplus Development', 2, 1, 'html/GAIA Cplusplus Development.html', 2, 1, 0, 1, 0, 1387959554, 1387958259),
+(5, 'COS Web Development', 2, 1, 'html/GAIA Web Development.html', 2, 1, 0, 1, 0, 1387959554, 1387958259),
 (6, 'Building your first app', 1, 1, 'html/Getting Started With GAIA/Building your first app.html', 1, 1, 0, 1, 0, 1387959554, 1387958259),
 (7, 'Create a GAIA project in Linux', 6, 0, 'html/Getting Started With GAIA/Building your first app/Create a GAIA project in Linux.html', 1, 1, 0, 1, 0, 1387959554, 1387958259),
 (8, 'Create a GAIA project in Windows', 6, 0, 'html/Getting Started With GAIA/Building your first app/Create a GAIA project in Windows.html', 1, 1, 0, 1, 0, 1387959554, 1387958259),
