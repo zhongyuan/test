@@ -47,32 +47,6 @@ class DeveloperController extends Controller
 //		$this->_cosDeveloper(MCApi::developer);
     }
 
-	
-
-	/**
-	 * 检测当前账户是否有编辑权限
-	 *
-	 */
-//	private function _checkEditable()
-//	{
-//		return FALSE;
-//	}
-
-
-	/**
-	 * 检查执行AJAX请求的编辑权限,防止绕过登录进行非法请求操作
-	 *
-	 */
-//	private function _checkAjaxEditPermit()
-//	{
-//		if(!$this->_checkEditable()){
-//			echo json_encode(array(
-//				'req' => "error",
-//				'msg' => "您没有权限执行此操作"
-//			));
-//			exit(0);
-//		}
-//	}
 
 
 	/**
@@ -277,16 +251,16 @@ class DeveloperController extends Controller
 
         $mcApi = new MCApi();
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,name,path,status';
+        $criteria->select = 'id,name,path';
         $criteria->addCondition("type = :type");
+        $criteria->addCondition("status = 1");
         $criteria->addSearchCondition('name', $search_api);
         $criteria->params[':type'] = $type;
-        $criteria->order = 't.update_time desc';
 
         $count = Api::model()->count($criteria);
 
         $pages = new CPagination($count);
-        $pages->pageSize = 15;
+        $pages->pageSize = 18;
         $pages->applyLimit($criteria);
 
         $results = Api::model()->findAll($criteria);
