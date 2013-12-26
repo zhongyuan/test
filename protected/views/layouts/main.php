@@ -12,8 +12,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->  
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    
+    <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    if (typeof jQuery == 'undefined')
+    {
+      document.write(unescape("%3Cscript src='<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+    </script> 
 </head>
     
 <body>
@@ -44,8 +49,5 @@
 
 </div>
 
-        <!-- Jquery -->
-        <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->   
-       
 </body>
 </html>
