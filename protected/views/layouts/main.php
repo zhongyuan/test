@@ -12,8 +12,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->  
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    
+    <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    if (typeof jQuery == 'undefined')
+    {
+      document.write(unescape("%3Cscript src='<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+    </script> 
 </head>
     
 <body>
@@ -43,7 +48,11 @@
 
 
 </div>
+<<<<<<< HEAD
         <!-- Jquery google加载失败，调用本地-->   
         <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"><\/script>')</script>
+=======
+
+>>>>>>> 47c62dce96adef8946de2bd453778a75a26e3078
 </body>
 </html>
