@@ -45,7 +45,7 @@ and open the template in the editor.
     float: left;
     font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
     border: 0;
-    background: rgba(255, 255, 255, 0.86);
+    background: #fdfdfd;
     -moz-border-radius: 3px 0 0 3px;
     -webkit-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
@@ -136,7 +136,7 @@ and open the template in the editor.
     width: 400px;
     height: auto;
     max-height:800px;
-    background: rgba(252, 252, 252, 1);
+    background: #fdfdfd;
     top: 20%;
     left: 26%;
     z-index: 200;
