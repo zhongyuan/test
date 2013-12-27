@@ -1,6 +1,4 @@
-<style>
-    
-</style>
+
 <div>
     <div id ="leftpar-header">
             <div class="title ">COS APIs</div>
