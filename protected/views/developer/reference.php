@@ -10,7 +10,11 @@ $this->widget('SearchWidget');
 <div id="ref_body_id" class="ref_body2">
     <div class="leftpar">
         <div class="drop_listref_pin">
+            <?php if($this->beginCache('reference_page_cache',array('duration'=>3600))){ ?>
+            
             <?php $this->widget('ReferenceWidget' ,array('versions' => $versions,'cl_child'=>$cl_child));?>
+            
+            <?php $this->endCache(); }?>
         </div>
 
     </div>
