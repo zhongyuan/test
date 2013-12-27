@@ -91,8 +91,8 @@ $(function(){
         });
         demoIframe.contents().find("a").css({'color':'#258aaf','margin':'0px 3px'});
         demoIframe.contents().find("h1").css({'font-size':'20px'});
-        demoIframe.contents().find("td").css({'border':'1px solid #ccc'});
-        demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
+        demoIframe.contents().find("table").css({'font-size':'12px','width':"99%"});
+		demoIframe.contents().find("img").css({'max-width':'99%','overflow':'hidden','border':'1px solid #eee','padding':'1px'});
 
 	}
 

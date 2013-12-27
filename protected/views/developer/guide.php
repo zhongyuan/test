@@ -10,7 +10,7 @@ $this->widget('SearchWidget');
 <div class="content_wrap">
 
     <div class="devguide_left">
-        <div class="drop_list">
+        <div class="drop_list_pin">
             <?php $this->widget('DropmenuWidget' ,array('view_data' => $view_data));?>
         </div>
     </div>
@@ -25,7 +25,7 @@ $this->widget('SearchWidget');
 $(function(){
     
     //自己写的  页面元素固定位置
-	var box = $('.drop_list');
+	var box = $('.drop_list_pin');
 	var btop = box.position().top; //获取对象，相对页定的高度
 	var pos = box.css("position");
 

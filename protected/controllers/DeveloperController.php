@@ -40,11 +40,10 @@ class DeveloperController extends Controller
     public function actionGuide()
     {
         $view_data = $this->_cosDeveloper(MCApi::developer);
+
         $this->render('guide',array(
             'view_data' => $view_data,
         ));
-        
-//		$this->_cosDeveloper(MCApi::developer);
     }
 
 
@@ -60,12 +59,7 @@ class DeveloperController extends Controller
 
         $mcApi = new MCApi();
 		$data = $mcApi->getTree($type);
-		$viewData = array(
-			'data' => $data,
-//			'switchUrl'=>$switchUrl,
-//			'editable' => 0,
-		);
-        
+
         $viewData['dataHtml'] = $this->_generateTreeHtml($data);
         $viewData['first_id'] = $data[0]['file'];
         return $viewData;
@@ -80,15 +74,8 @@ class DeveloperController extends Controller
 	private function _generateTreeHtml($data,$active=TRUE,$level = 0)
 	{
 		$level++;
-//		$idx = 0;
 		$html = "<ul>";
 		foreach($data as $index=>$item){
-//			$idx++;
-//			if($idx == 1 && $active){
-//				$class = "active";
-//			}else{
-//				$class = "inactive";
-//			}
 			$topclass = $level == 1 ? "class='top'" : "";
             $bg_color = $level == 1 ? 'top_bg' : "";
 			$html.="<li {$topclass}><a class=\"".$class."\" bg_color=\"".$bg_color."\" id=\"f_".$item['id']."\" href=\"#\" name=\"".$item['file']."\">".$item['name']."</a>";
