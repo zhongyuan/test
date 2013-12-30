@@ -18,18 +18,32 @@
                 <p class="login_cos"><span>登陆COS</span>请输入您的账号和密码，如果忘记了请点击下方提示性文字。</p>
 
                 <div class="row">
-                        <span class="username_label">COS ID</span>
-                        <input type="text" id="cos_id" name="username" />
-                        <?php //echo $form->textField($model,'username',array('id'=>'cos_id')); ?>
-                        <span class="remark" ></span>
+						<table>
+							<tr>
+								<td class="lg_label">
+									<span class="username_label">COS ID</span>
+								</td>
+								<td>
+									<input type="text" id="cos_id" name="username" />
+                        			<?php //echo $form->textField($model,'username',array('id'=>'cos_id')); ?>
+                        			<span class="remark" ></span>
+								</td>
+							</tr>
+						</table>
 						<!--<span class="remark" >忘记你的COS ID了?</span>-->
                 </div>
 
                 <div class="row">
-                        <span class="pwd_label">密码</span>
-                        <input type="password" name="password" id='pass_word' />
-                        <?php // echo $form->passwordField($model,'password',array('id'=>'pass_word')); ?>
-                        <span class="remark"><a href="<?php echo $this->createUrl('site/getPassword');?>">忘记你的COS密码了?</a></span>
+						<table>
+							<tr>
+								<td class="lg_label"><span class="pwd_label">密码</span></td>
+								<td>
+									<input type="password" name="password" id='pass_word' />
+                        			<span class="remark"><a href="<?php echo $this->createUrl('site/getPassword');?>">忘记你的COS密码了?</a></span>
+								</td>
+							</tr>
+						</table>
+                        
                 </div>
                 <div class="login_error"><?php //echo $form->error($model,'username')?$form->error($model,'username'):$form->error($model,'password');?></div>
 
