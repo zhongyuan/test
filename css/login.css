@@ -51,6 +51,9 @@
         width: 400px;
         font-size: 14px;
     }
+	table tr td.lg_label{
+		width: 91px;
+	}
     .row input{
         width: 300px;
         height: 30px;
