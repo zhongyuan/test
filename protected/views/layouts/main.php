@@ -48,11 +48,6 @@
 
 
 </div>
-<<<<<<< HEAD
-        <!-- Jquery google加载失败，调用本地-->   
-        <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"><\/script>')</script>
-=======
 
->>>>>>> 47c62dce96adef8946de2bd453778a75a26e3078
 </body>
 </html>

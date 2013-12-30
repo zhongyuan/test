@@ -330,7 +330,7 @@ function toggleFullscreen(enable) {
 //  _gaq.push(['_setAccount', 'UA-5831155-1']);
 //  _gaq.push(['_trackPageview']);
 //
-//  (function() { //匿名函数
+//  (function() { //匿名函数 自动执行，就是拼接一个<script src='http...'> </script
 //    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 //    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 //    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);

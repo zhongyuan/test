@@ -161,11 +161,14 @@ background-position: -247px -8px;
     margin: 0px 12px;
     
 }
-.search{width: 230px;font-size: 10px;}
+.search{
+    width: 230px;
+    font-size: 12px;
+}
 .alin_right{
-text-align: right;
-margin-top: 8px;
-height: 20px;
+    text-align: right;
+    margin-top: 8px;
+    height: 20px;
 }
 .header_login li{
 display: inline-block;
@@ -194,6 +197,7 @@ height: 20px;
 border: none;
 outline: medium;
 background-color: transparent;
+font-size: 12px;
 }
 .currentItem{
     /*color:rgb(255, 173, 47);*/

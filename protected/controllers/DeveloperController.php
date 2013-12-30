@@ -44,6 +44,7 @@ class DeveloperController extends Controller
         $this->render('guide',array(
             'view_data' => $view_data,
         ));
+        
     }
 
 

@@ -16,16 +16,16 @@
     </div>
 
     <div  class="left_content">
-        <ul >
-            <?php foreach($cl_child as $child): ?>
-            <a href="#_self"><li class="child_node" version=<?php echo $child['version']; ?>
-                                 status=<?php echo $child['status']; ?>
-                                 val="<?php echo $child['path']; ?>"><?php echo $child['name']; ?>
-                            </li>
-            </a>
-            <?php endforeach;?>
-        </ul>
-    </div>
+            <ul >
+                <?php foreach($cl_child as $child): ?>
+                <a href="#_self"><li class="child_node" version=<?php echo $child['version']; ?>
+                                     status=<?php echo $child['status']; ?>
+                                     val="<?php echo $child['path']; ?>"><?php echo $child['name']; ?>
+                                </li>
+                </a>
+                <?php endforeach;?>
+            </ul>
+        </div>
 
     <div>
         <a href="#_self" class="full_button"><div id="fullscreen" class="fullscreen"></div></a>
@@ -70,6 +70,7 @@ $(function(){
         $('.child_node:first').addClass('active');
 
         $('.child_node').click(function(){
+            $('.jspPane').css({'left':'0px'});
             var server = '/gaia_plugin2/';
             var link = $(this).attr('val');
             $('.child_node').removeClass('active');
