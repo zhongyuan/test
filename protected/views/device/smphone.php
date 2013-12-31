@@ -41,7 +41,7 @@
     </div>
 	<div class="imgbg">
         <div class="Icenter">
-            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_6.jpg'); ?>">
+            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_66.jpg'); ?>">
         </div>
     </div>
 	<div class="dd div_height3">
