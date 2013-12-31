@@ -60,11 +60,9 @@ $session = Yii::app()->session;
             <div id="second_content">
                     <?php if($control=='introduce'){?>
                     <ul style="margin-left: 105px;">
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/index'); ?>"><?php echo '多平台支持';?></a></li>
-                        <li><a class="<?php echo $action=='mte'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/mterminal'); ?>"><?php echo '多终端 & 多窗口';?></a></li>
-                        <li><a class="<?php echo $action=='mcl'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/mcloud'); ?>"><?php echo '多重云';?></a></li>
-                        <li><a class="<?php echo $action=='mar'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/martrix'); ?>"><?php echo 'Martrix 桌面';?></a></li>
-                        <li><a class="<?php echo $action=='ivo'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/ivoice'); ?>"><?php echo '智能语音';?></a></li>
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/index'); ?>"><?php echo '完美兼容';?></a></li>
+                        <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>"><?php echo '出色的性能表现';?></a></li>
+                        <li><a class="<?php echo $action=='saf'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/safety'); ?>"><?php echo '安全可靠';?></a></li>
                     <?php }elseif($control=='news'){ ?>
                     <ul style="margin-left: 275px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
