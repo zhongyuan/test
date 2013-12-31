@@ -24,8 +24,8 @@ class Controller extends CController
 	public function filters()
     {
         return array(
-            'accessControl' ,
-
+            'accessControl',
+            'browser',
         );
     }
 	
@@ -39,7 +39,25 @@ class Controller extends CController
 
     }
 	
-	
+    /*
+     * 检测浏览器类型，如果ie6以下，跳转到error页
+     */
+	public function filterBrowser($filterChain) {
+//        echo $_SERVER["HTTP_USER_AGENT"];exit;
+        if(strpos($_SERVER["HTTP_USER_AGENT"],"")) 
+        {
+            $msg = "你当前使用的IE版本过低，这会影响你的体验，请升级后再试~";
+
+            $this->render('error',array('message' => $msg));
+            
+        }else{
+            $filterChain->run();
+        }
+        
+    }
+
+    
+
     public function staticUrl($path)
     {
         if(!isset($path)){return ;}
@@ -119,7 +137,7 @@ class Controller extends CController
 	
 	public function authlessActions()
     {
-        return array('login','getPassword','register','captcha','ajaxCheckRegister','verify','privacy');
+        return array('login','getPassword','register','captcha','ajaxCheckRegister','verify','privacy','error');
     }
 	
 	/**
