@@ -1,56 +1,59 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
+<style>
+    .div_height1{
+        height:552px;
+    }
+    .div_height2{
+        height:476px;
+    }
+	.div_height3{
+        height:567px;
+    }
+    .Icenter{
+        width: 980px;
+        margin: 0 auto;
+    }
+    .imgbg{
+        background-color: #fcfcfc;
+    }
+</style>
 
-<div class="big_banner">
-	<div class="frm">
-		<div class="content">
-		<img src="<?php echo $this->staticUrl('device/telebox/tv1.jpg');?>"/>
-		<img src="<?php echo $this->staticUrl('device/telebox/tv2.jpg');?>"/>
-		</div>
-	</div>
-</div>
-<div id="device_box" class="stb_box">
-	<div class="dev_center">
-		<ul class="d_phonelist">
+<div class="mterminalbg">
+    
+    <div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_1.jpg'); ?>">
+			<img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_2.jpg'); ?>">
+        </div>
+    </div>
 	
-			
-			
-			
-			
-			<li class="above_bottom">
-				<div class="img_left"><img src="<?php echo $this->staticUrl('device/telebox/telebox_2.jpg');?>"/></div>
-				<div class="stb_right">
-					<div class="stb_two">
-						<h1 class="orange"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner2_title.jpg');?>" /></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner2_character.jpg');?>" class="dv_detail"/></p>
-					</div>
-					
-				</div>
-			</li>
-			
-			
-			<li class="above_bottom">
-				<div class="img_right">
-					<div class="stb_three">
-						<h1 class="green"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner3_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner3_character.jpg');?>" class="dv_detail"/></p>	
-					</div>
-				</div>
-				<div class="stb_right">
-					<img  src="<?php echo $this->staticUrl('device/telebox/telebox_3.jpg');?>" width="400"/>	
-				</div>
-			</li>
-			
-			
-			<li class="above_none_bottom">
-				<div class="img_left"><img src="<?php echo $this->staticUrl('device/telebox/telebox_4.jpg');?>"/></div>
-				<div class="stb_right">
-					<div class="stb_four">
-						<h1 class="blue"><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner4_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/telebox/device_tv_banner4_character.jpg');?>" class="dv_detail"/></p>
-					</div>
-					
-				</div>
-			</li>
-		</ul>
-	</div>
+	<div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_3.jpg'); ?>">
+			<img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_4.jpg'); ?>">
+        </div>
+    </div>
+	
+	<div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_5.jpg'); ?>">
+			<img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_6.jpg'); ?>">
+        </div>
+    </div>
+	
+	<div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_7.jpg'); ?>">
+			<img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_8.jpg'); ?>">
+        </div>
+    </div>
+	
+    
+	<!--<div class="dd div_height1">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_3.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/telebox_new/smart_tv_4.jpg'); ?>">
+            </div>
+        </div>
+    </div>-->
 </div>
