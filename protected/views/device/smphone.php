@@ -1,43 +1,55 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
-<div class="big_banner">
-	<div class="frm">
-		<div class="content">
-		<img src="<?php echo $this->staticUrl('device/phone/phone1.jpg');?>"/>
-		<img src="<?php echo $this->staticUrl('device/phone/phone2.jpg');?>"/>
-		</div>
-	</div>
-</div>
-<div id="device_box" class="phone_box">
+<style>
+    .div_height1{
+        height:552px;
+    }
+    .div_height2{
+        height:476px;
+    }
+	.div_height3{
+        height:567px;
+    }
+    .Icenter{
+        width: 980px;
+        margin: 0 auto;
+    }
+    .imgbg{
+        background-color: #fcfcfc;
+    }
+</style>
 
-	
-	<div class="dev_center">
-		<ul class="d_phonelist">
-			<li class="stick_bottom">
-				<div class="img_right">
-					<div class="phone_two">
-						<h1 class="orange"><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner2_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner2_character.jpg');?>" class="dv_detail"/></p>
-					</div>
-					
-				</div>
-				<img  src="<?php echo $this->staticUrl('device/phone/phone_2.jpg');?>" class="phone_two_img"/>
-			</li>
-			<li class="above_bottom">
-				<div class="img_left"><img src="<?php echo $this->staticUrl('device/phone/phone_3.jpg');?>" width="400"/></div>
-				<div class="phone_three">
-					<h1 class="blue"><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner3_title.jpg');?>"/></h1>
-					<p><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner3_character.jpg');?>" class="dv_detail"/></p>
-				</div>
-			</li>
-			<li class="stick_bottom">
-				<div class="img_right">
-					<div class="phone_four">
-						<h1 class="green"><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner4_title.jpg');?>"/></h1>
-						<p><img src="<?php echo $this->staticUrl('device/phone/device_phone_banner4_character.jpg');?>" class="dv_detail"/></p>
-					</div>
-				</div>
-				<img src="<?php echo $this->staticUrl('device/phone/phone_4.jpg');?>" class="phone_four_img"/>
-			</li>
-		</ul>
-	</div>
+<div class="mterminalbg">
+    <div class="dd div_height1">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_1.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_2.jpg'); ?>">
+            </div>
+        </div>
+    </div>
+    <div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_3.jpg'); ?>">
+        </div>
+    </div>
+    <div class="dd div_height2">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_4.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_5.jpg'); ?>">
+            </div>
+        </div>
+    </div>
+	<div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_6.jpg'); ?>">
+        </div>
+    </div>
+	<div class="dd div_height3">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_7.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_8.jpg'); ?>">
+            </div>
+        </div>
+    </div>
 </div>
