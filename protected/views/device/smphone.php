@@ -13,7 +13,7 @@
         margin: 0 auto;
     }
     .imgbg{
-        background-color: #fcfcfc;
+        background-color: #ffffff;
     }
 </style>
 
