@@ -3,13 +3,29 @@
 class IntroduceController extends Controller
 {
     /*
-     * 多平台支持
+     * 完美兼容
      */
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
-
+    /*
+     * 出色的性能表现
+     */
+    public function actionOutstanding()
+    {
+        $this->render('outstanding');
+    }
+    
+    /*
+     * 安全可靠
+     */
+    public function actionSafety()
+    {
+        $this->render('safety');
+    }
+    
+    
     /*
      * 多终端&多窗口
      */
