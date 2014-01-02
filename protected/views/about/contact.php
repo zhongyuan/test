@@ -3,9 +3,6 @@
         font-size: 14px;
         margin-bottom: 60px;
     }
-/*    .mapimg{
-        background-color: #fdfdfd;
-    }*/
     .div_height1{
         height:440px; 
     }
@@ -26,9 +23,11 @@
     .contact_row{
         width: 980px;
         margin: 0px auto 40px auto;
+        /*font-size: 12px;*/
         overflow: hidden;
     }
     .contact_row_left{
+        /*width: 240px;*/
         width: 250px;
         display: inline-block
     }
@@ -37,6 +36,7 @@
         display: inline-block;
     }
     .contact_row_right li{
+        /*width: 235px;*/
         width: 210px;
         display: inline-block;
     }
@@ -58,11 +58,11 @@
     }
     .black_icon{
         display: inline-block;
-        width: 25px;
+        width: 20px;
         height: 20px;
         background: url(/images/about/contact3.png) no-repeat;
         overflow: hidden;
-        background-position: -632px 6px;
+        background-position: -639px 6px;
     }
     .commerce_title{
         font-size: 17px;
@@ -70,6 +70,7 @@
     }
     .row_margin{
         margin: auto 40px;
+        /*margin: auto 5px;*/
     }
 </style>
 
@@ -93,29 +94,29 @@
         <div class="contact_row_right">
             <ul>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>开发者关系</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>联彤公司</span></div>
                     <div>
-                        张先生<br/>
-                        z2ddd3@china-liantong.com<br/>
+                        公司总机<br/>
+                        021-58550898<br/>
                         上海市浦东新区博霞路11号
                     </div>
                 </li>
                 <li class="row_margin">
-                    <div class="commerce_title"><span class="black_icon"></span><span>广告平台合作</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>人才招聘</span></div>
                     <div>
-                        王先生<br/>
-                        w3dd2@china-liantong.com<br/>
-                        上海市浦东新区博霞路11号
+                        郭小姐<br/>
+                        021-58550898-8026<br/>
+                        recruit@china-liantong.com
                     </div>
                 </li>
-                <li>
+<!--                <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>产业链相关</span></div>
                     <div>
                         李先生<br/>
                         l33@china-liantong.com<br/>
                         上海市浦东新区博霞路11号
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
@@ -129,27 +130,27 @@
         <div class="contact_row_right">
             <ul>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>媒体联系</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>移动设备</span></div>
                     <div>
-                        张先生<br/>
-                        z2ddd3@china-liantong.com<br/>
-                        上海市浦东新区博霞路11号
+                        王先生<br/>
+                        021-58550898-8153<br/>
+                        WerderWang@china-liantong.com
                     </div>
                 </li>
                 <li class="row_margin">
-                    <div class="commerce_title"><span class="black_icon"></span><span>营销平台合作</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>智能机顶盒</span></div>
                     <div>
-                        王先生<br/>
-                        w3dd2@china-liantong.com<br/>
-                        上海市浦东新区博霞路11号
+                        张小姐<br/>
+                        021-58550898-8040<br/>
+                        SonyaChang@china-liantong.com
                     </div>
                 </li>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>其他合作</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>应用商店</span></div>
                     <div>
-                        李先生<br/>
-                        l33@china-liantong.com<br/>
-                        上海市浦东新区博霞路11号
+                        许小姐<br/>
+                        021-58550898-8044<br/>
+                        NancyXu@china-liantong.com
                     </div>
                 </li>
             </ul>
@@ -165,21 +166,21 @@
         <div class="contact_row_right">
             <ul>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>客户服务</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>媒体联系</span></div>
                     <div>
-                        张先生<br/>
-                        z2ddd3@china-liantong.com<br/>
-                        上海市浦东新区博霞路11号
+                        黄小姐<br/>
+                        021-58550898-8150<br/>
+                        PennyHuang@china-liantong.com
                     </div>
                 </li>
-                <li class="row_margin">
+<!--                <li class="row_margin">
                     <div class="commerce_title"><span class="black_icon"></span><span>其他</span></div>
                     <div>
                         王先生<br/>
                         w3dd2@china-liantong.com<br/>
                         上海市浦东新区博霞路11号
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
