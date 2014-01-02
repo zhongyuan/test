@@ -18,8 +18,8 @@
                 <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><li>关于我们</li></a>
                 <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>联系我们</li></a>
                 <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><li>最新动态</li></a>
-                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>开发者注册</li></a>
-                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>开发者管理</li></a>
+                <a href="http://developer.china-cos.com/signup/"><li>开发者注册</li></a>
+                <a href="http://developer.china-cos.com/user/"><li>开发者管理</li></a>
                 <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><li>服务条款</li></a>
             </ul>
         </div>
