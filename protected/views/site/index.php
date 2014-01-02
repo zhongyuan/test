@@ -1,30 +1,3 @@
-<style>
-    .div_height1{
-        height: 470px;
-    }
-    .index_rowbg{
-        width: 100%;
-        height: 293px;
-        margin: 20px auto;
-        background: url(/images/index/index_bg.jpg) repeat left top;
-    }
-    .img_width{
-        width: 312px;
-    }
-    .index_row{
-        width: 980px;
-        margin: 0px auto;
-        overflow: hidden;
-        text-align: center;
-    }
-    .index_pic{
-        float:left;
-    }
-    .pic_padding{
-        padding-top: 30px;
-    }
-</style>
-<!--Loading Fancybox files-->
 
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.css"  />
 
