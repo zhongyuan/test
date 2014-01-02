@@ -4,8 +4,9 @@
     }
     .index_rowbg{
         width: 100%;
-        height: 315px;
-        background: url(/images/index/index_pic_bg.jpg) repeat left top;
+        height: 293px;
+        margin: 20px auto;
+        background: url(/images/index/index_bg.jpg) repeat left top;
     }
     .img_width{
         width: 312px;
@@ -15,13 +16,13 @@
         margin: 0px auto;
         overflow: hidden;
         text-align: center;
-        /*float: left;*/
     }
     .index_pic{
-        /*display: inline-block;*/
         float:left;
     }
-    
+    .pic_padding{
+        padding-top: 30px;
+    }
 </style>
 <!--Loading Fancybox files-->
 
@@ -63,20 +64,20 @@
     
     <div class="index_rowbg">
         <div class="index_row">
-            <div class="index_pic">
+            <div class="index_pic pic_padding">
                 <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" /></a>
             </div>
             <div class="index_pic">
-                <img src="<?php echo $this->staticUrl('index/index_divide_line.jpg'); ?>" />
+                <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
             </div>
-            <div class="index_pic ">
-                <a id="vedio2" href="http://static.video.qq.com/TPout.swf?vid=j0013fx6nie&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
-            </div>
-            <div class="index_pic">
-                <img src="<?php echo $this->staticUrl('index/index_divide_line.jpg'); ?>" />
+            <div class="index_pic pic_padding">
+                <a id="vedio2" href="#_self"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
             </div>
             <div class="index_pic">
-                <a id="vedio3" href="http://static.video.qq.com/TPout.swf?vid=l0013b08vyx&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
+                <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
+            </div>
+            <div class="index_pic pic_padding">
+                <a id="vedio3" href="#_self"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
             </div>
         </div>
     </div>
@@ -86,8 +87,8 @@
 $(document).ready(function() {
 	
 	$("a#vedio1").fancybox();
-    $("a#vedio2").fancybox();
-    $("a#vedio3").fancybox();
+//    $("a#vedio2").fancybox();
+//    $("a#vedio3").fancybox();
 
 });
 </script>
