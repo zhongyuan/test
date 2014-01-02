@@ -48,7 +48,7 @@ class Controller extends CController
         {
             $msg = "你当前使用的IE版本过低，这会影响你的体验，请升级后再试~";
 
-            $this->render('error',array('message' => $msg));
+            $this->renderPartial('error',array('message' => $msg));
             
         }else{
             $filterChain->run();
