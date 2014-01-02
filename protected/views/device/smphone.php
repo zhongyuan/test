@@ -11,6 +11,7 @@
     .Icenter{
         width: 980px;
         margin: 0 auto;
+		overflow: hidden;
     }
     .imgbg{
         background-color: #ffffff;
