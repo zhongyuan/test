@@ -44,16 +44,15 @@ class Controller extends CController
      */
 	public function filterBrowser($filterChain) {
 //        echo $_SERVER["HTTP_USER_AGENT"];exit;
-        if(strpos($_SERVER["HTTP_USER_AGENT"],"")) 
+        if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) 
         {
             $msg = "你当前使用的IE版本过低，这会影响你的体验，请升级后再试~";
 
-            $this->render('error',array('message' => $msg));
+            $this->renderPartial('error',array('message' => $msg));
             
         }else{
             $filterChain->run();
         }
-        
     }
 
     

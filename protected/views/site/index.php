@@ -49,13 +49,13 @@
                 <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
             </div>
             <div class="index_pic pic_padding">
-                <a id="vedio2" href="#_self"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
+                <a id="vedio2" href="<?php echo $this->createUrl('developer/index');?>"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
             </div>
             <div class="index_pic">
                 <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
             </div>
             <div class="index_pic pic_padding">
-                <a id="vedio3" href="#_self"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
+                <a id="vedio3" href="http://developer.china-cos.com/user/"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
             </div>
         </div>
     </div>

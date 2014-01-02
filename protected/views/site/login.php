@@ -11,7 +11,7 @@
     <div class="login_con">
         <div class="login_left">
             <p class="login_cos"><span>登陆并管理你的COSID</span>想要登陆并管理你的COS ID 并使用我们的各项服务，首先你要拥有一个我们的ID，如果你还没有，
-                那么现在你可以<a style="color:#6666ff">建立一个新的COS ID</a></p>
+                那么现在你可以<a href="<?php echo $this->createUrl('site/register');?>" style="color:#6666ff">建立一个新的COS ID</a></p>
         </div>
         <div class="login_rig">
             <form action="" method="post">
