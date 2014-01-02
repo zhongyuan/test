@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Tools{
+class MCTools{
     
     public static function check_wap(){
         if(stristr($_SERVER['HTTP_VIA'],"wap")){// 先检查是否为wap代理，准确度高
