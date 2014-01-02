@@ -2,6 +2,7 @@
     .Icenter{
         width: 980px;
         margin: 0 auto;
+        overflow: hidden;
     }
     .imgbg1{
         background-color: #5793f3;

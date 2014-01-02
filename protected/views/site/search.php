@@ -20,7 +20,6 @@
                     <li><span class="point"></span>检查输入是否正确</li>
                     <li><span class="point"></span>简化输入词</li>
                     <li><span class="point"></span>尝试其他相关词，如同义、近义词等</li>
-                    <li><span class="point"></span>阅读帮助</li>
                 </ul>
             </div>
         </div>

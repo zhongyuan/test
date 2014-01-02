@@ -24,7 +24,7 @@
     .middle_img{
         width: 31px;
         height: 477px;
-        margin: 0 30px 0 50px;
+        margin: 0 25px 0 45px;
     }
     .deve_source{
         width: 430px;

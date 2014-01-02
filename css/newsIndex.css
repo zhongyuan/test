@@ -1,8 +1,12 @@
 
  .news_container,.plist_container{
 	overflow: hidden;
-	width: 998px;
+	width: 980px;
 	margin: 0 auto;
+ }
+ .news_banner{
+ 	height: 301px;
+	margin-bottom: 17px;
  }
  .news_container{
  	width: 980px;
@@ -47,13 +51,22 @@
 		overflow: hidden;
 	 }
 	 .pn_one{
-		width: 285px;
+		width: 330px;
 	 }
 	 .pn_two{
 	 	width: 340px;
 	 }
 	 .pn_three{
-		width: 290px;
+		width: 320px;
+	 }
+	 .pn_one img{
+	 	
+	 }
+	 .pn_two img{
+	 	
+	 }
+	 .pn_three img{
+	 	
 	 }
 	 .pn_adv{
 	 	background:url(/images/div_split.jpg) no-repeat left bottom;
@@ -68,10 +81,10 @@
 		overflow:hidden;height: 146px;width: 0px;background-color: #ececec;margin-left: -4px;
 	}
 	.pn_business,.pn_dev{
-		margin-right: 15px;
+		margin-right: 0px;
 	}
 	.pn_info{
-		margin-left: 20px;
+		margin-left: 0px;
 	}
 	.pn_one_split{
 		overflow:hidden;height: 0px;width: 1px;background-color: #c2c4c8;
@@ -154,7 +167,7 @@
 		min-height:165px; 
 	    height:auto !important; 
 	    height:165px; 
-		margin-top: 30px;
+		margin-top: 20px;
 	    overflow: hidden;
 		
 	}
@@ -167,7 +180,7 @@
 	.nlist h1,.nlist h1 a,.nlist2 h1,.nlist2 h1 a{
 		font-size: 20px;
 		font-weight: bold;
-		height: 35px;
+		line-height: 35px;
 		color: #178173;
 	}
 	.nlist p{
@@ -175,11 +188,11 @@
 	}
 	.nlist img.lft{
 		margin-right: 81px;
-		margin-top: 15px;
+		margin-top: 30px;
 	}
 	.nlist img.rgt{
 		margin-left: 95px;
-		margin-top: 15px;
+		margin-top: 30px;
 	}
 	.nlist img.lft,.nlist img.rgt{
 		width: 265px;

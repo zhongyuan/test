@@ -11,7 +11,7 @@ class HeaderWidget extends CWidget{
         $action =  Yii::app()->getController()->getAction()->getId();
 
         $action = substr($action, 0,3);
-        $controls = array('introduce','device','developer','partner','about'); //有二级导航栏的
+        $controls = array('introduce','device','developer','about'); //有二级导航栏的  partner
         $this->render('header',array(
             'control' => $control,
             'action' => $action,

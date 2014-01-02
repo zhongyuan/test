@@ -51,10 +51,10 @@
         background-position: 0px 0px;
     }
     .crowimg_posi2{
-        background-position: -226px 0px;
+        background-position: -203px 0px;
     }
     .crowimg_posi3{
-        background-position: -450px 0px;
+        background-position: -430px 0px;
     }
     .black_icon{
         display: inline-block;
