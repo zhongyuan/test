@@ -11,6 +11,7 @@
     .Icenter{
         width: 980px;
         margin: 0 auto;
+        overflow: hidden;
     }
 	.line_1,.line_4{
 		background: #f4f4f4;
