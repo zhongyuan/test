@@ -104,7 +104,6 @@ class MCApi {
 	 */
 	public function getTree($parent_id,$isOpen = TRUE)
 	{
-		
 		//从缓存提取数据
 		$data = Yii::app()->cache->get('tree_'.$parent_id);
 		if($data){
