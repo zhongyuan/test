@@ -4,6 +4,10 @@
 	width: 998px;
 	margin: 0 auto;
  }
+ .news_banner{
+ 	height: 301px;
+	margin-bottom: 17px;
+ }
  .news_container{
  	width: 980px;
  }

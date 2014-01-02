@@ -11,14 +11,22 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
 
 <div>
-	<div class="big_banner">
+	<div class="dd news_banner">
+        <div class="mm">
+            <div class="ff">
+                <img src="<?php echo $this->staticUrl('news/index/new_1.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('news/index/new_2.jpg'); ?>">
+            </div>
+        </div>
+    </div>
+	<!--<div class="big_banner">
 		<div class="frm">
 			<div class="content">
 			<img src="<?php echo $this->staticUrl('news/index/new_banner.jpg');?>" title="COS智能操作系统正式发布"/>
 			</div>
 		</div>
-	</div>
-	
+	</div>-->
+	<!--
 	<div class="news_container">
 		<div class="short_news">
 	        <div class="rec_one">
@@ -62,7 +70,7 @@
 			 <div><img src="<?php echo $this->staticUrl('div_split.jpg');?>"/></div>
 
 	    </div>
-	</div>
+	</div>-->
 
 
     <div style="clear:both"></div>
