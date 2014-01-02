@@ -31,10 +31,13 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+        $is_mobile = MCTools::check_wap();
 
-		$this->render('index');
+		$this->render('index',array(
+            'is_mobile' => $is_mobile,
+        ));
 	}
-
+        
     /*
      * about search
      */
