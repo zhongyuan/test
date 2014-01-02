@@ -25,12 +25,12 @@
 	        <div class="pn_one">
 	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_1.jpg');?>"/></div>
 	            <div class="pn_business">
-	                <p class="font_4 news_sub_title">商务合作</p>
+	                <p class="font_4 news_sub_title">移动设备</p>
 	                <p class="news_sub_detail">
-						2013年4月1日<br />COS发布会召开<br />各位大虾都非常有兴趣
+						王先生<br />021-58550898-8153<br />WerderWang@china-liantong.com
 					</p>
 
-	               <!-- <a href="#"><img class="news_pub_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" /></a>-->
+	              
 	            </div>
 
 	        </div>
@@ -41,14 +41,12 @@
 	            <div><img src="<?php echo $this->staticUrl('partner/cooperation_contact_pic_2.jpg');?>"/></div>
 
 	            <div class="pn_dev">
-	                <p class="font_4 news_sub_title">开发合作</p>
+	                <p class="font_4 news_sub_title">智能机顶盒</p>
 	                <p class="news_sub_detail">
-						最新系统支持平板电脑2.0<br />以上系统升级，并且免费。
+						张小姐<br />021-58550898-8040<br />SonyaChang@china-liantong.com
 					</p>
 
-	               <!-- <a href="#">
-						<img class="news_up_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
-					</a>-->
+	             
 	            </div>
 	        </div>
 
@@ -59,14 +57,12 @@
 	            <div class="pn_info">
 					
 					
-						<p class="font_4 news_sub_title">商务信息</p>
+						<p class="font_4 news_sub_title">应用商店</p>
 						<p class="news_sub_detail">
-						五月天的美国<br />可以重游旧地。<br />旅游心情真好。
+						许小姐<br />021-58550898-8044<br />NancyXu@china-liantong.com
 						</p>
 
-						<!--<a href="#">
-		                <img class="news_exp_more" src="<?php echo $this->staticUrl('news/index/more.jpg');?>" />
-						</a>-->
+						
 	            </div>
 	        </div>
 
