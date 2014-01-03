@@ -158,8 +158,8 @@ background-position: -247px -8px;
 .list ul li{
     display: inline-block;
     line-height: 89px;
-    margin: 0px 12px;
-    
+    /*margin: 0px 12px;*/
+    margin: 0px 15px;
 }
 .search{
     width: 230px;
@@ -168,7 +168,8 @@ background-position: -247px -8px;
 .alin_right{
     text-align: right;
     margin-top: 8px;
-    height: 20px;
+    /*height: 20px;*/
+    height: 12px;
 }
 .header_login li{
 display: inline-block;
