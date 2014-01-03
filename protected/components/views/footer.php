@@ -30,7 +30,7 @@
 
 
     <div style="clear: both;text-align: center;padding: 20px 0;">
-        <?php echo Yii::t('main','cos_beian');?>
+         沪ICP备13014147
     </div>
 
 </div>
