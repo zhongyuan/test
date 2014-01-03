@@ -22,8 +22,22 @@ class SiteController extends Controller
 			),
 		);
 	}
+    
+    public function filterAccessControl($filterChain)
+    {
+        if(in_array($this->getAction()->getId(),$this->authActions()))
+        {
+            $this->redirect(array('site/index'));
+        }
+        $filterChain->run();
+    }
+    
+    public function authActions()
+    {
+        return array('login','getPassword','register','logout');
+    }
 
-	/**
+    /**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
@@ -143,9 +157,9 @@ class SiteController extends Controller
 
    public function actionLogin()
    {
+        $_POST['username'] = 'hello,friend~';
+        $_POST['password'] = '111111';
    	   $this->_doWithoutLogin();
-            $_POST['username'] = '910398303@qq.com';
-            $_POST['password'] = '111111';
            if($_POST){
 	   		$_identify = new UserIdentity(filter_var($_POST['username'],FILTER_SANITIZE_STRING),filter_var($_POST['password'],FILTER_SANITIZE_STRING));
 			if($_identify->authenticate()){

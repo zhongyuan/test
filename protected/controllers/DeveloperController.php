@@ -21,8 +21,14 @@ class DeveloperController extends Controller
 			),
 		);
 	}
+    
+    public function filterAccessControl($filterChain)
+    {
+        $this->redirect(array('site/index'));
+    }
 
-	/**
+    
+    /**
 	 * training 即是get start 查看模式
 	 */
 	public function actionIndex()

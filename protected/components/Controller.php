@@ -30,14 +30,15 @@ class Controller extends CController
     }
 	
 	
-	public function filterAccessControl($filterChain)
-    {
-        //过滤session
-		//$this->_ajaxSessionCheck();
-		$this->checkIsLogin();
-        $filterChain->run();
-
-    }
+//	public function filterAccessControl($filterChain)
+//    {
+//        //过滤session
+//		//$this->_ajaxSessionCheck();
+////		$this->checkIsLogin();  //删除开发者模块
+//
+//        $filterChain->run();
+//
+//    }
 	
     /*
      * 检测浏览器类型，如果ie6以下，跳转到error页
