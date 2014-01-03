@@ -130,7 +130,7 @@
         <div class="contact_row_right">
             <ul>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>移动设备</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>移动设备合作</span></div>
                     <div>
                         王先生<br/>
                         021-58550898-8153<br/>
@@ -138,7 +138,7 @@
                     </div>
                 </li>
                 <li class="row_margin">
-                    <div class="commerce_title"><span class="black_icon"></span><span>智能机顶盒</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>智能机顶盒合作</span></div>
                     <div>
                         张小姐<br/>
                         021-58550898-8040<br/>
@@ -146,7 +146,7 @@
                     </div>
                 </li>
                 <li>
-                    <div class="commerce_title"><span class="black_icon"></span><span>应用商店</span></div>
+                    <div class="commerce_title"><span class="black_icon"></span><span>应用商店合作</span></div>
                     <div>
                         许小姐<br/>
                         021-58550898-8044<br/>
