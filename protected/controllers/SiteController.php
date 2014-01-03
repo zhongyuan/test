@@ -214,7 +214,65 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-    public function actionRegister()
+	/**
+	 *注册 - 开发者平台 
+	 * 
+	 */
+	public function actionRegister()
+	{
+		//基本信息	
+		$status = (int)$_POST['status'];
+		$token = filter_var($_POST['token'],FILTER_SANITIZE_STRING);
+		$name = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
+		$email = filter_var($_POST['email'],FILTER_VALIDATE_EMAIL);
+		$sign = filter_var($_POST['sign'],FILTER_SANITIZE_STRING);
+		
+		//1.check the sign
+		if($sign != md5($name.$email.Yii::app()->params['appkey'])){
+			return FALSE;
+		}
+		
+		$data = array(
+			'user_name' => $name,
+			'first_name' => $name,
+			'record_time' => time()
+		);
+		
+		$data['passwd'] = md5("111");
+       	$data['record_time'] = $data['update_time'] = time();
+       	$data['status'] = 0;//注册后是未激活状态
+	   	$data['authority'] = 2;//默认为SDK用户权限
+       	$data['question_id']=0;
+       	$data['answer'] = "";
+       	$data['language'] = "zh-cn";
+		$data['birthday'] = mktime(0,0,0,1,1,1);
+		$data['contact_type'] = 2;//两种联系方式都使用
+
+		//地址详细信息
+		$address = array(
+			'update_time' => time(),
+			'record_time' => time()
+		);
+		$userInfo = array(
+			'data' => $data,
+			'address' => $address
+		);
+		$userModel = new MCUsers($name);
+		$userModel->addUser($userInfo);
+	}
+	
+	
+	/**
+	 * 激活 - 开发者平台 
+	 * 
+	 */
+	public function actionActivate()
+	{
+		
+	}
+	
+	
+    public function actionRegisterBackup()
     {
 
 		$this->_doWithoutLogin();
