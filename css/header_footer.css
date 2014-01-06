@@ -155,11 +155,17 @@ background-position: -247px -8px;
     text-align: center;
 }
 
+.list ul{
+	overflow: hidden;
+	padding-left: 15px;
+}
 .list ul li{
-    display: inline-block;
     line-height: 89px;
     /*margin: 0px 12px;*/
     margin: 0px 15px;
+	float: left;
+	padding-left: 7px;
+	overflow: hidden;
 }
 .search{
     width: 230px;
@@ -243,6 +249,23 @@ background-position: -368px -9px;
     width: 980px;
     margin: 30px auto 0px auto;
     color: #747474;
+}
+.footer_link{
+	width:500px;
+	margin:0 auto;
+	overflow: hidden;
+}
+.footer_link ul,.footer_link ul li{
+	margin: 0px;
+	padding: 0px;
+	list-style:none;
+	overflow: hidden;
+}
+.footer_link ul li{
+	width: 75px;
+	height: 26px;
+	line-height: 26px;
+	float: left;
 }
 .cross{float: left;}
 .cross li{

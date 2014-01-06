@@ -11,16 +11,16 @@
     
 </style>
 <div style="background-color: rgb(255, 173, 47);height: 2px;width: 100%;border: 1px;"></div>
-<div class="footer" >
+<div class="footer">
     <div>
-        <div class="footer_info text_center">
+        <div class="footer_link">
             <ul>
-                <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><li>关于我们</li></a>
-                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>联系我们</li></a>
-                <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><li>最新动态</li></a>
-                <a href="http://developer.china-cos.com/signup/"><li>开发者注册</li></a>
-                <a href="http://developer.china-cos.com/user/"><li>开发者管理</li></a>
-                <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><li>服务条款</li></a>
+				<li><a href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于我们</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('about/contact'); ?>">联系我们</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新动态</a></li>
+				<li><a href="http://developer.china-cos.com/signup/">开发者注册</a></li>
+				<li><a href="http://developer.china-cos.com/user/">开发者管理</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>">服务条款</a></li>
             </ul>
         </div>
 
