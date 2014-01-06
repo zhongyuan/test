@@ -163,7 +163,7 @@
 		overflow: hidden;
 	}
 	.nlist .pright,.nlist .pleft{
-		display: inline-block;
+		/*display: inline-block;*/
 		min-height:165px; 
 	    height:auto !important; 
 	    height:165px; 
@@ -176,6 +176,8 @@
 	}
 	.nlist .pleft{
 		width: 545px;
+		float: left;
+		overflow: hidden;
 	}
 	.nlist h1,.nlist h1 a,.nlist2 h1,.nlist2 h1 a{
 		font-size: 20px;
@@ -189,6 +191,8 @@
 	.nlist img.lft{
 		margin-right: 81px;
 		margin-top: 30px;
+		float: left;
+		overflow: hidden;
 	}
 	.nlist img.rgt{
 		margin-left: 95px;
@@ -350,9 +354,9 @@
 		margin: 0 auto;
 	}
 	ul.plogo li{
-		display: inline-block;
 		width: 237px;
 		height: 165px;
+		float: left;
 		overflow: hidden;
 	}
 	ul.plogo li img{
