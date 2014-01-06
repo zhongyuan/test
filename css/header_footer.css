@@ -156,15 +156,13 @@ background-position: -247px -8px;
 }
 
 .list ul{
-	overflow: hidden;
 	padding-left: 15px;
+	overflow: hidden;
 }
 .list ul li{
     line-height: 89px;
-    /*margin: 0px 12px;*/
-    margin: 0px 15px;
 	float: left;
-	padding-left: 7px;
+	padding-left: 37px;
 	overflow: hidden;
 }
 .search{
