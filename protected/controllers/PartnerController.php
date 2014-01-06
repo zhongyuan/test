@@ -70,18 +70,17 @@ class PartnerController extends Controller
 	{
 		$this->render('ecology',array(
                 'logo' => array(
-					'cooperation_list_zhongxing.jpg',
-					'cooperation_list_xunfei.jpg',
-					'cooperation_list_sina.jpg',
-					'cooperation_list_sample.jpg',
-					'cooperation_list_payeco.jpg',
-					'cooperation_list_letv.jpg',
-					'cooperation_list_gaode.jpg',
-					'cooperation_list_dongyou.jpg',
-					'cooperation_list_dazhihui.jpg',
-					'cooperation_list_chuangyi.jpg',
 					'cooperation_list_baidulianmeng.jpg',
 					'cooperation_list_baidu91.jpg',
+					'cooperation_list_gaode.jpg',
+					'cooperation_list_sina.jpg',
+					'cooperation_list_letv.jpg',
+					'cooperation_list_chuangyi.jpg',
+					'cooperation_list_zhongxing.jpg',
+					'cooperation_list_dazhihui.jpg',
+					'cooperation_list_dongyou.jpg',
+					'cooperation_list_payeco.jpg',
+					'cooperation_list_xunfei.jpg',
 				)
         ));
 	}

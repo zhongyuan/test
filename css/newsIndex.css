@@ -349,11 +349,17 @@
 		width: 980px;
 		margin: 0 auto;
 	}
-	ul.plogo li,ul.plogo li img{
+	ul.plogo li{
 		display: inline-block;
-		width: 227px;
+		width: 237px;
 		height: 165px;
 		overflow: hidden;
+	}
+	ul.plogo li img{
+		display: inline-block;
+		width: 197px;
+		overflow: hidden;
+		margin-left: 20px;
 	}
 	
 	
