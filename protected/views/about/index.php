@@ -61,7 +61,7 @@
 <div class="aboutIbg">
     
     
-    <div class="about_row" style="margin-top:40px;">
+    <div class="about_row" style="margin-top:30px;">
         <div class="about_rowblock1">
             <div class="abrow2_img abrow2_imgposi1"></div>
         </div>
