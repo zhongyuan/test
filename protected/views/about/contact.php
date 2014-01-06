@@ -29,16 +29,19 @@
     .contact_row_left{
         /*width: 240px;*/
         width: 250px;
-        display: inline-block
+        /*display: inline-block;*/
+        float: left;
     }
     .contact_row_right{
         width: 725px;
-        display: inline-block;
+        /*display: inline-block;*/
+        float: left;
     }
     .contact_row_right li{
         /*width: 235px;*/
         width: 210px;
-        display: inline-block;
+        /*display: inline-block;*/
+        float: left;
     }
     .contact_rowimg{
         width: 170px;
