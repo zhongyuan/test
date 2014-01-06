@@ -1,12 +1,4 @@
 
-<style>
-.text_center{
-    text-align: center;
-}
-.footer_info span{
-    padding: 0 15px;
-}
-</style>
 <div style="background-color: rgb(255, 173, 47);height: 2px;width: 100%;border: 1px;"></div>
 <div class="footer">
     <div class="footer_info text_center">

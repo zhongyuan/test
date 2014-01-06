@@ -155,15 +155,9 @@ background-position: -247px -8px;
     text-align: center;
 }
 
-.list ul{
-	padding-left: 15px;
-	overflow: hidden;
-}
-.list ul li{
+.list span{
     line-height: 89px;
-	float: left;
-	padding-left: 37px;
-	overflow: hidden;
+    padding: 0 15px;
 }
 .search{
     width: 230px;
@@ -336,5 +330,10 @@ border-bottom: 9px solid #E0E0E0;
 	line-height: 24px;
 	color: #6c6c6c;
 }
-
+.text_center{
+    text-align: center;
+}
+.footer_info span{
+    padding: 0 15px;
+}
 

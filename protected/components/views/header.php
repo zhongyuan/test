@@ -3,12 +3,6 @@
 $session = Yii::app()->session;
 
 ?>
-<style>
-    .list span{
-        line-height: 89px;
-        padding: 0 15px;
-    }
-</style>
 <div style="" id="headernew">
     <div class="logo" >
         <a href="<?php echo Yii::app()->createUrl('site/index'); ?>"><span class="logo_jpg"></span></a>
