@@ -1,35 +1,28 @@
 
 <style>
-    .text_center{
-        text-align: center;
-    }
-    .footer_info li{
-        display: inline-block;
-        margin: 0 10px;
-        text-align: center;
-    }
-    
+.text_center{
+    text-align: center;
+}
+.footer_info span{
+    padding: 0 15px;
+}
 </style>
 <div style="background-color: rgb(255, 173, 47);height: 2px;width: 100%;border: 1px;"></div>
 <div class="footer" >
     <div>
         <div class="footer_info text_center">
-            <ul>
-                <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><li>关于我们</li></a>
-                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><li>联系我们</li></a>
-                <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><li>最新动态</li></a>
-                <a href="http://developer.china-cos.com/signup/"><li>开发者注册</li></a>
-                <a href="http://developer.china-cos.com/user/"><li>开发者管理</li></a>
-                <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><li>服务条款</li></a>
-            </ul>
-        </div>
 
-        <!--<div class="font_11 text_center"><?php echo Yii::t('main','visite_cos_store');?>,<br/><?php echo Yii::t('main','retail_cos_store');?></div>-->
-        
+                <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><span>关于我们</span></a>
+                <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><span>联系我们</span></a>
+                <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><span>最新动态</span></a>
+                <a href="http://developer.china-cos.com/signup/"><span>开发者注册</span></a>
+                <a href="http://developer.china-cos.com/user/"><span>开发者管理</span></a>
+                <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><span>服务条款</span></a>
+
+        </div>
     </div>
 
-
-    <div style="clear: both;text-align: center;padding: 20px 0;">
+    <div style="text-align: center;padding: 20px 0;">
          沪ICP备13014147
     </div>
 
