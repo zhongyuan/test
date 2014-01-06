@@ -36,9 +36,7 @@
         <div style="clear:both"></div> <!--  有必要的-->
         <?php echo $content; ?>
         <!-- =====content end===== -->
-        
-        
-        
+
        <!-- =====footer===== -->
         <div style="clear:both"></div> <!--  有必要的-->
         <div id="footer">

@@ -56,9 +56,9 @@
             </div>
             <div class="index_pic pic_padding">
                 <a id="vedio3" href="http://developer.china-cos.com/user/"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
-            </div>
         </div>
     </div>
+</div>
 </div>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.pack.js"></script> 
 <script>
