@@ -5,7 +5,7 @@
     .about_row{
         width: 980px;
         margin: 0 auto;
-        margin-top: 40px;
+        /*margin-top: 40px;*/
         overflow: hidden;
     }
 
@@ -81,9 +81,8 @@
     </div>
     
     <div class="hor_line"></div> <!-- 横线 -->
-    
     <!-- 图片 -->
-    <div class="about_row" style="margin-top: 50px;">
+    <div class="about_row" >
         <img src="<?php echo $this->staticUrl('about/about3.jpg');?>" />
     </div>
     <div class="space_line"></div>
@@ -94,7 +93,8 @@
         <img src="<?php echo $this->staticUrl('about/about5.jpg');?>" />
     </div>
     <div class="space_line"></div>
-    <div class="about_row">
+    <div class="about_row" style="margin-bottom: 40px;">
         <img src="<?php echo $this->staticUrl('about/about6.jpg');?>" />
     </div>
+
 </div>
