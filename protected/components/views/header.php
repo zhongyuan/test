@@ -60,7 +60,7 @@ $session = Yii::app()->session;
             </div>
             <div id="second_content">
                     <?php if($control=='introduce'){?>
-                    <ul style="margin-left: 145px;">
+                    <ul style="margin-left: 165px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/index'); ?>">完美兼容</a></li>
                         <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>">出色的性能表现</a></li>
                         <li><a class="<?php echo $action=='saf'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/safety'); ?>">安全可靠</a></li>

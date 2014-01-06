@@ -42,12 +42,12 @@
     }
 
     .about_rowblock1{
-        width: 250px;
-        display: inline-block
+        width: 240px;
+        float: left;
     }
     .about_rowblock2{
         width: 725px;
-        display: inline-block
+        float: left;
     }
     .space_line{
         width: 100%;
