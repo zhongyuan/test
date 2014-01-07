@@ -47,7 +47,7 @@
                     <ul class="video-lst-a">
                         <li class="fl li_width">
                             <?php if($is_mobile){?>
-                            <a href="http://v.qq.com/cover/6/6mcdxcgee3wq2zf.html"><img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>" alt="更有竞争力的操作系统"/></a>
+                            <a href="http://v.qq.com/cover/6/6mcdxcgee3wq2zf.html" target="_blank" ><img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>" alt="更有竞争力的操作系统"/></a>
                             <?php }else{?>
                             <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>"  alt="更有竞争力的操作系统"/></a>
                             <?php }?>
