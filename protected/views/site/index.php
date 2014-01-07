@@ -39,26 +39,37 @@
             </div>
         </div>
     </div>
-    
+
     <div class="index_rowbg">
-        <div class="index_row">
-            <div class="index_pic pic_padding">
-                <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" /></a>
+        <div class="scrollable-all" >
+            <div class="scrollable" id="scrollable">
+                <div class="items">
+                    <ul class="video-lst-a">
+                        <li class="fl li_width">
+                            <?php if($is_mobile){?>
+                            <a href="http://v.qq.com/cover/6/6mcdxcgee3wq2zf.html" target="_blank" ><img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>" alt="更有竞争力的操作系统"/></a>
+                            <?php }else{?>
+                            <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>"  alt="更有竞争力的操作系统"/></a>
+                            <?php }?>
+                        </li>
+                        <li class="fl">
+                            <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
+                        </li>
+                        <li class="fl li_width">
+                            <a id="vedio2" href="<?php echo $this->createUrl('developer/index');?>"><img class="q" src="<?php echo $this->staticUrl('index/002.jpg'); ?>" /></a>
+                        </li>
+                        <li class="fl">
+                            <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
+                        </li>
+                        <li class="fl li_width last-col">
+                            <a id="vedio3" target="_blank" href="http://developer.china-cos.com/user/"><img class="q" src="<?php echo $this->staticUrl('index/003.jpg'); ?>" /></a>
+                        </li>
+                   </ul>
+                </div>
             </div>
-            <div class="index_pic">
-                <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
-            </div>
-            <div class="index_pic pic_padding">
-                <a id="vedio2" href="<?php echo $this->createUrl('developer/index');?>"><img class="img_width" src="<?php echo $this->staticUrl('index/index2.jpg'); ?>" /></a>
-            </div>
-            <div class="index_pic">
-                <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
-            </div>
-            <div class="index_pic pic_padding">
-                <a id="vedio3" target="_blank" href="http://developer.china-cos.com/user/"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
         </div>
     </div>
-</div>
+
 </div>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.pack.js"></script> 
 <script>

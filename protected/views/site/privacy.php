@@ -5,6 +5,7 @@
         <title>COS帐号注册</title>
         <style type="text/css">
 			body{
+				font:12px/1.6 "微软雅黑", "宋体",Arial, Helvetica, sans-serif;
 				font-size:12px;
 				line-height:22px;
 				padding: 5px;

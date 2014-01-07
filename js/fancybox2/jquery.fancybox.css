@@ -10,20 +10,47 @@
     margin: 20px auto;
     background: url(/images/index/index_bg.jpg) repeat left top;
 }
-.img_width{
-    width: 312px;
+.scrollable-all {
+width: 980px;
+position: relative;
+margin: 0px auto;
+overflow: hidden;
 }
-.index_row{
-    width: 980px;
-    margin: 0px auto;
-    overflow: hidden;
-    text-align: center;
+.scrollable {
+position: relative;
+overflow: hidden;
+width: 980px;
+height: 241px;
+margin-top: 30px;
 }
-.index_pic{
-    float:left;
+.scrollable .items {
+width: 20000em;
+position: absolute;
+clear: both;
 }
-.pic_padding{
-    padding-top: 30px;
+.items ul {
+float: left;
+width: 980px;
+overflow: hidden;
+}
+.video-lst-a li {
+height: 241px;
+overflow: hidden;
+position: relative;
+_display: inline;
+}
+.li_width{
+    width: 320px;
+}
+.fl {
+float: left;
+_display: inline;
+}
+.q {
+display: block;
+}
+.video-lst-a .last-col {
+margin-right: 0;
 }
 
 /*! fancyBox v2.1.4 fancyapps.com | fancyapps.com/fancybox/#license */
