@@ -43,7 +43,11 @@
     <div class="index_rowbg">
         <div class="index_row">
             <div class="index_pic pic_padding">
+                <?php if($is_mobile){?>
+                <a href="http://v.qq.com/cover/6/6mcdxcgee3wq2zf.html"><img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" /></a>
+                <?php }else{?>
                 <a id="vedio1" href="http://static.video.qq.com/TPout.swf?vid=u0122fwg9r0&auto=0"><img class="img_width" src="<?php echo $this->staticUrl('index/index1.jpg'); ?>" /></a>
+                <?php }?>
             </div>
             <div class="index_pic">
                 <img src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
@@ -56,9 +60,9 @@
             </div>
             <div class="index_pic pic_padding">
                 <a id="vedio3" target="_blank" href="http://developer.china-cos.com/user/"><img class="img_width" src="<?php echo $this->staticUrl('index/index3.jpg'); ?>" /></a>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.pack.js"></script> 
 <script>
