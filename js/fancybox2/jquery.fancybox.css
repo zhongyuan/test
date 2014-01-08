@@ -24,7 +24,7 @@ height: 245px;
 margin-top: 30px;
 }
 .scrollable .items {
-width: 20000em;
+width: 20000px;
 position: absolute;
 clear: both;
 }
@@ -34,6 +34,7 @@ width: 980px;
 overflow: hidden;
 }
 .video-lst-a li {
+float: left;
 height: 245px;
 overflow: hidden;
 position: relative;
@@ -41,10 +42,6 @@ _display: inline;
 }
 .li_width{
     width: 320px;
-}
-.fl {
-float: left;
-_display: inline;
 }
 .q {
 display: block;
