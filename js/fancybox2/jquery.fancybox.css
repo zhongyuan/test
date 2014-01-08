@@ -20,7 +20,7 @@ overflow: hidden;
 position: relative;
 overflow: hidden;
 width: 980px;
-height: 241px;
+height: 245px;
 margin-top: 30px;
 }
 .scrollable .items {
@@ -34,7 +34,7 @@ width: 980px;
 overflow: hidden;
 }
 .video-lst-a li {
-height: 241px;
+height: 245px;
 overflow: hidden;
 position: relative;
 _display: inline;
