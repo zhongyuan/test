@@ -7,17 +7,17 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/gif" href="/images/favicon.ico" type="image/x-icon" />
 	<!-- blueprint CSS framework -->
-    
-	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />-->
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/header_footer.css"  />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('header_footer.css', 'css');?>"  />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-    <!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js"></script>-->  
-    <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="<?php echo $this->staticUrl('jQuery_v183.js', 'js');?>"></script>  
+    
+    <!--<script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
     <script type="text/javascript">
-    if (typeof jQuery == 'undefined')
-    {
-      document.write(unescape("%3Cscript src='<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js' type='text/javascript'%3E%3C/script%3E"));
-    }
+//    if (typeof jQuery == 'undefined')
+//    {
+//      document.write(unescape("%3Cscript src='<?php echo Yii::app()->request->baseUrl;?>/js/jQuery_v183.js' type='text/javascript'%3E%3C/script%3E"));
+//    }
     </script> 
 </head>
     

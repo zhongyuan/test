@@ -55,21 +55,16 @@ class Controller extends CController
     }
 
     
-
-    public function staticUrl($path)
+    public function staticUrl($path,$type='images',$domain=1)
     {
-        if(!isset($path)){return ;}
-        $arr = explode('/', $path);
-        $baseUrl = Yii::app()->request->baseUrl;
-        $baseUrl .= '/images';
-        foreach ($arr as  $value) {
-            if($value){
-                $baseUrl .= '/'.$value;
-            }
-        }
+        if(!$path){return ;} 
+//        $baseUrl = $domain==1?"http://cc.img.resource.china-cos.com/cos_web":"http://www.image2.com";//假设他们提供两个图片服务器域名
+//        $baseUrl = "http://cc.img.resource.china-cos.com/cos_web";
+//        $baseUrl = "http://localcosweb";  //他们提供的图片服务器地址
+        $baseUrl = "http://10.33.41.13";
+        $baseUrl .= '/'.$type.'/'.$path;
         return $baseUrl;
     }
-
     /**
     * 依据不同的请求类型决定是调用完整的View还是部分View
     * @param undefined $view
