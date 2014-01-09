@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/device.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('device.css','css');?>"  />
 <div class="big_banner">
 	<div class="frm">
 		<div class="content">

@@ -1,7 +1,7 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/login.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('login.css','css');?>"  />
 
 
 <div class="login_body">

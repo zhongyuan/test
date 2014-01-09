@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('newsIndex.css','css');?>"  />
 <?php 
 	 $idx = 0;
 	 foreach($models as $m):

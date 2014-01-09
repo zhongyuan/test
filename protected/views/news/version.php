@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/version.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('version.css','css');?>"  />
 
 <div class="ver_body global_f">
 

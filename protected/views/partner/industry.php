@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('newsIndex.css','css');?>"  />
 <div>
 
       <!--  Outer wrapper for presentation only, this can be anything you like -->
