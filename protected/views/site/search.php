@@ -31,7 +31,7 @@
         <div class="search_result">
             <?php foreach($results as $news_list){ ?>
 
-                <p class="news_title"><?php echo str_ireplace($key,"<span class='key_color'>$key</span>",$news_list->title); ?></p>
+                <p class="news_title"><a href="<?php echo $this->createUrl('news/detail',array('news_id'=>$news_list->id));?>"><?php echo str_ireplace($key,"<span class='key_color'>$key</span>",$news_list->title); ?></a></p>
                 <span class="news_content"><?php echo $news_list->outline;?></span>
                 <span class="news_date news_content"><?php echo date('Y-m-d',$news_list->record_time);?></span>
 
