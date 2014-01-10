@@ -56,13 +56,13 @@
                             <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
                         </li>
                         <li class="li_width">
-                            <a id="vedio2" href="<?php echo $this->createUrl('developer/index');?>"><img class="q" src="<?php echo $this->staticUrl('index/002.jpg'); ?>" /></a>
+                            <a id="vedio2" href="#_self"><img class="q" src="<?php echo $this->staticUrl('index/002.jpg'); ?>" /></a>
                         </li>
                         <li >
                             <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
                         </li>
                         <li class="li_width last-col">
-                            <a id="vedio3" target="_blank" href="http://developer.china-cos.com/user/"><img class="q" src="<?php echo $this->staticUrl('index/003.jpg'); ?>" /></a>
+                            <a id="vedio3" href="#_self"><img class="q" src="<?php echo $this->staticUrl('index/003.jpg'); ?>" /></a>
                         </li>
                    </ul>
                 </div>

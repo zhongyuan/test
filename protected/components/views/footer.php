@@ -3,10 +3,7 @@
 <div class="footer">
     <div class="footer_info text_center">
             <a href="<?php echo Yii::app()->createUrl('about/index'); ?>"><span>关于我们</span></a>
-            <a href="<?php echo Yii::app()->createUrl('about/contact'); ?>"><span>联系我们</span></a>
             <a href="<?php echo Yii::app()->createUrl('news/index'); ?>"><span>最新消息</span></a>
-            <a target="_blank" href="http://developer.china-cos.com/signup/"><span>开发者注册</span></a>
-            <a target="_blank" href="http://developer.china-cos.com/user/"><span>开发者管理</span></a>
             <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><span>服务条款</span></a>
 
     </div>

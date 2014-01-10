@@ -4,7 +4,8 @@ class AboutController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+//		$this->render('index');
+        $this->render('contact');
 	}
 
     public function actionContact()
