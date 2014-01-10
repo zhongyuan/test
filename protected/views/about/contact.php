@@ -99,7 +99,6 @@
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>联彤公司</span></div>
                     <div>
-                        公司总机<br/>
                         021-58550898<br/>
                         上海市浦东新区博霞路11号
                     </div>
@@ -107,7 +106,6 @@
                 <li class="row_margin">
                     <div class="commerce_title"><span class="black_icon"></span><span>人才招聘</span></div>
                     <div>
-                        021-58550898-8026<br/>
                         Recruit@china-liantong.com
                     </div>
                 </li>
@@ -134,21 +132,18 @@
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>移动设备合作</span></div>
                     <div>
-                        021-58550898-8153<br/>
                         Mobile@china-liantong.com
                     </div>
                 </li>
                 <li class="row_margin">
                     <div class="commerce_title"><span class="black_icon"></span><span>智能机顶盒合作</span></div>
                     <div>
-                        021-58550898-8040<br/>
                         OTT@china-liantong.com
                     </div>
                 </li>
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>应用商店合作</span></div>
                     <div>
-                        021-58550898-8044<br/>
                         MobileAPP@china-liantong.com<br/>
                         TVAPP@china-liantong.com
                     </div>
@@ -168,7 +163,6 @@
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>媒体联系</span></div>
                     <div>
-                        021-58550898-8150<br/>
                         Marketing@china-liantong.com
                     </div>
                 </li>
