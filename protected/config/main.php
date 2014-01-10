@@ -107,6 +107,7 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+        'cdnUrl' => array(),             //默认为空，调本地服务器 10.33.41.13 "http://cc.img.resource.china-cos.com/cos_web", 图片多的时候，可能分多个域名加载图片
 		'appkey' => "906b7b19d5d24b568f67b56cffd33cfa",
         'max_version' => 15,//显示某种类型，最大的版本个数，与releasemanage里面一样。
         'document_root' => $_SERVER['DOCUMENT_ROOT'],
