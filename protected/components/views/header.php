@@ -71,7 +71,7 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>">应用开发大赛</a></li>
                         <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>">版本信息</a></li>-->
                     <?php }elseif($control=='device'){?>
-                    <ul style="margin-left: 285px;">
+                    <ul style="margin-left: 289px;">
                     <!--<ul style="margin-left: 245px;">-->
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">智能移动终端</a></li>
                         <li><a class="<?php echo $action=='stb'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('device/stb'); ?>">智能电视机顶盒</a></li>
