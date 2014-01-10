@@ -65,7 +65,7 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>">出色的性能表现</a></li>
                         <li><a class="<?php echo $action=='saf'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/safety'); ?>">安全可靠</a></li>
                     <?php }elseif($control=='news'){ ?>
-                    <ul style="margin-left: 445px;">
+                    <ul style="margin-left: 448px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
 <!--                        <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">开发者大会</a></li>
                         <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>">应用开发大赛</a></li>
@@ -82,7 +82,7 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='ref'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/reference'); ?>">API参考</a></li>
                         <li><a class="<?php echo $action=='dce'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('developer/dcenter'); ?>">下载中心</a></li>
                     <?php }elseif($control=='partner'){?>
-                    <ul style="margin-left: 535px;">
+                    <ul style="margin-left: 538px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">合作伙伴</a></li>
 <!--                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">产业链</a></li>
                         <li><a class="<?php echo $action=='eco'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/ecology'); ?>">生态链</a></li>-->
