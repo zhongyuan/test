@@ -51,7 +51,7 @@ $session = Yii::app()->session;
 <?php if(in_array($control, $controls)){ ?>
     <div class ="second_nav" >
         <div class="width_center">
-            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '293px';}elseif($control=='news'){echo '440px';}elseif($control=='device'){echo '386px';}
+            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '293px';}elseif($control=='news'){echo '478px';}elseif($control=='device'){echo '386px';}
             elseif($control=='developer'){echo '518px';}elseif($control=='partner'){echo '568px';}elseif($control=='about'){echo '660px';} ?>;">
 
                 <!--            <div id="triangle-up" style="left: <?php if($control=='introduce'){echo '268px';}elseif($control=='news'){echo '440px';}elseif($control=='device'){echo '355px';}
@@ -65,12 +65,11 @@ $session = Yii::app()->session;
                         <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>">出色的性能表现</a></li>
                         <li><a class="<?php echo $action=='saf'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/safety'); ?>">安全可靠</a></li>
                     <?php }elseif($control=='news'){ ?>
-                    <!--<ul style="margin-left: 275px;">-->
-                    <ul style="margin-left: 293px;">
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>"><?php echo Yii::t('news','latest_news');?></a></li>
-                        <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>"><?php echo Yii::t('news','dev_meetings');?></a></li>
-                        <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>"><?php echo Yii::t('news','app_dev_race');?></a></li>
-                        <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>"><?php echo Yii::t('news','version_info');?></a></li>
+                    <ul style="margin-left: 445px;">
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></li>
+<!--                        <li><a class="<?php echo $action=='dev'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/devIndex'); ?>">开发者大会</a></li>
+                        <li><a class="<?php echo $action=='app'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/appIndex'); ?>">应用开发大赛</a></li>
+                        <li><a class="<?php echo $action=='ver'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('news/version'); ?>">版本信息</a></li>-->
                     <?php }elseif($control=='device'){?>
                     <ul style="margin-left: 285px;">
                     <!--<ul style="margin-left: 245px;">-->
@@ -91,7 +90,7 @@ $session = Yii::app()->session;
                     <ul style="margin-left: 630px;">
                      <!--<ul style="margin-left: 610px;">-->
                         <!--<li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于联彤</a></li>-->
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于我们</a></li>
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">联系我们</a></li>
                     <?php }?>
                 </ul>
             </div>
