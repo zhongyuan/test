@@ -9,7 +9,7 @@ $this->widget('SearchWidget');
 ?>
 
 <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/cos_developer.css"  />-->
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/developer_menu.js"></script>
+<script src="<?php echo $this->staticUrl('developer_menu.js','js');?>"></script>
 
 <SCRIPT type="text/javascript">
 		var demoIframe;

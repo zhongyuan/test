@@ -6,9 +6,9 @@
  */
 ?>
 
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/newsIndex.css"  />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/news_slider.css"  />
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bjqs-1.3.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('newsIndex.css','css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('news_slider.css','css');?>"  />
+<script src="<?php echo $this->staticUrl('bjqs-1.3.js','js');?>"></script>
 
 <div>
 	<div class="dd news_banner">

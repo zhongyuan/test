@@ -107,9 +107,8 @@
                 <li class="row_margin">
                     <div class="commerce_title"><span class="black_icon"></span><span>人才招聘</span></div>
                     <div>
-                        郭小姐<br/>
                         021-58550898-8026<br/>
-                        recruit@china-liantong.com
+                        Recruit@china-liantong.com
                     </div>
                 </li>
 <!--                <li>
@@ -135,25 +134,23 @@
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>移动设备合作</span></div>
                     <div>
-                        王先生<br/>
                         021-58550898-8153<br/>
-                        WerderWang@china-liantong.com
+                        Mobile@china-liantong.com
                     </div>
                 </li>
                 <li class="row_margin">
                     <div class="commerce_title"><span class="black_icon"></span><span>智能机顶盒合作</span></div>
                     <div>
-                        张小姐<br/>
                         021-58550898-8040<br/>
-                        SonyaChang@china-liantong.com
+                        OTT@china-liantong.com
                     </div>
                 </li>
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>应用商店合作</span></div>
                     <div>
-                        许小姐<br/>
                         021-58550898-8044<br/>
-                        NancyXu@china-liantong.com
+                        MobileAPP@china-liantong.com<br/>
+                        TVAPP@china-liantong.com
                     </div>
                 </li>
             </ul>
@@ -171,9 +168,8 @@
                 <li>
                     <div class="commerce_title"><span class="black_icon"></span><span>媒体联系</span></div>
                     <div>
-                        黄小姐<br/>
                         021-58550898-8150<br/>
-                        PennyHuang@china-liantong.com
+                        Marketing@china-liantong.com
                     </div>
                 </li>
 <!--                <li class="row_margin">

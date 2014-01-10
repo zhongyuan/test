@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/siteRegister.css"  />
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/public.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('siteRegister.css','css');?>"  />
+<script type="text/javascript" src="<?php echo $this->staticUrl('public.js','js');?>"></script>
+<script src="<?php echo $this->staticUrl('jquery.form.js','js');?>" type="text/javascript"></script>
 
 <div class="register">
     <div class="register_ti">

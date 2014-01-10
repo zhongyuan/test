@@ -88,10 +88,10 @@ $session = Yii::app()->session;
 <!--                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">产业链</a></li>
                         <li><a class="<?php echo $action=='eco'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('partner/ecology'); ?>">生态链</a></li>-->
                     <?php }elseif($control=='about'){?>
-                    <ul style="margin-left: 590px;">
+                    <ul style="margin-left: 630px;">
                      <!--<ul style="margin-left: 610px;">-->
-                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于联彤</a></li>
-                        <li><a class="<?php echo $action=='con'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/contact'); ?>">联系联彤</a></li>
+                        <!--<li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于联彤</a></li>-->
+                        <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于我们</a></li>
                     <?php }?>
                 </ul>
             </div>

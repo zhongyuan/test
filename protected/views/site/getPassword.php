@@ -8,7 +8,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	'找回密码',
 );*/
 ?>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js" type="text/javascript"></script>
+<script src="<?php echo $this->staticUrl('jquery.form.js','js');?>" type="text/javascript"></script>
 <style type="text/css">
 	.gp{
 		width: 940px;
@@ -97,7 +97,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 
 <!-- 遮罩效果 -->
 <div class='bg_halfop' style="display:none;"></div>
-<div class='content_loading' style="display:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/css/loading.gif"/></div>
+<div class='content_loading' style="display:none;"><img src="<?php echo $this->staticUrl('loading.gif','css');?>"/></div>
 
 </div>
 <script language="javascript">
