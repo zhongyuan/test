@@ -14,7 +14,7 @@ $session = Yii::app()->session;
             <span><a class="<?php echo $control == 'device'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('device/index'); ?>">COS设备</a></span>
             <span><a class="<?php echo $control == 'news'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('news/index'); ?>">最新消息</a></span>
             <span><a class="<?php echo $control == 'partner'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('partner/index'); ?>">合作伙伴</a></span>
-            <span><a class="<?php echo $control == 'about'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">关于COS</a></span>
+            <span><a class="<?php echo $control == 'about'?'currentItem font_color_main':'not_current';?>" href="<?php echo Yii::app()->createUrl('about/index'); ?>">联系我们</a></span>
         </div>
     </div>
     <div class ="search">
