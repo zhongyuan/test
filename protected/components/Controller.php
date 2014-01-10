@@ -55,13 +55,11 @@ class Controller extends CController
     }
 
     
-    public function staticUrl($path,$type='images',$domain=1)
+    public function staticUrl($path,$type='images',$domain=0)
     {
         if(!$path){return ;} 
-//        $baseUrl = $domain==1?"http://cc.img.resource.china-cos.com/cos_web":"http://www.image2.com";//假设他们提供两个图片服务器域名
-//        $baseUrl = "http://cc.img.resource.china-cos.com/cos_web";
-        $baseUrl = "http://localcosweb";  //他们提供的图片服务器地址
-//        $baseUrl = "http://10.33.41.13";
+        $cdnUrl = Yii::app()->params['cdnUrl'][$domain]; //$domain 图片多时，可用多个域名服务器
+        $baseUrl = $cdnUrl?$cdnUrl:Yii::app()->request->baseUrl; 
         $baseUrl .= '/'.$type.'/'.$path;
         return $baseUrl;
     }
