@@ -12,11 +12,11 @@
     }
     #key_words{
         width: 500px;
-        height: 28px;
-        border-radius: 6px;
-        margin: 5px 0px;
+        height: 32px;
+        border-radius: 5px;
         outline: none;
-        border: 2px solid #E4E4E4;
+        border: 2px solid #DFDCDC;
+        font-size: 14px;
     }
     .button1{
         position: relative;
@@ -27,6 +27,14 @@
         background-color: #fafafa;/*eb8313*/   /* 登陆头标颜色 ed9d22    外边环的颜色f2f2f2     border-bottom:c3c3c3*/
         border: 1px solid rgba(230, 221, 221, 0.9);
         border-radius: 7px;
+    }
+    .button_img {
+        position: relative;
+        top: 0px;
+        left: 50px;
+        padding: 13px 75px;
+        font-size: 20px;
+        background: url(/images/search_tmp/search.jpg) no-repeat;
     }
     .input_border{
         display: inline-block;
@@ -45,6 +53,7 @@
     .search_remark{
         font-size: 14px;
         color:#999999;
+        margin-top: 15px;
     }
     .detail{
         margin-left: 18px;
