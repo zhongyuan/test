@@ -1,12 +1,12 @@
 <style>
     .div_height1{
-        height:552px;
+        height:506px;
     }
     .div_height2{
-        height:476px;
+        height:491px;
     }
 	.div_height3{
-        height:567px;
+        height:640px;
     }
     .Icenter{
         width: 980px;
@@ -22,34 +22,26 @@
     <div class="dd div_height1">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_1.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_2.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_1.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_2.jpg'); ?>">
             </div>
         </div>
     </div>
-    <div class="imgbg">
-        <div class="Icenter">
-            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_3.jpg'); ?>">
-        </div>
-    </div>
+
     <div class="dd div_height2">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_4.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_5.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_3.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_4.jpg'); ?>">
             </div>
         </div>
     </div>
-	<div class="imgbg">
-        <div class="Icenter">
-            <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_66.jpg'); ?>">
-        </div>
-    </div>
+
 	<div class="dd div_height3">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_7.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('device/phone_new/phone_pad_8.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_5.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_6.jpg'); ?>">
             </div>
         </div>
     </div>
