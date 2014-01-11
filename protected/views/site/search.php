@@ -11,9 +11,13 @@
 
     <?php if(!$results) {?>
         <div class="search_dform">
-            <span class="result_null">抱歉，没有你想要的结果！</span>
-            <input id="key_words" type="text"  name="keywords"  maxlength=30 />
-            <span class="input_border"><input type="submit" class="button1" id="sub_ser" value="搜索"></span>
+            <div>
+                <span class="result_null">抱歉，没有你想要的结果！</span>
+            </div>
+            <div>
+                <input id="key_words" type="text"  name="keywords"  maxlength=60 />
+                <a href="#_self"><span class="button_img" id="sub_ser"></a>
+            </div>    
             <div class="search_remark">
                 <span>建议：</span>
                 <ul class="detail">
@@ -25,8 +29,10 @@
         </div>
     <?php }else{ ?>
         <div class="search_dform">
-            <input id="key_words" type="text"  name="keywords"  maxlength=60 />
-            <span class="input_border"><input type="submit" class="button1" id="sub_ser" value="搜索"></span>
+            <div>
+                <input id="key_words" type="text"  name="keywords"  maxlength=60 />
+                <a href="#_self"><span class="button_img" id="sub_ser"></a>
+            </div>  
         </div>
         <div class="search_result">
             <?php foreach($results as $news_list){ ?>
