@@ -47,9 +47,9 @@
                     <ul class="video-lst-a">
                         <li class="li_width" style="float: left">
                             <?php if($is_mobile){?>
-                            <a href="http://v.youku.com/v_show/id_XNjU5OTM4MDQ0.html" target="_blank" >
+                            <a href="http://v.youku.com/v_show/id_XNjYxMjQ1MDI0.html" target="_blank" >
                             <?php }else{?>
-                            <a id="vedio1" href="http://player.youku.com/player.php/sid/XNjU5OTM4MDQ0/v.swf">
+                            <a id="vedio1" href="http://player.youku.com/player.php/sid/XNjYxMjQ1MDI0/v.swf">
                             <?php }?>
                             <img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>" alt="更有竞争力的操作系统"/></a>
                         </li>
