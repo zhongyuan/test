@@ -85,6 +85,7 @@ class NewsController extends Controller
                 $mcNews = new MCNewsList($news_id);
 
                 $news_info  = $mcNews->getNewsById();
+				$this->pageTitle = "COS官网 - 最新消息 - ".$news_info['title'];
 				$this->render('detail',array(
                     'news_info' => $news_info
                 )); 
@@ -116,7 +117,7 @@ class NewsController extends Controller
                 ));
                 exit;
             }
-
+			$this->pageTitle = "COS官网 - 最新消息";
             $this->render('index', array(
                'models' => $models,
                'pages' => $pages,

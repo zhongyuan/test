@@ -5,7 +5,22 @@
  * and open the template in the editor.
  */
 ?>
-
+<style type="text/css">
+	.newsAnrow_right{
+        display: block;
+        background: url(/images/news/index/newsAnrow.jpg) no-repeat;
+        width: 43px;
+        height: 65px;
+        background-position: -53px 0px;
+	}
+	.newsAnrow_left{
+	        display: block;
+	        background: url(/images/news/index/newsAnrow.jpg) no-repeat;
+	        width: 43px;
+	        height: 65px;
+	        background-position: 0px 0px;
+	}
+</style>
 <link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('newsIndex.css','css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('news_slider.css','css');?>"  />
 <script src="<?php echo $this->staticUrl('bjqs-1.3.js','js');?>"></script>

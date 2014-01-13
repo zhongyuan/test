@@ -49,18 +49,4 @@ p.bjqs-caption{
 .anrow_hover:hover{
     border: 2px solid #e9e9e9;
 }
-.newsAnrow_right{
-        display: block;
-        background: url(/images/news/index/newsAnrow.jpg) no-repeat;
-        width: 43px;
-        height: 65px;
-        background-position: -53px 0px;
-}
-.newsAnrow_left{
-        display: block;
-        background: url(/images/news/index/newsAnrow.jpg) no-repeat;
-        width: 43px;
-        height: 65px;
-        background-position: 0px 0px;
-}
 
