@@ -45,7 +45,7 @@
             <div class="scrollable" id="scrollable">
                 <div class="items">
                     <ul class="video-lst-a">
-                        <li class="li_width">
+                        <li class="li_width" style="float: left">
                             <?php if($is_mobile){?>
                             <a href="http://v.youku.com/v_show/id_XNjU5OTM4MDQ0.html" target="_blank" >
                             <?php }else{?>
@@ -53,16 +53,16 @@
                             <?php }?>
                             <img class="q" src="<?php echo $this->staticUrl('index/001.jpg'); ?>" alt="更有竞争力的操作系统"/></a>
                         </li>
-                        <li >
+                        <li style="float: left">
                             <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
                         </li>
-                        <li class="li_width">
+                        <li class="li_width" style="float: left">
                             <a id="vedio2" href="<?php echo $this->createUrl('device/index'); ?>" ><img class="q" src="<?php echo $this->staticUrl('index/002.jpg'); ?>" /></a>
                         </li>
-                        <li >
+                        <li style="float: left">
                             <img class="q" src="<?php echo $this->staticUrl('index/index_divide_pic.jpg'); ?>" />
                         </li>
-                        <li class="li_width last-col">
+                        <li class="li_width last-col" style="float: left">
                             <a id="vedio3" href="<?php echo $this->createUrl('device/stb'); ?>" ><img class="q" src="<?php echo $this->staticUrl('index/003.jpg'); ?>" /></a>
                         </li>
                    </ul>
