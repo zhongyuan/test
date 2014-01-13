@@ -1,15 +1,15 @@
 <style>
     .div_height1{
-        height:486px;
+        height:485px;
     }
     .div_height2{
-        height:658px;
+        height:650px;
     }
 	.div_height3{
-        height:481px;
+        height:488px;
     }
 	.div_height4{
-        height:545px;
+        height:541px;
     }
     .imgbg{
         background-color: #ffffff;

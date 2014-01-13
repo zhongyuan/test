@@ -1,15 +1,15 @@
 <style>
     .div_height1{
-        height: 648px;
+        height: 647px;
     }
     .div_height2{
         height: 404px;
     }
     .div_height3{
-        height: 674px;
+        height: 673px;
     }
     .div_height4{
-        height: 664px;
+        height: 666px;
     }
     .Icenter{
         width: 980px;
