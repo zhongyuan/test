@@ -3,7 +3,7 @@
         height:485px;
     }
     .div_height2{
-        height:650px;
+        height:658px;
     }
 	.div_height3{
         height:488px;
