@@ -42,6 +42,7 @@ class DeviceController extends Controller
 		*/
 		public function actionSmphone()
 		{
+			$this->pageTitle = "COS官网 - COS设备 - 智能移动终端";
 			$this->render('smphone');
 		}
 		
@@ -61,6 +62,7 @@ class DeviceController extends Controller
 		*/
 		public function actionStb()
 		{
+			$this->pageTitle = "COS官网 - COS设备 - 智能电视机顶盒";
 			$this->render('stb');
 		}
 

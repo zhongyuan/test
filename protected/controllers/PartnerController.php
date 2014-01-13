@@ -68,6 +68,7 @@ class PartnerController extends Controller
 	 */
 	public function actionEcology()
 	{
+		$this->pageTitle = "COS官网 - 合作伙伴";
 		$this->render('ecology',array(
                 'logo' => array(
 					'cooperation_list_baidulianmeng.jpg',
