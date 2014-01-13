@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('fancybox2/jquery.fancybox.css','js'); ?>"/>
+<!--<link rel="stylesheet" type="text/css" href="<?php echo $this->staticUrl('fancybox2/jquery.fancybox.css','js'); ?>"/>-->
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/fancybox2/jquery.fancybox.css"  />
 
 <div class="indexbg">
     <div class="dd div_height1">
