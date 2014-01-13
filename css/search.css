@@ -30,8 +30,8 @@
     }
     .button_img {
         position: relative;
-        top: 2px;
-        left: 50px;
+        top: 4px;
+        left: 20px;
         padding: 13px 75px;
         font-size: 20px;
         background: url(/images/search_tmp/search.jpg) no-repeat;

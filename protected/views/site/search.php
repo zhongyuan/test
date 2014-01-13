@@ -1,11 +1,4 @@
-<?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-?>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/search.css"  />
 <div class="search_body">
 
