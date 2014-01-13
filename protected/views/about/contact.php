@@ -3,12 +3,14 @@
         font-size: 14px;
         margin-bottom: 60px;
     }
-    .div_height1{
-        height:440px; 
+    .imgbg{
+        height: 444px;
+        background-color: #fdfdfd;
     }
     .Icenter{
         width: 980px;
         margin: 0 auto;
+        overflow: hidden;
     }
     .vertical_line{
         width: 1px;
@@ -86,15 +88,11 @@
 
 
 <div class="contactbg">
-
-    <div class="dd div_height1">
-        <div class="mm">
-            <div class="ff">
-                <img src="<?php echo $this->staticUrl('about/contact1.jpg');?>"  />
-            </div>
+    <div class="imgbg">
+        <div class="Icenter">
+            <img src="<?php echo $this->staticUrl('about/contact1.jpg');?>"  />
         </div>
     </div>
-
     <div class="hor_line"></div>
     
     <div class="contact_row">

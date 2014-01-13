@@ -5,12 +5,15 @@
         overflow: hidden;
     }
     .imgbg1{
+        height: 473px;
         background-color: #5793f3;
     }
     .imgbg2{
+        height: 503px;
         background-color: #ffffff;
     }
     .imgbg3{
+        height: 750px;
         background-color: #f8f8f8;
     }
 </style>

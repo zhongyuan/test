@@ -3,6 +3,58 @@
 $session = Yii::app()->session;
 
 ?>
+<style type="text/css">
+	.logo_jpg{
+		display: block;
+		position: relative;
+		height: 86px;
+		width: 165px;
+		background: url("/images/index/nav.png") no-repeat;
+		background-position: -12px 0px;
+	}
+	.login_logo{
+		display: inline-block;
+		position: relative;
+		width: 20px;
+		height: 20px;
+		background: url("/images/index/nav.png") no-repeat;
+		background-position: -247px -5px;
+	}
+	.loginout_logo{
+		display: inline-block;
+		position: relative;
+		width: 20px;
+		height: 20px;
+		background: url("/images/index/nav.png") no-repeat;
+		background-position: -247px -8px; 
+	}
+	#submit_search{
+	    position: absolute;
+	    right: 3px;
+	    top: 10px;
+	    width: 20px;
+	    height: 15px;
+	    background: url("/images/index/nav.png") no-repeat;
+	    background-position: -368px -9px;
+	}
+	.search_inform{
+	    position: relative;
+	    height: 34px;
+	    width: 225px;
+	    background: url("/images/index/nav.png") no-repeat;
+	    background-position: -180px -27px;
+	    margin-left: 5px;
+	    margin-top:3px;
+	}
+	.register_logo{
+		display: inline-block;
+		position: relative;
+		width: 20px;
+		height: 20px;
+		background: url("/images/index/nav.png") no-repeat;
+		background-position: -188px -5px;
+	}
+</style>
 <div style="" id="headernew">
     <div class="logo" >
         <a href="<?php echo Yii::app()->createUrl('site/index'); ?>"><span class="logo_jpg"></span></a>
@@ -60,9 +112,9 @@ $session = Yii::app()->session;
             </div>
             <div id="second_content">
                     <?php if($control=='introduce'){?>
-                    <ul style="margin-left: 165px;">
+                    <ul style="margin-left: 175px;">
                         <li><a class="<?php echo $action=='ind'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/index'); ?>">完美兼容</a></li>
-                        <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>">出色的性能表现</a></li>
+                        <li><a class="<?php echo $action=='out'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/outstanding'); ?>">出色的性能</a></li>
                         <li><a class="<?php echo $action=='saf'?'selectItem font_color_main':null; ?>" href="<?php echo Yii::app()->createUrl('introduce/safety'); ?>">安全可靠</a></li>
                     <?php }elseif($control=='news'){ ?>
                     <ul style="margin-left: 448px;">

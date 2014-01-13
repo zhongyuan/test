@@ -7,6 +7,7 @@ class IntroduceController extends Controller
      */
 	public function actionIndex()
 	{
+        $this->setPageTitle('COS官网 - COS介绍 - 完美兼容');
 		$this->render('index');
 	}
     /*
@@ -14,6 +15,7 @@ class IntroduceController extends Controller
      */
     public function actionOutstanding()
     {
+        $this->setPageTitle('COS官网 - COS介绍 - 出色的性能');
         $this->render('outstanding');
     }
     
@@ -22,6 +24,7 @@ class IntroduceController extends Controller
      */
     public function actionSafety()
     {
+        $this->setPageTitle('COS官网 - COS介绍 - 安全可靠');
         $this->render('safety');
     }
     

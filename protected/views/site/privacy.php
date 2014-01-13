@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>COS帐号注册</title>
+        <title>COS官网 - 服务条款</title>
         <style type="text/css">
 			body{
 				font:12px/1.6 "微软雅黑", "宋体",Arial, Helvetica, sans-serif;
