@@ -59,8 +59,12 @@ class Controller extends CController
     {
         if(!$path){return ;} 
         $cdnUrl = Yii::app()->params['cdnUrl'][$domain]; //$domain 图片多时，可用多个域名服务器
+        $cdnVersion = Yii::app()->params['cdnVersion'];
+        
         $baseUrl = $cdnUrl?$cdnUrl:Yii::app()->request->baseUrl; 
-        $baseUrl .= '/'.$type.'/'.$path;
+        $version = $cdnVersion?"?ver=".$cdnVersion:'';
+
+        $baseUrl .= '/'.$type.'/'.$path.$version;
         return $baseUrl;
     }
     /**
