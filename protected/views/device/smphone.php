@@ -3,7 +3,7 @@
         height:506px;
     }
     .div_height2{
-        height:491px;
+        height:465px;
     }
 	.div_height3{
         height:640px;
@@ -14,7 +14,7 @@
         overflow: hidden;
     }
     .imgbg{
-        background-color: #ffffff;
+        background-color: #fafafa;
     }
 </style>
 
@@ -27,16 +27,12 @@
             </div>
         </div>
     </div>
-
-    <div class="dd div_height2">
-        <div class="mm">
-            <div class="ff">
+    <div class="imgbg div_height2">
+        <div class="Icenter">
                 <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_3.jpg'); ?>">
                 <img src="<?php echo $this->staticUrl('device/phone_new2/phone_pad_4.jpg'); ?>">
-            </div>
         </div>
     </div>
-
 	<div class="dd div_height3">
         <div class="mm">
             <div class="ff">
