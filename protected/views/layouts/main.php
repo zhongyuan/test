@@ -4,6 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+    <meta name="keywords" content="cos,chinaos,china-cos">
+    <meta name="description" content="中国自主操作系统"/>
     <link rel="shortcut icon" href="<?php echo $this->staticUrl('favicon.ico');?>" type="image/x-icon" />
     <link rel="icon" type="image/gif" href="<?php echo $this->staticUrl('favicon.ico');?>" type="image/x-icon" />
 	<!-- blueprint CSS framework -->
