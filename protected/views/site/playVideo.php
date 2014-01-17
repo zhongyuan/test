@@ -1,15 +1,28 @@
 <style>
-    .playVideo_bg{
+    .playVide{
         width: 980px;
-        height: 1000px;
-        margin: 0 auto;
+        margin: 20px auto;
         overflow: hidden;
     }
     .video{
-        width: 800px;
-        height: 475px;
+        width: 980px;
+        height: 600px;
+    }
+    .title{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
     }
 </style>
 <div class="playVideo_bg">
-
+    <div class="playVide">
+        <div class='title'>中国自主操作系统</div>
+        <div class="video">
+            <video width="980" height='600' controls="controls" autoplay>
+                <source src="http://sm.resource.china-cos.com/player.mp4" type="video/mp4">
+                your browser does not support the video tag
+            </video>
+        </div>
+    </div>
+    
 </div>
