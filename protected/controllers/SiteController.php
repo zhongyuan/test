@@ -52,7 +52,16 @@ class SiteController extends Controller
             'is_mobile' => $is_mobile,
         ));
 	}
-        
+    
+    /*
+     * 手持客户端的显示问题
+     */
+    public function actionPlayvideo()
+    {
+        $this->render('playVideo');
+    }
+
+
     /*
      * about search
      */
