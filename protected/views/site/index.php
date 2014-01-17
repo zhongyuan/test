@@ -47,7 +47,7 @@
                     <ul class="video-lst-a">
                         <li class="li_width" style="float: left">
                             <?php if($is_mobile){?>
-                            <a href="http://sm.resource.china-cos.com/player.swf?type=http&file=cos_intro.flv" target="_blank" >
+                            <a href="<?php echo $this->createUrl('site/playvideo'); ?>" target="_blank" >
                             <?php }else{?>
                             <a id="vedio1" href="http://sm.resource.china-cos.com/player.swf?type=http&file=cos_intro.flv">
                             <?php }?>
