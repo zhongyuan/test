@@ -1,22 +1,28 @@
 <style>
-    .playVideo_bg{
+    .playVide{
         width: 980px;
-        margin: 0 auto;
+        margin: 20px auto;
         overflow: hidden;
     }
     .video{
-        width: 800px;
-        height: 475px;
+        width: 980px;
+        height: 600px;
+    }
+    .title{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
     }
 </style>
 <div class="playVideo_bg">
-    <div class="video">
-            <object id="fancybox-swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%">
-                <param name="movie" value="http://sm.resource.china-cos.com/player.swf?type=http&amp;file=cos_intro.flv">
-                <param name="wmode" value="transparent"><param name="allowfullscreen" value="true">
-                <param name="allowscriptaccess" value="always">
-                <embed src="http://sm.resource.china-cos.com/player.swf?type=http&amp;file=cos_intro.flv" type="application/x-shockwave-flash" 
-                       width="100%" height="100%" wmode="transparent" allowfullscreen="true" allowscriptaccess="always">
-            </object>
+    <div class="playVide">
+        <div class='title'>中国自主操作系统</div>
+        <div class="video">
+            <video width="980" height='600' controls="controls" autoplay>
+                <source src="<?php echo $this->staticUrl('cos_11.mp4');?>" type="video/mp4">
+                your browser does not support the video tag
+            </video>
+        </div>
     </div>
+    
 </div>
