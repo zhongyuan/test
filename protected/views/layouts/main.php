@@ -4,8 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-    <meta name="keywords" content="cos,chinaos,china-cos">
-    <meta name="description" content="中国自主操作系统"/>
+    <meta name="keywords" content="COS,China-COS,China OS,上海联彤,联彤,自主操作系统,中国自主操作系统,移动终端操作系统,智能电视机顶盒,COS开发者,COS手机,COS平板电脑">
+    <meta name="description" content="COS全称China-OS，是中国自主操作系统，COS官网提供COS产品特性描述，COS设备介绍，市场信息及商务合作等信息咨询。"/>
     <link rel="shortcut icon" href="<?php echo $this->staticUrl('favicon.ico');?>" type="image/x-icon" />
     <link rel="icon" type="image/gif" href="<?php echo $this->staticUrl('favicon.ico');?>" type="image/x-icon" />
 	<!-- blueprint CSS framework -->
