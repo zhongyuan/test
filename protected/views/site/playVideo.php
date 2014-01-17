@@ -19,7 +19,7 @@
         <div class='title'>中国自主操作系统</div>
         <div class="video">
             <video width="980" height='600' controls="controls" autoplay>
-                <source src="<?php echo $this->staticUrl('cos_11.mp4');?>" type="video/mp4">
+                <source src="http://sm.resource.china-cos.com/player.mp4" type="video/mp4">
                 your browser does not support the video tag
             </video>
         </div>
