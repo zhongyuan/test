@@ -24,9 +24,4 @@
             </video>
         </div>
     </div>
-    
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> cc2d7f6efe70dd7e8d2d343f4108bec27764161f
