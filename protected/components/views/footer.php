@@ -7,7 +7,7 @@
             <a href="<?php echo Yii::app()->createUrl('site/privacy'); ?>"><span>服务条款</span></a>
     </div>
 
-    <div style="text-align: center;padding: 20px 0;">
+    <div style="text-align: center;padding: 5px 0;">
          沪ICP备13014147
     </div>
 
