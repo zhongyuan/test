@@ -19,8 +19,8 @@
     <div class="dd div_height1">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('introduce/outstanding_1.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('introduce/outstanding_2.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/outstanding_01.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/outstanding_02.jpg'); ?>">
             </div>
         </div>
     </div>
