@@ -1,9 +1,9 @@
 <style>
     .div_height1{
-        height:506px;
+        height:502px;
     }
     .div_height2{
-        height:465px;
+        height:494px;
     }
 	.div_height3{
         height:640px;

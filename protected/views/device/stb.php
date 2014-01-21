@@ -1,12 +1,12 @@
 <style>
     .div_height1{
-        height:486px;
+        height:484px;
     }
 	.div_height2{
-      height:702px;
+      height:698px;
     }
 	.div_height3{
-       height:467px;
+       height:463px;
     }
 	.div_height4{
        height:546px;
