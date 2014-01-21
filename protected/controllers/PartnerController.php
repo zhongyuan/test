@@ -71,17 +71,17 @@ class PartnerController extends Controller
 		$this->pageTitle = "COS官网 - 合作伙伴";
 		$this->render('ecology',array(
                 'logo' => array(
-					'cooperation_list_baidulianmeng.jpg',
-					'cooperation_list_baidu91.jpg',
-					'cooperation_list_gaode.jpg',
-					'cooperation_list_sina.jpg',
-					'cooperation_list_letv.jpg',
-					'cooperation_list_chuangyi.jpg',
-					'cooperation_list_zhongxing.jpg',
-					'cooperation_list_dazhihui.jpg',
-					'cooperation_list_dongyou.jpg',
-					'cooperation_list_payeco.jpg',
-					'cooperation_list_xunfei.jpg',
+					'logo/cooperation_list_baidulianmeng.jpg',
+					'logo/cooperation_list_baidu91.jpg',
+					'logo/cooperation_list_gaode.jpg',
+					'logo/cooperation_list_sina.jpg',
+					'logo/cooperation_list_letv.jpg',
+					'logo/cooperation_list_chuangyi.jpg',
+					'logo/cooperation_list_zhongxing.jpg',
+					'logo/cooperation_list_dazhihui.jpg',
+					'logo/cooperation_list_dongyou.jpg',
+					'logo/cooperation_list_payeco.jpg',
+					'logo/cooperation_list_xunfei.jpg',
 				)
         ));
 	}
