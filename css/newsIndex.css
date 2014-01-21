@@ -354,17 +354,17 @@
 		margin: 0 auto;
 	}
 	ul.plogo li{
-		width: 237px;
+		width: 227px;
 		height: 165px;
 		float: left;
 		overflow: hidden;
 	}
-	ul.plogo li img{
+	/*ul.plogo li img{
 		display: inline-block;
-		width: 197px;
+		width: 227px;
+		height: 165px;
 		overflow: hidden;
-		margin-left: 20px;
-	}
+	}*/
 	
 	
 	
