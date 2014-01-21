@@ -68,6 +68,9 @@ class PartnerController extends Controller
 	 */
 	public function actionEcology()
 	{
+		$mcPartner = new MCPartner();
+		$dbLogo = $mcPartner->getParterList();
+		
 		$this->pageTitle = "COS官网 - 合作伙伴";
 		$this->render('ecology',array(
                 'logo' => array(
@@ -82,7 +85,8 @@ class PartnerController extends Controller
 					'logo/cooperation_list_dongyou.jpg',
 					'logo/cooperation_list_payeco.jpg',
 					'logo/cooperation_list_xunfei.jpg',
-				)
+				),
+				'dbLogo' => $dbLogo
         ));
 	}
 	

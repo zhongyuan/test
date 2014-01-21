@@ -26,9 +26,20 @@
 
     <div id ="replace">
         <ul class="plogo">
-			<?php foreach($logo as $el):?>
-				<li><img src="<?php echo $this->staticUrl('partner/'.$el);?>" /></li>
-			<?php endforeach;?>
+			<?php if($dbLogo):?>
+				<?php foreach($dbLogo as $item):?>
+					<li>
+					<a href="<?php echo empty($item['link']) ? "#" : $item['link'];?>" target="_blank">
+					<img src="<?php echo $item['logo_url'];?>" title="<?php echo $item['name'];?>"/>
+					</a>
+					</li>
+				<?php endforeach;?>
+			<?php else:?>
+				<?php foreach($logo as $el):?>
+					<li><img src="<?php echo $this->staticUrl('partner/'.$el);?>" /></li>
+				<?php endforeach;?>
+			<?php endif;?>
+			
 		</ul>
 
     </div>
