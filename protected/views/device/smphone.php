@@ -1,6 +1,6 @@
 <style>
     .div_height1{
-        height:502px;
+        height:500px;
     }
     .div_height2{
         height:494px;
