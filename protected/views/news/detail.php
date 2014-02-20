@@ -14,8 +14,8 @@
 	<div class="dd news_banner">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('news/index/new_1.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('news/index/new_2.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('news/index/new_01.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('news/index/new_02.jpg'); ?>">
             </div>
         </div>
     </div>

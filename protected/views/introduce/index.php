@@ -3,7 +3,7 @@
         height: 647px;
     }
     .div_height2{
-        height: 403px;
+        height: 404px;
     }
     .div_height3{
         height: 673px;
@@ -34,8 +34,8 @@
     <div class="dd div_height2">
         <div class="mm">
             <div class="ff">
-                <img src="<?php echo $this->staticUrl('introduce/compatible_3.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('introduce/compatible_4.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/compatible_3_1.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('introduce/compatible_4_1.jpg'); ?>">
             </div>
         </div>
     </div>

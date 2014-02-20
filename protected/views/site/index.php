@@ -10,7 +10,7 @@
                     <img src="<?php echo $this->staticUrl('index/index_banner_2.jpg'); ?>">
                 <?php }else{?>
                     <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1920" height="470">
-                        <param name="movie" value="<?php echo $this->staticUrl('index/index_banner_02.swf');?>" />
+                        <param name="movie" value="<?php echo $this->staticUrl('index/index_banner.swf');?>" />
                         <param name="quality" value="high" />
                         <param name="wmode" value="opaque" />
                         <param name="swfversion" value="15.0.0.0" />
@@ -19,7 +19,7 @@
                         <!-- 下一个对象标签用于非 IE 浏览器。所以使用 IECC 将其从 IE 隐藏。 -->
                         <!--[if !IE] 比如google safari-->
                         <?php $agent = $_SERVER["HTTP_USER_AGENT"]; if(!strpos($agent,"MSIE")){?>
-                            <object type="application/x-shockwave-flash" data="<?php echo $this->staticUrl('index/index_banner_02.swf');?>" width="1920" height="470">
+                            <object type="application/x-shockwave-flash" data="<?php echo $this->staticUrl('index/index_banner.swf');?>" width="1920" height="470">
                             <!--<![endif]-->
                             <param name="quality" value="high" />
                             <param name="wmode" value="opaque" />
