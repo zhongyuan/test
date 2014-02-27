@@ -6,8 +6,8 @@
         <div class="mm">
             <div class="ff">
                 <?php if($is_mobile){ ?>
-                    <img src="<?php echo $this->staticUrl('index/index_banner_1.jpg'); ?>">
-                    <img src="<?php echo $this->staticUrl('index/index_banner_2.jpg'); ?>">
+                    <img src="<?php echo $this->staticUrl('index/index_banner_01.jpg'); ?>">
+                    <img src="<?php echo $this->staticUrl('index/index_banner_02.jpg'); ?>">
                 <?php }else{?>
                     <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1920" height="470">
                         <param name="movie" value="<?php echo $this->staticUrl('index/index_banner.swf');?>" />
