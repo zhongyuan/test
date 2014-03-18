@@ -1,6 +1,6 @@
 <style>
     .div_height1{
-        height:484px;
+        /*height:485px;*/
     }
 	.div_height2{
       height:698px;
@@ -28,8 +28,8 @@
 <div class="mterminalbg">
     <div class="imgbg div_height1">
         <div class="Icenter">
-                <img src="<?php echo $this->staticUrl('device/telebox_new3/smart_tv_1.jpg'); ?>">
-                <img src="<?php echo $this->staticUrl('device/telebox_new3/smart_tv_2.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/telebox_new3/smart_tv_01.jpg'); ?>">
+                <img src="<?php echo $this->staticUrl('device/telebox_new3/smart_tv_02.jpg'); ?>">
         </div>
     </div>
 	
